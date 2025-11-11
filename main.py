@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-main_v7.py
+main_v10.py
 
-Journal Club Presentation Pipeline - Updated
+Journal Club Presentation Pipeline - Full robust fix with nested dict/list handling
+
 1) Chunked summaries -> summary.txt
-2) Global synthesis -> plan.txt
-3) Actionable notions + references -> notions_and_refs.txt (Step 3 never overwrites summary or plan)
+2) Global synthesis -> plan.txt (handles list/dict and nested structures)
+3) Actionable notions + references -> notions_and_refs.txt
 """
 
 import os
 import re
 import json
-import time
 import fitz  # PyMuPDF
 from typing import List, Tuple
 from langchain_ollama import OllamaLLM
@@ -53,7 +53,7 @@ def find_references_section(full_text: str) -> Tuple[str, str]:
 
 def sliding_chunks(text: str, size: int, overlap: int) -> List[str]:
     step = size - overlap
-    return [text[i:i+size] for i in range(0, max(len(text)-overlap, 1), step)]
+    return [text[i:i+size] for i in range(0, max(len(text)-overlap,1), step)]
 
 def find_bracket_citations(text: str) -> List[int]:
     return sorted({int(n) for n in re.findall(r"\[(\d{1,4})\]", text)})
@@ -90,6 +90,25 @@ def safe_extract_json_like(text: str) -> Tuple[dict, str]:
             except Exception:
                 return {}, text
         return {}, text
+
+def format_list_of_dicts(lst):
+    """
+    Recursively convert a list of dicts or nested lists into readable text.
+    """
+    lines = []
+    for item in lst:
+        if isinstance(item, dict):
+            for k,v in item.items():
+                if isinstance(v, list):
+                    v_text = format_list_of_dicts(v)
+                else:
+                    v_text = str(v)
+                lines.append(f"{k}: {v_text}")
+        elif isinstance(item, list):
+            lines.append(format_list_of_dicts(item))
+        else:
+            lines.append(str(item))
+    return "\n".join(lines)
 
 # ---------------- LLM setup ----------------
 llm = OllamaLLM(model=LLM_MODEL)
@@ -149,7 +168,6 @@ def step1_chunk_and_summarize(full_body_text: str) -> List[dict]:
         if not parsed:
             parsed = {"section_tag":"Other","summary":ch[:400]+"...","technical_points":[],"experimental_details":[],"citations":find_bracket_citations(ch)}
         all_chunks_info.append(parsed)
-        # Save chunk debug
         with open(os.path.join(CHUNKS_DIR,f"chunk_{i:03d}.json"),"w") as f:
             json.dump(parsed,f,indent=2,ensure_ascii=False)
     return all_chunks_info
@@ -159,13 +177,17 @@ def step2_synthesize_and_plan(chunk_summaries: List[dict], refs_text: str) -> Tu
     print("STEP 2 — Global synthesis and plan...")
     prompt = synthesis_prompt(chunk_summaries)
     raw = llm.invoke(prompt)
-    raw_text = raw if isinstance(raw,str) else str(raw)
-    # crude section extraction
-    def extract_section(label: str, text: str) -> str:
-        m = re.search(rf"(?mi){label}\s*:?\s*(.+?)(?:\n[A-Z ]{{3,30}}\s*:|\Z)", text)
-        return m.group(1).strip() if m else ""
-    global_summary = extract_section("GLOBAL_SUMMARY", raw_text) or raw_text[:8000]
-    plan_text = extract_section("PRESENTATION_PLAN", raw_text) or ""
+    parsed, _ = safe_extract_json_like(raw)
+
+    global_summary = parsed.get("GLOBAL_SUMMARY", "")
+    plan_text = parsed.get("PRESENTATION_PLAN", "")
+
+    # Convert both to readable string
+    if isinstance(global_summary, list):
+        global_summary = format_list_of_dicts(global_summary)
+    if isinstance(plan_text, list):
+        plan_text = format_list_of_dicts(plan_text)
+
     return global_summary.strip(), plan_text.strip()
 
 # ---------------- Step 3 ----------------
@@ -184,33 +206,29 @@ def write_outputs_step2(global_summary: str, plan_text: str):
     with open(OUT_PLAN,"w") as f: f.write("=== PRESENTATION PLAN ===\n\n"+plan_text)
     print(f"Saved Step 2: {OUT_SUMMARY}, {OUT_PLAN}")
 
-def write_outputs_step3(notions_and_refs: dict):
-    with open(OUT_NOTIONS,"w") as f: json.dump(notions_and_refs,f,indent=2,ensure_ascii=False)
-    print(f"Saved Step 3: {OUT_NOTIONS}")
-
-# ---------------- Runner ----------------
-def main():
-    print("Starting main_v7 pipeline...")
-    pages, full_text = extract_pdf_pages_text(PDF_PATH)
-    body_text, refs_text = find_references_section(full_text)
-    refs_map = parse_refs_best_effort(refs_text)
-    print(f"Document text: {len(body_text)} chars, References: {len(refs_text)} chars")
-
-    # Step 1
-    chunks_info = step1_chunk_and_summarize(body_text)
-    # Step 2
-    global_summary, plan_text = step2_synthesize_and_plan(chunks_info, refs_text)
-    write_outputs_step2(global_summary, plan_text)
-    # Step 3
-    notions_and_refs = step3_produce_notions_and_refs(global_summary, plan_text, refs_text)
-    # Attach resolved full references from refs_map if token is [n]
+def write_outputs_step3(notions_and_refs: dict, refs_map: dict):
     for entry in notions_and_refs.get("citations_needed", []):
         tok = entry.get("token","")
         m = re.match(r"^\s*\[(\d{1,4})\]\s*$", str(tok))
         if m:
             num = int(m.group(1))
             entry["match"] = refs_map.get(num)
-    write_outputs_step3(notions_and_refs)
+    with open(OUT_NOTIONS,"w") as f: json.dump(notions_and_refs,f,indent=2,ensure_ascii=False)
+    print(f"Saved Step 3: {OUT_NOTIONS}")
+
+# ---------------- Runner ----------------
+def main():
+    print("Starting main_v10 pipeline...")
+    pages, full_text = extract_pdf_pages_text(PDF_PATH)
+    body_text, refs_text = find_references_section(full_text)
+    refs_map = parse_refs_best_effort(refs_text)
+    print(f"Document text: {len(body_text)} chars, References: {len(refs_text)} chars")
+
+    chunks_info = step1_chunk_and_summarize(body_text)
+    global_summary, plan_text = step2_synthesize_and_plan(chunks_info, refs_text)
+    write_outputs_step2(global_summary, plan_text)
+    notions_and_refs = step3_produce_notions_and_refs(global_summary, plan_text, refs_text)
+    write_outputs_step3(notions_and_refs, refs_map)
 
     print("Pipeline complete. Summary, plan, and notions ready.")
 
