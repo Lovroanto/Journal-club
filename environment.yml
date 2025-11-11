@@ -1,0 +1,7 @@
+name: journal-club-presentation-generator
+dependencies:
+  - python>=3.8
+  - conda-forge::pytorch=1.12.0
+  - conda-forge::torchvision=0.10.0
+  - transformers
+  - rag

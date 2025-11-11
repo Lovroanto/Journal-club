@@ -1,0 +1,1 @@
+conda activate journal-club-presentation-generator
