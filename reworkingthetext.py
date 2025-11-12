@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-preprocess_extract_figures_and_refs_v3.py
+reworkingthetext_final.py
 
-Improved preprocessor:
-1. Extract all figure captions (each in its own file)
-2. Remove figure captions, axis noise, and headers/footers
-3. Separate References and Supplementary materials
-4. Save everything in ~/ai_data/Journal_Club/First/main_article/
+Preprocesses the main article by:
+1. Extracting all figure captions (each in its own file under ./figures/)
+2. Removing figure captions, axis noise, and headers/footers
+3. Separating References and Supplementary materials
+4. Saving cleaned files into ~/ai_data/Journal_Club/First/main_article/
 """
 
 import os
@@ -17,12 +17,15 @@ import fitz  # PyMuPDF
 BASE_DIR = os.path.expanduser("~/ai_data/Journal_Club/First/main_article")
 PDF_PATH = os.path.join(BASE_DIR, "../main/s41567-025-02854-4.pdf")
 
+FIGURES_DIR = os.path.join(BASE_DIR, "figures")
 os.makedirs(BASE_DIR, exist_ok=True)
+os.makedirs(FIGURES_DIR, exist_ok=True)
 
 OUT_BODY = os.path.join(BASE_DIR, "body_cleaned.txt")
 OUT_CAPTIONS_INDEX = os.path.join(BASE_DIR, "figure_captions_index.txt")
 OUT_REFS = os.path.join(BASE_DIR, "references.txt")
 OUT_SUPPL = os.path.join(BASE_DIR, "supplementary.txt")
+
 
 # ---------- HELPERS ----------
 
@@ -32,6 +35,7 @@ def extract_pdf_text(pdf_path):
     pages = [page.get_text("text").strip() for page in doc]
     doc.close()
     return "\n\n".join(pages)
+
 
 def remove_page_headers_and_footers(text):
     """Remove page numbers, author names, DOIs, etc."""
@@ -60,6 +64,7 @@ def remove_page_headers_and_footers(text):
         cleaned.append(l)
     return "\n".join(cleaned)
 
+
 def remove_figure_axis_labels(text):
     """Remove numeric and short symbol lines typical of axis labels."""
     lines = text.splitlines()
@@ -70,7 +75,7 @@ def remove_figure_axis_labels(text):
             continue
         if re.search(r"\b(kHz|Hz|s|ms|nm|μm|cm|dB|mol|K|°C|×10)\b", stripped):
             continue
-        if len(stripped) <= 2:  # single letters
+        if len(stripped) <= 2:  # single letters or junk
             continue
         tokens = stripped.split()
         if len(tokens) >= 3 and sum(len(t) < 3 for t in tokens) > len(tokens) / 2:
@@ -78,26 +83,32 @@ def remove_figure_axis_labels(text):
         new_lines.append(l)
     return "\n".join(new_lines)
 
+
 def collapse_blank_lines(text):
     """Collapse multiple blank lines."""
     return re.sub(r"\n{3,}", "\n\n", text)
 
-def extract_and_remove_figure_captions(text, out_dir):
+
+def extract_and_remove_figure_captions(text, figures_dir):
     """
     Extract figure captions and remove them from main text.
-    Each caption saved as figure_XXX.txt.
+    Each caption saved as figure_XXX.txt in `figures_dir`.
     """
     caption_pattern = re.compile(
         r"(?:(?:^|\n)(?:Fig(?:ure)?\.?|Extended Data Fig\.|Supplementary Fig(?:ure)?\.?)\s*\d+[a-zA-Z]?(?:[.:)]|[\s|–-]))"
         r"[\s\S]*?(?=\n\s*\n|(?:(?:Fig(?:ure)?|Extended Data Fig\.|Supplementary Fig\.|References)\b)|\Z)",
         flags=re.MULTILINE
     )
+
     captions = [m.group(0).strip() for m in caption_pattern.finditer(text)]
+
     for i, cap in enumerate(captions, 1):
-        with open(os.path.join(out_dir, f"figure_{i:03d}.txt"), "w") as f:
+        with open(os.path.join(figures_dir, f"figure_{i:03d}.txt"), "w") as f:
             f.write(cap + "\n")
+
     cleaned_text = caption_pattern.sub("\n", text)
     return cleaned_text, captions
+
 
 def separate_refs_and_supplementary(full_text):
     """
@@ -121,7 +132,9 @@ def separate_refs_and_supplementary(full_text):
     else:
         return body, refs_text, ""
 
+
 # ---------- MAIN ----------
+
 def main():
     print(f"Reading PDF from {PDF_PATH} ...")
     raw_text = extract_pdf_text(PDF_PATH)
@@ -134,15 +147,15 @@ def main():
     body, refs_text, supp_text = separate_refs_and_supplementary(cleaned)
     print(f"Body: {len(body)}, Refs: {len(refs_text)}, Supp: {len(supp_text)}")
 
-    # Extract and remove figure captions (each as .txt)
-    body_no_figs, captions = extract_and_remove_figure_captions(body, BASE_DIR)
+    # Extract and remove figure captions (each as .txt in /figures/)
+    body_no_figs, captions = extract_and_remove_figure_captions(body, FIGURES_DIR)
     print(f"Extracted {len(captions)} figure captions.")
 
     # Remove numeric figure axis junk
     body_no_noise = remove_figure_axis_labels(body_no_figs)
     final_body = collapse_blank_lines(body_no_noise)
 
-    # Save files
+    # Save main text files
     with open(OUT_BODY, "w") as f:
         f.write(final_body.strip() + "\n")
     with open(OUT_CAPTIONS_INDEX, "w") as f:
@@ -157,10 +170,11 @@ def main():
 
     print("\n✅ Done preprocessing:")
     print(f" → Cleaned body: {OUT_BODY}")
-    print(f" → {len(captions)} figure caption files in {BASE_DIR}")
+    print(f" → {len(captions)} figure caption files in {FIGURES_DIR}")
     print(f" → References: {OUT_REFS}")
     if supp_text:
         print(f" → Supplementary: {OUT_SUPPL}")
+
 
 if __name__ == "__main__":
     main()
