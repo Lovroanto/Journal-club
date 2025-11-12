@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """
-main_v10.py
+main_v11_contextual.py
 
-Journal Club Presentation Pipeline - Full robust fix with nested dict/list handling
+Journal Club Presentation Pipeline
+----------------------------------
+Adds two-agent summarization:
+  1. Context Agent — locates where we are in the article and transitions.
+  2. Summary Agent — produces a long, contextual, technical summary.
 
-1) Chunked summaries -> summary.txt
-2) Global synthesis -> plan.txt (handles list/dict and nested structures)
-3) Actionable notions + references -> notions_and_refs.txt
+Pipeline:
+  1) Context-aware chunk summaries -> chunks/*.txt
+  2) Global synthesis -> summary.txt, plan.txt
+  3) Actionable notions + references -> notions_and_refs.txt
 """
 
 import os
@@ -33,13 +38,13 @@ MAX_PROMPT_CHARS = 12000
 LLM_MODEL = "llama3.1"
 
 # ---------------- Utilities ----------------
-
 def extract_pdf_pages_text(pdf_path: str) -> Tuple[List[str], str]:
     doc = fitz.open(pdf_path)
     pages = [p.get_text("text") + "\n" for p in doc]
     full = "".join(pages)
     doc.close()
     return pages, full
+
 
 def find_references_section(full_text: str) -> Tuple[str, str]:
     headings = [r"(?mi)\n\s*References\s*\n", r"(?mi)\n\s*REFERENCES\s*\n", r"(?mi)\n\s*Bibliography\s*\n"]
@@ -51,12 +56,15 @@ def find_references_section(full_text: str) -> Tuple[str, str]:
     cutoff = int(len(full_text) * 0.8)
     return full_text[:cutoff], full_text[cutoff:]
 
+
 def sliding_chunks(text: str, size: int, overlap: int) -> List[str]:
     step = size - overlap
     return [text[i:i+size] for i in range(0, max(len(text)-overlap,1), step)]
 
+
 def find_bracket_citations(text: str) -> List[int]:
     return sorted({int(n) for n in re.findall(r"\[(\d{1,4})\]", text)})
+
 
 def parse_refs_best_effort(refs_text: str) -> dict:
     mapping = {}
@@ -78,6 +86,7 @@ def parse_refs_best_effort(refs_text: str) -> dict:
         mapping[current] = " ".join(buffer).strip()
     return mapping
 
+
 def safe_extract_json_like(text: str) -> Tuple[dict, str]:
     try:
         return json.loads(text.strip()), ""
@@ -91,10 +100,8 @@ def safe_extract_json_like(text: str) -> Tuple[dict, str]:
                 return {}, text
         return {}, text
 
+
 def format_list_of_dicts(lst):
-    """
-    Recursively convert a list of dicts or nested lists into readable text.
-    """
     lines = []
     for item in lst:
         if isinstance(item, dict):
@@ -110,36 +117,123 @@ def format_list_of_dicts(lst):
             lines.append(str(item))
     return "\n".join(lines)
 
+
 # ---------------- LLM setup ----------------
 llm = OllamaLLM(model=LLM_MODEL)
 
-# ---------------- Prompts ----------------
-def chunk_prompt(chunk_text: str, chunk_index: int, total_chunks: int) -> str:
+# ---------------- Context + Summary Agents ----------------
+def context_agent_prompt(prev_summary: str, current_context: str, chunk_text: str, chunk_index: int, total_chunks: int) -> str:
     return f"""
-You are a precise scientific assistant preparing a journal club presentation.
-Return JSON ONLY with keys:
- - "section_tag": one of ["Introduction","Background","Methods","Results","Discussion","Other"]
- - "summary": 3-6 sentences technical content
- - "technical_points": list of short technical bullets (2-6 words)
- - "experimental_details": list of parameters, equipment, sample sizes, figures, or methods
- - "citations": list of citation mentions exactly as they appear ("[12]", "Smith et al., 2020")
+You are a context-identification assistant reading a scientific paper in chunks.
 
-CHUNK_INDEX: {chunk_index}/{total_chunks}
+PREVIOUS SUMMARY:
+\"\"\"{prev_summary[-1500:] if prev_summary else "None"}\"\"\"
+
+CURRENT CONTEXT: {current_context}
+CHUNK {chunk_index}/{total_chunks} TEXT (truncated):
+\"\"\"{chunk_text[:1500]}\"\"\"
+
+TASK:
+1. Infer where we are in the article (choose from: Abstract, Introduction, Background, Methods, Results, Discussion, Conclusion, Supplementary, References, Figure Caption, Other).
+2. Write 2–3 sentences describing the *transition* from the previous section to this one.
+3. Include a line at the end: NEXT_CONTEXT: <predicted_section>
+"""
+
+
+def summary_agent_prompt(context_text: str, chunk_text: str, current_context: str, chunk_index: int, total_chunks: int) -> str:
+    return f"""
+You are a scientific summarization expert preparing for a journal club presentation.
+
+CONTEXT INFO:
+\"\"\"{context_text}\"\"\"
+
+SECTION_CONTEXT: {current_context}
+
+Now read the following chunk ({chunk_index}/{total_chunks}) and write:
+1. A detailed technical summary (150–300 words) explaining main ideas, data, and results.
+2. Highlight any important methods, physical concepts, or transitions.
+3. If this chunk is the references section, just write "REFERENCE SECTION — SKIPPED".
+4. At the end of your answer, add one line:
+   END_CONTEXT: <where we are at the end of the chunk>
+
 CHUNK_TEXT (first {MAX_PROMPT_CHARS} chars):
 \"\"\"{chunk_text[:MAX_PROMPT_CHARS]}\"\"\"
 """
 
+
+def step1_chunk_and_summarize(full_body_text: str) -> List[dict]:
+    print("STEP 1 — Context-aware 2-pass summarization...")
+    chunks = sliding_chunks(full_body_text, CHUNK_SIZE, CHUNK_OVERLAP)
+    print(f"  -> {len(chunks)} chunks created.")
+
+    current_context = "Unknown"
+    previous_summary = ""
+    all_chunks_info = []
+
+    for i, ch in enumerate(chunks, start=1):
+        print(f"  - Processing chunk {i}/{len(chunks)}")
+
+        # 1️⃣ Context Agent
+        context_prompt = context_agent_prompt(previous_summary, current_context, ch, i, len(chunks))
+        context_text = llm.invoke(context_prompt).strip()
+        context_file = os.path.join(CHUNKS_DIR, f"chunk_{i:03d}_context.txt")
+        with open(context_file, "w") as f:
+            f.write(context_text)
+
+        # 2️⃣ Summary Agent
+        summary_prompt = summary_agent_prompt(context_text, ch, current_context, i, len(chunks))
+        summary_text = llm.invoke(summary_prompt).strip()
+        summary_file = os.path.join(CHUNKS_DIR, f"chunk_{i:03d}_summary.txt")
+        with open(summary_file, "w") as f:
+            f.write(summary_text)
+
+        # 3️⃣ Extract next context
+        m = re.search(r"END_CONTEXT:\s*(.+)", summary_text)
+        if m:
+            current_context = m.group(1).strip()
+        previous_summary = summary_text
+
+        # 4️⃣ Collect info
+        all_chunks_info.append({
+            "chunk_index": i,
+            "context": context_text,
+            "summary": summary_text,
+            "current_context": current_context
+        })
+
+    return all_chunks_info
+
+
+# ---------------- Step 2: Global synthesis + plan ----------------
 def synthesis_prompt(chunk_summaries: List[dict]) -> str:
     return f"""
 You are a senior presenter. Using provided structured chunk summaries, produce JSON with sections:
-1) GLOBAL_SUMMARY: 4-8 paragraphs technical summary.
-2) PRESENTATION_PLAN: slide-by-slide plan (8-12 slides) with titles + bullet points.
-3) KEY_NOTIONS: 4-6 domain notions with 2-3 sentence definitions, marked "critical"/"optional".
+1) GLOBAL_SUMMARY: 4–8 paragraphs technical summary.
+2) PRESENTATION_PLAN: slide-by-slide plan (8–12 slides) with titles + bullet points.
+3) KEY_NOTIONS: 4–6 domain notions with 2–3 sentence definitions, marked "critical"/"optional".
 4) INTERESTING_CITATIONS: foundational citations from chunks.
 
-Input JSON: {json.dumps(chunk_summaries)[:MAX_PROMPT_CHARS]}
+Input summaries: {json.dumps(chunk_summaries)[:MAX_PROMPT_CHARS]}
 """
 
+def step2_synthesize_and_plan(chunk_summaries: List[dict]) -> Tuple[str, str]:
+    print("STEP 2 — Global synthesis and plan...")
+    prompt = synthesis_prompt(chunk_summaries)
+    raw = llm.invoke(prompt)
+    parsed, _ = safe_extract_json_like(raw)
+
+    global_summary = parsed.get("GLOBAL_SUMMARY", "")
+    plan_text = parsed.get("PRESENTATION_PLAN", "")
+
+    if isinstance(global_summary, list):
+        global_summary = format_list_of_dicts(global_summary)
+    if isinstance(plan_text, list):
+        plan_text = format_list_of_dicts(plan_text)
+
+    return global_summary.strip(), plan_text.strip()
+
+
+# ---------------- Step 3: Notions + references ----------------
 def plan_to_notions_prompt(global_summary: str, plan_text: str, refs_preview: str) -> str:
     return f"""
 You are preparing a retrieval list for a research assistant.
@@ -155,52 +249,17 @@ Produce JSON ONLY:
  - "citations_needed": list of objects with "token", "reason", "match" (full reference if available)
 """
 
-# ---------------- Step 1 ----------------
-def step1_chunk_and_summarize(full_body_text: str) -> List[dict]:
-    print("STEP 1 — Chunking and summarizing...")
-    chunks = sliding_chunks(full_body_text, CHUNK_SIZE, CHUNK_OVERLAP)
-    print(f"  -> {len(chunks)} chunks created.")
-    all_chunks_info = []
-    for i, ch in enumerate(chunks, start=1):
-        prompt = chunk_prompt(ch, i, len(chunks))
-        raw = llm.invoke(prompt)
-        parsed, _ = safe_extract_json_like(raw)
-        if not parsed:
-            parsed = {"section_tag":"Other","summary":ch[:400]+"...","technical_points":[],"experimental_details":[],"citations":find_bracket_citations(ch)}
-        all_chunks_info.append(parsed)
-        with open(os.path.join(CHUNKS_DIR,f"chunk_{i:03d}.json"),"w") as f:
-            json.dump(parsed,f,indent=2,ensure_ascii=False)
-    return all_chunks_info
-
-# ---------------- Step 2 ----------------
-def step2_synthesize_and_plan(chunk_summaries: List[dict], refs_text: str) -> Tuple[str,str]:
-    print("STEP 2 — Global synthesis and plan...")
-    prompt = synthesis_prompt(chunk_summaries)
-    raw = llm.invoke(prompt)
-    parsed, _ = safe_extract_json_like(raw)
-
-    global_summary = parsed.get("GLOBAL_SUMMARY", "")
-    plan_text = parsed.get("PRESENTATION_PLAN", "")
-
-    # Convert both to readable string
-    if isinstance(global_summary, list):
-        global_summary = format_list_of_dicts(global_summary)
-    if isinstance(plan_text, list):
-        plan_text = format_list_of_dicts(plan_text)
-
-    return global_summary.strip(), plan_text.strip()
-
-# ---------------- Step 3 ----------------
 def step3_produce_notions_and_refs(global_summary: str, plan_text: str, refs_text: str) -> dict:
     print("STEP 3 — Building notions_and_refs...")
-    prompt = plan_to_notions_prompt(global_summary, plan_text, refs_text[:MAX_PROMPT_CHARS])
+    prompt = plan_to_notions_prompt(global_summary, plan_text, refs_text)
     raw = llm.invoke(prompt)
     parsed, _ = safe_extract_json_like(raw)
     if not parsed:
         parsed = {}
     return parsed
 
-# ---------------- Write helpers ----------------
+
+# ---------------- Writers ----------------
 def write_outputs_step2(global_summary: str, plan_text: str):
     with open(OUT_SUMMARY,"w") as f: f.write("=== GLOBAL SUMMARY ===\n\n"+global_summary)
     with open(OUT_PLAN,"w") as f: f.write("=== PRESENTATION PLAN ===\n\n"+plan_text)
@@ -216,21 +275,23 @@ def write_outputs_step3(notions_and_refs: dict, refs_map: dict):
     with open(OUT_NOTIONS,"w") as f: json.dump(notions_and_refs,f,indent=2,ensure_ascii=False)
     print(f"Saved Step 3: {OUT_NOTIONS}")
 
-# ---------------- Runner ----------------
+
+# ---------------- Main Runner ----------------
 def main():
-    print("Starting main_v10 pipeline...")
+    print("Starting main_v11_contextual pipeline...")
     pages, full_text = extract_pdf_pages_text(PDF_PATH)
     body_text, refs_text = find_references_section(full_text)
     refs_map = parse_refs_best_effort(refs_text)
     print(f"Document text: {len(body_text)} chars, References: {len(refs_text)} chars")
 
     chunks_info = step1_chunk_and_summarize(body_text)
-    global_summary, plan_text = step2_synthesize_and_plan(chunks_info, refs_text)
+    global_summary, plan_text = step2_synthesize_and_plan(chunks_info)
     write_outputs_step2(global_summary, plan_text)
     notions_and_refs = step3_produce_notions_and_refs(global_summary, plan_text, refs_text)
     write_outputs_step3(notions_and_refs, refs_map)
 
     print("Pipeline complete. Summary, plan, and notions ready.")
+
 
 if __name__ == "__main__":
     main()
