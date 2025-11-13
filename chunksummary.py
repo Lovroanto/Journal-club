@@ -213,7 +213,8 @@ CHUNK SUMMARIES:
 
 # ---------------- STEP 3: Main Text Summaries ----------------
 def summarize_main(figure_summaries, supp_summaries):
-    print("STEP 3 — Summarizing main text (context-aware)...")
+    print("STEP 3 — Summarizing main text (context-aware, with figure/supplementary links)...")
+
     text = read_file(MAIN_TEXT_PATH)
     if not text.strip():
         print("⚠️ No main text found.")
@@ -226,32 +227,92 @@ def summarize_main(figure_summaries, supp_summaries):
     prev_context = "START OF PAPER"
     figure_refs = {k.lower(): v for k, v in figure_summaries.items()}
 
+    CONTEXT_DIR = os.path.join(OUT_DIR, "main_contexts")
+    os.makedirs(CONTEXT_DIR, exist_ok=True)
+
     for i, ch in enumerate(chunks, start=1):
-        # Detect figure mentions
-        mentioned_figures = [name for name in figure_refs.keys() if name.replace(".txt", "").lower() in ch.lower()]
-        fig_notes = "\n".join([f"Note: this chunk discusses {name} → {figure_refs[name]}" for name in mentioned_figures]) or "No direct figure mentioned."
+        # --- Detect figure mentions ---
+        mentioned_figures = []
+        for name, info in figure_refs.items():
+            base = name.replace(".txt", "").lower()
 
-        # Detect supplementary link
-        supp_note = ""
+            if base in ch.lower():
+                mentioned_figures.append(name)
+
+            # check subpanels if multi-figure
+            if isinstance(info, dict) and "subpanels" in info:
+                for subkey, subsummary in info["subpanels"].items():
+                    if f"{base}_{subkey}" in ch.lower() or f"({subkey})" in ch.lower():
+                        mentioned_figures.append(f"{name} ({subkey})")
+
+        # --- Build figure notes ---
+        fig_notes_lines = []
+        for name in set(mentioned_figures):
+            # Handle subfigure reference gracefully
+            if "(" in name and ")" in name:  # e.g. "figure_003.txt (a)"
+                base_name = name.split()[0].lower()
+                sub_label = re.search(r"\(([a-h])\)", name)
+                if (
+                    base_name in figure_refs
+                    and isinstance(figure_refs[base_name], dict)
+                    and "subpanels" in figure_refs[base_name]
+                ):
+                    sub_summary = figure_refs[base_name]["subpanels"].get(sub_label.group(1), "")
+                    fig_notes_lines.append(f"Note: discusses {base_name} panel ({sub_label.group(1)}) → {sub_summary}")
+            elif name.lower() in figure_refs:
+                fig_info = figure_refs[name.lower()]
+                if isinstance(fig_info, dict):
+                    global_summary = fig_info.get("global", fig_info.get("summary", ""))
+                    fig_notes_lines.append(f"Note: discusses {name} → {global_summary}")
+                else:
+                    fig_notes_lines.append(f"Note: discusses {name} → {fig_info}")
+        fig_notes = "\n".join(fig_notes_lines) if fig_notes_lines else "No direct figure mentioned."
+
+        # --- Detect supplementary link ---
+        supp_note = "No clear supplementary link."
         for s_id, s_summary in supp_summaries.items():
-            if any(word in ch.lower() for word in s_summary.lower().split()[:6]):
-                supp_note = f"This relates to supplementary {s_id}: {s_summary}"
+            key_terms = s_summary.lower().split()[:8]
+            if any(term in ch.lower() for term in key_terms):
+                supp_note = f"Related to supplementary {s_id}: {s_summary}"
                 break
-        if not supp_note:
-            supp_note = "No clear supplementary link."
 
-        # Contextual understanding
-        context_prompt = f"""Previous chunk summary: {prev_context}
-You are reading a scientific article.
-Explain briefly (1–2 sentences) where we are in the structure of the paper.
+        # === CONTEXT PROMPT ===
+        context_prompt = f"""
+You are a scientific summarizer reading a research article, processing it chunk by chunk.
 
-CHUNK:
-{ch[:1500]}"""
-        context_resp = llm.invoke(context_prompt)
+Below is what you know so far:
+- Previous chunk summary (for continuity):
+{prev_context}
 
-        # Final contextual summary
-        summary_prompt = f"""Summarize the following chunk in 6–10 sentences,
-including both conceptual and technical points. If figures or supplementary work are relevant, mention them explicitly.
+- Figures mentioned in this chunk:
+{fig_notes}
+
+- Supplementary information related:
+{supp_note}
+
+Your task:
+→ In 2–3 sentences, describe where we are in the paper’s logical flow.
+→ Indicate whether we are continuing the same analysis, moving to a new experiment, or interpreting results.
+→ If figures or subfigures are mentioned, describe briefly what they show and how they relate to this section.
+→ If a supplementary section is referenced, note what kind of data or method it provides.
+
+CHUNK EXCERPT:
+{ch[:1500]}
+"""
+        context_resp = llm.invoke(context_prompt).strip()
+
+        # --- Write context file ---
+        ctx_path = os.path.join(CONTEXT_DIR, f"chunk_{i:03d}_context.txt")
+        write_file(
+            ctx_path,
+            f"=== CONTEXT FOR CHUNK {i:03d} ===\n\nFIGURE INFO:\n{fig_notes}\n\nSUPPLEMENTARY INFO:\n{supp_note}\n\nCONTEXT SUMMARY:\n{context_resp}\n",
+        )
+
+        # === MAIN SUMMARY PROMPT ===
+        summary_prompt = f"""
+You are a scientific summarizer.
+Summarize this chunk in 6–10 sentences, focusing on both conceptual and technical points.
+Include relevant figure or supplementary material references explicitly if they appear.
 
 FIGURE INFO:
 {fig_notes}
@@ -259,21 +320,25 @@ FIGURE INFO:
 SUPPLEMENTARY INFO:
 {supp_note}
 
-CONTEXT:
+CONTEXT (from previous + inferred):
 {context_resp}
 
 CHUNK:
-{ch[:4000]}"""
+{ch[:4000]}
+"""
         summary_resp = llm.invoke(summary_prompt).strip()
-        prev_context = summary_resp
+        prev_context = summary_resp  # feed into next chunk
 
-        # Save both raw and summary
+        # --- Write summary files ---
         raw_path = os.path.join(MAIN_CHUNKS_DIR, f"chunk_{i:03d}_raw.txt")
         sum_path = os.path.join(MAIN_CHUNKS_DIR, f"chunk_{i:03d}_summary.txt")
         write_file(raw_path, ch)
         write_file(sum_path, summary_resp)
 
-    print(f"✅ Main text chunk summaries saved to {MAIN_CHUNKS_DIR}")
+        print(f"  ✓ Processed chunk {i}/{len(chunks)}")
+
+    print(f"✅ Main text chunk contexts → {CONTEXT_DIR}")
+    print(f"✅ Main text chunk summaries → {MAIN_CHUNKS_DIR}")
 
 
 # ---------------- Main Runner ----------------
