@@ -2,15 +2,12 @@
 """
 Global.py
 
-Generates a global summary and a presentation plan for the article.
-
-1) Reads all chunk summaries from main text and supplementary materials.
-2) Produces a global summary aimed at an audience familiar with cold atoms.
-3) Produces a slide-by-slide presentation plan, highlighting key concepts, experimental setup, theory, results, and conclusions.
+Generates a global summary and a presentation plan
+from the chunked main text summaries, with figure awareness and theory-experiment links.
 
 Outputs:
-- Bugsummary.txt      (global textual summary)
-- plan.txt            (presentation slide plan)
+  - Bugsummary.txt  : full global summary with figure/subfigure context
+  - plan.txt        : structured slide plan including figures
 """
 
 import os
@@ -19,19 +16,16 @@ from langchain_ollama import OllamaLLM
 
 # ---------------- CONFIG ----------------
 BASE_DIR = os.path.expanduser("~/ai_data/Journal_Club/First")
-SUMMARY_DIR = os.path.join(BASE_DIR, "summaries")
-MAIN_CHUNKS_DIR = os.path.join(SUMMARY_DIR, "main_chunks")
-SUPP_SUMMARY_PATH = os.path.join(SUMMARY_DIR, "supplementary_summary.json")
-OUTPUT_DIR = SUMMARY_DIR
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+SUMMARIES_DIR = os.path.join(BASE_DIR, "summaries")
+MAIN_CHUNKS_DIR = os.path.join(SUMMARIES_DIR, "main_chunks")
+FIG_SUMMARY_PATH = os.path.join(SUMMARIES_DIR, "figure_summaries.json")
+SUPP_SUMMARY_PATH = os.path.join(SUMMARIES_DIR, "supplementary_summary.json")
+
+GLOBAL_SUMMARY_PATH = os.path.join(SUMMARIES_DIR, "Bugsummary.txt")
+PLAN_PATH = os.path.join(SUMMARIES_DIR, "plan.txt")
 
 LLM_MODEL = "llama3.1"
 llm = OllamaLLM(model=LLM_MODEL)
-
-# Output files
-GLOBAL_SUMMARY_PATH = os.path.join(OUTPUT_DIR, "Bugsummary.txt")
-PRESENTATION_PLAN_PATH = os.path.join(OUTPUT_DIR, "plan.txt")
-
 
 # ---------------- Utility functions ----------------
 def read_file(path):
@@ -41,43 +35,61 @@ def read_file(path):
         return f.read()
 
 
-def read_main_chunk_summaries():
-    summaries = []
+def write_file(path, text):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
+def read_main_summaries():
     files = sorted([f for f in os.listdir(MAIN_CHUNKS_DIR) if f.endswith("_summary.txt")])
-    for fname in files:
-        path = os.path.join(MAIN_CHUNKS_DIR, fname)
-        summaries.append(read_file(path))
+    summaries = []
+    for f in files:
+        path = os.path.join(MAIN_CHUNKS_DIR, f)
+        text = read_file(path)
+        if text.strip():
+            summaries.append(text)
     return summaries
 
 
-def read_supplementary_summaries():
+def read_supplementary_summary():
     if not os.path.exists(SUPP_SUMMARY_PATH):
+        print(f"❌ Supplementary summary file not found: {SUPP_SUMMARY_PATH}")
         return {}
     with open(SUPP_SUMMARY_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-# ---------------- STEP 1: Global Summary ----------------
-def generate_global_summary(main_summaries, supp_summaries):
-    print("Generating global summary...")
-    combined_summary = "\n".join(main_summaries)
+def read_figure_summaries():
+    if not os.path.exists(FIG_SUMMARY_PATH):
+        print(f"❌ Figure summary file not found: {FIG_SUMMARY_PATH}")
+        return {}
+    with open(FIG_SUMMARY_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-    supp_text = "\n".join([f"{k}: {v}" for k, v in supp_summaries.items()])
+
+# ---------------- Generate global summary ----------------
+def generate_global_summary(main_summaries):
+    print("Generating global summary based on chunk summaries with embedded figure references...")
+
+    # Combine all main chunk summaries into one text
+    combined_text = "\n\n".join(main_summaries)
 
     prompt = f"""
-You are summarizing a scientific article in the field of cold atoms.
-The audience is familiar with cold atoms but not with this specific article.
+You are a scientific summarizer writing a comprehensive article summary for a journal club audience familiar with cold atoms.
 
+Input:
 - Main text chunk summaries:
-{combined_summary}
-
-- Supplementary section summaries:
-{supp_text}
+{combined_text[:15000]}
 
 Task:
-Write a coherent global summary of the article. Aim for 10–15 sentences.
-Include main notions, experimental setup, theoretical concepts, results, and conclusions.
-Keep it clear and structured for an audience that knows cold atoms but not this specific work.
+1. Write a long, flowing global summary of the paper using the information from the chunk summaries.
+2. Integrate figure and subfigure references **directly into the text** exactly as they appear in the chunk summaries.
+3. Highlight connections between theory and experimental results.
+4. Do not mention supplementary material.
+5. Keep it readable for an audience familiar with cold atoms, but do not oversimplify.
+
+Output: a full global summary text with figures and subfigures naturally embedded in the narrative.
 """
     global_summary = llm.invoke(prompt).strip()
     write_file(GLOBAL_SUMMARY_PATH, global_summary)
@@ -85,47 +97,65 @@ Keep it clear and structured for an audience that knows cold atoms but not this 
     return global_summary
 
 
-# ---------------- STEP 2: Presentation Plan ----------------
-def generate_presentation_plan(global_summary):
-    print("Generating presentation plan...")
+# ---------------- Generate presentation plan ----------------
+def generate_presentation_plan(global_summary, figure_summaries):
+    print("Generating detailed presentation plan...")
+    fig_info_lines = []
+    for fig_name, info in figure_summaries.items():
+        if info.get("type") == "multi":
+            panels = ", ".join([f"{k}" for k in info["subpanels"].keys()])
+            fig_info_lines.append(f"{fig_name} panels: {panels}")
+        else:
+            fig_info_lines.append(f"{fig_name}")
+    fig_info = "\n".join(fig_info_lines)
 
     prompt = f"""
-You are a scientific presentation designer.
-The audience knows cold atoms, but not this specific work.
-You have the global summary of the article:
+You are an expert in physics preparing a journal club presentation.
 
-{global_summary}
+Audience: researchers familiar with cold atoms but not this paper.
+
+Input:
+- Global summary of the article:
+{global_summary[:15000]}
+
+- Figure summaries overview:
+{fig_info[:5000]}
 
 Task:
-1) Define a slide-by-slide presentation plan.
-2) For each slide, give:
-   - Slide title
-   - Key concepts or points to present
-   - Figures or examples if relevant
-3) The plan should have a logical flow:
-   a) One or two introductory concepts to explain first
-   b) Main article introduction
-   c) Experimental setup
-   d) Theoretical background
-   e) Results
-   f) Conclusion and perspectives
-4) Keep each slide description concise, 3–5 sentences max.
+1. Create a slide-by-slide plan.
+2. Slides should cover:
+   - Introduction / key concepts for understanding the paper.
+   - Theory.
+   - Experimental setup.
+   - Results: generate multiple slides if needed to cover all results and figures/subfigures.
+   - Conclusion.
+3. For each slide, suggest:
+   - Title
+   - 1–2 sentence description of content
+   - Which figure or subfigure to show if applicable
+4. Ensure the plan highlights connections between theory and experiment.
+5. Make sure all major figures/subfigures are included in some slide.
+6. Output a clear structured text plan for the presentation.
 
-Output as a clear, numbered list of slides.
+Output: text plan.
 """
     plan_text = llm.invoke(prompt).strip()
-    write_file(PRESENTATION_PLAN_PATH, plan_text)
-    print(f"✅ Presentation plan saved to {PRESENTATION_PLAN_PATH}")
+    write_file(PLAN_PATH, plan_text)
+    print(f"✅ Presentation plan saved to {PLAN_PATH}")
     return plan_text
 
 
-# ---------------- Main Runner ----------------
+# ---------------- Main runner ----------------
 def main():
-    main_summaries = read_main_chunk_summaries()
-    supp_summaries = read_supplementary_summaries()
+    main_summaries = read_main_summaries()
+    figure_summaries = read_figure_summaries()
 
-    global_summary = generate_global_summary(main_summaries, supp_summaries)
-    generate_presentation_plan(global_summary)
+    if not main_summaries:
+        print("❌ No main text summaries found, aborting.")
+        return
+
+    global_summary = generate_global_summary(main_summaries)
+    generate_presentation_plan(global_summary, figure_summaries)
     print("Pipeline complete. ✅")
 
 
