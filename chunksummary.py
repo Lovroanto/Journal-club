@@ -230,6 +230,9 @@ def summarize_main(figure_summaries, supp_summaries):
     CONTEXT_DIR = os.path.join(OUT_DIR, "main_contexts")
     os.makedirs(CONTEXT_DIR, exist_ok=True)
 
+    ADDITIONAL_DIR = os.path.join(OUT_DIR, "main_additional")
+    os.makedirs(ADDITIONAL_DIR, exist_ok=True)
+
     for i, ch in enumerate(chunks, start=1):
         # --- Detect figure mentions ---
         mentioned_figures = []
@@ -248,8 +251,7 @@ def summarize_main(figure_summaries, supp_summaries):
         # --- Build figure notes ---
         fig_notes_lines = []
         for name in set(mentioned_figures):
-            # Handle subfigure reference gracefully
-            if "(" in name and ")" in name:  # e.g. "figure_003.txt (a)"
+            if "(" in name and ")" in name:  # subfigure reference
                 base_name = name.split()[0].lower()
                 sub_label = re.search(r"\(([a-h])\)", name)
                 if (
@@ -278,41 +280,33 @@ def summarize_main(figure_summaries, supp_summaries):
 
         # === CONTEXT PROMPT ===
         context_prompt = f"""
-You are a scientific summarizer reading a research article, processing it chunk by chunk.
-
-Below is what you know so far:
-- Previous chunk summary (for continuity):
+You are reading a scientific article.
+Previous chunk summary (for continuity):
 {prev_context}
 
-- Figures mentioned in this chunk:
+Figures mentioned:
 {fig_notes}
 
-- Supplementary information related:
+Preliminary supplementary info:
 {supp_note}
-
-Your task:
-→ In 2–3 sentences, describe where we are in the paper’s logical flow.
-→ Indicate whether we are continuing the same analysis, moving to a new experiment, or interpreting results.
-→ If figures or subfigures are mentioned, describe briefly what they show and how they relate to this section.
-→ If a supplementary section is referenced, note what kind of data or method it provides.
 
 CHUNK EXCERPT:
 {ch[:1500]}
+
+Task:
+Describe in 2–3 sentences where we are in the paper, relation to previous content,
+and what the figures/supplementary sections provide.
 """
         context_resp = llm.invoke(context_prompt).strip()
 
         # --- Write context file ---
         ctx_path = os.path.join(CONTEXT_DIR, f"chunk_{i:03d}_context.txt")
-        write_file(
-            ctx_path,
-            f"=== CONTEXT FOR CHUNK {i:03d} ===\n\nFIGURE INFO:\n{fig_notes}\n\nSUPPLEMENTARY INFO:\n{supp_note}\n\nCONTEXT SUMMARY:\n{context_resp}\n",
-        )
+        write_file(ctx_path, f"FIGURE INFO:\n{fig_notes}\n\nSUPPLEMENTARY INFO:\n{supp_note}\n\nCONTEXT:\n{context_resp}")
 
         # === MAIN SUMMARY PROMPT ===
         summary_prompt = f"""
-You are a scientific summarizer.
-Summarize this chunk in 6–10 sentences, focusing on both conceptual and technical points.
-Include relevant figure or supplementary material references explicitly if they appear.
+Summarize this chunk in 6–10 sentences, focusing on conceptual and technical points.
+Include figures and supplementary material if relevant.
 
 FIGURE INFO:
 {fig_notes}
@@ -327,18 +321,40 @@ CHUNK:
 {ch[:4000]}
 """
         summary_resp = llm.invoke(summary_prompt).strip()
-        prev_context = summary_resp  # feed into next chunk
+        prev_context = summary_resp
 
-        # --- Write summary files ---
-        raw_path = os.path.join(MAIN_CHUNKS_DIR, f"chunk_{i:03d}_raw.txt")
+        # --- Write main summary file ---
         sum_path = os.path.join(MAIN_CHUNKS_DIR, f"chunk_{i:03d}_summary.txt")
-        write_file(raw_path, ch)
         write_file(sum_path, summary_resp)
+
+        # === NEW STEP: Check supplementary linkage for additional content ===
+        link_prompt = f"""
+You are given the summary of a main text chunk and all supplementary section summaries.
+
+MAIN CHUNK SUMMARY:
+{summary_resp}
+
+SUPPLEMENTARY SUMMARIES:
+{json.dumps(supp_summaries, indent=2, ensure_ascii=False)}
+
+Task:
+Determine which supplementary sections provide additional relevant information for this chunk.
+Output a comma-separated list of section IDs (e.g., section_02, section_07), or 'None' if no sections are relevant.
+"""
+        linked_sections_resp = llm.invoke(link_prompt).strip()
+
+        # --- Write to additional content file ---
+        add_path = os.path.join(ADDITIONAL_DIR, f"chunk_{i:03d}_additional.txt")
+        if linked_sections_resp.lower() != "none":
+            write_file(add_path, f"More details in supplementary sections: {linked_sections_resp}.")
+        else:
+            write_file(add_path, "No additional supplementary content linked.")
 
         print(f"  ✓ Processed chunk {i}/{len(chunks)}")
 
     print(f"✅ Main text chunk contexts → {CONTEXT_DIR}")
     print(f"✅ Main text chunk summaries → {MAIN_CHUNKS_DIR}")
+    print(f"✅ Main text chunk additional supplementary links → {ADDITIONAL_DIR}")
 
 
 # ---------------- Main Runner ----------------
