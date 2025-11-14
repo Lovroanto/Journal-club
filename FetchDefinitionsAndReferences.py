@@ -25,6 +25,7 @@ import wikipedia
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 from selenium.webdriver.common.by import By
 
 # ---------------- CONFIG ----------------
@@ -44,6 +45,9 @@ wikipedia.set_lang("en")
 DEFINITIONS_DIR.mkdir(parents=True, exist_ok=True)
 REFERENCES_DIR.mkdir(parents=True, exist_ok=True)
 REFERENCES_ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
+
+# Debug flags
+SKIP_WIKIPEDIA = True  # set to False to fetch Wikipedia definitions
 
 # ---------------- Utility ----------------
 def clean_filename(text):
@@ -69,13 +73,17 @@ def fetch_wikipedia_definition(notion):
         return ""
 
 def process_notions():
+    if SKIP_WIKIPEDIA:
+        print("✅ Skipping Wikipedia definitions (debug mode).")
+        return
+
     if not NOTIONS_FILE.exists():
         print(f"No notions file: {NOTIONS_FILE}")
         return
     with open(NOTIONS_FILE, "r", encoding="utf-8") as f:
         notions = [n.strip() for n in f if n.strip()]
     for notion in notions:
-        print(f"Fetching definition: {notion}")
+        print(f"🔹 Fetching definition: {notion}")
         content = fetch_wikipedia_definition(notion)
         if content:
             filename = DEFINITIONS_DIR / f"{clean_filename(notion)}.txt"
@@ -106,14 +114,23 @@ def fetch_reference_arxiv(title):
     return None
 
 # ---------------- Selenium Firefox PDF downloader ----------------
-def setup_firefox(download_dir):
+def setup_firefox_fixed(download_dir):
+    """
+    Sets up Firefox driver for Selenium with modern API.
+    Downloads PDFs to download_dir.
+    """
     options = Options()
-    options.headless = True
-    profile = webdriver.FirefoxProfile()
+    options.headless = False  # change to True for headless
+    options.binary_location = "/usr/bin/firefox"  # correct way to set binary
+
+    profile = FirefoxProfile()
     profile.set_preference("browser.download.folderList", 2)
     profile.set_preference("browser.download.dir", str(download_dir))
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
-    driver = webdriver.Firefox(options=options, firefox_profile=profile)
+
+    options.profile = profile
+
+    driver = webdriver.Firefox(options=options)
     return driver
 
 def download_pdf_firefox(driver, search_query, filename_path):
@@ -126,7 +143,7 @@ def download_pdf_firefox(driver, search_query, filename_path):
         if pdf_links:
             pdf_url = pdf_links[0].get_attribute("href")
             driver.get(pdf_url)
-            time.sleep(5)  # wait download
+            time.sleep(5)
             print(f"Downloaded PDF via Firefox: {filename_path}")
             return True
     except Exception as e:
@@ -141,10 +158,10 @@ def process_references():
     with open(REFERENCES_FILE, "r", encoding="utf-8") as f:
         references = [r.strip() for r in f if r.strip()]
 
-    driver = setup_firefox(REFERENCES_ARTICLES_DIR)
+    driver = setup_firefox_fixed(REFERENCES_ARTICLES_DIR)
 
     for ref in references:
-        print(f"Searching reference: {ref}")
+        print(f"🔹 Searching reference: {ref}")
         filename_base = clean_filename(ref)
         txt_file = REFERENCES_DIR / f"{filename_base}.txt"
         pdf_file = REFERENCES_ARTICLES_DIR / f"{filename_base}.pdf"
