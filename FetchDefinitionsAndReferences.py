@@ -6,7 +6,7 @@ Fetches:
 1. Definitions for scientific notions from Wikipedia.
 2. Article references:
    - Uses DOI if possible.
-   - Attempts to download PDFs via Firefox/Selenium.
+   - Attempts to download PDFs via Chrome/Selenium.
    - Falls back to arXiv if not freely available.
 
 Outputs:
@@ -23,9 +23,10 @@ import urllib.parse
 import requests
 import wikipedia
 from pathlib import Path
+
+# Selenium
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 # ---------------- CONFIG ----------------
@@ -49,11 +50,13 @@ REFERENCES_ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
 # Debug flags
 SKIP_WIKIPEDIA = True  # set to False to fetch Wikipedia definitions
 
+
 # ---------------- Utility ----------------
 def clean_filename(text):
     text = re.sub(r'[\\/*?:"<>|]', "", text)
     text = text.replace(" ", "_")
     return text[:80]
+
 
 # ---------------- Wikipedia ----------------
 def fetch_wikipedia_definition(notion):
@@ -72,6 +75,7 @@ def fetch_wikipedia_definition(notion):
         print(f"Error fetching Wikipedia page: {e}")
         return ""
 
+
 def process_notions():
     if SKIP_WIKIPEDIA:
         print("✅ Skipping Wikipedia definitions (debug mode).")
@@ -80,8 +84,10 @@ def process_notions():
     if not NOTIONS_FILE.exists():
         print(f"No notions file: {NOTIONS_FILE}")
         return
+
     with open(NOTIONS_FILE, "r", encoding="utf-8") as f:
         notions = [n.strip() for n in f if n.strip()]
+
     for notion in notions:
         print(f"🔹 Fetching definition: {notion}")
         content = fetch_wikipedia_definition(notion)
@@ -90,6 +96,7 @@ def process_notions():
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(content)
         time.sleep(1)
+
 
 # ---------------- ArXiv ----------------
 def fetch_reference_arxiv(title):
@@ -113,52 +120,83 @@ def fetch_reference_arxiv(title):
         return None
     return None
 
-# ---------------- Selenium Firefox PDF downloader ----------------
-def setup_firefox_fixed(download_dir):
-    """
-    Sets up Firefox driver for Selenium with modern API.
-    Downloads PDFs to download_dir.
-    """
-    options = Options()
-    options.headless = False  # change to True for headless
-    options.binary_location = "/usr/bin/firefox"  # correct way to set binary
 
-    profile = FirefoxProfile()
-    profile.set_preference("browser.download.folderList", 2)
-    profile.set_preference("browser.download.dir", str(download_dir))
-    profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
+# ---------------- Chrome Selenium PDF downloader ----------------
+def setup_chrome(download_dir):
+    print("🔧 Setting up Chrome driver...")
 
-    options.profile = profile
+    chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Firefox(options=options)
+    # ❗ Make Chrome visible so you can see what it is doing
+    # chrome_options.add_argument("--headless=new")   # DISABLED for debugging
+
+    chrome_options.add_experimental_option(
+        "prefs",
+        {
+            "download.default_directory": str(download_dir),
+            "download.prompt_for_download": False,
+            "download.directory_upgrade": True,
+            "plugins.always_open_pdf_externally": True
+        }
+    )
+
+    driver = webdriver.Chrome(options=chrome_options)
     return driver
 
-def download_pdf_firefox(driver, search_query, filename_path):
+
+def download_pdf_chrome(driver, search_query, filename_path):
+    """
+    Opens Google Scholar, finds the first PDF link, downloads it.
+    Prints debugging information.
+    """
+
     try:
         query = urllib.parse.quote(search_query)
-        driver.get(f"https://scholar.google.com/scholar?q={query}")
-        time.sleep(3)
-        # try to find [PDF] link
-        pdf_links = driver.find_elements(By.XPATH, "//a[contains(text(), '[PDF]')]")
-        if pdf_links:
-            pdf_url = pdf_links[0].get_attribute("href")
+        url = f"https://scholar.google.com/scholar?q={query}"
+
+        print(f"   🔍 Opening Scholar: {url}")
+        driver.get(url)
+        time.sleep(4)
+
+        print("   🔍 Looking for PDF links…")
+
+        # Modern Google Scholar PDF links are inside: <div class="gs_or_ggsm"><a href="...">
+        pdf_wrappers = driver.find_elements(By.CSS_SELECTOR, "div.gs_or_ggsm a")
+
+        print(f"   🔍 Found {len(pdf_wrappers)} potential PDF links")
+
+        for link in pdf_wrappers:
+            href = link.get_attribute("href")
+            print(f"      → {href}")
+
+        if pdf_wrappers:
+            pdf_url = pdf_wrappers[0].get_attribute("href")
+            print(f"   📥 Downloading PDF: {pdf_url}")
             driver.get(pdf_url)
-            time.sleep(5)
-            print(f"Downloaded PDF via Firefox: {filename_path}")
+            time.sleep(6)
             return True
+
+        print("   ❌ No PDF links found on the page.")
+        return False
+
     except Exception as e:
-        print(f"Firefox PDF download failed: {e}")
-    return False
+        print(f"   ❌ Chrome PDF download failed: {e}")
+        return False
+
 
 # ---------------- Process references ----------------
 def process_references():
     if not REFERENCES_FILE.exists():
         print(f"No references file: {REFERENCES_FILE}")
         return
+
     with open(REFERENCES_FILE, "r", encoding="utf-8") as f:
         references = [r.strip() for r in f if r.strip()]
 
-    driver = setup_firefox_fixed(REFERENCES_ARTICLES_DIR)
+    driver = setup_chrome(REFERENCES_ARTICLES_DIR)
 
     for ref in references:
         print(f"🔹 Searching reference: {ref}")
@@ -180,8 +218,9 @@ def process_references():
             except:
                 pass
 
-        # Try Firefox download
-        success = download_pdf_firefox(driver, ref, pdf_file)
+        # Try Chrome PDF download
+        success = download_pdf_chrome(driver, ref, pdf_file)
+
         if not success:
             # fallback arXiv
             arxiv_info = fetch_reference_arxiv(ref)
@@ -199,15 +238,17 @@ def process_references():
 
     driver.quit()
 
+
 # ---------------- Main ----------------
 def main():
     print("=== Step 1: Fetch notion definitions from Wikipedia ===")
     process_notions()
 
-    print("\n=== Step 2: Fetch references and PDFs via Firefox / arXiv ===")
+    print("\n=== Step 2: Fetch references and PDFs via Chrome / arXiv ===")
     process_references()
 
     print("\n✅ All definitions and references fetched.")
+
 
 if __name__ == "__main__":
     main()
