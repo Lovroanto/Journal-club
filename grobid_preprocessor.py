@@ -4,9 +4,11 @@ grobid_preprocessor.py
 
 Preprocess PDFs via GROBID:
 - Extracts title, authors, abstract
-- Separates main text and supplementary
-- Aggregates paragraphs into chunks dynamically
-- Tracks figure references per chunk
+- Separates main text and supplementary cleanly
+- Supplementary starts ONLY at <head> in a <div>
+- Dynamic chunking based on paragraph aggregation
+- Tracks figures per chunk
+- Writes figure summary files and inverse mappings
 """
 
 import os
@@ -16,7 +18,7 @@ from pathlib import Path
 from typing import Dict
 import requests
 
-DEFAULT_CHUNK_SIZE = 4000  # default max characters per chunk
+DEFAULT_CHUNK_SIZE = 4000
 
 SUPP_PATTERNS = [
     r"Supplementary Material",
@@ -28,7 +30,7 @@ SUPP_PATTERNS = [
 
 
 # -----------------------
-# Utility: save text
+# Utility
 # -----------------------
 def save_text(path: Path, text: str):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -37,7 +39,7 @@ def save_text(path: Path, text: str):
 
 
 # -----------------------
-# Extract metadata (title, authors, abstract)
+# Metadata extraction
 # -----------------------
 def extract_metadata_from_tei(tei_xml: str):
     soup = BeautifulSoup(tei_xml, "lxml-xml")
@@ -49,7 +51,7 @@ def extract_metadata_from_tei(tei_xml: str):
     title_tag = tei_header.find("title", {"level": "a", "type": "main"})
     title = title_tag.get_text(strip=True) if title_tag else ""
 
-    # Authors (only in analytic)
+    # Authors
     authors = []
     analytic = tei_header.find("analytic")
     if analytic:
@@ -76,108 +78,102 @@ def extract_metadata_from_tei(tei_xml: str):
 # Clean paragraph text and extract figures
 # -----------------------
 def clean_paragraph(p_tag):
-    # remove bibliography references
+    # Remove bibliography refs
     for b in p_tag.find_all("ref", {"type": "bibr"}):
         b.decompose()
 
-    # rewrite figure references and collect them
+    # Rewrite and collect figure refs
     figures = []
     for f in p_tag.find_all("ref", {"type": "figure"}):
         fig_text = f.get_text(strip=True)
         fig_id = f.get("target", "")
-        figures.append(f"{fig_id}: {fig_text}")
-        f.string = f"(fig {fig_id}: {fig_text})"
+        label = f"{fig_id}: {fig_text}"
+        figures.append(label)
+        f.string = f"(fig {label})"
 
     return p_tag.get_text(" ", strip=True), figures
 
 
 # -----------------------
-# Extract main and supplementary chunks
+# Extract sections and chunks
 # -----------------------
 def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
     soup = BeautifulSoup(tei_xml, "lxml-xml")
-    divs = soup.find_all("div", {"xmlns": "http://www.tei-c.org/ns/1.0"})
+    divs = soup.find_all("div")
 
     main_chunks = []
     supp_chunks = []
-    current_section_type = "main"
+
+    current_section = "main"
+    suppl_started = False
 
     chunk_text = ""
     chunk_figures = set()
 
+    def finalize_chunk():
+        nonlocal chunk_text, chunk_figures
+        if not chunk_text.strip():
+            return
+        if chunk_figures:
+            chunk_text += "\nFigures used in this chunk: " + ", ".join(sorted(chunk_figures))
+        if current_section == "main":
+            main_chunks.append({"text": chunk_text, "figures": list(chunk_figures)})
+        else:
+            supp_chunks.append({"text": chunk_text, "figures": list(chunk_figures)})
+        chunk_text = ""
+        chunk_figures = set()
+
     for div in divs:
-        div_text = div.get_text(" ", strip=True)
 
-        # Detect if this is supplementary section
-        if any(re.search(pat, div_text, re.IGNORECASE) for pat in SUPP_PATTERNS):
-            current_section_type = "supplementary"
-
-        # Section title
         head_tag = div.find("head")
-        section_title = head_tag.get_text(strip=True) if head_tag else None
-        if section_title:
-            if chunk_text:
-                # finalize previous chunk
-                if chunk_figures:
-                    chunk_text += "\nFigures used in this chunk: " + ", ".join(sorted(chunk_figures))
-                target_list = main_chunks if current_section_type == "main" else supp_chunks
-                target_list.append({"text": chunk_text, "figures": list(chunk_figures)})
-                chunk_text = ""
-                chunk_figures = set()
-            # start new chunk with section title
-            chunk_text += f"{section_title}\n"
+        head_text = head_tag.get_text(strip=True) if head_tag else ""
 
-        # Paragraphs
+        # --------------------- SUPPLEMENTARY DETECTION ---------------------
+        if (not suppl_started) and head_tag:
+            if any(re.search(pat, head_text, re.IGNORECASE) for pat in SUPP_PATTERNS):
+                suppl_started = True
+                finalize_chunk()
+                current_section = "supplementary"
+
+        # --------------------- SECTION TITLE ---------------------
+        if head_tag:
+            if chunk_text:
+                finalize_chunk()
+            chunk_text = f"{head_text}\n"
+
+        # --------------------- PARAGRAPHS ---------------------
         for p in div.find_all("p"):
             para_text, figures = clean_paragraph(p)
 
-            # if adding this paragraph exceeds chunk_size and current chunk is non-empty
             if len(chunk_text) + len(para_text) > chunk_size and chunk_text:
-                # finalize chunk
-                if chunk_figures:
-                    chunk_text += "\nFigures used in this chunk: " + ", ".join(sorted(chunk_figures))
-                target_list = main_chunks if current_section_type == "main" else supp_chunks
-                target_list.append({"text": chunk_text, "figures": list(chunk_figures)})
+                finalize_chunk()
                 chunk_text = ""
-                chunk_figures = set()
 
-            # add paragraph
             chunk_text += para_text + "\n"
             chunk_figures.update(figures)
 
-    # finalize last chunk
-    if chunk_text:
-        if chunk_figures:
-            chunk_text += "\nFigures used in this chunk: " + ", ".join(sorted(chunk_figures))
-        target_list = main_chunks if current_section_type == "main" else supp_chunks
-        target_list.append({"text": chunk_text, "figures": list(chunk_figures)})
+    finalize_chunk()
 
     return main_chunks, supp_chunks
 
 
 # -----------------------
-# Preprocess a single PDF
+# Process PDF
 # -----------------------
 def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Dict:
-    """
-    pdf_path: path to PDF
-    output_dir: where to save processed files
-    chunk_size: max chars per chunk (paragraphs aggregated)
-    """
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1) Send PDF to GROBID
+    # ---------------- 1) Run GROBID ----------------
     url = "http://localhost:8070/api/processFulltextDocument"
     with open(pdf_path, "rb") as f:
         r = requests.post(url, files={"input": f})
     tei_xml = r.text
 
-    # save raw TEI
     raw_tei_path = output_dir / "raw_tei.xml"
     save_text(raw_tei_path, tei_xml)
 
-    # 2) Extract metadata
+    # ---------------- 2) Metadata ----------------
     meta = extract_metadata_from_tei(tei_xml)
     title_txt_path = output_dir / "title.txt"
     with open(title_txt_path, "w", encoding="utf-8") as f:
@@ -187,18 +183,51 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
             f.write(f"{a['first']} {a['last']}\n")
         f.write(f"\nAbstract:\n{meta['abstract']}\n")
 
-    # 3) Extract main and supplementary chunks
+    # ---------------- 3) Sections & chunks ----------------
     main_chunks, supp_chunks = extract_sections(tei_xml, chunk_size=chunk_size)
 
+    # ---------------- Save chunks ----------------
     main_dir = output_dir / "main"
     supp_dir = output_dir / "supplementary"
     main_dir.mkdir(exist_ok=True)
     supp_dir.mkdir(exist_ok=True)
 
-    for i, c in enumerate(main_chunks):
-        save_text(main_dir / f"chunk_{i+1}.txt", c["text"])
-    for i, c in enumerate(supp_chunks):
-        save_text(supp_dir / f"chunk_{i+1}.txt", c["text"])
+    # Track all figures
+    main_figs = set()
+    supp_figs = set()
+    main_fig_map = {}
+    supp_fig_map = {}
+
+    for i, c in enumerate(main_chunks, start=1):
+        fname = main_dir / f"main_chunk{str(i).zfill(2)}.txt"
+        save_text(fname, c["text"])
+
+        for fig in c["figures"]:
+            main_figs.add(fig)
+            main_fig_map.setdefault(fig, []).append(str(i).zfill(2))
+
+    for i, c in enumerate(supp_chunks, start=1):
+        fname = supp_dir / f"sup_chunk{str(i).zfill(2)}.txt"
+        save_text(fname, c["text"])
+
+        for fig in c["figures"]:
+            supp_figs.add(fig)
+            supp_fig_map.setdefault(fig, []).append(str(i).zfill(2))
+
+    # ---------------- Save figure lists ----------------
+    save_text(output_dir / "figmain.txt", "\n".join(sorted(main_figs)))
+    save_text(output_dir / "figsup.txt", "\n".join(sorted(supp_figs)))
+
+    # ---------------- Save inverse mappings ----------------
+    with open(output_dir / "figmain_map.txt", "w", encoding="utf-8") as f:
+        for fig in sorted(main_fig_map):
+            chunks = ", ".join(main_fig_map[fig])
+            f.write(f"{fig} → {chunks}\n")
+
+    with open(output_dir / "figsup_map.txt", "w", encoding="utf-8") as f:
+        for fig in sorted(supp_fig_map):
+            chunks = ", ".join(supp_fig_map[fig])
+            f.write(f"{fig} → {chunks}\n")
 
     return {
         "raw_tei": str(raw_tei_path),
