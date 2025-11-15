@@ -6,16 +6,26 @@ Preprocess PDFs via GROBID with improved main vs supplementary detection,
 paragraph-aware chunking (keep paragraphs together unless single paragraph
 exceeds chunk_size), figure reference normalization and per-chunk figure lists.
 
-Usage:
-    from grobid_preprocessor import preprocess_pdf
-    results = preprocess_pdf(pdf_path, output_dir, chunk_size=4000, rag_mode=False)
+New options:
+ - preclean_pdf (bool): if True, attempt to pre-clean the PDF using Ghostscript/qpdf
+                        and send a temporary cleaned PDF to GROBID (temp file in output_dir).
+ - use_grobid_consolidation (bool): if True, request GROBID consolidation params
+                                   (consolidateHeader=1&consolidateCitations=1).
 
-Returns:
-    dict with keys: raw_tei, title_txt, main_chunks, supp_chunks
+Usage:
+    results = preprocess_pdf(pdf_path, output_dir,
+                             chunk_size=4000,
+                             rag_mode=False,
+                             article_name=None,
+                             keep_references=False,
+                             preclean_pdf=True,
+                             use_grobid_consolidation=True)
 """
 
 import os
 import re
+import shutil
+import subprocess
 import requests
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -37,6 +47,7 @@ SUPP_PATTERNS = [
     r"Supplementary Text",
     r"SUPPLEMENTARY",
     r"Supplementary materials",
+    r"Methods",
 ]
 
 # -----------------------
@@ -53,6 +64,79 @@ def clean_filename(text: str, maxlen: int = 120) -> str:
     return s[:maxlen]
 
 # -----------------------
+# PDF pre-clean helpers (temporary cleaned file)
+# -----------------------
+def tool_exists(cmd: str) -> bool:
+    return shutil.which(cmd) is not None
+
+def try_ghostscript_clean(input_pdf: str, output_pdf: str) -> bool:
+    """
+    Use Ghostscript to rebuild the PDF (often fixes structure).
+    Returns True on success.
+    """
+    if not tool_exists("gs"):
+        return False
+    try:
+        # -dPDFSETTINGS=/prepress ensures quality, -dNOPAUSE -dBATCH for noninteractive
+        gs_cmd = [
+            "gs", "-q",
+            "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",
+            "-dCompatibilityLevel=1.7",
+            "-dPDFSETTINGS=/prepress",
+            "-sOutputFile=" + str(output_pdf),
+            str(input_pdf)
+        ]
+        subprocess.run(gs_cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except Exception:
+        return False
+
+def try_qpdf_linearize(input_pdf: str, output_pdf: str) -> bool:
+    """
+    Use qpdf to linearize / rewrite PDF.
+    Returns True on success.
+    """
+    if not tool_exists("qpdf"):
+        return False
+    try:
+        qpdf_cmd = ["qpdf", "--linearize", str(input_pdf), str(output_pdf)]
+        subprocess.run(qpdf_cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except Exception:
+        # fallback: try simple qpdf --recompress-streams rewrite
+        try:
+            qpdf_cmd2 = ["qpdf", str(input_pdf), str(output_pdf)]
+            subprocess.run(qpdf_cmd2, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            return True
+        except Exception:
+            return False
+
+def produce_temp_cleaned_pdf(original_pdf: str, output_dir: Path) -> str:
+    """
+    Create a temporary cleaned PDF in output_dir/tmp_cleaned.pdf.
+    Try Ghostscript first, then qpdf. If none available, copy original.
+    Return full path to the file to use (string).
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+    tmp_pdf = output_dir / "tmp_cleaned.pdf"
+
+    # 1) Try Ghostscript
+    if try_ghostscript_clean(original_pdf, tmp_pdf):
+        return str(tmp_pdf)
+
+    # 2) Try qpdf
+    if try_qpdf_linearize(original_pdf, tmp_pdf):
+        return str(tmp_pdf)
+
+    # 3) Fallback: copy original to temp location
+    try:
+        shutil.copyfile(original_pdf, tmp_pdf)
+        return str(tmp_pdf)
+    except Exception:
+        # last-resort: return original path
+        return str(original_pdf)
+
+# -----------------------
 # TEI metadata extraction
 # -----------------------
 def extract_metadata_from_tei(tei_xml: str) -> Dict:
@@ -63,7 +147,7 @@ def extract_metadata_from_tei(tei_xml: str) -> Dict:
     abstract_text = ""
 
     if tei_header:
-        # Title
+        # Title (try main-level title then fallback)
         t = tei_header.find("title", {"level": "a", "type": "main"})
         if not t:
             t = tei_header.find("title")
@@ -83,7 +167,6 @@ def extract_metadata_from_tei(tei_xml: str) -> Dict:
         # Abstract
         abstract_tag = tei_header.find("abstract")
         if abstract_tag:
-            # join possible <p> within abstract
             paras = abstract_tag.find_all("p")
             if paras:
                 abstract_text = " ".join(p.get_text(" ", strip=True) for p in paras)
@@ -110,7 +193,7 @@ def extract_figures(tei_xml: str, output_dir: Path, rag_mode: bool = False, arti
         if figDesc:
             fig_desc = figDesc.get_text(" ", strip=True)
         content = f"FIGURE ID: {fig_id}\nTITLE_IN_ARTICLE: {fig_title}\nDESCRIPTION:\n{fig_desc}\n"
-        fname = f"{article_name}_{fig_id}.txt" if rag_mode and article_name else f"{fig_id}.txt"
+        fname = f"{clean_filename(article_name)}_{fig_id}.txt" if rag_mode and article_name else f"{fig_id}.txt"
         save_text(fig_dir / fname, content)
 
 # -----------------------
@@ -126,10 +209,8 @@ def extract_references(tei_xml: str, output_dir: Path):
     out_lines = []
     for bibl in list_bibl.find_all("biblStruct"):
         ref_id = bibl.get("xml:id", "unknown_id")
-        # title
         title_tag = bibl.find("title", {"level": "a", "type": "main"}) or bibl.find("title")
         title = title_tag.get_text(" ", strip=True) if title_tag else ""
-        # authors
         authors = []
         for pers in bibl.find_all("persName"):
             fn = pers.find("forename", {"type": "first"})
@@ -184,12 +265,10 @@ def clean_paragraph_and_extract_figures(p_tag) -> Tuple[str, List[str]]:
         fig_text = f.get_text(" ", strip=True)
         fig_target = f.get("target", "").lstrip("#")
         if not fig_target:
-            # fallback: try to extract number from text
             m = re.search(r"fig(?:ure)?\s*[_\s]?(\d+)", fig_text, re.IGNORECASE)
             fig_target = m.group(1) if m else "unknown"
         label = f"{fig_target}: {fig_text}"
         figures.append(label)
-        # replace node content with normalized text
         f.string = f"(fig {fig_target}: {fig_text})"
 
     # get cleaned text
@@ -233,10 +312,10 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
     div_paragraph_counts = [count_paragraphs_in_div(d) for d in divs]
     main_div_index = None
     supp_div_index = None
+
     # Rule: if div0 has >=5 paragraphs -> div0=main, next sizable div -> supplementary
     if div_paragraph_counts[0] >= 5:
         main_div_index = 0
-        # find first subsequent div with >=3 paragraphs as supplementary
         for i in range(1, len(divs)):
             if div_paragraph_counts[i] >= 3:
                 supp_div_index = i
@@ -245,7 +324,6 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
         # div0 small: try div1 as main
         if len(div_paragraph_counts) > 1 and div_paragraph_counts[1] >= 5:
             main_div_index = 1
-            # next sizable as supplementary
             for i in range(2, len(divs)):
                 if div_paragraph_counts[i] >= 3:
                     supp_div_index = i
@@ -270,18 +348,14 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
                 break
 
     # STEP 3: default: if still no supplementary, leave supp_div_index None
-    # Now build lists of divs for main and supplementary based on indices
     main_divs = []
     supp_divs = []
     if supp_div_index is not None:
-        # everything between main_div_index..(supp_div_index-1) -> main
         for i in range(main_div_index, supp_div_index):
             main_divs.append(divs[i])
-        # everything from supp_div_index..end -> supplementary
         for i in range(supp_div_index, len(divs)):
             supp_divs.append(divs[i])
     else:
-        # no supplementary found -> every div from main_div_index..end is main
         for i in range(main_div_index, len(divs)):
             main_divs.append(divs[i])
 
@@ -295,8 +369,10 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
         def flush_chunk():
             nonlocal current_chunk_text, current_chunk_figs, current_section_title
             if not current_chunk_text.strip():
+                current_chunk_text = ""
+                current_chunk_figs = set()
+                current_section_title = None
                 return
-            # append figure summary line
             if current_chunk_figs:
                 fig_line = "\nFigures used in this chunk: " + ", ".join(sorted(current_chunk_figs))
                 current_chunk_text = current_chunk_text.rstrip() + "\n\n" + fig_line + "\n"
@@ -310,68 +386,52 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
             current_section_title = None
 
         for div in div_list:
-            # section title if any
             head = div.find("head")
             head_text = head.get_text(" ", strip=True) if head else None
             if head_text:
-                # if current chunk is non-empty and adding the title would exceed chunk_size then flush first
                 if current_chunk_text and (len(current_chunk_text) + len(head_text) > chunk_size):
                     flush_chunk()
-                # start a new section title in the chunk
                 if current_chunk_text:
                     current_chunk_text += "\n" + head_text + "\n"
                 else:
                     current_chunk_text = head_text + "\n"
                 current_section_title = head_text
 
-            # iterate paragraphs in this div
             paragraphs = div.find_all("p")
             for p in paragraphs:
                 cleaned_para, figs = clean_paragraph_and_extract_figures(p)
-                # if single paragraph itself bigger than chunk_size: we will place it alone (can't avoid splitting)
+                # very long paragraph: split into parts
                 if len(cleaned_para) > chunk_size:
-                    # flush existing chunk first
                     if current_chunk_text:
                         flush_chunk()
-                    # split long paragraph into sub-parts while keeping words intact
                     start = 0
                     while start < len(cleaned_para):
                         part = cleaned_para[start:start+chunk_size]
-                        # attempt not to cut mid-word: move end back to last space
                         if start + chunk_size < len(cleaned_para):
                             last_space = part.rfind(" ")
-                            if last_space > 100:  # only if reasonable
+                            if last_space > 100:
                                 part = part[:last_space]
                         chunk_text = part.strip()
                         chunk_fig_set = set(figs)
-                        # append figure list if any
                         if chunk_fig_set:
                             chunk_text = chunk_text + "\n\nFigures used in this chunk: " + ", ".join(sorted(chunk_fig_set)) + "\n"
                         chunks.append({"text": chunk_text, "figures": sorted(chunk_fig_set), "section_title": current_section_title})
                         start += len(part)
-                    # reset current chunk
                     current_chunk_text = ""
                     current_chunk_figs = set()
                 else:
-                    # try to append paragraph to current chunk (prefer grouping multiple small paras)
+                    # try to append paragraph to chunk (group small paras)
                     if not current_chunk_text:
-                        # start new chunk with this paragraph
                         current_chunk_text = cleaned_para + "\n"
                         current_chunk_figs.update(figs)
                     else:
-                        # if appending this paragraph would exceed chunk_size, flush current chunk and start new
                         if len(current_chunk_text) + len(cleaned_para) > chunk_size:
                             flush_chunk()
                             current_chunk_text = cleaned_para + "\n"
                             current_chunk_figs.update(figs)
                         else:
-                            # safe to append
                             current_chunk_text += cleaned_para + "\n"
                             current_chunk_figs.update(figs)
-
-            # after finishing div, continue to next div (do not auto-flush unless needed)
-        # end div loop
-        # flush final chunk
         flush_chunk()
         return chunks
 
@@ -383,8 +443,14 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
 # -----------------------
 # Main preprocessing entrypoint
 # -----------------------
-def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHUNK_SIZE,
-                   rag_mode: bool = False, article_name: str = None, keep_references: bool = False) -> Dict:
+def preprocess_pdf(pdf_path: str,
+                   output_dir: str,
+                   chunk_size: int = DEFAULT_CHUNK_SIZE,
+                   rag_mode: bool = False,
+                   article_name: str = None,
+                   keep_references: bool = False,
+                   preclean_pdf: bool = False,
+                   use_grobid_consolidation: bool = False) -> Dict:
     """
     Preprocess a PDF via a running GROBID instance.
 
@@ -395,6 +461,8 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
         rag_mode: if True, save figure files into output_dir and prefix files for RAG usage
         article_name: optional prefix when rag_mode=True
         keep_references: if True, also save a version of chunks with full references appended
+        preclean_pdf: if True, attempt to preclean PDF (ghostscript/qpdf) and send temp_cleaned.pdf
+        use_grobid_consolidation: if True, add consolidation params to the GROBID request
 
     Returns:
         dict with summary information
@@ -402,19 +470,30 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"🚀 Preprocessing PDF with GROBID: {pdf_path}")
-    # 1) send to GROBID
-    url = "http://localhost:8070/api/processFulltextDocument"
-    with open(pdf_path, "rb") as f:
-        r = requests.post(url, files={"input": f})
+    # decide which PDF to send (temporary cleaned or original)
+    pdf_to_send = str(pdf_path)
+    tmp_pdf_path = None
+    if preclean_pdf:
+        tmp_pdf_path = produce_temp_cleaned_pdf(str(pdf_path), output_dir)
+        pdf_to_send = tmp_pdf_path
+
+    # build GROBID endpoint and params
+    base_url = "http://localhost:8070/api/processFulltextDocument"
+    params = {}
+    if use_grobid_consolidation:
+        params["consolidateHeader"] = "1"
+        params["consolidateCitations"] = "1"
+
+    # send to GROBID
+    with open(pdf_to_send, "rb") as f:
+        r = requests.post(base_url, params=params, files={"input": f}, timeout=120)
     tei_xml = r.text
 
     # save raw TEI
     raw_tei_path = output_dir / "raw_tei.xml"
     save_text(raw_tei_path, tei_xml)
-    print(f"📄 Raw TEI saved: {raw_tei_path}")
 
-    # 2) extract metadata
+    # extract metadata
     meta = extract_metadata_from_tei(tei_xml)
     title_txt_path = output_dir / "title.txt"
     with open(title_txt_path, "w", encoding="utf-8") as fh:
@@ -423,24 +502,17 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
         for a in meta.get("authors", []):
             fh.write(f" - {a.get('first','')} {a.get('last','')}\n")
         fh.write(f"\nAbstract:\n{meta.get('abstract','')}\n")
-    print(f"📝 Metadata saved: {title_txt_path}")
 
-    # 3) extract figures (textual metadata)
+    # figures & references
     extract_figures(tei_xml, output_dir, rag_mode=rag_mode, article_name=article_name)
-    print("📷 Figure metadata extracted.")
-
-    # 4) extract references (unless rag mode)
     if not rag_mode:
         extract_references(tei_xml, output_dir)
-        print("📚 References extracted.")
 
-    # 5) extract sections & chunking
+    # chunking
     main_chunks, supp_chunks = extract_sections(tei_xml, chunk_size=chunk_size)
-    print(f"✂️  Chunking done: {len(main_chunks)} main chunks, {len(supp_chunks)} supplementary chunks (chunk_size={chunk_size})")
 
-    # 6) save chunks
+    # save chunks
     if rag_mode:
-        # single folder outputs for RAG: prefix files with article_name
         if article_name:
             prefix_main = f"{clean_filename(article_name)}_main_chunk"
             prefix_sup = f"{clean_filename(article_name)}_sup_chunk"
@@ -453,7 +525,6 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
         for i, c in enumerate(supp_chunks, 1):
             fname = output_dir / f"{prefix_sup}{str(i).zfill(3)}.txt"
             save_text(fname, c["text"])
-        # optionally remove raw tei to keep folder tidy
     else:
         main_dir = output_dir / "main"
         supp_dir = output_dir / "supplementary"
@@ -466,7 +537,7 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
             fname = supp_dir / f"sup_chunk{str(i).zfill(3)}.txt"
             save_text(fname, c["text"])
 
-    # 7) save fig lists and maps (standard mode)
+    # save figure lists & maps (standard mode)
     if not rag_mode:
         main_figs = set()
         supp_figs = set()
@@ -489,7 +560,7 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
             for k in sorted(supp_map):
                 fm.write(f"{k} -> {', '.join(supp_map[k])}\n")
 
-    # 8) optional: save chunks with references appended
+    # optional: save chunks with references appended
     if keep_references and not rag_mode:
         refs_text = (output_dir / "references.txt").read_text(encoding="utf-8") if (output_dir / "references.txt").exists() else ""
         wr_dir = output_dir / "with_references"
@@ -504,7 +575,16 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
             fname = wr_supp / f"sup_chunk{str(i).zfill(3)}.txt"
             save_text(fname, c["text"] + "\n\n" + refs_text)
 
-    print("✅ Preprocessing complete.")
+    # cleanup temporary cleaned pdf if we created one (and it is not the original)
+    if preclean_pdf and tmp_pdf_path:
+        try:
+            tmp = Path(tmp_pdf_path)
+            orig = Path(pdf_path)
+            # only remove tmp if it's inside the output_dir tmp_cleaned.pdf
+            if tmp.exists() and tmp.name == "tmp_cleaned.pdf" and tmp.parent.resolve() == Path(output_dir).resolve():
+                tmp.unlink(missing_ok=True)
+        except Exception:
+            pass
 
     return {
         "raw_tei": str(raw_tei_path) if raw_tei_path.exists() else None,

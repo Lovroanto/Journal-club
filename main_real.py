@@ -19,12 +19,16 @@ output_dir_article = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Decom
 # --------------------------
 # 1) Standard mode
 # --------------------------
+
+
 result_standard = preprocess_pdf(
     pdf_path=pdf_file,
     output_dir=output_dir_article,
     chunk_size=4000,
     rag_mode=False,          # standard mode
-    keep_references=True     # also produce with_references folder
+    keep_references=True,    # also produces with_references folder
+    preclean_pdf=True,       # NEW: clean PDF before sending to GROBID
+    use_grobid_consolidation=True  # NEW: use consolidation in GROBID parsing
 )
 print("STANDARD MODE RESULTS:")
 print(result_standard)
