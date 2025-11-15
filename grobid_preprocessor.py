@@ -26,6 +26,7 @@ SUPP_PATTERNS = [
     r"Supplemental Material",
     r"Supporting Information",
     r"Additional Information",
+    r"Methods",
 ]
 
 
