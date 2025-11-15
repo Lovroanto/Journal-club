@@ -9,7 +9,8 @@ Preprocess PDFs via GROBID with:
 - Dynamic chunking
 - Figure tracking
 - Inverse figure→chunk mapping
-- FIGURE EXTRACTION INTO files figures/fig_XX.txt
+- Figure extraction into /figures/fig_id.txt
+- Reference extraction into references.txt (captures ALL <idno>)
 """
 
 import os
@@ -26,7 +27,7 @@ SUPP_PATTERNS = [
     r"Supplementary Information",
     r"Supplemental Material",
     r"Supporting Information",
-    r"Additional Information"
+    r"Additional Information",
 ]
 
 
@@ -60,18 +61,18 @@ def extract_metadata_from_tei(tei_xml: str):
         for author in analytic.find_all("author"):
             forename = author.find("forename", {"type": "first"})
             surname = author.find("surname")
-            authors.append({
-                "first": forename.get_text(strip=True) if forename else "",
-                "last": surname.get_text(strip=True) if surname else ""
-            })
+            authors.append(
+                {
+                    "first": forename.get_text(strip=True) if forename else "",
+                    "last": surname.get_text(strip=True) if surname else "",
+                }
+            )
 
     # Abstract
     abstract_tag = tei_header.find("abstract")
     abstract_text = ""
     if abstract_tag:
-        abstract_text = " ".join(
-            p.get_text(" ", strip=True) for p in abstract_tag.find_all("p")
-        )
+        abstract_text = " ".join(p.get_text(" ", strip=True) for p in abstract_tag.find_all("p"))
 
     return {"title": title, "authors": authors, "abstract": abstract_text}
 
@@ -109,20 +110,86 @@ def extract_figures(tei_xml: str, output_dir: Path):
     for fig in figure_tags:
         fig_id = fig.get("xml:id", "unknown_id")
 
-        # Extract <head> (figure number/title inside article)
         head_tag = fig.find("head")
         fig_title = head_tag.get_text(" ", strip=True) if head_tag else ""
 
-        # Extract <figDesc>
         desc_tag = fig.find("figDesc")
         fig_desc = desc_tag.get_text(" ", strip=True) if desc_tag else ""
 
-        # Compose output
         content = f"FIGURE ID: {fig_id}\n"
         content += f"TITLE IN ARTICLE: {fig_title}\n"
         content += f"DESCRIPTION:\n{fig_desc}\n"
 
         save_text(fig_dir / f"{fig_id}.txt", content)
+
+
+# -----------------------
+# Extract references
+# -----------------------
+def extract_references(tei_xml: str, output_dir: Path):
+    soup = BeautifulSoup(tei_xml, "lxml-xml")
+    list_bibl = soup.find("listBibl")
+
+    out_file = output_dir / "references.txt"
+
+    if list_bibl is None:
+        save_text(out_file, "NO REFERENCES FOUND\n")
+        return
+
+    out_lines = []
+
+    for bibl in list_bibl.find_all("biblStruct"):
+        ref_id = bibl.get("xml:id", "unknown_id")
+
+        # ---- Title ----
+        title_tag = bibl.find("title", {"level": "a", "type": "main"})
+        title = title_tag.get_text(" ", strip=True) if title_tag else ""
+
+        # ---- Authors ----
+        authors = []
+        for pers in bibl.find_all("persName"):
+            fn = pers.find("forename", {"type": "first"})
+            sn = pers.find("surname")
+            first = fn.get_text(strip=True) if fn else ""
+            last = sn.get_text(strip=True) if sn else ""
+            if first or last:
+                authors.append(f"{first} {last}".strip())
+        authors_str = ", ".join(authors)
+
+        # ---- Journal ----
+        journal_tag = bibl.find("title", {"level": "j"})
+        journal = journal_tag.get_text(" ", strip=True) if journal_tag else ""
+
+        # ---- Year ----
+        date_tag = bibl.find("date", {"type": "published"})
+        year = date_tag.get("when") if date_tag else ""
+        if not year and date_tag:
+            year = date_tag.get_text(strip=True)
+
+        # ---- ALL <idno> ----
+        idnos = []
+        for idno in bibl.find_all("idno"):
+            id_type = idno.get("type", "unknown")
+            value = idno.get_text(strip=True)
+            idnos.append(f"type={id_type} → {value}")
+
+        # Build entry
+        entry = []
+        entry.append(f"ID: {ref_id}")
+        entry.append(f"Title: {title}")
+        entry.append(f"Authors: {authors_str}")
+        entry.append(f"Journal: {journal}")
+        entry.append(f"Year: {year}")
+        entry.append("IDNOS:")
+        if idnos:
+            for n in idnos:
+                entry.append(f" - {n}")
+        else:
+            entry.append(" - None")
+        entry.append("-" * 40)
+        out_lines.append("\n".join(entry))
+
+    save_text(out_file, "\n".join(out_lines))
 
 
 # -----------------------
@@ -154,26 +221,22 @@ def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
         chunk_text = ""
         chunk_figures = set()
 
-    # ---------------------
-    # PASS 1 — HEADER-based supplementary detection
-    # ---------------------
     for div in divs:
         head_tag = div.find("head")
         head_text = head_tag.get_text(strip=True) if head_tag else ""
 
+        # Supplementary detection
         if (not suppl_started_by_header) and head_tag:
             if any(re.search(pat, head_text, re.IGNORECASE) for pat in SUPP_PATTERNS):
                 suppl_started_by_header = True
                 finalize_chunk()
                 current_section = "supplementary"
 
-        # New section title
         if head_tag:
             if chunk_text:
                 finalize_chunk()
             chunk_text = f"{head_text}\n"
 
-        # Process paragraphs
         for p in div.find_all("p"):
             para_text, figures = clean_paragraph(p)
 
@@ -184,7 +247,6 @@ def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
             chunk_figures.update(figures)
 
     finalize_chunk()
-
     return main_chunks, supp_chunks
 
 
@@ -195,7 +257,7 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # ---------------- 1) Run GROBID ----------------
+    # ---- 1) GROBID ----
     url = "http://localhost:8070/api/processFulltextDocument"
     with open(pdf_path, "rb") as f:
         r = requests.post(url, files={"input": f})
@@ -204,23 +266,24 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
     raw_tei_path = output_dir / "raw_tei.xml"
     save_text(raw_tei_path, tei_xml)
 
-    # ---------------- 2) Metadata ----------------
+    # ---- 2) Metadata ----
     meta = extract_metadata_from_tei(tei_xml)
     title_txt_path = output_dir / "title.txt"
     with open(title_txt_path, "w", encoding="utf-8") as f:
-        f.write(f"Title: {meta['title']}\n")
-        f.write("Authors:\n")
-        for a in meta['authors']:
+        f.write(f"Title: {meta['title']}\nAuthors:\n")
+        for a in meta["authors"]:
             f.write(f"{a['first']} {a['last']}\n")
         f.write(f"\nAbstract:\n{meta['abstract']}\n")
 
-    # ---------------- 3) FIGURE EXTRACTION ----------------
+    # ---- 3) Figures ----
     extract_figures(tei_xml, output_dir)
 
-    # ---------------- 4) Sections & chunks ----------------
-    main_chunks, supp_chunks = extract_sections(tei_xml, chunk_size=chunk_size)
+    # ---- 4) References ----
+    extract_references(tei_xml, output_dir)
 
-    # ---------------- 5) Save chunks ----------------
+    # ---- 5) Chunks ----
+    main_chunks, supp_chunks = extract_sections(tei_xml, chunk_size)
+
     main_dir = output_dir / "main"
     supp_dir = output_dir / "supplementary"
     main_dir.mkdir(exist_ok=True)
@@ -231,27 +294,26 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
     main_fig_map = {}
     supp_fig_map = {}
 
-    for i, c in enumerate(main_chunks, start=1):
+    # Save main chunks
+    for i, c in enumerate(main_chunks, 1):
         fname = main_dir / f"main_chunk{str(i).zfill(2)}.txt"
         save_text(fname, c["text"])
-
         for fig in c["figures"]:
             main_figs.add(fig)
             main_fig_map.setdefault(fig, []).append(str(i).zfill(2))
 
-    for i, c in enumerate(supp_chunks, start=1):
+    # Save supp chunks
+    for i, c in enumerate(supp_chunks, 1):
         fname = supp_dir / f"sup_chunk{str(i).zfill(2)}.txt"
         save_text(fname, c["text"])
-
         for fig in c["figures"]:
             supp_figs.add(fig)
             supp_fig_map.setdefault(fig, []).append(str(i).zfill(2))
 
-    # ---------------- Save figure lists ----------------
+    # ---- 6) Figure lists ----
     save_text(output_dir / "figmain.txt", "\n".join(sorted(main_figs)))
     save_text(output_dir / "figsup.txt", "\n".join(sorted(supp_figs)))
 
-    # ---------------- Save inverse mappings ----------------
     with open(output_dir / "figmain_map.txt", "w", encoding="utf-8") as f:
         for fig in sorted(main_fig_map):
             f.write(f"{fig} → {', '.join(main_fig_map[fig])}\n")
@@ -264,5 +326,5 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
         "raw_tei": str(raw_tei_path),
         "title_txt": str(title_txt_path),
         "main_chunks": len(main_chunks),
-        "supp_chunks": len(supp_chunks)
+        "supp_chunks": len(supp_chunks),
     }
