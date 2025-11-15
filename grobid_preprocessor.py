@@ -4,13 +4,12 @@ grobid_preprocessor.py
 
 Preprocess PDFs via GROBID with:
 - Metadata extraction
-- Proper main/supplementary separation
-- HEADER-first supplementary detection with fallback to paragraph detection
+- Main/supplementary separation
 - Dynamic chunking
-- Figure tracking
-- Inverse figure→chunk mapping
-- Figure extraction into /figures/fig_id.txt
-- Reference extraction into references.txt (captures ALL <idno>)
+- Figure extraction
+- Optional modes:
+  - Standard mode: all features including references, with/without keeping references in chunks
+  - RAG mode: only chunks + figures, names prefixed with article_name
 """
 
 import os
@@ -21,7 +20,6 @@ from typing import Dict
 from bs4 import BeautifulSoup
 
 DEFAULT_CHUNK_SIZE = 4000
-
 SUPP_PATTERNS = [
     r"Supplementary Material",
     r"Supplementary Information",
@@ -46,34 +44,24 @@ def save_text(path: Path, text: str):
 def extract_metadata_from_tei(tei_xml: str):
     soup = BeautifulSoup(tei_xml, "lxml-xml")
     tei_header = soup.find("teiHeader")
-
     if tei_header is None:
         return {"title": "", "authors": [], "abstract": ""}
-
-    # Title
     title_tag = tei_header.find("title", {"level": "a", "type": "main"})
     title = title_tag.get_text(strip=True) if title_tag else ""
-
-    # Authors
     authors = []
     analytic = tei_header.find("analytic")
     if analytic:
         for author in analytic.find_all("author"):
             forename = author.find("forename", {"type": "first"})
             surname = author.find("surname")
-            authors.append(
-                {
-                    "first": forename.get_text(strip=True) if forename else "",
-                    "last": surname.get_text(strip=True) if surname else "",
-                }
-            )
-
-    # Abstract
+            authors.append({
+                "first": forename.get_text(strip=True) if forename else "",
+                "last": surname.get_text(strip=True) if surname else ""
+            })
     abstract_tag = tei_header.find("abstract")
     abstract_text = ""
     if abstract_tag:
         abstract_text = " ".join(p.get_text(" ", strip=True) for p in abstract_tag.find_all("p"))
-
     return {"title": title, "authors": authors, "abstract": abstract_text}
 
 
@@ -81,11 +69,8 @@ def extract_metadata_from_tei(tei_xml: str):
 # Clean paragraph and extract figures
 # -----------------------
 def clean_paragraph(p_tag):
-    # Remove bibliography refs
     for b in p_tag.find_all("ref", {"type": "bibr"}):
         b.decompose()
-
-    # Rewrite and collect figure refs
     figures = []
     for f in p_tag.find_all("ref", {"type": "figure"}):
         fig_text = f.get_text(strip=True)
@@ -93,34 +78,41 @@ def clean_paragraph(p_tag):
         label = f"{fig_id}: {fig_text}"
         figures.append(label)
         f.string = f"(fig {label})"
-
     return p_tag.get_text(" ", strip=True), figures
 
 
 # -----------------------
-# Extract full figure objects
+# Extract figures
 # -----------------------
-def extract_figures(tei_xml: str, output_dir: Path):
+def extract_figures(tei_xml: str, output_dir: Path, rag_mode=False, article_name: str = None):
     soup = BeautifulSoup(tei_xml, "lxml-xml")
     figure_tags = soup.find_all("figure")
 
-    fig_dir = output_dir / "figures"
+    # In RAG mode, keep figures in output_dir; else in 'figures/' subfolder
+    fig_dir = output_dir if rag_mode else output_dir / "figures"
     fig_dir.mkdir(parents=True, exist_ok=True)
 
     for fig in figure_tags:
         fig_id = fig.get("xml:id", "unknown_id")
 
+        # Extract <head> (figure number/title inside article)
         head_tag = fig.find("head")
         fig_title = head_tag.get_text(" ", strip=True) if head_tag else ""
 
+        # Extract <figDesc>
         desc_tag = fig.find("figDesc")
         fig_desc = desc_tag.get_text(" ", strip=True) if desc_tag else ""
 
-        content = f"FIGURE ID: {fig_id}\n"
-        content += f"TITLE IN ARTICLE: {fig_title}\n"
-        content += f"DESCRIPTION:\n{fig_desc}\n"
+        # Compose output
+        content = f"FIGURE ID: {fig_id}\nTITLE IN ARTICLE: {fig_title}\nDESCRIPTION:\n{fig_desc}\n"
 
-        save_text(fig_dir / f"{fig_id}.txt", content)
+        # Determine file name
+        if rag_mode and article_name:
+            file_name = f"{article_name}_{fig_id}.txt"
+        else:
+            file_name = f"{fig_id}.txt"
+
+        save_text(fig_dir / file_name, content)
 
 
 # -----------------------
@@ -129,23 +121,15 @@ def extract_figures(tei_xml: str, output_dir: Path):
 def extract_references(tei_xml: str, output_dir: Path):
     soup = BeautifulSoup(tei_xml, "lxml-xml")
     list_bibl = soup.find("listBibl")
-
     out_file = output_dir / "references.txt"
-
     if list_bibl is None:
         save_text(out_file, "NO REFERENCES FOUND\n")
         return
-
     out_lines = []
-
     for bibl in list_bibl.find_all("biblStruct"):
         ref_id = bibl.get("xml:id", "unknown_id")
-
-        # ---- Title ----
         title_tag = bibl.find("title", {"level": "a", "type": "main"})
         title = title_tag.get_text(" ", strip=True) if title_tag else ""
-
-        # ---- Authors ----
         authors = []
         for pers in bibl.find_all("persName"):
             fn = pers.find("forename", {"type": "first"})
@@ -155,40 +139,28 @@ def extract_references(tei_xml: str, output_dir: Path):
             if first or last:
                 authors.append(f"{first} {last}".strip())
         authors_str = ", ".join(authors)
-
-        # ---- Journal ----
         journal_tag = bibl.find("title", {"level": "j"})
         journal = journal_tag.get_text(" ", strip=True) if journal_tag else ""
-
-        # ---- Year ----
         date_tag = bibl.find("date", {"type": "published"})
-        year = date_tag.get("when") if date_tag else ""
-        if not year and date_tag:
-            year = date_tag.get_text(strip=True)
-
-        # ---- ALL <idno> ----
+        year = date_tag.get("when") if date_tag else (date_tag.get_text(strip=True) if date_tag else "")
         idnos = []
         for idno in bibl.find_all("idno"):
             id_type = idno.get("type", "unknown")
             value = idno.get_text(strip=True)
             idnos.append(f"type={id_type} → {value}")
-
-        # Build entry
-        entry = []
-        entry.append(f"ID: {ref_id}")
-        entry.append(f"Title: {title}")
-        entry.append(f"Authors: {authors_str}")
-        entry.append(f"Journal: {journal}")
-        entry.append(f"Year: {year}")
-        entry.append("IDNOS:")
+        entry = [
+            f"ID: {ref_id}",
+            f"Title: {title}",
+            f"Authors: {authors_str}",
+            f"Journal: {journal}",
+            f"Year: {year}",
+            "IDNOS:"]
         if idnos:
-            for n in idnos:
-                entry.append(f" - {n}")
+            entry.extend([f" - {n}" for n in idnos])
         else:
             entry.append(" - None")
         entry.append("-" * 40)
         out_lines.append("\n".join(entry))
-
     save_text(out_file, "\n".join(out_lines))
 
 
@@ -198,16 +170,11 @@ def extract_references(tei_xml: str, output_dir: Path):
 def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
     soup = BeautifulSoup(tei_xml, "lxml-xml")
     divs = soup.find_all("div")
-
-    main_chunks = []
-    supp_chunks = []
-
+    main_chunks, supp_chunks = [], []
     current_section = "main"
     suppl_started_by_header = False
-
     chunk_text = ""
     chunk_figures = set()
-
     def finalize_chunk():
         nonlocal chunk_text, chunk_figures
         if not chunk_text.strip():
@@ -220,32 +187,24 @@ def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
             supp_chunks.append({"text": chunk_text, "figures": list(chunk_figures)})
         chunk_text = ""
         chunk_figures = set()
-
     for div in divs:
         head_tag = div.find("head")
         head_text = head_tag.get_text(strip=True) if head_tag else ""
-
-        # Supplementary detection
         if (not suppl_started_by_header) and head_tag:
             if any(re.search(pat, head_text, re.IGNORECASE) for pat in SUPP_PATTERNS):
                 suppl_started_by_header = True
                 finalize_chunk()
                 current_section = "supplementary"
-
         if head_tag:
             if chunk_text:
                 finalize_chunk()
             chunk_text = f"{head_text}\n"
-
         for p in div.find_all("p"):
             para_text, figures = clean_paragraph(p)
-
             if len(chunk_text) + len(para_text) > chunk_size and chunk_text:
                 finalize_chunk()
-
             chunk_text += para_text + "\n"
             chunk_figures.update(figures)
-
     finalize_chunk()
     return main_chunks, supp_chunks
 
@@ -253,7 +212,8 @@ def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
 # -----------------------
 # Main processing
 # -----------------------
-def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Dict:
+def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHUNK_SIZE,
+                   rag_mode: bool = False, article_name: str = None, keep_references: bool = False) -> Dict:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -276,54 +236,79 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
         f.write(f"\nAbstract:\n{meta['abstract']}\n")
 
     # ---- 3) Figures ----
-    extract_figures(tei_xml, output_dir)
+    extract_figures(tei_xml, output_dir, rag_mode=rag_mode, article_name=article_name)
 
-    # ---- 4) References ----
-    extract_references(tei_xml, output_dir)
+    # ---- 4) References (only in standard mode) ----
+    if not rag_mode:
+        extract_references(tei_xml, output_dir)
 
-    # ---- 5) Chunks ----
+    # ---- 5) Sections & chunks ----
     main_chunks, supp_chunks = extract_sections(tei_xml, chunk_size)
 
-    main_dir = output_dir / "main"
-    supp_dir = output_dir / "supplementary"
-    main_dir.mkdir(exist_ok=True)
-    supp_dir.mkdir(exist_ok=True)
+    # ---- 6) Save chunks ----
+    if rag_mode:
+        # All in one folder
+        main_dir = supp_dir = output_dir
+        prefix_main = f"{article_name}_chunk_main" if article_name else "main_chunk"
+        prefix_sup = f"{article_name}_chunk_sup" if article_name else "sup_chunk"
+        # Remove raw TEI to avoid confusion
+        if raw_tei_path.exists():
+            raw_tei_path.unlink()
+    else:
+        main_dir = output_dir / "main"
+        supp_dir = output_dir / "supplementary"
+        main_dir.mkdir(exist_ok=True)
+        supp_dir.mkdir(exist_ok=True)
+        prefix_main = "main_chunk"
+        prefix_sup = "sup_chunk"
 
-    main_figs = set()
-    supp_figs = set()
-    main_fig_map = {}
-    supp_fig_map = {}
+    main_figs, supp_figs = set(), set()
+    main_fig_map, supp_fig_map = {}, {}
 
-    # Save main chunks
+    # ---- Save main chunks ----
     for i, c in enumerate(main_chunks, 1):
-        fname = main_dir / f"main_chunk{str(i).zfill(2)}.txt"
+        fname = main_dir / f"{prefix_main}{str(i).zfill(2)}.txt"
         save_text(fname, c["text"])
         for fig in c["figures"]:
             main_figs.add(fig)
             main_fig_map.setdefault(fig, []).append(str(i).zfill(2))
 
-    # Save supp chunks
+    # ---- Save supplementary chunks ----
     for i, c in enumerate(supp_chunks, 1):
-        fname = supp_dir / f"sup_chunk{str(i).zfill(2)}.txt"
+        fname = supp_dir / f"{prefix_sup}{str(i).zfill(2)}.txt"
         save_text(fname, c["text"])
         for fig in c["figures"]:
             supp_figs.add(fig)
             supp_fig_map.setdefault(fig, []).append(str(i).zfill(2))
 
-    # ---- 6) Figure lists ----
-    save_text(output_dir / "figmain.txt", "\n".join(sorted(main_figs)))
-    save_text(output_dir / "figsup.txt", "\n".join(sorted(supp_figs)))
+    # ---- Save figure lists & maps (only standard mode) ----
+    if not rag_mode:
+        save_text(output_dir / "figmain.txt", "\n".join(sorted(main_figs)))
+        save_text(output_dir / "figsup.txt", "\n".join(sorted(supp_figs)))
+        with open(output_dir / "figmain_map.txt", "w", encoding="utf-8") as f:
+            for fig in sorted(main_fig_map):
+                f.write(f"{fig} → {', '.join(main_fig_map[fig])}\n")
+        with open(output_dir / "figsup_map.txt", "w", encoding="utf-8") as f:
+            for fig in sorted(supp_fig_map):
+                f.write(f"{fig} → {', '.join(supp_fig_map[fig])}\n")
 
-    with open(output_dir / "figmain_map.txt", "w", encoding="utf-8") as f:
-        for fig in sorted(main_fig_map):
-            f.write(f"{fig} → {', '.join(main_fig_map[fig])}\n")
-
-    with open(output_dir / "figsup_map.txt", "w", encoding="utf-8") as f:
-        for fig in sorted(supp_fig_map):
-            f.write(f"{fig} → {', '.join(supp_fig_map[fig])}\n")
+    # ---- Optional: save chunks WITH references ----
+    if keep_references and not rag_mode:
+        wr_dir = output_dir / "with_references"
+        wr_main_dir = wr_dir / "main"
+        wr_supp_dir = wr_dir / "supplementary"
+        wr_main_dir.mkdir(parents=True, exist_ok=True)
+        wr_supp_dir.mkdir(parents=True, exist_ok=True)
+        references_text = Path(output_dir / "references.txt").read_text() if (output_dir / "references.txt").exists() else ""
+        for i, c in enumerate(main_chunks, 1):
+            fname = wr_main_dir / f"{prefix_main}{str(i).zfill(2)}.txt"
+            save_text(fname, c["text"] + "\n" + references_text)
+        for i, c in enumerate(supp_chunks, 1):
+            fname = wr_supp_dir / f"{prefix_sup}{str(i).zfill(2)}.txt"
+            save_text(fname, c["text"] + "\n" + references_text)
 
     return {
-        "raw_tei": str(raw_tei_path),
+        "raw_tei": str(raw_tei_path) if raw_tei_path.exists() else None,
         "title_txt": str(title_txt_path),
         "main_chunks": len(main_chunks),
         "supp_chunks": len(supp_chunks),
