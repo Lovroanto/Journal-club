@@ -2,21 +2,22 @@
 """
 grobid_preprocessor.py
 
-Preprocess PDFs via GROBID:
-- Extracts title, authors, abstract
-- Separates main text and supplementary cleanly
-- Supplementary starts ONLY at <head> in a <div>
-- Dynamic chunking based on paragraph aggregation
-- Tracks figures per chunk
-- Writes figure summary files and inverse mappings
+Preprocess PDFs via GROBID with:
+- Metadata extraction
+- Proper main/supplementary separation
+- HEADER-first supplementary detection with fallback to paragraph detection
+- Dynamic chunking
+- Figure tracking
+- Inverse figure→chunk mapping
+- FIGURE EXTRACTION INTO files figures/fig_XX.txt
 """
 
 import os
 import re
-from bs4 import BeautifulSoup
+import requests
 from pathlib import Path
 from typing import Dict
-import requests
+from bs4 import BeautifulSoup
 
 DEFAULT_CHUNK_SIZE = 4000
 
@@ -44,6 +45,7 @@ def save_text(path: Path, text: str):
 def extract_metadata_from_tei(tei_xml: str):
     soup = BeautifulSoup(tei_xml, "lxml-xml")
     tei_header = soup.find("teiHeader")
+
     if tei_header is None:
         return {"title": "", "authors": [], "abstract": ""}
 
@@ -60,7 +62,7 @@ def extract_metadata_from_tei(tei_xml: str):
             surname = author.find("surname")
             authors.append({
                 "first": forename.get_text(strip=True) if forename else "",
-                "last": surname.get_text(strip=True) if surname else "",
+                "last": surname.get_text(strip=True) if surname else ""
             })
 
     # Abstract
@@ -75,7 +77,7 @@ def extract_metadata_from_tei(tei_xml: str):
 
 
 # -----------------------
-# Clean paragraph text and extract figures
+# Clean paragraph and extract figures
 # -----------------------
 def clean_paragraph(p_tag):
     # Remove bibliography refs
@@ -95,7 +97,36 @@ def clean_paragraph(p_tag):
 
 
 # -----------------------
-# Extract sections and chunks
+# Extract full figure objects
+# -----------------------
+def extract_figures(tei_xml: str, output_dir: Path):
+    soup = BeautifulSoup(tei_xml, "lxml-xml")
+    figure_tags = soup.find_all("figure")
+
+    fig_dir = output_dir / "figures"
+    fig_dir.mkdir(parents=True, exist_ok=True)
+
+    for fig in figure_tags:
+        fig_id = fig.get("xml:id", "unknown_id")
+
+        # Extract <head> (figure number/title inside article)
+        head_tag = fig.find("head")
+        fig_title = head_tag.get_text(" ", strip=True) if head_tag else ""
+
+        # Extract <figDesc>
+        desc_tag = fig.find("figDesc")
+        fig_desc = desc_tag.get_text(" ", strip=True) if desc_tag else ""
+
+        # Compose output
+        content = f"FIGURE ID: {fig_id}\n"
+        content += f"TITLE IN ARTICLE: {fig_title}\n"
+        content += f"DESCRIPTION:\n{fig_desc}\n"
+
+        save_text(fig_dir / f"{fig_id}.txt", content)
+
+
+# -----------------------
+# Extract sections & chunks
 # -----------------------
 def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
     soup = BeautifulSoup(tei_xml, "lxml-xml")
@@ -105,7 +136,7 @@ def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
     supp_chunks = []
 
     current_section = "main"
-    suppl_started = False
+    suppl_started_by_header = False
 
     chunk_text = ""
     chunk_figures = set()
@@ -123,31 +154,31 @@ def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
         chunk_text = ""
         chunk_figures = set()
 
+    # ---------------------
+    # PASS 1 — HEADER-based supplementary detection
+    # ---------------------
     for div in divs:
-
         head_tag = div.find("head")
         head_text = head_tag.get_text(strip=True) if head_tag else ""
 
-        # --------------------- SUPPLEMENTARY DETECTION ---------------------
-        if (not suppl_started) and head_tag:
+        if (not suppl_started_by_header) and head_tag:
             if any(re.search(pat, head_text, re.IGNORECASE) for pat in SUPP_PATTERNS):
-                suppl_started = True
+                suppl_started_by_header = True
                 finalize_chunk()
                 current_section = "supplementary"
 
-        # --------------------- SECTION TITLE ---------------------
+        # New section title
         if head_tag:
             if chunk_text:
                 finalize_chunk()
             chunk_text = f"{head_text}\n"
 
-        # --------------------- PARAGRAPHS ---------------------
+        # Process paragraphs
         for p in div.find_all("p"):
             para_text, figures = clean_paragraph(p)
 
             if len(chunk_text) + len(para_text) > chunk_size and chunk_text:
                 finalize_chunk()
-                chunk_text = ""
 
             chunk_text += para_text + "\n"
             chunk_figures.update(figures)
@@ -158,7 +189,7 @@ def extract_sections(tei_xml: str, chunk_size=DEFAULT_CHUNK_SIZE):
 
 
 # -----------------------
-# Process PDF
+# Main processing
 # -----------------------
 def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Dict:
     output_dir = Path(output_dir)
@@ -183,16 +214,18 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
             f.write(f"{a['first']} {a['last']}\n")
         f.write(f"\nAbstract:\n{meta['abstract']}\n")
 
-    # ---------------- 3) Sections & chunks ----------------
+    # ---------------- 3) FIGURE EXTRACTION ----------------
+    extract_figures(tei_xml, output_dir)
+
+    # ---------------- 4) Sections & chunks ----------------
     main_chunks, supp_chunks = extract_sections(tei_xml, chunk_size=chunk_size)
 
-    # ---------------- Save chunks ----------------
+    # ---------------- 5) Save chunks ----------------
     main_dir = output_dir / "main"
     supp_dir = output_dir / "supplementary"
     main_dir.mkdir(exist_ok=True)
     supp_dir.mkdir(exist_ok=True)
 
-    # Track all figures
     main_figs = set()
     supp_figs = set()
     main_fig_map = {}
@@ -221,13 +254,11 @@ def preprocess_pdf(pdf_path: str, output_dir: str, chunk_size: int = DEFAULT_CHU
     # ---------------- Save inverse mappings ----------------
     with open(output_dir / "figmain_map.txt", "w", encoding="utf-8") as f:
         for fig in sorted(main_fig_map):
-            chunks = ", ".join(main_fig_map[fig])
-            f.write(f"{fig} → {chunks}\n")
+            f.write(f"{fig} → {', '.join(main_fig_map[fig])}\n")
 
     with open(output_dir / "figsup_map.txt", "w", encoding="utf-8") as f:
         for fig in sorted(supp_fig_map):
-            chunks = ", ".join(supp_fig_map[fig])
-            f.write(f"{fig} → {chunks}\n")
+            f.write(f"{fig} → {', '.join(supp_fig_map[fig])}\n")
 
     return {
         "raw_tei": str(raw_tei_path),
