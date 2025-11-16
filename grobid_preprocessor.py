@@ -27,6 +27,8 @@ import re
 import shutil
 import subprocess
 import requests
+import fitz
+from typing import Union
 from pathlib import Path
 from typing import Dict, List, Tuple
 from bs4 import BeautifulSoup
@@ -135,6 +137,132 @@ def produce_temp_cleaned_pdf(original_pdf: str, output_dir: Path) -> str:
     except Exception:
         # last-resort: return original path
         return str(original_pdf)
+
+# -----------------------
+# This part was added afterwards
+# This is for checking the grobid output
+
+def extract_pdf_text(pdf_path: Union[str, Path]) -> str:
+    """Extract all text from PDF."""
+    doc = fitz.open(pdf_path)
+    pages = [page.get_text("text").strip() for page in doc]
+    doc.close()
+    return "\n\n".join(pages)
+
+
+def prepare_pdf_for_grobid_check(
+    pdf_path: Union[str, Path],
+    output_dir: Union[str, Path],
+    *,
+    print_preview: bool = True,
+    max_preview_lines: int = 30,
+) -> str:
+    """
+    1. Extract all pages + save ALL figures (main + supp)
+    2. Remove References section
+    3. Clean figure captions (from entire remaining text)
+    4. Clean headers/footers (short lines only)
+    5. Return: full cleaned text (main + supplementary)
+    """
+    pdf_path = Path(pdf_path)
+    output_dir = Path(output_dir)
+    figure_dir = output_dir / "figure_from_pdf"
+    figure_dir.mkdir(parents=True, exist_ok=True)
+
+    # -------------------------------------------------- #
+    # 1. Extract raw pages + save ALL figures
+    # -------------------------------------------------- #
+    doc = fitz.open(pdf_path)
+    raw_pages = []
+    figure_counter = 0
+
+    for page_nr, page in enumerate(doc, start=1):
+        raw_pages.append(page.get_text("text"))
+
+        # Save every figure (main + supp)
+        for img_index, img in enumerate(page.get_images(full=True), start=1):
+            xref = img[0]
+            base = doc.extract_image(xref)
+            img_bytes, img_ext = base["image"], base["ext"]
+            figure_counter += 1
+            fname = f"fig_p{page_nr}_i{img_index}_{figure_counter:04d}.{img_ext}"
+            (figure_dir / fname).write_bytes(img_bytes)
+
+    doc.close()
+    full_text = "\n\n".join(raw_pages)
+
+    # -------------------------------------------------- #
+    # 2. STEP 1: Remove References block
+    # -------------------------------------------------- #
+    refs_match = re.search(r"(?mi)\n\s*References\s*\n", full_text)
+    if refs_match:
+        refs_start = refs_match.end()
+        post_refs = full_text[refs_start:]
+
+        # Find next major section (supplementary, etc.)
+        end_match = re.search(
+            r"(?mi)^(\s*(Supplementary|Appendix|Supporting|Extended Data|Acknowledgments|Author|Data)\b)",
+            post_refs,
+            flags=re.MULTILINE
+        )
+        if end_match:
+            refs_end = end_match.start()
+            after_refs = post_refs[refs_end:]
+            text_to_clean = full_text[:refs_match.start()] + "\n\n" + after_refs
+        else:
+            # No supplementary → keep only before refs
+            text_to_clean = full_text[:refs_match.start()]
+            after_refs = ""
+    else:
+        text_to_clean = full_text
+        after_refs = ""
+
+    # -------------------------------------------------- #
+    # 3. STEP 2: Clean figure captions (main + supp)
+    # -------------------------------------------------- #
+    caption_patterns = [
+        r"Fig\.?\s*\d+[\.:]?\s*[^\n]{0,200}?(?=\n\n)",           # Fig. 1. or Fig 1:
+        r"Figure\s*\d+[\.:]?\s*[^\n]{0,200}?(?=\n\n)",          # Figure 1. or Figure 1:
+        r"Fig\.?\s*S?\d+[\.:]?\s*[^\n]{0,200}?(?=\n\n)",        # Fig. S1. (supp)
+        r"\[FIGURE:[^\]]+\][^\n]{0,200}?(?=\n\n)",             # placeholder
+    ]
+    cleaned_text = text_to_clean
+    for pat in caption_patterns:
+        cleaned_text = re.sub(pat, "", cleaned_text, flags=re.IGNORECASE)
+
+    # -------------------------------------------------- #
+    # 4. STEP 3: Clean headers/footers (short lines only)
+    # -------------------------------------------------- #
+    lines = cleaned_text.splitlines()
+    cleaned_lines = []
+    for line in lines:
+        s = line.strip()
+        # Skip only short, header/footer-like lines
+        if len(s) < 100 and (
+            s.isdigit() or
+            re.match(r"^https?://", s) or
+            re.match(r"^[A-Z]{3,}$", s) or
+            re.match(r"^\d{1,3}$", s)
+        ):
+            continue
+        cleaned_lines.append(line)
+    final_text = "\n".join(cleaned_lines).strip()
+
+    # -------------------------------------------------- #
+    # 5. Preview
+    # -------------------------------------------------- #
+    if print_preview:
+        preview = "\n".join(final_text.splitlines()[:max_preview_lines])
+        print("\n=== FULL CLEANED TEXT (MAIN + SUPPLEMENTARY) ===")
+        print(preview)
+        supp_detected = any(kw in final_text.lower() for kw in ["supplementary", "appendix", "supporting", "Mehods"])
+        if supp_detected:
+            print(f"\nSUPPLEMENTARY CONTENT INCLUDED")
+        else:
+            print("\nNo supplementary content detected.")
+        print(f"Total figures saved: {figure_counter} → {figure_dir.resolve()}")
+
+    return final_text
 
 # -----------------------
 # TEI metadata extraction
@@ -492,6 +620,14 @@ def preprocess_pdf(pdf_path: str,
     # save raw TEI
     raw_tei_path = output_dir / "raw_tei.xml"
     save_text(raw_tei_path, tei_xml)
+
+    # 2. Run the sanity-check on the *original* PDF
+    # -------------------------------------------------
+    cleaned_pdf_text = prepare_pdf_for_grobid_check(
+        pdf_path=pdf_path,          # <-- the original PDF you sent
+        output_dir=output_dir,
+        print_preview=True,
+    )
 
     # extract metadata
     meta = extract_metadata_from_tei(tei_xml)
