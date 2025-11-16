@@ -28,7 +28,7 @@ import shutil
 import subprocess
 import requests
 import fitz
-from typing import Union
+from typing import Union, Tuple, Optional
 from pathlib import Path
 from typing import Dict, List, Tuple
 from bs4 import BeautifulSoup
@@ -150,117 +150,210 @@ def extract_pdf_text(pdf_path: Union[str, Path]) -> str:
     return "\n\n".join(pages)
 
 
+# ------------------------------------------------------------------ #
+# 1. Caption extractor (your original – unchanged)
+# ------------------------------------------------------------------ #
+def extract_and_remove_figure_captions(text: str, out_dir: Path) -> Tuple[str, int]:
+    pattern = re.compile(
+        r"(?:(?:^|\n)(?:Fig(?:ure)?\.?|Extended Data Fig\.|Supplementary Fig(?:ure)?\.?)\s*\d+[a-zA-Z]?(?:[.:)]|[\s|–-]))"
+        r"[\s\S]*?(?=\n\s*\n|(?:(?:Fig(?:ure)?|Extended Data Fig\.|Supplementary Fig\.|References|Supplementary|Methods)\b)|\Z)",
+        flags=re.MULTILINE,
+    )
+    captions = [m.group(0).strip() for m in pattern.finditer(text)]
+    for i, cap in enumerate(captions, 1):
+        (out_dir / f"figure_{i:03d}.txt").write_text(cap + "\n", encoding="utf-8")
+    return pattern.sub("\n", text), len(captions)
+
+
+# ------------------------------------------------------------------ #
+# 2. Axis-label / equation junk remover (your original – unchanged)
+# ------------------------------------------------------------------ #
+def remove_figure_axis_labels(text: str) -> str:
+    lines = text.splitlines()
+    new_lines = []
+    for l in lines:
+        stripped = l.strip()
+        if re.fullmatch(r"[\d\s\.\(\)××eE\-\+]+", stripped):
+            continue
+        if re.search(r"\b(kHz|Hz|s|ms|nm|μm|cm|dB|mol|K|°C|×10)\b", stripped):
+            continue
+        if len(stripped) <= 2:
+            continue
+        tokens = stripped.split()
+        if len(tokens) >= 3 and sum(len(t) < 3 for t in tokens) > len(tokens) / 2:
+            continue
+        new_lines.append(l)
+    return "\n".join(new_lines)
+
+
+# ------------------------------------------------------------------ #
+# 3. Extra safety for pure-math lines
+# ------------------------------------------------------------------ #
+def is_equation_block(line: str) -> bool:
+    s = line.strip()
+    if not s or len(s) > 100:
+        return False
+    if re.fullmatch(r"[±√∞α-ωΑ-Ω0-9δΔ∇Γ±=+\-*/^√∞≈∑∏∫≤≥≠±÷√∞πθφμλστΩΔ∇⋅×·∑∏∫]+", s):
+        return True
+    if re.search(r"[α-ωΑ-Ω]", s) and len(re.findall(r"\w", s)) < 3:
+        return True
+    if s.count("=") > 1 or s.count("+") > 2 or s.count("–") > 1:
+        return True
+    return False
+
+
+# ------------------------------------------------------------------ #
+# 4. Detect References block by heading + consecutive numbers
+# ------------------------------------------------------------------ #
+def find_references_block(text: str) -> Optional[Tuple[int, int]]:
+    """
+    Returns (start, end) indices of the References block, or None.
+    """
+    # 1. Find possible headings
+    heading_pat = re.compile(
+        r"(?mi)^.*\b("
+        r"References|Bibliography|Literature|References\s+and\s+notes|"
+        r"Reference|References?[\s:]?"
+        r")\b.*$"
+    )
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if heading_pat.search(line):
+            # 2. Look at the next 15 lines for consecutive numbers
+            snippet = "\n".join(lines[i + 1 : i + 16])
+            numbers = re.findall(r"^\s*(\d+)[\.\)]\s", snippet, flags=re.MULTILINE)
+            if len(numbers) >= 3:
+                # at least 3 numbers, check if they are roughly consecutive
+                nums = [int(n) for n in numbers]
+                diffs = [nums[j + 1] - nums[j] for j in range(len(nums) - 1)]
+                if any(0 < d <= 3 for d in diffs):  # allow small gaps
+                    # Found a real reference list
+                    start = text.find(line)
+                    # Find end: next major section or EOF
+                    rest = text[start:]
+                    end_match = re.search(
+                        r"(?mi)^(\s*(Supplementary|Appendix|Methods|Acknowledgments|Author|Data)\b)",
+                        rest,
+                        flags=re.MULTILINE,
+                    )
+                    if end_match:
+                        block_end = start + end_match.start()
+                    else:
+                        block_end = len(text)
+                    return start, block_end
+    return None
+
+
+# ------------------------------------------------------------------ #
+# 5. MAIN FUNCTION
+# ------------------------------------------------------------------ #
 def prepare_pdf_for_grobid_check(
     pdf_path: Union[str, Path],
     output_dir: Union[str, Path],
     *,
-    print_preview: bool = True,
-    max_preview_lines: int = 30,
+    preview_lines: int = 30,
+    save_cleaned: bool = True,
+    cleaned_filename: str = "cleaned_article.txt",
 ) -> str:
-    """
-    1. Extract all pages + save ALL figures (main + supp)
-    2. Remove References section
-    3. Clean figure captions (from entire remaining text)
-    4. Clean headers/footers (short lines only)
-    5. Return: full cleaned text (main + supplementary)
-    """
     pdf_path = Path(pdf_path)
     output_dir = Path(output_dir)
     figure_dir = output_dir / "figure_from_pdf"
     figure_dir.mkdir(parents=True, exist_ok=True)
 
     # -------------------------------------------------- #
-    # 1. Extract raw pages + save ALL figures
+    # 1. Extract pages + save images
     # -------------------------------------------------- #
     doc = fitz.open(pdf_path)
     raw_pages = []
-    figure_counter = 0
-
-    for page_nr, page in enumerate(doc, start=1):
+    img_cnt = 0
+    for page in doc:
         raw_pages.append(page.get_text("text"))
-
-        # Save every figure (main + supp)
-        for img_index, img in enumerate(page.get_images(full=True), start=1):
+        for img in page.get_images(full=True):
             xref = img[0]
             base = doc.extract_image(xref)
-            img_bytes, img_ext = base["image"], base["ext"]
-            figure_counter += 1
-            fname = f"fig_p{page_nr}_i{img_index}_{figure_counter:04d}.{img_ext}"
-            (figure_dir / fname).write_bytes(img_bytes)
-
+            img_cnt += 1
+            img_id = f"fig_{img_cnt:04d}"
+            (figure_dir / f"{img_id}.{base['ext']}").write_bytes(base["image"])
     doc.close()
     full_text = "\n\n".join(raw_pages)
 
     # -------------------------------------------------- #
-    # 2. STEP 1: Remove References block
+    # 2. REMOVE REFERENCES BLOCK (smart detection)
     # -------------------------------------------------- #
-    refs_match = re.search(r"(?mi)\n\s*References\s*\n", full_text)
-    if refs_match:
-        refs_start = refs_match.end()
-        post_refs = full_text[refs_start:]
-
-        # Find next major section (supplementary, etc.)
-        end_match = re.search(
-            r"(?mi)^(\s*(Supplementary|Appendix|Supporting|Extended Data|Acknowledgments|Author|Data)\b)",
-            post_refs,
-            flags=re.MULTILINE
-        )
-        if end_match:
-            refs_end = end_match.start()
-            after_refs = post_refs[refs_end:]
-            text_to_clean = full_text[:refs_match.start()] + "\n\n" + after_refs
-        else:
-            # No supplementary → keep only before refs
-            text_to_clean = full_text[:refs_match.start()]
-            after_refs = ""
+    refs_block = find_references_block(full_text)
+    if refs_block:
+        start, end = refs_block
+        body_text = full_text[:start]
+        post_refs = full_text[end:]  # KEEP EVERYTHING AFTER
     else:
-        text_to_clean = full_text
-        after_refs = ""
+        body_text = full_text
+        post_refs = ""
 
     # -------------------------------------------------- #
-    # 3. STEP 2: Clean figure captions (main + supp)
+    # 3. Clean a section
     # -------------------------------------------------- #
-    caption_patterns = [
-        r"Fig\.?\s*\d+[\.:]?\s*[^\n]{0,200}?(?=\n\n)",           # Fig. 1. or Fig 1:
-        r"Figure\s*\d+[\.:]?\s*[^\n]{0,200}?(?=\n\n)",          # Figure 1. or Figure 1:
-        r"Fig\.?\s*S?\d+[\.:]?\s*[^\n]{0,200}?(?=\n\n)",        # Fig. S1. (supp)
-        r"\[FIGURE:[^\]]+\][^\n]{0,200}?(?=\n\n)",             # placeholder
-    ]
-    cleaned_text = text_to_clean
-    for pat in caption_patterns:
-        cleaned_text = re.sub(pat, "", cleaned_text, flags=re.IGNORECASE)
+    def clean_section(txt: str) -> str:
+        if not txt.strip():
+            return ""
+        txt, _ = extract_and_remove_figure_captions(txt, figure_dir)
+        txt = remove_figure_axis_labels(txt)
+
+        lines = txt.splitlines()
+        kept = []
+        for line in lines:
+            if is_equation_block(line):
+                continue
+            s = line.strip()
+            if len(s) < 100 and (
+                s.isdigit()
+                or re.match(r"^https?://", s)
+                or re.match(r"^[A-Z]{3,}$", s)
+                or re.match(r"^\d{1,3}$", s)
+            ):
+                continue
+            kept.append(line)
+        return "\n".join(kept).strip()
+
+    cleaned_body = clean_section(body_text)
+    cleaned_post = clean_section(post_refs) if post_refs else ""
 
     # -------------------------------------------------- #
-    # 4. STEP 3: Clean headers/footers (short lines only)
+    # 4. Re-assemble
     # -------------------------------------------------- #
-    lines = cleaned_text.splitlines()
-    cleaned_lines = []
-    for line in lines:
-        s = line.strip()
-        # Skip only short, header/footer-like lines
-        if len(s) < 100 and (
-            s.isdigit() or
-            re.match(r"^https?://", s) or
-            re.match(r"^[A-Z]{3,}$", s) or
-            re.match(r"^\d{1,3}$", s)
-        ):
-            continue
-        cleaned_lines.append(line)
-    final_text = "\n".join(cleaned_lines).strip()
+    final_text = cleaned_body
+    if cleaned_post:
+        final_text += "\n\n" + cleaned_post
 
     # -------------------------------------------------- #
-    # 5. Preview
+    # 5. Save to disk
     # -------------------------------------------------- #
-    if print_preview:
-        preview = "\n".join(final_text.splitlines()[:max_preview_lines])
-        print("\n=== FULL CLEANED TEXT (MAIN + SUPPLEMENTARY) ===")
-        print(preview)
-        supp_detected = any(kw in final_text.lower() for kw in ["supplementary", "appendix", "supporting", "Mehods"])
-        if supp_detected:
-            print(f"\nSUPPLEMENTARY CONTENT INCLUDED")
-        else:
-            print("\nNo supplementary content detected.")
-        print(f"Total figures saved: {figure_counter} → {figure_dir.resolve()}")
+    if save_cleaned:
+        out_path = output_dir / cleaned_filename
+        out_path.write_text(final_text, encoding="utf-8")
+        print(f"Cleaned article saved → {out_path.resolve()}")
+
+    # -------------------------------------------------- #
+    # 6. Short preview only
+    # -------------------------------------------------- #
+    preview = "\n".join(final_text.splitlines()[:preview_lines])
+    print("\n" + "=" * 80)
+    print(f"PREVIEW – first {preview_lines} lines")
+    print("=" * 80)
+    print(preview)
+    if len(final_text.splitlines()) > preview_lines:
+        print(f"… ({len(final_text.splitlines()) - preview_lines} more lines)")
+    supp = "SUPPLEMENTARY INCLUDED" if cleaned_post else "No supplementary"
+    print(f"\n{supp}")
+    print(f"Images: {img_cnt} → {figure_dir.resolve()}")
+    print("=" * 80 + "\n")
+
+    # -------------------------------------------------- #
+    # 7. Rename caption files
+    # -------------------------------------------------- #
+    for i in range(1, img_cnt + 1):
+        old = figure_dir / f"figure_{i:03d}.txt"
+        if old.exists():
+            old.rename(figure_dir / f"fig_{i:04d}_caption.txt")
 
     return final_text
 
@@ -623,10 +716,11 @@ def preprocess_pdf(pdf_path: str,
 
     # 2. Run the sanity-check on the *original* PDF
     # -------------------------------------------------
-    cleaned_pdf_text = prepare_pdf_for_grobid_check(
-        pdf_path=pdf_path,          # <-- the original PDF you sent
+    cleaned_text = prepare_pdf_for_grobid_check(
+        pdf_path=pdf_path,
         output_dir=output_dir,
-        print_preview=True,
+        preview_lines=30,      # change if you want more/less preview
+        save_cleaned=True
     )
 
     # extract metadata
