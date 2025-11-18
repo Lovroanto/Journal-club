@@ -42,6 +42,7 @@ SIMILARITY_THRESHOLD = 0.7
 MAX_DIFF_TO_SHOW = 200   # safety – don’t flood the report
 HTML_DIFF = HtmlDiff(wrapcolumn=80)   # pretty word-level diff
 MIN_CHAR_DIFF = 15          # ← ignore <15 char differences
+DEFAULT_AUTHOR_RATIO = 0.60   # ← 60% = perfect balance, change anytime
 # -----------------------
 # Defaults & patterns
 # -----------------------
@@ -159,9 +160,6 @@ def extract_pdf_text(pdf_path: Union[str, Path]) -> str:
     return "\n\n".join(pages)
 
 
-# ------------------------------------------------------------------ #
-# 1. Caption extractor (your original – unchanged)
-# ------------------------------------------------------------------ #
 def extract_and_remove_figure_captions(text: str, out_dir: Path) -> Tuple[str, int]:
     pattern = re.compile(
         r"(?:(?:^|\n)(?:Fig(?:ure)?\.?|Extended Data Fig\.|Supplementary Fig(?:ure)?\.?)\s*\d+[a-zA-Z]?(?:[.:)]|[\s|–-]))"
@@ -172,7 +170,6 @@ def extract_and_remove_figure_captions(text: str, out_dir: Path) -> Tuple[str, i
     for i, cap in enumerate(captions, 1):
         (out_dir / f"figure_{i:03d}.txt").write_text(cap + "\n", encoding="utf-8")
     return pattern.sub("\n", text), len(captions)
-
 
 # ------------------------------------------------------------------ #
 # 2. Axis-label / equation junk remover (your original – unchanged)
@@ -194,7 +191,6 @@ def remove_figure_axis_labels(text: str) -> str:
         new_lines.append(l)
     return "\n".join(new_lines)
 
-
 # ------------------------------------------------------------------ #
 # 3. Extra safety for pure-math lines
 # ------------------------------------------------------------------ #
@@ -210,15 +206,10 @@ def is_equation_block(line: str) -> bool:
         return True
     return False
 
-
 # ------------------------------------------------------------------ #
-# 4. Detect References block by heading + consecutive numbers
+# 4. Detect References block
 # ------------------------------------------------------------------ #
 def find_references_block(text: str) -> Optional[Tuple[int, int]]:
-    """
-    Returns (start, end) indices of the References block, or None.
-    """
-    # 1. Find possible headings
     heading_pat = re.compile(
         r"(?mi)^.*\b("
         r"References|Bibliography|Literature|References\s+and\s+notes|"
@@ -228,99 +219,95 @@ def find_references_block(text: str) -> Optional[Tuple[int, int]]:
     lines = text.splitlines()
     for i, line in enumerate(lines):
         if heading_pat.search(line):
-            # 2. Look at the next 15 lines for consecutive numbers
             snippet = "\n".join(lines[i + 1 : i + 16])
             numbers = re.findall(r"^\s*(\d+)[\.\)]\s", snippet, flags=re.MULTILINE)
             if len(numbers) >= 3:
-                # at least 3 numbers, check if they are roughly consecutive
                 nums = [int(n) for n in numbers]
                 diffs = [nums[j + 1] - nums[j] for j in range(len(nums) - 1)]
-                if any(0 < d <= 3 for d in diffs):  # allow small gaps
-                    # Found a real reference list
+                if any(0 < d <= 3 for d in diffs):
                     start = text.find(line)
-                    # Find end: next major section or EOF
                     rest = text[start:]
                     end_match = re.search(
                         r"(?mi)^(\s*(Supplementary|Appendix|Methods|Acknowledgments|Author|Data)\b)",
-                        rest,
-                        flags=re.MULTILINE,
+                        rest, flags=re.MULTILINE,
                     )
-                    if end_match:
-                        block_end = start + end_match.start()
-                    else:
-                        block_end = len(text)
+                    block_end = start + end_match.start() if end_match else len(text)
                     return start, block_end
     return None
 
 # ------------------------------------------------------------------ #
-# 5. Remove submission / acceptance / publication date lines
+# 5. BEST METADATA / DATE LINE REMOVER (your improved version)
 # ------------------------------------------------------------------ #
 def is_metadata_date_line(line: str) -> bool:
+    """
+    Removes:
+    • Received/Accepted/Published lines with dates
+    • Volume/Issue/Page lines
+    • Any line containing an email address (with @)
+    • Keeps everything else (like "Methods", "Introduction", etc.)
+    """
     s = line.strip()
     if not s:
         return False
 
-    # Common keywords that appear in such lines
-    if not re.search(r"\b(Received|Accepted|Submitted|Revised|Published|Publication|Online|Posted|Issued)\b", s, re.I):
-        return False
-
-    # Must contain a date pattern: e.g. 13 September 2024, 1 Jan 2024, 2024-09-13, etc.
-    if re.search(r"\d{1,4}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}", s, re.I):
-        return True
-    if re.search(r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,4},?\s+\d{4}", s, re.I):
-        return True
-    if re.search(r"\d{4}-\d{2}-\d{2}", s):        # ISO dates
-        return True
-    if re.search(r"\d{1,2}\s+[\w]+\s+\d{4}", s):  # 13 September 2024, 27 February 2025, etc.
+    # ———————— 1. Remove any line with an email (@ symbol) ————————
+    if "@" in s:
         return True
 
-    # Also catch lines that are purely journal/volume/issue like:
-    # Nature Physics | Volume 21 | June 2025 | 902–908
+    # ———————— 2. Classic submission/publication dates ————————
+    if re.search(r"\b(Received|Accepted|Submitted|Revised|Published|Publication|Online|Posted|Issued)\b", s, re.I):
+        if re.search(r"\d{1,4}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}", s, re.I):
+            return True
+        if re.search(r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,4},?\s+\d{4}", s, re.I):
+            return True
+        if re.search(r"\d{4}-\d{2}-\d{2}", s):
+            return True
+        if re.search(r"\d{1,2}\s+[\w]+\s+\d{4}", s):
+            return True
+        # Even without full date, if keyword + year → still remove
+        if re.search(r"\d{4}", s):
+            return True
+
+    # ———————— 3. Journal / Volume / Issue / Pages ————————
     if re.search(r"\b(?:Volume|Vol\.?|Issue|pp?\.?\s*\d+[–-]\d+|\|\s*\d+\s*[–-]\d+)\b", s):
         return True
 
     return False
 
 # ------------------------------------------------------------------ #
-# 6. Remooving lines with names
-# ------------------------------------------------------------------ #    
-
-def is_author_or_affiliation_line(line: str) -> bool:
+# 6. FINAL AUTHOR / AFFILIATION KILLER — uppercase letters ÷ words
+# ------------------------------------------------------------------ #
+def is_author_or_affiliation_line(line: str, ratio: float = DEFAULT_AUTHOR_RATIO) -> bool:
     """
-    Returns True if the line is likely author names or affiliation block.
-    Works perfectly on:
-      • Vera M. Schäfer  1,2  , Zhijing Niu  1, Dylan J. Young  ...
-      • 1JILA, NIST and Department of Physics, University of Colorado, ...
+    Returns True → delete line (author/affiliation block)
+    Only triggers if:
+      • uppercase_letters / word_count >= ratio
+      • AND there are strictly more than 1 uppercase letter
+    → This keeps "Methods", "Results", "Introduction", etc.
+    → But kills "Vera M. Schäfer", "1JILA, NIST...", etc.
     """
     s = line.strip()
-    if not s or len(s) > 400:        # real body text is longer and more mixed
+    if not s or len(s) > 600:
         return False
 
-    # Extract only letters (ignore numbers, spaces, punctuation, weird unicode spaces)
-    letters = [c for c in s if c.isalpha()]
-    if not letters:
-        return True  # line has no real text → probably garbage
+    # Count words (any token with letters)
+    words = [w for w in re.findall(r'\b[\w\.\-]+\b', s) if any(c.isalpha() for c in w)]
+    if not words:
+        return False
 
-    total_letters = len(letters)
-    uppercase_letters = sum(1 for c in letters if c.isupper())
+    word_count = len(words)
+    uppercase_count = sum(1 for c in s if c.isupper())
 
-    # Core rule: >60% uppercase letters → almost certainly author/affiliation
-    if uppercase_letters / total_letters > 0.60:
-        return True
+    # NEW SAFETY: require at least 2 uppercase letters
+    # → "Methods" has only 1 → kept
+    # → "Vera M. Schäfer" has many → deleted
+    if uppercase_count <= 1:
+        return False
 
-    # Bonus safety: lines starting with number + capital (like "1JILA", "2Max-Planck...")
-    if re.match(r"^\s*\d+[A-Za-z]", s):
-        return True
-
-    # Very short lines full of caps + commas/numbers are also trash
-    if total_letters < 80 and uppercase_letters >= 15:
-        return True
-
-    return False
-
+    return uppercase_count / word_count >= ratio
 
 # ------------------------------------------------------------------ #
-# 7. MAIN FUNCTION
+# 7. MAIN FUNCTION — with configurable ratio + merging
 # ------------------------------------------------------------------ #
 def prepare_pdf_for_grobid_check(
     pdf_path: Union[str, Path],
@@ -329,15 +316,13 @@ def prepare_pdf_for_grobid_check(
     preview_lines: int = 30,
     save_cleaned: bool = True,
     cleaned_filename: str = "cleaned_article.txt",
+    author_ratio: float = DEFAULT_AUTHOR_RATIO,   # ← FULLY CONFIGURABLE
 ) -> str:
     pdf_path = Path(pdf_path)
     output_dir = Path(output_dir)
     figure_dir = output_dir / "figure_from_pdf"
     figure_dir.mkdir(parents=True, exist_ok=True)
 
-    # -------------------------------------------------- #
-    # 1. Extract pages + save images
-    # -------------------------------------------------- #
     doc = fitz.open(pdf_path)
     raw_pages = []
     img_cnt = 0
@@ -352,131 +337,61 @@ def prepare_pdf_for_grobid_check(
     doc.close()
     full_text = "\n\n".join(raw_pages)
 
-    # -------------------------------------------------- #
-    # 2. REMOVE REFERENCES BLOCK
-    # -------------------------------------------------- #
     refs_block = find_references_block(full_text)
-    if refs_block:
-        start, end = refs_block
-        body_text = full_text[:start]
-        post_refs = full_text[end:]
-    else:
-        body_text = full_text
-        post_refs = ""
+    body_text = full_text[:refs_block[0]] if refs_block else full_text
+    post_refs = full_text[refs_block[1]:] if refs_block else ""
 
-    # -------------------------------------------------- #
-    # ORIGINAL: Metadata / date line remover (kept!)
-    # -------------------------------------------------- #
-    def is_metadata_date_line(line: str) -> bool:
-        s = line.strip()
-        if not s:
-            return False
-        if re.search(r"\b(Received|Accepted|Submitted|Revised|Published|Online|Posted)\b", s, re.I):
-            return bool(re.search(r"\d{4}", s))
-        if re.search(r"\bVolume.*\d+|.*\d+\s*[–-]\s*\d+", s):
-            return True
-        return False
-
-    # -------------------------------------------------- #
-    # ORIGINAL + IMPROVED: Author byline fragment remover
-    # -------------------------------------------------- #
-    def is_author_byline_line(line: str) -> bool:
-        s = line.strip()
-        if not s or len(s) > 200:
-            return False
-
-        # Clean punctuation and numbers (affiliations)
-        cleaned = re.sub(r"[0-9,.;·•†‡§*°]", " ", s)
-        cleaned = re.sub(r"\s+", " ", cleaned).strip()
-        words = [w for w in cleaned.split() if w]
-
-        if not words:
-            return False
-
-        capital_heavy = 0
-        total_alpha = 0
-        for word in words:
-            letters = [c for c in word if c.isalpha()]
-            if not letters:
-                continue
-            ratio = sum(1 for c in letters if c.isupper()) / len(letters)
-            if ratio >= 0.6:
-                capital_heavy += 1
-            total_alpha += len(letters)
-
-        if capital_heavy >= 2 and total_alpha <= 50:
-            return True
-        if re.search(r"^\s*\d+[,–-]\d+|[,–-]\d+\s*$", s):
-            return capital_heavy >= 1
-        return False
-
-    # -------------------------------------------------- #
-    # NEW FINAL KILLER: Uppercase ratio > 60% (catches JILA, NIST, etc.)
-    # -------------------------------------------------- #
-    def is_high_capital_ratio_line(line: str) -> bool:
-        s = line.strip()
-        if not s or len(s) > 400:
-            return False
-
-        letters = [c for c in s if c.isalpha()]
-        if not letters:
-            return True
-        total = len(letters)
-        caps = sum(1 for c in letters if c.isupper())
-
-        # >60% uppercase letters → almost certainly author/affiliation
-        if caps / total > 0.60:
-            return True
-
-        # Bonus: lines starting with digit + capital letter (1JILA, 2Department...)
-        if re.match(r"^\s*\d+[A-Za-z]", s):
-            return True
-
-        return False
-
-    # -------------------------------------------------- #
-    # 3. Clean section – now with ALL 3 filters (maximum power)
-    # -------------------------------------------------- #
     def clean_section(txt: str) -> str:
         if not txt.strip():
             return ""
         txt, _ = extract_and_remove_figure_captions(txt, figure_dir)
         txt = remove_figure_axis_labels(txt)
-
         lines = txt.splitlines()
         kept = []
+        buffer = []
+
         for line in lines:
-            if is_equation_block(line):
-                continue
-            if is_metadata_date_line(line):
-                continue
-            if is_author_byline_line(line):
-                continue
-            if is_high_capital_ratio_line(line):        # ← NEW FINAL BOSS
+            s = line.strip()
+
+            # Buffer short capital-heavy lines
+            if s and len(s) < 180:
+                letters = [c for c in s if c.isalpha()]
+                if letters and sum(1 for c in letters if c.isupper()) / len(letters) > 0.45:
+                    buffer.append(line)
+                    continue
+
+            if buffer:
+                merged = " ".join(b.strip() for b in buffer if b.strip())
+                if (is_author_or_affiliation_line(merged, ratio=author_ratio) or
+                    is_metadata_date_line(merged)):
+                    buffer = []
+                    continue
+                kept.extend(buffer)
+                buffer = []
+
+            if (is_equation_block(line) or
+                is_metadata_date_line(line) or
+                is_author_or_affiliation_line(line, ratio=author_ratio)):
                 continue
 
-            s = line.strip()
             if len(s) < 100 and (
-                s.isdigit()
-                or re.match(r"^https?://", s)
-                or re.match(r"^[A-Z]{3,}$", s)
-                or re.match(r"^\d{1,3}$", s)
-            ):
+                s.isdigit() or re.match(r"^https?://", s) or
+                re.match(r"^[A-Z]{3,}$", s) or re.match(r"^\d{1,3}$", s)):
                 continue
 
             kept.append(line)
 
+        if buffer:
+            merged = " ".join(b.strip() for b in buffer if b.strip())
+            if not (is_author_or_affiliation_line(merged, ratio=author_ratio) or
+                    is_metadata_date_line(merged)):
+                kept.extend(buffer)
+
         return "\n".join(kept).strip()
 
-    # -------------------------------------------------- #
-    # Apply cleaning
-    # -------------------------------------------------- #
     cleaned_body = clean_section(body_text)
     cleaned_post = clean_section(post_refs) if post_refs else ""
-
-    final_text = cleaned_body
-    if cleaned_post:
-        final_text += "\n\n" + cleaned_post
+    final_text = cleaned_body + ("\n\n" + cleaned_post if cleaned_post else "")
 
     if save_cleaned:
         out_path = output_dir / cleaned_filename
@@ -484,16 +399,15 @@ def prepare_pdf_for_grobid_check(
         print(f"Cleaned article saved → {out_path.resolve()}")
 
     preview = "\n".join(final_text.splitlines()[:preview_lines])
-    print("\n" + "=" * 80)
+    print("\n" + "="*80)
     print(f"PREVIEW – first {preview_lines} lines")
-    print("=" * 80)
+    print("="*80)
     print(preview)
     if len(final_text.splitlines()) > preview_lines:
         print(f"… ({len(final_text.splitlines()) - preview_lines} more lines)")
-    supp = "SUPPLEMENTARY INCLUDED" if cleaned_post else "No supplementary"
-    print(f"\n{supp}")
+    print(f"\n{'SUPPLEMENTARY INCLUDED' if cleaned_post else 'No supplementary'}")
     print(f"Images: {img_cnt} → {figure_dir.resolve()}")
-    print("=" * 80 + "\n")
+    print("="*80 + "\n")
 
     for i in range(1, img_cnt + 1):
         old = figure_dir / f"figure_{i:03d}.txt"
