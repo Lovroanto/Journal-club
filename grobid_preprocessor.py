@@ -365,32 +365,32 @@ def prepare_pdf_for_grobid_check(
         post_refs = ""
 
     # -------------------------------------------------- #
-    # NEW: Metadata / date line remover
+    # ORIGINAL: Metadata / date line remover (kept!)
     # -------------------------------------------------- #
     def is_metadata_date_line(line: str) -> bool:
         s = line.strip()
         if not s:
             return False
         if re.search(r"\b(Received|Accepted|Submitted|Revised|Published|Online|Posted)\b", s, re.I):
-            return bool(re.search(r"\d{4}", s))  # year present → very likely metadata
+            return bool(re.search(r"\d{4}", s))
         if re.search(r"\bVolume.*\d+|.*\d+\s*[–-]\s*\d+", s):
             return True
         return False
 
     # -------------------------------------------------- #
-    # NEW: Author byline fragment remover
+    # ORIGINAL + IMPROVED: Author byline fragment remover
     # -------------------------------------------------- #
     def is_author_byline_line(line: str) -> bool:
         s = line.strip()
         if not s or len(s) > 200:
             return False
 
-        # Clean affiliation numbers and symbols
+        # Clean punctuation and numbers (affiliations)
         cleaned = re.sub(r"[0-9,.;·•†‡§*°]", " ", s)
         cleaned = re.sub(r"\s+", " ", cleaned).strip()
         words = [w for w in cleaned.split() if w]
 
-        if len(words) == 0:
+        if not words:
             return False
 
         capital_heavy = 0
@@ -406,12 +406,36 @@ def prepare_pdf_for_grobid_check(
 
         if capital_heavy >= 2 and total_alpha <= 50:
             return True
-        if re.search(r"^\s*\d+[,–-]\d+|[,–-]\d+\s*$", s):  # ends with affiliation numbers
+        if re.search(r"^\s*\d+[,–-]\d+|[,–-]\d+\s*$", s):
             return capital_heavy >= 1
         return False
 
     # -------------------------------------------------- #
-    # 3. Clean section – now with all filters
+    # NEW FINAL KILLER: Uppercase ratio > 60% (catches JILA, NIST, etc.)
+    # -------------------------------------------------- #
+    def is_high_capital_ratio_line(line: str) -> bool:
+        s = line.strip()
+        if not s or len(s) > 400:
+            return False
+
+        letters = [c for c in s if c.isalpha()]
+        if not letters:
+            return True
+        total = len(letters)
+        caps = sum(1 for c in letters if c.isupper())
+
+        # >60% uppercase letters → almost certainly author/affiliation
+        if caps / total > 0.60:
+            return True
+
+        # Bonus: lines starting with digit + capital letter (1JILA, 2Department...)
+        if re.match(r"^\s*\d+[A-Za-z]", s):
+            return True
+
+        return False
+
+    # -------------------------------------------------- #
+    # 3. Clean section – now with ALL 3 filters (maximum power)
     # -------------------------------------------------- #
     def clean_section(txt: str) -> str:
         if not txt.strip():
@@ -426,7 +450,9 @@ def prepare_pdf_for_grobid_check(
                 continue
             if is_metadata_date_line(line):
                 continue
-            if is_author_byline_line(line):        # ← NEW: removes author fragments
+            if is_author_byline_line(line):
+                continue
+            if is_high_capital_ratio_line(line):        # ← NEW FINAL BOSS
                 continue
 
             s = line.strip()
@@ -442,12 +468,12 @@ def prepare_pdf_for_grobid_check(
 
         return "\n".join(kept).strip()
 
+    # -------------------------------------------------- #
+    # Apply cleaning
+    # -------------------------------------------------- #
     cleaned_body = clean_section(body_text)
     cleaned_post = clean_section(post_refs) if post_refs else ""
 
-    # -------------------------------------------------- #
-    # 4. Re-assemble + save + preview
-    # -------------------------------------------------- #
     final_text = cleaned_body
     if cleaned_post:
         final_text += "\n\n" + cleaned_post
