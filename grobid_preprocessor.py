@@ -28,11 +28,20 @@ import shutil
 import subprocess
 import requests
 import fitz
+import xml.etree.ElementTree as ET
 from typing import Union, Tuple, Optional
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Any
+from difflib import SequenceMatcher, HtmlDiff
 from bs4 import BeautifulSoup
+from langchain_ollama import OllamaLLM
+import html
 
+MODEL = "llama3.1"  # same as your chunk summary
+SIMILARITY_THRESHOLD = 0.7
+MAX_DIFF_TO_SHOW = 200   # safety – don’t flood the report
+HTML_DIFF = HtmlDiff(wrapcolumn=80)   # pretty word-level diff
+MIN_CHAR_DIFF = 15          # ← ignore <15 char differences
 # -----------------------
 # Defaults & patterns
 # -----------------------
@@ -243,9 +252,75 @@ def find_references_block(text: str) -> Optional[Tuple[int, int]]:
                     return start, block_end
     return None
 
+# ------------------------------------------------------------------ #
+# 5. Remove submission / acceptance / publication date lines
+# ------------------------------------------------------------------ #
+def is_metadata_date_line(line: str) -> bool:
+    s = line.strip()
+    if not s:
+        return False
+
+    # Common keywords that appear in such lines
+    if not re.search(r"\b(Received|Accepted|Submitted|Revised|Published|Publication|Online|Posted|Issued)\b", s, re.I):
+        return False
+
+    # Must contain a date pattern: e.g. 13 September 2024, 1 Jan 2024, 2024-09-13, etc.
+    if re.search(r"\d{1,4}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}", s, re.I):
+        return True
+    if re.search(r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,4},?\s+\d{4}", s, re.I):
+        return True
+    if re.search(r"\d{4}-\d{2}-\d{2}", s):        # ISO dates
+        return True
+    if re.search(r"\d{1,2}\s+[\w]+\s+\d{4}", s):  # 13 September 2024, 27 February 2025, etc.
+        return True
+
+    # Also catch lines that are purely journal/volume/issue like:
+    # Nature Physics | Volume 21 | June 2025 | 902–908
+    if re.search(r"\b(?:Volume|Vol\.?|Issue|pp?\.?\s*\d+[–-]\d+|\|\s*\d+\s*[–-]\d+)\b", s):
+        return True
+
+    return False
 
 # ------------------------------------------------------------------ #
-# 5. MAIN FUNCTION
+# 6. Remooving lines with names
+# ------------------------------------------------------------------ #    
+
+def is_author_or_affiliation_line(line: str) -> bool:
+    """
+    Returns True if the line is likely author names or affiliation block.
+    Works perfectly on:
+      • Vera M. Schäfer  1,2  , Zhijing Niu  1, Dylan J. Young  ...
+      • 1JILA, NIST and Department of Physics, University of Colorado, ...
+    """
+    s = line.strip()
+    if not s or len(s) > 400:        # real body text is longer and more mixed
+        return False
+
+    # Extract only letters (ignore numbers, spaces, punctuation, weird unicode spaces)
+    letters = [c for c in s if c.isalpha()]
+    if not letters:
+        return True  # line has no real text → probably garbage
+
+    total_letters = len(letters)
+    uppercase_letters = sum(1 for c in letters if c.isupper())
+
+    # Core rule: >60% uppercase letters → almost certainly author/affiliation
+    if uppercase_letters / total_letters > 0.60:
+        return True
+
+    # Bonus safety: lines starting with number + capital (like "1JILA", "2Max-Planck...")
+    if re.match(r"^\s*\d+[A-Za-z]", s):
+        return True
+
+    # Very short lines full of caps + commas/numbers are also trash
+    if total_letters < 80 and uppercase_letters >= 15:
+        return True
+
+    return False
+
+
+# ------------------------------------------------------------------ #
+# 7. MAIN FUNCTION
 # ------------------------------------------------------------------ #
 def prepare_pdf_for_grobid_check(
     pdf_path: Union[str, Path],
@@ -278,19 +353,65 @@ def prepare_pdf_for_grobid_check(
     full_text = "\n\n".join(raw_pages)
 
     # -------------------------------------------------- #
-    # 2. REMOVE REFERENCES BLOCK (smart detection)
+    # 2. REMOVE REFERENCES BLOCK
     # -------------------------------------------------- #
     refs_block = find_references_block(full_text)
     if refs_block:
         start, end = refs_block
         body_text = full_text[:start]
-        post_refs = full_text[end:]  # KEEP EVERYTHING AFTER
+        post_refs = full_text[end:]
     else:
         body_text = full_text
         post_refs = ""
 
     # -------------------------------------------------- #
-    # 3. Clean a section
+    # NEW: Metadata / date line remover
+    # -------------------------------------------------- #
+    def is_metadata_date_line(line: str) -> bool:
+        s = line.strip()
+        if not s:
+            return False
+        if re.search(r"\b(Received|Accepted|Submitted|Revised|Published|Online|Posted)\b", s, re.I):
+            return bool(re.search(r"\d{4}", s))  # year present → very likely metadata
+        if re.search(r"\bVolume.*\d+|.*\d+\s*[–-]\s*\d+", s):
+            return True
+        return False
+
+    # -------------------------------------------------- #
+    # NEW: Author byline fragment remover
+    # -------------------------------------------------- #
+    def is_author_byline_line(line: str) -> bool:
+        s = line.strip()
+        if not s or len(s) > 200:
+            return False
+
+        # Clean affiliation numbers and symbols
+        cleaned = re.sub(r"[0-9,.;·•†‡§*°]", " ", s)
+        cleaned = re.sub(r"\s+", " ", cleaned).strip()
+        words = [w for w in cleaned.split() if w]
+
+        if len(words) == 0:
+            return False
+
+        capital_heavy = 0
+        total_alpha = 0
+        for word in words:
+            letters = [c for c in word if c.isalpha()]
+            if not letters:
+                continue
+            ratio = sum(1 for c in letters if c.isupper()) / len(letters)
+            if ratio >= 0.6:
+                capital_heavy += 1
+            total_alpha += len(letters)
+
+        if capital_heavy >= 2 and total_alpha <= 50:
+            return True
+        if re.search(r"^\s*\d+[,–-]\d+|[,–-]\d+\s*$", s):  # ends with affiliation numbers
+            return capital_heavy >= 1
+        return False
+
+    # -------------------------------------------------- #
+    # 3. Clean section – now with all filters
     # -------------------------------------------------- #
     def clean_section(txt: str) -> str:
         if not txt.strip():
@@ -303,6 +424,11 @@ def prepare_pdf_for_grobid_check(
         for line in lines:
             if is_equation_block(line):
                 continue
+            if is_metadata_date_line(line):
+                continue
+            if is_author_byline_line(line):        # ← NEW: removes author fragments
+                continue
+
             s = line.strip()
             if len(s) < 100 and (
                 s.isdigit()
@@ -311,30 +437,26 @@ def prepare_pdf_for_grobid_check(
                 or re.match(r"^\d{1,3}$", s)
             ):
                 continue
+
             kept.append(line)
+
         return "\n".join(kept).strip()
 
     cleaned_body = clean_section(body_text)
     cleaned_post = clean_section(post_refs) if post_refs else ""
 
     # -------------------------------------------------- #
-    # 4. Re-assemble
+    # 4. Re-assemble + save + preview
     # -------------------------------------------------- #
     final_text = cleaned_body
     if cleaned_post:
         final_text += "\n\n" + cleaned_post
 
-    # -------------------------------------------------- #
-    # 5. Save to disk
-    # -------------------------------------------------- #
     if save_cleaned:
         out_path = output_dir / cleaned_filename
         out_path.write_text(final_text, encoding="utf-8")
         print(f"Cleaned article saved → {out_path.resolve()}")
 
-    # -------------------------------------------------- #
-    # 6. Short preview only
-    # -------------------------------------------------- #
     preview = "\n".join(final_text.splitlines()[:preview_lines])
     print("\n" + "=" * 80)
     print(f"PREVIEW – first {preview_lines} lines")
@@ -347,15 +469,109 @@ def prepare_pdf_for_grobid_check(
     print(f"Images: {img_cnt} → {figure_dir.resolve()}")
     print("=" * 80 + "\n")
 
-    # -------------------------------------------------- #
-    # 7. Rename caption files
-    # -------------------------------------------------- #
     for i in range(1, img_cnt + 1):
         old = figure_dir / f"figure_{i:03d}.txt"
         if old.exists():
             old.rename(figure_dir / f"fig_{i:04d}_caption.txt")
 
     return final_text
+
+def extract_all_sentences_to_single_file(
+    text: str,
+    output_path: Union[Path, str],
+    min_words: int = 6,
+    marker_start: str = "SENTENCE",
+    separator: str = " ::: ",
+    end_marker: str = " ////"
+) -> None:
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # ------------------------------------------------------------------
+    # 1. Normalize whitespace but keep real paragraph breaks
+    # ------------------------------------------------------------------
+    text = re.sub(r'[ \t]+', ' ', text)      # collapse spaces
+    text = re.sub(r'\r\n|\r', '\n', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)   # max two blank lines
+
+    # ------------------------------------------------------------------
+    # 2. Temporarily mark places where a sentence-ending dot is NOT allowed
+    #     → only inside common abbreviations that are NOT followed by space + capital
+    # ------------------------------------------------------------------
+    # These are the only patterns where a dot must NOT end a sentence
+    protected_dots = [
+        r'\b(Fig|Figs|Eq|Eqs|Ref|Refs|Tab|Table)\.\s+\d+',   # Fig. 5
+        r'\b(et al|i\.e|e\.g|vs|cf|ca)\.',                    # et al.
+        r'\b(Dr|Mr|Mrs|Ms|Prof)\.',                           # Dr.
+        r'[a-zA-Z]\.[a-zA-Z]\.',                              # J. P. Smith (middle initials)
+    ]
+
+    for pattern in protected_dots:
+        text = re.sub(pattern, lambda m: m.group(0).replace('.', '___DOT___'), text, flags=re.I)
+
+    # ------------------------------------------------------------------
+    # 3. NOW split on real sentence endings:
+    #     → dot (or ?!) + whitespace + capital letter
+    # ------------------------------------------------------------------
+    sentence_split = re.compile(r'''
+        ([.!?])          # punctuation
+        \s*              # optional spaces
+        (?:\n\s*)*       # optional newlines
+        \s+              # at least one whitespace
+        (?=[A-Z])        # next sentence starts with capital
+    ''', re.VERBOSE)
+
+    sentences = []
+    start = 0
+    for m in sentence_split.finditer(text):
+        end = m.start()
+        sent = text[start:end].strip()
+        if sent:
+            sentences.append(sent + m.group(1))   # include the final .!? 
+        start = m.end()
+
+    # Don't forget the last sentence
+    last = text[start:].strip()
+    if last:
+        # If it ends with punctuation, great. Otherwise just take it.
+        if re.search(r'[.!?]$', last):
+            sentences.append(last)
+        else:
+            # Try to find the last real punctuation
+            match = re.search(r'([.!?])\s*$', last)
+            if match:
+                sentences.append(last[:match.end(1)])
+            else:
+                sentences.append(last)
+
+    # ------------------------------------------------------------------
+    # 4. Restore protected dots
+    # ------------------------------------------------------------------
+    restored = []
+    for s in sentences:
+        s = s.replace('___DOT___', '.')
+        s = re.sub(r' +', ' ', s)        # clean extra spaces
+        s = s.strip()
+        if not s:
+            continue
+        restored.append(s)
+
+    # ------------------------------------------------------------------
+    # 5. Filter + write
+    # ------------------------------------------------------------------
+    with output_path.open('w', encoding='utf-8') as f:
+        count = 0
+        for sent in restored:
+            words = sent.split()
+            if len(words) < min_words:
+                continue
+            if not re.search(r'[.!?]$', sent):
+                continue
+
+            count += 1
+            f.write(f"{marker_start} {count:03d}{separator}{sent}{end_marker}\n\n")
+
+        print(f"Extracted {count} clean sentences → {output_path.resolve()}")
 
 # -----------------------
 # TEI metadata extraction
@@ -467,6 +683,301 @@ def extract_references(tei_xml: str, output_dir: Path):
         entry.append("-" * 50)
         out_lines.append("\n".join(entry))
     save_text(out_file, "\n\n".join(out_lines))
+
+
+# -------------------------------------------------- #
+# 2. Load GROBID plain text
+# -------------------------------------------------- #
+def extract_grobid_text(tei_path: Path) -> str:
+    tree = ET.parse(tei_path)
+    root = tree.getroot()
+    ns = {'tei': 'http://www.tei-c.org/ns/1.0'}
+    body = root.find('.//tei:body', ns)
+    if body is None:
+        return ""
+    text = ET.tostring(body, encoding='unicode', method='text')
+    return re.sub(r'\s+', ' ', text).strip()
+
+
+# -------------------------------------------------- #
+# 3. Load cleaned article
+# -------------------------------------------------- #
+def load_cleaned_text(txt_path: Path) -> str:
+    return txt_path.read_text(encoding='utf-8')
+
+
+# -------------------------------------------------- #
+# 4. Split into sentences
+# -------------------------------------------------- #
+def split_into_sentences(text: str) -> List[str]:
+    sentences = re.split(r'(?<=[.!?])\s+', text)
+    return [s.strip() for s in sentences if s.strip() and len(s) > 15]
+
+
+# -------------------------------------------------- #
+# 5. Similarity
+# -------------------------------------------------- #
+def similarity(a: str, b: str) -> float:
+    return SequenceMatcher(None, a.lower(), b.lower()).ratio()
+
+
+# -------------------------------------------------- #
+# 6. Character difference count
+# -------------------------------------------------- #
+def char_diff_count(a: str, b: str) -> int:
+    matcher = SequenceMatcher(None, a, b)
+    diff = 0
+    for tag, _, _, j1, j2 in matcher.get_opcodes():
+        if tag in ('replace', 'delete', 'insert'):
+            diff += j2 - j1
+    return diff
+
+
+# -------------------------------------------------- #
+# 7. Diff: cleaned vs grobid (only missing + big misplaced)
+# -------------------------------------------------- #
+def sentence_diff(cleaned_sents: List[str], grobid_sents: List[str]) -> List[Dict[str, Any]]:
+    matcher = SequenceMatcher(None, cleaned_sents, grobid_sents)
+    diffs = []
+
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag == 'equal':
+            continue
+        elif tag == 'delete':  # CLEANED has more → GROBID is missing
+            for i in range(i1, i2):
+                diffs.append({
+                    'type': 'missing_in_grobid',
+                    'sentence': cleaned_sents[i],
+                    'index_cleaned': i
+                })
+        elif tag == 'insert':  # GROBID has extra → ignore
+            continue
+        elif tag == 'replace':
+            for i in range(i1, i2):
+                for j in range(j1, j2):
+                    c_sent = cleaned_sents[i]
+                    g_sent = grobid_sents[j]
+                    if similarity(c_sent, g_sent) > SIMILARITY_THRESHOLD:
+                        char_diff = char_diff_count(c_sent, g_sent)
+                        if char_diff >= MIN_CHAR_DIFF:
+                            diffs.append({
+                                'type': 'possible_misplaced',
+                                'cleaned_sent': c_sent,
+                                'grobid_sent': g_sent,
+                                'index_cleaned': i,
+                                'index_grobid': j,
+                                'score': similarity(c_sent, g_sent),
+                                'char_diff': char_diff
+                            })
+                        break
+    return diffs
+
+
+# -------------------------------------------------- #
+# 8. Context helper
+# -------------------------------------------------- #
+def get_context(sents: List[str], idx: int, n: int = 2) -> str:
+    start = max(0, idx - n)
+    end = min(len(sents), idx + n + 1)
+    return " | ".join(sents[start:end])
+
+
+# -------------------------------------------------- #
+# 9. Word-level HTML diff
+# -------------------------------------------------- #
+def html_word_diff(a: str, b: str) -> str:
+    return HTML_DIFF.make_table(
+        [a], [b],
+        fromdesc="CLEANED", todesc="GROBID",
+        context=False, numlines=0
+    ).replace("<table", '<table style="font-size:0.9em; margin:8px 0;"')
+
+
+# -------------------------------------------------- #
+# 10. MAIN – AI validation (only missing + big changes)
+# -------------------------------------------------- #
+def ai_validate_grobid(
+    tei_path: Path,
+    cleaned_txt_path: Path,
+    output_dir: Path,
+    model: str = MODEL,
+) -> Path:
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Load
+    grobid_text = extract_grobid_text(tei_path)
+    cleaned_text = load_cleaned_text(cleaned_txt_path)
+
+    cleaned_sents = split_into_sentences(cleaned_text)
+    grobid_sents = split_into_sentences(grobid_text)
+
+    print(f"GROBID sentences: {len(grobid_sents)}")
+    print(f"Cleaned sentences: {len(cleaned_sents)}")
+
+    # Diff
+    raw_diffs = sentence_diff(cleaned_sents, grobid_sents)
+    print(f"Real missing/misplaced differences: {len(raw_diffs)} (extra in GROBID ignored)")
+
+    # AI + logging
+    llm = OllamaLLM(model=model)
+    decisions = []
+
+    for idx, diff in enumerate(raw_diffs):
+        if idx >= MAX_DIFF_TO_SHOW:
+            print(f"[INFO] Stopping at {MAX_DIFF_TO_SHOW} diffs (report will show all).")
+            break
+
+        sentence = diff.get('sentence') or diff.get('cleaned_sent') or "[NO SENTENCE]"
+        context_idx = diff.get('index_cleaned', 0)
+        context = get_context(cleaned_sents, context_idx, n=2)
+
+        if diff['type'] == 'missing_in_grobid':
+            prompt = f"""
+You are a scientific text validator.
+
+CLEANED (gold standard):
+"{sentence}"
+
+Context:
+{context}
+
+This sentence is MISSING in GROBID.
+
+Is it:
+1. Real scientific content?
+2. Formula, citation, figure label, or noise?
+
+Answer with ONE of:
+- ADD_TO_GROBID
+- IGNORE
+"""
+        else:  # possible_misplaced
+            prompt = f"""
+Compare these two versions (≥{MIN_CHAR_DIFF} chars differ):
+
+CLEANED:
+"{diff['cleaned_sent']}"
+
+GROBID:
+"{diff['grobid_sent']}"
+
+Are they the same meaning but in wrong order?
+Answer with ONE of:
+- MOVE_IN_GROBID
+- IGNORE
+"""
+
+        try:
+            raw_answer = llm.invoke(prompt).strip()
+        except Exception as e:
+            print(f"[LLM error] {e}")
+            raw_answer = "IGNORE"
+
+        decision = "IGNORE"
+        if "ADD_TO_GROBID" in raw_answer.upper():
+            decision = "ADD_TO_GROBID"
+        elif "MOVE_IN_GROBID" in raw_answer.upper():
+            decision = "MOVE_IN_GROBID"
+
+        log = {
+            **diff,
+            'sentence': sentence,
+            'prompt': prompt.strip(),
+            'llm_raw_answer': raw_answer,
+            'ai_decision': decision,
+            'context': context,
+            'word_diff_html': (
+                html_word_diff(diff['cleaned_sent'], diff['grobid_sent'])
+                if diff['type'] == 'possible_misplaced' else None
+            )
+        }
+        decisions.append(log)
+
+        print(f"\n--- Diff #{idx+1} [{diff['type']}] ---")
+        print(f"AI → {decision}")
+
+    # Apply corrections
+    tree = ET.parse(tei_path)
+    root = tree.getroot()
+    ns = {'tei': 'http://www.tei-c.org/ns/1.0'}
+    ET.register_namespace('', ns['tei'])
+
+    body = root.find('.//tei:body', ns)
+    for d in decisions:
+        if d['ai_decision'] == 'ADD_TO_GROBID':
+            note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
+            note.set('type', 'ai-correction')
+            note.text = f"AI ADDED: {d['sentence']}"
+            p = ET.SubElement(body, "{http://www.tei-c.org/ns/1.0}p")
+            p.text = d['sentence']
+            p.append(note)
+
+    # Save
+    corrected_path = output_dir / "ai_corrected_tei.xml"
+    with open(corrected_path, "wb") as f:
+        tree.write(f, encoding="utf-8", xml_declaration=True)
+    print(f"\nAI-corrected GROBID → {corrected_path}")
+
+    # Full HTML report
+    report_path = output_dir / "ai_validation_report.html"
+    generate_full_report(decisions, report_path)
+    print(f"Full AI report → {report_path}")
+
+    return corrected_path
+
+
+# -------------------------------------------------- #
+# 11. Full HTML Report
+# -------------------------------------------------- #
+def generate_full_report(decisions: List[Dict], out_path: Path):
+    lines = [
+        "<!DOCTYPE html><html><head><meta charset='utf-8'>",
+        "<style>",
+        "body{font-family:Arial;margin:40px;line-height:1.6;background:#f9f9f9;}",
+        ".diff{padding:15px;margin:12px 0;border-radius:8px;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.1);}",
+        ".missing{background:#ffebee;border-left:5px solid #e74c3c;}",
+        ".move{background:#fff3cd;border-left:5px solid #f39c12;}",
+        ".prompt{font-family:monospace;font-size:0.9em;background:#f0f0f0;padding:10px;margin:8px 0;border-radius:4px;}",
+        ".answer{font-style:italic;color:#2c3e50;}",
+        ".context{color:#555;font-size:0.9em;}",
+        "table.diff {font-family:monospace;font-size:0.9em;}",
+        "td.diff_add {background:#e6ffed;}",
+        "td.diff_sub {background:#ffeef0;}",
+        "</style></head><body>",
+        f"<h1>AI-Powered GROBID Validation</h1>",
+        f"<p><strong>Only missing content (cleaned > GROBID)</strong> and big changes (≥{MIN_CHAR_DIFF} chars) are shown.</p>",
+        "<p>Extra content in GROBID is ignored (usually correct).</p>",
+        "<hr>",
+    ]
+
+    for i, d in enumerate(decisions):
+        sent = html.escape(d['sentence'])
+        cls = "missing" if d['type'] == 'missing_in_grobid' else "move"
+        title = "MISSING in GROBID" if d['type'] == 'missing_in_grobid' else f"MOVED ({d.get('char_diff', 0)} chars differ)"
+
+        lines.append(
+            f'<div class="diff {cls}">'
+            f'<strong>#{i+1} – {title}</strong><br>'
+            f'<strong>Sentence:</strong> "{sent}"<br>'
+            f'<div class="context"><strong>Context:</strong> {html.escape(d["context"])}</div>'
+        )
+
+        if d.get('word_diff_html'):
+            lines.append(f"<strong>Word-level diff:</strong>")
+            lines.append(d['word_diff_html'])
+
+        lines.append(
+            f'<details><summary><strong>Prompt to LLM</strong></summary>'
+            f'<div class="prompt">{html.escape(d["prompt"])}</div></details>'
+            f'<details><summary><strong>LLM Raw Answer</strong></summary>'
+            f'<div class="answer">{html.escape(d["llm_raw_answer"])}</div></details>'
+            f'<strong>Final Decision:</strong> <code>{d["ai_decision"]}</code>'
+            f'</div>'
+        )
+
+    lines.append("</body></html>")
+    out_path.write_text("\n".join(lines), encoding="utf-8")
+
 
 # -----------------------
 # Paragraph cleaning and figure ref normalization
@@ -713,14 +1224,28 @@ def preprocess_pdf(pdf_path: str,
     # save raw TEI
     raw_tei_path = output_dir / "raw_tei.xml"
     save_text(raw_tei_path, tei_xml)
+    output_dir_path = output_dir
 
     # 2. Run the sanity-check on the *original* PDF
     # -------------------------------------------------
     cleaned_text = prepare_pdf_for_grobid_check(
         pdf_path=pdf_path,
-        output_dir=output_dir,
-        preview_lines=30,      # change if you want more/less preview
+        output_dir=output_dir_path,
+        preview_lines=30,
         save_cleaned=True
+    )
+
+    extract_all_sentences_to_single_file(
+        text=cleaned_text,   # use the returned string directly!
+        output_path=output_dir_path / "checktxt" / "sentences_all_in_one.txt",
+        min_words=6
+    )
+
+    corrected_tei = ai_validate_grobid(
+        tei_path=output_dir / "raw_tei.xml",
+        cleaned_txt_path=output_dir / "cleaned_article.txt",
+        output_dir=output_dir,
+        model="llama3.1"  # same as your chunk summary
     )
 
     # extract metadata
