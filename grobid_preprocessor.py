@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 grobid_preprocessor.py
@@ -28,13 +29,14 @@ import shutil
 import subprocess
 import requests
 import fitz
-import xml.etree.ElementTree as ET
+from lxml import etree as ET
 from typing import Union, Tuple, Optional
 from pathlib import Path
 from typing import Dict, List, Tuple, Any
 from difflib import SequenceMatcher, HtmlDiff
 from bs4 import BeautifulSoup
 from langchain_ollama import OllamaLLM
+from sentence_alignment import align_clean_to_grobid, save_alignment_report
 import html
 
 MODEL = "llama3.1"  # same as your chunk summary
@@ -428,37 +430,33 @@ def extract_all_sentences_to_single_file(
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     # ------------------------------------------------------------------
-    # 1. Normalize whitespace but keep real paragraph breaks
+    # 1. Normalize whitespace
     # ------------------------------------------------------------------
-    text = re.sub(r'[ \t]+', ' ', text)      # collapse spaces
+    text = re.sub(r'[ \t]+', ' ', text)
     text = re.sub(r'\r\n|\r', '\n', text)
-    text = re.sub(r'\n{3,}', '\n\n', text)   # max two blank lines
+    text = re.sub(r'\n{3,}', '\n\n', text)
 
     # ------------------------------------------------------------------
-    # 2. Temporarily mark places where a sentence-ending dot is NOT allowed
-    #     → only inside common abbreviations that are NOT followed by space + capital
+    # 2. Protect abbreviations
     # ------------------------------------------------------------------
-    # These are the only patterns where a dot must NOT end a sentence
     protected_dots = [
-        r'\b(Fig|Figs|Eq|Eqs|Ref|Refs|Tab|Table)\.\s+\d+',   # Fig. 5
-        r'\b(et al|i\.e|e\.g|vs|cf|ca)\.',                    # et al.
-        r'\b(Dr|Mr|Mrs|Ms|Prof)\.',                           # Dr.
-        r'[a-zA-Z]\.[a-zA-Z]\.',                              # J. P. Smith (middle initials)
+        r'\b(Fig|Figs|Eq|Eqs|Ref|Refs|Tab|Table)\.\s+\d+',
+        r'\b(et al|i\.e|e\.g|vs|cf|ca)\.',
+        r'\b(Dr|Mr|Mrs|Ms|Prof)\.',
+        r'[a-zA-Z]\.[a-zA-Z]\.',
     ]
-
     for pattern in protected_dots:
         text = re.sub(pattern, lambda m: m.group(0).replace('.', '___DOT___'), text, flags=re.I)
 
     # ------------------------------------------------------------------
-    # 3. NOW split on real sentence endings:
-    #     → dot (or ?!) + whitespace + capital letter
+    # 3. MAIN split — your original reliable rule (kept 100%)
     # ------------------------------------------------------------------
     sentence_split = re.compile(r'''
         ([.!?])          # punctuation
         \s*              # optional spaces
         (?:\n\s*)*       # optional newlines
         \s+              # at least one whitespace
-        (?=[A-Z])        # next sentence starts with capital
+        (?=[A-Z])        # next sentence starts with capital letter
     ''', re.VERBOSE)
 
     sentences = []
@@ -467,17 +465,15 @@ def extract_all_sentences_to_single_file(
         end = m.start()
         sent = text[start:end].strip()
         if sent:
-            sentences.append(sent + m.group(1))   # include the final .!? 
+            sentences.append(sent + m.group(1))
         start = m.end()
 
-    # Don't forget the last sentence
+    # Last sentence
     last = text[start:].strip()
     if last:
-        # If it ends with punctuation, great. Otherwise just take it.
         if re.search(r'[.!?]$', last):
             sentences.append(last)
         else:
-            # Try to find the last real punctuation
             match = re.search(r'([.!?])\s*$', last)
             if match:
                 sentences.append(last[:match.end(1)])
@@ -485,16 +481,58 @@ def extract_all_sentences_to_single_file(
                 sentences.append(last)
 
     # ------------------------------------------------------------------
+    # 3B. EXTRA RULE: split on ). / ] / " / ' followed by newline
+    #     This fixes exactly your "detectors.) \n g(2)" case
+    # ------------------------------------------------------------------
+    extra_rule = re.compile(r'''
+        ([.!?])          # punctuation
+        \s*              # spaces
+        ([\)\]"'\]}›»]*) # optional closing brackets/quotes
+        \s*              # more spaces
+        (?:\n\s*)+       # at least one newline
+    ''', re.VERBOSE)
+
+    # Apply extra rule inside each already-split sentence
+    final_sentences = []
+    for sent in sentences:
+        if extra_rule.search(sent):
+            # Split this sentence further using the extra rule
+            parts = extra_rule.split(sent)
+            current = ""
+            for i, part in enumerate(parts):
+                if i == 0:
+                    current = part
+                    continue
+                # part is either punctuation or closing delimiters or empty
+                if part.strip() == "":
+                    continue
+                # Reconstruct
+                if re.match(r'^[.!?]', part):
+                    current += part[0]  # the punctuation
+                    remaining = extra_rule.sub('', sent[len(current):], count=1).lstrip()
+                    if remaining:
+                        current += " " + remaining.split("\n", 1)[0].strip()
+                    final_sentences.append(current.strip())
+                    sent = sent[len(current):].lstrip()
+                    current = sent.lstrip()
+                elif part in "}])>'\"":
+                    current += part
+            if current.strip():
+                final_sentences.append(current.strip())
+        else:
+            final_sentences.append(sent.strip())
+
+    sentences = final_sentences
+
+    # ------------------------------------------------------------------
     # 4. Restore protected dots
     # ------------------------------------------------------------------
     restored = []
     for s in sentences:
         s = s.replace('___DOT___', '.')
-        s = re.sub(r' +', ' ', s)        # clean extra spaces
-        s = s.strip()
-        if not s:
-            continue
-        restored.append(s)
+        s = re.sub(r' +', ' ', s).strip()
+        if s:
+            restored.append(s)
 
     # ------------------------------------------------------------------
     # 5. Filter + write
@@ -502,16 +540,115 @@ def extract_all_sentences_to_single_file(
     with output_path.open('w', encoding='utf-8') as f:
         count = 0
         for sent in restored:
-            words = sent.split()
-            if len(words) < min_words:
+            if len(sent.split()) < min_words:
                 continue
-            if not re.search(r'[.!?]$', sent):
+            # FIXED LINE — properly escaped quotes
+            if not re.search(r"[.!?][)\]\"'\]}›»]*$", sent):
                 continue
 
             count += 1
             f.write(f"{marker_start} {count:03d}{separator}{sent}{end_marker}\n\n")
 
-        print(f"Extracted {count} clean sentences → {output_path.resolve()}")
+    print(f"Extracted {count} clean sentences → {output_path.resolve()}")
+
+import re
+from pathlib import Path
+from typing import Union  # <-- Use Union for Python 3.9 compatibility
+
+
+def correct_overmerged_sentences(
+    input_path: Union[Path, str],
+    output_path: Union[Path, str],
+    marker_start: str = "SENTENCE",
+    separator: str = " ::: ",
+    end_marker: str = " ////",
+    min_current_line_length: int = 30,   # current line must be long enough
+    max_prev_line_length: int = 49       # previous line must be SHORT (< 50)
+) -> None:
+    """
+    Keeps only the last real sentence that starts after a short line (title/author/page number).
+    Perfect for cleaning the first over-merged block in scientific PDFs.
+    """
+    input_path = Path(input_path)
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    capital_start_re = re.compile(r'^\s*[A-Z][a-z]{2,}')
+
+    new_lines = []
+    fixed = 0
+
+    with input_path.open('r', encoding='utf-8') as f:
+        content = f.read()
+
+    blocks = re.split(rf'({marker_start}\s+\d+{re.escape(separator)})', content)
+
+    i = 1
+    while i < len(blocks):
+        marker = blocks[i]
+        if i + 1 >= len(blocks):
+            break
+        raw_block = blocks[i + 1]
+        raw = re.sub(rf'{re.escape(end_marker)}\s*$', '', raw_block).strip()
+        if not raw:
+            i += 2
+            continue
+
+        lines = [line.rstrip() for line in raw.splitlines()]
+        if len(lines) <= 1:
+            new_lines.append(marker + raw + end_marker)
+            i += 2
+            continue
+
+        valid_starts = []
+
+        for idx in range(len(lines)):
+            line = lines[idx]
+            stripped = line.strip()
+
+            # 1. Must start with real capitalized word
+            if not capital_start_re.match(line):
+                continue
+
+            # 2. Current line must be long enough
+            if len(stripped) < min_current_line_length:
+                continue
+
+            # 3. Previous line must be SHORT (or it's the first line)
+            if idx == 0:
+                # Allow first line only if it's very clearly the start of text
+                if len(stripped) >= 50:
+                    valid_starts.append(idx)
+                continue
+
+            prev_stripped = lines[idx - 1].strip()
+            if len(prev_stripped) > max_prev_line_length:
+                continue  # previous line is long → flowing text → not a new paragraph
+
+            # All 3 conditions passed → real new paragraph start
+            valid_starts.append(idx)
+
+        # Use the LAST valid start
+        if valid_starts:
+            start_idx = valid_starts[-1]
+            clean = ' '.join(line.strip() for line in lines[start_idx:])
+            clean = re.sub(r'\s+', ' ', clean).strip()
+            new_lines.append(marker + clean + end_marker)
+            if start_idx > 0:
+                fixed += 1
+        else:
+            # Fallback: keep original
+            new_lines.append(marker + raw + end_marker)
+
+        i += 2
+
+    with output_path.open('w', encoding='utf-8') as f:
+        for line in new_lines:
+            f.write(line + "\n\n")
+
+    print(f"Fixed {fixed} over-merged sentences.")
+    print(f"Clean output → {output_path.resolve()}")
+
 
 # -----------------------
 # TEI metadata extraction
@@ -733,191 +870,131 @@ def html_word_diff(a: str, b: str) -> str:
     ).replace("<table", '<table style="font-size:0.9em; margin:8px 0;"')
 
 
-# -------------------------------------------------- #
-# 10. MAIN – AI validation (only missing + big changes)
-# -------------------------------------------------- #
-def ai_validate_grobid(
+def extract_structured_sentences_from_tei(
     tei_path: Path,
-    cleaned_txt_path: Path,
-    output_dir: Path,
-    model: str = MODEL,
-) -> Path:
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    # Load
-    grobid_text = extract_grobid_text(tei_path)
-    cleaned_text = load_cleaned_text(cleaned_txt_path)
-
-    cleaned_sents = split_into_sentences(cleaned_text)
-    grobid_sents = split_into_sentences(grobid_text)
-
-    print(f"GROBID sentences: {len(grobid_sents)}")
-    print(f"Cleaned sentences: {len(cleaned_sents)}")
-
-    # Diff
-    raw_diffs = sentence_diff(cleaned_sents, grobid_sents)
-    print(f"Real missing/misplaced differences: {len(raw_diffs)} (extra in GROBID ignored)")
-
-    # AI + logging
-    llm = OllamaLLM(model=model)
-    decisions = []
-
-    for idx, diff in enumerate(raw_diffs):
-        if idx >= MAX_DIFF_TO_SHOW:
-            print(f"[INFO] Stopping at {MAX_DIFF_TO_SHOW} diffs (report will show all).")
-            break
-
-        sentence = diff.get('sentence') or diff.get('cleaned_sent') or "[NO SENTENCE]"
-        context_idx = diff.get('index_cleaned', 0)
-        context = get_context(cleaned_sents, context_idx, n=2)
-
-        if diff['type'] == 'missing_in_grobid':
-            prompt = f"""
-You are a scientific text validator.
-
-CLEANED (gold standard):
-"{sentence}"
-
-Context:
-{context}
-
-This sentence is MISSING in GROBID.
-
-Is it:
-1. Real scientific content?
-2. Formula, citation, figure label, or noise?
-
-Answer with ONE of:
-- ADD_TO_GROBID
-- IGNORE
-"""
-        else:  # possible_misplaced
-            prompt = f"""
-Compare these two versions (≥{MIN_CHAR_DIFF} chars differ):
-
-CLEANED:
-"{diff['cleaned_sent']}"
-
-GROBID:
-"{diff['grobid_sent']}"
-
-Are they the same meaning but in wrong order?
-Answer with ONE of:
-- MOVE_IN_GROBID
-- IGNORE
-"""
-
-        try:
-            raw_answer = llm.invoke(prompt).strip()
-        except Exception as e:
-            print(f"[LLM error] {e}")
-            raw_answer = "IGNORE"
-
-        decision = "IGNORE"
-        if "ADD_TO_GROBID" in raw_answer.upper():
-            decision = "ADD_TO_GROBID"
-        elif "MOVE_IN_GROBID" in raw_answer.upper():
-            decision = "MOVE_IN_GROBID"
-
-        log = {
-            **diff,
-            'sentence': sentence,
-            'prompt': prompt.strip(),
-            'llm_raw_answer': raw_answer,
-            'ai_decision': decision,
-            'context': context,
-            'word_diff_html': (
-                html_word_diff(diff['cleaned_sent'], diff['grobid_sent'])
-                if diff['type'] == 'possible_misplaced' else None
-            )
-        }
-        decisions.append(log)
-
-        print(f"\n--- Diff #{idx+1} [{diff['type']}] ---")
-        print(f"AI → {decision}")
-
-    # Apply corrections
-    tree = ET.parse(tei_path)
+    output_txt_path: Path
+) -> None:
+    """
+    Extracts every full sentence from the <body> of a GROBID TEI file,
+    correctly handling sentences that span multiple <p> tags.
+    Outputs one sentence per line with DIV and PARA provenance.
+    """
+    tree = ET.parse(str(tei_path))
     root = tree.getroot()
     ns = {'tei': 'http://www.tei-c.org/ns/1.0'}
-    ET.register_namespace('', ns['tei'])
-
+    
+    # Find the main body
     body = root.find('.//tei:body', ns)
-    for d in decisions:
-        if d['ai_decision'] == 'ADD_TO_GROBID':
-            note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
-            note.set('type', 'ai-correction')
-            note.text = f"AI ADDED: {d['sentence']}"
-            p = ET.SubElement(body, "{http://www.tei-c.org/ns/1.0}p")
-            p.text = d['sentence']
-            p.append(note)
+    if body is None:
+        output_txt_path.write_text("ERROR: No <body> found in TEI file.\n")
+        return
 
-    # Save
-    corrected_path = output_dir / "ai_corrected_tei.xml"
-    with open(corrected_path, "wb") as f:
-        tree.write(f, encoding="utf-8", xml_declaration=True)
-    print(f"\nAI-corrected GROBID → {corrected_path}")
+    # We'll collect sentences with their provenance
+    sentences_with_loc = []  # List[Tuple[str, div_idx, para_idx]]
 
-    # Full HTML report
-    report_path = output_dir / "ai_validation_report.html"
-    generate_full_report(decisions, report_path)
-    print(f"Full AI report → {report_path}")
+    # Track current open text buffer (for cross-paragraph sentences)
+    buffer = ""
+    current_div_idx = 0
+    current_para_idx = 0
 
-    return corrected_path
+    # Walk through all <div> in order
+    for div_idx, div in enumerate(body.findall('.//tei:div', ns), start=1):
+        current_div_idx = div_idx
+        current_para_idx = 0
 
+        for para_idx, p in enumerate(div.xpath('.//tei:p', namespaces=ns), start=1):
+            current_para_idx = para_idx
 
-# -------------------------------------------------- #
-# 11. Full HTML Report
-# -------------------------------------------------- #
-def generate_full_report(decisions: List[Dict], out_path: Path):
-    lines = [
-        "<!DOCTYPE html><html><head><meta charset='utf-8'>",
-        "<style>",
-        "body{font-family:Arial;margin:40px;line-height:1.6;background:#f9f9f9;}",
-        ".diff{padding:15px;margin:12px 0;border-radius:8px;background:white;box-shadow:0 1px 3px rgba(0,0,0,0.1);}",
-        ".missing{background:#ffebee;border-left:5px solid #e74c3c;}",
-        ".move{background:#fff3cd;border-left:5px solid #f39c12;}",
-        ".prompt{font-family:monospace;font-size:0.9em;background:#f0f0f0;padding:10px;margin:8px 0;border-radius:4px;}",
-        ".answer{font-style:italic;color:#2c3e50;}",
-        ".context{color:#555;font-size:0.9em;}",
-        "table.diff {font-family:monospace;font-size:0.9em;}",
-        "td.diff_add {background:#e6ffed;}",
-        "td.diff_sub {background:#ffeef0;}",
-        "</style></head><body>",
-        f"<h1>AI-Powered GROBID Validation</h1>",
-        f"<p><strong>Only missing content (cleaned > GROBID)</strong> and big changes (≥{MIN_CHAR_DIFF} chars) are shown.</p>",
-        "<p>Extra content in GROBID is ignored (usually correct).</p>",
-        "<hr>",
-    ]
+            # Extract raw text from this <p> (preserves spaces better than .text)
+            p_text = " ".join(p.xpath('.//text()')).strip()
+            if not p_text:
+                continue
 
-    for i, d in enumerate(decisions):
-        sent = html.escape(d['sentence'])
-        cls = "missing" if d['type'] == 'missing_in_grobid' else "move"
-        title = "MISSING in GROBID" if d['type'] == 'missing_in_grobid' else f"MOVED ({d.get('char_diff', 0)} chars differ)"
+            # Append space if we're continuing a sentence across paragraphs
+            if buffer and not buffer.endswith(" "):
+                buffer += " "
+            buffer += p_text + " "
 
-        lines.append(
-            f'<div class="diff {cls}">'
-            f'<strong>#{i+1} – {title}</strong><br>'
-            f'<strong>Sentence:</strong> "{sent}"<br>'
-            f'<div class="context"><strong>Context:</strong> {html.escape(d["context"])}</div>'
-        )
+            # Now try to extract complete sentences from the growing buffer
+            while True:
+                sentence_match = extract_next_sentence(buffer)
+                if sentence_match is None:
+                    break  # No complete sentence yet → wait for more text
 
-        if d.get('word_diff_html'):
-            lines.append(f"<strong>Word-level diff:</strong>")
-            lines.append(d['word_diff_html'])
+                sentence, end_pos = sentence_match
+                sentence = sentence.strip()
 
-        lines.append(
-            f'<details><summary><strong>Prompt to LLM</strong></summary>'
-            f'<div class="prompt">{html.escape(d["prompt"])}</div></details>'
-            f'<details><summary><strong>LLM Raw Answer</strong></summary>'
-            f'<div class="answer">{html.escape(d["llm_raw_answer"])}</div></details>'
-            f'<strong>Final Decision:</strong> <code>{d["ai_decision"]}</code>'
-            f'</div>'
-        )
+                # Heuristic cleaning: remove trailing junk like page numbers in sentences
+                sentence = re.sub(r'\s*\[\d+\]\s*$', '', sentence)  # citations like [12]
+                sentence = re.sub(r'\s*\(Formula\)\s*$', '', sentence)  # fake formula placeholders
+                sentence = re.sub(r'\s*-\s*$', '', sentence)  # broken hyphens
 
-    lines.append("</body></html>")
-    out_path.write_text("\n".join(lines), encoding="utf-8")
+                if len(sentence) > 20:  # filter garbage
+                    provenance = f"DIV{current_div_idx:02d}PARA{current_para_idx:02d}"
+                    sentences_with_loc.append((sentence, current_div_idx, current_para_idx))
 
+                # Remove the extracted sentence from buffer
+                buffer = buffer[end_pos:].lstrip()
+
+            # After processing paragraph, keep buffer for next one (cross-paragraph sentences)
+
+        # After each <div>, if buffer has leftover incomplete sentence, discard or warn
+        # (usually rare and garbage)
+        if buffer.strip():
+            # Optional: save incomplete trailing sentence?
+            pass
+        buffer = ""  # reset between divs? Or keep? → better reset, most papers don't span divs
+
+    # ------------------------------------------------------------------
+    # Write final structured output
+    # ------------------------------------------------------------------
+    lines = []
+    for idx, (sent, div_idx, para_idx) in enumerate(sentences_with_loc, start=1):
+        prov = f"DIV{div_idx:02d}PARA{para_idx:02d}"
+        line = f"SENTENCE {idx:03d} {prov} ::: {sent} ////"
+        lines.append(line)
+
+    output_txt_path.write_text("\n".join(lines), encoding="utf-8")
+    print(f"Extracted {len(lines)} structured sentences → {output_txt_path}")
+
+# ------------------------------------------------------------------
+# Core: extract the next complete sentence from text buffer
+# ------------------------------------------------------------------
+SENTENCE_END_PATTERN = re.compile(
+    r"""(?x)                    # verbose mode
+    (                           # Capture group 1: the sentence
+        [A-Z]                   # Starts with capital letter
+        [^.!?]*                 # Anything that's not a sentence end
+        [.!?]                   # Ends with . ! or ?
+    )
+    (?:\s|$)                    # Followed by space or end of string
+    """
+)
+
+def extract_next_sentence(text: str) -> Optional[Tuple[str, int]]:
+    """
+    Returns (sentence, end_position) of the first complete sentence found,
+    or None if no complete sentence yet.
+    Handles abbreviations like "Fig.", "eq.", "e.g.", "i.e.", etc.
+    """
+    # Temporary: avoid breaking on known abbreviations
+    protected = text
+    protected = re.sub(r'\b(Fig|FIGS|Eq|eq|eqs|Eqs|e\.g\.|i\.e\.|vs\.|cf\.|Dr\.|Prof\.|Mr\.|Mrs\.)\s+', r'\1@@@', protected)
+
+    match = SENTENCE_END_PATTERN.search(protected)
+    if not match:
+        return None
+
+    raw_sentence = match.group(1)
+    end_pos = match.end()
+
+    # Restore protected abbreviations
+    sentence = raw_sentence.replace("@@@", " ")
+
+    # Final cleanup
+    sentence = re.sub(r'\s+', ' ', sentence).strip()
+
+    return sentence, end_pos
 
 # -----------------------
 # Paragraph cleaning and figure ref normalization
@@ -1180,13 +1257,38 @@ def preprocess_pdf(pdf_path: str,
         output_path=output_dir_path / "checktxt" / "sentences_all_in_one.txt",
         min_words=6
     )
-
-    corrected_tei = ai_validate_grobid(
-        tei_path=output_dir / "raw_tei.xml",
-        cleaned_txt_path=output_dir / "cleaned_article.txt",
-        output_dir=output_dir,
-        model="llama3.1"  # same as your chunk summary
+    correct_overmerged_sentences(
+        output_dir_path / "checktxt" / "sentences_all_in_one.txt",
+        output_dir_path / "checktxt" / "sentences_corrected.txt",
+        min_current_line_length=25,
+        max_prev_line_length=49
     )
+
+    extract_structured_sentences_from_tei(
+        output_dir_path / "raw_tei.xml", 
+        output_dir_path / "checktxt" / "tei_corrected.txt",
+    )
+
+    checktxt_dir = output_dir_path / "checktxt"
+
+    clean_file  = checktxt_dir / "sentences_corrected.txt"   # your gold-standard
+    grobid_file = checktxt_dir / "tei_corrected.txt"         # GROBID structured sentences
+    report_file = checktxt_dir / "SENTENCE_ALIGNMENT.txt"    # final output
+
+
+    # 1. Run the alignment (every clean sentence gets its best GROBID match, even if weak)
+    alignment_results = align_clean_to_grobid(
+        clean_txt_path   = clean_file,
+        grobid_txt_path  = grobid_file,
+        min_score_to_accept = 0.20          # ← change to 0.30 or 0.40 if you want
+    )
+
+    # 2. Save the full report (every clean sentence shown, no gaps)
+    report_file = checktxt_dir / "SENTENCE_ALIGNMENT_FORCED.txt"
+    save_alignment_report(alignment_results, report_file)
+
+    print(f"Full forced alignment complete → {report_file}")
+
 
     # extract metadata
     meta = extract_metadata_from_tei(tei_xml)
