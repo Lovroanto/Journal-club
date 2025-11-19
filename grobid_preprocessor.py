@@ -1275,19 +1275,24 @@ def preprocess_pdf(pdf_path: str,
     grobid_file = checktxt_dir / "tei_corrected.txt"         # GROBID structured sentences
     report_file = checktxt_dir / "SENTENCE_ALIGNMENT.txt"    # final output
 
-
+    
+    report_file = checktxt_dir / "SENTENCE_ALIGNMENT_FULL.txt"
+    
+    # Change 0.20 to whatever you want (0.10, 0.15, 0.30...)
+    threshold = 0.20
+    
+    
     # 1. Run the alignment (every clean sentence gets its best GROBID match, even if weak)
     alignment_results = align_clean_to_grobid(
         clean_txt_path   = clean_file,
         grobid_txt_path  = grobid_file,
-        min_score_to_accept = 0.20          # ← change to 0.30 or 0.40 if you want
+        min_score_to_accept = threshold        # ← change to 0.30 or 0.40 if you want
     )
 
-    # 2. Save the full report (every clean sentence shown, no gaps)
-    report_file = checktxt_dir / "SENTENCE_ALIGNMENT_FORCED.txt"
-    save_alignment_report(alignment_results, report_file)
+    # Pass the threshold so the report shows the real value
+    save_alignment_report(alignment_results, report_file, threshold_used=threshold)
 
-    print(f"Full forced alignment complete → {report_file}")
+    print(f"Exhaustive alignment with {threshold:.0%} threshold → {report_file}")
 
 
     # extract metadata

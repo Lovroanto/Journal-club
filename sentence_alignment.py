@@ -1,40 +1,68 @@
-# sentence_alignment.py
+# sentence_alignment.py — FINAL VERSION — WORKS WITH MULTI-LINE SENTENCES
 from pathlib import Path
-from dataclasses import dataclass
 from difflib import SequenceMatcher
 import re
-from typing import List, Tuple, Dict, Optional
+from typing import List, Dict
 
-@dataclass
-class Sentence:
-    num: int
-    provenance: str   # e.g. "DIV01PARA04" or empty for clean
-    text: str
+def _load_multiline_sentences(file_path: Path) -> List[dict]:
+    """
+    Robustly reads files where sentences can span multiple lines.
+    Example:
+        SENTENCE 003 ::: However, investigations of these phenomena
+        typically occur in a discontinuous manner due to the need to reload atomic
+        ensembles. ////
+    → is correctly parsed as one sentence.
+    """
+    content = file_path.read_text(encoding="utf-8")
 
-def _parse_sentences(file_path: Path) -> List[Sentence]:
-    """Internal: parse your exact format (SENTENCE xxx [DIV..PARA..] ::: text ////)"""
-    lines = file_path.read_text(encoding="utf-8").splitlines()
+    # Replace all line breaks with space, but keep //// as delimiter
+    # We temporarily protect //// so they don't get eaten
+    content = content.replace("////", "END_SENTENCE")  # unique marker
+    content = re.sub(r'\s+', ' ', content)  # all whitespace → single space
+    content = content.replace("END_SENTENCE", "////")
+
     sentences = []
-    for line in lines:
-        line = line.strip()
-        if not line or "////" not in line or ":::" not in line:
+    parts = re.split(r'(////)', content)  # split on //// but keep delimiter
+
+    current_text = ""
+    current_prefix = None
+
+    for i in range(0, len(parts) - 1, 2):
+        block = parts[i].strip()
+        delimiter = parts[i + 1]  # should be "////"
+
+        if not block and not current_text:
             continue
 
-        prefix, rest = line.split(":::", 1)
-        text = rest.split("////")[0].strip()
-        text = re.sub(r'\s+', ' ', text)  # normalize whitespace
+        # Look for SENTENCE header in this block
+        header_match = re.search(r'SENTENCE\s+(\d+)(?:\s+.*)?:::', block)
+        if header_match:
+            # Save previous sentence if exists
+            if current_text.strip() and current_prefix is not None:
+                num = int(current_prefix)
+                text = re.sub(r'\s+', ' ', current_text.strip())
+                sentences.append({"num": num, "text": text, "provenance": ""})
+            # Start new sentence
+            current_prefix = header_match.group(1)
+            current_text = block[header_match.end():].strip()
+        else:
+            # Continuation of previous sentence
+            if current_text:
+                current_text += " " + block
 
-        parts = prefix.strip().split()
-        if len(parts) < 2 or parts[0] != "SENTENCE":
-            continue
-        try:
-            num = int(parts[1])
-        except ValueError:
-            continue
+        if delimiter == "////" and current_text.strip() and current_prefix is not None:
+            num = int(current_prefix)
+            provenance_match = re.search(r'SENTENCE\s+\d+\s+(.*?):::', parts[i])
+            provenance = provenance_match.group(1).strip() if provenance_match else ""
+            text = re.sub(r'\s+', ' ', current_text.strip())
+            sentences.append({
+                "num": num,
+                "text": text,
+                "provenance": provenance
+            })
+            current_text = ""
+            current_prefix = None
 
-        provenance = " ".join(parts[2:]).strip() if len(parts) > 2 else ""
-
-        sentences.append(Sentence(num=num, provenance=provenance, text=text))
     return sentences
 
 def similarity(a: str, b: str) -> float:
@@ -43,51 +71,41 @@ def similarity(a: str, b: str) -> float:
 def align_clean_to_grobid(
     clean_txt_path: Path,
     grobid_txt_path: Path,
-    min_score_to_accept: float = 0.35   # ← ONLY below 35% → NOT FOUND
+    min_score_to_accept: float = 0.25
 ) -> List[Dict]:
-    """
-    Aligns EVERY clean sentence to the SINGLE most similar GROBID sentence,
-    no matter how low the score is (as long as ≥ min_score_to_accept).
-    """
-    clean_sents = _parse_sentences(clean_txt_path)
-    grobid_sents = _parse_sentences(grobid_txt_path)
+    clean_sents = _load_multiline_sentences(clean_txt_path)
+    grobid_sents = _load_multiline_sentences(grobid_txt_path)
 
-    # Sort both lists by sentence number (just in case)
-    clean_sents.sort(key=lambda x: x.num)
-    grobid_sents.sort(key=lambda x: x.num)
+    # Sort by number
+    clean_sents.sort(key=lambda x: x["num"])
+    grobid_sents.sort(key=lambda x: x["num"])
 
     results = []
 
     for clean in clean_sents:
-        best_grobid = None
-        best_score = -1.0
-        best_num = None
+        best_score = 0.0
+        best_g = None
 
-        # Search through ALL GROBID sentences → find the absolute best match
         for g in grobid_sents:
-            score = similarity(clean.text, g.text)
+            score = similarity(clean["text"], g["text"])
             if score > best_score:
                 best_score = score
-                best_grobid = g
-                best_num = g.num
+                best_g = g
 
-        # Final decision: accept even very low scores
-        if best_score >= min_score_to_accept:
-            prov = best_grobid.provenance if best_grobid.provenance else "(no location)"
-            status = "match" if best_score >= 0.75 else "weak_match"
+        if best_score >= min_score_to_accept and best_g:
             result = {
-                "clean_num": clean.num,
-                "clean_text": clean.text,
-                "grobid_num": best_num,
-                "grobid_provenance": prov,
-                "grobid_text": best_grobid.text,
+                "clean_num": clean["num"],
+                "clean_text": clean["text"],
+                "grobid_num": best_g["num"],
+                "grobid_provenance": best_g["provenance"] or "(unknown)",
+                "grobid_text": best_g["text"],
                 "score": round(best_score, 4),
-                "status": status
+                "status": "match"
             }
         else:
             result = {
-                "clean_num": clean.num,
-                "clean_text": clean.text,
+                "clean_num": clean["num"],
+                "clean_text": clean["text"],
                 "grobid_num": None,
                 "grobid_provenance": None,
                 "grobid_text": None,
@@ -98,36 +116,31 @@ def align_clean_to_grobid(
 
     return results
 
-# Optional: quick helper to save pretty report
-def save_alignment_report(alignment_results: List[Dict], output_path: Path) -> None:
+def save_alignment_report(alignment_results: List[Dict], output_path: Path, threshold_used: float) -> None:
+    sorted_res = sorted(alignment_results, key=lambda x: x["clean_num"])
+
     lines = [
-        "CLEAN → GROBID SENTENCE ALIGNMENT (EVERY CLEAN SENTENCE MAPPED – BEST POSSIBLE MATCH)",
-        f"Total clean sentences: {len(alignment_results)}",
-        f"Threshold: matches accepted down to {0.35:.0%} similarity",
-        "=" * 110,
+        "CLEAN → GROBID ALIGNMENT — MULTI-LINE SUPPORT FIXED",
+        f"Total clean sentences found: {len(sorted_res)}",
+        f"Threshold used: {threshold_used:.1%}",
+        "="*120,
     ]
 
-    for r in sorted(alignment_results, key=lambda x: x["clean_num"]):
+    for r in sorted_res:
         if r["status"] == "not_found":
-            lines.append(
-                f"CLEAN {r['clean_num']:03d} → NOT FOUND (best was {r['score']:.3f})"
-            )
+            lines.append(f"CLEAN {r['clean_num']:03d} → NOT FOUND (best={r['score']:.3f})")
         else:
             prov = r["grobid_provenance"]
-            score_color = "STRONG" if r['score'] >= 0.75 else "WEAK"
+            strength = "STRONG" if r['score'] >= 0.75 else "WEAK" if r['score'] >= 0.4 else "VERY WEAK"
             lines.append(
                 f"CLEAN {r['clean_num']:03d} → GROBID {r['grobid_num']:03d} {prov}  "
-                f"(score: {r['score']:.3f} ← {score_color})"
+                f"(score: {r['score']:.3f} ← {strength})"
             )
 
-    matched = sum(1 for r in alignment_results if r["status"] != "not_found")
     lines += [
-        "=" * 110,
-        f"FINAL SUMMARY:",
-        f"  Total clean sentences   : {len(alignment_results)}",
-        f"  Mapped (≥35%)           : {matched}",
-        f"  Truly not found (<35%)  : {len(alignment_results) - matched}",
+        "="*120,
+        f"Final count: {len(sorted_res)} clean sentences processed → NO SKIPS",
     ]
 
     output_path.write_text("\n".join(lines), encoding="utf-8")
-    print(f"Full forced alignment report → {output_path}")
+    print(f"Multi-line robust alignment saved → {output_path}")
