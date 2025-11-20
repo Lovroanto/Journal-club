@@ -744,60 +744,82 @@ def append_figure_captions_to_sentence_file(
     end_marker: str = " ////",
     min_words_caption: int = 3,
 ) -> None:
-    """
-    Appends figure captions as sentences using YOUR EXACT sentence extraction logic.
-    Format: SENTENCE123;FIG007::: This is a caption sentence. ////
-    """
+    """Appends figure captions using YOUR exact sentence logic. Now bulletproof."""
     figures_folder = Path(figures_folder)
     sentence_file = Path(sentence_file)
 
+    print(f"\nLooking for figure captions in: {figures_folder.resolve()}")
+    if not figures_folder.exists():
+        print("ERROR: Figures folder does not exist!")
+        return
     if not figures_folder.is_dir():
-        raise FileNotFoundError(f"Figures folder not found: {figures_folder}")
+        print("ERROR: Path is not a directory!")
+        return
 
-    # ------------------------------------------------------------------
-    # 1. Determine next sentence number
-    # ------------------------------------------------------------------
+    all_files = list(figures_folder.iterdir())
+    print(f"Found {len(all_files)} items in the folder")
+
+    # Robust detection: any .txt file that contains "fig" or "figure" and a number
+    candidate_files = []
+    for p in all_files:
+        if p.is_file() and p.suffix.lower() == ".txt":
+            name_low = p.name.lower()
+            if ('fig' in name_low or 'figure' in name_low) and re.search(r'\d+', name_low):
+                candidate_files.append(p)
+
+    print(f"Detected {len(candidate_files)} figure caption file(s):")
+    for p in candidate_files:
+        print(f"  → {p.name}")
+
+    if not candidate_files:
+        print("No figure caption files found — nothing to do.")
+        return
+
+    # Sort by the number in the filename
+    def sort_key(p):
+        m = re.search(r'\d+', p.name)
+        return int(m.group()) if m else 0
+
+    candidate_files.sort(key=sort_key)
+
+    # Find current max sentence number
     max_num = 0
     if sentence_file.exists():
         with sentence_file.open("r", encoding="utf-8") as f:
             for line in f:
-                if not line.strip():
-                    continue
                 m = re.search(rf"{re.escape(marker_start)}\s*(\d+)", line)
                 if m:
                     max_num = max(max_num, int(m.group(1)))
 
+    print(f"Current highest sentence number: {max_num}")
     next_num = max_num + 1
+    added = 0
 
-    # ------------------------------------------------------------------
-    # 2. Process all figureXXX.txt files in order
-    # ------------------------------------------------------------------
-    fig_pattern = re.compile(r"figure(\d+)\.txt$", re.IGNORECASE)
-    fig_files = [
-        p for p in figures_folder.iterdir()
-        if p.is_file() and fig_pattern.search(p.name)
-    ]
-    fig_files.sort(key=lambda p: int(fig_pattern.search(p.name).group(1)))
+    with sentence_file.open("a", encoding="utf-8") as f:
+        for fig_path in candidate_files:
+            # Extract number and create FIGxxx
+            num_match = re.search(r'\d+', fig_path.name)
+            fig_num = f"{int(num_match.group()):03d}" if num_match else "000"
+            fig_id = f"FIG{fig_num}"
 
-    added_count = 0
-    with sentence_file.open("a", encoding="utf-8") as out_f:
-        for fig_path in fig_files:
-            match = fig_pattern.search(fig_path.name)
-            fig_num_raw = match.group(1)
-            fig_id = f"FIG{fig_num_raw.zfill(3)}"
+            print(f"Processing {fig_path.name} → {fig_id}")
 
-            caption_text = fig_path.read_text(encoding="utf-8")
+            caption = fig_path.read_text(encoding="utf-8")
+            if not caption.strip():
+                print("  → Empty file, skipping")
+                continue
 
-            sentences = _extract_sentences_exact_logic(caption_text, min_words=min_words_caption)
+            sentences = _extract_sentences_exact_logic(caption, min_words=min_words_caption)
+            print(f"  → Extracted {len(sentences)} sentence(s)")
 
             for sent in sentences:
-                line = f"{marker_start}{next_num:03d};{fig_id}{separator}{sent}{end_marker}\n\n"
-                out_f.write(line)
+                f.write(f"{marker_start}{next_num:03d};{fig_id}{separator}{sent}{end_marker}\n\n")
                 next_num += 1
-                added_count += 1
+                added += 1
 
-    print(f"Appended {added_count} figure-caption sentences "
-          f"(now total: {next_num - 1}) → {sentence_file.resolve()}")
+    print(f"\nSUCCESS! Appended {added} figure-caption sentences")
+    print(f"New total sentences: {next_num - 1}")
+    print(f"Updated file: {sentence_file.resolve()}\n")
 
 def correct_overmerged_sentences(
     input_path: Union[Path, str],
@@ -1200,6 +1222,109 @@ def extract_structured_sentences_from_tei(
     output_txt_path.write_text("\n".join(lines), encoding="utf-8")
     print(f"Extracted {len(lines)} structured sentences → {output_txt_path}")
 
+def append_figure_captions_from_tei(
+    tei_path: Union[str, Path],
+    sentence_file: Union[str, Path],
+    marker_start: str = "SENTENCE",
+    separator: str = " ::: ",
+    end_marker: str = " ////",
+    min_words_caption: int = 3,
+) -> None:
+    tei_path = Path(tei_path)
+    sentence_file = Path(sentence_file)
+
+    print(f"\n=== EXTRACTING FIGURE CAPTIONS FROM TEI ===")
+    print(f"TEI file: {tei_path}")
+
+    tree = ET.parse(str(tei_path))
+    root = tree.getroot()
+    ns = {'tei': 'http://www.tei-c.org/ns/1.0'}
+
+    figures = root.findall('.//tei:figure', ns)
+    print(f"Found {len(figures)} <figure> elements")
+
+    # Get current max sentence number
+    max_num = 0
+    if sentence_file.exists():
+        with open(sentence_file, "r", encoding="utf-8") as f:
+            for line in f:
+                m = re.search(rf"{re.escape(marker_start)}\s*(\d+)", line)
+                if m:
+                    max_num = max(max_num, int(m.group(1)))
+    print(f"Current highest sentence number: {max_num}")
+    next_num = max_num + 1
+    added = 0
+
+    with open(sentence_file, "a", encoding="utf-8") as f:
+        for i, fig in enumerate(figures, 1):
+            print(f"\n--- Figure {i} ---")
+
+            # ROBUST xml:id extraction (handles namespaced attributes)
+            xml_id = fig.get("xml:id") or fig.get("{http://www.tei-c.org/ns/1.0}xml:id") or fig.get("id") or fig.get("{http://www.w3.org/XML/1998/namespace}id")
+            print(f"  Detected xml:id = '{xml_id}'")
+
+            if not xml_id or not xml_id.startswith("fig_"):
+                print("  → Skipped (no valid fig_* xml:id)")
+                continue
+
+            try:
+                fig_num = int(xml_id.split("_")[-1])
+                fig_id = f"FIG{fig_num:03d}"
+            except:
+                print("  → Cannot parse number from xml:id")
+                continue
+
+            # Extract caption from <figDesc>
+            caption = ""
+            figDesc = fig.find(".//tei:figDesc", ns)
+            if figDesc is not None:
+                parts = [figDesc.text or ""]
+                for elem in figDesc:
+                    if elem.text:
+                        parts.append(elem.text)
+                    if elem.tail:
+                        parts.append(elem.tail)
+                caption = "".join(parts).strip()
+
+            if not caption:
+                head = fig.find("tei:head", ns)
+                if head is not None:
+                    caption = "".join(head.itertext()).strip()
+
+            # Clean prefix
+            cleaned = re.sub(r'^Fig\.?\s*\d+\s*[\|–:—]\s*', '', caption, flags=re.I).strip()
+
+            if not cleaned:
+                print(f"  → {fig_id}: Empty caption after cleaning")
+                continue
+
+            print(f"  → {fig_id}: Caption found ({len(cleaned.split())} words)")
+            print(f"     >>>{cleaned[:200]}{'...' if len(cleaned)>200 else ''}<<<")
+
+            # Extract sentences
+            sentences = _extract_sentences_exact_logic(cleaned, min_words=1)
+
+            final_sentences = []
+            for s in sentences:
+                s = s.strip()
+                if len(s.split()) < min_words_caption:
+                    continue
+                if not s.endswith(('.', '!', '?')):
+                    s += "."
+                final_sentences.append(s)
+
+            print(f"     Extracted {len(final_sentences)} final sentence(s)")
+
+            for sent in final_sentences:
+                f.write(f"{marker_start}{next_num:03d};{fig_id}{separator}{sent}{end_marker}\n\n")
+                next_num += 1
+                added += 1
+
+    print(f"\n=== SUCCESS ===")
+    print(f"Appended {added} figure-caption sentences!")
+    print(f"New total: {next_num - 1}")
+    print(f"File: {sentence_file}\n")
+
 # ------------------------------------------------------------------
 # Core: extract the next complete sentence from text buffer
 # ------------------------------------------------------------------
@@ -1515,6 +1640,11 @@ def preprocess_pdf(pdf_path: str,
     extract_structured_sentences_from_tei(
         output_dir_path / "raw_tei.xml", 
         output_dir_path / "checktxt" / "tei_corrected.txt",
+    )
+
+    append_figure_captions_from_tei(
+        tei_path=output_dir_path / "raw_tei.xml", 
+        sentence_file=output_dir_path / "checktxt" / "tei_corrected.txt",
     )
 
     checktxt_dir = output_dir_path / "checktxt"
