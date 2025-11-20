@@ -45,6 +45,9 @@ MAX_DIFF_TO_SHOW = 200   # safety – don’t flood the report
 HTML_DIFF = HtmlDiff(wrapcolumn=80)   # pretty word-level diff
 MIN_CHAR_DIFF = 15          # ← ignore <15 char differences
 DEFAULT_AUTHOR_RATIO = 0.60   # ← 60% = perfect balance, change anytime
+
+_figure_counter = 0
+_figure_lock = False  # prevents accidental reset if imported multiple times
 # -----------------------
 # Defaults & patterns
 # -----------------------
@@ -76,6 +79,18 @@ def clean_filename(text: str, maxlen: int = 120) -> str:
     s = re.sub(r'[\\/*?:"<>|]', "", text)
     s = re.sub(r"\s+", "_", s).strip("_")
     return s[:maxlen]
+
+
+def reset_figure_counter():
+    global _figure_counter
+    _figure_counter = 0
+
+def _get_next_figure_number() -> int:
+    global _figure_counter
+    _figure_counter += 1
+    return _figure_counter
+
+
 
 # -----------------------
 # PDF pre-clean helpers (temporary cleaned file)
@@ -161,37 +176,50 @@ def extract_pdf_text(pdf_path: Union[str, Path]) -> str:
     doc.close()
     return "\n\n".join(pages)
 
-
 def extract_and_remove_figure_captions(text: str, out_dir: Path) -> Tuple[str, int]:
-    # Improved pattern: more precise start, captures the label separately
+    if not text.strip():
+        return text, 0
+
     pattern = re.compile(
-        r"^((?:Fig(?:ure)?\.?|Extended Data Fig\.?|Supplementary Fig(?:ure)?\.?)\s*" 
-        r"\d+[a-zA-Z]?(?:[.:)\s]|[\s–—-]))"  # start of caption + label
-        r"([\s\S]*?)"                         # the actual caption text (lazy)
-        r"(?=\Z|^(?:Fig(?:ure)?|Extended Data Fig\.|Supplementary Fig\.|References|Methods)\b|\n\s*\n)",
+        r"^((?:Fig(?:ure)?\.?|Extended Data Fig\.?|Supplementary Fig(?:ure)?\.?)\s*"
+        r"\d+[a-zA-Z]?(?:[.:)\s]|[\s–—-]))"
+        r"([\s\S]*?)"
+        r"(?=\Z|"
+        r"^(?:Fig(?:ure)?|Extended\s+Data\s+Fig|Supplementary\s+Fig|References|Methods|Acknowledgements)\b|"
+        r"\n\s*\n)",
         re.MULTILINE | re.IGNORECASE
     )
 
     matches = list(pattern.finditer(text))
+    if not matches:
+        return text, 0
+
     cleaned_text = text
-    offset = 0  # to correctly remove matched parts when there are overlaps/edits
+    offset = 0
+    local_count = 0
 
-    for idx, match in enumerate(matches, 1):
-        full_caption = match.group(0).strip()
-        label = match.group(1).strip()           # e.g. "Figure 1.", "Fig. 1–", "Supplementary Fig. 1"
+    print("Extracting figure captions...")
+    for match in matches:
+        local_count += 1
+        idx = _get_next_figure_number()
+
+        label = match.group(1).strip()
         caption_body = match.group(2).strip()
+        first_line = caption_body.split("\n", 1)[0] if caption_body else ""
+        preview = (first_line[:40] + "..." if len(first_line) > 40 else first_line)
 
-        # Write to file with sequential name
-        filename = out_dir / f"ffigure_{idx:03d}.txt"
-        content = f"# Original label: {label}\n{caption_body}\n"
-        filename.write_text(content, encoding="utf-8")
+        print(f"  → figure_{idx:03d}.txt  |  {label:<20} {preview}")
 
-        # Remove the caption from text (with proper offset to avoid breaking positions)
-        start, end = match.start() - offset, match.end() - offset
+        filename = out_dir / f"figure_{idx:03d}.txt"
+        filename.write_text(f"# Original label: {label}\n{caption_body}\n", encoding="utf-8")
+
+        start = match.start() - offset
+        end = match.end() - offset
         cleaned_text = cleaned_text[:start] + "\n" + cleaned_text[end:]
-        offset += end - start - 1  # we replaced with single \n
+        offset += end - start - 1
 
-    return cleaned_text, len(matches)
+    print(f"Extracted {local_count} caption(s) → figure_{_figure_counter-local_count+1:03d} to figure_{_figure_counter:03d}.txt")
+    return cleaned_text, local_count
 
 # ------------------------------------------------------------------ #
 # 2. Axis-label / equation junk remover (your original – unchanged)
@@ -344,6 +372,12 @@ def prepare_pdf_for_grobid_check(
     output_dir = Path(output_dir)
     figure_dir = output_dir / "figure_from_pdf"
     figure_dir.mkdir(parents=True, exist_ok=True)
+    # CLEAN ONCE PER PDF → this fixes everything
+    for temp_file in figure_dir.glob("figure_*.txt"):
+        temp_file.unlink(missing_ok=True)
+
+    # Reset counter for this new PDF
+    reset_figure_counter()
 
     doc = fitz.open(pdf_path)
     raw_pages = []
@@ -571,10 +605,199 @@ def extract_all_sentences_to_single_file(
 
     print(f"Extracted {count} clean sentences → {output_path.resolve()}")
 
-import re
-from pathlib import Path
-from typing import Union  # <-- Use Union for Python 3.9 compatibility
+def _extract_sentences_exact_logic(text: str, min_words: int = 3) -> List[str]:
+    """
+    Internal helper: extracts sentences using EXACTLY the same logic
+    as your original extract_all_sentences_to_single_file function.
+    Returns list of clean, valid sentences.
+    """
+    if not text.strip():
+        return []
 
+    # ------------------------------------------------------------------
+    # 1. Normalize whitespace
+    # ------------------------------------------------------------------
+    text = re.sub(r'[ \t]+', ' ', text)
+    text = re.sub(r'\r\n|\r', '\n', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
+
+    # ------------------------------------------------------------------
+    # 2. Protect abbreviations
+    # ------------------------------------------------------------------
+    protected_dots = [
+        r'\b(Fig|Figs|Eq|Eqs|Ref|Refs|Tab|Table)\.\s+\d+',
+        r'\b(et al|i\.e|e\.g|vs|cf|ca)\.',
+        r'\b(Dr|Mr|Mrs|Ms|Prof)\.',
+        r'[a-zA-Z]\.[a-zA-Z]\.',
+    ]
+    for pattern in protected_dots:
+        text = re.sub(pattern, lambda m: m.group(0).replace('.', '___DOT___'), text, flags=re.IGNORECASE)
+
+    # ------------------------------------------------------------------
+    # 3. MAIN split — identical to your original
+    # ------------------------------------------------------------------
+    sentence_split = re.compile(r'''
+        ([.!?])          # punctuation
+        \s*              # optional spaces
+        (?:\n\s*)*       # optional newlines
+        \s+              # at least one whitespace
+        (?=[A-Z])        # next sentence starts with capital letter
+    ''', re.VERBOSE)
+
+    sentences = []
+    start = 0
+    for m in sentence_split.finditer(text):
+        end = m.start()
+        sent = text[start:end].strip()
+        if sent:
+            sentences.append(sent + m.group(1))
+        start = m.end()
+
+    # Last sentence
+    last = text[start:].strip()
+    if last:
+        if re.search(r'[.!?]$', last):
+            sentences.append(last)
+        else:
+            match = re.search(r'([.!?])\s*$', last)
+            if match:
+                sentences.append(last[:match.end(1)])
+            else:
+                sentences.append(last)
+
+    # ------------------------------------------------------------------
+    # 3B. EXTRA RULE: split on ). / ] / " / ' followed by newline
+    # ------------------------------------------------------------------
+    extra_rule = re.compile(r'''
+        ([.!?])                  # punctuation
+        \s*                      # spaces
+        ([\)\]"'\]}›»]*)         # optional closing brackets/quotes
+        \s*                      # more spaces
+        (?:\n\s*)+               # at least one newline
+    ''', re.VERBOSE)
+
+    final_sentences = []
+    for sent in sentences:
+        if extra_rule.search(sent):
+            parts = extra_rule.split(sent)
+            current = ""
+            i = 0
+            while i < len(parts):
+                part = parts[i]
+                if i == 0:
+                    current = part
+                    i += 1
+                    continue
+                if part.strip() == "":
+                    i += 1
+                    continue
+                if re.match(r'^[.!?]', part):
+                    current += part[0]
+                    # Consume everything until next split point
+                    remaining = "".join(parts[i+1:])
+                    if remaining.strip():
+                        current += " " + remaining.split("\n", 1)[0].strip()
+                    final_sentences.append(current.strip())
+                    # Restart from remainder
+                    sent = remaining
+                    parts = extra_rule.split(sent)
+                    i = 0
+                    current = ""
+                else:
+                    current += part
+                    i += 1
+            if current.strip():
+                final_sentences.append(current.strip())
+        else:
+            final_sentences.append(sent.strip())
+    sentences = final_sentences
+
+    # ------------------------------------------------------------------
+    # 4. Restore protected dots
+    # ------------------------------------------------------------------
+    restored = []
+    for s in sentences:
+        s = s.replace('___DOT___', '.')
+        s = re.sub(r' +', ' ', s).strip()
+        if s:
+            restored.append(s)
+
+    # ------------------------------------------------------------------
+    # 5. Final filtering (same as original)
+    # ------------------------------------------------------------------
+    clean_sentences = []
+    for sent in restored:
+        if len(sent.split()) < min_words:
+            continue
+        if not re.search(r"[.!?][)\]\"'\]}›»]*$", sent):
+            continue
+        clean_sentences.append(sent)
+
+    return clean_sentences
+
+
+def append_figure_captions_to_sentence_file(
+    figures_folder: Union[str, Path],
+    sentence_file: Union[str, Path],
+    marker_start: str = "SENTENCE",
+    separator: str = " ::: ",
+    end_marker: str = " ////",
+    min_words_caption: int = 3,
+) -> None:
+    """
+    Appends figure captions as sentences using YOUR EXACT sentence extraction logic.
+    Format: SENTENCE123;FIG007::: This is a caption sentence. ////
+    """
+    figures_folder = Path(figures_folder)
+    sentence_file = Path(sentence_file)
+
+    if not figures_folder.is_dir():
+        raise FileNotFoundError(f"Figures folder not found: {figures_folder}")
+
+    # ------------------------------------------------------------------
+    # 1. Determine next sentence number
+    # ------------------------------------------------------------------
+    max_num = 0
+    if sentence_file.exists():
+        with sentence_file.open("r", encoding="utf-8") as f:
+            for line in f:
+                if not line.strip():
+                    continue
+                m = re.search(rf"{re.escape(marker_start)}\s*(\d+)", line)
+                if m:
+                    max_num = max(max_num, int(m.group(1)))
+
+    next_num = max_num + 1
+
+    # ------------------------------------------------------------------
+    # 2. Process all figureXXX.txt files in order
+    # ------------------------------------------------------------------
+    fig_pattern = re.compile(r"figure(\d+)\.txt$", re.IGNORECASE)
+    fig_files = [
+        p for p in figures_folder.iterdir()
+        if p.is_file() and fig_pattern.search(p.name)
+    ]
+    fig_files.sort(key=lambda p: int(fig_pattern.search(p.name).group(1)))
+
+    added_count = 0
+    with sentence_file.open("a", encoding="utf-8") as out_f:
+        for fig_path in fig_files:
+            match = fig_pattern.search(fig_path.name)
+            fig_num_raw = match.group(1)
+            fig_id = f"FIG{fig_num_raw.zfill(3)}"
+
+            caption_text = fig_path.read_text(encoding="utf-8")
+
+            sentences = _extract_sentences_exact_logic(caption_text, min_words=min_words_caption)
+
+            for sent in sentences:
+                line = f"{marker_start}{next_num:03d};{fig_id}{separator}{sent}{end_marker}\n\n"
+                out_f.write(line)
+                next_num += 1
+                added_count += 1
+
+    print(f"Appended {added_count} figure-caption sentences "
+          f"(now total: {next_num - 1}) → {sentence_file.resolve()}")
 
 def correct_overmerged_sentences(
     input_path: Union[Path, str],
@@ -1277,6 +1500,11 @@ def preprocess_pdf(pdf_path: str,
         output_path=output_dir_path / "checktxt" / "sentences_all_in_one.txt",
         min_words=6
     )
+    append_figure_captions_to_sentence_file(
+        figures_folder=output_dir_path / "figure_from_pdf",
+        sentence_file=output_dir_path / "checktxt" / "sentences_all_in_one.txt"
+    )
+
     correct_overmerged_sentences(
         output_dir_path / "checktxt" / "sentences_all_in_one.txt",
         output_dir_path / "checktxt" / "sentences_corrected.txt",
