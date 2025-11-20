@@ -163,15 +163,35 @@ def extract_pdf_text(pdf_path: Union[str, Path]) -> str:
 
 
 def extract_and_remove_figure_captions(text: str, out_dir: Path) -> Tuple[str, int]:
+    # Improved pattern: more precise start, captures the label separately
     pattern = re.compile(
-        r"(?:(?:^|\n)(?:Fig(?:ure)?\.?|Extended Data Fig\.|Supplementary Fig(?:ure)?\.?)\s*\d+[a-zA-Z]?(?:[.:)]|[\s|–-]))"
-        r"[\s\S]*?(?=\n\s*\n|(?:(?:Fig(?:ure)?|Extended Data Fig\.|Supplementary Fig\.|References|Supplementary|Methods)\b)|\Z)",
-        flags=re.MULTILINE,
+        r"^((?:Fig(?:ure)?\.?|Extended Data Fig\.?|Supplementary Fig(?:ure)?\.?)\s*" 
+        r"\d+[a-zA-Z]?(?:[.:)\s]|[\s–—-]))"  # start of caption + label
+        r"([\s\S]*?)"                         # the actual caption text (lazy)
+        r"(?=\Z|^(?:Fig(?:ure)?|Extended Data Fig\.|Supplementary Fig\.|References|Methods)\b|\n\s*\n)",
+        re.MULTILINE | re.IGNORECASE
     )
-    captions = [m.group(0).strip() for m in pattern.finditer(text)]
-    for i, cap in enumerate(captions, 1):
-        (out_dir / f"figure_{i:03d}.txt").write_text(cap + "\n", encoding="utf-8")
-    return pattern.sub("\n", text), len(captions)
+
+    matches = list(pattern.finditer(text))
+    cleaned_text = text
+    offset = 0  # to correctly remove matched parts when there are overlaps/edits
+
+    for idx, match in enumerate(matches, 1):
+        full_caption = match.group(0).strip()
+        label = match.group(1).strip()           # e.g. "Figure 1.", "Fig. 1–", "Supplementary Fig. 1"
+        caption_body = match.group(2).strip()
+
+        # Write to file with sequential name
+        filename = out_dir / f"ffigure_{idx:03d}.txt"
+        content = f"# Original label: {label}\n{caption_body}\n"
+        filename.write_text(content, encoding="utf-8")
+
+        # Remove the caption from text (with proper offset to avoid breaking positions)
+        start, end = match.start() - offset, match.end() - offset
+        cleaned_text = cleaned_text[:start] + "\n" + cleaned_text[end:]
+        offset += end - start - 1  # we replaced with single \n
+
+    return cleaned_text, len(matches)
 
 # ------------------------------------------------------------------ #
 # 2. Axis-label / equation junk remover (your original – unchanged)
