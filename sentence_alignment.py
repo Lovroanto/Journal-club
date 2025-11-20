@@ -1,4 +1,4 @@
-# sentence_alignment.py — FINAL VERSION — WORKS PERFECTLY WITH YOUR PIPELINE
+# sentence_alignment.py — FINAL VERSION — SHOWS METADATA FROM BOTH SIDES
 from pathlib import Path
 from dataclasses import dataclass
 from difflib import SequenceMatcher
@@ -63,7 +63,7 @@ def align_clean_to_grobid(
     grobid_txt_path: Path,
     min_score_to_accept: float = 0.25
 ) -> List[Dict]:
-    """Main function — exact same signature your code expects."""
+    """Main function — returns results with clean metadata included."""
     clean_sents = parse_sentences(clean_txt_path, is_clean=True)
     grobid_sents = parse_sentences(grobid_txt_path, is_clean=False)
 
@@ -81,9 +81,13 @@ def align_clean_to_grobid(
                 best_score = score
                 best_match = grobid
 
+        # Always include clean metadata
+        clean_meta = clean.metadata or "(none)"
+
         if best_score >= min_score_to_accept and best_match:
             results.append({
                 "clean_num": clean.num,
+                "clean_meta": clean_meta,                      # ← NOW INCLUDED
                 "clean_text": clean.text,
                 "grobid_num": best_match.num,
                 "grobid_provenance": best_match.metadata or "(unknown)",
@@ -94,6 +98,7 @@ def align_clean_to_grobid(
         else:
             results.append({
                 "clean_num": clean.num,
+                "clean_meta": clean_meta,                      # ← AND HERE
                 "clean_text": clean.text,
                 "grobid_num": None,
                 "grobid_provenance": None,
@@ -109,30 +114,39 @@ def save_alignment_report(
     output_path: Path,
     threshold_used: float
 ) -> None:
-    """Exact same function name and signature your main code uses."""
+    """Shows metadata from BOTH clean and GROBID — exactly what you wanted."""
     sorted_res = sorted(alignment_results, key=lambda x: x["clean_num"])
     lines = [
-        "CLEAN → GROBID ALIGNMENT — FINAL VERSION (ALL FIGURES INCLUDED)",
+        "CLEAN → GROBID ALIGNMENT — FINAL VERSION (BOTH METADATA SHOWN)",
         f"Total clean sentences found: {len(sorted_res)}",
         f"Threshold used: {threshold_used:.1%}",
-        "="*120,
+        "="*150,
     ]
+
     for r in sorted_res:
+        clean_num = r["clean_num"]
+        clean_meta = r["clean_meta"]
+        clean_meta_str = f" {clean_meta}" if clean_meta and clean_meta != "(none)" else ""
+
         if r["status"] == "not_found":
-            lines.append(f"CLEAN {r['clean_num']:03d} → NOT FOUND (best={r['score']:.3f})")
+            lines.append(
+                f"CLEAN {clean_num:03d}{clean_meta_str} → NOT FOUND (best score {r['score']:.3f})"
+            )
         else:
-            prov = r["grobid_provenance"]
+            grobid_meta = r["grobid_provenance"]
             strength = "STRONG" if r['score'] >= 0.75 else "WEAK" if r['score'] >= 0.4 else "VERY WEAK"
             lines.append(
-                f"CLEAN {r['clean_num']:03d} → GROBID {r['grobid_num']:03d} {prov} "
+                f"CLEAN {clean_num:03d}{clean_meta_str} → "
+                f"GROBID {r['grobid_num']:03d} {grobid_meta} "
                 f"(score: {r['score']:.3f} ← {strength})"
             )
+
     lines += [
-        "="*120,
-        f"Final count: {len(sorted_res)} clean sentences processed — FIGURES INCLUDED",
+        "="*150,
+        f"Processed {len(sorted_res)} clean sentences — ALL FIGURES + METADATA INCLUDED",
     ]
     output_path.write_text("\n".join(lines), encoding="utf-8")
-    print(f"Alignment report saved → {output_path.resolve()}")
+    print(f"Final alignment report saved → {output_path.resolve()}")
 
 
 # Optional: test directly

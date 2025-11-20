@@ -1625,16 +1625,17 @@ def preprocess_pdf(pdf_path: str,
         output_path=output_dir_path / "checktxt" / "sentences_all_in_one.txt",
         min_words=6
     )
-    append_figure_captions_to_sentence_file(
-        figures_folder=output_dir_path / "figure_from_pdf",
-        sentence_file=output_dir_path / "checktxt" / "sentences_all_in_one.txt"
-    )
+    
 
     correct_overmerged_sentences(
         output_dir_path / "checktxt" / "sentences_all_in_one.txt",
         output_dir_path / "checktxt" / "sentences_corrected.txt",
         min_current_line_length=25,
         max_prev_line_length=49
+    )
+    append_figure_captions_to_sentence_file(
+        figures_folder=output_dir_path / "figure_from_pdf",
+        sentence_file=output_dir_path / "checktxt" / "sentences_corrected.txt"
     )
 
     extract_structured_sentences_from_tei(
