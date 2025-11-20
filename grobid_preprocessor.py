@@ -827,8 +827,8 @@ def correct_overmerged_sentences(
     marker_start: str = "SENTENCE",
     separator: str = " ::: ",
     end_marker: str = " ////",
-    min_current_line_length: int = 30,
-    max_prev_line_length: int = 49
+    min_current_line_length: int = 30,   # current line must be long enough
+    max_prev_line_length: int = 49       # previous line must be SHORT (< 50)
 ) -> None:
     """
     Keeps only the last real sentence that starts after a short line (title/author/page number).
@@ -837,17 +837,16 @@ def correct_overmerged_sentences(
     input_path = Path(input_path)
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
+
     capital_start_re = re.compile(r'^\s*[A-Z][a-z]{2,}')
+
     new_lines = []
     fixed = 0
 
     with input_path.open('r', encoding='utf-8') as f:
         content = f.read()
 
-    # ONLY THIS ONE LINE CHANGED – now accepts both "SENTENCE 123" and "SENTENCE123;FIG001"
-    blocks = re.split(rf'({marker_start}\s*\d+(?:;\w+)?{re.escape(separator)})', content)
-    #                                    ↑↑↑↑↑↑↑↑↑↑
-    #                            this tiny part makes it work with figures
+    blocks = re.split(rf'({marker_start}\s+\d+{re.escape(separator)})', content)
 
     i = 1
     while i < len(blocks):
@@ -867,24 +866,30 @@ def correct_overmerged_sentences(
             continue
 
         valid_starts = []
+
         for idx in range(len(lines)):
             line = lines[idx]
             stripped = line.strip()
+
             # 1. Must start with real capitalized word
             if not capital_start_re.match(line):
                 continue
+
             # 2. Current line must be long enough
             if len(stripped) < min_current_line_length:
                 continue
+
             # 3. Previous line must be SHORT (or it's the first line)
             if idx == 0:
                 # Allow first line only if it's very clearly the start of text
                 if len(stripped) >= 50:
                     valid_starts.append(idx)
                 continue
+
             prev_stripped = lines[idx - 1].strip()
             if len(prev_stripped) > max_prev_line_length:
                 continue  # previous line is long → flowing text → not a new paragraph
+
             # All 3 conditions passed → real new paragraph start
             valid_starts.append(idx)
 
@@ -899,6 +904,7 @@ def correct_overmerged_sentences(
         else:
             # Fallback: keep original
             new_lines.append(marker + raw + end_marker)
+
         i += 2
 
     with output_path.open('w', encoding='utf-8') as f:
@@ -1642,29 +1648,27 @@ def preprocess_pdf(pdf_path: str,
     )
 
     checktxt_dir = output_dir_path / "checktxt"
+    clean_file   = checktxt_dir / "sentences_corrected.txt"      # your gold-standard
+    grobid_file  = checktxt_dir / "tei_corrected.txt"           # GROBID output
+    report_file  = checktxt_dir / "SENTENCE_ALIGNMENT_FULL.txt" # where you want the report
 
-    clean_file  = checktxt_dir / "sentences_corrected.txt"   # your gold-standard
-    grobid_file = checktxt_dir / "tei_corrected.txt"         # GROBID structured sentences
-    report_file = checktxt_dir / "SENTENCE_ALIGNMENT.txt"    # final output
+    threshold = 0.20   # change freely: 0.15, 0.25, 0.30, 0.40 …
 
-    
-    report_file = checktxt_dir / "SENTENCE_ALIGNMENT_FULL.txt"
-    
-    # Change 0.20 to whatever you want (0.10, 0.15, 0.30...)
-    threshold = 0.20
-    
-    
-    # 1. Run the alignment (every clean sentence gets its best GROBID match, even if weak)
+    # 1. Run alignment
     alignment_results = align_clean_to_grobid(
-        clean_txt_path   = clean_file,
-        grobid_txt_path  = grobid_file,
-        min_score_to_accept = threshold        # ← change to 0.30 or 0.40 if you want
+        clean_txt_path=clean_file,
+        grobid_txt_path=grobid_file,
+        min_score_to_accept=threshold
     )
 
-    # Pass the threshold so the report shows the real value
-    save_alignment_report(alignment_results, report_file, threshold_used=threshold)
+    # 2. Save beautiful report in the right place
+    save_alignment_report(
+        alignment_results=alignment_results,
+        output_path=report_file,           # ← now correct Path object!
+        threshold_used=threshold
+    )
 
-    print(f"Exhaustive alignment with {threshold:.0%} threshold → {report_file}")
+    print(f"Alignment done → report saved to: {report_file}")
 
 
     # extract metadata
