@@ -1,9 +1,10 @@
-# sentence_alignment.py — FINAL VERSION — 100% ROBUST (even with weird spacing)
+# sentence_alignment.py — FINAL VERSION — BIDIRECTIONAL + CONFLICT RESOLVED (FIXED INDENTATION)
 from pathlib import Path
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 import re
 from typing import List, Dict
+from collections import defaultdict
 
 
 @dataclass
@@ -12,6 +13,8 @@ class Sentence:
     is_clean: bool
     metadata: str
     text: str
+    link: int = 0          # GROBID number it's linked to (0 = not linked)
+    link_score: float = 0.0  # score of the link (0.0 = rejected or not found)
 
 
 def parse_sentences(file_path: Path, is_clean: bool) -> List[Sentence]:
@@ -29,7 +32,6 @@ def parse_sentences(file_path: Path, is_clean: bool) -> List[Sentence]:
             i += 2
             continue
 
-        # MOST ROBUST REGEX EVER — captures metadata even with weird spacing
         match = re.search(r'SENTENCE\s*(\d+)\s*([^:]*?)\s*:::', block)
         if not match:
             i += 2
@@ -37,26 +39,23 @@ def parse_sentences(file_path: Path, is_clean: bool) -> List[Sentence]:
 
         num = int(match.group(1))
         raw_metadata = match.group(2).strip()
-        # Clean up metadata: remove anything that looks like sentence start
         metadata = raw_metadata if raw_metadata and not raw_metadata.startswith('#') else ""
+        text = block[match.end():].strip()
 
-        text_start = match.end()
-        text = block[text_start:].strip()
-
-        # Collect continuation lines
         i += 2
         while i < len(parts) and parts[i].strip() and not re.match(r'SENTENCE\s*\d+', parts[i].strip()):
             text += " " + parts[i].strip()
             i += 2
 
-        # Clean text: remove leading # Original label if present
         text = re.sub(r'^#\s*Original label:[^|]*\|?\s*', '', text).strip()
 
         sentences.append(Sentence(
             num=num,
             is_clean=is_clean,
             metadata=metadata,
-            text=re.sub(r'\s+', ' ', text).strip()
+            text=re.sub(r'\s+', ' ', text).strip(),
+            link=0,
+            link_score=0.0
         ))
     return sentences
 
@@ -73,42 +72,75 @@ def align_clean_to_grobid(
     clean_sents = parse_sentences(clean_txt_path, is_clean=True)
     grobid_sents = parse_sentences(grobid_txt_path, is_clean=False)
 
-    clean_sents.sort(key=lambda x: x.num)
-    grobid_sents.sort(key=lambda x: x.num)
+    clean_dict = {s.num: s for s in clean_sents}
+    grobid_dict = {s.num: s for s in grobid_sents}
 
-    results = []
+    # Step 1: Each clean finds its best GROBID
     for clean in clean_sents:
         best_score = 0.0
-        best_match = None
+        best_grobid = None
         for grobid in grobid_sents:
             score = similarity(clean.text, grobid.text)
             if score > best_score:
                 best_score = score
-                best_match = grobid
+                best_grobid = grobid
 
-        clean_meta = clean.metadata or "(none)"
+        if best_score >= min_score_to_accept and best_grobid:
+            clean.link = best_grobid.num
+            clean.link_score = round(best_score, 4)
 
-        if best_score >= min_score_to_accept and best_match:
+    # Step 2: Resolve conflicts — only the best clean wins each GROBID
+    grobid_claims = defaultdict(list)  # grobid_num → list of (score, clean_sentence)
+
+    for clean in clean_sents:
+        if clean.link != 0:
+            grobid_claims[clean.link].append((clean.link_score, clean))
+
+    for grobid_num, claimants in grobid_claims.items():
+        if len(claimants) > 1:
+            claimants.sort(key=lambda x: x[0], reverse=True)
+            winner_score, winner = claimants[0]
+            # Winner keeps the link
+            winner.link = grobid_num
+            winner.link_score = winner_score
+
+            # Losers: keep the grobid num, but score = 0.0 → means "tried but lost"
+            for score, loser in claimants[1:]:
+                loser.link = grobid_num
+                loser.link_score = 0.0
+
+            # Set bidirectional link for GROBID
+            grobid_dict[grobid_num].link = winner.num
+            grobid_dict[grobid_num].link_score = winner_score
+        else:
+            score, winner = claimants[0]
+            grobid_dict[grobid_num].link = winner.num
+            grobid_dict[grobid_num].link_score = score
+
+    # Step 3: Build final results
+    results = []
+    for clean in clean_sents:
+        if clean.link == 0 or clean.link_score == 0.0:
+            tried_grobid = clean.link if clean.link != 0 else None
             results.append({
                 "clean_num": clean.num,
-                "clean_meta": clean_meta,
+                "clean_meta": clean.metadata or "(none)",
                 "clean_text": clean.text,
-                "grobid_num": best_match.num,
-                "grobid_provenance": best_match.metadata or "(unknown)",
-                "grobid_text": best_match.text,
-                "score": round(best_score, 4),
-                "status": "match"
+                "grobid_num": tried_grobid,
+                "grobid_provenance": grobid_dict[tried_grobid].metadata or "(unknown)" if tried_grobid else None,
+                "score": 0.0,
+                "status": "rejected" if tried_grobid else "not_found"
             })
         else:
             results.append({
                 "clean_num": clean.num,
-                "clean_meta": clean_meta,
+                "clean_meta": clean.metadata or "(none)",
                 "clean_text": clean.text,
-                "grobid_num": None,
-                "grobid_provenance": None,
-                "grobid_text": None,
-                "score": round(best_score, 4),
-                "status": "not_found"
+                "grobid_num": clean.link,
+                "grobid_provenance": grobid_dict[clean.link].metadata or "(unknown)",
+                "grobid_text": grobid_dict[clean.link].text,
+                "score": clean.link_score,
+                "status": "match"
             })
     return results
 
@@ -120,10 +152,10 @@ def save_alignment_report(
 ) -> None:
     sorted_res = sorted(alignment_results, key=lambda x: x["clean_num"])
     lines = [
-        "CLEAN → GROBID ALIGNMENT — FINAL ROBUST VERSION",
+        "CLEAN → GROBID BIDIRECTIONAL ALIGNMENT — CONFLICT-RESOLVED",
         f"Total clean sentences: {len(sorted_res)}",
-        f"Threshold: {threshold_used:.1%}",
-        "="*150,
+        f"Threshold used: {threshold_used:.1%}",
+        "="*160,
     ]
 
     for r in sorted_res:
@@ -131,8 +163,11 @@ def save_alignment_report(
         clean_meta = r["clean_meta"]
         clean_meta_str = f" {clean_meta}" if clean_meta and clean_meta != "(none)" else ""
 
-        if r["status"] == "not_found":
-            lines.append(f"CLEAN {clean_num:03d}{clean_meta_str} → NOT FOUND (best {r['score']:.3f})")
+        if r["status"] in ["not_found", "rejected"]:
+            if r["grobid_num"]:
+                lines.append(f"CLEAN {clean_num:03d}{clean_meta_str} → Did not find (tried GROBID {r['grobid_num']:03d})")
+            else:
+                lines.append(f"CLEAN {clean_num:03d}{clean_meta_str} → Did not find")
         else:
             strength = "STRONG" if r['score'] >= 0.75 else "WEAK" if r['score'] >= 0.4 else "VERY WEAK"
             lines.append(
@@ -141,10 +176,17 @@ def save_alignment_report(
                 f"(score: {r['score']:.3f} ← {strength})"
             )
 
-    lines += ["="*150, "ALL FIGURES CORRECTLY PARSED AND ALIGNED"]
+    lines += [
+        "="*160,
+        "BIDIRECTIONAL ALIGNMENT COMPLETE — NO DUPLICATES — CONFLICTS RESOLVED",
+    ]
     output_path.write_text("\n".join(lines), encoding="utf-8")
-    print(f"Report saved → {output_path.resolve()}")
+    print(f"Final report saved → {output_path.resolve()}")
 
 
 if __name__ == "__main__":
-    align_clean_to_grobid(Path("clean.txt"), Path("grobid.txt"), 0.25)
+    align_clean_to_grobid(
+        clean_txt_path=Path("clean.txt"),
+        grobid_txt_path=Path("grobid.txt"),
+        min_score_to_accept=0.25
+    )
