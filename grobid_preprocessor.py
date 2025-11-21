@@ -37,10 +37,7 @@ from difflib import SequenceMatcher, HtmlDiff
 from bs4 import BeautifulSoup
 from langchain_ollama import OllamaLLM
 from sentence_alignment import align_clean_to_grobid, save_alignment_report
-from tei_corrector import (
-    parse_sentences,
-    run_all_corrections,
-)
+from apply_tei_changes import apply_instructions_to_tei
 import html
 
 MODEL = "llama3.1"  # same as your chunk summary
@@ -1673,29 +1670,12 @@ def preprocess_pdf(pdf_path: str,
     print(f"   → Report          : {report_file}")
     print(f"   → Reorder guide   : {whattodo_file}")
 
-
-    with open(output_dir_path / "raw_tei.xml" , "r", encoding="utf-8") as f:
-        tei_xml = f.read()
-
-    with open(grobid_file, "r", encoding="utf-8") as f:
-        grobid_text = f.read()
-
-    with open(clean_file , "r", encoding="utf-8") as f:
-        clean_text = f.read()
-
-    with open(whattodo_file, "r", encoding="utf-8") as f:
-        instructions_text = f.read()
-
-    # Parse sentences
-    grobid_sentences = parse_sentences(grobid_text)
-    clean_sentences = parse_sentences(clean_text)
-
-    # Apply corrections
-    corrected_tei = run_all_corrections(
-        tei_xml,
-        instructions_text,
-        grobid_sentences,
-        clean_sentences
+    apply_instructions_to_tei(
+    raw_tei_path=Path(output_dir_path / "raw_tei.xml"),
+    tei_sents_path=Path(grobid_file),
+    clean_sents_path=Path(clean_file),
+    instructions_path=Path(whattodo_file),
+    output_path=Path(output_dir_path / "NEWraw_tei.xml")
     )
 
     # Save or print result
