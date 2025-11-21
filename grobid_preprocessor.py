@@ -1649,27 +1649,25 @@ def preprocess_pdf(pdf_path: str,
     )
 
     checktxt_dir = output_dir_path / "checktxt"
-    clean_file   = checktxt_dir / "sentences_corrected.txt"      # your gold-standard
-    grobid_file  = checktxt_dir / "tei_corrected.txt"           # GROBID output
-    report_file  = checktxt_dir / "SENTENCE_ALIGNMENT_FULL.txt" # where you want the report
+    clean_file   = checktxt_dir / "sentences_corrected.txt"   # gold-standard
+    grobid_file  = checktxt_dir / "tei_corrected.txt"         # GROBID output
+    report_file  = checktxt_dir / "SENTENCE_ALIGNMENT_FULL.txt"
+    whattodo_file = checktxt_dir / "WhatToChange.txt"         # ← new file, same folder!
 
-    threshold = 0.20   # change freely: 0.15, 0.25, 0.30, 0.40 …
+    threshold = 0.20   # or 0.15 / 0.25 / 0.30 as you like
 
-    # 1. Run alignment
+    # ONE SINGLE CALL DOES EVERYTHING NOW
     alignment_results = align_clean_to_grobid(
         clean_txt_path=clean_file,
         grobid_txt_path=grobid_file,
-        min_score_to_accept=threshold
+        min_score_to_accept=threshold,
+        output_report=report_file,        # ← where the beautiful report goes
+        output_reorder=whattodo_file      # ← where WhatToChange.txt goes
     )
 
-    # 2. Save beautiful report in the right place
-    save_alignment_report(
-        alignment_results=alignment_results,
-        output_path=report_file,           # ← now correct Path object!
-        threshold_used=threshold
-    )
-
-    print(f"Alignment done → report saved to: {report_file}")
+    print(f"Alignment + reordering instructions done!")
+    print(f"   → Report          : {report_file}")
+    print(f"   → Reorder guide   : {whattodo_file}")
 
 
     # extract metadata
