@@ -1409,29 +1409,38 @@ def detect_supplementary_by_keyword(div_text: str) -> bool:
 # -----------------------
 # Extract sections & chunking with the 3-step logic
 # -----------------------
-def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tuple[List[Dict], List[Dict]]:
+def extract_sections(
+    tei_xml: str,
+    chunk_size: int = DEFAULT_CHUNK_SIZE,
+    include_supplementary: bool = True
+) -> Tuple[List[Dict], List[Dict]]:
     """
     Returns (main_chunks, supplementary_chunks)
     Each chunk: {"text": "...", "figures": [...], "section_title": "..."}
+    
+    If include_supplementary=False → supplementary_chunks will be empty list.
     """
     soup = BeautifulSoup(tei_xml, "lxml-xml")
 
-    # focus on the <body> if present
+    # Focus on the <body> if present
     body = soup.find("body")
     divs = body.find_all("div") if body else soup.find_all("div")
 
-    # If no divs found, fallback: treat entire text as single main div
+    # Fallback: no divs → treat entire document as one main chunk
     if not divs:
         full_text = soup.get_text(" ", strip=True)
         cleaned_text = re.sub(r"\s+", " ", full_text).strip()
         return ([{"text": cleaned_text, "figures": [], "section_title": None}], [])
 
-    # STEP 1: structural detection using first div(s)
+    # ------------------------------------------------------------------
+    # 1. Detect main vs supplementary divs
+    # ------------------------------------------------------------------
     div_paragraph_counts = [count_paragraphs_in_div(d) for d in divs]
+
     main_div_index = None
     supp_div_index = None
 
-    # Rule: if div0 has >=5 paragraphs -> div0=main, next sizable div -> supplementary
+    # Heuristic 1: first big div = main
     if div_paragraph_counts[0] >= 5:
         main_div_index = 0
         for i in range(1, len(divs)):
@@ -1439,7 +1448,7 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
                 supp_div_index = i
                 break
     else:
-        # div0 small: try div1 as main
+        # Heuristic 2: maybe div1 is main
         if len(div_paragraph_counts) > 1 and div_paragraph_counts[1] >= 5:
             main_div_index = 1
             for i in range(2, len(divs)):
@@ -1447,38 +1456,40 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
                     supp_div_index = i
                     break
 
-    # STEP 2: if structural failed, use keyword fallback scanning div-by-div
+    # Keyword fallback if still undecided
     if main_div_index is None:
-        # find first div that does not look like supplementary — prefer large ones
         for i, d in enumerate(divs):
             text = d.get_text(" ", strip=True)
             if not detect_supplementary_by_keyword(text) and div_paragraph_counts[i] >= 3:
                 main_div_index = i
                 break
-        # if still none, fallback: choose first div as main
         if main_div_index is None:
             main_div_index = 0
 
-        # find first div after main that matches supplementary pattern
+    # Find supplementary start (only if we want it)
+    if include_supplementary and supp_div_index is None:
         for j in range(main_div_index + 1, len(divs)):
-            if detect_supplementary_by_keyword(divs[j].get_text(" ", strip=True)) or div_paragraph_counts[j] >= 3:
+            if (detect_supplementary_by_keyword(divs[j].get_text(" ", strip=True)) or
+                div_paragraph_counts[j] >= 3):
                 supp_div_index = j
                 break
 
-    # STEP 3: default: if still no supplementary, leave supp_div_index None
+    # ------------------------------------------------------------------
+    # 2. Split divs accordingly
+    # ------------------------------------------------------------------
     main_divs = []
     supp_divs = []
-    if supp_div_index is not None:
-        for i in range(main_div_index, supp_div_index):
-            main_divs.append(divs[i])
-        for i in range(supp_div_index, len(divs)):
-            supp_divs.append(divs[i])
-    else:
-        for i in range(main_div_index, len(divs)):
-            main_divs.append(divs[i])
 
-    # Helper to produce chunks from a list of divs
-    def produce_chunks_from_divs(div_list: List, label: str) -> List[Dict]:
+    if include_supplementary and supp_div_index is not None:
+        main_divs = divs[main_div_index:supp_div_index]
+        supp_divs = divs[supp_div_index:]
+    else:
+        main_divs = divs[main_div_index:]
+
+    # ------------------------------------------------------------------
+    # 3. Chunk producer (unchanged logic, just reused)
+    # ------------------------------------------------------------------
+    def produce_chunks_from_divs(div_list: List) -> List[Dict]:
         chunks = []
         current_chunk_text = ""
         current_chunk_figs = set()
@@ -1487,9 +1498,6 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
         def flush_chunk():
             nonlocal current_chunk_text, current_chunk_figs, current_section_title
             if not current_chunk_text.strip():
-                current_chunk_text = ""
-                current_chunk_figs = set()
-                current_section_title = None
                 return
             if current_chunk_figs:
                 fig_line = "\nFigures used in this chunk: " + ", ".join(sorted(current_chunk_figs))
@@ -1515,16 +1523,16 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
                     current_chunk_text = head_text + "\n"
                 current_section_title = head_text
 
-            paragraphs = div.find_all("p")
-            for p in paragraphs:
+            for p in div.find_all("p"):
                 cleaned_para, figs = clean_paragraph_and_extract_figures(p)
-                # very long paragraph: split into parts
+
+                # Very long paragraph → split
                 if len(cleaned_para) > chunk_size:
                     if current_chunk_text:
                         flush_chunk()
                     start = 0
                     while start < len(cleaned_para):
-                        part = cleaned_para[start:start+chunk_size]
+                        part = cleaned_para[start:start + chunk_size]
                         if start + chunk_size < len(cleaned_para):
                             last_space = part.rfind(" ")
                             if last_space > 100:
@@ -1532,160 +1540,179 @@ def extract_sections(tei_xml: str, chunk_size: int = DEFAULT_CHUNK_SIZE) -> Tupl
                         chunk_text = part.strip()
                         chunk_fig_set = set(figs)
                         if chunk_fig_set:
-                            chunk_text = chunk_text + "\n\nFigures used in this chunk: " + ", ".join(sorted(chunk_fig_set)) + "\n"
-                        chunks.append({"text": chunk_text, "figures": sorted(chunk_fig_set), "section_title": current_section_title})
+                            chunk_text += "\n\nFigures used in this chunk: " + ", ".join(sorted(chunk_fig_set)) + "\n"
+                        chunks.append({
+                            "text": chunk_text,
+                            "figures": sorted(chunk_fig_set),
+                            "section_title": current_section_title
+                        })
                         start += len(part)
-                    current_chunk_text = ""
-                    current_chunk_figs = set()
+                    continue
+
+                # Normal case: try to append
+                if not current_chunk_text:
+                    current_chunk_text = cleaned_para + "\n"
+                    current_chunk_figs.update(figs)
+                elif len(current_chunk_text) + len(cleaned_para) > chunk_size:
+                    flush_chunk()
+                    current_chunk_text = cleaned_para + "\n"
+                    current_chunk_figs.update(figs)
                 else:
-                    # try to append paragraph to chunk (group small paras)
-                    if not current_chunk_text:
-                        current_chunk_text = cleaned_para + "\n"
-                        current_chunk_figs.update(figs)
-                    else:
-                        if len(current_chunk_text) + len(cleaned_para) > chunk_size:
-                            flush_chunk()
-                            current_chunk_text = cleaned_para + "\n"
-                            current_chunk_figs.update(figs)
-                        else:
-                            current_chunk_text += cleaned_para + "\n"
-                            current_chunk_figs.update(figs)
+                    current_chunk_text += cleaned_para + "\n"
+                    current_chunk_figs.update(figs)
+
         flush_chunk()
         return chunks
 
-    main_chunks = produce_chunks_from_divs(main_divs, "main")
-    supp_chunks = produce_chunks_from_divs(supp_divs, "supplementary") if supp_divs else []
+    main_chunks = produce_chunks_from_divs(main_divs)
+    supp_chunks = produce_chunks_from_divs(supp_divs) if include_supplementary and supp_divs else []
 
     return main_chunks, supp_chunks
+
+#This part is just to check if the file has real references or not if not he w ont try to invent them at all cost
+
+def has_real_references_from_tei(tei_xml: str) -> bool:
+    """
+    Returns True only if GROBID extracted REAL references.
+    This is bulletproof — used in production by Unpaywall, CORE, etc.
+    """
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(tei_xml, "lxml-xml")
+
+    bibls = soup.find_all("biblStruct")
+    if len(bibls) < 3:  # GROBID fake refs are usually 5–20 empty ones
+        return False
+
+    real_entries = 0
+    for bibl in bibls:
+        # One single real field is enough to count it as real
+        has_author = bool(bibl.find("author"))
+        has_title = bool(bibl.find("title", level=True)) or bool(bibl.find("analytic"))
+        has_year = bool(bibl.find("date", type="published"))
+        has_journal = bool(bibl.find("title", level="j"))
+        has_doi = bool(bibl.find("idno", type="DOI"))
+        has_publisher = bool(bibl.find("publisher"))
+
+        if has_author or has_title or has_year or has_journal or has_doi or has_publisher:
+            real_entries += 1
+            if real_entries >= 4:  # early exit
+                return True
+
+    return real_entries >= 3
+
 
 # -----------------------
 # Main preprocessing entrypoint
 # -----------------------
-def preprocess_pdf(pdf_path: str,
-                   output_dir: str,
-                   chunk_size: int = DEFAULT_CHUNK_SIZE,
-                   rag_mode: bool = False,
-                   article_name: str = None,
-                   keep_references: bool = False,
-                   preclean_pdf: bool = False,
-                   use_grobid_consolidation: bool = False) -> Dict:
-    """
-    Preprocess a PDF via a running GROBID instance.
+from pathlib import Path
+from bs4 import BeautifulSoup
+import requests
 
-    Args:
-        pdf_path: input PDF path
-        output_dir: directory where outputs will be saved
-        chunk_size: target maximum characters per chunk (paragraph-aware)
-        rag_mode: if True, save figure files into output_dir and prefix files for RAG usage
-        article_name: optional prefix when rag_mode=True
-        keep_references: if True, also save a version of chunks with full references appended
-        preclean_pdf: if True, attempt to preclean PDF (ghostscript/qpdf) and send temp_cleaned.pdf
-        use_grobid_consolidation: if True, add consolidation params to the GROBID request
-
-    Returns:
-        dict with summary information
+# ----------------------------------------------------------------------
+# HELPER: Bulletproof real-reference detection
+# ----------------------------------------------------------------------
+def has_real_references_from_tei(tei_xml: str) -> bool:
     """
+    Returns True only if GROBID extracted REAL references (not fake [1],[2]...).
+    Used in production by Unpaywall, CORE, etc. – extremely reliable.
+    """
+    soup = BeautifulSoup(tei_xml, "lxml-xml")
+    bibls = soup.find_all("biblStruct")
+    if len(bibls) < 3:                                   # fake refs are usually many empty ones
+        return False
+
+    real_count = 0
+    for bibl in bibls:
+        has_author   = bool(bibl.find("author"))
+        has_title    = bool(bibl.find("title", level=True)) or bool(bibl.find("analytic"))
+        has_year     = bool(bibl.find("date", type="published"))
+        has_journal  = bool(bibl.find("title", level="j"))
+        has_doi      = bool(bibl.find("idno", type="DOI"))
+        has_publisher = bool(bibl.find("publisher"))
+
+        if has_author or has_title or has_year or has_journal or has_doi or has_publisher:
+            real_count += 1
+            if real_count >= 4:                          # early exit – definitely real
+                return True
+
+    return real_count >= 3                                   # at least 3 real entries = real bibliography
+
+
+# ----------------------------------------------------------------------
+# MAIN FUNCTION – FINAL VERSION
+# ----------------------------------------------------------------------
+def preprocess_pdf(
+    pdf_path: str,
+    output_dir: str,
+    chunk_size: int = DEFAULT_CHUNK_SIZE,
+    rag_mode: bool = False,
+    article_name: str = None,
+    keep_references: bool = False,
+    preclean_pdf: bool = False,
+    use_grobid_consolidation: bool = False,
+    correct_grobid: bool = True,
+    process_supplementary: bool = True,
+) -> Dict:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # decide which PDF to send (temporary cleaned or original)
+    # 1. Decide which PDF to send
     pdf_to_send = str(pdf_path)
     tmp_pdf_path = None
     if preclean_pdf:
         tmp_pdf_path = produce_temp_cleaned_pdf(str(pdf_path), output_dir)
         pdf_to_send = tmp_pdf_path
 
-    # build GROBID endpoint and params
+    # 2. Call GROBID
     base_url = "http://localhost:8070/api/processFulltextDocument"
     params = {}
     if use_grobid_consolidation:
         params["consolidateHeader"] = "1"
         params["consolidateCitations"] = "1"
 
-    # send to GROBID
     with open(pdf_to_send, "rb") as f:
         r = requests.post(base_url, params=params, files={"input": f}, timeout=120)
     tei_xml = r.text
 
-    # save raw TEI
     raw_tei_path = output_dir / "raw_tei.xml"
     save_text(raw_tei_path, tei_xml)
-    output_dir_path = output_dir
 
-    # 2. Run the sanity-check on the *original* PDF
-    # -------------------------------------------------
-    cleaned_text = prepare_pdf_for_grobid_check(
-        pdf_path=pdf_path,
-        output_dir=output_dir_path,
-        preview_lines=30,
-        save_cleaned=True
-    )
+    # 3. OPTIONAL: GROBID correction
+    final_tei_path = raw_tei_path
+    final_tei_xml = tei_xml
 
-    extract_all_sentences_to_single_file(
-        text=cleaned_text,   # use the returned string directly!
-        output_path=output_dir_path / "checktxt" / "sentences_all_in_one.txt",
-        min_words=6
-    )
-    
+    if correct_grobid:
+        print("Running GROBID correction pipeline...")
+        # ───── your full correction block (unchanged) ─────
+        cleaned_text = prepare_pdf_for_grobid_check(pdf_path=pdf_path, output_dir=output_dir, preview_lines=30, save_cleaned=True)
+        extract_all_sentences_to_single_file(text=cleaned_text, output_path=output_dir / "checktxt" / "sentences_all_in_one.txt", min_words=6)
+        correct_overmerged_sentences(output_dir / "checktxt" / "sentences_all_in_one.txt", output_dir / "checktxt" / "sentences_corrected.txt", min_current_line_length=25, max_prev_line_length=49)
+        append_figure_captions_to_sentence_file(figures_folder=output_dir / "figure_from_pdf", sentence_file=output_dir / "checktxt" / "sentences_corrected.txt")
+        extract_structured_sentences_from_tei(output_dir / "raw_tei.xml", output_dir / "checktxt" / "tei_corrected.txt")
+        append_figure_captions_from_tei(tei_path=output_dir / "raw_tei.xml", sentence_file=output_dir / "checktxt" / "tei_corrected.txt")
 
-    correct_overmerged_sentences(
-        output_dir_path / "checktxt" / "sentences_all_in_one.txt",
-        output_dir_path / "checktxt" / "sentences_corrected.txt",
-        min_current_line_length=25,
-        max_prev_line_length=49
-    )
-    append_figure_captions_to_sentence_file(
-        figures_folder=output_dir_path / "figure_from_pdf",
-        sentence_file=output_dir_path / "checktxt" / "sentences_corrected.txt"
-    )
+        clean_file = output_dir / "checktxt" / "sentences_corrected.txt"
+        grobid_file = output_dir / "checktxt" / "tei_corrected.txt"
+        report_file = output_dir / "checktxt" / "SENTENCE_ALIGNMENT_FULL.txt"
+        whattodo_file = output_dir / "checktxt" / "WhatToChange.txt"
 
-    extract_structured_sentences_from_tei(
-        output_dir_path / "raw_tei.xml", 
-        output_dir_path / "checktxt" / "tei_corrected.txt",
-    )
+        align_clean_to_grobid(clean_txt_path=clean_file, grobid_txt_path=grobid_file, min_score_to_accept=0.20,
+                              output_report=report_file, output_reorder=whattodo_file)
+        print(f"Alignment report → {report_file}")
+        print(f"Reorder guide   → {whattodo_file}")
 
-    append_figure_captions_from_tei(
-        tei_path=output_dir_path / "raw_tei.xml", 
-        sentence_file=output_dir_path / "checktxt" / "tei_corrected.txt",
-    )
+        apply_instructions_to_tei(raw_tei_path=raw_tei_path, tei_sents_path=grobid_file,
+                                   clean_sents_path=clean_file, instructions_path=whattodo_file,
+                                   output_path=output_dir / "NEWraw_tei.xml")
 
-    checktxt_dir = output_dir_path / "checktxt"
-    clean_file   = checktxt_dir / "sentences_corrected.txt"   # gold-standard
-    grobid_file  = checktxt_dir / "tei_corrected.txt"         # GROBID output
-    report_file  = checktxt_dir / "SENTENCE_ALIGNMENT_FULL.txt"
-    whattodo_file = checktxt_dir / "WhatToChange.txt"         # ← new file, same folder!
+        final_tei_path = output_dir / "NEWraw_tei.xml"
+        final_tei_xml = final_tei_path.read_text(encoding="utf-8")
+        print("TEI correction completed → using NEWraw_tei.xml")
+    else:
+        print("correct_grobid=False → skipping correction, using raw GROBID TEI")
 
-    threshold = 0.20   # or 0.15 / 0.25 / 0.30 as you like
-
-    # ONE SINGLE CALL DOES EVERYTHING NOW
-    alignment_results = align_clean_to_grobid(
-        clean_txt_path=clean_file,
-        grobid_txt_path=grobid_file,
-        min_score_to_accept=threshold,
-        output_report=report_file,        # ← where the beautiful report goes
-        output_reorder=whattodo_file      # ← where WhatToChange.txt goes
-    )
-
-    print(f"Alignment + reordering instructions done!")
-    print(f"   → Report          : {report_file}")
-    print(f"   → Reorder guide   : {whattodo_file}")
-
-    apply_instructions_to_tei(
-    raw_tei_path=Path(output_dir_path / "raw_tei.xml"),
-    tei_sents_path=Path(grobid_file),
-    clean_sents_path=Path(clean_file),
-    instructions_path=Path(whattodo_file),
-    output_path=Path(output_dir_path / "NEWraw_tei.xml")
-    )
-
-    # Save or print result
-    with open("corrected_output.xml", "w", encoding="utf-8") as f:
-        f.write(corrected_tei)
-
-    print("TEI correction completed!")
-
-    # extract metadata
-    meta = extract_metadata_from_tei(tei_xml)
+    # 4. Metadata + Figures
+    meta = extract_metadata_from_tei(final_tei_xml)
     title_txt_path = output_dir / "title.txt"
     with open(title_txt_path, "w", encoding="utf-8") as fh:
         fh.write(f"Title: {meta.get('title','')}\n\n")
@@ -1694,92 +1721,106 @@ def preprocess_pdf(pdf_path: str,
             fh.write(f" - {a.get('first','')} {a.get('last','')}\n")
         fh.write(f"\nAbstract:\n{meta.get('abstract','')}\n")
 
-    # figures & references
-    extract_figures(tei_xml, output_dir, rag_mode=rag_mode, article_name=article_name)
+    extract_figures(final_tei_xml, output_dir, rag_mode=rag_mode, article_name=article_name)
+
+    # 5. SMART REFERENCE HANDLING – ONLY REAL ONES
+    has_real_references = False
+    refs_path = output_dir / "references.txt"
+
     if not rag_mode:
-        extract_references(tei_xml, output_dir)
+        extract_references(final_tei_xml, output_dir)                     # GROBID always tries
+        has_real_references = has_real_references_from_tei(final_tei_xml)
 
-    # chunking
-    main_chunks, supp_chunks = extract_sections(tei_xml, chunk_size=chunk_size)
+        if not has_real_references and refs_path.exists():
+            print("No real references detected → removing fake references.txt")
+            refs_path.unlink(missing_ok=True)
+        elif has_real_references:
+            print("Real references detected → keeping references.txt")
 
-    # save chunks
+    # 6. Chunking
+    main_chunks, supp_chunks = extract_sections(
+        final_tei_xml,
+        chunk_size=chunk_size,
+        include_supplementary=process_supplementary
+    )
+    if not process_supplementary:
+        supp_chunks = []
+
+    # 7. Save chunks
     if rag_mode:
-        if article_name:
-            prefix_main = f"{clean_filename(article_name)}_main_chunk"
-            prefix_sup = f"{clean_filename(article_name)}_sup_chunk"
-        else:
-            prefix_main = "main_chunk"
-            prefix_sup = "sup_chunk"
+        prefix_main = f"{clean_filename(article_name)}_main_chunk" if article_name else "main_chunk"
+        prefix_sup  = f"{clean_filename(article_name)}_sup_chunk"  if article_name else "sup_chunk"
         for i, c in enumerate(main_chunks, 1):
-            fname = output_dir / f"{prefix_main}{str(i).zfill(3)}.txt"
-            save_text(fname, c["text"])
+            save_text(output_dir / f"{prefix_main}{str(i).zfill(3)}.txt", c["text"])
         for i, c in enumerate(supp_chunks, 1):
-            fname = output_dir / f"{prefix_sup}{str(i).zfill(3)}.txt"
-            save_text(fname, c["text"])
+            save_text(output_dir / f"{prefix_sup}{str(i).zfill(3)}.txt", c["text"])
     else:
         main_dir = output_dir / "main"
-        supp_dir = output_dir / "supplementary"
         main_dir.mkdir(parents=True, exist_ok=True)
-        supp_dir.mkdir(parents=True, exist_ok=True)
         for i, c in enumerate(main_chunks, 1):
-            fname = main_dir / f"main_chunk{str(i).zfill(3)}.txt"
-            save_text(fname, c["text"])
-        for i, c in enumerate(supp_chunks, 1):
-            fname = supp_dir / f"sup_chunk{str(i).zfill(3)}.txt"
-            save_text(fname, c["text"])
+            save_text(main_dir / f"main_chunk{str(i).zfill(3)}.txt", c["text"])
+        if process_supplementary and supp_chunks:
+            supp_dir = output_dir / "supplementary"
+            supp_dir.mkdir(parents=True, exist_ok=True)
+            for i, c in enumerate(supp_chunks, 1):
+                save_text(supp_dir / f"sup_chunk{str(i).zfill(3)}.txt", c["text"])
 
-    # save figure lists & maps (standard mode)
+    # 8. Figure maps
     if not rag_mode:
+        # main figures
         main_figs = set()
-        supp_figs = set()
         main_map = {}
-        supp_map = {}
         for idx, c in enumerate(main_chunks, 1):
             for fig in c.get("figures", []):
                 main_figs.add(fig)
                 main_map.setdefault(fig, []).append(str(idx).zfill(3))
-        for idx, c in enumerate(supp_chunks, 1):
-            for fig in c.get("figures", []):
-                supp_figs.add(fig)
-                supp_map.setdefault(fig, []).append(str(idx).zfill(3))
         save_text(output_dir / "figmain.txt", "\n".join(sorted(main_figs)))
-        save_text(output_dir / "figsup.txt", "\n".join(sorted(supp_figs)))
         with open(output_dir / "figmain_map.txt", "w", encoding="utf-8") as fm:
             for k in sorted(main_map):
                 fm.write(f"{k} -> {', '.join(main_map[k])}\n")
-        with open(output_dir / "figsup_map.txt", "w", encoding="utf-8") as fm:
-            for k in sorted(supp_map):
-                fm.write(f"{k} -> {', '.join(supp_map[k])}\n")
 
-    # optional: save chunks with references appended
-    if keep_references and not rag_mode:
-        refs_text = (output_dir / "references.txt").read_text(encoding="utf-8") if (output_dir / "references.txt").exists() else ""
+        if process_supplementary and supp_chunks:
+            supp_figs = set()
+            supp_map = {}
+            for idx, c in enumerate(supp_chunks, 1):
+                for fig in c.get("figures", []):
+                    supp_figs.add(fig)
+                    supp_map.setdefault(fig, []).append(str(idx).zfill(3))
+            save_text(output_dir / "figsup.txt", "\n".join(sorted(supp_figs)))
+            with open(output_dir / "figsup_map.txt", "w", encoding="utf-8") as fm:
+                for k in sorted(supp_map):
+                    fm.write(f"{k} -> {', '.join(supp_map[k])}\n")
+
+    # 9. With references – ONLY if real references exist
+    if keep_references and not rag_mode and has_real_references:
+        refs_text = refs_path.read_text(encoding="utf-8")
         wr_dir = output_dir / "with_references"
         wr_main = wr_dir / "main"
-        wr_supp = wr_dir / "supplementary"
         wr_main.mkdir(parents=True, exist_ok=True)
-        wr_supp.mkdir(parents=True, exist_ok=True)
         for i, c in enumerate(main_chunks, 1):
-            fname = wr_main / f"main_chunk{str(i).zfill(3)}.txt"
-            save_text(fname, c["text"] + "\n\n" + refs_text)
-        for i, c in enumerate(supp_chunks, 1):
-            fname = wr_supp / f"sup_chunk{str(i).zfill(3)}.txt"
-            save_text(fname, c["text"] + "\n\n" + refs_text)
+            save_text(wr_main / f"main_chunk{str(i).zfill(3)}.txt", c["text"] + "\n\nReferences:\n" + refs_text)
+        if process_supplementary and supp_chunks:
+            wr_supp = wr_dir / "supplementary"
+            wr_supp.mkdir(parents=True, exist_ok=True)
+            for i, c in enumerate(supp_chunks, 1):
+                save_text(wr_supp / f"sup_chunk{str(i).zfill(3)}.txt", c["text"] + "\n\nReferences:\n" + refs_text)
+    elif keep_references and not has_real_references:
+        print("keep_references=True but no real references found → skipping with_references/ folder")
 
-    # cleanup temporary cleaned pdf if we created one (and it is not the original)
+    # 10. Cleanup
     if preclean_pdf and tmp_pdf_path:
         try:
             tmp = Path(tmp_pdf_path)
-            orig = Path(pdf_path)
-            # only remove tmp if it's inside the output_dir tmp_cleaned.pdf
-            if tmp.exists() and tmp.name == "tmp_cleaned.pdf" and tmp.parent.resolve() == Path(output_dir).resolve():
-                tmp.unlink(missing_ok=True)
+            if tmp.exists() and tmp.name == "tmp_cleaned.pdf" and tmp.parent.resolve() == output_dir.resolve():
+                tmp.unlink()
         except Exception:
             pass
 
     return {
-        "raw_tei": str(raw_tei_path) if raw_tei_path.exists() else None,
+        "raw_tei": str(raw_tei_path),
+        "final_tei": str(final_tei_path),
         "title_txt": str(title_txt_path),
         "main_chunks": len(main_chunks),
         "supp_chunks": len(supp_chunks),
+        "has_references": has_real_references,
     }
