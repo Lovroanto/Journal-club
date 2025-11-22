@@ -10,13 +10,14 @@ Test the latest grobid_preprocessor with:
 
 from pathlib import Path
 from grobid_preprocessor import preprocess_pdf
+from exercise_splitter import run_tagger, collect_all_text, split_exercises
 # from chunksummary_module import run_chunk_summary   # uncomment when ready
 
 # ------------------------------------------------------------------
 # Your PDF and output folder
 # ------------------------------------------------------------------
 pdf_file = "/home/lbarisic/ai_data/CorrectedTD/First/PDF/td4_251121_132609.pdf"
-output_dir_article = "/home/lbarisic/ai_data/CorrectedTD/First/Decomposition/"
+output_dir_article = Path("/home/lbarisic/ai_data/CorrectedTD/First/Decomposition/")
 
 # ------------------------------------------------------------------
 # 1) STANDARD MODE – fast + clean (recommended for journal club)
@@ -47,6 +48,17 @@ if result["has_references"]:
     print("   → references.txt and with_references/ folder created")
 else:
     print("   → No real references → clean output, no fake files")
+    
+# Step 1 — Tag the chunks
+run_tagger(
+    input_dir=output_dir_article/"main",
+    output_dir=output_dir_article /"Tagged",
+    model="llama3.1"
+)
+
+# Step 2 — Parse into exercises
+full_text = collect_all_text(output_dir_article /"Tagged")
+split_exercises(full_text, output_dir_article / "Exercises")
 
 # ------------------------------------------------------------------
 # (Optional) Run summary when you want
