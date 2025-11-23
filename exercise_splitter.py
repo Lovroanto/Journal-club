@@ -3,7 +3,6 @@ import re
 import ollama
 from langchain_ollama import OllamaLLM
 
-
 # =========================================================
 # USER-SELECTABLE QUESTION FORMATS
 # =========================================================
@@ -14,7 +13,6 @@ QUESTION_FORMATS = {
     "D": r"(?P<id>[0-9]+)\.\s*(?=[A-ZÉÈÊÀÇÎÔÛÂ])",     # 1.Calculer
     "E": r"(?P<id>[a-z])\.\s*(?=[A-ZÉÈÊÀÇÎÔÛÂ])",      # a. Calculer
 }
-
 
 def choose_question_format():
     print("\n=== SELECT QUESTION FORMAT ===")
@@ -32,7 +30,6 @@ def choose_question_format():
             return QUESTION_FORMATS[choice]
         print("Invalid choice. Try again.")
 
-
 # =========================================================
 # 1) BUILD QUESTION DETECTOR REGEX
 # =========================================================
@@ -40,40 +37,38 @@ def build_question_regex(format_pattern):
     return re.compile(
         rf"""
         (?P<tag>
-            (?<!\d)             # avoid matching decimals
-            (?<![A-Za-z])       # avoid inside words
+            (?<!\d)
+            (?<![A-Za-z])
             {format_pattern}
         )
         """,
         re.VERBOSE,
     )
 
-
 # =========================================================
-# 2) QUESTION CLASS
+# 2) QUESTION CLASS WITH CHUNK INFO
 # =========================================================
 class Question:
-    def __init__(self, abs_order, placement, snippet):
-        self.abs_order = abs_order
-        self.placement = placement
-        self.snippet = snippet  # first 20 chars
+    def __init__(self, abs_order, placement, snippet, chunk_id):
+        self.abs_order = abs_order        # absolute order of question in document
+        self.placement = placement        # placement according to user-selected numbering
+        self.snippet = snippet            # first 20 characters for identification
+        self.chunk_id = chunk_id          # which chunk it was found in
 
     def __repr__(self):
-        return f"Question(abs_order={self.abs_order}, placement={self.placement}, snippet='{self.snippet}')"
-
+        return f"Question(order={self.abs_order}, place={self.placement}, chunk={self.chunk_id}, snippet='{self.snippet}')"
 
 def convert_id_to_int(q_id):
-    """Converts numeric or letter ID to integer placement."""
+    """Convert numeric or letter ID to integer placement."""
     if q_id.isdigit():
         return int(q_id)
     else:
         return ord(q_id.lower()) - ord("a") + 1
 
-
 # =========================================================
 # 3) DETECT QUESTION STARTS
 # =========================================================
-def detect_question_starts(text, question_regex):
+def detect_question_starts(text, question_regex, chunk_id):
     ids = []
     questions = []
     out = []
@@ -87,7 +82,7 @@ def detect_question_starts(text, question_regex):
         placement = convert_id_to_int(q_id)
         snippet = text[start:start + 20]
 
-        questions.append(Question(abs_order, placement, snippet))
+        questions.append(Question(abs_order, placement, snippet, chunk_id))
         ids.append(q_id)
 
         out.append(text[last_idx:start])
@@ -97,16 +92,13 @@ def detect_question_starts(text, question_regex):
     out.append(text[last_idx:])
     return "".join(out), questions
 
-
 # =========================================================
-# 4) ASK AI LAST 15 CHARS (OPTIONAL)
+# 4) ASK AI LAST 15 CHARS
 # =========================================================
 def ask_ai_last_chars(excerpt, model="open-mistral-nemo"):
     """
-    Calls an AI model (Ollama, etc.) to extract the last 15 characters
-    of the last question contained in the excerpt.
+    Calls Ollama to extract the last 15 characters of the last question in excerpt.
     """
-
     prompt = (
         "Below is a text excerpt that contains the end of a question from an exercise, "
         "possibly followed by the beginning of the next exercise.\n\n"
@@ -115,17 +107,13 @@ def ask_ai_last_chars(excerpt, model="open-mistral-nemo"):
         "❌ Do NOT include any text belonging to the next exercise.\n"
         "❌ Do NOT include any question number like '1.' or '2)'.\n\n"
         "Return ONLY those 15 characters, nothing else.\n\n"
-        "EXCERPT:\n"
-        + excerpt
+        "EXCERPT:\n" + excerpt
     )
 
     result = ollama.chat(model=model, messages=[{"role": "user", "content": prompt}])
     answer = result["message"]["content"].strip()
-
-    # safety trim in case LLM returns extra spaces/newlines
     signature = answer[-15:]
 
-    # PRINTING FOR USER TO VERIFY
     print("\n==============================")
     print(" AI-EXTRACTED LAST 15 CHARS ")
     print("==============================")
@@ -134,62 +122,56 @@ def ask_ai_last_chars(excerpt, model="open-mistral-nemo"):
 
     return signature
 
-
 # =========================================================
-# 5) DETECT EXERCISE ENDS BY PLACEMENT ORDER
+# 5) DETECT EXERCISE ENDS USING AI
 # =========================================================
-def detect_exercise_ends(text, questions, use_ai=False, model="open-mistral-nemo"):
+def detect_exercise_ends(text, questions, model="open-mistral-nemo"):
     """
-    Inserts <EXERCISE_END> before first question of a new exercise.
-    Logic: If a question has smaller placement than previous, it starts a new exercise.
-    If use_ai=True, uses ask_ai_last_chars for more precise boundary.
+    Inserts <EXERCISE_END> before the first question of a new exercise.
+    Logic:
+    - consecutive questions with decreasing placement → new exercise
+    - uses AI to find exact end of last question
     """
     if not questions:
         return text
 
-    exercise_boundaries = []
-
-    for i in range(1, len(questions)):
-        if questions[i].placement < questions[i - 1].placement:
-            exercise_boundaries.append((questions[i - 1], questions[i]))  # (last prev, first next)
-
     modified = text
-    for last_q, next_q in reversed(exercise_boundaries):
+    for i in range(1, len(questions)):
+        prev_q = questions[i - 1]
+        curr_q = questions[i]
 
-        print(f"*** Detected exercise boundary: last placement '{last_q.placement}' → next placement '{next_q.placement}'")
+        if curr_q.placement < prev_q.placement or curr_q.chunk_id != prev_q.chunk_id:
+            print(f"*** Detected exercise boundary: last question '{prev_q.snippet[:10]}...' → next question '{curr_q.snippet[:10]}...'")
+            
+            # Extract excerpt between chunks if necessary
+            start_idx = modified.find(prev_q.snippet) + len(prev_q.snippet)
+            end_idx = modified.find(curr_q.snippet)
+            excerpt = modified[start_idx:end_idx]
 
-        # Extract region between last question and next question
-        start_prev = modified.find(last_q.snippet) + len(last_q.snippet)
-        start_next = modified.find(next_q.snippet)
-        excerpt = modified[start_prev:start_next]
-
-        if use_ai:
+            # AI helps find last 15 chars
             signature = ask_ai_last_chars(excerpt, model=model)
             sig_index = modified.rfind(signature)
-            if sig_index != -1:
-                insert_pos = sig_index + len(signature)
-                modified = modified[:insert_pos] + "\n<EXERCISE_END>\n" + modified[insert_pos:]
-                continue
+            if sig_index == -1:
+                print("⚠️ Signature not found — fallback before next question")
+                sig_index = end_idx
 
-        # fallback: insert before next question
-        modified = modified[:start_next] + "<EXERCISE_END>\n" + modified[start_next:]
+            insert_pos = sig_index + len(signature)
+            modified = modified[:insert_pos] + "\n<EXERCISE_END>\n" + modified[insert_pos:]
 
     return modified
-
 
 # =========================================================
 # 6) PROCESS ONE CHUNK
 # =========================================================
-def process_chunk(text, question_regex, use_ai=False, model="open-mistral-nemo"):
-    q_tagged, questions = detect_question_starts(text, question_regex)
-    final = detect_exercise_ends(q_tagged, questions, use_ai=use_ai, model=model)
+def process_chunk(text, question_regex, chunk_id, model="open-mistral-nemo"):
+    q_tagged, questions = detect_question_starts(text, question_regex, chunk_id)
+    final = detect_exercise_ends(q_tagged, questions, model=model)
     return final
-
 
 # =========================================================
 # 7) RUN TAGGER
 # =========================================================
-def run_tagger(input_dir, output_dir, model=None, use_ai=False):
+def run_tagger(input_dir, output_dir, model="open-mistral-nemo"):
     format_pattern = choose_question_format()
     question_regex = build_question_regex(format_pattern)
 
@@ -200,14 +182,14 @@ def run_tagger(input_dir, output_dir, model=None, use_ai=False):
         if f.endswith(".txt")
     ])
 
-    for f in chunk_files:
+    for chunk_idx, f in enumerate(chunk_files, start=1):
         print("Processing:", f)
         original = open(f).read()
-        tagged = process_chunk(original, question_regex, use_ai=use_ai, model=model)
+        tagged = process_chunk(original, question_regex, chunk_idx, model=model)
         out_f = os.path.join(output_dir, os.path.basename(f))
         open(out_f, "w").write(tagged)
 
-    print("Tagging completed (placement-based with optional AI refinement).")
+    print("Tagging completed (AI-assisted, chunk-aware).")
 
 
 

@@ -25,10 +25,12 @@ result_standard = preprocess_pdf(
     pdf_path=pdf_file,
     output_dir=output_dir_article,
     chunk_size=4000,
-    rag_mode=False,          # standard mode
-    keep_references=True,    # also produces with_references folder
-    preclean_pdf=True,       # NEW: clean PDF before sending to GROBID
-    use_grobid_consolidation=True  # NEW: use consolidation in GROBID parsing
+    rag_mode=False,                    # ← standard mode
+    keep_references=True,              # ← will create with_references/ ONLY if real refs exist
+    preclean_pdf=True,                 # ← still works
+    use_grobid_consolidation=True,     # ← still works
+    correct_grobid=True,               # ← default is True → full correction (your old behavior)
+    process_supplementary=True         # ← default is True → includes supp material
 )
 print("STANDARD MODE RESULTS:")
 print(result_standard)
