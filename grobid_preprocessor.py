@@ -37,6 +37,7 @@ from difflib import SequenceMatcher, HtmlDiff
 from bs4 import BeautifulSoup
 from langchain_ollama import OllamaLLM
 from sentence_alignment import align_clean_to_grobid, save_alignment_report
+from tei_supplementary_detector import detect_supplementary_boundary, split_main_and_supp_by_boundary
 from apply_tei_changes import apply_instructions_to_tei
 import html
 
@@ -1409,87 +1410,78 @@ def detect_supplementary_by_keyword(div_text: str) -> bool:
 # -----------------------
 # Extract sections & chunking with the 3-step logic
 # -----------------------
+# New extract_sections() integrating tei_supplementary_detector (Option 1)
+
+
+# assuming your existing utilities remain available:
+# - clean_paragraph_and_extract_figures
+# - DEFAULT_CHUNK_SIZE
+
+
 def extract_sections(
     tei_xml: str,
     chunk_size: int = DEFAULT_CHUNK_SIZE,
-    include_supplementary: bool = True
-) -> Tuple[List[Dict], List[Dict]]:
+    include_supplementary: bool = True,
+    llm=None,
+    ask_user_for_supplementary=False,       # NEW name
+    ask_user_only_if_ambiguous=True,
+    supp_patterns=None,
+):
     """
-    Returns (main_chunks, supplementary_chunks)
-    Each chunk: {"text": "...", "figures": [...], "section_title": "..."}
-    
-    If include_supplementary=False → supplementary_chunks will be empty list.
+    Refactored extract_sections using *boundary-based* supplementary detection.
+
+    Returns (main_chunks, supplementary_chunks).
+    Uses the same TEI-based chunk producer, but the split between MAIN and SUPP
+    is now determined by detect_supplementary_boundary(), not div heuristics.
     """
+
     soup = BeautifulSoup(tei_xml, "lxml-xml")
 
-    # Focus on the <body> if present
     body = soup.find("body")
     divs = body.find_all("div") if body else soup.find_all("div")
 
-    # Fallback: no divs → treat entire document as one main chunk
+    # If no <div>, treat whole document as one chunk (fallback)
     if not divs:
         full_text = soup.get_text(" ", strip=True)
         cleaned_text = re.sub(r"\s+", " ", full_text).strip()
         return ([{"text": cleaned_text, "figures": [], "section_title": None}], [])
 
-    # ------------------------------------------------------------------
-    # 1. Detect main vs supplementary divs
-    # ------------------------------------------------------------------
-    div_paragraph_counts = [count_paragraphs_in_div(d) for d in divs]
+    # Compute supplementary boundary (character offset in linearized text)
+    supp_start = detect_supplementary_boundary(
+        tei_xml=tei_xml,
+        allow_user_interaction=ask_user_for_supplementary,  # <-- Updated
+        ask_user_only_if_ambiguous=ask_user_only_if_ambiguous,
+        use_llm=True,
+        llm=llm,
+        supp_patterns=supp_patterns or SUPP_PATTERNS,
+    )
 
-    main_div_index = None
-    supp_div_index = None
+    # Produce linearized TEI text (for offset mapping)
+    full_text = soup.get_text("\n", strip=True)
 
-    # Heuristic 1: first big div = main
-    if div_paragraph_counts[0] >= 5:
-        main_div_index = 0
-        for i in range(1, len(divs)):
-            if div_paragraph_counts[i] >= 3:
-                supp_div_index = i
-                break
-    else:
-        # Heuristic 2: maybe div1 is main
-        if len(div_paragraph_counts) > 1 and div_paragraph_counts[1] >= 5:
-            main_div_index = 1
-            for i in range(2, len(divs)):
-                if div_paragraph_counts[i] >= 3:
-                    supp_div_index = i
-                    break
+    # Function: get the start offset of each <div> in the linear text
+    div_offsets = []
+    for d in divs:
+        div_text = d.get_text("\n", strip=True)
+        idx = full_text.find(div_text[:40])  # fuzzy anchor (first 40 chars)
+        div_offsets.append(idx if idx != -1 else 10**12)
 
-    # Keyword fallback if still undecided
-    if main_div_index is None:
-        for i, d in enumerate(divs):
-            text = d.get_text(" ", strip=True)
-            if not detect_supplementary_by_keyword(text) and div_paragraph_counts[i] >= 3:
-                main_div_index = i
-                break
-        if main_div_index is None:
-            main_div_index = 0
-
-    # Find supplementary start (only if we want it)
-    if include_supplementary and supp_div_index is None:
-        for j in range(main_div_index + 1, len(divs)):
-            if (detect_supplementary_by_keyword(divs[j].get_text(" ", strip=True)) or
-                div_paragraph_counts[j] >= 3):
-                supp_div_index = j
-                break
-
-    # ------------------------------------------------------------------
-    # 2. Split divs accordingly
-    # ------------------------------------------------------------------
+    # Split main vs supplementary based on supp_start
     main_divs = []
     supp_divs = []
 
-    if include_supplementary and supp_div_index is not None:
-        main_divs = divs[main_div_index:supp_div_index]
-        supp_divs = divs[supp_div_index:]
+    if include_supplementary and supp_start is not None:
+        for d, off in zip(divs, div_offsets):
+            if off < supp_start:
+                main_divs.append(d)
+            else:
+                supp_divs.append(d)
     else:
-        main_divs = divs[main_div_index:]
+        main_divs = divs
+        supp_divs = []
 
-    # ------------------------------------------------------------------
-    # 3. Chunk producer (unchanged logic, just reused)
-    # ------------------------------------------------------------------
-    def produce_chunks_from_divs(div_list: List) -> List[Dict]:
+    # Chunking logic (unchanged)
+    def produce_chunks_from_divs(div_list):
         chunks = []
         current_chunk_text = ""
         current_chunk_figs = set()
@@ -1500,8 +1492,9 @@ def extract_sections(
             if not current_chunk_text.strip():
                 return
             if current_chunk_figs:
-                fig_line = "\nFigures used in this chunk: " + ", ".join(sorted(current_chunk_figs))
-                current_chunk_text = current_chunk_text.rstrip() + "\n\n" + fig_line + "\n"
+                fig_line = "\nFigures used in this chunk: " + \
+                           ", ".join(sorted(current_chunk_figs))
+                current_chunk_text = current_chunk_text.rstrip() + fig_line + "\n"
             chunks.append({
                 "text": current_chunk_text.strip(),
                 "figures": sorted(current_chunk_figs),
@@ -1540,7 +1533,8 @@ def extract_sections(
                         chunk_text = part.strip()
                         chunk_fig_set = set(figs)
                         if chunk_fig_set:
-                            chunk_text += "\n\nFigures used in this chunk: " + ", ".join(sorted(chunk_fig_set)) + "\n"
+                            chunk_text += "\n\nFigures used in this chunk: " + \
+                                           ", ".join(sorted(chunk_fig_set)) + "\n"
                         chunks.append({
                             "text": chunk_text,
                             "figures": sorted(chunk_fig_set),
@@ -1549,7 +1543,7 @@ def extract_sections(
                         start += len(part)
                     continue
 
-                # Normal case: try to append
+                # Normal paragraph case
                 if not current_chunk_text:
                     current_chunk_text = cleaned_para + "\n"
                     current_chunk_figs.update(figs)
@@ -1568,6 +1562,7 @@ def extract_sections(
     supp_chunks = produce_chunks_from_divs(supp_divs) if include_supplementary and supp_divs else []
 
     return main_chunks, supp_chunks
+
 
 #This part is just to check if the file has real references or not if not he w ont try to invent them at all cost
 
@@ -1652,6 +1647,7 @@ def preprocess_pdf(
     use_grobid_consolidation: bool = False,
     correct_grobid: bool = True,
     process_supplementary: bool = True,
+    ask_user_for_supplementary: bool = False,
 ) -> Dict:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1741,7 +1737,9 @@ def preprocess_pdf(
     main_chunks, supp_chunks = extract_sections(
         final_tei_xml,
         chunk_size=chunk_size,
-        include_supplementary=process_supplementary
+        include_supplementary=process_supplementary,
+        ask_user_for_supplementary=ask_user_for_supplementary,   # <-- NEW
+        llm=llm,
     )
     if not process_supplementary:
         supp_chunks = []
