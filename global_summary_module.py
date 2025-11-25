@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
-global_summary_module_v2.py
-
-Advanced journal-club summary generator with:
-- Smart main/supplementary boundary detection
-- Three-level main summary (structure → flow → contextualized)
-- Fully controllable presentation plan (slide count)
+global_summary_module_v3.py
+- Exhaustive bullet harvest (cumulative, chunk-by-chunk)
+- Faithful flow summary (cumulative, chunk-by-chunk)
+- Contextualized narrative + presentation plan
 """
 
 import json
 import re
 from pathlib import Path
 from typing import Optional, List, Dict, Tuple
-
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.chains.summarize import load_summarize_chain
+from langchain_core.documents import Document
+from langchain.prompts import PromptTemplate
 from langchain_core.language_models import BaseLanguageModel
 
 
@@ -30,13 +31,12 @@ def _load_main_summaries(main_dir: Path) -> List[str]:
     files = sorted(main_dir.glob("*_summary.txt"))
     return [_read(f) for f in files if _read(f)]
 
-def _load_supplementary_global(summaries_path: Path) -> str:
-    return _read(summaries_path / "supplementary_global.txt")
+def _load_supplementary_global(base: Path) -> str:
+    return _read(base / "supplementary_global.txt")
 
-def _load_figure_summaries(fig_path: Path) -> Dict[str, dict]:
-    if not fig_path.exists():
-        return {}
-    return json.loads(fig_path.read_text(encoding="utf-8"))
+def _load_figure_summaries(base: Path) -> Dict[str, dict]:
+    p = base / "figure_summaries.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
 
 
 # ==================== Smart conclusion detection ====================
@@ -46,175 +46,273 @@ def _detect_conclusion_chunk(summaries: List[str]) -> Tuple[int, str]:
         "this work demonstrates", "we have shown", "our results indicate"
     ]
     for i, text in enumerate(summaries):
-        lowered = text.lower()
-        if any(kw in lowered for kw in conclusion_keywords):
+        if any(kw in text.lower() for kw in conclusion_keywords):
             return i, text
     return -1, ""
 
-# ==================== Core generation functions ====================
-def _generate_structure_bullets(main_summaries: List[str], llm: BaseLanguageModel) -> Tuple[str, List[Dict]]:
-    print("→ Generating structured bullet overview (001::: ...)")
-    combined = "\n\n".join(f"Chunk {i+1}:\n{s}" for i, s in enumerate(main_summaries))
 
-    prompt = f"""
-Examine these main-text chunk summaries and produce a concise hierarchical bullet list of what the paper actually does.
+# ==================== 1. CUMULATIVE BULLET HARVEST ====================
+def _harvest_factual_bullets_cumulative(
+    main_summaries: List[str], llm: BaseLanguageModel
+) -> str:
+    """
+    Walk through the chunks one-by-one.
+    At each step the LLM sees:
+      - all bullets collected so far
+      - the current chunk
+    It returns **only new bullets** (no duplicates).
+    """
+    print("1. Harvesting factual bullets (cumulative, chunk-by-chunk)...")
+    all_bullets: List[str] = []
 
-Use this exact format:
-001::: Introduction and background
-002::: Theoretical model
-003::: Experimental methods
-...
+    for idx, chunk in enumerate(main_summaries, start=1):
+        prev = "\n".join(all_bullets) if all_bullets else "None yet."
+
+        prompt = f"""
+You have already extracted these bullets from earlier chunks:
+\"\"\"{prev[:15000]}\"\"\"
+
+Now examine **only** the following new chunk and add **new** bullet points that are not already present.
+
+Chunk {idx}:
+\"\"\"{chunk[:10000]}\"\"\"
 
 Rules:
-- One bullet per logical section
-- Use three-digit numbers followed by ::: 
-- Be extremely concise but never omit something essential
-- If conclusion is present, include it as the last item
+- Start every bullet with exactly "• "
+- Keep figure references verbatim.
+- Do **not** repeat any bullet that already exists.
+- Be exhaustive: every claim, method step, result, or figure description must appear.
+- If nothing new, return exactly "NO_NEW_BULLETS"
 
-Chunks:
-\"\"\"{combined[:18000]}\"\"\"
+Output **only** the new bullet list (or NO_NEW_BULLETS).
 """
-    response = llm.invoke(prompt).strip()
 
-    sections = []
-    for line in response.splitlines():
-        if m := re.match(r"(\d{3}):::\s*(.+)", line.strip()):
-            sections.append({"id": m.group(1), "title": m.group(2).strip()})
+        response = llm.invoke(prompt).strip()
 
-    return response, sections
+        if "NO_NEW_BULLETS" not in response.upper():
+            new_lines = [ln for ln in response.splitlines() if ln.startswith("• ")]
+            all_bullets.extend(new_lines)
+
+    final_text = "\n".join(all_bullets) if all_bullets else "No factual bullets found."
+    return final_text
 
 
-def _generate_flow_summary(main_summaries: List[str], llm: BaseLanguageModel) -> str:
-    print("→ Generating classic flowing summary")
-    combined = "\n\n".join(main_summaries)
-    prompt = f"""
-Write a long, natural, publication-style summary of the entire paper.
-Integrate figure references naturally.
-Highlight theory–experiment links.
-Do not mention supplementary material.
-\"\"\"{combined[:18000]}\"\"\"
+# ==================== 2. CUMULATIVE FLOW SUMMARY ====================
+def _generate_flow_summary_cumulative(
+    main_summaries: List[str], llm: BaseLanguageModel
+) -> str:
+    """
+    Build a running narrative paragraph-by-paragraph.
+    At each step the LLM receives:
+      - the current running summary
+      - the next chunk
+    It appends a coherent paragraph that integrates the new information.
+    """
+    print("2. Building faithful flow summary (cumulative, chunk-by-chunk)...")
+    running_summary = ""
+
+    for idx, chunk in enumerate(main_summaries, start=1):
+        prompt = f"""
+You are maintaining a **single, continuous, publication-style summary** of the paper.
+
+Current summary so far:
+\"\"\"{running_summary[:15000]}\"\"\"
+
+Now incorporate **only** the following new chunk into the narrative.
+Write **one or two new paragraphs** that flow naturally from what is already written.
+Preserve every key claim, method, result, and figure reference exactly.
+
+Chunk {idx}:
+\"\"\"{chunk[:10000]}\"\"\"
+
+Output **only** the new paragraphs (no preamble).
 """
-    return llm.invoke(prompt).strip()
+
+        addition = llm.invoke(prompt).strip()
+        running_summary = "\n\n".join([running_summary, addition]).strip()
+
+    return running_summary or "No flow summary generated."
 
 
-def _generate_contextualized_summary(structure: str, flow: str, supp_global: str, llm: BaseLanguageModel) -> str:
-    print("→ Generating final contextualized summary (the one to read aloud)")
-    supp_part = f"\n\nAdditional key insights (integrate silently):\n{supp_global}" if supp_global else ""
+# ==================== 3. CONTEXTUALIZED NARRATIVE ====================
+def _generate_contextualized_summary(
+    bullets: str, flow: str, supp_global: str, llm: BaseLanguageModel
+) -> str:
+    print("3. Generating the real story — full logical narrative (using refine chain for fact-focus)...")
+    
+    # Split the flow into chunks for refinement (handles length issues)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
+    flow_chunks = text_splitter.split_text(flow)
+    docs = [Document(page_content=chunk) for chunk in flow_chunks]
+    
+    # Add supp_global as an additional "chunk" to weave in naturally
+    if supp_global:
+        docs.append(Document(page_content=supp_global))
+    
+    # Initial prompt: Start with a fact-focused summary of the first chunk
+    question_prompt = PromptTemplate(
+        input_variables=["text"],
+        template="""Summarize this text focusing strictly on key facts, motivation, and logical connections:
+{text}
+FACT-FOCUSED SUMMARY:"""
+    )
+    
+    # Refine prompt: Iteratively connect facts, enforce logic, prioritize accuracy over style
+    refine_prompt = PromptTemplate(
+        input_variables=["existing_answer", "text"],
+        template="""Your current fact-based summary is:
+{existing_answer}
 
-    prompt = f"""
-You are writing the definitive journal-club summary that people will actually remember.
+Refine it by integrating this new text. Connect all facts logically: start with the open question/motivation, show theory-experiment links step by step, highlight the breakthrough with precise details, end with implications. Prioritize factual accuracy and explicit connections—do not embellish, add flair, or omit details:
+{text}
 
-Logical structure of the paper:
-{structure}
+REFINED FACTUAL SUMMARY:"""
+    )
+    
+    # Load the refine chain (iterative, fact-focused summarization)
+    chain = load_summarize_chain(
+        llm=llm,
+        chain_type="refine",
+        question_prompt=question_prompt,
+        refine_prompt=refine_prompt,
+        return_intermediate_steps=False,  # Only return final output
+        input_key="input_documents",
+        output_key="output_text",
+    )
+    
+    # Run the chain
+    result = chain.invoke({"input_documents": docs})
+    
+    return result["output_text"].strip()
 
-Previous flowing summary:
-\"\"\"{flow[:12000]}\"\"\"{supp_part}
 
-Now write the final version:
-- Start with the big picture and motivation
-- Clearly separate introduction → methods → results → conclusion
-- Weave in supplementary insights without saying "supplementary"
-- End with implications
-- Use engaging, precise, expert-level language
-"""
-    return llm.invoke(prompt).strip()
+# ==================== 4. PRESENTATION PLAN ====================
+def _generate_presentation_plan(
+    final_summary: str,
+    figure_summaries: dict,
+    desired_slides: int,
+    llm: BaseLanguageModel,
+) -> str:
+    print(f"4. Generating slide plan (target: {desired_slides or 'auto'} slides)...")
 
-
-def _generate_presentation_plan(contextualized: str,
-                                figure_summaries: dict,
-                                desired_slides: int,
-                                llm: BaseLanguageModel) -> str:
-    print(f"→ Generating presentation plan (target ~{desired_slides or 'auto'} slides)")
-
+    # Build figure overview
     fig_lines = []
     for fid, data in figure_summaries.items():
-        summ = data.get("summary", "(no summary)")
+        s = data.get("summary", "(no summary)")
         label = data.get("article_label", fid.replace("fig_", ""))
-        fig_lines.append(f"Figure {label}: {summ}")
-    figures = "\n".join(fig_lines) if fig_lines else "No figures."
+        fig_lines.append(f"Figure {label}: {s}")
+    figures_overview = "\n".join(fig_lines) if fig_lines else "No figures."
 
-    target = "Decide the optimal number of slides yourself (typically 12–18 for 20 min)." if desired_slides == 0 else f"Target {desired_slides} slides (±20%)."
+    # Slide target text
+    if desired_slides == 0:
+        target_slide_text = "Decide the optimal number of slides yourself (typically 12–18 for 20 min)."
+    else:
+        target_slide_text = f"Target approximately {desired_slides} slides (±20%)."
 
     prompt = f"""
-Create a complete journal-club presentation plan (20 min talk).
+Create a perfect 20-minute journal-club presentation plan.
 
-Paper summary:
-\"\"\"{contextualized[:18000]}\"\"\"
+Paper summary (the real story):
+\"\"\"{final_summary[:20000]}\"\"\"
 
-Figures:
-\"\"\"{figures[:10000]}\"\"\"
+Available figures:
+\"\"\"{figures_overview[:10000]}\"\"\"
 
-Instructions:
-{target}
-- One section per slide with clear title
-- Suggest exact figure/panel to display
-- Use format: # Slide X: Title
-- Cover: context → theory → methods → results → discussion → conclusion
-- Highlight theory–experiment connections
-- Include all important figures
+{target_slide_text}
 
-Output only the slide plan.
+Rules:
+- One clear idea per slide.
+- Always indicate which figure/panel to show.
+- Logical flow must match the narrative above.
+- Format exactly:
+  # Slide X: Title
+  → Short description (1-2 sentences)
+  → Show: Figure ...
+
+Output **only** the slide plan.
 """
     return llm.invoke(prompt).strip()
 
 
-# ==================== Public function ====================
+# ==================== PUBLIC API ====================
 def generate_global_and_plan(
     summaries_dir: str,
     output_dir: Optional[str] = None,
     *,
     llm: Optional[BaseLanguageModel] = None,
     model: str = "llama3.1:latest",
-    desired_slides: int = 0          # 0 = let AI decide
+    desired_slides: int = 0,          # 0 = AI decides
 ) -> None:
     """
-    Advanced journal-club summary + presentation generator (v2)
+    Advanced journal-club summary + presentation generator (v3)
     """
     base = Path(summaries_dir).expanduser().resolve()
     out = Path(output_dir).expanduser().resolve() if output_dir else base
 
-    # LLM
+    # ---- LLM ----
     if llm is None:
-        from langchain_ollama import OllamaLLM
-        llm = OllamaLLM(model=model)
+        try:
+            from langchain_ollama import OllamaLLM
+            llm = OllamaLLM(model=model)
+            print(f"Using Ollama model: {model}")
+        except ImportError:
+            raise ImportError(
+                "langchain-ollama not installed. pip install langchain-ollama"
+            )
+    else:
+        print(f"Using provided LLM: {llm.__class__.__name__}")
 
-    main_dir = base / "main_chunks"
-    main_summaries = _load_main_summaries(main_dir)
+    # ---- Load data ----
+    main_summaries = _load_main_summaries(base / "main_chunks")
     if not main_summaries:
-        print("No main summaries found!")
+        print("No main chunk summaries found!")
         return
 
     supp_global = _load_supplementary_global(base)
-    fig_summaries = _load_figure_summaries(base / "figure_summaries.json")
+    fig_summaries = _load_figure_summaries(base)
 
-    # Smart detection
-    concl_idx, concl_text = _detect_conclusion_chunk(main_summaries)
+    # ---- Smart warning ----
+    concl_idx, _ = _detect_conclusion_chunk(main_summaries)
     if 0 < concl_idx < len(main_summaries) - 2:
         print(f"Warning: Conclusion found early (chunk {concl_idx+1}). Consider re-splitting.")
 
-    # Generate everything
-    structure_text, sections = _generate_structure_bullets(main_summaries, llm)
-    flow_summary = _generate_flow_summary(main_summaries, llm)
-    final_summary = _generate_contextualized_summary(structure_text, flow_summary, supp_global, llm)
-    plan = _generate_presentation_plan(final_summary, fig_summaries, desired_slides, llm)
+    # ---- 1. Bullets ----
+    bullets_text = _harvest_factual_bullets_cumulative(main_summaries, llm)
+    _write(out / "01_main_factual_bullets.txt", bullets_text)
 
-    # Save all
-    _write(out / "01_main_structure.txt", structure_text)
-    _write(out / "02_main_flow_summary.txt", flow_summary)
-    _write(out / "03_main_contextualized.txt", final_summary)
-    _write(out / "04_presentation_plan.txt", plan)
-    _write(out / "main_sections.json", json.dumps(sections, indent=2))
+    # ---- 2. Flow ----
+    flow_text = _generate_flow_summary_cumulative(main_summaries, llm)
+    _write(out / "02_main_flow_summary.txt", flow_text)
 
-    print("All summaries generated!")
-    print(f"   → {out}/03_main_contextualized.txt  (read this one at journal club)")
-    print(f"   → {out}/04_presentation_plan.txt    (~{desired_slides or 'auto'} slides)")
+    # ---- 3. Contextualized ----
+    final_text = _generate_contextualized_summary(
+        bullets_text, flow_text, supp_global, llm
+    )
+    _write(out / "03_main_contextualized.txt", final_text)
+
+    # ---- 4. Plan ----
+    plan_text = _generate_presentation_plan(
+        final_text, fig_summaries, desired_slides, llm
+    )
+    _write(out / "04_presentation_plan.txt", plan_text)
+
+    # ---- Done ----
+    print("\n=== All files generated ===")
+    print(f"   01_main_factual_bullets.txt  → every claim")
+    print(f"   02_main_flow_summary.txt     → faithful narrative")
+    print(f"   03_main_contextualized.txt   → the story (read this!)")
+    print(f"   04_presentation_plan.txt     → slides (~{desired_slides or 'auto'})")
 
 
 # ==================== Demo ====================
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
-        print("Usage: python global_summary_module_v2.py <summaries_dir> [output_dir] [slides]")
+        print("Usage: python global_summary_module_v3.py <summaries_dir> [output_dir] [slides]")
         sys.exit(1)
     slides = int(sys.argv[3]) if len(sys.argv) > 3 else 0
-    generate_global_and_plan(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None, desired_slides=slides)
+    generate_global_and_plan(
+        sys.argv[1],
+        sys.argv[2] if len(sys.argv) > 2 else None,
+        desired_slides=slides,
+    )
