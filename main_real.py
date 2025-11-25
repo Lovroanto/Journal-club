@@ -39,8 +39,10 @@ result_standard = preprocess_pdf(
 )
 
 
+
+
 print("STANDARD MODE RESULTS:")
 print(result_standard)
 
 output_dir_summary = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Summary/"
-run_chunk_summary(output_dir_article, output_dir_summary)
+run_chunk_summary(output_dir_article, output_dir_summary, llm=llm)
