@@ -80,59 +80,73 @@ def _build_figure_notes(mentioned: Dict[str, Dict[str, Any]],
                         figure_summaries: Dict[str, Any]) -> str:
     if not mentioned:
         return "No figures mentioned in this chunk."
+
     lines = []
     for fig_id, data in mentioned.items():
         info = figure_summaries.get(fig_id, {})
+        summary = info.get("summary", "(no summary available)")
         art = data["article_label"]
-        subs = sorted(data["subpanels"])
-        if info.get("type") == "multi" and subs:
-            sub_txt = [info["subpanels"].get(s, "(no summary)") for s in subs]
-            panel_str = ", ".join([f"panel {s}" for s in subs])
-            lines.append(f"Figure {art} ({panel_str}): {' | '.join(sub_txt)}")
-        else:
-            summ = info.get("global") or info.get("summary", "(no summary)")
-            panel_str = f" (panel {', '.join(subs)})" if subs else ""
-            lines.append(f"Figure {art}{panel_str}: {summ}")
+        lines.append(f"Figure {art}: {summary}")
+
     return "\n".join(lines)
 
 
 def summarize_figures(figures_dir: Path, out_dir: Path, llm: BaseLanguageModel) -> Dict[str, Any]:
-    print("STEP 1 — Summarizing figures")
+    """
+    Create one clean, readable summary per figure.
+    Detects multi-panel figures automatically and lists panels clearly.
+    """
+    print("STEP 1 — Summarizing figures (clean global summaries)")
     caps = _load_figure_captions(figures_dir)
     summaries: Dict[str, Any] = {}
     txt_dir = out_dir / "figure_summaries_texts"
     txt_dir.mkdir(parents=True, exist_ok=True)
+
     for fid, caption in caps.items():
         if not caption.strip():
             continue
         print(f" → {fid}")
-        parts = re.split(r"(?=\(?[a-hA-H]\))", caption)
-        parts = [p.strip() for p in parts if len(p.strip()) > 10]
-        if len(parts) > 1:  # multi-panel
-            sub = {}
-            for i, txt in enumerate(parts, 1):
-                m = re.match(r"^\(?([a-hA-H])\)?", txt, re.I)
-                label = m.group(1).lower() if m else f"part{i}"
-                sub[label] = llm.invoke(
-                    f"Summarize this subfigure caption in 1–2 sentences.\nSUBFIGURE ({label}):\n\"\"\"{txt[:1500]}\"\"\""
-                ).strip()
-            global_prompt = (
-                f"Write one concise 1–2 sentence summary of the whole figure.\n"
-                f"SUBFIGURES:\n" + "\n".join([f"({k}) {v}" for k, v in sub.items()])
-            )
-            global_sum = llm.invoke(global_prompt).strip()
-            summaries[fid] = {"type": "multi", "global": global_sum, "subpanels": sub}
-            base = fid.replace("fig_", "Figure ")
-            (txt_dir / f"{base}_global.txt").write_text(global_sum, encoding="utf-8")
-            for k, v in sub.items():
-                (txt_dir / f"{base}_{k}.txt").write_text(v, encoding="utf-8")
-        else:  # single caption
-            summ = llm.invoke(
-                f"Summarize this caption in 1–2 sentences.\nCAPTION:\n\"\"\"{caption[:2500]}\"\"\""
-            ).strip()
-            summaries[fid] = {"type": "single", "summary": summ}
-            base = fid.replace("fig_", "Figure ")
-            (txt_dir / f"{base}.txt").write_text(summ, encoding="utf-8")
+
+        # Clean caption a bit
+        caption = caption.strip()
+        if len(caption) > 5000:
+            caption = caption[:5000] + " [truncated]"
+
+        # Main prompt — smart, reliable, and gives exactly what we want
+        prompt = f"""
+You are summarizing a scientific figure caption for quick understanding.
+
+Caption:
+\"\"\"{caption}\"\"\"
+
+Instructions:
+- Write ONE concise summary (2–4 sentences max).
+- If the figure has multiple panels (a, b, c, ... or A, B, C, ...), explicitly list what each panel shows.
+  Example: "Figure 5 (multi-panel): (a) shows the experimental setup; (b) presents results for condition X; (c) compares with controls."
+- If it's a single-panel figure, just summarize what it shows.
+- At the end, add one short sentence about the overall purpose of the figure.
+- Use clear, plain language. No fluff.
+
+Summary:"""
+
+        response = llm.invoke(prompt).strip()
+
+        # Store both raw and structured
+        summaries[fid] = {
+            "type": "global",
+            "summary": response,
+            "original_caption_length": len(caption)
+        }
+
+        # Pretty filename
+        base = fid.replace("fig_", "Figure ")
+        output_file = txt_dir / f"{base}.txt"
+        output_file.write_text(response, encoding="utf-8")
+
+        # Also save to a nice combined file later if needed
+        print(f"     → {response.split('.')[0][:70]}...")
+
+    # Save full index
     (out_dir / "figure_summaries.json").write_text(
         json.dumps(summaries, indent=2, ensure_ascii=False), encoding="utf-8"
     )
