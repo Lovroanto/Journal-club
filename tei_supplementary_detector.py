@@ -48,6 +48,9 @@ from typing import List, Optional, Tuple, Any
 from bs4 import BeautifulSoup
 import re
 import html
+import ollama
+from langchain_ollama import OllamaLLM
+
 
 # Default patterns (user-provided list can override/extend)
 DEFAULT_SUPP_PATTERNS = [
@@ -125,6 +128,37 @@ def _fuzzy_find(full_text: str, snippet: str, min_len: int = 30) -> Optional[int
         if idx != -1:
             return idx
 
+    return None
+
+# ----------------------
+# METHOD A.1: TEI structural detection (annex/appendix)
+# ----------------------
+
+def detect_by_tei_structure(soup: BeautifulSoup, full_text: str) -> Optional[int]:
+    """
+    Detect <div type="annex">, <div type="appendix">, or
+    <div type="supplementary">, or divs with n="S1"/"S2" or xml:id="s1".
+    Returns character index in full_text or None.
+    """
+    # Check for divs with type attribute
+    structural_div = soup.find(
+        lambda tag: tag.name == "div" and tag.get("type", "").lower() in ["annex", "appendix", "supplementary"]
+    )
+    if structural_div:
+        txt = structural_div.get_text(" ", strip=True)
+        idx = _fuzzy_find(full_text, txt[:80])
+        if idx is not None:
+            return idx
+
+    # Check for numbered or id-labeled supplementary divs (n="S1", xml:id="s1")
+    for d in soup.find_all("div"):
+        n_attr = (d.get("n") or "").lower()
+        xmlid = (d.get("xml:id") or d.get("id") or "").lower()
+        if re.match(r"^s\d+", n_attr) or re.match(r"^s\d+", xmlid):
+            txt = d.get_text(" ", strip=True)
+            idx = _fuzzy_find(full_text, txt[:80])
+            if idx is not None:
+                return idx
     return None
 
 
@@ -344,6 +378,11 @@ def detect_supplementary_boundary(
 
     # Candidates will be integer indices in full_text
     candidates: List[int] = []
+
+    # METHOD A.1: TEI structure
+    idx_struct = detect_by_tei_structure(soup, full_text)
+    if idx_struct is not None:
+        candidates.append(idx_struct)
 
     # METHOD A: TEI heading
     heading_text = detect_by_heading_tei(soup, patterns)

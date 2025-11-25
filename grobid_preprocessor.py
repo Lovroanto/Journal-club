@@ -47,6 +47,8 @@ MAX_DIFF_TO_SHOW = 200   # safety – don’t flood the report
 HTML_DIFF = HtmlDiff(wrapcolumn=80)   # pretty word-level diff
 MIN_CHAR_DIFF = 15          # ← ignore <15 char differences
 DEFAULT_AUTHOR_RATIO = 0.60   # ← 60% = perfect balance, change anytime
+llm = OllamaLLM(model="llama3.1")
+
 
 _figure_counter = 0
 _figure_lock = False  # prevents accidental reset if imported multiple times
@@ -1648,6 +1650,7 @@ def preprocess_pdf(
     correct_grobid: bool = True,
     process_supplementary: bool = True,
     ask_user_for_supplementary: bool = False,
+    llm: Any = None,          # <-- Add this
 ) -> Dict:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
