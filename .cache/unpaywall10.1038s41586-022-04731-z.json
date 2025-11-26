@@ -1,0 +1,166 @@
+{
+  "best_pdf": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+  "raw": {
+    "doi": "10.1038/s41586-022-04731-z",
+    "doi_url": "https://doi.org/10.1038/s41586-022-04731-z",
+    "title": "Continuous Bose–Einstein condensation",
+    "genre": "journal-article",
+    "is_paratext": false,
+    "published_date": "2022-06-08",
+    "year": 2022,
+    "journal_name": "Nature",
+    "journal_issns": "0028-0836,1476-4687",
+    "journal_issn_l": "0028-0836",
+    "journal_is_oa": false,
+    "journal_is_in_doaj": false,
+    "publisher": "Springer Science and Business Media LLC",
+    "is_oa": true,
+    "oa_status": "hybrid",
+    "has_repository_copy": true,
+    "best_oa_location": {
+      "url": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+      "url_for_pdf": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+      "url_for_landing_page": "https://doi.org/10.1038/s41586-022-04731-z",
+      "evidence": "deprecated",
+      "license": "cc-by",
+      "version": "publishedVersion",
+      "host_type": "publisher",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": null,
+      "oa_date": "2022-06-08",
+      "updated": "deprecated"
+    },
+    "first_oa_location": {
+      "url": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+      "url_for_pdf": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+      "url_for_landing_page": "https://doi.org/10.1038/s41586-022-04731-z",
+      "evidence": "deprecated",
+      "license": "cc-by",
+      "version": "publishedVersion",
+      "host_type": "publisher",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": null,
+      "oa_date": "2022-06-08",
+      "updated": "deprecated"
+    },
+    "oa_locations": [
+      {
+        "url": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+        "url_for_pdf": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+        "url_for_landing_page": "https://doi.org/10.1038/s41586-022-04731-z",
+        "evidence": "deprecated",
+        "license": "cc-by",
+        "version": "publishedVersion",
+        "host_type": "publisher",
+        "is_best": true,
+        "pmh_id": null,
+        "endpoint_id": null,
+        "repository_institution": null,
+        "oa_date": "2022-06-08",
+        "updated": "deprecated"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2012.07605",
+        "url_for_pdf": "https://arxiv.org/pdf/2012.07605",
+        "url_for_landing_page": "http://arxiv.org/abs/2012.07605",
+        "evidence": "deprecated",
+        "license": null,
+        "version": "submittedVersion",
+        "host_type": "repository",
+        "is_best": false,
+        "pmh_id": "oai:arXiv.org:2012.07605",
+        "endpoint_id": "ca8f8d56758a80a4f86",
+        "repository_institution": "Cornell University",
+        "oa_date": "2022-06-08",
+        "updated": "deprecated"
+      },
+      {
+        "url": "https://dare.uva.nl/personal/pure/en/publications/continuous-boseeinstein-condensation(2157dd43-eefb-4f0a-8b64-5025770ee183).html",
+        "url_for_pdf": null,
+        "url_for_landing_page": "https://dare.uva.nl/personal/pure/en/publications/continuous-boseeinstein-condensation(2157dd43-eefb-4f0a-8b64-5025770ee183).html",
+        "evidence": "deprecated",
+        "license": "other-oa",
+        "version": "submittedVersion",
+        "host_type": "repository",
+        "is_best": false,
+        "pmh_id": "uvapub:oai:dare.uva.nl:openaire_cris_publications/2157dd43-eefb-4f0a-8b64-5025770ee183",
+        "endpoint_id": "bfa41bc4dfeca7f7fae",
+        "repository_institution": "Royal Netherlands Academy of Arts and Sciences",
+        "oa_date": "2022-06-08",
+        "updated": "deprecated"
+      },
+      {
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/9217748",
+        "url_for_pdf": null,
+        "url_for_landing_page": "https://www.ncbi.nlm.nih.gov/pmc/articles/9217748",
+        "evidence": "deprecated",
+        "license": "other-oa",
+        "version": "submittedVersion",
+        "host_type": "repository",
+        "is_best": false,
+        "pmh_id": "oai:pubmedcentral.nih.gov:9217748",
+        "endpoint_id": "daaf77eacc58eec31bb",
+        "repository_institution": "National Institutes of Health",
+        "oa_date": "2022-06-08",
+        "updated": "deprecated"
+      }
+    ],
+    "oa_locations_embargoed": [],
+    "data_standard": 2,
+    "z_authors": [
+      {
+        "author_position": "first",
+        "raw_author_name": "Chun-Chia Chen",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Van der Waals-Zeeman Institute, Institute of Physics, University of Amsterdam, Amsterdam, the Netherlands"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "Rodrigo González Escudero",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Van der Waals-Zeeman Institute, Institute of Physics, University of Amsterdam, Amsterdam, the Netherlands"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "Jiří Minář",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Institute for Theoretical Physics, Institute of Physics, University of Amsterdam, Amsterdam, the Netherlands"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "Benjamin Pasquiou",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Van der Waals-Zeeman Institute, Institute of Physics, University of Amsterdam, Amsterdam, the Netherlands"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "Shayne Bennetts",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Van der Waals-Zeeman Institute, Institute of Physics, University of Amsterdam, Amsterdam, the Netherlands"
+        ]
+      },
+      {
+        "author_position": "last",
+        "raw_author_name": "Florian Schreck",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "QuSoft, Amsterdam, the Netherlands"
+        ]
+      }
+    ],
+    "updated": "2025-10-23T16:56:47Z"
+  }
+}

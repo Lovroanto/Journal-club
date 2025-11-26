@@ -1,0 +1,105 @@
+{
+  "best_pdf": "https://www.researchsquare.com/article/rs-1021592/latest.pdf",
+  "raw": {
+    "doi": "10.21203/rs.3.rs-1021592/v1",
+    "doi_url": "https://doi.org/10.21203/rs.3.rs-1021592/v1",
+    "title": "Entanglement-enhanced matter-wave interferometry in a high-finesse cavity",
+    "genre": "posted-content",
+    "is_paratext": false,
+    "published_date": "2021-11-24",
+    "year": 2021,
+    "journal_name": "Research Square (Research Square)",
+    "journal_issns": null,
+    "journal_issn_l": null,
+    "journal_is_oa": false,
+    "journal_is_in_doaj": false,
+    "publisher": "Research Square Platform LLC",
+    "is_oa": true,
+    "oa_status": "green",
+    "has_repository_copy": true,
+    "best_oa_location": {
+      "url": "https://www.researchsquare.com/article/rs-1021592/latest.pdf",
+      "url_for_pdf": "https://www.researchsquare.com/article/rs-1021592/latest.pdf",
+      "url_for_landing_page": "https://doi.org/10.21203/rs.3.rs-1021592/v1",
+      "evidence": "deprecated",
+      "license": "cc-by",
+      "version": "acceptedVersion",
+      "host_type": "repository",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": "Research Square (United States)",
+      "oa_date": "2021-11-24",
+      "updated": "deprecated"
+    },
+    "first_oa_location": {
+      "url": "https://www.researchsquare.com/article/rs-1021592/latest.pdf",
+      "url_for_pdf": "https://www.researchsquare.com/article/rs-1021592/latest.pdf",
+      "url_for_landing_page": "https://doi.org/10.21203/rs.3.rs-1021592/v1",
+      "evidence": "deprecated",
+      "license": "cc-by",
+      "version": "acceptedVersion",
+      "host_type": "repository",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": "Research Square (United States)",
+      "oa_date": "2021-11-24",
+      "updated": "deprecated"
+    },
+    "oa_locations": [
+      {
+        "url": "https://www.researchsquare.com/article/rs-1021592/latest.pdf",
+        "url_for_pdf": "https://www.researchsquare.com/article/rs-1021592/latest.pdf",
+        "url_for_landing_page": "https://doi.org/10.21203/rs.3.rs-1021592/v1",
+        "evidence": "deprecated",
+        "license": "cc-by",
+        "version": "acceptedVersion",
+        "host_type": "repository",
+        "is_best": true,
+        "pmh_id": null,
+        "endpoint_id": null,
+        "repository_institution": "Research Square (United States)",
+        "oa_date": "2021-11-24",
+        "updated": "deprecated"
+      }
+    ],
+    "oa_locations_embargoed": [],
+    "data_standard": 2,
+    "z_authors": [
+      {
+        "author_position": "first",
+        "raw_author_name": "James Thompson",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST and Department of Physics, University of Colorado, Boulder, CO, USA."
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "Graham Greve",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST and Department of Physics, University of Colorado, Boulder, CO, USA."
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "Chengyi Luo",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST and Department of Physics, University of Colorado, Boulder, CO, USA."
+        ]
+      },
+      {
+        "author_position": "last",
+        "raw_author_name": "Baochen Wu",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST and Department of Physics, University of Colorado, Boulder, CO, USA."
+        ]
+      }
+    ],
+    "updated": "2025-10-23T16:56:47Z"
+  }
+}

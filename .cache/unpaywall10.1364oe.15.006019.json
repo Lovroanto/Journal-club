@@ -1,0 +1,113 @@
+{
+  "best_pdf": null,
+  "raw": {
+    "doi": "10.1364/oe.15.006019",
+    "doi_url": "https://doi.org/10.1364/oe.15.006019",
+    "title": "Self ordering threshold and superradiant backscattering to slow a fast gas beam in a ring cavity with counter propagating pump",
+    "genre": "journal-article",
+    "is_paratext": false,
+    "published_date": "2007-01-01",
+    "year": 2007,
+    "journal_name": "Optics Express",
+    "journal_issns": "1094-4087",
+    "journal_issn_l": "1094-4087",
+    "journal_is_oa": true,
+    "journal_is_in_doaj": true,
+    "publisher": "Optica Publishing Group",
+    "is_oa": true,
+    "oa_status": "gold",
+    "has_repository_copy": true,
+    "best_oa_location": {
+      "url": "https://doi.org/10.1364/oe.15.006019",
+      "url_for_pdf": null,
+      "url_for_landing_page": "https://doi.org/10.1364/oe.15.006019",
+      "evidence": "deprecated",
+      "license": null,
+      "version": "publishedVersion",
+      "host_type": "publisher",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": null,
+      "oa_date": "2007-01-01",
+      "updated": "deprecated"
+    },
+    "first_oa_location": {
+      "url": "https://doi.org/10.1364/oe.15.006019",
+      "url_for_pdf": null,
+      "url_for_landing_page": "https://doi.org/10.1364/oe.15.006019",
+      "evidence": "deprecated",
+      "license": null,
+      "version": "publishedVersion",
+      "host_type": "publisher",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": null,
+      "oa_date": "2007-01-01",
+      "updated": "deprecated"
+    },
+    "oa_locations": [
+      {
+        "url": "https://doi.org/10.1364/oe.15.006019",
+        "url_for_pdf": null,
+        "url_for_landing_page": "https://doi.org/10.1364/oe.15.006019",
+        "evidence": "deprecated",
+        "license": null,
+        "version": "publishedVersion",
+        "host_type": "publisher",
+        "is_best": true,
+        "pmh_id": null,
+        "endpoint_id": null,
+        "repository_institution": null,
+        "oa_date": "2007-01-01",
+        "updated": "deprecated"
+      },
+      {
+        "url": "https://arxiv.org/pdf/quant-ph/0611221",
+        "url_for_pdf": "https://arxiv.org/pdf/quant-ph/0611221",
+        "url_for_landing_page": "http://arxiv.org/abs/quant-ph/0611221",
+        "evidence": "deprecated",
+        "license": null,
+        "version": "submittedVersion",
+        "host_type": "repository",
+        "is_best": false,
+        "pmh_id": "oai:arXiv.org:quant-ph/0611221",
+        "endpoint_id": "ca8f8d56758a80a4f86",
+        "repository_institution": "Cornell University",
+        "oa_date": "2007-01-01",
+        "updated": "deprecated"
+      }
+    ],
+    "oa_locations_embargoed": [],
+    "data_standard": 2,
+    "z_authors": [
+      {
+        "author_position": "first",
+        "raw_author_name": "C. Maes",
+        "is_corresponding": true,
+        "raw_affiliation_strings": [
+          "Department of Physics, University of Arizona, PO Box 210081 Tucson, AZ, 85721"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "J. K. Asbóth",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Institute of Theoretical Physics, University of Innsbruck, Technikerstrasse 25, A-6020 Innsbruck, Austria",
+          "Research Institute of Solid State Physics and Optics,Hungarian Academy of Sciences,H-1525 Budapest P.O. Box 49, Hungary"
+        ]
+      },
+      {
+        "author_position": "last",
+        "raw_author_name": "H. Ritsch",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Institute of Theoretical Physics, University of Innsbruck, Technikerstrasse 25, A-6020 Innsbruck, Austria"
+        ]
+      }
+    ],
+    "updated": "2025-10-23T16:56:47Z"
+  }
+}

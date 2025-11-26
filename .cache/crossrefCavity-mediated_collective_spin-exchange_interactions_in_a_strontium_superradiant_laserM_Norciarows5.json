@@ -1,0 +1,2179 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          21
+        ]
+      ],
+      "date-time": "2025-11-21T17:57:25Z",
+      "timestamp": 1763747845664,
+      "version": "3.37.3"
+    },
+    "reference-count": 52,
+    "publisher": "American Association for the Advancement of Science (AAAS)",
+    "issue": "6399",
+    "funder": [
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1734006"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "Graduate Research Fellowships Program"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100006502",
+        "name": "Defense Sciences Office, DARPA",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "QuASAR, Extreme Sensing"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100006502",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "name": "NIST National Institute of Science and Technology"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Science"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2018,
+          7,
+          20
+        ]
+      ]
+    },
+    "abstract": "<jats:title>An atom-coupling cavity</jats:title>\n          <jats:p>\n            Ensembles of atoms have emerged as powerful simulators of many-body dynamics. Engineering controllable interactions between the atoms is crucial, be it direct or through a mediator. Norcia\n            <jats:italic>et al.</jats:italic>\n            developed a flexible alternative to existing atomic simulators in a system consisting of strontium atoms placed in an optical cavity. Two atomic states connected by a clock transition each served as an effective spin, with long-range spin-exchange interactions mediated by the cavity photons. With improvements, the setup is expected to be amenable to simulating nonequilibrium quantum dynamics and to have applications in metrology.\n          </jats:p>\n          <jats:p>\n            <jats:italic>Science</jats:italic>\n            , this issue p.\n            <jats:related-article xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"doi\" issue=\"6399\" page=\"259\" related-article-type=\"in-this-issue\" vol=\"361\" xlink:href=\"10.1126/science.aar3102\">259</jats:related-article>\n          </jats:p>",
+    "DOI": "10.1126/science.aar3102",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2018,
+          7,
+          19
+        ]
+      ],
+      "date-time": "2018-07-19T18:05:33Z",
+      "timestamp": 1532023533000
+    },
+    "page": "259-262",
+    "source": "Crossref",
+    "is-referenced-by-count": 181,
+    "title": [
+      "Cavity-mediated collective spin-exchange interactions in a strontium superradiant laser"
+    ],
+    "prefix": "10.1126",
+    "volume": "361",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-2276-9473",
+        "authenticated-orcid": true,
+        "given": "Matthew A.",
+        "family": "Norcia",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, and Department of Physics, University of Colorado, 440 UCB, Boulder, CO 80309, USA."
+          }
+        ]
+      },
+      {
+        "given": "Robert J.",
+        "family": "Lewis-Swan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, and Department of Physics, University of Colorado, 440 UCB, Boulder, CO 80309, USA."
+          },
+          {
+            "name": "Center for Theory of Quantum Matter, University of Colorado, Boulder, CO 80309, USA."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6749-221X",
+        "authenticated-orcid": true,
+        "given": "Julia R. K.",
+        "family": "Cline",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, and Department of Physics, University of Colorado, 440 UCB, Boulder, CO 80309, USA."
+          }
+        ]
+      },
+      {
+        "given": "Bihui",
+        "family": "Zhu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, and Department of Physics, University of Colorado, 440 UCB, Boulder, CO 80309, USA."
+          },
+          {
+            "name": "ITAMP, Harvard-Smithsonian Center for Astrophysics, Cambridge, MA 02138, USA."
+          }
+        ]
+      },
+      {
+        "given": "Ana M.",
+        "family": "Rey",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, and Department of Physics, University of Colorado, 440 UCB, Boulder, CO 80309, USA."
+          },
+          {
+            "name": "Center for Theory of Quantum Matter, University of Colorado, Boulder, CO 80309, USA."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1160-5112",
+        "authenticated-orcid": true,
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, and Department of Physics, University of Colorado, 440 UCB, Boulder, CO 80309, USA."
+          }
+        ]
+      }
+    ],
+    "member": "221",
+    "reference": [
+      {
+        "key": "e_1_3_2_2_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.80.885"
+      },
+      {
+        "key": "e_1_3_2_3_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.82.2313"
+      },
+      {
+        "key": "e_1_3_2_4_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature18274"
+      },
+      {
+        "key": "e_1_3_2_5_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.7.041063"
+      },
+      {
+        "key": "e_1_3_2_6_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0034-4885/72/12/126401"
+      },
+      {
+        "key": "e_1_3_2_7_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.185305"
+      },
+      {
+        "key": "e_1_3_2_8_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys3985"
+      },
+      {
+        "key": "e_1_3_2_9_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature09071"
+      },
+      {
+        "key": "e_1_3_2_10_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature10981"
+      },
+      {
+        "key": "e_1_3_2_11_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature09801"
+      },
+      {
+        "key": "e_1_3_2_12_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.250801"
+      },
+      {
+        "key": "e_1_3_2_13_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature09009"
+      },
+      {
+        "key": "e_1_3_2_14_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.96.050301"
+      },
+      {
+        "key": "e_1_3_2_15_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/aa8438"
+      },
+      {
+        "key": "e_1_3_2_16_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/ncomms7896"
+      },
+      {
+        "key": "e_1_3_2_17_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "key": "e_1_3_2_18_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.102.163601"
+      },
+      {
+        "key": "e_1_3_2_19_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.1601231"
+      },
+      {
+        "key": "e_1_3_2_20_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.112.1900"
+      },
+      {
+        "key": "e_1_3_2_21_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "A. Auerbach Interacting Electrons and Quantum Magnetism (Springer New York 1994).",
+        "DOI": "10.1007/978-1-4612-0869-3"
+      },
+      {
+        "key": "e_1_3_2_22_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.47.5138"
+      },
+      {
+        "key": "e_1_3_2_23_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1236929"
+      },
+      {
+        "key": "e_1_3_2_24_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aad9958"
+      },
+      {
+        "key": "e_1_3_2_25_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.82.1835"
+      },
+      {
+        "key": "e_1_3_2_26_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aaf3397"
+      },
+      {
+        "key": "e_1_3_2_27_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys4119"
+      },
+      {
+        "key": "e_1_3_2_28_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.77.052305"
+      },
+      {
+        "key": "e_1_3_2_29_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1051/jphys:01982004302019700"
+      },
+      {
+        "key": "e_1_3_2_30_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1070/PU1986v029n03ABEH003179"
+      },
+      {
+        "key": "e_1_3_2_31_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.53.302.2"
+      },
+      {
+        "key": "e_1_3_2_32_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.52.1810"
+      },
+      {
+        "key": "e_1_3_2_33_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.89.090402"
+      },
+      {
+        "key": "e_1_3_2_34_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.105.020401"
+      },
+      {
+        "key": "e_1_3_2_35_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.101.150401"
+      },
+      {
+        "key": "e_1_3_2_36_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.240801"
+      },
+      {
+        "key": "e_1_3_2_37_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1098/rsta.2017.0107"
+      },
+      {
+        "key": "e_1_3_2_38_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.119.080501"
+      },
+      {
+        "key": "e_1_3_2_39_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature21413"
+      },
+      {
+        "key": "e_1_3_2_40_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature21426"
+      },
+      {
+        "key": "e_1_3_2_41_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.91.033628"
+      },
+      {
+        "key": "e_1_3_2_42_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1254697"
+      },
+      {
+        "key": "e_1_3_2_43_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.70.3339"
+      },
+      {
+        "key": "e_1_3_2_44_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/JHEP03(2014)067"
+      },
+      {
+        "key": "e_1_3_2_45_2",
+        "unstructured": "A. Kitaev talk given at Fundamental Physics Prize Symposium Stanford University 10 November 2014."
+      },
+      {
+        "key": "e_1_3_2_46_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/JHEP08(2016)106"
+      },
+      {
+        "key": "e_1_3_2_47_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.94.040302"
+      },
+      {
+        "key": "e_1_3_2_49_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.88.013826"
+      },
+      {
+        "key": "e_1_3_2_50_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.113.154101"
+      },
+      {
+        "key": "e_1_3_2_51_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.95.033808"
+      },
+      {
+        "key": "e_1_3_2_52_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "M. A. Norcia et al . Cavity-mediated collective spin exchange interactions in a strontium superradiant laser Dryad (2018); 10.5061/dryad.k6tp614.",
+        "DOI": "10.1126/science.aar3102"
+      },
+      {
+        "key": "e_1_3_2_53_2"
+      },
+      {
+        "key": "e_1_3_2_54_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1142/S0218271807011826"
+      }
+    ],
+    "container-title": [
+      "Science"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://syndication.highwire.org/content/doi/10.1126/science.aar3102",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://www.science.org/doi/pdf/10.1126/science.aar3102",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          15
+        ]
+      ],
+      "date-time": "2024-01-15T17:02:23Z",
+      "timestamp": 1705338143000
+    },
+    "score": 75.35746,
+    "resource": {
+      "primary": {
+        "URL": "https://www.science.org/doi/10.1126/science.aar3102"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          7,
+          20
+        ]
+      ]
+    },
+    "references-count": 52,
+    "journal-issue": {
+      "issue": "6399",
+      "published-print": {
+        "date-parts": [
+          [
+            2018,
+            7,
+            20
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1126/science.aar3102"
+    ],
+    "URL": "https://doi.org/10.1126/science.aar3102",
+    "ISSN": [
+      "0036-8075",
+      "1095-9203"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0036-8075"
+      },
+      {
+        "type": "electronic",
+        "value": "1095-9203"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          7,
+          20
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          20
+        ]
+      ],
+      "date-time": "2025-11-20T18:30:04Z",
+      "timestamp": 1763663404026,
+      "version": "3.37.3"
+    },
+    "reference-count": 30,
+    "publisher": "American Physical Society (APS)",
+    "issue": "1",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2016,
+              3,
+              9
+            ]
+          ],
+          "date-time": "2016-03-09T00:00:00Z",
+          "timestamp": 1457481600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000183",
+        "name": "Army Research Office",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000183",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000161",
+        "name": "NIST",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000161",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1125844"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "name": "DARPA QuASAR"
+      },
+      {
+        "name": "NSF PFC"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. X"
+    ],
+    "DOI": "10.1103/physrevx.6.011025",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2016,
+          3,
+          9
+        ]
+      ],
+      "date-time": "2016-03-09T17:08:39Z",
+      "timestamp": 1457543319000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 86,
+    "title": [
+      "Cold-Strontium Laser in the Superradiant Crossover Regime"
+    ],
+    "prefix": "10.1103",
+    "volume": "6",
+    "author": [
+      {
+        "given": "Matthew A.",
+        "family": "Norcia",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2016,
+          3,
+          9
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevX.6.011025Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.070802"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1240420"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2015.5"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0034-4885/72/7/076901"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1254978"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1192720"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.103.090401"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2012.217"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.93.250602"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.73.031804"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.102.163601"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.033847"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s11434-009-0073-y"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.71.995"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.72.3815"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.5.361"
+      },
+      {
+        "volume-title": "Lasers",
+        "year": "1986",
+        "author": "A. E. Siegman",
+        "key": "PhysRevX.6.011025Cc19R1"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.101.093002"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature10920"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.88.013826"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.109.253602"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.107.063904"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OE.22.013269"
+      },
+      {
+        "volume-title": "Proceedings of the European Frequency and Time Conference, 2014",
+        "year": "2014",
+        "author": "G. A. Kazakov",
+        "key": "PhysRevX.6.011025Cc26R1"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.93.023804"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.89.013806"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.113.154101"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.053001"
+      },
+      {
+        "key": "PhysRevX.6.011025Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.114.093002"
+      }
+    ],
+    "container-title": [
+      "Physical Review X"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevX.6.011025",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevX.6.011025/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          4,
+          5
+        ]
+      ],
+      "date-time": "2017-04-05T17:15:24Z",
+      "timestamp": 1491412524000
+    },
+    "score": 44.12671,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevX.6.011025"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2016,
+          3,
+          9
+        ]
+      ]
+    },
+    "references-count": 30,
+    "journal-issue": {
+      "issue": "1",
+      "published-print": {
+        "date-parts": [
+          [
+            2016,
+            3
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevx.6.011025",
+    "ISSN": [
+      "2160-3308"
+    ],
+    "issn-type": [
+      {
+        "type": "electronic",
+        "value": "2160-3308"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2016,
+          3,
+          9
+        ]
+      ]
+    },
+    "article-number": "011025"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          30
+        ]
+      ],
+      "date-time": "2024-10-30T17:42:48Z",
+      "timestamp": 1730310168850,
+      "version": "3.28.0"
+    },
+    "reference-count": 63,
+    "publisher": "SPIE",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1117/12.2515582",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          1
+        ]
+      ],
+      "date-time": "2019-03-01T11:16:35Z",
+      "timestamp": 1551438995000
+    },
+    "page": "78",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "An active optical frequency reference using a pulsed superradiant laser"
+    ],
+    "prefix": "10.1117",
+    "author": [
+      {
+        "given": "Juan",
+        "family": "Muniz Silva",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Julia",
+        "family": "Cline",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Matthew",
+        "family": "Norcia",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "189",
+    "reference": [
+      {
+        "key": "R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/42/5/012"
+      },
+      {
+        "key": "R2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/47/1/008"
+      },
+      {
+        "volume-title": "Global navigation satellite systems, inertial navigation, and integration",
+        "year": "2013",
+        "author": "Grewal",
+        "key": "R3"
+      },
+      {
+        "key": "R4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-0-387-69534-1"
+      },
+      {
+        "key": "R5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2015.5"
+      },
+      {
+        "key": "R6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/53/4/1123"
+      },
+      {
+        "key": "R7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OPTICA.3.000563"
+      },
+      {
+        "key": "R8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2016.231"
+      },
+      {
+        "key": "R9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aam5538"
+      },
+      {
+        "key": "R10",
+        "first-page": "6",
+        "article-title": "Systematic evaluation of an atomic clock at 2 × 10−18 total uncertainty",
+        "author": "Nicholson",
+        "year": "2015",
+        "journal-title": "Nature Communications"
+      },
+      {
+        "key": "R11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.070802"
+      },
+      {
+        "key": "R12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.87.637"
+      },
+      {
+        "key": "R13",
+        "first-page": "7",
+        "article-title": "A clock network for geodesy and fundamental science",
+        "author": "Lisdat",
+        "year": "2016",
+        "journal-title": "Nature Communications"
+      },
+      {
+        "key": "R14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1236929"
+      },
+      {
+        "key": "R15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1254978"
+      },
+      {
+        "key": "R16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-018-0661-6"
+      },
+      {
+        "key": "R17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41567-017-0042-3"
+      },
+      {
+        "key": "R18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-018-0738-2"
+      },
+      {
+        "key": "R19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1361-6633/aab409"
+      },
+      {
+        "key": "R20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1154622"
+      },
+      {
+        "article-title": "Optical clock comparison test of lorentz symmetry",
+        "year": "2018",
+        "author": "Sanner",
+        "key": "R21"
+      },
+      {
+        "key": "R22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.90.025008"
+      },
+      {
+        "key": "R23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys3137"
+      },
+      {
+        "volume-title": "Frequency Standards: Basics and Applications",
+        "year": "2006",
+        "author": "Riehle",
+        "key": "R24"
+      },
+      {
+        "key": "R25",
+        "first-page": "555",
+        "article-title": "Optical atomic clocks",
+        "volume": "36",
+        "author": "Poli",
+        "year": "2013",
+        "journal-title": "Nuovo Cimento Rivista Serie"
+      },
+      {
+        "key": "R26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.83.331"
+      },
+      {
+        "key": "R27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/51/3/174"
+      },
+      {
+        "key": "R28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/51/1/108"
+      },
+      {
+        "key": "R29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.5.361"
+      },
+      {
+        "key": "R30",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.033847"
+      },
+      {
+        "key": "R31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.102.163601"
+      },
+      {
+        "key": "R32",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.93.99"
+      },
+      {
+        "key": "R33",
+        "article-title": "The coherence brightened laser",
+        "volume-title": "[Proc. of the 3rd Int. Congress on Quant. Elec.]",
+        "volume": "35",
+        "author": "Dicke",
+        "year": "1964"
+      },
+      {
+        "key": "R34",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0370-1573(82)90102-8"
+      },
+      {
+        "key": "R35",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/JOSAB.29.000178"
+      },
+      {
+        "key": "R36",
+        "first-page": "021036",
+        "article-title": "Frequency measurements of superradiance from the strontium clock transition",
+        "volume": "8",
+        "author": "Norcia",
+        "year": "2018",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "R37",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/B978-0-12-385508-4.00004-8"
+      },
+      {
+        "key": "R38",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.1601231"
+      },
+      {
+        "article-title": "New Tools for Precision Measurement and Quantum Science with Narrow Linewidth Optical Transitions",
+        "year": "2017",
+        "author": "Norcia",
+        "key": "R39"
+      },
+      {
+        "key": "R40",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1148259"
+      },
+      {
+        "key": "R41",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1142/S0218271807011826"
+      },
+      {
+        "key": "R42",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TUFFC.2012.2210"
+      },
+      {
+        "key": "R43",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.093604"
+      },
+      {
+        "key": "R44",
+        "first-page": "221",
+        "article-title": "Statistics of atomic frequency standards",
+        "volume-title": "Proceedings of the IEEE",
+        "volume": "54",
+        "author": "Allan",
+        "year": "1966"
+      },
+      {
+        "key": "R45",
+        "first-page": "133",
+        "article-title": "Local oscillator induced instabilities in trapped ion frequency standards",
+        "volume-title": "Proc. of Precise Time and Time Interval",
+        "author": "Dick",
+        "year": "1987"
+      },
+      {
+        "key": "R46",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aar3102"
+      },
+      {
+        "issue": "1",
+        "key": "R47",
+        "first-page": "89",
+        "article-title": "Comparison of quantum and semiclassical radiation theories with application to the beam maser",
+        "volume-title": "Proceedings of the IEEE",
+        "volume": "51",
+        "author": "Jaynes",
+        "year": "1963"
+      },
+      {
+        "key": "R48",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1238/Physica.Topical.076a00127"
+      },
+      {
+        "key": "R49",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.63.240"
+      },
+      {
+        "key": "R50",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.93.233603"
+      },
+      {
+        "key": "R51",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/17/1/007"
+      },
+      {
+        "key": "R52",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature03119"
+      },
+      {
+        "key": "R53",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.96.127006"
+      },
+      {
+        "key": "R54",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.93.023804"
+      },
+      {
+        "key": "R55",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.84.063813"
+      },
+      {
+        "key": "R56",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/epl/i1998-00277-9"
+      },
+      {
+        "key": "R57",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.113.263603"
+      },
+      {
+        "key": "R58",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.100.103601"
+      },
+      {
+        "key": "R59",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.89.043837"
+      },
+      {
+        "key": "R60",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.116.093602"
+      },
+      {
+        "key": "R61",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.133601"
+      },
+      {
+        "key": "R62",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2014.151"
+      },
+      {
+        "article-title": "Driven-dissipative quantum dynamics in ultra long-lived dipoles in an optical cavity",
+        "year": "2018",
+        "author": "Barberena",
+        "key": "R63"
+      }
+    ],
+    "event": {
+      "name": "Optical, Opto-Atomic, and Entanglement-Enhanced Precision Metrology",
+      "start": {
+        "date-parts": [
+          [
+            2019,
+            2,
+            2
+          ]
+        ]
+      },
+      "location": "San Francisco, United States",
+      "end": {
+        "date-parts": [
+          [
+            2019,
+            2,
+            7
+          ]
+        ]
+      }
+    },
+    "container-title": [
+      "Optical, Opto-Atomic, and Entanglement-Enhanced Precision Metrology"
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          14
+        ]
+      ],
+      "date-time": "2019-03-14T16:34:16Z",
+      "timestamp": 1552581256000
+    },
+    "score": 29.829687,
+    "resource": {
+      "primary": {
+        "URL": "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/10934/2515582/An-active-optical-frequency-reference-using-a-pulsed-superradiant-laser/10.1117/12.2515582.full"
+      }
+    },
+    "editor": [
+      {
+        "given": "Selim M.",
+        "family": "Shahriar",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jacob",
+        "family": "Scheuer",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          1
+        ]
+      ]
+    },
+    "references-count": 63,
+    "URL": "https://doi.org/10.1117/12.2515582",
+    "published": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          8,
+          2
+        ]
+      ],
+      "date-time": "2025-08-02T04:32:38Z",
+      "timestamp": 1754109158644,
+      "version": "3.41.2"
+    },
+    "reference-count": 12,
+    "publisher": "AIP Publishing",
+    "issue": "2",
+    "funder": [
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1125844"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000161",
+        "name": "National Institute of Standards and Technology",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000161",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000183",
+        "name": "Army Research Office",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000183",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000185",
+        "name": "Defense Advanced Research Projects Agency",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000185",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "pubs.aip.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2016,
+          2,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:p>We describe frequency stabilization of a laser at 707 nm wavelength using FM spectroscopy in a hollow cathode lamp. The laser is stabilized to the 88Sr metastable 3P2 to 3S1 optical transition. The stabilized laser is utilized for laser-cooling and trapping of strontium atoms. We also briefly describe how the same hollow cathode lamp is used to simultaneously derive a polarization spectroscopy signal for stabilizing the blue-MOT laser at 461 nm.</jats:p>",
+    "DOI": "10.1063/1.4942434",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2016,
+          2,
+          24
+        ]
+      ],
+      "date-time": "2016-02-24T20:37:53Z",
+      "timestamp": 1456346273000
+    },
+    "update-policy": "https://doi.org/10.1063/aip-crossmark-policy-page",
+    "source": "Crossref",
+    "is-referenced-by-count": 7,
+    "title": [
+      "Simple laser stabilization to the strontium 88Sr transition at 707 nm"
+    ],
+    "prefix": "10.1063",
+    "volume": "87",
+    "author": [
+      {
+        "given": "Matthew A.",
+        "family": "Norcia",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "University of Colorado JILA, National Institute of Standards and Technology, and Department of Physics, , Boulder, Colorado 80309-0440, USA"
+          }
+        ]
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "University of Colorado JILA, National Institute of Standards and Technology, and Department of Physics, , Boulder, Colorado 80309-0440, USA"
+          }
+        ]
+      }
+    ],
+    "member": "317",
+    "published-online": {
+      "date-parts": [
+        [
+          2016,
+          2,
+          24
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "2023080608105106400_c1",
+        "doi-asserted-by": "publisher",
+        "first-page": "063001",
+        "DOI": "10.1103/PhysRevLett.103.063001",
+        "volume": "103",
+        "year": "2009",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2023080608105106400_c2",
+        "doi-asserted-by": "publisher",
+        "first-page": "71",
+        "DOI": "10.1038/nature12941",
+        "volume": "506",
+        "year": "2014",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2023080608105106400_c3",
+        "doi-asserted-by": "publisher",
+        "first-page": "185",
+        "DOI": "10.1038/nphoton.2015.5",
+        "volume": "9",
+        "year": "2015",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "2023080608105106400_c4",
+        "doi-asserted-by": "publisher",
+        "first-page": "103033",
+        "DOI": "10.1088/1367-2630/11/10/103033",
+        "volume": "11",
+        "year": "2009",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "2023080608105106400_c5",
+        "doi-asserted-by": "publisher",
+        "first-page": "289",
+        "DOI": "10.1038/nphys1535",
+        "volume": "6",
+        "year": "2010",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "2023080608105106400_c6",
+        "doi-asserted-by": "publisher",
+        "first-page": "56",
+        "DOI": "10.1088/1367-2630/5/1/356",
+        "volume": "5",
+        "year": "2003",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "2023080608105106400_c7",
+        "doi-asserted-by": "publisher",
+        "first-page": "163601",
+        "DOI": "10.1103/PhysRevLett.102.163601",
+        "volume": "102",
+        "year": "2009",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2023080608105106400_c8",
+        "doi-asserted-by": "publisher",
+        "first-page": "78",
+        "DOI": "10.1038/nature10920",
+        "volume": "484",
+        "year": "2012",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2023080608105106400_c9",
+        "doi-asserted-by": "publisher",
+        "first-page": "023804",
+        "DOI": "10.1103/PhysRevA.93.023804",
+        "volume": "93",
+        "year": "2016",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2023080608105106400_c10",
+        "doi-asserted-by": "publisher",
+        "first-page": "315",
+        "DOI": "10.1007/s00340-004-1405-x",
+        "volume": "78",
+        "year": "2004",
+        "journal-title": "Appl. Phys. B"
+      },
+      {
+        "key": "2023080608105106400_c11",
+        "doi-asserted-by": "publisher",
+        "first-page": "063101",
+        "DOI": "10.1063/1.4808246",
+        "volume": "84",
+        "year": "2013",
+        "journal-title": "Rev. Sci. Instrum."
+      },
+      {
+        "key": "2023080608105106400_c12",
+        "doi-asserted-by": "publisher",
+        "first-page": "153004",
+        "DOI": "10.1103/PhysRevLett.92.153004",
+        "volume": "92",
+        "year": "2004",
+        "journal-title": "Phys. Rev. Lett."
+      }
+    ],
+    "container-title": [
+      "Review of Scientific Instruments"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://pubs.aip.org/aip/rsi/article-pdf/doi/10.1063/1.4942434/15834639/023110_1_online.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://aip.scitation.org/doi/am-pdf/10.1063/1.4942434",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://pubs.aip.org/aip/rsi/article-pdf/doi/10.1063/1.4942434/15834639/023110_1_online.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          6
+        ]
+      ],
+      "date-time": "2023-08-06T08:11:03Z",
+      "timestamp": 1691309463000
+    },
+    "score": 28.485348,
+    "resource": {
+      "primary": {
+        "URL": "https://pubs.aip.org/rsi/article/87/2/023110/1021169/Simple-laser-stabilization-to-the-strontium-88Sr"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2016,
+          2,
+          1
+        ]
+      ]
+    },
+    "references-count": 12,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2016,
+            2,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1063/1.4942434",
+    "ISSN": [
+      "0034-6748",
+      "1089-7623"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0034-6748"
+      },
+      {
+        "type": "electronic",
+        "value": "1089-7623"
+      }
+    ],
+    "published-other": {
+      "date-parts": [
+        [
+          2016,
+          2
+        ]
+      ]
+    },
+    "published": {
+      "date-parts": [
+        [
+          2016,
+          2,
+          1
+        ]
+      ]
+    },
+    "article-number": "023110"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          26
+        ]
+      ],
+      "date-time": "2025-10-26T14:56:41Z",
+      "timestamp": 1761490601310,
+      "version": "3.37.3"
+    },
+    "reference-count": 28,
+    "publisher": "American Physical Society (APS)",
+    "issue": "7",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2018,
+              8,
+              16
+            ]
+          ],
+          "date-time": "2018-08-16T00:00:00Z",
+          "timestamp": 1534377600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://link.aps.org/licenses/aps-default-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2019,
+              8,
+              16
+            ]
+          ],
+          "date-time": "2019-08-16T00:00:00Z",
+          "timestamp": 1565913600000
+        },
+        "content-version": "am",
+        "delay-in-days": 365,
+        "URL": "https://link.aps.org/licenses/aps-default-accepted-manuscript-license"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000185",
+        "name": "Defense Advanced Research Projects Agency",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000185",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000183",
+        "name": "Army Research Office",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "W911NF-16-1-0576"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000183",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "PHY1521080"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100006015",
+        "name": "JILA, University of Colorado",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "PFC-173400"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100006015",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000181",
+        "name": "Air Force Office of Scientific Research",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "FA9550-13-1-0086"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000181",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000161",
+        "name": "National Institute of Standards and Technology",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000161",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.aps.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Phys. Rev. Lett."
+    ],
+    "DOI": "10.1103/physrevlett.121.070403",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          16
+        ]
+      ],
+      "date-time": "2018-08-16T14:32:06Z",
+      "timestamp": 1534429926000
+    },
+    "update-policy": "https://doi.org/10.1103/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 55,
+    "title": [
+      "Robust Spin Squeezing via Photon-Mediated Interactions on an Optical Clock Transition"
+    ],
+    "prefix": "10.1103",
+    "volume": "121",
+    "author": [
+      {
+        "given": "Robert J.",
+        "family": "Lewis-Swan",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Matthew A.",
+        "family": "Norcia",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Julia R. K.",
+        "family": "Cline",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Ana Maria",
+        "family": "Rey",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          16
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevLett.121.070403Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aam5538"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.87.637"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OPTICA.3.000563"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/53/4/1123"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2016.159"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1236929"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.46.R6797"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/306141a0"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.47.5138"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.0901550106"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.073604"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.133601"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2014.151"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.116.093602"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature16176"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.073602"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aaf3397"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature08919"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aar3102"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.96.050301"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.87.042101"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/15/11/113008"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.26421/QIC13.3-4"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.aop.2010.02.006"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0370-1573(82)90102-8"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.120.103201"
+      },
+      {
+        "key": "PhysRevLett.121.070403Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.50.67"
+      }
+    ],
+    "container-title": [
+      "Physical Review Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.aps.org/accepted/10.1103/PhysRevLett.121.070403",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "unspecified"
+      },
+      {
+        "URL": "https://link.aps.org/article/10.1103/PhysRevLett.121.070403",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevLett.121.070403/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          1,
+          2
+        ]
+      ],
+      "date-time": "2025-01-02T22:00:19Z",
+      "timestamp": 1735855219000
+    },
+    "score": 27.16732,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevLett.121.070403"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          16
+        ]
+      ]
+    },
+    "references-count": 28,
+    "journal-issue": {
+      "issue": "7",
+      "published-print": {
+        "date-parts": [
+          [
+            2018,
+            8
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevlett.121.070403",
+    "ISSN": [
+      "0031-9007",
+      "1079-7114"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0031-9007"
+      },
+      {
+        "type": "electronic",
+        "value": "1079-7114"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          16
+        ]
+      ]
+    },
+    "article-number": "070403"
+  }
+]

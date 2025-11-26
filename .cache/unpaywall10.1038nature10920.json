@@ -1,0 +1,77 @@
+{
+  "best_pdf": null,
+  "raw": {
+    "doi": "10.1038/nature10920",
+    "doi_url": "https://doi.org/10.1038/nature10920",
+    "title": "A steady-state superradiant laser with less than one intracavity photon",
+    "genre": "journal-article",
+    "is_paratext": false,
+    "published_date": "2012-04-01",
+    "year": 2012,
+    "journal_name": "Nature",
+    "journal_issns": "0028-0836,1476-4687",
+    "journal_issn_l": "0028-0836",
+    "journal_is_oa": false,
+    "journal_is_in_doaj": false,
+    "publisher": "Springer Science and Business Media LLC",
+    "is_oa": false,
+    "oa_status": "closed",
+    "has_repository_copy": false,
+    "best_oa_location": null,
+    "first_oa_location": null,
+    "oa_locations": [],
+    "oa_locations_embargoed": [],
+    "data_standard": 2,
+    "z_authors": [
+      {
+        "author_position": "first",
+        "raw_author_name": "Justin G. Bohnet",
+        "is_corresponding": true,
+        "raw_affiliation_strings": [
+          "Department of Physics, JILA, NIST and University of Colorado, University of Colorado, 440 UCB, Boulder, Colorado 80309, USA,"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Zilong Chen",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Department of Physics, JILA, NIST and University of Colorado, University of Colorado, 440 UCB, Boulder, Colorado 80309, USA,"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Joshua M. Weiner",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Department of Physics, JILA, NIST and University of Colorado, University of Colorado, 440 UCB, Boulder, Colorado 80309, USA,"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Dominic Meiser",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Department of Physics, JILA, NIST and University of Colorado, University of Colorado, 440 UCB, Boulder, Colorado 80309, USA,"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Murray J. Holland",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Department of Physics, JILA, NIST and University of Colorado, University of Colorado, 440 UCB, Boulder, Colorado 80309, USA,"
+        ]
+      },
+      {
+        "author_position": "last",
+        "raw_author_name": "James K. Thompson",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Department of Physics, JILA, NIST and University of Colorado, University of Colorado, 440 UCB, Boulder, Colorado 80309, USA,"
+        ]
+      }
+    ],
+    "updated": "2025-05-22T18:42:22Z"
+  }
+}

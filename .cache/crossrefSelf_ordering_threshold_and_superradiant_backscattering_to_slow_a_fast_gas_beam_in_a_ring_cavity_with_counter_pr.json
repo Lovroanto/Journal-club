@@ -1,0 +1,1136 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          18
+        ]
+      ],
+      "date-time": "2025-06-18T16:22:55Z",
+      "timestamp": 1750263775485
+    },
+    "reference-count": 0,
+    "publisher": "Optica Publishing Group",
+    "issue": "10",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2007,
+              5,
+              2
+            ]
+          ],
+          "date-time": "2007-05-02T00:00:00Z",
+          "timestamp": 1178064000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 121,
+        "URL": "https://doi.org/10.1364/OA_License_v1#VOR-OA"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2007,
+              5,
+              2
+            ]
+          ],
+          "date-time": "2007-05-02T00:00:00Z",
+          "timestamp": 1178064000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 121,
+        "URL": "https://opg.optica.org/policies/opg-tdm-policy.json"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Opt. Express"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "DOI": "10.1364/oe.15.006019",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2007,
+          5,
+          14
+        ]
+      ],
+      "date-time": "2007-05-14T20:35:21Z",
+      "timestamp": 1179174921000
+    },
+    "page": "6019",
+    "source": "Crossref",
+    "is-referenced-by-count": 6,
+    "title": [
+      "Self ordering threshold and superradiant backscattering to slow a fast gas beam in a ring cavity with counter propagating pump"
+    ],
+    "prefix": "10.1364",
+    "volume": "15",
+    "author": [
+      {
+        "given": "C.",
+        "family": "Maes",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "J. K.",
+        "family": "Asbóth",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "H.",
+        "family": "Ritsch",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "285",
+    "published-online": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "container-title": [
+      "Optics Express"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.osapublishing.org/viewmedia.cfm?URI=oe-15-10-6019&seq=0",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          7,
+          18
+        ]
+      ],
+      "date-time": "2024-07-18T20:44:03Z",
+      "timestamp": 1721335443000
+    },
+    "score": 92.72637,
+    "resource": {
+      "primary": {
+        "URL": "https://opg.optica.org/oe/abstract.cfm?uri=oe-15-10-6019"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "10",
+      "published-online": {
+        "date-parts": [
+          [
+            2007
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2007
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1364/oe.15.006019",
+    "ISSN": [
+      "1094-4087"
+    ],
+    "issn-type": [
+      {
+        "value": "1094-4087",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          2,
+          21
+        ]
+      ],
+      "date-time": "2025-02-21T10:35:16Z",
+      "timestamp": 1740134116881,
+      "version": "3.37.3"
+    },
+    "reference-count": 22,
+    "publisher": "IOP Publishing",
+    "issue": "10R",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              1990,
+              10,
+              1
+            ]
+          ],
+          "date-time": "1990-10-01T00:00:00Z",
+          "timestamp": 654739200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://iopscience.iop.org/page/copyright"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              1990,
+              10,
+              1
+            ]
+          ],
+          "date-time": "1990-10-01T00:00:00Z",
+          "timestamp": 654739200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://iopscience.iop.org/info/page/text-and-data-mining"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "iopscience.iop.org"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Jpn. J. Appl. Phys."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          1990,
+          10,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:p> \n The laser beam of an Ar<jats:sup>+</jats:sup>-laser used for the laser recrystallization of silicon-on-insulator material in a three-dimensional integration process can contain large contributions from higher transversal electro-magnetic (TEM) laser modes of which the doughnut shaped TEM<jats:sub>01<jats:sup>*</jats:sup>\n                  </jats:sub>-mode is by far the most important one. An analytical expression is derived for the surface temperature of a bulk silicon wafer irradiated by a pseudo-stationary mixed-mode TEM<jats:sub>00</jats:sub>-TEM<jats:sub>01<jats:sup>*</jats:sup>\n                  </jats:sub> laser spot. The melt threshold of the irradiated wafer is determined as a function of the TEM<jats:sub>01<jats:sup>*</jats:sup>\n                  </jats:sub>-mode contribution and as a function of the ratio of the laser power absorptance in the liquid to the laser power absorptance in the solid material. The influence of the TEM<jats:sub>01<jats:sup>*</jats:sup>\n                  </jats:sub>-mode contribution on the size of the mixed solid-liquid `slush'-zone is studied quantitatively. \n </jats:p>",
+    "DOI": "10.1143/jjap.29.1873",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2005,
+          2,
+          23
+        ]
+      ],
+      "date-time": "2005-02-23T01:46:41Z",
+      "timestamp": 1109123201000
+    },
+    "page": "1873",
+    "update-policy": "https://doi.org/10.1088/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 3,
+    "title": [
+      "The Melt Threshold of Silicon Irradiated by a Multi-Mode Argon Laser Beam"
+    ],
+    "prefix": "10.35848",
+    "volume": "29",
+    "author": [
+      {
+        "given": "G. J.",
+        "family": "Willems",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "H. E.",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "reference": [
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "3919",
+        "DOI": "10.1063/1.324265",
+        "volume": "48",
+        "year": "1977",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "786",
+        "DOI": "10.1063/1.90505",
+        "volume": "33",
+        "year": "1978",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "3895",
+        "DOI": "10.1063/1.324261",
+        "volume": "48",
+        "year": "1977",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "274",
+        "DOI": "10.1063/1.327420",
+        "volume": "51",
+        "year": "1980",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "4364",
+        "DOI": "10.1063/1.331217",
+        "volume": "53",
+        "year": "1982",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "2646",
+        "DOI": "10.1063/1.332339",
+        "volume": "54",
+        "year": "1983",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "4357",
+        "DOI": "10.1063/1.331216",
+        "volume": "53",
+        "year": "1982",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "7545",
+        "DOI": "10.1063/1.330123",
+        "volume": "53",
+        "year": "1982",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "year": "1981",
+        "key": ""
+      },
+      {
+        "year": "1984",
+        "key": ""
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1347",
+        "DOI": "10.1109/T-ED.1985.22122",
+        "volume": "32",
+        "year": "1985",
+        "journal-title": "IEEE Trans. Electron Devices"
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "51",
+        "DOI": "10.1063/1.1753770",
+        "volume": "2",
+        "year": "1963",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1312",
+        "DOI": "10.1109/PROC.1966.5119",
+        "volume": "54",
+        "year": "1966",
+        "journal-title": "Proc. IEEE"
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "355",
+        "DOI": "10.1364/AO.8.000355",
+        "volume": "8",
+        "year": "1969",
+        "journal-title": "Appl. Opt."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "358",
+        "DOI": "10.1063/1.93939",
+        "volume": "42",
+        "year": "1983",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "year": "1983",
+        "key": ""
+      },
+      {
+        "year": "1984",
+        "key": ""
+      },
+      {
+        "year": "1986",
+        "key": ""
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1219",
+        "DOI": "10.1063/1.345720",
+        "volume": "67",
+        "year": "1990",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1546",
+        "DOI": "10.1143/JJAP.22.1546",
+        "volume": "22",
+        "year": "1983",
+        "journal-title": "Jpn. J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "3408",
+        "DOI": "10.1063/1.339304",
+        "volume": "62",
+        "year": "1987",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "year": "1972",
+        "key": ""
+      }
+    ],
+    "container-title": [
+      "Japanese Journal of Applied Physics"
+    ],
+    "link": [
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          6
+        ]
+      ],
+      "date-time": "2022-12-06T13:21:10Z",
+      "timestamp": 1670332870000
+    },
+    "score": 23.530827,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1990,
+          10,
+          1
+        ]
+      ]
+    },
+    "references-count": 22,
+    "journal-issue": {
+      "issue": "10R",
+      "published-print": {
+        "date-parts": [
+          [
+            1990,
+            10,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1143/jjap.29.1873",
+    "ISSN": [
+      "0021-4922",
+      "1347-4065"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0021-4922"
+      },
+      {
+        "type": "electronic",
+        "value": "1347-4065"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1990,
+          10,
+          1
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "The Melt Threshold of Silicon Irradiated by a Multi-Mode Argon Laser Beam",
+        "name": "article_title",
+        "label": "Article Title"
+      },
+      {
+        "value": "Japanese Journal of Applied Physics",
+        "name": "journal_title",
+        "label": "Journal Title"
+      },
+      {
+        "value": "paper",
+        "name": "article_type",
+        "label": "Article Type"
+      },
+      {
+        "value": "Copyright (c) 1990 The Japan Society of Applied Physics",
+        "name": "copyright_information",
+        "label": "Copyright Information"
+      },
+      {
+        "value": "1990-05-21",
+        "name": "date_received",
+        "label": "Date Received",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "1990-07-21",
+        "name": "date_accepted",
+        "label": "Date Accepted",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "name": "date_epub",
+        "label": "Online publication date",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          3
+        ]
+      ],
+      "date-time": "2025-11-03T01:41:01Z",
+      "timestamp": 1762134061302,
+      "version": "build-2065373602"
+    },
+    "reference-count": 0,
+    "publisher": "CSIRO Publishing",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              8,
+              29
+            ]
+          ],
+          "date-time": "2025-08-29T00:00:00Z",
+          "timestamp": 1756425600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 7563,
+        "URL": "https://doi.org/10.1071/journalslicense"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2004,
+          12,
+          14
+        ]
+      ]
+    },
+    "abstract": "<jats:p>Fast-cleaving embryos have significantly higher chances of reaching advanced developmental stages, and hatched blastocysts developed from fast-cleaving embryos have higher total cell and inner cell mass cell numbers. Few data are available on the prevalence of apoptosis in blastocysts resulting from fast-cleaving bovine embryos. Therefore, it was the aim of this study to search for a correlation between this early quality marker (timing of first cleavage) and a later quality marker (apoptosis in blastocyst stage). A total of 836 immature bovine oocytes were matured and fertilized invitro. Presumed zygotes were denuded 24 h after fertilization and cultured in 50 µL droplets of modified SOF medium without serum at 39.0°C in 5% CO2, 5% O2, and 90% N2. At 30 h, 36 h and 48 h post-fertilization (PF), zygotes that had developed to the 2-cell stage or beyond were placed in new droplets and cultured in separate groups. In each of the 3 replicates a control group of 100 presumed zygotes was cultured in SOF medium without manipulation. After 24 h of culture, the SOF medium was supplemented with fetal calf serum (FCS) up to 10%. Blastocysts were evaluated at Days 7 and 8, and fixed in 4% paraformaldehyde. After TUNEL staining, total cell number and TUNEL-positive cells were counted for each group. An univariate analysis of variance was used with % apoptotic cells as the dependent variable, timing of first cleavage as the fixed factor, and replicate as the random factor (mixed model ANOVA). The mean cumulative blastocyst yields in the control group were 20.9% and 27.0% at Days 7 and 8, respectively, which were not different from the total yields from manipulated embryos (Table 1). The cumulative cleavage rates for manipulated embryos were 44.9, 65.1, and 85.7% at 30, 36, and 48 h PF, respectively. The blastocyst yields at Days 7 and 8 PF were declining for embryos which cleaved later, with a distinct drop (P &amp;lt; 0.05) between the 36-h and 48-h groups. The percentage of apoptotic cells in Day 7 blastocysts was significantly lower in the 30-h compared with the 36-h and 48-h groups (P &amp;lt; 0.05). Within the 30-h and 36-h groups, Day 8 blastocysts had significantly more apoptotic cells than Day 7 blastocysts (P &amp;lt; 0.05), but no differences could be detected between groups at day 8. In conclusion, this experiment has confirmed the increased chances of early-cleaving embryos to reach the blastocyst stage. The higher percentages of apoptosis in late cleaving embryos at Day 7 and in all blastocysts at day 8 as determined by TUNEL staining could be an indication of lower blastocyst quality.</jats:p>\n                  <jats:p>Table 1. Blastocyst yield (number and percentage) and percentage of apoptotic cells (APC) at Days 7 and 8 PF</jats:p>",
+    "DOI": "10.1071/rdv17n2ab258",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2004,
+          12,
+          14
+        ]
+      ],
+      "date-time": "2004-12-14T20:03:51Z",
+      "timestamp": 1103054631000
+    },
+    "page": "258-258",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "258 APOPTOSIS IN FAST- AND SLOW-CLEAVING BOVINE EMBRYOS IN VITRO"
+    ],
+    "prefix": "10.1071",
+    "volume": "17",
+    "author": [
+      {
+        "given": "L.",
+        "family": "Vandaele",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "A ADepartment of Reproduction, Obstretics and Herd Health, Faculty of Veterinary Medicine, Ghent University, 9320 Ghent, Belgium. Email: leen.vandaele@Ugent.be"
+          }
+        ]
+      },
+      {
+        "given": "B.",
+        "family": "Mateusen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "A ADepartment of Reproduction, Obstretics and Herd Health, Faculty of Veterinary Medicine, Ghent University, 9320 Ghent, Belgium. Email: leen.vandaele@Ugent.be"
+          }
+        ]
+      },
+      {
+        "given": "D.",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "A ADepartment of Reproduction, Obstretics and Herd Health, Faculty of Veterinary Medicine, Ghent University, 9320 Ghent, Belgium. Email: leen.vandaele@Ugent.be"
+          }
+        ]
+      },
+      {
+        "given": "A.",
+        "family": "Van Soom",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "A ADepartment of Reproduction, Obstretics and Herd Health, Faculty of Veterinary Medicine, Ghent University, 9320 Ghent, Belgium. Email: leen.vandaele@Ugent.be"
+          }
+        ]
+      }
+    ],
+    "member": "67",
+    "published-online": {
+      "date-parts": [
+        [
+          2005,
+          1,
+          1
+        ]
+      ]
+    },
+    "container-title": [
+      "Reproduction, Fertility and Development"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://connectsci.au/rd/article-pdf/17/2/258/1256505/rdv17n2ab258.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://connectsci.au/rd/article-pdf/17/2/258/1256505/rdv17n2ab258.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          3
+        ]
+      ],
+      "date-time": "2025-11-03T01:36:01Z",
+      "timestamp": 1762133761000
+    },
+    "score": 23.36636,
+    "resource": {
+      "primary": {
+        "URL": "https://connectsci.au/rd/article/17/2/258/185229/258-APOPTOSIS-IN-FAST-AND-SLOW-CLEAVING-BOVINE"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2004,
+          12,
+          14
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2004,
+            12,
+            14
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1071/rdv17n2ab258",
+    "ISSN": [
+      "1031-3613",
+      "1448-5990"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "1031-3613"
+      },
+      {
+        "type": "electronic",
+        "value": "1448-5990"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2004,
+          12,
+          14
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ],
+      "date-time": "2024-03-05T21:21:29Z",
+      "timestamp": 1709673689285
+    },
+    "reference-count": 0,
+    "publisher": "American Medical Association (AMA)",
+    "issue": "2",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Arch Surg"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          1940,
+          8,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1001/archsurg.1940.01210020189019",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2011,
+          11,
+          29
+        ]
+      ],
+      "date-time": "2011-11-29T01:11:27Z",
+      "timestamp": 1322529087000
+    },
+    "page": "393",
+    "source": "Crossref",
+    "is-referenced-by-count": 4,
+    "title": [
+      "GAS GANGRENE"
+    ],
+    "prefix": "10.1001",
+    "volume": "41",
+    "author": [
+      {
+        "given": "URBAN",
+        "family": "MAES",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "10",
+    "container-title": [
+      "Archives of Surgery"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://archsurg.jamanetwork.com/ama/content_public/journal/surg/14421/archsurg_41_2_019.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          8
+        ]
+      ],
+      "date-time": "2023-04-08T00:40:35Z",
+      "timestamp": 1680914435000
+    },
+    "score": 21.266249,
+    "resource": {
+      "primary": {
+        "URL": "http://archsurg.jamanetwork.com/article.aspx?doi=10.1001/archsurg.1940.01210020189019"
+      }
+    },
+    "subtitle": [
+      "WITH SPECIAL REFERENCE TO THE IMPORTANCE OF WOOL AS A SOURCE OF CONTAMINATION"
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1940,
+          8,
+          1
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            1940,
+            8,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1001/archsurg.1940.01210020189019",
+    "ISSN": [
+      "0272-5533"
+    ],
+    "issn-type": [
+      {
+        "value": "0272-5533",
+        "type": "print"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1940,
+          8,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          3,
+          29
+        ]
+      ],
+      "date-time": "2022-03-29T05:30:16Z",
+      "timestamp": 1648531816199
+    },
+    "reference-count": 9,
+    "publisher": "Informa UK Limited",
+    "issue": "1",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Voice and Speech Review"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2005,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1080/23268263.2005.10739454",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2013,
+          7,
+          22
+        ]
+      ],
+      "date-time": "2013-07-22T09:33:32Z",
+      "timestamp": 1374485612000
+    },
+    "page": "111-118",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "A Shakespearean Scansion Key Ring"
+    ],
+    "prefix": "10.1080",
+    "volume": "4",
+    "author": [
+      {
+        "given": "Kathryn G.",
+        "family": "Maes",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "301",
+    "reference": [
+      {
+        "key": "CIT0001",
+        "volume-title": "The Actor and His Text",
+        "author": "Berry Cicely",
+        "year": "1987"
+      },
+      {
+        "key": "CIT0002",
+        "volume-title": "The Riverside Shakespeare",
+        "author": "Evans G. Blakemore",
+        "year": "1974"
+      },
+      {
+        "key": "CIT0003",
+        "volume-title": "Shakespeare’s Advice to the Players",
+        "author": "Hall Peter",
+        "year": "2003"
+      },
+      {
+        "key": "CIT0004",
+        "volume-title": "Poetry, an Introduction",
+        "author": "Hoeper Jeffrey D.",
+        "year": "1990"
+      },
+      {
+        "key": "CIT0005",
+        "volume-title": "Freeing Shakespeare’s Voice",
+        "author": "Linklater Kristin",
+        "year": "1992"
+      },
+      {
+        "key": "CIT0006",
+        "volume-title": "The Rule That Liberates",
+        "author": "Moore Richard",
+        "year": "1994"
+      },
+      {
+        "key": "CIT0007",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1007/978-1-349-17393-8",
+        "volume-title": "Shakespeare’s Sonnets",
+        "author": "Rowse A. L.",
+        "year": "1984"
+      },
+      {
+        "key": "CIT0008",
+        "volume-title": "Unlocking Shakespeare’s Meaning: A Look at Verse, Background, Character, and Plot in Twelfth Night",
+        "volume": "4",
+        "author": "Duhon Susan Ehlers",
+        "year": "2001"
+      },
+      {
+        "key": "CIT0009",
+        "volume-title": "The Poem Tree",
+        "author": "Moore Richard",
+        "year": "2004"
+      }
+    ],
+    "container-title": [
+      "Voice and Speech Review"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://www.tandfonline.com/doi/pdf/10.1080/23268263.2005.10739454",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          7,
+          19
+        ]
+      ],
+      "date-time": "2019-07-19T01:05:45Z",
+      "timestamp": 1563498345000
+    },
+    "score": 21.257109,
+    "resource": {
+      "primary": {
+        "URL": "http://www.tandfonline.com/doi/abs/10.1080/23268263.2005.10739454"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2005,
+          1
+        ]
+      ]
+    },
+    "references-count": 9,
+    "journal-issue": {
+      "issue": "1",
+      "published-print": {
+        "date-parts": [
+          [
+            2005,
+            1
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1080/23268263.2005.10739454"
+    ],
+    "URL": "https://doi.org/10.1080/23268263.2005.10739454",
+    "ISSN": [
+      "2326-8263",
+      "2326-8271"
+    ],
+    "issn-type": [
+      {
+        "value": "2326-8263",
+        "type": "print"
+      },
+      {
+        "value": "2326-8271",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2005,
+          1
+        ]
+      ]
+    }
+  }
+]

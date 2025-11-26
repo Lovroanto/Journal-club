@@ -1,0 +1,473 @@
+{
+  "best_pdf": "http://link.aps.org/pdf/10.1103/PRXQuantum.5.030316",
+  "raw": {
+    "doi": "10.1103/prxquantum.5.030316",
+    "doi_url": "https://doi.org/10.1103/prxquantum.5.030316",
+    "title": "Iterative Assembly of \n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\" overflow=\"scroll\"><mml:msup><mml:mi/><mml:mn>171</mml:mn></mml:msup></mml:math>\n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\" overflow=\"scroll\"><mml:mi>Yb</mml:mi></mml:math>\n Atom Arrays with Cavity-Enhanced Optical Lattices",
+    "genre": "journal-article",
+    "is_paratext": false,
+    "published_date": "2024-07-25",
+    "year": 2024,
+    "journal_name": "PRX Quantum",
+    "journal_issns": "2691-3399",
+    "journal_issn_l": "2691-3399",
+    "journal_is_oa": true,
+    "journal_is_in_doaj": true,
+    "publisher": "American Physical Society (APS)",
+    "is_oa": true,
+    "oa_status": "gold",
+    "has_repository_copy": false,
+    "best_oa_location": {
+      "url": "http://link.aps.org/pdf/10.1103/PRXQuantum.5.030316",
+      "url_for_pdf": "http://link.aps.org/pdf/10.1103/PRXQuantum.5.030316",
+      "url_for_landing_page": "https://doi.org/10.1103/prxquantum.5.030316",
+      "evidence": "deprecated",
+      "license": "cc-by",
+      "version": "publishedVersion",
+      "host_type": "publisher",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": null,
+      "oa_date": "2024-07-25",
+      "updated": "deprecated"
+    },
+    "first_oa_location": {
+      "url": "http://link.aps.org/pdf/10.1103/PRXQuantum.5.030316",
+      "url_for_pdf": "http://link.aps.org/pdf/10.1103/PRXQuantum.5.030316",
+      "url_for_landing_page": "https://doi.org/10.1103/prxquantum.5.030316",
+      "evidence": "deprecated",
+      "license": "cc-by",
+      "version": "publishedVersion",
+      "host_type": "publisher",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": null,
+      "oa_date": "2024-07-25",
+      "updated": "deprecated"
+    },
+    "oa_locations": [
+      {
+        "url": "http://link.aps.org/pdf/10.1103/PRXQuantum.5.030316",
+        "url_for_pdf": "http://link.aps.org/pdf/10.1103/PRXQuantum.5.030316",
+        "url_for_landing_page": "https://doi.org/10.1103/prxquantum.5.030316",
+        "evidence": "deprecated",
+        "license": "cc-by",
+        "version": "publishedVersion",
+        "host_type": "publisher",
+        "is_best": true,
+        "pmh_id": null,
+        "endpoint_id": null,
+        "repository_institution": null,
+        "oa_date": "2024-07-25",
+        "updated": "deprecated"
+      }
+    ],
+    "oa_locations_embargoed": [],
+    "data_standard": 2,
+    "z_authors": [
+      {
+        "author_position": "first",
+        "raw_author_name": "M. A. Norcia",
+        "is_corresponding": true,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "H. Kim",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "W. B. Cairncross",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "M. Stone",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "A. Ryou",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "M. Jaffe",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "M. O. Brown",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "K. Barnes",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "P. Battaglino",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "T. C. Bohdanowicz",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "A. Brown",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "K. Cassella",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "C.-A. Chen",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "R. Coxe",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "D. Crow",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "J. Epstein",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "C. Griger",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "E. Halperin",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "F. Hummel",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "A. M. W. Jones",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "J. M. Kindem",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "J. King",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "K. Kotru",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "J. Lauigan",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "M. Li",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "M. Lu",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "E. Megidish",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "J. Marjanovic",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "M. McDonald",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "T. Mittiga",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "J. A. Muniz",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "S. Narayanaswami",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "C. Nishiguchi",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "T. Paule",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "K. A. Pawlak",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "L. S. Peng",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "K. L. Pudenz",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "D. Rodríguez Pérez",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "A. Smull",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "D. Stack",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "M. Urbanek",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "R. J. M. van de Veerdonk",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "Z. Vendeiro",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "L. Wadleigh",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "T. Wilkason",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "T.-Y. Wu",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "X. Xie",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "E. Zalys-Geller",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "middle",
+        "raw_author_name": "X. Zhang",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      },
+      {
+        "author_position": "last",
+        "raw_author_name": "B. J. Bloom",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Atom Computing, Inc., 918 Parker Street, Suite a-13, Berkeley, California 94710, USA"
+        ]
+      }
+    ],
+    "updated": "2025-11-07T00:31:01Z"
+  }
+}

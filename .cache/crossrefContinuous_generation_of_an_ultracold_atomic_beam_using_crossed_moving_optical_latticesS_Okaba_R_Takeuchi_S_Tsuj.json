@@ -1,0 +1,2704 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          30
+        ]
+      ],
+      "date-time": "2025-10-30T02:08:36Z",
+      "timestamp": 1761790116430,
+      "version": "3.37.3"
+    },
+    "reference-count": 48,
+    "publisher": "American Physical Society (APS)",
+    "issue": "3",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              3,
+              5
+            ]
+          ],
+          "date-time": "2024-03-05T00:00:00Z",
+          "timestamp": 1709596800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://link.aps.org/licenses/aps-default-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              3,
+              5
+            ]
+          ],
+          "date-time": "2025-03-05T00:00:00Z",
+          "timestamp": 1741132800000
+        },
+        "content-version": "am",
+        "delay-in-days": 365,
+        "URL": "https://link.aps.org/licenses/aps-default-accepted-manuscript-license"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100002241",
+        "name": "Japan Science and Technology Agency",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "JPMJMI18A1"
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100002241",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.aps.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Phys. Rev. Applied"
+    ],
+    "accepted": {
+      "date-parts": [
+        [
+          2024,
+          2,
+          8
+        ]
+      ]
+    },
+    "DOI": "10.1103/physrevapplied.21.034006",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ],
+      "date-time": "2024-03-05T15:57:43Z",
+      "timestamp": 1709654263000
+    },
+    "update-policy": "https://doi.org/10.1103/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 9,
+    "title": [
+      "Continuous generation of an ultracold atomic beam using crossed moving optical lattices"
+    ],
+    "prefix": "10.1103",
+    "volume": "21",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0006-5180-0368",
+        "authenticated-orcid": true,
+        "given": "Shoichi",
+        "family": "Okaba",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Applied Physics, Graduate School of Engineering, The University of Tokyo, Bunkyo-ku, Tokyo 113-8656, Japan"
+          },
+          {
+            "name": "Space-Time Engineering Research Team, RIKEN Center for Advanced Photonics, Wako, Saitama 351-0198, Japan"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0000-7400-8070",
+        "authenticated-orcid": true,
+        "given": "Ryoto",
+        "family": "Takeuchi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Applied Physics, Graduate School of Engineering, The University of Tokyo, Bunkyo-ku, Tokyo 113-8656, Japan"
+          },
+          {
+            "name": "Quantum Metrology Laboratory, RIKEN, Wako, Saitama 351-0198, Japan"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0009-5179-8255",
+        "authenticated-orcid": true,
+        "given": "Shigenori",
+        "family": "Tsuji",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Space-Time Engineering Research Team, RIKEN Center for Advanced Photonics, Wako, Saitama 351-0198, Japan"
+          },
+          {
+            "name": "JEOL Ltd., Akishima, Tokyo 196-8558, Japan"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8500-3678",
+        "authenticated-orcid": true,
+        "given": "Hidetoshi",
+        "family": "Katori",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Applied Physics, Graduate School of Engineering, The University of Tokyo, Bunkyo-ku, Tokyo 113-8656, Japan"
+          },
+          {
+            "name": "Space-Time Engineering Research Team, RIKEN Center for Advanced Photonics, Wako, Saitama 351-0198, Japan"
+          },
+          {
+            "name": "Quantum Metrology Laboratory, RIKEN, Wako, Saitama 351-0198, Japan"
+          }
+        ]
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevApplied.21.034006Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-022-04603-6"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-023-06927-3"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature15750"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aal3837"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s42254-020-0195-3"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-021-03585-1"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2015.5"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.1601231"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2016.231"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.67.181"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.67.177"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.97.240801"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature13433"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.116.183003"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.47.3554"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.170802"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/176280a0"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.123.073202"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/epl/i1998-00122-9"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.17.024061"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-022-04731-z"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc24R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/S1049-250X(08)60186-X",
+        "volume-title": "Optical Dipole Traps for Neutral Atoms",
+        "author": "R. Grimm",
+        "year": "2000"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.12.044014"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0022-3727/32/18/201"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.83.5194"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S1049-250X(02)80011-8"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.86.608"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.87.230401"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys698"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.75.3253"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/12/12/123015"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.213002"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/8/8/159"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.053001"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc37R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.101.013420"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc38R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.103.023331"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc39R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1354362"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc40R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.76.033418"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc41R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.35848/1882-0786/accb3c"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc42R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/442151a"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc43R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.35848/1882-0786/ac0e16"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc44R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.92.153004"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc45R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.223001"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc46R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/S1049-250X(08)60101-9",
+        "volume-title": "Evaporative Cooling of Trapped Atoms",
+        "author": "W. Ketterle",
+        "year": "1996"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc47R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.71.1"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc48R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.82.1116"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc49R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.100.113002"
+      }
+    ],
+    "container-title": [
+      "Physical Review Applied"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.aps.org/accepted/10.1103/PhysRevApplied.21.034006",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "unspecified"
+      },
+      {
+        "URL": "https://link.aps.org/article/10.1103/PhysRevApplied.21.034006",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevApplied.21.034006/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          11,
+          12
+        ]
+      ],
+      "date-time": "2024-11-12T23:53:16Z",
+      "timestamp": 1731455596000
+    },
+    "score": 83.49689,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevApplied.21.034006"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ]
+    },
+    "references-count": 48,
+    "journal-issue": {
+      "issue": "3",
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            3
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevapplied.21.034006",
+    "ISSN": [
+      "2331-7019"
+    ],
+    "issn-type": [
+      {
+        "type": "electronic",
+        "value": "2331-7019"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ]
+    },
+    "article-number": "034006"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          19
+        ]
+      ],
+      "date-time": "2025-11-19T09:39:57Z",
+      "timestamp": 1763545197553,
+      "version": "3.37.3"
+    },
+    "reference-count": 29,
+    "publisher": "IOP Publishing",
+    "issue": "4",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2023,
+              4,
+              20
+            ]
+          ],
+          "date-time": "2023-04-20T00:00:00Z",
+          "timestamp": 1681948800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 19,
+        "URL": "http://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2023,
+              4,
+              20
+            ]
+          ],
+          "date-time": "2023-04-20T00:00:00Z",
+          "timestamp": 1681948800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 19,
+        "URL": "https://iopscience.iop.org/info/page/text-and-data-mining"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100002241",
+        "name": "Japan Science and Technology Agency",
+        "doi-asserted-by": "crossref",
+        "award": [
+          "JPMJMI18A1"
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100002241",
+            "id-type": "DOI",
+            "asserted-by": "crossref"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "iopscience.iop.org"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Appl. Phys. Express"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title>\n               <jats:p>We have demonstrated the continuous outcoupling of ultracold <jats:sup>88</jats:sup>Sr atoms using a moving optical lattice. While Sr atoms are Zeeman-slowed and magneto-optically trapped on the <jats:sup>1</jats:sup>S<jats:sub>0</jats:sub>–<jats:sup>1</jats:sup>P<jats:sub>1</jats:sub> transition, the atoms relaxed to the 5s5p <jats:sup>3</jats:sup>P<jats:sub>2</jats:sub> metastable state are magnetically trapped and Doppler cooled on the 5s5p <jats:sup>3</jats:sup>P<jats:sub>2</jats:sub>–5s4d <jats:sup>3</jats:sup>D<jats:sub>3</jats:sub> transition at 2.92 <jats:italic>μ</jats:italic>m. By optically pumping the atoms to the 5s5p <jats:sup>3</jats:sup>P<jats:sub>0</jats:sub> state, we outcouple the atoms by a moving optical lattice. Such a continuous atomic source enables superradiant lasers and the zero-dead-time operation of atom interferometers and optical lattice clocks.</jats:p>",
+    "DOI": "10.35848/1882-0786/accb3c",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          6
+        ]
+      ],
+      "date-time": "2023-04-06T22:45:43Z",
+      "timestamp": 1680821143000
+    },
+    "page": "042003",
+    "update-policy": "https://doi.org/10.1088/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 14,
+    "title": [
+      "Continuous outcoupling of ultracold strontium atoms combining three different traps"
+    ],
+    "prefix": "10.35848",
+    "volume": "16",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0000-7400-8070",
+        "authenticated-orcid": true,
+        "given": "Ryoto",
+        "family": "Takeuchi",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0002-5017-8889",
+        "authenticated-orcid": false,
+        "given": "Hayaki",
+        "family": "Chiba",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0006-5180-0368",
+        "authenticated-orcid": false,
+        "given": "Shoichi",
+        "family": "Okaba",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6066-0145",
+        "authenticated-orcid": false,
+        "given": "Masao",
+        "family": "Takamoto",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0009-5179-8255",
+        "authenticated-orcid": false,
+        "given": "Shigenori",
+        "family": "Tsuji",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8500-3678",
+        "authenticated-orcid": true,
+        "given": "Hidetoshi",
+        "family": "Katori",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "published-online": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          20
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "apexaccb3cbib1",
+        "doi-asserted-by": "publisher",
+        "first-page": "683",
+        "DOI": "10.1038/s41586-022-04731-z",
+        "volume": "606",
+        "author": "Chen",
+        "year": "2022",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "apexaccb3cbib2",
+        "doi-asserted-by": "publisher",
+        "first-page": "71",
+        "DOI": "10.1038/nature12941",
+        "volume": "506",
+        "author": "Bloom",
+        "year": "2014",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "apexaccb3cbib3",
+        "doi-asserted-by": "publisher",
+        "first-page": "185",
+        "DOI": "10.1038/nphoton.2015.5",
+        "volume": "9",
+        "author": "Ushijima",
+        "year": "2015",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "apexaccb3cbib4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.67.181",
+        "volume": "67",
+        "author": "Kasevich",
+        "year": "1991",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.aau7948",
+        "volume": "4",
+        "author": "Savoie",
+        "year": "2018",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "first-page": "p. 133",
+        "article-title": "Local oscillator induced instabilities in trapped ion frequency standards",
+        "author": "Dick",
+        "key": "apexaccb3cbib6"
+      },
+      {
+        "key": "apexaccb3cbib7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/12/6/065026",
+        "volume": "12",
+        "author": "Lodewyck",
+        "year": "2010",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "apexaccb3cbib8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.170802",
+        "volume": "111",
+        "author": "Biedermann",
+        "year": "2013",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib9",
+        "doi-asserted-by": "publisher",
+        "first-page": "48",
+        "DOI": "10.1038/nphoton.2016.231",
+        "volume": "11",
+        "author": "Schioppo",
+        "year": "2017",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "apexaccb3cbib10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.1601231",
+        "volume": "2",
+        "author": "Norcia",
+        "year": "2016",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "key": "apexaccb3cbib11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.35848/1882-0786/ac0e16",
+        "volume": "14",
+        "author": "Katori",
+        "year": "2021",
+        "journal-title": "Appl. Phys. Express"
+      },
+      {
+        "year": "1999",
+        "author": "Metcalf",
+        "key": "apexaccb3cbib12"
+      },
+      {
+        "key": "apexaccb3cbib13",
+        "doi-asserted-by": "publisher",
+        "first-page": "2194",
+        "DOI": "10.1364/JOSAB.6.002194",
+        "volume": "6",
+        "author": "Hall",
+        "year": "1989",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "apexaccb3cbib14",
+        "doi-asserted-by": "publisher",
+        "first-page": "1116",
+        "DOI": "10.1103/PhysRevLett.82.1116",
+        "volume": "82",
+        "author": "Katori",
+        "year": "1999",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib15",
+        "doi-asserted-by": "publisher",
+        "first-page": "2072",
+        "DOI": "10.1364/JOSAB.6.002072",
+        "volume": "6",
+        "author": "Weiss",
+        "year": "1989",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "apexaccb3cbib16",
+        "doi-asserted-by": "publisher",
+        "first-page": "2084",
+        "DOI": "10.1364/JOSAB.6.002084",
+        "volume": "6",
+        "author": "Lett",
+        "year": "1989",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "apexaccb3cbib17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.122.203202",
+        "volume": "122",
+        "author": "Urvoy",
+        "year": "2019",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.93.073003",
+        "volume": "93",
+        "author": "Loftus",
+        "year": "2004",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.119.223202",
+        "volume": "119",
+        "author": "Bennetts",
+        "year": "2017",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "year": "2022",
+        "author": "Cline",
+        "key": "apexaccb3cbib20"
+      },
+      {
+        "key": "apexaccb3cbib21",
+        "doi-asserted-by": "crossref",
+        "first-page": "382",
+        "DOI": "10.1063/1.1354362",
+        "volume": "551",
+        "author": "Katori",
+        "year": "2001",
+        "journal-title": "AIP Conf. Proc."
+      },
+      {
+        "key": "apexaccb3cbib22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.65.041401",
+        "volume": "65",
+        "author": "Grünert",
+        "year": "2002",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "apexaccb3cbib23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.101.013420",
+        "volume": "101",
+        "author": "Hobson",
+        "year": "2020",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "apexaccb3cbib24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.103.023331",
+        "volume": "103",
+        "author": "Akatsuka",
+        "year": "2021",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "apexaccb3cbib25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.96.103003",
+        "volume": "96",
+        "author": "Brusch",
+        "year": "2006",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.76.033418",
+        "volume": "76",
+        "author": "Yang",
+        "year": "2007",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "apexaccb3cbib27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.100.113002",
+        "volume": "100",
+        "author": "Berglund",
+        "year": "2008",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib28",
+        "doi-asserted-by": "publisher",
+        "first-page": "483",
+        "DOI": "10.1364/JOSAB.9.000483",
+        "volume": "9",
+        "author": "Helmerson",
+        "year": "1992",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "apexaccb3cbib29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.100.042513",
+        "volume": "100",
+        "author": "Hashiguchi",
+        "year": "2019",
+        "journal-title": "Phys. Rev. A"
+      }
+    ],
+    "container-title": [
+      "Applied Physics Express"
+    ],
+    "link": [
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c",
+        "content-type": "text/html",
+        "content-version": "am",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "similarity-checking"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          21
+        ]
+      ],
+      "date-time": "2023-04-21T12:47:02Z",
+      "timestamp": 1682081222000
+    },
+    "score": 30.92392,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          1
+        ]
+      ]
+    },
+    "references-count": 29,
+    "journal-issue": {
+      "issue": "4",
+      "published-online": {
+        "date-parts": [
+          [
+            2023,
+            4,
+            20
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2023,
+            4,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.35848/1882-0786/accb3c",
+    "ISSN": [
+      "1882-0778",
+      "1882-0786"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "1882-0778"
+      },
+      {
+        "type": "electronic",
+        "value": "1882-0786"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          1
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Continuous outcoupling of ultracold strontium atoms combining three different traps",
+        "name": "article_title",
+        "label": "Article Title"
+      },
+      {
+        "value": "Applied Physics Express",
+        "name": "journal_title",
+        "label": "Journal Title"
+      },
+      {
+        "value": "paper",
+        "name": "article_type",
+        "label": "Article Type"
+      },
+      {
+        "value": "© 2023 The Author(s). Published on behalf of The Japan Society of Applied Physics by IOP Publishing Ltd.",
+        "name": "copyright_information",
+        "label": "Copyright Information"
+      },
+      {
+        "value": "2023-03-28",
+        "name": "date_received",
+        "label": "Date Received",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "2023-04-05",
+        "name": "date_accepted",
+        "label": "Date Accepted",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "2023-04-20",
+        "name": "date_epub",
+        "label": "Online publication date",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          27
+        ]
+      ],
+      "date-time": "2025-10-27T16:21:03Z",
+      "timestamp": 1761582063137,
+      "version": "build-2065373602"
+    },
+    "reference-count": 62,
+    "publisher": "Elsevier BV",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              5,
+              1
+            ]
+          ],
+          "date-time": "2021-05-01T00:00:00Z",
+          "timestamp": 1619827200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              5,
+              1
+            ]
+          ],
+          "date-time": "2021-05-01T00:00:00Z",
+          "timestamp": 1619827200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              5,
+              1
+            ]
+          ],
+          "date-time": "2021-05-01T00:00:00Z",
+          "timestamp": 1619827200000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-017"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              5,
+              1
+            ]
+          ],
+          "date-time": "2021-05-01T00:00:00Z",
+          "timestamp": 1619827200000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              5,
+              1
+            ]
+          ],
+          "date-time": "2021-05-01T00:00:00Z",
+          "timestamp": 1619827200000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-012"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              5,
+              1
+            ]
+          ],
+          "date-time": "2021-05-01T00:00:00Z",
+          "timestamp": 1619827200000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              5,
+              1
+            ]
+          ],
+          "date-time": "2021-05-01T00:00:00Z",
+          "timestamp": 1619827200000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-004"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100009096",
+        "name": "Firat Üniversitesi",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100009096",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Automation in Construction"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2021,
+          5
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.autcon.2021.103645",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2021,
+          2,
+          27
+        ]
+      ],
+      "date-time": "2021-02-27T06:54:04Z",
+      "timestamp": 1614408844000
+    },
+    "page": "103645",
+    "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 5,
+    "special_numbering": "C",
+    "title": [
+      "An automated location detection method in multi-storey buildings using environmental sound classification based on a new center symmetric nonlinear pattern: CS-LBlock-Pat"
+    ],
+    "prefix": "10.1016",
+    "volume": "125",
+    "author": [
+      {
+        "given": "Mark",
+        "family": "Okaba",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Turker",
+        "family": "Tuncer",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0005",
+        "doi-asserted-by": "crossref",
+        "first-page": "212",
+        "DOI": "10.1016/j.irbm.2019.10.006",
+        "article-title": "A deep feature learning model for pneumonia detection applying a combination of mRMR feature selection and machine learning models",
+        "volume": "41",
+        "author": "Toğaçar",
+        "year": "2020",
+        "journal-title": "Irbm"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0010",
+        "doi-asserted-by": "crossref",
+        "first-page": "8163",
+        "DOI": "10.1007/s00500-019-04383-8",
+        "article-title": "A fused CNN model for WBC detection with MRMR feature selection and extreme learning machine",
+        "volume": "24",
+        "author": "Özyurt",
+        "year": "2020",
+        "journal-title": "Soft. Comput."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0015",
+        "first-page": "1",
+        "article-title": "Efficient deep feature selection for remote sensing image recognition with fused deep learning architectures",
+        "author": "Özyurt",
+        "year": "2019",
+        "journal-title": "J. Supercomput."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0020",
+        "doi-asserted-by": "crossref",
+        "first-page": "285",
+        "DOI": "10.17694/bajece.716693",
+        "article-title": "Development of short forms of scales with decision tree algorithms",
+        "volume": "8",
+        "author": "Aydemir",
+        "year": "2021",
+        "journal-title": "Balkan J. Electric. Comput. Eng."
+      },
+      {
+        "year": "2018",
+        "series-title": "Weka ile yapay zeka",
+        "author": "Aydemir",
+        "key": "10.1016/j.autcon.2021.103645_bb0025"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0030",
+        "doi-asserted-by": "crossref",
+        "first-page": "120",
+        "DOI": "10.1080/00051144.2018.1498205",
+        "article-title": "A multi-objective route planning model based on genetic algorithm for cuboid surfaces",
+        "volume": "59",
+        "author": "Ozmen Koca",
+        "year": "2018",
+        "journal-title": "Automatika: časopis za automatiku, mjerenje, elektroniku, računarstvo i komunikacije"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0035",
+        "doi-asserted-by": "crossref",
+        "first-page": "110671",
+        "DOI": "10.1016/j.chaos.2021.110671",
+        "article-title": "A new fractal pattern feature generation function based emotion recognition method using EEG",
+        "volume": "144",
+        "author": "Tuncer",
+        "year": "2021",
+        "journal-title": "Chaos, Solitons Fractals"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0040",
+        "doi-asserted-by": "crossref",
+        "first-page": "107916",
+        "DOI": "10.1016/j.apacoust.2021.107916",
+        "article-title": "A new fractal H-tree pattern based gun model identification method using gunshot audios",
+        "volume": "177",
+        "author": "Dogan",
+        "year": "2021",
+        "journal-title": "Appl. Acoust."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0045",
+        "doi-asserted-by": "crossref",
+        "first-page": "107866",
+        "DOI": "10.1016/j.apacoust.2020.107866",
+        "article-title": "Multileveled ternary pattern and iterative ReliefF based bird sound classification",
+        "volume": "176",
+        "author": "Tuncer",
+        "year": "2021",
+        "journal-title": "Appl. Acoust."
+      },
+      {
+        "year": "2021",
+        "series-title": "Machine Learning Approach for Quantum Non-Markovian Noise Classification",
+        "author": "Martina",
+        "key": "10.1016/j.autcon.2021.103645_bb0050"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0055",
+        "article-title": "Image classification with deep learning in the presence of noisy labels: a survey",
+        "volume": "106771",
+        "author": "Algan",
+        "year": "2021",
+        "journal-title": "Knowl.-Based Syst."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0060",
+        "doi-asserted-by": "crossref",
+        "first-page": "279",
+        "DOI": "10.1109/LSP.2017.2657381",
+        "article-title": "Deep convolutional neural networks and data augmentation for environmental sound classification",
+        "volume": "24",
+        "author": "Salamon",
+        "year": "2017",
+        "journal-title": "IEEE Sig. Proc. Lett."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0065",
+        "article-title": "Deep neural network based environment sound classification and its implementation on hearing aid app",
+        "volume": "107790",
+        "author": "Fan",
+        "year": "2020",
+        "journal-title": "Measurement"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0070",
+        "doi-asserted-by": "crossref",
+        "first-page": "3",
+        "DOI": "10.1109/TMM.2019.2925956",
+        "article-title": "Generative model driven representation learning in a hybrid framework for environmental audio scene and sound event recognition",
+        "volume": "22",
+        "author": "Chandrakala",
+        "year": "2019",
+        "journal-title": "IEEE Trans. Multimedia"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0075",
+        "doi-asserted-by": "crossref",
+        "first-page": "607",
+        "DOI": "10.1109/TASE.2013.2285131",
+        "article-title": "Gabor-based nonuniform scale-frequency map for environmental sound classification in home automation",
+        "volume": "11",
+        "author": "Wang",
+        "year": "2013",
+        "journal-title": "IEEE Trans. Autom. Sci. Eng."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0080",
+        "doi-asserted-by": "crossref",
+        "first-page": "103177",
+        "DOI": "10.1016/j.autcon.2020.103177",
+        "article-title": "Human activity classification based on sound recognition and residual convolutional neural network",
+        "volume": "114",
+        "author": "Jung",
+        "year": "2020",
+        "journal-title": "Autom. Constr."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0085",
+        "doi-asserted-by": "crossref",
+        "first-page": "105912",
+        "DOI": "10.1016/j.asoc.2019.105912",
+        "article-title": "Unsupervised feature learning for environmental sound classification using weighted cycle-consistent generative adversarial network",
+        "volume": "86",
+        "author": "Esmaeilpour",
+        "year": "2020",
+        "journal-title": "Appl. Soft Comput."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0090",
+        "doi-asserted-by": "crossref",
+        "first-page": "1802",
+        "DOI": "10.3182/20120523-3-RO-2023.00251",
+        "article-title": "An environmental sound source classification system based on Mel-frequency cepstral coefficients and Gaussian mixture models",
+        "volume": "45",
+        "author": "Shen",
+        "year": "2012",
+        "journal-title": "IFAC Proc. Vol."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0095",
+        "doi-asserted-by": "crossref",
+        "first-page": "1142",
+        "DOI": "10.1109/TASL.2009.2017438",
+        "article-title": "Environmental sound recognition with time–frequency audio features",
+        "volume": "17",
+        "author": "Chu",
+        "year": "2009",
+        "journal-title": "IEEE Trans. Audio Speech Lang. Process."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0100",
+        "first-page": "539",
+        "article-title": "Environmental sound classification using discrete wavelet transform",
+        "volume": "9",
+        "author": "Lenin",
+        "year": "2015",
+        "journal-title": "Adv. Nat. Appl. Sci."
+      },
+      {
+        "year": "2017",
+        "series-title": "Comparison of Time-Frequency Representations for environmental sound classification using convolutional neural networks",
+        "author": "Huzaifah",
+        "key": "10.1016/j.autcon.2021.103645_bb0105"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0110",
+        "series-title": "2009 IEEE International Conference on Multimedia and Expo",
+        "first-page": "542",
+        "article-title": "Environmental sound classification based on feature collaboration",
+        "author": "Han",
+        "year": "2009"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0115",
+        "series-title": "The 2006 IEEE International Joint Conference on neural Network Proceedings",
+        "first-page": "1731",
+        "article-title": "Environmental sound classification using hybrid SVM/KNN classifier and MPEG-7 audio low-level descriptor",
+        "author": "Wang",
+        "year": "2006"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0120",
+        "series-title": "2010 2nd International Conference on Information Engineering and Computer Science",
+        "first-page": "1",
+        "article-title": "Eco-environmental sound classification based on matching pursuit and support vector machine",
+        "author": "Li",
+        "year": "2010"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0125",
+        "doi-asserted-by": "crossref",
+        "first-page": "57",
+        "DOI": "10.1016/j.ins.2013.04.014",
+        "article-title": "Very short time environmental sound classification based on spectrogram pattern matching",
+        "volume": "243",
+        "author": "Khunarsal",
+        "year": "2013",
+        "journal-title": "Inf. Sci."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0130",
+        "series-title": "2009 IEEE International Conference on Multimedia and Expo",
+        "first-page": "1218",
+        "article-title": "Healthcare audio event classification using hidden Markov models and hierarchical hidden Markov models",
+        "author": "Peng",
+        "year": "2009"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0135",
+        "series-title": "Chinese Conference on Pattern Recognition and Computer Vision (PRCV)",
+        "first-page": "261",
+        "article-title": "Attention based convolutional recurrent neural network for environmental sound classification",
+        "author": "Zhang",
+        "year": "2019"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0140",
+        "doi-asserted-by": "crossref",
+        "first-page": "2096",
+        "DOI": "10.1109/TASLP.2016.2592698",
+        "article-title": "Automatic environmental sound recognition: performance versus computational cost",
+        "volume": "24",
+        "author": "Sigtia",
+        "year": "2016",
+        "journal-title": "IEEE/ACM Trans. Audio Speech Lang. Process."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0145",
+        "series-title": "2015 IEEE 25th International Workshop on Machine Learning for Signal Processing (MLSP)",
+        "first-page": "1",
+        "article-title": "Environmental sound classification with convolutional neural networks",
+        "author": "Piczak",
+        "year": "2015"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0150",
+        "doi-asserted-by": "crossref",
+        "first-page": "1733",
+        "DOI": "10.3390/s19071733",
+        "article-title": "Environment sound classification using a two-stream CNN based on decision-level fusion",
+        "volume": "19",
+        "author": "Su",
+        "year": "2019",
+        "journal-title": "Sensors"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0155",
+        "article-title": "Environment recognition for digital audio forensics using MPEG-7 and Mel cepstral features",
+        "volume": "10",
+        "author": "Muhammad",
+        "year": "2013",
+        "journal-title": "Int. Arab J. Inform. Technol. (IAJIT)"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0160",
+        "series-title": "Proceedings of the 19th ACM International Conference on Multimedia",
+        "first-page": "1389",
+        "article-title": "Environmental sound classification for scene recognition using local discriminant bases and HMM",
+        "author": "Su",
+        "year": "2011"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0165",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1016/j.autcon.2012.11.021",
+        "article-title": "Augmented reality in built environment: classification and implications for future research",
+        "volume": "32",
+        "author": "Wang",
+        "year": "2013",
+        "journal-title": "Autom. Constr."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0170",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1145/1413862.1413863",
+        "article-title": "Dynamic privacy assessment in a smart house environment using multimodal sensing",
+        "volume": "5",
+        "author": "Moncrieff",
+        "year": "2008",
+        "journal-title": "ACM Transactions on Multimedia Computing, Communications, and Applications (TOMM)"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0175",
+        "series-title": "Computational Analysis of Sound Scenes and Events",
+        "first-page": "373",
+        "article-title": "Sound analysis in smart cities",
+        "author": "Bello",
+        "year": "2018"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0180",
+        "series-title": "International Conference on Applied Cryptography and Network Security",
+        "first-page": "327",
+        "article-title": "LBlock: A lightweight block cipher",
+        "author": "Wu",
+        "year": "2011"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0185",
+        "series-title": "International Conference on the Theory and Application of Cryptology and Information Security",
+        "first-page": "158",
+        "article-title": "Automatic security evaluation and (related-key) differential characteristic search: Application to SIMON, PRESENT, LBlock, DES (L) and other bit-oriented block ciphers",
+        "author": "Sun",
+        "year": "2014"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0190",
+        "article-title": "Surface EMG signal classification using TQWT, Bagging and Boosting for hand movement recognition",
+        "author": "Subasi",
+        "year": "2020",
+        "journal-title": "J. Ambient. Intell. Humaniz. Comput."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0195",
+        "doi-asserted-by": "crossref",
+        "first-page": "109519",
+        "DOI": "10.1016/j.mehy.2019.109519",
+        "article-title": "A Tunable-Q wavelet transform and quadruple symmetric pattern based EEG signal classification method",
+        "volume": "134",
+        "author": "Aydemir",
+        "year": "2020",
+        "journal-title": "Med. Hypotheses"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0200",
+        "doi-asserted-by": "crossref",
+        "first-page": "84532",
+        "DOI": "10.1109/ACCESS.2020.2992641",
+        "article-title": "Novel multi center and threshold ternary pattern based method for disease detection method using voice",
+        "volume": "8",
+        "author": "Tuncer",
+        "year": "2020",
+        "journal-title": "IEEE Access"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0205",
+        "series-title": "2013 International Conference on Computer Medical Applications (ICCMA)",
+        "first-page": "1",
+        "article-title": "Retinal image analysis aimed at extraction of vascular structure using linear discriminant classifier",
+        "author": "Fraz",
+        "year": "2013"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0210",
+        "doi-asserted-by": "crossref",
+        "first-page": "124",
+        "DOI": "10.1109/72.822516",
+        "article-title": "A fast iterative nearest point algorithm for support vector machine classifier design",
+        "volume": "11",
+        "author": "Keerthi",
+        "year": "2000",
+        "journal-title": "IEEE Trans. Neural Netw."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0215",
+        "doi-asserted-by": "crossref",
+        "first-page": "130327",
+        "DOI": "10.1109/ACCESS.2019.2939495",
+        "article-title": "Learning attentive representations for environmental sound classification",
+        "volume": "7",
+        "author": "Zhang",
+        "year": "2019",
+        "journal-title": "IEEE Access"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0220",
+        "series-title": "Proceedings of the 23rd ACM International Conference on Multimedia",
+        "first-page": "1015",
+        "article-title": "ESC: Dataset for environmental sound classification",
+        "author": "Piczak",
+        "year": "2015"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0225",
+        "series-title": "2016 24th European Signal Processing Conference (EUSIPCO)",
+        "first-page": "1128",
+        "article-title": "TUT database for acoustic scene classification and sound event detection",
+        "author": "Mesaros",
+        "year": "2016"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0230",
+        "series-title": "2019 IEEE 7th International Conference on Computer Science and Network Technology (ICCSNT)",
+        "first-page": "251",
+        "article-title": "Deep convolutional neural network combined with concatenated spectrogram for environmental sound classification",
+        "author": "Chi",
+        "year": "2019"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0235",
+        "series-title": "Proceedings of the 22nd ACM international conference on Multimedia",
+        "first-page": "1041",
+        "article-title": "A dataset and taxonomy for urban sound research",
+        "author": "Salamon",
+        "year": "2014"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0240",
+        "doi-asserted-by": "crossref",
+        "first-page": "107413",
+        "DOI": "10.1016/j.apacoust.2020.107413",
+        "article-title": "An automated environmental sound classification methods based on statistical and textural feature",
+        "volume": "167",
+        "author": "Akbal",
+        "year": "2020",
+        "journal-title": "Appl. Acoust."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0245",
+        "doi-asserted-by": "crossref",
+        "first-page": "108151",
+        "DOI": "10.1016/j.measurement.2020.108151",
+        "article-title": "A novel ternary and signum kernelled linear hexadecimal pattern and hybrid feature selection based environmental sound classification method",
+        "author": "Dogan",
+        "year": "2020",
+        "journal-title": "Measurement"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0250",
+        "doi-asserted-by": "crossref",
+        "first-page": "66529",
+        "DOI": "10.1109/ACCESS.2020.2984903",
+        "article-title": "A new deep CNN model for environmental sound classification",
+        "volume": "8",
+        "author": "Demir",
+        "year": "2020",
+        "journal-title": "IEEE Access"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0255",
+        "doi-asserted-by": "crossref",
+        "first-page": "411",
+        "DOI": "10.1109/LSP.2020.2975422",
+        "article-title": "CNN-based learnable gammatone filterbank and equal-loudness normalization for environmental sound classification",
+        "volume": "27",
+        "author": "Park",
+        "year": "2020",
+        "journal-title": "IEEE Sig. Proc. Lett."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0260",
+        "doi-asserted-by": "crossref",
+        "first-page": "122613",
+        "DOI": "10.1016/j.physa.2019.122613",
+        "article-title": "Environmental sound classification using optimum allocation sampling based empirical mode decomposition",
+        "volume": "537",
+        "author": "Ahmad",
+        "year": "2020",
+        "journal-title": "Phys. A: Stat. Mech. Appl."
+      },
+      {
+        "year": "2020",
+        "series-title": "ESResNet: Environmental Sound Classification Based on Visual Domain Models",
+        "author": "Guzhov",
+        "key": "10.1016/j.autcon.2021.103645_bb0265"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0270",
+        "doi-asserted-by": "crossref",
+        "first-page": "107050",
+        "DOI": "10.1016/j.apacoust.2019.107050",
+        "article-title": "Performance analysis of multiple aggregated acoustic features for environment sound classification",
+        "volume": "158",
+        "author": "Su",
+        "year": "2020",
+        "journal-title": "Appl. Acoust."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0275",
+        "doi-asserted-by": "crossref",
+        "first-page": "124055",
+        "DOI": "10.1109/ACCESS.2020.3006082",
+        "article-title": "Hybrid computerized method for environmental sound classification",
+        "volume": "8",
+        "author": "Ullo",
+        "year": "2020",
+        "journal-title": "IEEE Access"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0280",
+        "doi-asserted-by": "crossref",
+        "first-page": "107581",
+        "DOI": "10.1016/j.apacoust.2020.107581",
+        "article-title": "Spectral images based environmental sound classification using CNN with meaningful data augmentation",
+        "volume": "172",
+        "author": "Mushtaq",
+        "year": "2021",
+        "journal-title": "Appl. Acoust."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0285",
+        "doi-asserted-by": "crossref",
+        "first-page": "107819",
+        "DOI": "10.1016/j.apacoust.2020.107819",
+        "article-title": "Ensemble of handcrafted and deep features for urban sound classification",
+        "volume": "175",
+        "author": "Luz",
+        "year": "2021",
+        "journal-title": "Appl. Acoust."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0290",
+        "first-page": "1",
+        "article-title": "Multi-view representation for sound event recognition, signal",
+        "author": "Chandrakala",
+        "year": "2021",
+        "journal-title": "Image Video Process."
+      },
+      {
+        "year": "2018",
+        "series-title": "General-Purpose Tagging of Freesound Audio with Audioset Labels: Task Description, Dataset, and Baseline",
+        "author": "Fonseca",
+        "key": "10.1016/j.autcon.2021.103645_bb0295"
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0300",
+        "doi-asserted-by": "crossref",
+        "first-page": "106547",
+        "DOI": "10.1016/j.knosys.2020.106547",
+        "article-title": "Automated accurate speech emotion recognition system using twine shuffle pattern and iterative neighborhood component analysis techniques",
+        "volume": "211",
+        "author": "Tuncer",
+        "year": "2021",
+        "journal-title": "Knowl.-Based Syst."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0305",
+        "doi-asserted-by": "crossref",
+        "first-page": "107859",
+        "DOI": "10.1016/j.apacoust.2020.107859",
+        "article-title": "DES-Pat: a novel DES pattern-based propeller recognition method using underwater acoustical sounds",
+        "volume": "175",
+        "author": "Yaman",
+        "year": "2021",
+        "journal-title": "Appl. Acoust."
+      },
+      {
+        "key": "10.1016/j.autcon.2021.103645_bb0310",
+        "doi-asserted-by": "crossref",
+        "first-page": "104923",
+        "DOI": "10.1016/j.knosys.2019.104923",
+        "article-title": "Automated arrhythmia detection using novel hexadecimal local pattern and multilevel wavelet transform with ECG signals",
+        "volume": "186",
+        "author": "Tuncer",
+        "year": "2019",
+        "journal-title": "Knowl.-Based Syst."
+      }
+    ],
+    "container-title": [
+      "Automation in Construction"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0926580521000960?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0926580521000960?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          14
+        ]
+      ],
+      "date-time": "2025-10-14T23:22:59Z",
+      "timestamp": 1760484179000
+    },
+    "score": 20.33192,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0926580521000960"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          5
+        ]
+      ]
+    },
+    "references-count": 62,
+    "alternative-id": [
+      "S0926580521000960"
+    ],
+    "URL": "https://doi.org/10.1016/j.autcon.2021.103645",
+    "ISSN": [
+      "0926-5805"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0926-5805"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          5
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "An automated location detection method in multi-storey buildings using environmental sound classification based on a new center symmetric nonlinear pattern: CS-LBlock-Pat",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "Automation in Construction",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.autcon.2021.103645",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2021 Elsevier B.V. All rights reserved.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ],
+    "article-number": "103645"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          16
+        ]
+      ],
+      "date-time": "2025-03-16T04:16:08Z",
+      "timestamp": 1742098568678,
+      "version": "3.38.0"
+    },
+    "reference-count": 37,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "1",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              3,
+              15
+            ]
+          ],
+          "date-time": "2025-03-15T00:00:00Z",
+          "timestamp": 1741996800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by-nc-nd/4.0"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              3,
+              15
+            ]
+          ],
+          "date-time": "2025-03-15T00:00:00Z",
+          "timestamp": 1741996800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by-nc-nd/4.0"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Sci Rep"
+    ],
+    "DOI": "10.1038/s41598-025-93964-9",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          15
+        ]
+      ],
+      "date-time": "2025-03-15T13:26:11Z",
+      "timestamp": 1742045171000
+    },
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Experiences of people living with HIV/AIDS in selected hospitals in Imo state, Nigeria, regarding the usability and satisfaction of reminders using M-health features: a qualitative study"
+    ],
+    "prefix": "10.1038",
+    "volume": "15",
+    "author": [
+      {
+        "given": "Chinelo Judith",
+        "family": "Ezelote",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Eunice Anyalewechi",
+        "family": "Nwoke",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Sally Nkechinyere",
+        "family": "Ibe",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Blessed Okwuchi",
+        "family": "Nworuh",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Chimezie Christian",
+        "family": "Iwuala",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Obinna Godwin",
+        "family": "Udujih",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Christopher Chike Anunonwu",
+        "family": "Okereke",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Joy Nkechi",
+        "family": "Osuoji",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Eleanor",
+        "family": "Asuzu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Oghenekowhoro Stephen",
+        "family": "Eyarefe",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Ugochukwu Emmanuel",
+        "family": "Felix",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Alexis Ebikonbowei",
+        "family": "Okaba",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          15
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "93964_CR1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-319-12817-7",
+        "volume-title": "Mobile health: A technology road map",
+        "author": "S Adibi",
+        "year": "2015",
+        "unstructured": "Adibi, S. Mobile health: A technology road map 5th edn. (Springer, 2015).",
+        "edition": "5"
+      },
+      {
+        "issue": "3",
+        "key": "93964_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "207",
+        "DOI": "10.1257/jep.24.3.207",
+        "volume": "24",
+        "author": "JC Aker",
+        "year": "2010",
+        "unstructured": "Aker, J. C. & Mbiti, I. M. Mobile phones and economic development in Africa. J. Econom. Perspect. 24(3), 207–232. https://doi.org/10.1257/jep.24.3.207 (2010).",
+        "journal-title": "J. Econom. Perspect."
+      },
+      {
+        "key": "93964_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "825",
+        "DOI": "10.1097/QAD.0b013e32834380c1",
+        "volume": "25",
+        "author": "C Pop-Eleches",
+        "year": "2011",
+        "unstructured": "Pop-Eleches, C. et al. Mobile phone technologies improve adherence to antiretroviral treatment in a resource-limited setting: A randomized controlled trial of text message reminders. AIDS 25, 825–834 (2011).",
+        "journal-title": "AIDS"
+      },
+      {
+        "key": "93964_CR4",
+        "unstructured": "HIV info.NIH.gov. HIV and AIDS: The Basics. Last Reviewed: July 25, 2023. https://hivinfo.nih.gov/understanding-hiv/fact-sheets/hiv-and-aids-basics."
+      },
+      {
+        "key": "93964_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "1068664",
+        "DOI": "10.3389/fpubh.2023.1068664.",
+        "volume": "11",
+        "author": "X Tian",
+        "year": "2023",
+        "unstructured": "Tian, X. et al. Global, regional, and national HIV/AIDS disease burden levels and trends in 1990–2019: A systematic analysis for the global burden of disease 2019 study. Front. Public Health 11, 1068664. https://doi.org/10.3389/fpubh.2023.1068664. (2023).",
+        "journal-title": "Front. Public Health"
+      },
+      {
+        "key": "93964_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "506",
+        "DOI": "10.1097/COH.0000000000000090",
+        "volume": "9",
+        "author": "G Djomand",
+        "year": "2014",
+        "unstructured": "Djomand, G., Quaye, S. & Sullivan, P. S. HIV epidemic among key populations in West Africa. Curr. Opin. HIV AIDS 9, 506 (2014).",
+        "journal-title": "Curr. Opin. HIV AIDS"
+      },
+      {
+        "key": "93964_CR7",
+        "unstructured": "Global aids response–NACA Nigeria. https://naca.gov.ng/wp- content/uploads/2016/11/Nigeria_GARPR_2015_Report_0.pdf"
+      },
+      {
+        "key": "93964_CR8",
+        "unstructured": "Centre for Disease Control. HIV. January 24, 2024. https://www.cdc.gov/hiv/about/index.html."
+      },
+      {
+        "issue": "5",
+        "key": "93964_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "619",
+        "DOI": "10.1111/tmi.12079",
+        "volume": "18",
+        "author": "AT Brennan",
+        "year": "2013",
+        "unstructured": "Brennan, A. T., Maskew, M., Sanne, I. & Fox, M. P. The interplay between CD4 cell count, viral load suppression and duration of antiretroviral therapy on mortality in a resource-limited setting. Tropical Med. Health 18(5), 619–631. https://doi.org/10.1111/tmi.12079 (2013).",
+        "journal-title": "Tropical Med. Health"
+      },
+      {
+        "key": "93964_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "71",
+        "DOI": "10.1111/j.1365-3156.2011.02888.x",
+        "volume": "17",
+        "author": "SP Wasti",
+        "year": "2012",
+        "unstructured": "Wasti, S. P., van Teijlingen, E. & Simkhada, P. “Factors influencing adherence to antiretroviral treatment in Asian developing countries: A systematic review. Tropical Med. Health 17, 71–81 (2012).",
+        "journal-title": "Tropical Med. Health"
+      },
+      {
+        "issue": "9734",
+        "key": "93964_CR11",
+        "doi-asserted-by": "publisher",
+        "first-page": "49",
+        "DOI": "10.1016/S0140-6736(10)60676-9",
+        "volume": "376",
+        "author": "PA Volberding",
+        "year": "2010",
+        "unstructured": "Volberding, P. A. & Deeks, S. G. Antiretroviral therapy and management of HIV infection. Lancet 376(9734), 49–62. https://doi.org/10.1016/S0140-6736(10)60676-9 (2010).",
+        "journal-title": "Lancet"
+      },
+      {
+        "key": "93964_CR12",
+        "first-page": "92",
+        "volume": "XII",
+        "author": "World Health Organization",
+        "year": "2013",
+        "unstructured": "World Health Organization. Adherence to Long-Term Therapies Evidence for Action World Health. Organization XII, 92–106 (2013).",
+        "journal-title": "Organization"
+      },
+      {
+        "key": "93964_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "835",
+        "DOI": "10.4103/0971-5916.92629",
+        "volume": "134",
+        "author": "S Sahay",
+        "year": "2011",
+        "unstructured": "Sahay, S., Reddy, K. S. & Dhayarkar, S. Optimizing adherence to antiretroviral therapy. Indian J. Med. Res. 134, 835–849 (2011).",
+        "journal-title": "Indian J. Med. Res."
+      },
+      {
+        "issue": "3",
+        "key": "93964_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "191",
+        "DOI": "10.1177/1545109710368722",
+        "volume": "9",
+        "author": "KS Alakija",
+        "year": "2010",
+        "unstructured": "Alakija, K. S., Fadeyi, A., Ogunmodede, J. A. & Desalu, O. Factors influencing adherence to antiretroviral medication in Ilorin, Nigeria. J. Int. Associat. Physicians AIDS Care (Chic) 9(3), 191–195 (2010).",
+        "journal-title": "J. Int. Associat. Physicians AIDS Care (Chic)"
+      },
+      {
+        "key": "93964_CR15",
+        "first-page": "106",
+        "volume": "250",
+        "author": "S Stonbraker",
+        "year": "2018",
+        "unstructured": "Stonbraker, S., Cho, H., Hermosi, G., Pichon, A. & Schnall, R. Usability testing of a mHealth app to support self-management of HIV-associated non-AIDS related symptoms. Stud. Health Techno. Inf. 250, 106–110 (2018).",
+        "journal-title": "Stud. Health Techno. Inf."
+      },
+      {
+        "issue": "1",
+        "key": "93964_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "36",
+        "DOI": "10.1080/08964289.2016.1189396",
+        "volume": "44",
+        "author": "D Cordova",
+        "year": "2016",
+        "unstructured": "Cordova, D. et al. The usability and acceptability of an adolescent mHealth HIV/STI and drug abuse preventive intervention in primary care. Behav. Med. (Washington D.C.) 44(1), 36. https://doi.org/10.1080/08964289.2016.1189396 (2016).",
+        "journal-title": "Behav. Med. (Washington D.C.)"
+      },
+      {
+        "issue": "6",
+        "key": "93964_CR17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.hlpt.2024.100937",
+        "volume": "13",
+        "author": "E Demir",
+        "year": "2024",
+        "unstructured": "Demir, E., Yakutcan, U., Adeoti, A. O., Isichei, C. & Adeyemi, S. Evaluating mobile health interventions for HIV patients in Nigeria: Healthcare policy implications from a simulation study. Health Policy Technol. 13(6), 100937. https://doi.org/10.1016/j.hlpt.2024.100937 (2024).",
+        "journal-title": "Health Policy Technol."
+      },
+      {
+        "key": "93964_CR18",
+        "doi-asserted-by": "publisher",
+        "first-page": "75",
+        "DOI": "10.1186/s12981-024-00653-0",
+        "volume": "21",
+        "author": "CJ Ezelote",
+        "year": "2024",
+        "unstructured": "Ezelote, C. J. et al. Brief communication: Effect of mobile health intervention on medication time adherence among people living with HIV/AIDS receiving care at selected hospitals in Owerri, Imo State Nigeria. AIDS Res. Therapy 21, 75. https://doi.org/10.1186/s12981-024-00653-0 (2024).",
+        "journal-title": "AIDS Res. Therapy"
+      },
+      {
+        "issue": "4",
+        "key": "93964_CR19",
+        "doi-asserted-by": "publisher",
+        "first-page": "402",
+        "DOI": "10.1097/QAI.0b013e318158a44f",
+        "volume": "46",
+        "author": "RN Reynolds",
+        "year": "2008",
+        "unstructured": "Reynolds, R. N. et al. Optimizing measurement of self-reported adherence with the ACTG adherence questionnaire. JAIDS J. Acquir. Immune Defic. Syndr. 46(4), 402–409 (2008).",
+        "journal-title": "JAIDS J. Acquir. Immune Defic. Syndr."
+      },
+      {
+        "issue": "8",
+        "key": "93964_CR20",
+        "doi-asserted-by": "publisher",
+        "first-page": "e37163",
+        "DOI": "10.2196/37163",
+        "volume": "6",
+        "author": "K Leyritana",
+        "year": "2022",
+        "unstructured": "Leyritana, K. et al. Delivering an mHealth adherence support intervention for patients with HIV: Mixed methods process evaluation of the Philippines connect for life study. JMIR Formative Res. 6(8), e37163. https://doi.org/10.2196/37163 (2022).",
+        "journal-title": "JMIR Formative Res."
+      },
+      {
+        "key": "93964_CR21",
+        "doi-asserted-by": "publisher",
+        "first-page": "820",
+        "DOI": "10.1186/s12889-020-08965-2",
+        "volume": "20",
+        "author": "N Murthy",
+        "year": "2020",
+        "unstructured": "Murthy, N. et al. Effects of an mHealth voice message service (mMitra) on maternal health knowledge and practices of low-income women in India: Findings from a pseudo-randomized controlled trial. BMC Public Health 20, 820. https://doi.org/10.1186/s12889-020-08965-2 (2020).",
+        "journal-title": "BMC Public Health"
+      },
+      {
+        "issue": "2",
+        "key": "93964_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "e22229",
+        "DOI": "10.2196/22229",
+        "volume": "9",
+        "author": "DM Byonanebye",
+        "year": "2021",
+        "unstructured": "Byonanebye, D. M. et al. An interactive voice response software to improve the quality of life of people living with HIV in Uganda: Randomized controlled trial. JMIR mHealth uHealth 9(2), e22229 (2021).",
+        "journal-title": "JMIR mHealth uHealth"
+      },
+      {
+        "issue": "1",
+        "key": "93964_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "670525",
+        "DOI": "10.1155/2013/670525",
+        "volume": "2013",
+        "author": "CWT Miller",
+        "year": "2012",
+        "unstructured": "Miller, C. W. T. & Himelhoch, S. Acceptability of mobile phone technology for medication adherence interventions among HIV-positive patients at an urban clinic. AIDS Res. Treatment 2013(1), 670525. https://doi.org/10.1155/2013/670525 (2012).",
+        "journal-title": "AIDS Res. Treatment"
+      },
+      {
+        "issue": "12",
+        "key": "93964_CR24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2196/28311",
+        "volume": "5",
+        "author": "R Shrestha",
+        "year": "2021",
+        "unstructured": "Shrestha, R. et al. Privacy and confidentiality concerns related to the use of mHealth Apps for HIV prevention efforts among Malaysian men who have sex with men: Cross-sectional survey study. JMIR Formative Res. 5(12), e28311 (2021).",
+        "journal-title": "JMIR Formative Res."
+      },
+      {
+        "issue": "4",
+        "key": "93964_CR25",
+        "doi-asserted-by": "publisher",
+        "first-page": "178",
+        "DOI": "10.1089/apc.2016.0025",
+        "volume": "30",
+        "author": "AI Rana",
+        "year": "2016",
+        "unstructured": "Rana, A. I., Lamy, E. & Beckwith, C. G. Using a mobile health intervention to support HIV treatment adherence and retention among patients at risk for disengaging with care. AIDS Patient Care STDs 30(4), 178–184. https://doi.org/10.1089/apc.2016.0025 (2016).",
+        "journal-title": "AIDS Patient Care STDs"
+      },
+      {
+        "key": "93964_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "11",
+        "DOI": "10.1186/s13722-017-0076-y",
+        "volume": "12",
+        "author": "RP Westergaard",
+        "year": "2017",
+        "unstructured": "Westergaard, R. P. et al. Acceptability of a mobile health intervention to enhance HIV care coordination for patients with substance use disorders. Addict. Sci. Clin. Practice 12, 11. https://doi.org/10.1186/s13722-017-0076-y (2017).",
+        "journal-title": "Addict. Sci. Clin. Practice"
+      },
+      {
+        "key": "93964_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "94",
+        "DOI": "10.21203/rs.3.rs-4248209/v1",
+        "volume": "27",
+        "author": "C Njumkeng",
+        "year": "2024",
+        "unstructured": "Njumkeng, C. et al. Feasibility and acceptability of a mobile health application among adolescents and young adults living with HIV in Fako Division, South West, Cameroon: Guidance for development. Res. Square 27, 94. https://doi.org/10.21203/rs.3.rs-4248209/v1 (2024).",
+        "journal-title": "Res. Square"
+      },
+      {
+        "key": "93964_CR28",
+        "doi-asserted-by": "publisher",
+        "first-page": "4",
+        "DOI": "10.21037/mhealth.2019.09.12",
+        "volume": "6",
+        "author": "E Brown",
+        "year": "2020",
+        "unstructured": "Brown, E., Krishnan, A., Ranjit, Y. S., Marcus, R. & Altice, F. L. Assessing mobile health feasibility and acceptability among HIV-infected cocaine users and their healthcare providers: Guidance for implementing an intervention. MHealth 6, 4. https://doi.org/10.21037/mhealth.2019.09.12 (2020).",
+        "journal-title": "MHealth"
+      },
+      {
+        "issue": "4",
+        "key": "93964_CR29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1371/journal.pone.0176051",
+        "volume": "12",
+        "author": "JA Nhavoto",
+        "year": "2017",
+        "unstructured": "Nhavoto, J. A., Grönlund, Å. & Klein, G. O. Mobile health treatment support intervention for HIV and tuberculosis in Mozambique: Perspectives of patients and healthcare workers. PLOS One 12(4), e0176051. https://doi.org/10.1371/journal.pone.0176051 (2017).",
+        "journal-title": "PLOS One"
+      },
+      {
+        "issue": "3",
+        "key": "93964_CR30",
+        "doi-asserted-by": "publisher",
+        "first-page": "165",
+        "DOI": "10.2989/16085906.2023.2238687",
+        "volume": "22",
+        "author": "G Kruger",
+        "year": "2023",
+        "unstructured": "Kruger, G., van der Borght, E. A., Teijema, M. T. & van Furth, M. T. “I don’t know if you have searched through the scriptures to find a reference on HIV/AIDS. I mean there isn’t going to be one, right?”: HIV stigma solutions from dialogues between faith leaders and health care workers. Afr. J. AIDS Res. 22(3), 165–174 (2023).",
+        "journal-title": "Afr. J. AIDS Res."
+      },
+      {
+        "issue": "3",
+        "key": "93964_CR31",
+        "doi-asserted-by": "publisher",
+        "first-page": "817",
+        "DOI": "10.3390/rel3030817",
+        "volume": "3",
+        "author": "C Tumwine",
+        "year": "2012",
+        "unstructured": "Tumwine, C., Neema, S. & Wagner, G. Reasons why high religiosity can co-exist with and precipitate discontinuation of anti-retroviral therapy among different HIV clients in Uganda: An exploratory study. Religions 3(3), 817–832. https://doi.org/10.3390/rel3030817 (2012).",
+        "journal-title": "Religions"
+      },
+      {
+        "key": "93964_CR32",
+        "doi-asserted-by": "publisher",
+        "first-page": "1",
+        "DOI": "10.1186/s12981-018-0214-y",
+        "volume": "16",
+        "author": "D Bukenya",
+        "year": "2019",
+        "unstructured": "Bukenya, D., Mayanja, B. N., Nakamanya, S., Muhumuza, R. & Seeley, J. What causes non-adherence among some individuals on long-term antiretroviral therapy ? Experiences of individuals with poor viral suppression in Uganda. AIDS Res. Therapy 16, 1–9 (2019).",
+        "journal-title": "AIDS Res. Therapy"
+      },
+      {
+        "issue": "3",
+        "key": "93964_CR33",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1371/journal.pone.0230159",
+        "volume": "15",
+        "author": "G Dzansi",
+        "year": "2020",
+        "unstructured": "Dzansi, G., Tornu, E. & Chipps, J. Promoters and inhibitors of treatment adherence among HIV/AIDS patients receiving antiretroviral therapy in Ghana: Narratives from an underserved population. PLOS One 15(3), e0230159. https://doi.org/10.1371/journal.pone.0230159 (2020).",
+        "journal-title": "PLOS One"
+      },
+      {
+        "issue": "1",
+        "key": "93964_CR34",
+        "first-page": "22",
+        "volume": "4",
+        "author": "AD Igbende",
+        "year": "2016",
+        "unstructured": "Igbende, A. D., Dooior, M. & Ogwuche, C. Belief in spiritual healing, gender and adherence to medication among HIV/AIDS patients in Benue State, Nigeria. Int. J. Health Psychol. Res. 4(1), 22–30 (2016).",
+        "journal-title": "Int. J. Health Psychol. Res."
+      },
+      {
+        "key": "93964_CR35",
+        "unstructured": "Moyo S. An assessment of the influence of Christian faith on art adherence for Christians living with HIV at ZNNP+ Gweru urban. 2018. https://cris.library.msu.ac.zw//handle/11408/3302."
+      },
+      {
+        "key": "93964_CR36",
+        "doi-asserted-by": "publisher",
+        "first-page": "1",
+        "DOI": "10.1186/s12879-015-0990-0",
+        "volume": "15",
+        "author": "BR Yehia",
+        "year": "2015",
+        "unstructured": "Yehia, B. R. et al. Barriers and facilitators to patient retention in HIV care. BMC Infect. Dis. 15, 1–10. https://doi.org/10.1186/s12879-015-0990-0 (2015).",
+        "journal-title": "BMC Infect. Dis."
+      },
+      {
+        "key": "93964_CR37",
+        "doi-asserted-by": "publisher",
+        "first-page": "45",
+        "DOI": "10.21037/mhealth.2019.09.02",
+        "volume": "5",
+        "author": "N St Clair-Sullivan",
+        "year": "2019",
+        "unstructured": "St Clair-Sullivan, N. et al. Barriers to HIV care and adherence for young people living with HIV in Zambia and mHealth. mHealth 5, 45 (2019).",
+        "journal-title": "mHealth"
+      }
+    ],
+    "container-title": [
+      "Scientific Reports"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.nature.com/articles/s41598-025-93964-9.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41598-025-93964-9",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41598-025-93964-9.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          15
+        ]
+      ],
+      "date-time": "2025-03-15T13:26:14Z",
+      "timestamp": 1742045174000
+    },
+    "score": 8.542951,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/s41598-025-93964-9"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          15
+        ]
+      ]
+    },
+    "references-count": 37,
+    "journal-issue": {
+      "issue": "1",
+      "published-online": {
+        "date-parts": [
+          [
+            2025,
+            12
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "93964"
+    ],
+    "URL": "https://doi.org/10.1038/s41598-025-93964-9",
+    "ISSN": [
+      "2045-2322"
+    ],
+    "issn-type": [
+      {
+        "value": "2045-2322",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          15
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "25 December 2024",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "11 March 2025",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "15 March 2025",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "order": 1,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Declarations"
+        }
+      },
+      {
+        "value": "The authors declare no competing interests.",
+        "order": 2,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Competing interests"
+        }
+      },
+      {
+        "value": "The study was conducted according to the guidelines of the Declaration of Helsinki and approved by the Health Research Ethics Committee of Federal Medical Centre (FMC), Owerri Imo State, Nigeria (Under the Chairmanship of Dr. I.I. Ike, MBBS, FMCPAED) dated February 25th May 2022 under the Chairmanship of Dr. I.I. Ike (FMC/OW/HREC/ Vol.11/048). This study ensured the principle of anonymity and confidentiality. Informed consent was obtained from all the respondents involved in the study.",
+        "order": 3,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Ethics approval and consent to participate"
+        }
+      }
+    ],
+    "article-number": "8987"
+  }
+]

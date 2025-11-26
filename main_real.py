@@ -74,12 +74,25 @@ if(True):
         notions_txt=Path(output_dir_summary) /"05_Extracted_notions.txt",
         rag_folder=Path(output_dir_article)  /"RAG/literature_rag",
         pdf_folder=Path(output_dir_article)  /"pdfs_litterature",
-        max_chunk_size=4000,
+        cache_folder="./.cache",
+        max_chunk_size=3500,
         max_articles_per_notion=4,
-        use_wikipedia=True,        # set False if you already have them
+        use_wikipedia=True,
         download_pdfs=True,
-#        llm_model_name=llm
+        unpaywall_email="myemail@ens.fr", # set your email here for Unpaywall
+        parallel_workers=6,
     )
+#    build_rag_dataset(
+#        csv_input=Path(output_dir_summary) /"06_relevant_references.csv",
+#        notions_txt=Path(output_dir_summary) /"05_Extracted_notions.txt",
+#        rag_folder=Path(output_dir_article)  /"RAG/literature_rag",
+#        pdf_folder=Path(output_dir_article)  /"pdfs_litterature",
+#        max_chunk_size=4000,
+#        max_articles_per_notion=4,
+#        use_wikipedia=True,        # set False if you already have them
+#        download_pdfs=True,
+#        llm_model_name=llm
+#    )
 #if (False):
 #    enrich_presentation_plan(
 #        summaries_dir=output_dir_summary,

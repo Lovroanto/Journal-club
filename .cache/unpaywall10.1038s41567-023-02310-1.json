@@ -1,0 +1,93 @@
+{
+  "best_pdf": null,
+  "raw": {
+    "doi": "10.1038/s41567-023-02310-1",
+    "doi_url": "https://doi.org/10.1038/s41567-023-02310-1",
+    "title": "Direct comparison of two spin-squeezed optical clock ensembles at the 10−17 level",
+    "genre": "journal-article",
+    "is_paratext": false,
+    "published_date": "2024-01-11",
+    "year": 2024,
+    "journal_name": "Nature Physics",
+    "journal_issns": "1745-2473,1745-2481",
+    "journal_issn_l": "1745-2473",
+    "journal_is_oa": false,
+    "journal_is_in_doaj": false,
+    "publisher": "Springer Science and Business Media LLC",
+    "is_oa": false,
+    "oa_status": "closed",
+    "has_repository_copy": false,
+    "best_oa_location": null,
+    "first_oa_location": null,
+    "oa_locations": [],
+    "oa_locations_embargoed": [],
+    "data_standard": 2,
+    "z_authors": [
+      {
+        "author_position": "first",
+        "raw_author_name": "John M. Robinson",
+        "is_corresponding": true,
+        "raw_affiliation_strings": [
+          "JILA, National Institute of Standards and Technology and University of Colorado, Department of Physics, University of Colorado, Boulder, CO, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Maya Miklos",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, National Institute of Standards and Technology and University of Colorado, Department of Physics, University of Colorado, Boulder, CO, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Yee Ming Tso",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, National Institute of Standards and Technology and University of Colorado, Department of Physics, University of Colorado, Boulder, CO, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Colin J. Kennedy",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, National Institute of Standards and Technology and University of Colorado, Department of Physics, University of Colorado, Boulder, CO, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Tobias Bothwell",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, National Institute of Standards and Technology and University of Colorado, Department of Physics, University of Colorado, Boulder, CO, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Dhruv Kedar",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, National Institute of Standards and Technology and University of Colorado, Department of Physics, University of Colorado, Boulder, CO, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "James K. Thompson",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, National Institute of Standards and Technology and University of Colorado, Department of Physics, University of Colorado, Boulder, CO, USA"
+        ]
+      },
+      {
+        "author_position": "last",
+        "raw_author_name": "Jun Ye",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, National Institute of Standards and Technology and University of Colorado, Department of Physics, University of Colorado, Boulder, CO, USA"
+        ]
+      }
+    ],
+    "updated": "2025-05-22T18:42:22Z"
+  }
+}

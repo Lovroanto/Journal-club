@@ -1,0 +1,1760 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          21
+        ]
+      ],
+      "date-time": "2025-11-21T17:39:48Z",
+      "timestamp": 1763746788967,
+      "version": "3.32.0"
+    },
+    "reference-count": 24,
+    "publisher": "American Physical Society (APS)",
+    "issue": "16",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2009,
+              4,
+              20
+            ]
+          ],
+          "date-time": "2009-04-20T00:00:00Z",
+          "timestamp": 1240185600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://link.aps.org/licenses/aps-default-license"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. Lett."
+    ],
+    "DOI": "10.1103/physrevlett.102.163601",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2009,
+          4,
+          20
+        ]
+      ],
+      "date-time": "2009-04-20T22:30:34Z",
+      "timestamp": 1240266634000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 314,
+    "title": [
+      "Prospects for a Millihertz-Linewidth Laser"
+    ],
+    "prefix": "10.1103",
+    "volume": "102",
+    "author": [
+      {
+        "given": "D.",
+        "family": "Meiser",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jun",
+        "family": "Ye",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "D. R.",
+        "family": "Carlson",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M. J.",
+        "family": "Holland",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2009,
+          4,
+          20
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevLett.102.163601Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/416233a"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.75.325"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1154622"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1153341"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/42/5/012"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0953-4075/38/9/002"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OL.32.000641"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.101.260602"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s11434-009-0073-y"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.90.063003"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.89.253003"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.153003"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/10/7/073014"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.54.551"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.76.1800"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature01974"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.50.4318"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.72.3815"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.47.1431"
+      },
+      {
+        "volume-title": "Encyclopedia of Physics",
+        "year": "1970",
+        "author": "H. Haken",
+        "key": "PhysRevLett.102.163601Cc20R1"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1133732"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.93.99"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0370-1573(82)90102-8"
+      },
+      {
+        "key": "PhysRevLett.102.163601Cc24R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1100",
+        "DOI": "10.1143/JPSJ.17.1100",
+        "volume": "17",
+        "author": "R. Kubo",
+        "year": "1962",
+        "journal-title": "J. Phys. Soc. Jpn.",
+        "ISSN": "https://id.crossref.org/issn/0031-9015",
+        "issn-type": "print"
+      }
+    ],
+    "container-title": [
+      "Physical Review Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevLett.102.163601",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevLett.102.163601/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          1,
+          2
+        ]
+      ],
+      "date-time": "2025-01-02T22:03:06Z",
+      "timestamp": 1735855386000
+    },
+    "score": 55.804134,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevLett.102.163601"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2009,
+          4,
+          20
+        ]
+      ]
+    },
+    "references-count": 24,
+    "journal-issue": {
+      "issue": "16",
+      "published-print": {
+        "date-parts": [
+          [
+            2009,
+            4
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevlett.102.163601",
+    "ISSN": [
+      "0031-9007",
+      "1079-7114"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0031-9007"
+      },
+      {
+        "type": "electronic",
+        "value": "1079-7114"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2009,
+          4,
+          20
+        ]
+      ]
+    },
+    "article-number": "163601"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          22
+        ]
+      ],
+      "date-time": "2024-10-22T16:46:51Z",
+      "timestamp": 1729615611245,
+      "version": "3.28.0"
+    },
+    "reference-count": 25,
+    "publisher": "IEEE",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2010,
+          6
+        ]
+      ]
+    },
+    "DOI": "10.1109/freq.2010.5556254",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2010,
+          8,
+          24
+        ]
+      ],
+      "date-time": "2010-08-24T15:06:13Z",
+      "timestamp": 1282662373000
+    },
+    "page": "629-633",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Prospects for milli-hertz linewidth lasers using collective emission"
+    ],
+    "prefix": "10.1109",
+    "author": [
+      {
+        "given": "D.",
+        "family": "Meiser",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jun",
+        "family": "Ye",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M. J.",
+        "family": "Holland",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "263",
+    "reference": [
+      {
+        "key": "ref10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.102.163601"
+      },
+      {
+        "key": "ref11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s11434-009-0073-y"
+      },
+      {
+        "key": "ref12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.033847"
+      },
+      {
+        "key": "ref13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.112.1940"
+      },
+      {
+        "key": "ref14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.68.580"
+      },
+      {
+        "key": "ref15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.46.4363"
+      },
+      {
+        "key": "ref16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.70.101"
+      },
+      {
+        "key": "ref17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OL.34.002270"
+      },
+      {
+        "key": "ref18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.063827"
+      },
+      {
+        "key": "ref19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/FREQ.2006.275395"
+      },
+      {
+        "key": "ref4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.070802"
+      },
+      {
+        "key": "ref3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature03541"
+      },
+      {
+        "key": "ref6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1169724"
+      },
+      {
+        "key": "ref5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/45/5/008"
+      },
+      {
+        "key": "ref8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.82.3799"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "crossref",
+        "first-page": "1805",
+        "DOI": "10.1126/science.1153341",
+        "article-title": "Sr Lattice Clock at 1 &#x00D7; 10&#x2013;16 Fractional Uncertainty by Remote Optical Evaluation with a Ca Clock",
+        "volume": "319",
+        "author": "ludlow",
+        "year": "2008",
+        "journal-title": "Science"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.103.063001"
+      },
+      {
+        "key": "ref9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.101.260602"
+      },
+      {
+        "key": "ref1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.89.230801"
+      },
+      {
+        "key": "ref20",
+        "first-page": "63",
+        "article-title": "Progress of active optical frequency standards based on thermal calcium atomic beam",
+        "author": "zhuang",
+        "year": "2010",
+        "journal-title": "2010 IEEE Freq Contr Symp"
+      },
+      {
+        "key": "ref22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/09500340903033682"
+      },
+      {
+        "key": "ref21",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/10/7/073014"
+      },
+      {
+        "key": "ref24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.102.110503"
+      },
+      {
+        "key": "ref23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.073602"
+      },
+      {
+        "key": "ref25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.051603"
+      }
+    ],
+    "event": {
+      "name": "2010 IEEE International Frequency Control Symposium (FCS)",
+      "start": {
+        "date-parts": [
+          [
+            2010,
+            6,
+            1
+          ]
+        ]
+      },
+      "location": "Newport Beach, CA, USA",
+      "end": {
+        "date-parts": [
+          [
+            2010,
+            6,
+            4
+          ]
+        ]
+      }
+    },
+    "container-title": [
+      "2010 IEEE International Frequency Control Symposium"
+    ],
+    "link": [
+      {
+        "URL": "http://xplorestaging.ieee.org/ielx5/5548419/5556172/05556254.pdf?arnumber=5556254",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          19
+        ]
+      ],
+      "date-time": "2017-06-19T09:04:11Z",
+      "timestamp": 1497863051000
+    },
+    "score": 31.19717,
+    "resource": {
+      "primary": {
+        "URL": "http://ieeexplore.ieee.org/document/5556254/"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2010,
+          6
+        ]
+      ]
+    },
+    "references-count": 25,
+    "URL": "https://doi.org/10.1109/freq.2010.5556254",
+    "published": {
+      "date-parts": [
+        [
+          2010,
+          6
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          6
+        ]
+      ],
+      "date-time": "2024-09-06T18:34:31Z",
+      "timestamp": 1725647671483
+    },
+    "publisher-location": "Berlin, Heidelberg",
+    "reference-count": 0,
+    "publisher": "Springer Berlin Heidelberg",
+    "isbn-type": [
+      {
+        "type": "print",
+        "value": "9783540552475"
+      },
+      {
+        "type": "electronic",
+        "value": "9783642847363"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          1992
+        ]
+      ]
+    },
+    "DOI": "10.1007/978-3-642-84736-3_21",
+    "type": "book-chapter",
+    "created": {
+      "date-parts": [
+        [
+          2011,
+          12,
+          29
+        ]
+      ],
+      "date-time": "2011-12-29T13:56:04Z",
+      "timestamp": 1325166964000
+    },
+    "page": "117-125",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Laser Interferometers for the Analysis of Mechanical Sources of Faults"
+    ],
+    "prefix": "10.1007",
+    "author": [
+      {
+        "given": "H.",
+        "family": "Röser",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "H. J.",
+        "family": "Daams",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "H. P.",
+        "family": "Meiser",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "container-title": [
+      "Laser in der Technik / Laser in Engineering"
+    ],
+    "language": "de",
+    "link": [
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1007/978-3-642-84736-3_21.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          11,
+          26
+        ]
+      ],
+      "date-time": "2020-11-26T20:41:35Z",
+      "timestamp": 1606423295000
+    },
+    "score": 17.658607,
+    "resource": {
+      "primary": {
+        "URL": "http://link.springer.com/10.1007/978-3-642-84736-3_21"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1992
+        ]
+      ]
+    },
+    "ISBN": [
+      "9783540552475",
+      "9783642847363"
+    ],
+    "references-count": 0,
+    "URL": "https://doi.org/10.1007/978-3-642-84736-3_21",
+    "published": {
+      "date-parts": [
+        [
+          1992
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          12
+        ]
+      ],
+      "date-time": "2025-10-12T19:45:07Z",
+      "timestamp": 1760298307932
+    },
+    "reference-count": 41,
+    "publisher": "Elsevier BV",
+    "issue": "25",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2010,
+              11,
+              1
+            ]
+          ],
+          "date-time": "2010-11-01T00:00:00Z",
+          "timestamp": 1288569600000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Polymer"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2010,
+          11
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.polymer.2010.10.019",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2010,
+          10,
+          21
+        ]
+      ],
+      "date-time": "2010-10-21T09:25:32Z",
+      "timestamp": 1287653132000
+    },
+    "page": "5977-5982",
+    "source": "Crossref",
+    "is-referenced-by-count": 23,
+    "title": [
+      "RAFT/MADIX rate coefficients measured via time-resolved EPR spectroscopy after pulse laser initiation"
+    ],
+    "prefix": "10.1016",
+    "volume": "51",
+    "author": [
+      {
+        "given": "Wibke",
+        "family": "Meiser",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Michael",
+        "family": "Buback",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Johannes",
+        "family": "Barth",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Philipp",
+        "family": "Vana",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib1",
+        "doi-asserted-by": "crossref",
+        "first-page": "5559",
+        "DOI": "10.1021/ma9804951",
+        "volume": "31",
+        "author": "Chiefari",
+        "year": "1998",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib2",
+        "doi-asserted-by": "crossref",
+        "first-page": "23",
+        "DOI": "10.1002/1521-3900(200002)150:1<23::AID-MASY23>3.0.CO;2-E",
+        "volume": "150",
+        "author": "Charmot",
+        "year": "2000",
+        "journal-title": "Macromolecular Symposia"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib3",
+        "series-title": "Encyclopedia of polymer science and engineering",
+        "author": "Vana",
+        "year": "2003"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib4",
+        "doi-asserted-by": "crossref",
+        "first-page": "291",
+        "DOI": "10.1002/masy.19991430122",
+        "volume": "143",
+        "author": "Rizzardo",
+        "year": "1999",
+        "journal-title": "Macromolecular Symposia"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib5",
+        "doi-asserted-by": "crossref",
+        "first-page": "1353",
+        "DOI": "10.1002/pola.1112",
+        "volume": "39",
+        "author": "Barner-Kowollik",
+        "year": "2001",
+        "journal-title": "Journal of Polymer Science Part A-Polymer Chemistry"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib6",
+        "doi-asserted-by": "crossref",
+        "first-page": "7849",
+        "DOI": "10.1021/ma010349m",
+        "volume": "34",
+        "author": "Barner-Kowollik",
+        "year": "2001",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib7",
+        "doi-asserted-by": "crossref",
+        "first-page": "4336",
+        "DOI": "10.1021/ie0009482",
+        "volume": "40",
+        "author": "Zhang",
+        "year": "2001",
+        "journal-title": "Industrial & Engineering Chemistry Research"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib8",
+        "doi-asserted-by": "crossref",
+        "first-page": "823",
+        "DOI": "10.1002/1521-3919(20021101)11:8<823::AID-MATS823>3.0.CO;2-R",
+        "volume": "11",
+        "author": "Vana",
+        "year": "2002",
+        "journal-title": "Macromolecular Theory and Simulations"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib9",
+        "doi-asserted-by": "crossref",
+        "first-page": "15915",
+        "DOI": "10.1021/ja046292b",
+        "volume": "126",
+        "author": "Feldermann",
+        "year": "2004",
+        "journal-title": "Journal of the American Chemical Society"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib10",
+        "doi-asserted-by": "crossref",
+        "first-page": "8483",
+        "DOI": "10.1016/j.polymer.2004.11.117",
+        "volume": "46",
+        "author": "Drache",
+        "year": "2005",
+        "journal-title": "Polymer"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib11",
+        "doi-asserted-by": "crossref",
+        "first-page": "349",
+        "DOI": "10.1021/ma001484m",
+        "volume": "34",
+        "author": "Monteiro",
+        "year": "2001",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib12",
+        "doi-asserted-by": "crossref",
+        "first-page": "3026",
+        "DOI": "10.1021/ma0118421",
+        "volume": "35",
+        "author": "Kwak",
+        "year": "2002",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib13",
+        "doi-asserted-by": "crossref",
+        "first-page": "1479",
+        "DOI": "10.1071/CH09269",
+        "volume": "62",
+        "author": "Lin",
+        "year": "2009",
+        "journal-title": "Australian Journal of Chemistry"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib14",
+        "doi-asserted-by": "crossref",
+        "first-page": "1015",
+        "DOI": "10.1002/marc.200600170",
+        "volume": "27",
+        "author": "Coote",
+        "year": "2006",
+        "journal-title": "Macromolecular Rapid Communications"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib15",
+        "doi-asserted-by": "crossref",
+        "first-page": "473",
+        "DOI": "10.1002/marc.200500832",
+        "volume": "27",
+        "author": "Coote",
+        "year": "2006",
+        "journal-title": "Macromolecular Rapid Communications"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib16",
+        "doi-asserted-by": "crossref",
+        "first-page": "5809",
+        "DOI": "10.1002/pola.21589",
+        "volume": "44",
+        "author": "Barner-Kowollik",
+        "year": "2006",
+        "journal-title": "Journal of Polymer Science Part A-Polymer Chemistry"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib17",
+        "doi-asserted-by": "crossref",
+        "first-page": "2828",
+        "DOI": "10.1002/pola.10854",
+        "volume": "41",
+        "author": "Barner-Kowollik",
+        "year": "2003",
+        "journal-title": "Journal of Polymer Science Part A-Polymer Chemistry"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib18",
+        "doi-asserted-by": "crossref",
+        "first-page": "2833",
+        "DOI": "10.1002/pola.10853",
+        "volume": "41",
+        "author": "Wang",
+        "year": "2003",
+        "journal-title": "Journal of Polymer Science Part A-Polymer Chemistry"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib19",
+        "doi-asserted-by": "crossref",
+        "first-page": "6739",
+        "DOI": "10.1021/ma0202179",
+        "volume": "35",
+        "author": "Du",
+        "year": "2002",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib20",
+        "doi-asserted-by": "crossref",
+        "first-page": "7269",
+        "DOI": "10.1021/ma010299l",
+        "volume": "34",
+        "author": "Laus",
+        "year": "2001",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib21",
+        "doi-asserted-by": "crossref",
+        "first-page": "5457",
+        "DOI": "10.1021/ma990316v",
+        "volume": "32",
+        "author": "Hawthorne",
+        "year": "1999",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib22",
+        "doi-asserted-by": "crossref",
+        "first-page": "2103",
+        "DOI": "10.1002/hlca.200690200",
+        "volume": "89",
+        "author": "Alberti",
+        "year": "2006",
+        "journal-title": "Helvetica Chimica Acta"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib23",
+        "doi-asserted-by": "crossref",
+        "first-page": "5",
+        "DOI": "10.1021/ma025607+",
+        "volume": "36",
+        "author": "Calitz",
+        "year": "2003",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib24",
+        "doi-asserted-by": "crossref",
+        "first-page": "182",
+        "DOI": "10.1002/marc.200500716",
+        "volume": "27",
+        "author": "Buback",
+        "year": "2006",
+        "journal-title": "Macromolecular Rapid Communications"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib25",
+        "doi-asserted-by": "crossref",
+        "first-page": "51",
+        "DOI": "10.1021/ma902111z",
+        "volume": "43",
+        "author": "Barth",
+        "year": "2010",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib26",
+        "doi-asserted-by": "crossref",
+        "first-page": "4023",
+        "DOI": "10.1021/ma1006039",
+        "volume": "43",
+        "author": "Barth",
+        "year": "2010",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib27",
+        "doi-asserted-by": "crossref",
+        "first-page": "1160",
+        "DOI": "10.1002/macp.200390089",
+        "volume": "204",
+        "author": "Stenzel",
+        "year": "2003",
+        "journal-title": "Macromolecular Chemistry and Physics"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib28",
+        "doi-asserted-by": "crossref",
+        "first-page": "231",
+        "DOI": "10.1007/s00289-005-0338-9",
+        "volume": "53",
+        "author": "Boschmann",
+        "year": "2005",
+        "journal-title": "Polymer Bulletin"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib29",
+        "doi-asserted-by": "crossref",
+        "first-page": "1049",
+        "DOI": "10.1002/marc.200290002",
+        "volume": "23",
+        "author": "Destarac",
+        "year": "2002",
+        "journal-title": "Macromolecular Rapid Communications"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib30",
+        "doi-asserted-by": "crossref",
+        "first-page": "1103",
+        "DOI": "10.1021/ie9604031",
+        "volume": "36",
+        "author": "Hutchinson",
+        "year": "1997",
+        "journal-title": "Industrial & Engineering Chemistry Research"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib31",
+        "doi-asserted-by": "crossref",
+        "first-page": "1969",
+        "DOI": "10.1002/marc.200900531",
+        "volume": "30",
+        "author": "Barth",
+        "year": "2009",
+        "journal-title": "Macromolecular Rapid Communications"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib32",
+        "doi-asserted-by": "crossref",
+        "first-page": "1829",
+        "DOI": "10.1002/macp.200400140",
+        "volume": "205",
+        "author": "Sato",
+        "year": "2004",
+        "journal-title": "Macromolecular Chemistry and Physics"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib33",
+        "doi-asserted-by": "crossref",
+        "first-page": "5590",
+        "DOI": "10.1016/j.polymer.2007.07.041",
+        "volume": "48",
+        "author": "Buback",
+        "year": "2007",
+        "journal-title": "Polymer"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib34",
+        "doi-asserted-by": "crossref",
+        "first-page": "6071",
+        "DOI": "10.1002/pola.22919",
+        "volume": "46",
+        "author": "Buback",
+        "year": "2008",
+        "journal-title": "Journal of Polymer Science Part A-Polymer Chemistry"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib35",
+        "unstructured": "Junkers T. Novel single pulse-pulsed laser polymerization methods for the determination of chain-length dependent termination kinetics in conventional and controlled free-radical polymerization, PhD thesis, Georg-August-Universität Göttingen, 2006."
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib36",
+        "unstructured": "Meiser W, unpublished results."
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib37",
+        "doi-asserted-by": "crossref",
+        "first-page": "5098",
+        "DOI": "10.1021/ma050198d",
+        "volume": "38",
+        "author": "Willemse",
+        "year": "2005",
+        "journal-title": "Macromolecules"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib38",
+        "doi-asserted-by": "crossref",
+        "first-page": "1484",
+        "DOI": "10.1071/CH09219",
+        "volume": "62",
+        "author": "Buback",
+        "year": "2009",
+        "journal-title": "Australian Journal of Chemistry"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib39",
+        "doi-asserted-by": "crossref",
+        "first-page": "1441",
+        "DOI": "10.1002/pola.11089",
+        "volume": "42",
+        "author": "Wulkow",
+        "year": "2004",
+        "journal-title": "Journal of Polymer Science Part A-Polymer Chemistry"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib40",
+        "doi-asserted-by": "crossref",
+        "first-page": "1721",
+        "DOI": "10.1002/(SICI)1521-3935(19980801)199:8<1721::AID-MACP1721>3.0.CO;2-5",
+        "volume": "199",
+        "author": "Buback",
+        "year": "1998",
+        "journal-title": "Macromolecular Chemistry and Physics"
+      },
+      {
+        "key": "10.1016/j.polymer.2010.10.019_bib41",
+        "doi-asserted-by": "crossref",
+        "first-page": "1340",
+        "DOI": "10.1002/1521-3773(20010417)40:8<1340::AID-ANIE1340>3.0.CO;2-#",
+        "volume": "40",
+        "author": "Fischer",
+        "year": "2001",
+        "journal-title": "Angewandte Chemie-International Edition"
+      }
+    ],
+    "container-title": [
+      "Polymer"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0032386110009067?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0032386110009067?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2018,
+          12,
+          7
+        ]
+      ],
+      "date-time": "2018-12-07T09:50:42Z",
+      "timestamp": 1544176242000
+    },
+    "score": 16.713634,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0032386110009067"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2010,
+          11
+        ]
+      ]
+    },
+    "references-count": 41,
+    "journal-issue": {
+      "issue": "25",
+      "published-print": {
+        "date-parts": [
+          [
+            2010,
+            11
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "S0032386110009067"
+    ],
+    "URL": "https://doi.org/10.1016/j.polymer.2010.10.019",
+    "ISSN": [
+      "0032-3861"
+    ],
+    "issn-type": [
+      {
+        "value": "0032-3861",
+        "type": "print"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2010,
+          11
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          31
+        ]
+      ],
+      "date-time": "2025-10-31T16:53:46Z",
+      "timestamp": 1761929626291
+    },
+    "reference-count": 26,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "1",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2012,
+              9,
+              15
+            ]
+          ],
+          "date-time": "2012-09-15T00:00:00Z",
+          "timestamp": 1347667200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "http://www.springer.com/tdm"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Appl. Phys. B"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2012,
+          10
+        ]
+      ]
+    },
+    "DOI": "10.1007/s00340-012-5127-1",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2012,
+          9,
+          15
+        ]
+      ],
+      "date-time": "2012-09-15T09:28:13Z",
+      "timestamp": 1347701293000
+    },
+    "page": "99-103",
+    "source": "Crossref",
+    "is-referenced-by-count": 6,
+    "title": [
+      "Tunable, passively Q-switched single-longitudinal-mode Nd:YVO4 laser using a chirped volume Bragg grating"
+    ],
+    "prefix": "10.1007",
+    "volume": "109",
+    "author": [
+      {
+        "given": "K.",
+        "family": "Seger",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "N.",
+        "family": "Meiser",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "C.",
+        "family": "Canalias",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "V.",
+        "family": "Pasiskevicius",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "F.",
+        "family": "Laurell",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2012,
+          9,
+          15
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "5127_CR1",
+        "doi-asserted-by": "crossref",
+        "first-page": "65",
+        "DOI": "10.1364/OL.10.000065",
+        "volume": "10",
+        "author": "TJ Kane",
+        "year": "1985",
+        "unstructured": "T.J. Kane, R.L. Byer, Opt. Lett. 10, 65–67 (1985)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "5127_CR2",
+        "doi-asserted-by": "crossref",
+        "first-page": "413",
+        "DOI": "10.1109/3.52115",
+        "volume": "26",
+        "author": "R Scheps",
+        "year": "1990",
+        "unstructured": "R. Scheps, J. Myers, IEEE J. Quant. Electron. 26, 413–416 (1990)",
+        "journal-title": "IEEE J. Quant. Electron."
+      },
+      {
+        "key": "5127_CR3",
+        "doi-asserted-by": "crossref",
+        "first-page": "24",
+        "DOI": "10.1364/OL.14.000024",
+        "volume": "14",
+        "author": "JJ Zayhowski",
+        "year": "1989",
+        "unstructured": "J.J. Zayhowski, A. Mooradian, Opt. Lett. 14, 24–26 (1989)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "5127_CR4",
+        "doi-asserted-by": "crossref",
+        "first-page": "1955",
+        "DOI": "10.1364/OL.16.001955",
+        "volume": "16",
+        "author": "T Taira",
+        "year": "1991",
+        "unstructured": "T. Taira, A. Mukai, Y. Nozawa, T. Kobayashi, Opt. Lett. 16, 1955–1957 (1991)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "5127_CR5",
+        "doi-asserted-by": "crossref",
+        "first-page": "142",
+        "DOI": "10.1364/AO.4.000142",
+        "volume": "4",
+        "author": "V Evtuhov",
+        "year": "1965",
+        "unstructured": "V. Evtuhov, A.E. Siegman, Appl. Opt. 4, 142–143 (1965)",
+        "journal-title": "Appl. Opt."
+      },
+      {
+        "key": "5127_CR6",
+        "doi-asserted-by": "crossref",
+        "first-page": "499",
+        "DOI": "10.1109/68.281807",
+        "volume": "6",
+        "author": "K Nakagawa",
+        "year": "1994",
+        "unstructured": "K. Nakagawa, Y. Shimizu, M. Ohtsu, IEEE Photon. Technol. Lett. 6, 499–501 (1994)",
+        "journal-title": "IEEE Photon. Technol. Lett."
+      },
+      {
+        "key": "5127_CR7",
+        "doi-asserted-by": "crossref",
+        "first-page": "2260",
+        "DOI": "10.1364/OL.30.002260",
+        "volume": "30",
+        "author": "H Lindberg",
+        "year": "2005",
+        "unstructured": "H. Lindberg, A. Larsson, M. Strassner, Opt. Lett. 30, 2260–2262 (2005)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "issue": "1",
+        "key": "5127_CR8",
+        "doi-asserted-by": "crossref",
+        "first-page": "24",
+        "DOI": "10.1049/el:19880017",
+        "volume": "24",
+        "author": "IM Jauncey",
+        "year": "1988",
+        "unstructured": "I.M. Jauncey, L. Reekie, J.E. Townsend, C.J. Rowe, D.N. Payne, Electr. Lett. 24(1), 24–26 (1988)",
+        "journal-title": "Electr. Lett."
+      },
+      {
+        "key": "5127_CR9",
+        "doi-asserted-by": "crossref",
+        "first-page": "619",
+        "DOI": "10.1364/AO.38.000619",
+        "volume": "38",
+        "author": "O Efimov",
+        "year": "1999",
+        "unstructured": "O. Efimov, L. Glebov, L. Glebova, K. Richardson, V. Smirnov, Appl. Opt. 38, 619–627 (1999)",
+        "journal-title": "Appl. Opt."
+      },
+      {
+        "key": "5127_CR10",
+        "doi-asserted-by": "crossref",
+        "first-page": "229",
+        "DOI": "10.1364/OL.31.000229",
+        "volume": "31",
+        "author": "T Chung",
+        "year": "2006",
+        "unstructured": "T. Chung, A. Rapaport, V. Smirnov, L.B. Glebov, M.C. Richardson, M. Bass, Opt. Lett. 31, 229–231 (2006)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "5127_CR11",
+        "doi-asserted-by": "crossref",
+        "first-page": "2281",
+        "DOI": "10.1364/OL.30.002281",
+        "volume": "30",
+        "author": "B Jacobsson",
+        "year": "2005",
+        "unstructured": "B. Jacobsson, M. Tiihonen, V. Pasiskevicius, F. Laurell, Opt. Lett. 30, 2281–2283 (2005)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "5127_CR12",
+        "doi-asserted-by": "crossref",
+        "first-page": "11336",
+        "DOI": "10.1364/OE.15.011336",
+        "volume": "15",
+        "author": "P Jelger",
+        "year": "2007",
+        "unstructured": "P. Jelger, F. Laurell, Opt. Express 15, 11336–11340 (2007)",
+        "journal-title": "Opt. Express"
+      },
+      {
+        "key": "5127_CR13",
+        "doi-asserted-by": "crossref",
+        "first-page": "1663",
+        "DOI": "10.1364/OL.31.001663",
+        "volume": "31",
+        "author": "B Jacobsson",
+        "year": "2006",
+        "unstructured": "B. Jacobsson, V. Pasiskevicius, F. Laurell, Opt. Lett. 31, 1663–1665 (2006)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "5127_CR14",
+        "doi-asserted-by": "crossref",
+        "first-page": "11589",
+        "DOI": "10.1364/OE.15.011589",
+        "volume": "15",
+        "author": "I Häggström",
+        "year": "2007",
+        "unstructured": "I. Häggström, B. Jacobsson, F. Laurell, Opt. Express 15, 11589–11594 (2007)",
+        "journal-title": "Opt. Express"
+      },
+      {
+        "key": "5127_CR15",
+        "doi-asserted-by": "crossref",
+        "first-page": "1003",
+        "DOI": "10.1364/OE.15.001003",
+        "volume": "15",
+        "author": "B Jacobsson",
+        "year": "2007",
+        "unstructured": "B. Jacobsson, J.E. Hellström, V. Pasiskevicius, F. Laurell, Opt. Express 15, 1003–1010 (2007)",
+        "journal-title": "Opt. Express"
+      },
+      {
+        "key": "5127_CR16",
+        "doi-asserted-by": "crossref",
+        "first-page": "1617",
+        "DOI": "10.1364/OL.35.001617",
+        "volume": "37",
+        "author": "N Pavel",
+        "year": "2010",
+        "unstructured": "N. Pavel, M. Tsunekane, T. Taira, Opt. Lett. 37, 1617–1619 (2010)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "5127_CR17",
+        "doi-asserted-by": "crossref",
+        "first-page": "104",
+        "DOI": "10.1063/1.89603",
+        "volume": "31",
+        "author": "A Matsuda",
+        "year": "1977",
+        "unstructured": "A. Matsuda, S. Iizima, Appl. Phys. Lett. 31, 104 (1977)",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "5127_CR18",
+        "doi-asserted-by": "crossref",
+        "first-page": "469",
+        "DOI": "10.1007/BF01590090",
+        "volume": "34",
+        "author": "EL Portnoi",
+        "year": "1984",
+        "unstructured": "E.L. Portnoi, Czech. J. Phys. B 34, 469 (1984)",
+        "journal-title": "Czech. J. Phys. B"
+      },
+      {
+        "key": "5127_CR19",
+        "doi-asserted-by": "crossref",
+        "first-page": "449",
+        "DOI": "10.1364/OL.34.000449",
+        "volume": "34",
+        "author": "B Jacobsson",
+        "year": "2009",
+        "unstructured": "B. Jacobsson, V. Pasiskevicius, F. Laurell, E. Rotari, V. Smirnov, L. Glebov, Opt. Lett. 34, 449–451 (2009)",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "5127_CR20",
+        "doi-asserted-by": "crossref",
+        "first-page": "2341",
+        "DOI": "10.1364/OE.17.002341",
+        "volume": "17",
+        "author": "K Seger",
+        "year": "2009",
+        "unstructured": "K. Seger, B. Jacobsson, V. Pasiskevicius, F. Laurell, Opt. Exp. 17, 2341 (2009)",
+        "journal-title": "Opt. Exp."
+      },
+      {
+        "key": "5127_CR21",
+        "doi-asserted-by": "crossref",
+        "first-page": "1980",
+        "DOI": "10.1364/JOSAB.10.001980",
+        "volume": "10",
+        "author": "TT Kajava",
+        "year": "1993",
+        "unstructured": "T.T. Kajava, H.M. Lauranto, R.R.E. Salomaa, J. Opt. Soc. Am. B 10, 1980–1989 (1993)",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "5127_CR22",
+        "unstructured": "C. Czeranowsky, PhD thesis (Shaker Verlag, Aachen 2002, Germany), ISBN3-8322-0901-8"
+      },
+      {
+        "key": "5127_CR23",
+        "volume-title": "Quantum Electronics",
+        "author": "A Yariv",
+        "year": "1989",
+        "unstructured": "A. Yariv, Quantum Electronics, 3rd edn. (Wiley, New York, 1989)",
+        "edition": "3"
+      },
+      {
+        "key": "5127_CR24",
+        "doi-asserted-by": "crossref",
+        "first-page": "2158",
+        "DOI": "10.1364/JOSAB.12.002158",
+        "volume": "12",
+        "author": "SD Butterworth",
+        "year": "1995",
+        "unstructured": "S.D. Butterworth, S. Girard, D.C. Hanna, J. Opt. Soc. Am. B 12, 2158 (1995)",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "5127_CR25",
+        "doi-asserted-by": "crossref",
+        "first-page": "3597",
+        "DOI": "10.1063/1.1656831",
+        "volume": "39",
+        "author": "GD Boyd",
+        "year": "1966",
+        "unstructured": "G.D. Boyd, D.A. Kleinmann, J. Appl. Phys. 39, 3597–3639 (1966)",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "5127_CR26",
+        "doi-asserted-by": "crossref",
+        "first-page": "30",
+        "DOI": "10.1364/AO.37.007116",
+        "volume": "37",
+        "author": "V Pasiskevicius",
+        "year": "1998",
+        "unstructured": "V. Pasiskevicius, S. Wang, J.A. Tellefsen, F. Laurell, H. Karlsson, Appl. Opt. 37, 30 (1998)",
+        "journal-title": "Appl. Opt."
+      }
+    ],
+    "container-title": [
+      "Applied Physics B"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1007/s00340-012-5127-1.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://link.springer.com/article/10.1007/s00340-012-5127-1/fulltext.html",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1007/s00340-012-5127-1",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          5,
+          28
+        ]
+      ],
+      "date-time": "2019-05-28T13:28:09Z",
+      "timestamp": 1559050089000
+    },
+    "score": 15.846265,
+    "resource": {
+      "primary": {
+        "URL": "http://link.springer.com/10.1007/s00340-012-5127-1"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2012,
+          9,
+          15
+        ]
+      ]
+    },
+    "references-count": 26,
+    "journal-issue": {
+      "issue": "1",
+      "published-print": {
+        "date-parts": [
+          [
+            2012,
+            10
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "5127"
+    ],
+    "URL": "https://doi.org/10.1007/s00340-012-5127-1",
+    "ISSN": [
+      "0946-2171",
+      "1432-0649"
+    ],
+    "issn-type": [
+      {
+        "value": "0946-2171",
+        "type": "print"
+      },
+      {
+        "value": "1432-0649",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2012,
+          9,
+          15
+        ]
+      ]
+    }
+  }
+]

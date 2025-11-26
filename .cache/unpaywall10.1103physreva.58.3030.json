@@ -1,0 +1,61 @@
+{
+  "best_pdf": null,
+  "raw": {
+    "doi": "10.1103/physreva.58.3030",
+    "doi_url": "https://doi.org/10.1103/physreva.58.3030",
+    "title": "Cooling an atom in a weakly driven high-<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mml:mi>Q</mml:mi></mml:math>cavity",
+    "genre": "journal-article",
+    "is_paratext": false,
+    "published_date": "1998-10-01",
+    "year": 1998,
+    "journal_name": "Physical Review A",
+    "journal_issns": "1050-2947,1094-1622,1538-4446",
+    "journal_issn_l": "1050-2947",
+    "journal_is_oa": false,
+    "journal_is_in_doaj": false,
+    "publisher": "American Physical Society (APS)",
+    "is_oa": false,
+    "oa_status": "closed",
+    "has_repository_copy": false,
+    "best_oa_location": null,
+    "first_oa_location": null,
+    "oa_locations": [],
+    "oa_locations_embargoed": [],
+    "data_standard": 2,
+    "z_authors": [
+      {
+        "author_position": "first",
+        "raw_author_name": "Gerald Hechenblaikner",
+        "is_corresponding": true,
+        "raw_affiliation_strings": [
+          "Institut für Theoretische Physik, Universität Innsbruck, Technikerstrasse 25, A-6020 Innsbruck, Austria"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Markus Gangl",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Institut für Theoretische Physik, Universität Innsbruck, Technikerstrasse 25, A-6020 Innsbruck, Austria"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Peter Horak",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Institut für Theoretische Physik, Universität Innsbruck, Technikerstrasse 25, A-6020 Innsbruck, Austria"
+        ]
+      },
+      {
+        "author_position": "last",
+        "raw_author_name": "Helmut Ritsch",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "Institut für Theoretische Physik, Universität Innsbruck, Technikerstrasse 25, A-6020 Innsbruck, Austria"
+        ]
+      }
+    ],
+    "updated": "2025-05-22T18:42:22Z"
+  }
+}

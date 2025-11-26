@@ -1,0 +1,160 @@
+{
+  "best_pdf": "http://link.aps.org/pdf/10.1103/PhysRevX.8.021036",
+  "raw": {
+    "doi": "10.1103/physrevx.8.021036",
+    "doi_url": "https://doi.org/10.1103/physrevx.8.021036",
+    "title": "Frequency Measurements of Superradiance from the Strontium Clock Transition",
+    "genre": "journal-article",
+    "is_paratext": false,
+    "published_date": "2018-05-09",
+    "year": 2018,
+    "journal_name": "Physical Review X",
+    "journal_issns": "2160-3308",
+    "journal_issn_l": "2160-3308",
+    "journal_is_oa": true,
+    "journal_is_in_doaj": true,
+    "publisher": "American Physical Society (APS)",
+    "is_oa": true,
+    "oa_status": "gold",
+    "has_repository_copy": true,
+    "best_oa_location": {
+      "url": "http://link.aps.org/pdf/10.1103/PhysRevX.8.021036",
+      "url_for_pdf": "http://link.aps.org/pdf/10.1103/PhysRevX.8.021036",
+      "url_for_landing_page": "https://doi.org/10.1103/physrevx.8.021036",
+      "evidence": "deprecated",
+      "license": "cc-by",
+      "version": "publishedVersion",
+      "host_type": "publisher",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": null,
+      "oa_date": "2018-05-09",
+      "updated": "deprecated"
+    },
+    "first_oa_location": {
+      "url": "http://link.aps.org/pdf/10.1103/PhysRevX.8.021036",
+      "url_for_pdf": "http://link.aps.org/pdf/10.1103/PhysRevX.8.021036",
+      "url_for_landing_page": "https://doi.org/10.1103/physrevx.8.021036",
+      "evidence": "deprecated",
+      "license": "cc-by",
+      "version": "publishedVersion",
+      "host_type": "publisher",
+      "is_best": true,
+      "pmh_id": null,
+      "endpoint_id": null,
+      "repository_institution": null,
+      "oa_date": "2018-05-09",
+      "updated": "deprecated"
+    },
+    "oa_locations": [
+      {
+        "url": "http://link.aps.org/pdf/10.1103/PhysRevX.8.021036",
+        "url_for_pdf": "http://link.aps.org/pdf/10.1103/PhysRevX.8.021036",
+        "url_for_landing_page": "https://doi.org/10.1103/physrevx.8.021036",
+        "evidence": "deprecated",
+        "license": "cc-by",
+        "version": "publishedVersion",
+        "host_type": "publisher",
+        "is_best": true,
+        "pmh_id": null,
+        "endpoint_id": null,
+        "repository_institution": null,
+        "oa_date": "2018-05-09",
+        "updated": "deprecated"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1711.10407",
+        "url_for_pdf": "https://arxiv.org/pdf/1711.10407",
+        "url_for_landing_page": "http://arxiv.org/abs/1711.10407",
+        "evidence": "deprecated",
+        "license": null,
+        "version": "submittedVersion",
+        "host_type": "repository",
+        "is_best": false,
+        "pmh_id": "oai:arXiv.org:1711.10407",
+        "endpoint_id": "ca8f8d56758a80a4f86",
+        "repository_institution": "Cornell University",
+        "oa_date": "2018-05-09",
+        "updated": "deprecated"
+      }
+    ],
+    "oa_locations_embargoed": [],
+    "data_standard": 2,
+    "z_authors": [
+      {
+        "author_position": "first",
+        "raw_author_name": "Matthew A. Norcia",
+        "is_corresponding": true,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Julia R. K. Cline",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Juan A. Muniz",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "John M. Robinson",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Ross B. Hutson",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Akihisa Goban",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "G. Edward Marti",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      },
+      {
+        "author_position": "additional",
+        "raw_author_name": "Jun Ye",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      },
+      {
+        "author_position": "last",
+        "raw_author_name": "James K. Thompson",
+        "is_corresponding": false,
+        "raw_affiliation_strings": [
+          "JILA, NIST, and University of Colorado, 440 UCB, Boulder, Colorado 80309, USA"
+        ]
+      }
+    ],
+    "updated": "2025-10-23T16:56:47Z"
+  }
+}
