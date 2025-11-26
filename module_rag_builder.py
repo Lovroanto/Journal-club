@@ -371,6 +371,130 @@ def split_into_clean_chunks(text: str, notion: str, max_chunk_size: int = 3500) 
 # ---------------------------
 # Orchestration: process paper
 # ---------------------------
+# ---------- ADD THIS HELPER (put near other helpers) ----------
+def resolve_pdf_candidates(doi: Optional[str], crossref_item: Optional[dict], title: Optional[str]) -> List[Tuple[str, Optional[str]]]:
+    """
+    Returns a prioritized list of (pdf_url, referer) candidate tuples to try.
+    Uses DOI, Crossref 'link' entries, and common publisher URL patterns.
+    The referer should be set to a likely landing page (often doi.org/<doi>).
+    """
+    candidates: List[Tuple[str, Optional[str]]] = []
+    seen = set()
+
+    def add(url: str, referer: Optional[str] = None):
+        if not url:
+            return
+        if isinstance(url, str):
+            u = url.strip()
+        else:
+            return
+        if not u:
+            return
+        if u in seen:
+            return
+        seen.add(u)
+        candidates.append((u, referer))
+
+    # 0) From crossref item 'link' entries (prefer PDF)
+    if crossref_item:
+        links = crossref_item.get("link") or []
+        for l in links:
+            url = l.get("URL") or l.get("url") or l.get("href")
+            ctype = (l.get("content-type") or "").lower()
+            if url:
+                add(url, referer=f"https://doi.org/{doi}" if doi else None)
+                # often there's a pdf link and a landing link; we add both
+
+    # 1) Unpaywall/Direct OA handled before calling this helper (so omitted here)
+
+    # 2) arXiv — detect id from DOI or title or crossref
+    # Common arXiv DOI pattern: 10.48550/arXiv.<id> or arXiv:<id>
+    if doi and "arxiv" in doi.lower():
+        # 10.48550/arXiv.XXXX
+        arx = doi.split("/")[-1]
+        if arx.lower().startswith("arxiv."):
+            aid = arx.split(".", 1)[1]
+            add(f"https://arxiv.org/pdf/{aid}.pdf", referer=None)
+    # Also try title / crossref URL for arXiv id
+    # Try scanning crossref 'URL' or 'resource' fields:
+    if crossref_item:
+        possible_urls = []
+        if crossref_item.get("URL"):
+            possible_urls.append(crossref_item.get("URL"))
+        for link in (crossref_item.get("link") or []):
+            if link.get("URL"):
+                possible_urls.append(link.get("URL"))
+        for u in possible_urls:
+            if u and "arxiv.org" in u:
+                # get id
+                m = re.search(r"(?:abs|pdf)/([0-9]{4}\.[0-9]{4,5}(?:v\\d+)?)", u)
+                if m:
+                    aid = m.group(1)
+                    add(f"https://arxiv.org/pdf/{aid}.pdf", referer=None)
+
+    # 3) APS family (Physical Review, PRX, PRL etc.)
+    # Many APS PDFs are accessible via journals.aps.org/<journal>/pdf/<doi>
+    if doi and doi.startswith("10.1103/"):
+        # determine journal short name from DOI suffix like PhysRevX.8.021036
+        # Use raw doi as suffix in APS pdf url
+        add(f"https://journals.aps.org/{''}pdf/{doi}", referer=f"https://doi.org/{doi}")
+        # Another APS format (sometimes): https://link.aps.org/doi/{doi}?pdf=true
+        add(f"https://link.aps.org/doi/{doi}", referer=f"https://doi.org/{doi}")
+
+    # 4) AAAS / Science (Science, Science Advances)
+    # pattern: https://www.science.org/doi/pdf/<doi>
+    if doi and ("science" in (crossref_item.get("publisher") or "").lower() or "sciadv" in (crossref_item.get("title") or "").lower() or "sciadv" in (title or "").lower()):
+        add(f"https://www.science.org/doi/pdf/{doi}", referer=f"https://doi.org/{doi}")
+    # also try generic
+    if doi:
+        add(f"https://www.science.org/doi/pdf/{doi}", referer=f"https://doi.org/{doi}")
+
+    # 5) Nature family (nature, npj, etc)
+    # Nature article pages often map: https://www.nature.com/articles/<suffix>.pdf
+    # Extract suffix from DOI: doi:10.1038/s41586-019-1666-5 -> s41586-019-1666-5
+    if doi and doi.startswith("10.1038/"):
+        suffix = doi.split("/", 1)[1]
+        add(f"https://www.nature.com/articles/{suffix}.pdf", referer=f"https://doi.org/{doi}")
+
+    # 6) SpringerLink common pattern
+    # Springer: often PDF like https://link.springer.com/content/pdf/<doi>.pdf or /pdf/<something>.pdf
+    if doi and "springer" in (crossref_item.get("publisher") or "").lower():
+        add(f"https://link.springer.com/content/pdf/{doi}.pdf", referer=f"https://doi.org/{doi}")
+
+    # 7) Wiley
+    # Wiley often uses: https://onlinelibrary.wiley.com/doi/pdf/<doi>
+    if doi and "wiley" in (crossref_item.get("publisher") or "").lower():
+        add(f"https://onlinelibrary.wiley.com/doi/pdf/{doi}", referer=f"https://doi.org/{doi}")
+        add(f"https://onlinelibrary.wiley.com/doi/epdf/{doi}", referer=f"https://doi.org/{doi}")
+
+    # 8) Elsevier / ScienceDirect
+    # Elsevier often requires session, but try direct PDF via science direct / SD content URL patterns
+    if doi and ("elsevier" in (crossref_item.get("publisher") or "").lower() or "sciencedirect" in (crossref_item.get("URL") or "")):
+        # try doi.org resolution — session will follow
+        add(f"https://doi.org/{doi}", referer=None)
+
+    # 9) Taylor & Francis (tandfonline) pdf pattern
+    if doi and "tandfonline" in (crossref_item.get("publisher") or "").lower():
+        add(f"https://www.tandfonline.com/doi/pdf/{doi}", referer=f"https://doi.org/{doi}")
+
+    # 10) PLOS
+    if doi and ("plos" in (crossref_item.get("publisher") or "").lower() or (crossref_item.get("container-title") and any('plos' in ct.lower() for ct in (crossref_item.get("container-title") or [])))):
+        add(f"https://journals.plos.org/plosone/article/file?id={doi}&type=printable", referer=f"https://doi.org/{doi}")
+
+    # 11) Generic DOI landing page (we'll GET it and scan for .pdf links)
+    if doi:
+        add(f"https://doi.org/{doi}", referer=None)
+
+    # 12) Last resort: try crossref item 'URL' field (landing)
+    if crossref_item:
+        url = crossref_item.get("URL")
+        if url:
+            add(url, referer=None)
+
+    return candidates
+
+
+# ---------- process_paper----------
 def process_paper(
     notion: str,
     paper: dict,
@@ -380,22 +504,21 @@ def process_paper(
     unpaywall_email: Optional[str] = None,
 ) -> Tuple[str, Optional[str]]:
     """
-    Try to obtain a PDF for the given paper metadata dict from CSV.
-    Returns: (saved_metadata_txt_path, downloaded_pdf_path_or_None)
+    Enhanced: tries Unpaywall first, then publisher-specific candidate URLs generated by resolve_pdf_candidates,
+    then Crossref links and finally scans landing HTML for PDF hrefs.
     """
     title = paper.get("title") or ""
     authors = paper.get("authors") or ""
     year = paper.get("year") or ""
     journal = paper.get("journal") or ""
 
-    # 1) Crossref to obtain DOI + links
+    # Crossref search to get DOI and any links
     items = crossref_search(title, authors, rows=5, cache=cache)
     chosen = None
     best_score = 0.0
     for it in items:
         cand_title = (it.get("title") or [""])[0]
         score = stable_similarity(title, cand_title)
-        # small boost for year match
         cand_year = None
         if it.get("issued") and isinstance(it.get("issued").get("date-parts"), list):
             try:
@@ -408,69 +531,128 @@ def process_paper(
             best_score = score
             chosen = it
 
-    doi = None
-    if chosen:
-        doi = chosen.get("DOI")
+    doi = chosen.get("DOI") if chosen else None
 
-    # prepare metadata output path (always write a small JSON/TXT describing the attempt)
     safe_name = clean_filename(f"{(authors.split(',')[0] if authors else 'author')}_{year}_{title[:80]}")
     meta_path = rag_dir / f"{safe_name}.txt"
-
     pdf_saved_path = None
+    tried_candidates = []
 
-    # 2) Prefer Unpaywall (if email provided and DOI found)
+    # 1) Try Unpaywall -> OA PDF (best)
     pdf_url = None
     if doi and unpaywall_email:
         pdf_url = unpaywall_pdf_url(doi, unpaywall_email, cache=cache)
 
-    # 3) If Unpaywall didn't give a pdf_url, try crossref link items
-    if not pdf_url and chosen:
-        pdf_url = pick_crossref_pdf_link(chosen)
-
-    # 4) If still nothing and DOI exists, try doi resolver redirect
-    session = requests.Session()
-    session.headers.update(SESSION_HEADERS)
-    if not pdf_url and doi:
-        resolved = try_doi_resolver(doi, session)
-        # If resolver gives a direct .pdf url or a domain likely serving pdfs, use that
-        if resolved and (resolved.lower().endswith(".pdf") or "pdf" in resolved.lower()):
-            pdf_url = resolved
-        else:
-            # Sometimes doi resolves to the HTML landing page that contains a PDF link.
-            # We'll set referer to resolved and then attempt to find candidate pdfs:
-            # Use chosen['link'] as fallback - already tried. If resolved is a publisher landing page,
-            # try to do a GET and look for common pdf href patterns.
-            try:
-                r = session.get(resolved or "", timeout=8)
-                text = r.text if r is not None else ""
-                # naive regex to extract .pdf links from HTML
-                m = re.search(r'href=[\'"]([^\'"]+\\.pdf)[\'"]', text, flags=re.I)
-                if m:
-                    candidate = m.group(1)
-                    pdf_url = urljoin(resolved, candidate)
-            except Exception:
-                pass
-
-    # 5) Final attempt: if pdf_url found, download using session-based downloader
     if pdf_url:
-        fname = clean_filename(f"{(authors.split(',')[0] if authors else 'author')}_{year}_{title[:60]}")
-        pdf_path = pdf_dir / f"{fname}.pdf"
-        # If file exists, reuse it
+        # Try downloading directly
+        tried_candidates.append((pdf_url, f"https://doi.org/{doi}" if doi else None, "unpaywall"))
+        pdf_path = pdf_dir / f"{safe_name}.pdf"
         if not pdf_path.exists():
-            # Use referer = DOI landing page or chosen publisher site if available
-            referer = None
-            if doi:
-                referer = f"https://doi.org/{doi}"
-            # Try download
-            ok = download_pdf_session(pdf_url, pdf_path, referer=referer, max_retries=3)
+            ok = download_pdf_session(pdf_url, pdf_path, referer=f"https://doi.org/{doi}" if doi else None)
             if ok:
                 pdf_saved_path = str(pdf_path)
-            else:
-                pdf_saved_path = None
         else:
             pdf_saved_path = str(pdf_path)
 
-    # 6) write metadata .txt (JSON inside) to rag_dir (even when pdf not found)
+    # 2) Generate publisher-specific candidates and try them in order
+    if not pdf_saved_path:
+        candidates = resolve_pdf_candidates(doi, chosen, title)
+        # ensure Unpaywall-produced pdf_url (if any) isn't duplicated
+        if pdf_url:
+            candidates = [(u, r) for (u, r) in candidates if u != pdf_url]
+        session = requests.Session()
+        session.headers.update(SESSION_HEADERS)
+
+        for (candidate_url, referer) in candidates:
+            tried_candidates.append((candidate_url, referer, "resolver"))
+            # If candidate looks like a DOI landing page (doi.org), we will GET it and try to extract PDF links
+            # but first try direct download if url endswith .pdf
+            pdf_path = pdf_dir / f"{safe_name}.pdf"
+            if candidate_url.lower().endswith(".pdf"):
+                ok = download_pdf_session(candidate_url, pdf_path, referer=referer)
+                if ok:
+                    pdf_saved_path = str(pdf_path)
+                    break
+                else:
+                    continue
+            # If candidate is a doi.org or landing page, attempt to GET and scan for pdf links
+            try:
+                r = session.get(candidate_url, allow_redirects=True, timeout=12)
+                # If server responded with final location that ends with .pdf, try that
+                final_url = r.url
+                if final_url and final_url.lower().endswith(".pdf"):
+                    ok = download_pdf_session(final_url, pdf_path, referer=referer or candidate_url)
+                    if ok:
+                        pdf_saved_path = str(pdf_path)
+                        break
+                # scan HTML for typical pdf hrefs
+                text = r.text or ""
+                # look for obvious pdf links (href="/...pdf" or href="...pdf")
+                m_iter = re.finditer(r'href=[\'"]([^\'"]+\\.pdf(?:\\?[^\'"]*)?)[\'"]', text, flags=re.I)
+                found_any = False
+                for m in m_iter:
+                    found_any = True
+                    candidate = m.group(1)
+                    absolute = urljoin(final_url, candidate)
+                    tried_candidates.append((absolute, final_url, "scan"))
+                    ok = download_pdf_session(absolute, pdf_path, referer=final_url)
+                    if ok:
+                        pdf_saved_path = str(pdf_path)
+                        break
+                if pdf_saved_path:
+                    break
+                # some pages provide meta refresh to pdf or javascript links; try to see if it contains 'pdf' token anywhere
+                if not found_any:
+                    # try search for '/pdf/' or 'downloadPdf' or 'pdf?' tokens
+                    m2 = re.search(r'/(?:pdf|download|downloads)/[^\'" >]+', text, flags=re.I)
+                    if m2:
+                        candidate = urljoin(final_url, m2.group(0))
+                        tried_candidates.append((candidate, final_url, "heuristic"))
+                        ok = download_pdf_session(candidate, pdf_path, referer=final_url)
+                        if ok:
+                            pdf_saved_path = str(pdf_path)
+                            break
+            except Exception as e:
+                # ignore and move to next candidate
+                # note: we don't raise, just record tried candidate
+                # print(f"Resolver GET failed for {candidate_url}: {e}")
+                continue
+
+    # 3) As a last resort: try Crossref link list again with direct GET to each link
+    if not pdf_saved_path and chosen:
+        links = chosen.get("link") or []
+        for l in links:
+            url = l.get("URL") or l.get("url")
+            if not url:
+                continue
+            pdf_path = pdf_dir / f"{safe_name}.pdf"
+            tried_candidates.append((url, f"https://doi.org/{doi}" if doi else None, "crossref-link"))
+            ok = download_pdf_session(url, pdf_path, referer=f"https://doi.org/{doi}" if doi else None)
+            if ok:
+                pdf_saved_path = str(pdf_path)
+                break
+
+    # 4) final scan of DOI landing page (if nothing else worked)
+    if not pdf_saved_path and doi:
+        session = requests.Session()
+        session.headers.update(SESSION_HEADERS)
+        try:
+            r = session.get(f"https://doi.org/{doi}", timeout=12)
+            final = r.url
+            text = r.text or ""
+            # try to find .pdf link
+            m = re.search(r'href=[\'"]([^\'"]+\\.pdf(?:\\?[^\'"]*)?)[\'"]', text, flags=re.I)
+            if m:
+                absolute = urljoin(final, m.group(1))
+                pdf_path = pdf_dir / f"{safe_name}.pdf"
+                tried_candidates.append((absolute, final, "doi-scan"))
+                ok = download_pdf_session(absolute, pdf_path, referer=final)
+                if ok:
+                    pdf_saved_path = str(pdf_path)
+        except Exception:
+            pass
+
+    # 5) Write metadata (always)
     meta = {
         "Notion": notion,
         "Title": title,
@@ -478,8 +660,8 @@ def process_paper(
         "Year": year,
         "Journal": journal,
         "DOI": doi,
-        "PDF_URL_used": pdf_url,
         "PDF_path": pdf_saved_path,
+        "Tried_candidates": tried_candidates,
     }
     try:
         meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -487,6 +669,7 @@ def process_paper(
         print(f"Failed to write metadata for {title}: {e}")
 
     return str(meta_path), pdf_saved_path
+
 
 
 # ---------------------------
