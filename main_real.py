@@ -78,7 +78,7 @@ if(True):
         max_articles_per_notion=4,
         use_wikipedia=True,        # set False if you already have them
         download_pdfs=True,
-        llm_model_name=llm
+#        llm_model_name=llm
     )
 #if (False):
 #    enrich_presentation_plan(
