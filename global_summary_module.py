@@ -186,16 +186,17 @@ REFINED FACTUAL SUMMARY:"""
     return result["output_text"].strip()
 
 
-# ==================== 4. PRESENTATION PLAN ====================
+# ==================== FINAL & WORKING: TWO-STAGE PRESENTATION PLAN ====================
 def _generate_presentation_plan(
     final_summary: str,
     figure_summaries: dict,
+    factual_bullets: str,
     desired_slides: int,
     llm: BaseLanguageModel,
 ) -> str:
-    print(f"4. Generating slide plan (target: {desired_slides or 'auto'} slides)...")
+    print(f"4. Generating presentation plan (target: {desired_slides or 'auto'} slides)...")
 
-    # Build figure overview
+    # ───── Figure overview ─────
     fig_lines = []
     for fid, data in figure_summaries.items():
         s = data.get("summary", "(no summary)")
@@ -203,36 +204,94 @@ def _generate_presentation_plan(
         fig_lines.append(f"Figure {label}: {s}")
     figures_overview = "\n".join(fig_lines) if fig_lines else "No figures."
 
-    # Slide target text
-    if desired_slides == 0:
-        target_slide_text = "Decide the optimal number of slides yourself (typically 12–18 for 20 min)."
-    else:
-        target_slide_text = f"Target approximately {desired_slides} slides (±20%)."
+    target_text = (
+        "Decide the optimal number of slides yourself (typically 12–18 for 20 min)."
+        if desired_slides == 0
+        else f"Target approximately {desired_slides} slides (±20%)."
+    )
 
-    prompt = f"""
-Create a perfect 20-minute journal-club presentation plan.
+    # ───── STAGE 1: Clean plan from the narrative (single call) ─────
+    print("   → Stage 1: Clean logical plan from the final narrative...")
+    prompt_stage1 = f"""
+You are preparing a 20-minute journal-club presentation.
 
-Paper summary (the real story):
-\"\"\"{final_summary[:20000]}\"\"\"
+Definitive paper summary (follow its exact logical flow):
+\"\"\"{final_summary[:22000]}\"\"\"
 
 Available figures:
-\"\"\"{figures_overview[:10000]}\"\"\"
+\"\"\"{figures_overview[:12000]}\"\"\"
 
-{target_slide_text}
+{target_text}
 
-Rules:
-- One clear idea per slide.
-- Always indicate which figure/panel to show.
-- Logical flow must match the narrative above.
-- Format exactly:
-  # Slide X: Title
-  → Short description (1-2 sentences)
-  → Show: Figure ...
+Create a clean slide plan:
+- One main idea per slide
+- Always say which figure/panel to show
+- Never overload a slide
 
-Output **only** the slide plan.
+Format exactly:
+# Slide 1: Title
+→ 1–2 sentence description
+→ Show: Figure ...
+
+Output ONLY the full plan starting with Slide 1.
 """
-    return llm.invoke(prompt).strip()
+    clean_plan = llm.invoke(prompt_stage1).strip()
 
+    # ───── STAGE 2: Refine chain over bullet chunks (zero omission) ─────
+    print("   → Stage 2: Injecting missing facts via refine chain...")
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from langchain.chains.summarize import load_summarize_chain
+    from langchain_core.documents import Document
+    from langchain.prompts import PromptTemplate
+
+    # Split bullets
+    splitter = RecursiveCharacterTextSplitter(chunk_size=3500, chunk_overlap=200)
+    bullet_chunks = splitter.split_text(factual_bullets)
+    bullet_docs = [Document(page_content=c) for c in bullet_chunks]
+
+    # Initial document = the clean plan we just created
+    initial_doc = Document(page_content=clean_plan)
+
+    # Prompts (now correctly using LangChain variables)
+    question_prompt = PromptTemplate.from_template("{text}")
+
+    refine_prompt = PromptTemplate.from_template(
+        """CURRENT SLIDE PLAN (DO NOT renumber or delete any existing slide):
+\"\"\"{existing_answer}\"\"\"
+
+Integrate the following factual claims.
+Only add a new slide or extend an existing one if a crucial result, number, method detail, or figure is missing.
+
+New factual content:
+\"\"\"{text}\"\"\"
+
+Figures reminder:
+\"\"\"{figures}\"\"\"
+
+{target}
+
+Output the complete updated slide plan in the same format.
+"""
+    )
+
+    chain = load_summarize_chain(
+        llm=llm,
+        chain_type="refine",
+        question_prompt=question_prompt,
+        refine_prompt=refine_prompt,
+        return_intermediate_steps=False,
+        input_key="input_documents",
+        output_key="output_text",
+    )
+
+    # Run chain: first doc = clean plan, then all bullet chunks
+    result = chain.invoke({
+        "input_documents": [initial_doc] + bullet_docs,
+        "figures": figures_overview[:10000],
+        "target": target_text,
+    })
+
+    return result["output_text"].strip()
 
 # ==================== PUBLIC API ====================
 def generate_global_and_plan(
@@ -292,7 +351,11 @@ def generate_global_and_plan(
 
     # ---- 4. Plan ----
     plan_text = _generate_presentation_plan(
-        final_text, fig_summaries, desired_slides, llm
+        final_text, 
+        fig_summaries, 
+        bullets_text,          # ← pass the full bullet list
+        desired_slides, 
+        llm
     )
     _write(out / "04_presentation_plan.txt", plan_text)
 
