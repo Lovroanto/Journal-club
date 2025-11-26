@@ -14,6 +14,7 @@ from global_summary_module import generate_global_and_plan
 from langchain_ollama import OllamaLLM   # ← import LLM class
 from extract_referenced_papers import extract_referenced_papers_balanced
 from module_rag_builder import build_rag_dataset
+from build_literature_rag import build_literature_rag
 #from slide_enrichment_module import enrich_presentation_plan
 from notion_extractor_module import extract_specialized_notions
 
@@ -68,7 +69,7 @@ if(False):
         output_csv=Path(output_dir_summary) /"06_relevant_references.csv",
         fuzzy_threshold=90
     )
-if(True):
+if(False):
     build_rag_dataset(
         csv_input=Path(output_dir_summary) /"06_relevant_references.csv",
         notions_txt=Path(output_dir_summary) /"05_Extracted_notions.txt",
@@ -82,6 +83,15 @@ if(True):
         unpaywall_email="myemail@ens.fr", # set your email here for Unpaywall
         parallel_workers=6,
     )
+if(True):
+    build_literature_rag(
+        pdf_folder=Path(output_dir_article)  /"pdfs_litterature",
+        rag_folder=Path(output_dir_article)  /"RAG/literature_rag",
+        max_chunk_size=3500,
+        max_workers=6,          # safe default (GROBID runs locally)
+        skip_existing=True      # won't reprocess if chunks already exist
+    )
+
 #    build_rag_dataset(
 #        csv_input=Path(output_dir_summary) /"06_relevant_references.csv",
 #        notions_txt=Path(output_dir_summary) /"05_Extracted_notions.txt",
