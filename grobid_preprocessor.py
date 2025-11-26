@@ -1700,12 +1700,12 @@ def preprocess_pdf(
     correct_grobid: bool = True,
     process_supplementary: bool = True,
     ask_user_for_supplementary: bool = False,
-    llm: Any = None,          # <-- Add this
+    llm: Any = None,
 ) -> Dict:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1. Decide which PDF to send
+    # 1. Choose PDF
     pdf_to_send = str(pdf_path)
     tmp_pdf_path = None
     if preclean_pdf:
@@ -1718,86 +1718,114 @@ def preprocess_pdf(
     if use_grobid_consolidation:
         params["consolidateHeader"] = "1"
         params["consolidateCitations"] = "1"
-
     with open(pdf_to_send, "rb") as f:
         r = requests.post(base_url, params=params, files={"input": f}, timeout=120)
     tei_xml = r.text
-
     raw_tei_path = output_dir / "raw_tei.xml"
     save_text(raw_tei_path, tei_xml)
 
-    # 3. OPTIONAL: GROBID correction
+    # 3. GROBID correction
     final_tei_path = raw_tei_path
     final_tei_xml = tei_xml
 
     if correct_grobid:
         print("Running GROBID correction pipeline...")
-        # ───── your full correction block (unchanged) ─────
-        cleaned_text = prepare_pdf_for_grobid_check(pdf_path=pdf_path, output_dir=output_dir, preview_lines=30, save_cleaned=True)
-        cleaned_text = prepare_pdf_for_grobid_check(pdf_path=pdf_path,output_dir=output_dir,preview_lines=30,save_cleaned=True,extract_figures=not rag_mode, )
-        extract_all_sentences_to_single_file(text=cleaned_text, output_path=output_dir / "checktxt" / "sentences_all_in_one.txt", min_words=6)
-        correct_overmerged_sentences(output_dir / "checktxt" / "sentences_all_in_one.txt", output_dir / "checktxt" / "sentences_corrected.txt", min_current_line_length=25, max_prev_line_length=49)
-        append_figure_captions_to_sentence_file(figures_folder=output_dir / "figure_from_pdf", sentence_file=output_dir / "checktxt" / "sentences_corrected.txt")
-        extract_structured_sentences_from_tei(output_dir / "raw_tei.xml", output_dir / "checktxt" / "tei_corrected.txt")
-        append_figure_captions_from_tei(tei_path=output_dir / "raw_tei.xml", sentence_file=output_dir / "checktxt" / "tei_corrected.txt")
+
+        # ONLY ONE CALL — respects rag_mode
+        cleaned_text = prepare_pdf_for_grobid_check(
+            pdf_path=pdf_path,
+            output_dir=output_dir,
+            preview_lines=30,
+            save_cleaned=True,
+            extract_figures=not rag_mode,  # ← Critical: no images in RAG
+        )
+
+        extract_all_sentences_to_single_file(
+            text=cleaned_text,
+            output_path=output_dir / "checktxt" / "sentences_all_in_one.txt",
+            min_words=6,
+        )
+        correct_overmerged_sentences(
+            output_dir / "checktxt" / "sentences_all_in_one.txt",
+            output_dir / "checktxt" / "sentences_corrected.txt",
+            min_current_line_length=25,
+            max_prev_line_length=49,
+        )
+
+        # Only append captions in debug mode
+        if not rag_mode:
+            append_figure_captions_to_sentence_file(
+                figures_folder=output_dir / "figure_from_pdf",
+                sentence_file=output_dir / "checktxt" / "sentences_corrected.txt",
+            )
+
+        extract_structured_sentences_from_tei(
+            output_dir / "raw_tei.xml",
+            output_dir / "checktxt" / "tei_corrected.txt",
+        )
+
+        if not rag_mode:
+            append_figure_captions_from_tei(
+                tei_path=output_dir / "raw_tei.xml",
+                sentence_file=output_dir / "checktxt" / "tei_corrected.txt",
+            )
 
         clean_file = output_dir / "checktxt" / "sentences_corrected.txt"
         grobid_file = output_dir / "checktxt" / "tei_corrected.txt"
         report_file = output_dir / "checktxt" / "SENTENCE_ALIGNMENT_FULL.txt"
         whattodo_file = output_dir / "checktxt" / "WhatToChange.txt"
 
-        align_clean_to_grobid(clean_txt_path=clean_file, grobid_txt_path=grobid_file, min_score_to_accept=0.20,
-                              output_report=report_file, output_reorder=whattodo_file)
-        print(f"Alignment report → {report_file}")
-        print(f"Reorder guide   → {whattodo_file}")
+        align_clean_to_grobid(
+            clean_txt_path=clean_file,
+            grobid_txt_path=grobid_file,
+            min_score_to_accept=0.20,
+            output_report=report_file,
+            output_reorder=whattodo_file,
+        )
 
-        apply_instructions_to_tei(raw_tei_path=raw_tei_path, tei_sents_path=grobid_file,
-                                   clean_sents_path=clean_file, instructions_path=whattodo_file,
-                                   output_path=output_dir / "NEWraw_tei.xml")
-
+        apply_instructions_to_tei(
+            raw_tei_path=raw_tei_path,
+            tei_sents_path=grobid_file,
+            clean_sents_path=clean_file,
+            instructions_path=whattodo_file,
+            output_path=output_dir / "NEWraw_tei.xml",
+        )
         final_tei_path = output_dir / "NEWraw_tei.xml"
         final_tei_xml = final_tei_path.read_text(encoding="utf-8")
         print("TEI correction completed → using NEWraw_tei.xml")
     else:
-        print("correct_grobid=False → skipping correction, using raw GROBID TEI")
+        print("correct_grobid=False → skipping correction")
 
-    # 4. Metadata + Figures (ONLY in debug mode — NEVER in RAG mode)
-    title_txt_path = None  # ← always defined
-
+    # 4. Metadata + Figures — ONLY in debug mode
+    title_txt_path = None
     if not rag_mode:
-        # === ONLY RUN IN DEBUG MODE ===
         meta = extract_metadata_from_tei(final_tei_xml)
         title_txt_path = output_dir / "title.txt"
         with open(title_txt_path, "w", encoding="utf-8") as fh:
-            fh.write(f"Title: {meta.get('title','')}\n\n")
+            fh.write(f"Title: {meta.get('title', '')}\n\n")
             fh.write("Authors:\n")
             for a in meta.get("authors", []):
-                fh.write(f" - {a.get('first','')} {a.get('last','')}\n")
-            fh.write(f"\nAbstract:\n{meta.get('abstract','')}\n")
+                fh.write(f" - {a.get('first', '')} {a.get('last', '')}\n")
+            fh.write(f"\nAbstract:\n{meta.get('abstract', '')}\n")
 
-    # Extract figures + captions ONLY in debug mode
-    extract_figures(final_tei_xml, output_dir, rag_mode=rag_mode, article_name=article_name)
+        # Only extract figures in debug mode
+        extract_figures(final_tei_xml, output_dir, rag_mode=rag_mode, article_name=article_name)
 
-    # 5. SMART REFERENCE HANDLING – ONLY REAL ONES
+    # 5. References
     has_real_references = False
     refs_path = output_dir / "references.txt"
-
     if not rag_mode:
-        extract_references(final_tei_xml, output_dir)                     # GROBID always tries
+        extract_references(final_tei_xml, output_dir)
         has_real_references = has_real_references_from_tei(final_tei_xml)
-
         if not has_real_references and refs_path.exists():
-            print("No real references detected → removing fake references.txt")
             refs_path.unlink(missing_ok=True)
-        elif has_real_references:
-            print("Real references detected → keeping references.txt")
 
     # 6. Chunking
     main_chunks, supp_chunks = extract_sections(
         final_tei_xml,
         chunk_size=chunk_size,
         include_supplementary=process_supplementary,
-        ask_user_for_supplementary=ask_user_for_supplementary,   # <-- NEW
+        ask_user_for_supplementary=ask_user_for_supplementary,
         llm=llm,
     )
     if not process_supplementary:
@@ -1806,7 +1834,7 @@ def preprocess_pdf(
     # 7. Save chunks
     if rag_mode:
         prefix_main = f"{clean_filename(article_name)}_main_chunk" if article_name else "main_chunk"
-        prefix_sup  = f"{clean_filename(article_name)}_sup_chunk"  if article_name else "sup_chunk"
+        prefix_sup = f"{clean_filename(article_name)}_sup_chunk" if article_name else "sup_chunk"
         for i, c in enumerate(main_chunks, 1):
             save_text(output_dir / f"{prefix_main}{str(i).zfill(3)}.txt", c["text"])
         for i, c in enumerate(supp_chunks, 1):
@@ -1816,13 +1844,13 @@ def preprocess_pdf(
         main_dir.mkdir(parents=True, exist_ok=True)
         for i, c in enumerate(main_chunks, 1):
             save_text(main_dir / f"main_chunk{str(i).zfill(3)}.txt", c["text"])
-        if process_supplementary and supp_chunks:
+        if supp_chunks:
             supp_dir = output_dir / "supplementary"
             supp_dir.mkdir(parents=True, exist_ok=True)
             for i, c in enumerate(supp_chunks, 1):
                 save_text(supp_dir / f"sup_chunk{str(i).zfill(3)}.txt", c["text"])
 
-    # 8. Figure maps
+    # 8. Figure maps (debug only)
     if not rag_mode:
         # main figures
         main_figs = set()
@@ -1836,7 +1864,7 @@ def preprocess_pdf(
             for k in sorted(main_map):
                 fm.write(f"{k} -> {', '.join(main_map[k])}\n")
 
-        if process_supplementary and supp_chunks:
+        if supp_chunks:
             supp_figs = set()
             supp_map = {}
             for idx, c in enumerate(supp_chunks, 1):
@@ -1848,84 +1876,54 @@ def preprocess_pdf(
                 for k in sorted(supp_map):
                     fm.write(f"{k} -> {', '.join(supp_map[k])}\n")
 
-    # 9. With references – ONLY if real references exist
-    if keep_references and not rag_mode and has_real_references:
+    # 9. With references folder
+    if keep_references and not rag_mode and has_real_references and refs_path.exists():
         refs_text = refs_path.read_text(encoding="utf-8")
         wr_dir = output_dir / "with_references"
         wr_main = wr_dir / "main"
         wr_main.mkdir(parents=True, exist_ok=True)
         for i, c in enumerate(main_chunks, 1):
             save_text(wr_main / f"main_chunk{str(i).zfill(3)}.txt", c["text"] + "\n\nReferences:\n" + refs_text)
-        if process_supplementary and supp_chunks:
+        if supp_chunks:
             wr_supp = wr_dir / "supplementary"
             wr_supp.mkdir(parents=True, exist_ok=True)
             for i, c in enumerate(supp_chunks, 1):
                 save_text(wr_supp / f"sup_chunk{str(i).zfill(3)}.txt", c["text"] + "\n\nReferences:\n" + refs_text)
-    elif keep_references and not has_real_references:
-        print("keep_references=True but no real references found → skipping with_references/ folder")
 
-    # 10. Cleanup
+    # 10. Cleanup temp PDF
     if preclean_pdf and tmp_pdf_path:
         try:
             tmp = Path(tmp_pdf_path)
-            if tmp.exists() and tmp.name == "tmp_cleaned.pdf" and tmp.parent.resolve() == output_dir.resolve():
+            if tmp.exists() and tmp.name == "tmp_cleaned.pdf":
                 tmp.unlink()
         except Exception:
             pass
-# ===================================================================
-    # 10. FINAL CLEANUP — ONLY IN RAG MODE, AND ONLY SAFE FILES
-    # ===================================================================
+
+    # FINAL RAG CLEANUP — AFTER EVERYTHING
     if rag_mode:
-        # These files are completely safe to delete — they are only used for debugging
-        safe_to_delete = [
-            "cleaned_article.txt",
-            "raw_tei.xml",
-            "title.txt",
-            "references.txt",
-            "figmain.txt",
-            "figmain_map.txt",
-            "figsup.txt",
-            "figsup_map.txt",
-        ]
-        for pattern in safe_to_delete:
+        for pattern in [
+            "cleaned_article.txt", "raw_tei.xml", "NEWraw_tei.xml",
+            "title.txt", "references.txt", "figmain.txt", "figmain_map.txt",
+            "figsup.txt", "figsup_map.txt"
+        ]:
             for f in output_dir.glob(pattern):
                 f.unlink(missing_ok=True)
 
-        # Delete figure folder (images + caption files)
-        fig_dir = output_dir / "figure_from_pdf"
-        if fig_dir.exists():
-            import shutil
-            shutil.rmtree(fig_dir, ignore_errors=True)
+        for folder in ["figure_from_pdf", "checktxt"]:
+            dir_path = output_dir / folder
+            if dir_path.exists():
+                import shutil
+                shutil.rmtree(dir_path, ignore_errors=True)
 
-        # DO NOT DELETE checktxt/ — the correction pipeline needs it until the very end!
-        # It will be deleted automatically at the end of this function (see below)
-
-        # DO NOT DELETE NEWraw_tei.xml yet — extract_sections() needs it!
-        # We keep it until after chunking
-    # ===================================================================
-    # FINAL STEP: Delete remaining temp files AFTER chunking is 100% done
-    # ===================================================================
-    if rag_mode:
-        # Now safe: TEI is no longer needed
-        for f in ["NEWraw_tei.xml", "raw_tei.xml"]:
-            path = output_dir / f
-            if path.exists():
-                path.unlink(missing_ok=True)
-
-        # Now safe: correction pipeline is completely finished
-        checktxt_dir = output_dir / "checktxt"
-        if checktxt_dir.exists():
-            import shutil
-            shutil.rmtree(checktxt_dir, ignore_errors=True)
-
-        # Optional: delete any empty folders
-        for d in output_dir.iterdir():
+        for d in list(output_dir.iterdir()):
             if d.is_dir() and not any(d.iterdir()):
                 d.rmdir()
+
+    # RETURN — exactly as you wanted
     return {
         "raw_tei": str(raw_tei_path),
         "final_tei": str(final_tei_path),
-        "title_txt": str(title_txt_path) if title_txt_path else None,  # ← safe
+        "title_txt": str(title_txt_path) if title_txt_path else None,
         "main_chunks": len(main_chunks),
         "supp_chunks": len(supp_chunks),
         "has_references": has_real_references,

@@ -88,7 +88,7 @@ if(True):
         pdf_folder=Path(output_dir_article)  /"pdfs_litterature",
         rag_folder=Path(output_dir_article)  /"RAG/literature_rag",
         max_chunk_size=3500,
-        max_workers=6,          # safe default (GROBID runs locally)
+        max_workers=1,          # safe default (GROBID runs locally)
         skip_existing=True      # won't reprocess if chunks already exist
     )
 
