@@ -180,7 +180,14 @@ def extract_pdf_text(pdf_path: Union[str, Path]) -> str:
     doc.close()
     return "\n\n".join(pages)
 
-def extract_and_remove_figure_captions(text: str, out_dir: Path) -> Tuple[str, int]:
+def extract_and_remove_figure_captions(
+    text: str,
+    out_dir: Optional[Path]               # ← Optional[Path] = Path or None
+) -> Tuple[str, int]:
+    """
+    Extract figure captions and optionally save them.
+    If out_dir is None → only remove captions from text (perfect for RAG mode).
+    """
     if not text.strip():
         return text, 0
 
@@ -202,27 +209,35 @@ def extract_and_remove_figure_captions(text: str, out_dir: Path) -> Tuple[str, i
     offset = 0
     local_count = 0
 
-    print("Extracting figure captions...")
+    if out_dir is not None:
+        print("Extracting figure captions...")
+
     for match in matches:
         local_count += 1
-        idx = _get_next_figure_number()
+        idx = _get_next_figure_number()          # your global counter
 
         label = match.group(1).strip()
         caption_body = match.group(2).strip()
         first_line = caption_body.split("\n", 1)[0] if caption_body else ""
         preview = (first_line[:40] + "..." if len(first_line) > 40 else first_line)
 
-        print(f"  → figure_{idx:03d}.txt  |  {label:<20} {preview}")
+        # Save file + print only when out_dir is given
+        if out_dir is not None:
+            print(f"  → figure_{idx:03d}.txt | {label:<20} {preview}")
+            filename = out_dir / f"figure_{idx:03d}.txt"
+            filename.write_text(f"# Original label: {label}\n{caption_body}\n", encoding="utf-8")
 
-        filename = out_dir / f"figure_{idx:03d}.txt"
-        filename.write_text(f"# Original label: {label}\n{caption_body}\n", encoding="utf-8")
-
+        # Always remove the caption from the main text
         start = match.start() - offset
         end = match.end() - offset
         cleaned_text = cleaned_text[:start] + "\n" + cleaned_text[end:]
         offset += end - start - 1
 
-    print(f"Extracted {local_count} caption(s) → figure_{_figure_counter-local_count+1:03d} to figure_{_figure_counter:03d}.txt")
+    if out_dir is not None and local_count > 0:
+        start_idx = _figure_counter - local_count + 1
+        end_idx = _figure_counter
+        print(f"Extracted {local_count} caption(s) → figure_{start_idx:03d} to figure_{end_idx:03d}.txt")
+
     return cleaned_text, local_count
 
 # ------------------------------------------------------------------ #
@@ -1746,16 +1761,21 @@ def preprocess_pdf(
     else:
         print("correct_grobid=False → skipping correction, using raw GROBID TEI")
 
-    # 4. Metadata + Figures
-    meta = extract_metadata_from_tei(final_tei_xml)
-    title_txt_path = output_dir / "title.txt"
-    with open(title_txt_path, "w", encoding="utf-8") as fh:
-        fh.write(f"Title: {meta.get('title','')}\n\n")
-        fh.write("Authors:\n")
-        for a in meta.get("authors", []):
-            fh.write(f" - {a.get('first','')} {a.get('last','')}\n")
-        fh.write(f"\nAbstract:\n{meta.get('abstract','')}\n")
+    # 4. Metadata + Figures (ONLY in debug mode — NEVER in RAG mode)
+    title_txt_path = None  # ← always defined
 
+    if not rag_mode:
+        # === ONLY RUN IN DEBUG MODE ===
+        meta = extract_metadata_from_tei(final_tei_xml)
+        title_txt_path = output_dir / "title.txt"
+        with open(title_txt_path, "w", encoding="utf-8") as fh:
+            fh.write(f"Title: {meta.get('title','')}\n\n")
+            fh.write("Authors:\n")
+            for a in meta.get("authors", []):
+                fh.write(f" - {a.get('first','')} {a.get('last','')}\n")
+            fh.write(f"\nAbstract:\n{meta.get('abstract','')}\n")
+
+    # Extract figures + captions ONLY in debug mode
     extract_figures(final_tei_xml, output_dir, rag_mode=rag_mode, article_name=article_name)
 
     # 5. SMART REFERENCE HANDLING – ONLY REAL ONES
@@ -1852,11 +1872,60 @@ def preprocess_pdf(
                 tmp.unlink()
         except Exception:
             pass
+# ===================================================================
+    # 10. FINAL CLEANUP — ONLY IN RAG MODE, AND ONLY SAFE FILES
+    # ===================================================================
+    if rag_mode:
+        # These files are completely safe to delete — they are only used for debugging
+        safe_to_delete = [
+            "cleaned_article.txt",
+            "raw_tei.xml",
+            "title.txt",
+            "references.txt",
+            "figmain.txt",
+            "figmain_map.txt",
+            "figsup.txt",
+            "figsup_map.txt",
+        ]
+        for pattern in safe_to_delete:
+            for f in output_dir.glob(pattern):
+                f.unlink(missing_ok=True)
 
+        # Delete figure folder (images + caption files)
+        fig_dir = output_dir / "figure_from_pdf"
+        if fig_dir.exists():
+            import shutil
+            shutil.rmtree(fig_dir, ignore_errors=True)
+
+        # DO NOT DELETE checktxt/ — the correction pipeline needs it until the very end!
+        # It will be deleted automatically at the end of this function (see below)
+
+        # DO NOT DELETE NEWraw_tei.xml yet — extract_sections() needs it!
+        # We keep it until after chunking
+    # ===================================================================
+    # FINAL STEP: Delete remaining temp files AFTER chunking is 100% done
+    # ===================================================================
+    if rag_mode:
+        # Now safe: TEI is no longer needed
+        for f in ["NEWraw_tei.xml", "raw_tei.xml"]:
+            path = output_dir / f
+            if path.exists():
+                path.unlink(missing_ok=True)
+
+        # Now safe: correction pipeline is completely finished
+        checktxt_dir = output_dir / "checktxt"
+        if checktxt_dir.exists():
+            import shutil
+            shutil.rmtree(checktxt_dir, ignore_errors=True)
+
+        # Optional: delete any empty folders
+        for d in output_dir.iterdir():
+            if d.is_dir() and not any(d.iterdir()):
+                d.rmdir()
     return {
         "raw_tei": str(raw_tei_path),
         "final_tei": str(final_tei_path),
-        "title_txt": str(title_txt_path),
+        "title_txt": str(title_txt_path) if title_txt_path else None,  # ← safe
         "main_chunks": len(main_chunks),
         "supp_chunks": len(supp_chunks),
         "has_references": has_real_references,
