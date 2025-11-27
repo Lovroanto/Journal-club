@@ -143,145 +143,133 @@ REFINED FACTUAL SUMMARY:"""
     # Run the chain
     result = chain.invoke({"input_documents": docs})
     return result["output_text"].strip()
-# ==================== FINAL & WORKING: TWO-STAGE PRESENTATION PLAN ====================
-def _generate_presentation_plan(
+# ==================== GENERATE HIGH-LEVEL GROUP PLAN ====================
+def _generate_high_level_group_plan(
     final_summary: str,
     figure_summaries: dict,
-    factual_bullets: str,
     desired_slides: int,
     llm: BaseLanguageModel,
 ) -> str:
-    print(f"4. Generating presentation plan (target: {desired_slides or 'auto'} slides)...")
-
+    print(f"4. Generating high-level presentation group plan (target: {desired_slides or 'auto'} slides)...")
     # Figures
     fig_lines = [
         f"Figure {data.get('article_label', fid.replace('fig_', ''))}: {data.get('summary', '')}"
         for fid, data in figure_summaries.items()
     ]
     figures_overview = "\n".join(fig_lines) if fig_lines else "No figures."
-
     target = (
         f"You must aim for approximately {desired_slides} slides (±2)."
         if desired_slides > 0
         else "Choose the optimal number of slides (12–18 is ideal for 20 min)."
     )
-
-    # THIS PROMPT GIVES YOU THE BEST OF BOTH WORLDS
-    magic_prompt = f"""
+    # Prompt for high-level groups only
+    high_level_prompt = f"""
 You are preparing a world-class 20-minute journal club presentation.
-
 Here is the complete, fact-checked summary of the paper:
 \"\"\"{final_summary[:24000]}\"\"\"
-
 Available figures:
 \"\"\"{figures_overview}\"\"\"
-
 {target}
-
 Your task: create logical, coherent groups of slides that follow the exact scientific story of the paper.
-
-FOR EVERY GROUP YOU CREATE, OUTPUT EXACTLY THIS HEADER FIRST:
+Output ONLY the headers for each group, nothing else:
 ===SLIDE_GROUP: Title of the Group | Slides X–Y===
-
-Then write the full content of that group exactly as you would present it — with the same depth, logic, and beauty as before.
-
-Example of correct output:
-===SLIDE_GROUP: Introduction and Open Question | Slides 1–3===
-* What was the major challenge in continuous cavity QED?
-* Why were previous approaches fundamentally limited?
-• Slide 1: Title + motivation
-• Slide 2: Required physical mechanism
-• Slide 3: The breakthrough idea
-
-===SLIDE_GROUP: Experimental Setup and Key Innovations | Slides 4–6===
-* High-finesse ring cavity with 87Sr atoms
-* Continuous loading scheme
-• Slide 4: Overview diagram (Figure 1)
-• Slide 5: Cooling and lattice details
-• Slide 6: Cavity parameters and finesse
-
+One per line, no content, no explanations.
 Rules:
 - The header line must be exactly: ===SLIDE_GROUP: Title | Slides A–B===
 - Title must be concise and descriptive
-- Slide range must be consecutive and non-overlapping
-- Inside the group: write rich, logical content exactly like your best previous versions
-- You may suggest internal slide focus (Slide X: …) — this is encouraged
-- Always mention relevant figures
-- Be exhaustive and faithful to the science
-
-Start now with the first group.
+- Slide range must be consecutive and non-overlapping, starting from 1
+- Create groups that logically divide the paper's story
+- Be faithful to the science
+Start now with the first group and list all.
 """
-
-    # Stage 1: Get perfect logical groups with machine-readable headers
-    plan = llm.invoke(magic_prompt).strip()
-
-    # Stage 2: Refine with bullets — but preserve the ===SLIDE_GROUP: headers exactly
+    plan = llm.invoke(high_level_prompt).strip()
+    return plan
+# ==================== GENERATE DETAILED CONTENT FOR GROUP ====================
+def _generate_group_details(
+    group_header: str,
+    final_summary: str,
+    figures_overview: str,
+    factual_bullets: str,
+    previous_groups: List[str],
+    llm: BaseLanguageModel,
+) -> str:
+    prev_titles = ", ".join([re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', g).group(1).strip() for g in previous_groups if re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', g)] or ["None"])
+    # Base prompt for group content
+    base_prompt = f"""
+Generate detailed, logical content for this slide group: {group_header}
+Based on the paper summary:
+\"\"\"{final_summary[:24000]}\"\"\"
+Available figures:
+\"\"\"{figures_overview}\"\"\"
+Previous groups (do not repeat their ideas, build on them): {prev_titles}
+Inside the group content:
+- Write rich, logical content like your best versions
+- Suggest internal slide focus (e.g., Slide X: …)
+- Mention relevant figures
+- Be exhaustive and faithful
+Output ONLY the content (no header).
+"""
+    base_content = llm.invoke(base_prompt).strip()
+    # Refine with bullets
     splitter = RecursiveCharacterTextSplitter(chunk_size=3500, chunk_overlap=200)
     bullet_chunks = splitter.split_text(factual_bullets)
     bullet_docs = [Document(page_content=c) for c in bullet_chunks]
-
     refine_prompt = PromptTemplate.from_template("""
-CURRENT PLAN (PRESERVE ALL ===SLIDE_GROUP: ... === lines exactly as they are):
+CURRENT GROUP CONTENT (add missing facts, keep logical):
 \"\"\"{existing_answer}\"\"\"
-
 Integrate missing facts from:
 \"\"\"{text}\"\"\"
-
-You may only:
-- Add content inside existing groups
-- Create a new group with the exact ===SLIDE_GROUP: Title | Slides X–Y=== header if truly necessary
-- Never remove or modify existing headers
-
+Do not repeat previous groups' ideas.
 Figures reminder:
 \"\"\"{figures_overview}\"\"\"
+Output the refined content only.
 """)
-
     chain = load_summarize_chain(
         llm=llm,
         chain_type="refine",
         question_prompt=PromptTemplate.from_template("{text}"),
         refine_prompt=refine_prompt,
     )
-
     result = chain.invoke({
-        "input_documents": [Document(page_content=plan)] + bullet_docs,
+        "input_documents": [Document(page_content=base_content)] + bullet_docs,
         "figures_overview": figures_overview,
     })
-
     return result["output_text"].strip()
-# ==================== NEW: SPLIT PLAN INTO INDIVIDUAL SLIDE FILES ====================
-def _split_plan_into_slides(plan_text: str, output_dir: Path):
+# ==================== SPLIT AND GENERATE DETAILED GROUPS ====================
+def _process_and_split_groups(
+    plan_text: str,
+    output_dir: Path,
+    final_summary: str,
+    figures_overview: str,
+    factual_bullets: str,
+    llm: BaseLanguageModel,
+):
     output_dir.mkdir(parents=True, exist_ok=True)
-
-    # Split on our magic header
-    parts = re.split(r'(===SLIDE_GROUP:[^\n]*===)', plan_text)
-    
-    groups = []
-    for i in range(1, len(parts), 2):
-        header = parts[i].strip()
-        body = parts[i + 1] if i + 1 < len(parts) else ""
-        next_header = re.search(r'===SLIDE_GROUP:', body)
-        if next_header:
-            body = body[:next_header.start()]
-        groups.append(header + "\n" + body.strip())
-
-    if not groups:
-        # Fallback
-        groups = [plan_text]
-
-    for idx, group in enumerate(groups, 1):
-        # Extract title from header
-        title_match = re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', group)
+    # Extract headers
+    headers = [line.strip() for line in plan_text.splitlines() if line.strip().startswith("===SLIDE_GROUP:")]
+    previous_groups = []
+    for idx, header in enumerate(headers, 1):
+        print(f" → Generating details for group {idx}: {header}")
+        details = _generate_group_details(
+            header,
+            final_summary,
+            figures_overview,
+            factual_bullets,
+            previous_groups,
+            llm
+        )
+        group_content = header + "\n" + details.strip()
+        # Extract title
+        title_match = re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', header)
         title = title_match.group(1).strip() if title_match else f"Group_{idx}"
         safe_title = re.sub(r'[^\w\s\-]', '', title)
         safe_title = re.sub(r'\s+', '_', safe_title).strip('_')[:100]
         if not safe_title:
             safe_title = f"Group_{idx}"
-
         filename = f"{str(idx).zfill(3)}_{safe_title}.txt"
-        _write(output_dir / filename, group.strip() + "\n")
-
-    print(f"   → Created {len(groups)} perfectly split, logically coherent slide groups in: {output_dir}")
+        _write(output_dir / filename, group_content + "\n")
+        previous_groups.append(group_content)
+    print(f"   → Created {len(headers)} detailed slide group files in: {output_dir}")
 # ==================== PUBLIC API ====================
 def generate_global_and_plan(
     summaries_dir: str,
@@ -331,27 +319,39 @@ def generate_global_and_plan(
         bullets_text, flow_text, supp_global, llm
     )
     _write(out / "03_main_contextualized.txt", final_text)
-    # ---- 4. Plan ----
-    plan_text = _generate_presentation_plan(
+    # ---- 4. High-level Group Plan ----
+    plan_text = _generate_high_level_group_plan(
         final_text,
         fig_summaries,
-        bullets_text, # ← pass the full bullet list
         desired_slides,
         llm
     )
     _write(out / "04_presentation_plan.txt", plan_text)
-    # ---- NEW: Split plan into individual slide files (if dir provided) ----
+    # ---- NEW: Generate detailed groups per file (if dir provided) ----
     if slides_output_dir:
         slides_path = Path(slides_output_dir).expanduser().resolve()
-        _split_plan_into_slides(plan_text, slides_path)
+        # Figures overview for details
+        fig_lines = [
+            f"Figure {data.get('article_label', fid.replace('fig_', ''))}: {data.get('summary', '')}"
+            for fid, data in fig_summaries.items()
+        ]
+        figures_overview = "\n".join(fig_lines) if fig_lines else "No figures."
+        _process_and_split_groups(
+            plan_text,
+            slides_path,
+            final_text,
+            figures_overview,
+            bullets_text,
+            llm
+        )
     # ---- Done ----
     print("\n=== All files generated ===")
     print(f" 01_main_factual_bullets.txt → every claim")
     print(f" 02_main_flow_summary.txt → faithful narrative")
     print(f" 03_main_contextualized.txt → the story (read this!)")
-    print(f" 04_presentation_plan.txt → slides (~{desired_slides or 'auto'})")
+    print(f" 04_presentation_plan.txt → high-level slide groups (~{desired_slides or 'auto'})")
     if slides_output_dir:
-        print(f" Individual slide files in: {slides_output_dir}")
+        print(f" Detailed slide group files in: {slides_output_dir}")
 # ==================== Demo ====================
 if __name__ == "__main__":
     import sys
