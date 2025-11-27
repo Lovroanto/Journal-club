@@ -1473,55 +1473,44 @@ def detect_supplementary_by_keyword(div_text: str) -> bool:
 def extract_sections(
     tei_xml: str,
     chunk_size: int = DEFAULT_CHUNK_SIZE,
+    overlap: int = 0,                            # ← NEW PARAMETER
     include_supplementary: bool = True,
     llm=None,
-    ask_user_for_supplementary=False,       # NEW name
+    ask_user_for_supplementary=False,
     ask_user_only_if_ambiguous=True,
     supp_patterns=None,
 ):
     """
-    Refactored extract_sections using *boundary-based* supplementary detection.
-
-    Returns (main_chunks, supplementary_chunks).
-    Uses the same TEI-based chunk producer, but the split between MAIN and SUPP
-    is now determined by detect_supplementary_boundary(), not div heuristics.
+    Now supports overlap between consecutive chunks while preserving
+    logical section boundaries.
     """
-
     soup = BeautifulSoup(tei_xml, "lxml-xml")
-
     body = soup.find("body")
     divs = body.find_all("div") if body else soup.find_all("div")
 
-    # If no <div>, treat whole document as one chunk (fallback)
     if not divs:
         full_text = soup.get_text(" ", strip=True)
         cleaned_text = re.sub(r"\s+", " ", full_text).strip()
         return ([{"text": cleaned_text, "figures": [], "section_title": None}], [])
 
-    # Compute supplementary boundary (character offset in linearized text)
     supp_start = detect_supplementary_boundary(
         tei_xml=tei_xml,
-        allow_user_interaction=ask_user_for_supplementary,  # <-- Updated
+        allow_user_interaction=ask_user_for_supplementary,
         ask_user_only_if_ambiguous=ask_user_only_if_ambiguous,
         use_llm=True,
         llm=llm,
         supp_patterns=supp_patterns or SUPP_PATTERNS,
     )
 
-    # Produce linearized TEI text (for offset mapping)
     full_text = soup.get_text("\n", strip=True)
-
-    # Function: get the start offset of each <div> in the linear text
     div_offsets = []
     for d in divs:
         div_text = d.get_text("\n", strip=True)
-        idx = full_text.find(div_text[:40])  # fuzzy anchor (first 40 chars)
+        idx = full_text.find(div_text[:40])
         div_offsets.append(idx if idx != -1 else 10**12)
 
-    # Split main vs supplementary based on supp_start
     main_divs = []
     supp_divs = []
-
     if include_supplementary and supp_start is not None:
         for d, off in zip(divs, div_offsets):
             if off < supp_start:
@@ -1532,26 +1521,49 @@ def extract_sections(
         main_divs = divs
         supp_divs = []
 
-    # Chunking logic (unchanged)
     def produce_chunks_from_divs(div_list):
         chunks = []
         current_chunk_text = ""
         current_chunk_figs = set()
         current_section_title = None
+        previous_overlap_text = ""
 
         def flush_chunk():
-            nonlocal current_chunk_text, current_chunk_figs, current_section_title
+            nonlocal current_chunk_text, current_chunk_figs, current_section_title, previous_overlap_text
+
             if not current_chunk_text.strip():
                 return
+
+            # Base text without figures line
+            base_text = current_chunk_text.rstrip()
+
+            # Add figure caption if any
             if current_chunk_figs:
-                fig_line = "\nFigures used in this chunk: " + \
-                           ", ".join(sorted(current_chunk_figs))
-                current_chunk_text = current_chunk_text.rstrip() + fig_line + "\n"
+                fig_line = "\nFigures used in this chunk: " + ", ".join(sorted(current_chunk_figs))
+                base_text += fig_line + "\n"
+
+            # PREPEND OVERLAP only if this is not the very first chunk
+            if previous_overlap_text and chunks:
+                final_text = previous_overlap_text + base_text
+            else:
+                final_text = base_text
+
             chunks.append({
-                "text": current_chunk_text.strip(),
+                "text": final_text.strip(),
                 "figures": sorted(current_chunk_figs),
                 "section_title": current_section_title
             })
+
+            # === CRITICAL: compute overlap from the *original* text (before prepending previous overlap) ===
+            original_text = current_chunk_text.strip()
+            if overlap > 0 and len(original_text) > overlap:
+                previous_overlap_text = original_text[-overlap:]
+            elif overlap > 0:
+                previous_overlap_text = original_text
+            else:
+                previous_overlap_text = ""
+
+            # Reset
             current_chunk_text = ""
             current_chunk_figs = set()
             current_section_title = None
@@ -1560,52 +1572,68 @@ def extract_sections(
             head = div.find("head")
             head_text = head.get_text(" ", strip=True) if head else None
             if head_text:
-                if current_chunk_text and (len(current_chunk_text) + len(head_text) > chunk_size):
+                if current_chunk_text and len(current_chunk_text + "\n" + head_text + "\n") > chunk_size:
                     flush_chunk()
-                if current_chunk_text:
-                    current_chunk_text += "\n" + head_text + "\n"
-                else:
-                    current_chunk_text = head_text + "\n"
+                current_chunk_text += ("\n" + head_text + "\n") if current_chunk_text else (head_text + "\n")
                 current_section_title = head_text
 
             for p in div.find_all("p"):
                 cleaned_para, figs = clean_paragraph_and_extract_figures(p)
 
-                # Very long paragraph → split
+                # === VERY LONG PARAGRAPH: split into multiple chunks ===
                 if len(cleaned_para) > chunk_size:
                     if current_chunk_text:
                         flush_chunk()
-                    start = 0
-                    while start < len(cleaned_para):
-                        part = cleaned_para[start:start + chunk_size]
-                        if start + chunk_size < len(cleaned_para):
-                            last_space = part.rfind(" ")
-                            if last_space > 100:
-                                part = part[:last_space]
-                        chunk_text = part.strip()
-                        chunk_fig_set = set(figs)
-                        if chunk_fig_set:
-                            chunk_text += "\n\nFigures used in this chunk: " + \
-                                           ", ".join(sorted(chunk_fig_set)) + "\n"
+
+                    pos = 0
+                    while pos < len(cleaned_para):
+                        end = pos + chunk_size
+                        part = cleaned_para[pos:end]
+
+                        # Try to break on whitespace (but not too early)
+                        if end < len(cleaned_para):
+                            break_point = part.rfind(" ")
+                            if break_point > 100:
+                                part = part[:break_point]
+                                end = pos + break_point
+
+                        chunk_content = part.strip()
+
+                        # Prepend overlap (only if not the very first chunk ever)
+                        if previous_overlap_text and chunks:
+                            chunk_content = previous_overlap_text + chunk_content
+
+                        # Add figure line
+                        if figs:
+                            chunk_content += "\n\nFigures used in this chunk: " + ", ".join(sorted(figs)) + "\n"
+
                         chunks.append({
-                            "text": chunk_text,
-                            "figures": sorted(chunk_fig_set),
+                            "text": chunk_content,
+                            "figures": sorted(figs),
                             "section_title": current_section_title
                         })
-                        start += len(part)
+
+                        # === CORRECT overlap update: use only the *new* part, not the prepended one ===
+                        new_part_clean = part.strip()
+                        if overlap > 0 and len(new_part_clean) > overlap:
+                            previous_overlap_text = new_part_clean[-overlap:]
+                        elif overlap > 0:
+                            previous_overlap_text = new_part_clean
+                        else:
+                            previous_overlap_text = ""
+
+                        pos = end
                     continue
 
-                # Normal paragraph case
+                # === NORMAL PARAGRAPH ===
+                if current_chunk_text and len(current_chunk_text + cleaned_para + "\n") > chunk_size:
+                    flush_chunk()
+
                 if not current_chunk_text:
                     current_chunk_text = cleaned_para + "\n"
-                    current_chunk_figs.update(figs)
-                elif len(current_chunk_text) + len(cleaned_para) > chunk_size:
-                    flush_chunk()
-                    current_chunk_text = cleaned_para + "\n"
-                    current_chunk_figs.update(figs)
                 else:
                     current_chunk_text += cleaned_para + "\n"
-                    current_chunk_figs.update(figs)
+                current_chunk_figs.update(figs)
 
         flush_chunk()
         return chunks
@@ -1692,6 +1720,7 @@ def preprocess_pdf(
     pdf_path: str,
     output_dir: str,
     chunk_size: int = DEFAULT_CHUNK_SIZE,
+    overlap: int = 0,                     # ← NEW
     rag_mode: bool = False,
     article_name: str = None,
     keep_references: bool = False,
@@ -1821,9 +1850,11 @@ def preprocess_pdf(
             refs_path.unlink(missing_ok=True)
 
     # 6. Chunking
+# 6. Chunking — now with overlap
     main_chunks, supp_chunks = extract_sections(
         final_tei_xml,
         chunk_size=chunk_size,
+        overlap=overlap,                                 # ← PASS IT
         include_supplementary=process_supplementary,
         ask_user_for_supplementary=ask_user_for_supplementary,
         llm=llm,
@@ -1919,12 +1950,24 @@ def preprocess_pdf(
             if d.is_dir() and not any(d.iterdir()):
                 d.rmdir()
 
-    # RETURN — exactly as you wanted
+    # === Determine where the final chunks are stored (critical for RAG) ===
+    if rag_mode:
+        main_chunks_dir = output_dir
+        supp_chunks_dir = output_dir if supp_chunks else None
+    else:
+        main_chunks_dir = output_dir / "main"
+        supp_chunks_dir = output_dir / "supplementary" if supp_chunks else None
+
+    # FINAL RETURN — now perfect for RAG pipelines
     return {
         "raw_tei": str(raw_tei_path),
         "final_tei": str(final_tei_path),
         "title_txt": str(title_txt_path) if title_txt_path else None,
-        "main_chunks": len(main_chunks),
+
+        "main_chunks_dir": str(main_chunks_dir),
+        "supp_chunks_dir": str(supp_chunks_dir) if supp_chunks_dir else None,
+
+        "main_chunks": len(main_chunks),      # kept for backward compat
         "supp_chunks": len(supp_chunks),
         "has_references": has_real_references,
     }

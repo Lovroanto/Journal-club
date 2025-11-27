@@ -16,8 +16,8 @@ from extract_referenced_papers import extract_referenced_papers_balanced
 from module_rag_builder import build_rag_dataset
 from build_literature_rag import build_literature_rag
 from rag_ingester import create_or_update_vectorstore
-#from slide_enrichment_module import enrich_presentation_plan
 from notion_extractor_module import extract_specialized_notions
+from slide_enrichment_module import enrich_presentation_plan
 
 pdf_file = "/home/lbarisic/ai_data/Journal_Club/First/main/s41567-025-02854-4.pdf"
 output_dir_article = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Decomposition/"
@@ -36,6 +36,7 @@ if (False):
         pdf_path=pdf_file,
         output_dir=output_dir_article,
         chunk_size=4000,
+        overlap = 200,   
         rag_mode=False,
         keep_references=True,
         preclean_pdf=True,
@@ -47,13 +48,31 @@ if (False):
     )
     print("STANDARD MODE RESULTS:")
     print(result_standard)
+    print("PREPROCESSING DONE!")
+    print(f"→ Title file       : {result_standard['title_txt']}")
+    print(f"→ Main chunks      : {result_standard['main_chunks']} chunks")
+    print(f"→ Supp chunks      : {result_standard['supp_chunks']} chunks")
+    print(f"→ Has references   : {result_standard['has_references']}")
+
+    # THE MOST IMPORTANT ONES FOR RAG:
+    main_folder = result_standard["main_chunks_dir"]
+    supp_folder = result_standard["supp_chunks_dir"]
 
 
 output_dir_summary = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Summary/"
+# --------------------------
+# doing the summaey of each chunck
+# --------------------------
 if(False):
     run_chunk_summary(output_dir_article, output_dir_summary, llm=llm)
+# --------------------------
+# generating the global summary and presentation plan
+# --------------------------
 if(False):
     generate_global_and_plan(output_dir_summary, output_dir_summary, desired_slides=0, llm=llm)
+# --------------------------
+# extracting notions from presentation plan
+# --------------------------
 if(False):
     extract_specialized_notions(
         Path(output_dir_summary) /"04_presentation_plan.txt",
@@ -62,6 +81,9 @@ if(False):
         num_repeats=5,
         min_occurrences=3
     )
+# --------------------------
+# extracting referenced papers balanced
+# --------------------------
 if(False):
     extract_referenced_papers_balanced(
         notions_txt=Path(output_dir_summary) /"05_Extracted_notions.txt",
@@ -70,6 +92,9 @@ if(False):
         output_csv=Path(output_dir_summary) /"06_relevant_references.csv",
         fuzzy_threshold=90
     )
+# --------------------------
+# building RAG dataset
+# --------------------------
 if(False):
     build_rag_dataset(
         csv_input=Path(output_dir_summary) /"06_relevant_references.csv",
@@ -84,6 +109,9 @@ if(False):
         unpaywall_email="myemail@ens.fr", # set your email here for Unpaywall
         parallel_workers=6,
     )
+# --------------------------
+# building literature RAG
+# --------------------------
 if(False):
     build_literature_rag(
         pdf_folder=Path(output_dir_article)  /"pdfs_litterature",
@@ -92,15 +120,39 @@ if(False):
         max_workers=1,          # safe default (GROBID runs locally)
         skip_existing=True      # won't reprocess if chunks already exist
     )
-if(True):
+# --------------------------
+# creating vectorstores for main and supp folders
+# --------------------------
+if (False):
     create_or_update_vectorstore(
-        data_folder="./rag_data",
-        persist_directory="./chroma_db",
-        #embedding_model_name="BAAI/bge-small-en-v1.5",   # change whenever you want "Snowflake/snowflake-arctic-embed-l"
-        embedding_model_name="Snowflake/snowflake-arctic-embed-l",
+        data_folder=Path(main_folder),
+        persist_directory=str(Path(main_folder) / "chroma_db"),   # ← convert to str
+        embedding_model_name="BAAI/bge-small-en-v1.5",
         include_pdfs=True,
-        # chunk_size and overlap are auto-set perfectly — you almost never need to touch them
     )
+    create_or_update_vectorstore(
+        data_folder=Path(supp_folder),
+        persist_directory=str(Path(supp_folder) / "chroma_db"),
+        embedding_model_name="BAAI/bge-small-en-v1.5",
+        include_pdfs=True,
+    )
+    create_or_update_vectorstore(
+        data_folder=Path(output_dir_article)  /"RAG/literature_rag",
+        persist_directory=str(Path(output_dir_article)  /"RAG/literature_rag" / "chroma_db"),
+        embedding_model_name="BAAI/bge-small-en-v1.5",
+        include_pdfs=True,
+    )
+
+if (True):
+    enrich_presentation_plan(
+        summaries_dir=output_dir_summary,
+        plan_path=Path(output_dir_summary) /"04_presentation_plan.txt",
+        output_dir=output_dir_summary /"07_final_presentation",
+        llm=llm
+    )
+
+
+
 #    build_rag_dataset(
 #        csv_input=Path(output_dir_summary) /"06_relevant_references.csv",
 #        notions_txt=Path(output_dir_summary) /"05_Extracted_notions.txt",
@@ -112,10 +164,4 @@ if(True):
 #        download_pdfs=True,
 #        llm_model_name=llm
 #    )
-#if (False):
-#    enrich_presentation_plan(
-#        summaries_dir=output_dir_summary,
-#        plan_path=Path(output_dir_summary) /"04_presentation_plan.txt",
-#        output_dir=output_dir_summary /"final_presentation",
-#        llm=llm
-#    )
+
