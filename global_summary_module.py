@@ -153,65 +153,87 @@ def _generate_presentation_plan(
 ) -> str:
     print(f"4. Generating presentation plan (target: {desired_slides or 'auto'} slides)...")
 
-    # Figures overview
-    fig_lines = [f"Figure {data.get('article_label', fid.replace('fig_', ''))}: {data.get('summary', '')}"
-                 for fid, data in figure_summaries.items()]
+    # Figures
+    fig_lines = [
+        f"Figure {data.get('article_label', fid.replace('fig_', ''))}: {data.get('summary', '')}"
+        for fid, data in figure_summaries.items()
+    ]
     figures_overview = "\n".join(fig_lines) if fig_lines else "No figures."
 
-    target_text = (
-        f"You must create approximately {desired_slides} slides (±2 is acceptable)."
-        if desired_slides > 0 else
-        "Choose the optimal number of slides (typically 12–18 for a 20-minute talk)."
+    target = (
+        f"You must aim for approximately {desired_slides} slides (±2)."
+        if desired_slides > 0
+        else "Choose the optimal number of slides (12–18 is ideal for 20 min)."
     )
 
-    strict_group_prompt = f"""
-You are an expert journal club presenter. Create a clear, logical presentation plan.
+    # THIS PROMPT GIVES YOU THE BEST OF BOTH WORLDS
+    magic_prompt = f"""
+You are preparing a world-class 20-minute journal club presentation.
 
-Paper summary (follow exactly):
+Here is the complete, fact-checked summary of the paper:
 \"\"\"{final_summary[:24000]}\"\"\"
 
 Available figures:
 \"\"\"{figures_overview}\"\"\"
 
-{target_text}
+{target}
 
-OUTPUT IN THIS EXACT FORMAT — NO EXCEPTIONS:
+Your task: create logical, coherent groups of slides that follow the exact scientific story of the paper.
 
-**Group Title (Slides X–Y)**
-<Full content for this group of slides>
-You may suggest internal structure like:
-• Slide X: Focus on [specific point]
-• Slide X+1: Show Figure Z and explain [detail]
-But the whole group must be one coherent block.
+FOR EVERY GROUP YOU CREATE, OUTPUT EXACTLY THIS HEADER FIRST:
+===SLIDE_GROUP: Title of the Group | Slides X–Y===
+
+Then write the full content of that group exactly as you would present it — with the same depth, logic, and beauty as before.
+
+Example of correct output:
+===SLIDE_GROUP: Introduction and Open Question | Slides 1–3===
+* What was the major challenge in continuous cavity QED?
+* Why were previous approaches fundamentally limited?
+• Slide 1: Title + motivation
+• Slide 2: Required physical mechanism
+• Slide 3: The breakthrough idea
+
+===SLIDE_GROUP: Experimental Setup and Key Innovations | Slides 4–6===
+* High-finesse ring cavity with 87Sr atoms
+* Continuous loading scheme
+• Slide 4: Overview diagram (Figure 1)
+• Slide 5: Cooling and lattice details
+• Slide 6: Cavity parameters and finesse
 
 Rules:
-- Every group starts with **Title (Slides A–B)**
-- Never output single slides without a range
-- Never use # Slide 1: format
-- Never use numbered lists outside the group
+- The header line must be exactly: ===SLIDE_GROUP: Title | Slides A–B===
+- Title must be concise and descriptive
+- Slide range must be consecutive and non-overlapping
+- Inside the group: write rich, logical content exactly like your best previous versions
+- You may suggest internal slide focus (Slide X: …) — this is encouraged
 - Always mention relevant figures
-- Be exhaustive: no key result or figure must be missing
-- Groups should be logically coherent (e.g. "Results – Three Regimes", "Methods", "Breakthrough Mechanism")
+- Be exhaustive and faithful to the science
 
-Start with the first group now.
+Start now with the first group.
 """
 
-    # Stage 1: Get perfectly structured groups
-    plan = llm.invoke(strict_group_prompt).strip()
+    # Stage 1: Get perfect logical groups with machine-readable headers
+    plan = llm.invoke(magic_prompt).strip()
 
-    # Stage 2: Refine with factual bullets (keeps format intact)
+    # Stage 2: Refine with bullets — but preserve the ===SLIDE_GROUP: headers exactly
     splitter = RecursiveCharacterTextSplitter(chunk_size=3500, chunk_overlap=200)
-    bullet_docs = [Document(page_content=c) for c in splitter.split_text(factual_bullets)]
+    bullet_chunks = splitter.split_text(factual_bullets)
+    bullet_docs = [Document(page_content=c) for c in bullet_chunks]
 
     refine_prompt = PromptTemplate.from_template("""
-CURRENT PLAN (keep the **Group (Slides X–Y)** format exactly):
+CURRENT PLAN (PRESERVE ALL ===SLIDE_GROUP: ... === lines exactly as they are):
 \"\"\"{existing_answer}\"\"\"
 
-Integrate any missing facts from:
+Integrate missing facts from:
 \"\"\"{text}\"\"\"
 
-Only add content inside existing groups or create a new group if truly necessary.
-Preserve the **Title (Slides ...)** header style.
+You may only:
+- Add content inside existing groups
+- Create a new group with the exact ===SLIDE_GROUP: Title | Slides X–Y=== header if truly necessary
+- Never remove or modify existing headers
+
+Figures reminder:
+\"\"\"{figures_overview}\"\"\"
 """)
 
     chain = load_summarize_chain(
@@ -223,53 +245,43 @@ Preserve the **Title (Slides ...)** header style.
 
     result = chain.invoke({
         "input_documents": [Document(page_content=plan)] + bullet_docs,
-        "figures": figures_overview,
+        "figures_overview": figures_overview,
     })
 
-    final_plan = result["output_text"].strip()
-    return final_plan
+    return result["output_text"].strip()
 # ==================== NEW: SPLIT PLAN INTO INDIVIDUAL SLIDE FILES ====================
 def _split_plan_into_slides(plan_text: str, output_dir: Path):
-    """
-    Splits only by **Group Title (Slides X–Y)** blocks.
-    One file per logical group → perfect for your next module.
-    """
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Split on lines that match **Anything (Slides X–Y)**
-    pattern = re.compile(r'^(\s*\*\*.*?\(Slides? [\d–\-]+.*?\)\*\*)', re.MULTILINE)
-    parts = pattern.split(plan_text)
-
-    blocks = []
+    # Split on our magic header
+    parts = re.split(r'(===SLIDE_GROUP:[^\n]*===)', plan_text)
+    
+    groups = []
     for i in range(1, len(parts), 2):
         header = parts[i].strip()
-        if i + 1 < len(parts):
-            body = parts[i + 1]
-            # Find where next header starts
-            next_header = pattern.search(body)
-            if next_header:
-                body = body[:next_header.start()]
-        else:
-            body = ""
-        blocks.append(header + "\n" + body.strip())
+        body = parts[i + 1] if i + 1 < len(parts) else ""
+        next_header = re.search(r'===SLIDE_GROUP:', body)
+        if next_header:
+            body = body[:next_header.start()]
+        groups.append(header + "\n" + body.strip())
 
-    # Fallback: if no groups found, save whole thing
-    if not blocks:
-        blocks = [plan_text]
+    if not groups:
+        # Fallback
+        groups = [plan_text]
 
-    for idx, block in enumerate(blocks, 1):
-        # Extract clean title
-        title_match = re.search(r'\*\*(.*?)\*\*', block)
-        title = title_match.group(1).split('(Slides')[0].strip() if title_match else f"Group_{idx}"
+    for idx, group in enumerate(groups, 1):
+        # Extract title from header
+        title_match = re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', group)
+        title = title_match.group(1).strip() if title_match else f"Group_{idx}"
         safe_title = re.sub(r'[^\w\s\-]', '', title)
-        safe_title = re.sub(r'\s+', '_', safe_title).strip('_')[:80]
+        safe_title = re.sub(r'\s+', '_', safe_title).strip('_')[:100]
         if not safe_title:
             safe_title = f"Group_{idx}"
 
         filename = f"{str(idx).zfill(3)}_{safe_title}.txt"
-        _write(output_dir / filename, block.strip() + "\n")
+        _write(output_dir / filename, group.strip() + "\n")
 
-    print(f"   → Created {len(blocks)} logical slide-group files in: {output_dir}")
+    print(f"   → Created {len(groups)} perfectly split, logically coherent slide groups in: {output_dir}")
 # ==================== PUBLIC API ====================
 def generate_global_and_plan(
     summaries_dir: str,
