@@ -68,8 +68,14 @@ if(False):
 # --------------------------
 # generating the global summary and presentation plan
 # --------------------------
-if(False):
-    generate_global_and_plan(output_dir_summary, output_dir_summary, desired_slides=0, llm=llm)
+if(True):
+    generate_global_and_plan(
+        summaries_dir=output_dir_summary,
+        output_dir=output_dir_summary,
+        slides_output_dir=str(Path(output_dir_summary) / "slides"),   # ← this activates the split!
+        desired_slides=0,
+        llm=llm
+    )
 # --------------------------
 # extracting notions from presentation plan
 # --------------------------
@@ -143,7 +149,7 @@ if (False):
         include_pdfs=True,
     )
 
-if (True):
+if (False):
     enrich_presentation_plan(
         summaries_dir=output_dir_summary,
         plan_path=Path(output_dir_summary) /"04_presentation_plan.txt",
