@@ -1,0 +1,4069 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          24
+        ]
+      ],
+      "date-time": "2025-11-24T16:42:03Z",
+      "timestamp": 1764002523815,
+      "version": "3.37.3"
+    },
+    "reference-count": 59,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "7915",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              6,
+              8
+            ]
+          ],
+          "date-time": "2022-06-08T00:00:00Z",
+          "timestamp": 1654646400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              6,
+              8
+            ]
+          ],
+          "date-time": "2022-06-08T00:00:00Z",
+          "timestamp": 1654646400000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Nature"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          23
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title><jats:p>Bose–Einstein condensates (BECs) are macroscopic coherent matter waves that have revolutionized quantum science and atomic physics. They are important to quantum simulation<jats:sup>1</jats:sup> and sensing<jats:sup>2,3</jats:sup>, for example, underlying atom interferometers in space<jats:sup>4</jats:sup> and ambitious tests of Einstein’s equivalence principle<jats:sup>5,6</jats:sup>. A long-standing constraint for quantum gas devices has been the need to execute cooling stages time-sequentially, restricting these devices to pulsed operation. Here we demonstrate continuous Bose–Einstein condensation by creating a continuous-wave (CW) condensate of strontium atoms that lasts indefinitely. The coherent matter wave is sustained by amplification through Bose-stimulated gain of atoms from a thermal bath. By steadily replenishing this bath while achieving 1,000 times higher phase-space densities than previous works<jats:sup>7,8</jats:sup>, we maintain the conditions for condensation. Our experiment is the matter wave analogue of a CW optical laser with fully reflective cavity mirrors. This proof-of-principle demonstration provides a new, hitherto missing piece of atom optics, enabling the construction of continuous coherent-matter-wave devices.</jats:p>",
+    "DOI": "10.1038/s41586-022-04731-z",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          8
+        ]
+      ],
+      "date-time": "2022-06-08T16:03:57Z",
+      "timestamp": 1654704237000
+    },
+    "page": "683-687",
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 64,
+    "title": [
+      "Continuous Bose–Einstein condensation"
+    ],
+    "prefix": "10.1038",
+    "volume": "606",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-5502-4435",
+        "authenticated-orcid": false,
+        "given": "Chun-Chia",
+        "family": "Chen",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7315-6733",
+        "authenticated-orcid": false,
+        "given": "Rodrigo",
+        "family": "González Escudero",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Jiří",
+        "family": "Minář",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5374-2129",
+        "authenticated-orcid": false,
+        "given": "Benjamin",
+        "family": "Pasquiou",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Shayne",
+        "family": "Bennetts",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8225-8803",
+        "authenticated-orcid": false,
+        "given": "Florian",
+        "family": "Schreck",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          8
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "4731_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "267",
+        "DOI": "10.1038/nphys2259",
+        "volume": "8",
+        "author": "I Bloch",
+        "year": "2012",
+        "unstructured": "Bloch, I., Dalibard, J. & Nascimbène, S. Quantum simulations with ultracold quantum gases. Nat. Phys. 8, 267–276 (2012).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "4731_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "1051",
+        "DOI": "10.1103/RevModPhys.81.1051",
+        "volume": "81",
+        "author": "AD Cronin",
+        "year": "2009",
+        "unstructured": "Cronin, A. D., Schmiedmayer, J. & Pritchard, D. E. Optics and interferometry with atoms and molecules. Rev. Mod. Phys. 81, 1051–1129 (2009).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "4731_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "731",
+        "DOI": "10.1038/s42254-019-0117-4",
+        "volume": "1",
+        "author": "K Bongs",
+        "year": "2019",
+        "unstructured": "Bongs, K. et al. Taking atom interferometric quantum sensors from the laboratory to real-world applications. Nat. Rev. Phys. 1, 731–739 (2019).",
+        "journal-title": "Nat. Rev. Phys."
+      },
+      {
+        "key": "4731_CR4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41467-021-21628-z",
+        "volume": "12",
+        "author": "MD Lachmann",
+        "year": "2021",
+        "unstructured": "Lachmann, M. D. et al. Ultracold atom interferometry in space. Nat. Commun. 12, 1317 (2021).",
+        "journal-title": "Nat. Commun."
+      },
+      {
+        "key": "4731_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "115010",
+        "DOI": "10.1088/0264-9381/31/11/115010",
+        "volume": "31",
+        "author": "DN Aguilera",
+        "year": "2014",
+        "unstructured": "Aguilera, D. N. et al. STE-QUEST—test of the universality of free fall using cold atom interferometry. Class. Quantum Gravity 31, 115010 (2014).",
+        "journal-title": "Class. Quantum Gravity"
+      },
+      {
+        "key": "4731_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "035011",
+        "DOI": "10.1088/1367-2630/17/3/035011",
+        "volume": "17",
+        "author": "J Hartwig",
+        "year": "2015",
+        "unstructured": "Hartwig, J. et al. Testing the universality of free fall with rubidium and ytterbium in a very large baseline atom interferometer. New J. Phys. 17, 035011 (2015).",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "4731_CR7",
+        "doi-asserted-by": "publisher",
+        "first-page": "223202",
+        "DOI": "10.1103/PhysRevLett.119.223202",
+        "volume": "119",
+        "author": "S Bennetts",
+        "year": "2017",
+        "unstructured": "Bennetts, S., Chen, C.-C., Pasquiou, B. & Schreck, F. Steady-state magneto-optical trap with 100-fold improved phase-space density. Phys. Rev. Lett. 119, 223202 (2017).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR8",
+        "doi-asserted-by": "publisher",
+        "first-page": "093012",
+        "DOI": "10.1088/1367-2630/15/9/093012",
+        "volume": "15",
+        "author": "VV Volchkov",
+        "year": "2013",
+        "unstructured": "Volchkov, V. V., Rührig, J., Pfau, T. & Griesmaier, A. Sisyphus cooling in a continuously loaded trap. New J. Phys. 15, 093012 (2013).",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "4731_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "280",
+        "DOI": "10.1038/176280a0",
+        "volume": "176",
+        "author": "L Essen",
+        "year": "1955",
+        "unstructured": "Essen, L. & Parry, J. V. L. An atomic standard of frequency and time interval: a caesium resonator. Nature 176, 280–282 (1955).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "4731_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "2693",
+        "DOI": "10.1103/PhysRevLett.66.2693",
+        "volume": "66",
+        "author": "DW Keith",
+        "year": "1991",
+        "unstructured": "Keith, D. W., Ekstrom, C. R., Turchette, Q. A. & Pritchard, D. E. An interferometer for atoms. Phys. Rev. Lett. 66, 2693–2696 (1991).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR11",
+        "doi-asserted-by": "publisher",
+        "first-page": "044057",
+        "DOI": "10.1103/PhysRevApplied.13.044057",
+        "volume": "13",
+        "author": "JM Kwolek",
+        "year": "2020",
+        "unstructured": "Kwolek, J. M., Fancher, C. T., Bashkansky, M. & Black, A. T. Three-dimensional cooling of an atom-beam source for high-contrast atom interferometry. Phys. Rev. Appl. 13, 044057 (2020).",
+        "journal-title": "Phys. Rev. Appl."
+      },
+      {
+        "key": "4731_CR12",
+        "doi-asserted-by": "publisher",
+        "first-page": "7948",
+        "DOI": "10.1126/sciadv.aau7948",
+        "volume": "4",
+        "author": "D Savoie",
+        "year": "2018",
+        "unstructured": "Savoie, D. et al. Interleaved atom interferometry for high-sensitivity inertial measurements. Sci. Adv. 4, 7948 (2018).",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "key": "4731_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "093602",
+        "DOI": "10.1103/PhysRevLett.110.093602",
+        "volume": "110",
+        "author": "H Müntinga",
+        "year": "2013",
+        "unstructured": "Müntinga, H. et al. Interferometry with Bose-Einstein condensates in microgravity. Phys. Rev. Lett. 110, 093602 (2013).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "1131",
+        "DOI": "10.1103/RevModPhys.74.1131",
+        "volume": "74",
+        "author": "W Ketterle",
+        "year": "2002",
+        "unstructured": "Ketterle, W. Nobel lecture: When atoms behave as waves: Bose-Einstein condensation and the atom laser. Rev. Mod. Phys. 74, 1131–1151 (2002).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "4731_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "265",
+        "DOI": "10.1016/j.physrep.2013.03.006",
+        "volume": "529",
+        "author": "NP Robins",
+        "year": "2013",
+        "unstructured": "Robins, N. P., Altin, P. A., Debs, J. E. & Close, J. D. Atom lasers: production, properties and prospects for precision inertial measurement. Phys. Rep. 529, 265–296 (2013).",
+        "journal-title": "Phys. Rep."
+      },
+      {
+        "key": "4731_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "469",
+        "DOI": "10.1209/0295-5075/32/6/002",
+        "volume": "32",
+        "author": "RJC Spreeuw",
+        "year": "1995",
+        "unstructured": "Spreeuw, R. J. C., Pfau, T., Janicke, U. & Wilkens, M. Laser-like scheme for atomic-matter waves. EPL 32, 469–474 (1995).",
+        "journal-title": "EPL"
+      },
+      {
+        "key": "4731_CR17",
+        "doi-asserted-by": "publisher",
+        "first-page": "1757",
+        "DOI": "10.1103/PhysRevA.54.R1757",
+        "volume": "54",
+        "author": "M Holland",
+        "year": "1996",
+        "unstructured": "Holland, M., Burnett, K., Gardiner, C., Cirac, J. I. & Zoller, P. Theory of an atom laser. Phys. Rev. A 54, 1757–1760 (1996).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "4731_CR18",
+        "doi-asserted-by": "publisher",
+        "first-page": "025008",
+        "DOI": "10.1103/RevModPhys.90.025008",
+        "volume": "90",
+        "author": "MS Safronova",
+        "year": "2018",
+        "unstructured": "Safronova, M. S. et al. Search for new physics with atoms and molecules. Rev. Mod. Phys. 90, 025008 (2018).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "4731_CR19",
+        "doi-asserted-by": "publisher",
+        "first-page": "1800364",
+        "DOI": "10.1002/andp.201800364",
+        "volume": "531",
+        "author": "MS Safronova",
+        "year": "2019",
+        "unstructured": "Safronova, M. S. The search for variation of fundamental constants with clocks. Ann. Phys. (Berl.) 531, 1800364 (2019).",
+        "journal-title": "Ann. Phys. (Berl.)"
+      },
+      {
+        "key": "4731_CR20",
+        "doi-asserted-by": "publisher",
+        "first-page": "1943",
+        "DOI": "10.1007/s10714-010-1055-8",
+        "volume": "43",
+        "author": "N Yu",
+        "year": "2010",
+        "unstructured": "Yu, N. & Tinto, M. Gravitational wave detection with single-laser atom interferometers. Gen. Relativ. Gravit. 43, 1943–1952 (2010).",
+        "journal-title": "Gen. Relativ. Gravit."
+      },
+      {
+        "key": "4731_CR21",
+        "doi-asserted-by": "publisher",
+        "first-page": "171102",
+        "DOI": "10.1103/PhysRevLett.110.171102",
+        "volume": "110",
+        "author": "PW Graham",
+        "year": "2013",
+        "unstructured": "Graham, P. W., Hogan, J. M., Kasevich, M. A. & Rajendran, S. New method for gravitational wave detection with atomic sensors. Phys. Rev. Lett. 110, 171102 (2013).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "044003",
+        "DOI": "10.1088/2058-9565/abf719",
+        "volume": "6",
+        "author": "M Abe",
+        "year": "2021",
+        "unstructured": "Abe, M. et al. Matter-wave atomic gradiometer interferometric sensor (MAGIS-100). Quantum Sci. Technol. 6, 044003 (2021).",
+        "journal-title": "Quantum Sci. Technol."
+      },
+      {
+        "key": "4731_CR23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41598-018-32165-z",
+        "volume": "8",
+        "author": "B Canuel",
+        "year": "2018",
+        "unstructured": "Canuel, B. et al. Exploring gravity with the MIGA large scale atom interferometer. Sci. Rep. 8, 14064 (2018).",
+        "journal-title": "Sci. Rep."
+      },
+      {
+        "key": "4731_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "011",
+        "DOI": "10.1088/1475-7516/2020/05/011",
+        "volume": "2020",
+        "author": "L Badurina",
+        "year": "2020",
+        "unstructured": "Badurina, L. et al. AION: an atom interferometer observatory and network. J. Cosmol. Astropart. Phys. 2020, 011 (2020).",
+        "journal-title": "J. Cosmol. Astropart. Phys."
+      },
+      {
+        "key": "4731_CR25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/ncomms12443",
+        "volume": "7",
+        "author": "C Lisdat",
+        "year": "2016",
+        "unstructured": "Lisdat, C. et al. A clock network for geodesy and fundamental science. Nat. Commun. 7, 12443 (2016).",
+        "journal-title": "Nat. Commun."
+      },
+      {
+        "key": "4731_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "437",
+        "DOI": "10.1038/s41567-017-0042-3",
+        "volume": "14",
+        "author": "J Grotti",
+        "year": "2018",
+        "unstructured": "Grotti, J. et al. Geodesy and metrology with a transportable optical clock. Nat. Phys. 14, 437–441 (2018).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "4731_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "411",
+        "DOI": "10.1038/s41566-020-0619-8",
+        "volume": "14",
+        "author": "M Takamoto",
+        "year": "2020",
+        "unstructured": "Takamoto, M. et al. Test of general relativity by a pair of transportable optical lattice clocks. Nat. Photonics 14, 411–415 (2020).",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "4731_CR28",
+        "doi-asserted-by": "publisher",
+        "first-page": "195301",
+        "DOI": "10.1103/PhysRevLett.110.195301",
+        "volume": "110",
+        "author": "LM Sieberer",
+        "year": "2013",
+        "unstructured": "Sieberer, L. M., Huber, S. D., Altman, E. & Diehl, S. Dynamical critical phenomena in driven-dissipative systems. Phys. Rev. Lett. 110, 195301 (2013).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR29",
+        "doi-asserted-by": "publisher",
+        "first-page": "043604",
+        "DOI": "10.1103/PhysRevA.62.043604",
+        "volume": "62",
+        "author": "S Bhongale",
+        "year": "2000",
+        "unstructured": "Bhongale, S. & Holland, M. Loading a continuous-wave atom laser by optical pumping techniques. Phys. Rev. A 62, 043604 (2000).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "4731_CR30",
+        "doi-asserted-by": "publisher",
+        "first-page": "2193",
+        "DOI": "10.1126/science.296.5576.2193",
+        "volume": "296",
+        "author": "AP Chikkatur",
+        "year": "2002",
+        "unstructured": "Chikkatur, A. P. et al. A continuous source of Bose-Einstein condensed atoms. Science 296, 2193–2195 (2002).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "4731_CR31",
+        "doi-asserted-by": "publisher",
+        "first-page": "1005",
+        "DOI": "10.1126/science.279.5353.1005",
+        "volume": "279",
+        "author": "H-J Miesner",
+        "year": "1998",
+        "unstructured": "Miesner, H.-J. et al. Bosonic stimulation in the formation of a Bose-Einstein condensate. Science 279, 1005–1007 (1998).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "4731_CR32",
+        "doi-asserted-by": "publisher",
+        "first-page": "731",
+        "DOI": "10.1038/nphys1027",
+        "volume": "4",
+        "author": "NP Robins",
+        "year": "2008",
+        "unstructured": "Robins, N. P., Figl, C., Jeppesen, M., Dennis, G. R. & Close, J. D. A pumped atom laser. Nat. Phys. 4, 731–736 (2008).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "4731_CR33",
+        "doi-asserted-by": "publisher",
+        "first-page": "218",
+        "DOI": "10.1038/18395",
+        "volume": "398",
+        "author": "L Deng",
+        "year": "1999",
+        "unstructured": "Deng, L. et al. Four-wave mixing with matter waves. Nature 398, 218–220 (1999).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "4731_CR34",
+        "doi-asserted-by": "publisher",
+        "first-page": "641",
+        "DOI": "10.1038/45194",
+        "volume": "402",
+        "author": "S Inouye",
+        "year": "1999",
+        "unstructured": "Inouye, S. et al. Phase-coherent amplification of atomic matter waves. Nature 402, 641–644 (1999).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "4731_CR35",
+        "doi-asserted-by": "publisher",
+        "first-page": "475",
+        "DOI": "10.1126/science.1083171",
+        "volume": "300",
+        "author": "D Schneble",
+        "year": "2003",
+        "unstructured": "Schneble, D. et al. The onset of matter-wave amplification in a superradiant Bose-Einstein condensate. Science 300, 475–478 (2003).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "4731_CR36",
+        "doi-asserted-by": "publisher",
+        "first-page": "033411",
+        "DOI": "10.1103/PhysRevA.72.033411",
+        "volume": "72",
+        "author": "T Lahaye",
+        "year": "2005",
+        "unstructured": "Lahaye, T. et al. Evaporative cooling of a guided rubidium atomic beam. Phys. Rev. A 72, 033411 (2005).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "4731_CR37",
+        "doi-asserted-by": "publisher",
+        "first-page": "033622",
+        "DOI": "10.1103/PhysRevA.73.033622",
+        "volume": "73",
+        "author": "SE Olson",
+        "year": "2006",
+        "unstructured": "Olson, S. E., Mhaskar, R. R. & Raithel, G. Continuous propagation and energy filtering of a cold atomic beam in a long high-gradient magnetic atom guide. Phys. Rev. A 73, 033622 (2006).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "4731_CR38",
+        "unstructured": "Kindt, L. Shock Wave Loading of a Magnetic Guide. PhD thesis, Utrecht Univ. https://dspace.library.uu.nl/handle/1874/211584 (2011)."
+      },
+      {
+        "key": "4731_CR39",
+        "doi-asserted-by": "publisher",
+        "first-page": "044014",
+        "DOI": "10.1103/PhysRevApplied.12.044014",
+        "volume": "12",
+        "author": "C-C Chen",
+        "year": "2019",
+        "unstructured": "Chen, C.-C., Bennetts, S., Escudero, R. G., Pasquiou, B. & Schreck, F. Continuous guided strontium beam with high phase-space density. Phys. Rev. Appl. 12, 044014 (2019).",
+        "journal-title": "Phys. Rev. Appl."
+      },
+      {
+        "key": "4731_CR40",
+        "doi-asserted-by": "publisher",
+        "first-page": "5305",
+        "DOI": "10.1103/PhysRevLett.80.5305",
+        "volume": "80",
+        "author": "Y Castin",
+        "year": "1998",
+        "unstructured": "Castin, Y., Cirac, J. I. & Lewenstein, M. Reabsorption of light by trapped atoms. Phys. Rev. Lett. 80, 5305–5308 (1998).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR41",
+        "doi-asserted-by": "publisher",
+        "first-page": "2030",
+        "DOI": "10.1103/PhysRevA.57.2030",
+        "volume": "57",
+        "author": "J Williams",
+        "year": "1998",
+        "unstructured": "Williams, J., Walser, R., Wieman, C., Cooper, J. & Holland, M. Achieving steady-state Bose-Einstein condensation. Phys. Rev. A 57, 2030–2036 (1998).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "4731_CR42",
+        "doi-asserted-by": "publisher",
+        "first-page": "647",
+        "DOI": "10.1209/epl/i1996-00165-4",
+        "volume": "35",
+        "author": "JI Cirac",
+        "year": "1996",
+        "unstructured": "Cirac, J. I., Lewenstein, M. & Zoller, P. Collective laser cooling of trapped atoms. EPL 35, 647–651 (1996).",
+        "journal-title": "EPL"
+      },
+      {
+        "key": "4731_CR43",
+        "doi-asserted-by": "publisher",
+        "first-page": "263003",
+        "DOI": "10.1103/PhysRevLett.110.263003",
+        "volume": "110",
+        "author": "S Stellmer",
+        "year": "2013",
+        "unstructured": "Stellmer, S., Pasquiou, B., Grimm, R. & Schreck, F. Laser cooling to quantum degeneracy. Phys. Rev. Lett. 110, 263003 (2013).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR44",
+        "doi-asserted-by": "publisher",
+        "first-page": "203202",
+        "DOI": "10.1103/PhysRevLett.122.203202",
+        "volume": "122",
+        "author": "A Urvoy",
+        "year": "2019",
+        "unstructured": "Urvoy, A., Vendeiro, Z., Ramette, J., Adiyatullin, A. & Vuletić, V. Direct laser cooling to Bose-Einstein condensation in a dipole trap. Phys. Rev. Lett. 122, 203202 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR45",
+        "doi-asserted-by": "publisher",
+        "first-page": "013640",
+        "DOI": "10.1103/PhysRevA.86.013640",
+        "volume": "86",
+        "author": "GR Dennis",
+        "year": "2012",
+        "unstructured": "Dennis, G. R., Davis, M. J. & Hope, J. J. Quantum kinetic theory model of a continuous atom laser. Phys. Rev. A 86, 013640 (2012).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "4731_CR46",
+        "doi-asserted-by": "publisher",
+        "first-page": "990",
+        "DOI": "10.1103/PhysRevLett.78.990",
+        "volume": "78",
+        "author": "PWH Pinkse",
+        "year": "1997",
+        "unstructured": "Pinkse, P. W. H. et al. Adiabatically changing the phase-space density of a trapped Bose gas. Phys. Rev. Lett. 78, 990–993 (1997).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR47",
+        "doi-asserted-by": "publisher",
+        "first-page": "2194",
+        "DOI": "10.1103/PhysRevLett.81.2194",
+        "volume": "81",
+        "author": "DM Stamper-Kurn",
+        "year": "1998",
+        "unstructured": "Stamper-Kurn, D. M. et al. Reversible formation of a Bose-Einstein condensate. Phys. Rev. Lett. 81, 2194–2197 (1998).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR48",
+        "doi-asserted-by": "publisher",
+        "first-page": "013601",
+        "DOI": "10.1103/PhysRevA.91.013601",
+        "volume": "91",
+        "author": "S Dutta",
+        "year": "2015",
+        "unstructured": "Dutta, S. & Mueller, E. J. Kinetics of Bose-Einstein condensation in a dimple potential. Phys. Rev. A 91, 013601 (2015).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "4731_CR49",
+        "doi-asserted-by": "publisher",
+        "first-page": "170403",
+        "DOI": "10.1103/PhysRevLett.88.170403",
+        "volume": "88",
+        "author": "SA Haine",
+        "year": "2002",
+        "unstructured": "Haine, S. A., Hope, J. J., Robins, N. P. & Savage, C. M. Stability of continuously pumped atom lasers. Phys. Rev. Lett. 88, 170403 (2002).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR50",
+        "doi-asserted-by": "publisher",
+        "first-page": "085301",
+        "DOI": "10.1103/PhysRevLett.118.085301",
+        "volume": "118",
+        "author": "L He",
+        "year": "2017",
+        "unstructured": "He, L., Sieberer, L. M. & Diehl, S. Space-time vortex driven crossover and vortex turbulence phase transition in one-dimensional driven open condensates. Phys. Rev. Lett. 118, 085301 (2017).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR51",
+        "doi-asserted-by": "publisher",
+        "first-page": "179",
+        "DOI": "10.1038/s41567-020-01049-3",
+        "volume": "17",
+        "author": "TJ Baker",
+        "year": "2020",
+        "unstructured": "Baker, T. J., Saadatmand, S. N., Berry, D. W. & Wiseman, H. M. The Heisenberg limit for laser coherence. Nat. Phys. 17, 179–183 (2020).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "4731_CR52",
+        "doi-asserted-by": "publisher",
+        "first-page": "163601",
+        "DOI": "10.1103/PhysRevLett.122.163601",
+        "volume": "122",
+        "author": "MA Kristensen",
+        "year": "2019",
+        "unstructured": "Kristensen, M. A. et al. Observation of atom number fluctuations in a Bose-Einstein condensate. Phys. Rev. Lett. 122, 163601 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR53",
+        "doi-asserted-by": "publisher",
+        "first-page": "1143",
+        "DOI": "10.1103/PhysRevLett.86.1143",
+        "volume": "86",
+        "author": "HM Wiseman",
+        "year": "2001",
+        "unstructured": "Wiseman, H. M. & Thomsen, L. K. Reducing the linewidth of an atom laser by feedback. Phys. Rev. Lett. 86, 1143–1147 (2001).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "4731_CR54",
+        "doi-asserted-by": "publisher",
+        "first-page": "4083",
+        "DOI": "10.1103/PhysRevA.60.4083",
+        "volume": "60",
+        "author": "HM Wiseman",
+        "year": "1999",
+        "unstructured": "Wiseman, H. M. Light amplification without stimulated emission: beyond the standard quantum limit to the laser linewidth. Phys. Rev. A 60, 4083–4093 (1999).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "4731_CR55",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41467-021-25879-8",
+        "volume": "12",
+        "author": "C Liu",
+        "year": "2021",
+        "unstructured": "Liu, C. et al. Proposal for a continuous wave laser with linewidth well below the standard quantum limit. Nat. Commun. 12, 5620 (2021).",
+        "journal-title": "Nat. Commun."
+      },
+      {
+        "key": "4731_CR56",
+        "doi-asserted-by": "publisher",
+        "first-page": "564",
+        "DOI": "10.1038/s41586-021-03253-4",
+        "volume": "591",
+        "author": "Boulder Atomic Clock Optical Network (BACON) Collaboration.",
+        "year": "2021",
+        "unstructured": "Boulder Atomic Clock Optical Network (BACON) Collaboration. Frequency ratio measurements at 18-digit accuracy using an optical clock network. Nature 591, 564–569 (2021).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "4731_CR57",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1140/epjd/e2019-100324-6",
+        "volume": "73",
+        "author": "GM Tino",
+        "year": "2019",
+        "unstructured": "Tino, G. M. et al. SAGE: a proposal for a space atomic gravity explorer. Eur. Phys. J. D 73, 228 (2019).",
+        "journal-title": "Eur. Phys. J. D"
+      },
+      {
+        "key": "4731_CR58",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1140/epjqt/s40507-020-0080-0",
+        "volume": "7",
+        "author": "YA El-Neaj",
+        "year": "2020",
+        "unstructured": "El-Neaj, Y. A. et al. AEDGE: atomic experiment for dark matter and gravity exploration in space. EPJ Quantum Technol. 7, 6 (2020).",
+        "journal-title": "EPJ Quantum Technol."
+      },
+      {
+        "key": "4731_CR59",
+        "doi-asserted-by": "publisher",
+        "first-page": "5315",
+        "DOI": "10.1103/PhysRevLett.77.5315",
+        "volume": "77",
+        "author": "Y Castin",
+        "year": "1996",
+        "unstructured": "Castin, Y. & Dum, R. Bose-Einstein condensates in time dependent traps. Phys. Rev. Lett. 77, 5315–5319 (1996).",
+        "journal-title": "Phys. Rev. Lett."
+      }
+    ],
+    "container-title": [
+      "Nature"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-04731-z",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-04731-z.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          22
+        ]
+      ],
+      "date-time": "2022-06-22T13:02:45Z",
+      "timestamp": 1655902965000
+    },
+    "score": 34.83392,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/s41586-022-04731-z"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          8
+        ]
+      ]
+    },
+    "references-count": 59,
+    "journal-issue": {
+      "issue": "7915",
+      "published-print": {
+        "date-parts": [
+          [
+            2022,
+            6,
+            23
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "4731"
+    ],
+    "URL": "https://doi.org/10.1038/s41586-022-04731-z",
+    "ISSN": [
+      "0028-0836",
+      "1476-4687"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0028-0836"
+      },
+      {
+        "type": "electronic",
+        "value": "1476-4687"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          8
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "15 September 2021",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "6 April 2022",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "8 June 2022",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "The authors declare no competing interests.",
+        "order": 1,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Competing interests"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          15
+        ]
+      ],
+      "date-time": "2025-11-15T16:45:39Z",
+      "timestamp": 1763225139580
+    },
+    "reference-count": 19,
+    "publisher": "Elsevier BV",
+    "issue": "6",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2002,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2002-01-01T00:00:00Z",
+          "timestamp": 1009843200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Physics Letters A"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2002,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1016/s0375-9601(01)00816-7",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          10,
+          14
+        ]
+      ],
+      "date-time": "2002-10-14T20:38:59Z",
+      "timestamp": 1034627939000
+    },
+    "page": "309-314",
+    "source": "Crossref",
+    "is-referenced-by-count": 33,
+    "title": [
+      "Bose–Einstein condensation of a q-deformed ideal Bose gas"
+    ],
+    "prefix": "10.1016",
+    "volume": "292",
+    "author": [
+      {
+        "given": "Yaogen",
+        "family": "Shu",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jincan",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Lixuan",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB001",
+        "doi-asserted-by": "crossref",
+        "first-page": "613",
+        "DOI": "10.1007/BF01219077",
+        "volume": "111",
+        "author": "Woronowize",
+        "year": "1986",
+        "journal-title": "Comm. Math. Phys."
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB002",
+        "doi-asserted-by": "crossref",
+        "first-page": "4581",
+        "DOI": "10.1088/0305-4470/22/21/020",
+        "volume": "22",
+        "author": "Macfarlane",
+        "year": "1989",
+        "journal-title": "J. Phys. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB003",
+        "doi-asserted-by": "crossref",
+        "first-page": "63",
+        "DOI": "10.1016/0375-9601(90)90249-N",
+        "volume": "150",
+        "author": "Lee",
+        "year": "1990",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB004",
+        "doi-asserted-by": "crossref",
+        "first-page": "L1285",
+        "DOI": "10.1088/0305-4470/24/21/006",
+        "volume": "24",
+        "author": "Martin-Delgado",
+        "year": "1991",
+        "journal-title": "J. Phys. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB005",
+        "doi-asserted-by": "crossref",
+        "first-page": "2683",
+        "DOI": "10.1088/0305-4470/25/9/036",
+        "volume": "25",
+        "author": "Katriel",
+        "year": "1992",
+        "journal-title": "J. Phys. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB006",
+        "doi-asserted-by": "crossref",
+        "first-page": "147",
+        "DOI": "10.1007/BF00402678",
+        "volume": "24",
+        "author": "Rideau",
+        "year": "1992",
+        "journal-title": "Lett. Math. Phys."
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB007",
+        "doi-asserted-by": "crossref",
+        "first-page": "164",
+        "DOI": "10.1016/0375-9601(92)90696-J",
+        "volume": "164",
+        "author": "Lee",
+        "year": "1992",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB008",
+        "doi-asserted-by": "crossref",
+        "first-page": "173",
+        "DOI": "10.1016/0375-9601(93)90822-H",
+        "volume": "175",
+        "author": "Tuszynski",
+        "year": "1993",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB009",
+        "doi-asserted-by": "crossref",
+        "first-page": "17",
+        "DOI": "10.1016/0375-9601(93)90079-F",
+        "volume": "173",
+        "author": "Su",
+        "year": "1993",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB010",
+        "doi-asserted-by": "crossref",
+        "first-page": "329",
+        "DOI": "10.1016/0375-9601(94)90037-X",
+        "volume": "195",
+        "author": "Tsallis",
+        "year": "1994",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB011",
+        "doi-asserted-by": "crossref",
+        "first-page": "326",
+        "DOI": "10.1016/S0375-9601(96)00832-8",
+        "volume": "224",
+        "author": "Abe",
+        "year": "1997",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB012",
+        "doi-asserted-by": "crossref",
+        "first-page": "318",
+        "DOI": "10.1016/S0375-9601(97)00670-1",
+        "volume": "235",
+        "author": "Arik",
+        "year": "1997",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB013",
+        "doi-asserted-by": "crossref",
+        "first-page": "229",
+        "DOI": "10.1016/S0375-9601(98)00324-7",
+        "volume": "244",
+        "author": "Abe",
+        "year": "1998",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB014",
+        "doi-asserted-by": "crossref",
+        "first-page": "47",
+        "DOI": "10.1016/S0375-9601(99)00031-6",
+        "volume": "253",
+        "author": "Johal",
+        "year": "1999",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB015",
+        "doi-asserted-by": "crossref",
+        "first-page": "15",
+        "DOI": "10.1016/S0375-9601(99)00314-X",
+        "volume": "258",
+        "author": "Johal",
+        "year": "1999",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB016",
+        "series-title": "Statistical Mechanics",
+        "author": "Pathria",
+        "year": "1972"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB017",
+        "doi-asserted-by": "crossref",
+        "first-page": "8289",
+        "DOI": "10.1088/0305-4470/31/41/003",
+        "volume": "31",
+        "author": "Chen",
+        "year": "1998",
+        "journal-title": "J. Phys. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB018",
+        "doi-asserted-by": "crossref",
+        "first-page": "4069",
+        "DOI": "10.1088/0305-4470/32/22/307",
+        "volume": "32",
+        "author": "Yan",
+        "year": "1999",
+        "journal-title": "J. Phys. A"
+      },
+      {
+        "key": "10.1016/S0375-9601(01)00816-7_BIB019",
+        "doi-asserted-by": "crossref",
+        "first-page": "625",
+        "DOI": "10.1088/0143-0807/21/6/314",
+        "volume": "21",
+        "author": "Yan",
+        "year": "2000",
+        "journal-title": "Eur. J. Phys."
+      }
+    ],
+    "container-title": [
+      "Physics Letters A"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0375960101008167?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0375960101008167?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          4,
+          28
+        ]
+      ],
+      "date-time": "2019-04-28T14:51:26Z",
+      "timestamp": 1556463086000
+    },
+    "score": 33.707096,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0375960101008167"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2002,
+          1
+        ]
+      ]
+    },
+    "references-count": 19,
+    "journal-issue": {
+      "issue": "6",
+      "published-print": {
+        "date-parts": [
+          [
+            2002,
+            1
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "S0375960101008167"
+    ],
+    "URL": "https://doi.org/10.1016/s0375-9601(01)00816-7",
+    "ISSN": [
+      "0375-9601"
+    ],
+    "issn-type": [
+      {
+        "value": "0375-9601",
+        "type": "print"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2002,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          3,
+          30
+        ]
+      ],
+      "date-time": "2022-03-30T17:11:34Z",
+      "timestamp": 1648660294007
+    },
+    "edition-number": "1",
+    "reference-count": 38,
+    "publisher": "Cambridge University Press",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2017,
+              5,
+              18
+            ]
+          ],
+          "date-time": "2017-05-18T00:00:00Z",
+          "timestamp": 1495065600000
+        },
+        "content-version": "unspecified",
+        "delay-in-days": 0,
+        "URL": "https://www.cambridge.org/core/terms"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "DOI": "10.1017/9781316084366.029",
+    "type": "book-chapter",
+    "created": {
+      "date-parts": [
+        [
+          2018,
+          10,
+          4
+        ]
+      ],
+      "date-time": "2018-10-04T14:25:00Z",
+      "timestamp": 1538663100000
+    },
+    "page": "525-548",
+    "source": "Crossref",
+    "is-referenced-by-count": 1,
+    "title": [
+      "Spin-Superfluidity and Spin-Current Mediated Nonlocal Transport"
+    ],
+    "prefix": "10.1017",
+    "author": [
+      {
+        "given": "H.",
+        "family": "Chen",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "A. H.",
+        "family": "MacDonald",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "56",
+    "reference": [
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1716",
+        "unstructured": "[23] Ralph, D. C. , and Stiles, M. D. 2008. Spin transfer torques. Journal of Magnetism and Magnetic Materials, 320, 1190–1216."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1713",
+        "unstructured": "[20] Tsoi, M. , Jansen, A. G. M. , Bass, J. , Chiang, W.-C. , Seck, M. , Tsoi, V. , and Wyder, P. 1998. Excitation of a magnetic multilayer by an electric current. Phys. Rev. Lett., 80, 4281–4284."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1707",
+        "unstructured": "[14] Andreev, A. F. 1964. The thermal conductivity of the intermediate state in superconductors. Sov. Phys. JETP, 19, 1228."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1698",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[5] Takei, S. , and Tserkovnyak, Y. 2014. Superfluid spin transport through easy-plane ferromagnetic insulators. Phys. Rev. Lett., 112, 227201.",
+        "DOI": "10.1103/PhysRevLett.112.227201"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1726",
+        "unstructured": "[33] Banerjee, S. K. , Register, L. F. , Tutuc, E. , Reddy, D. , and MacDonald, A. H. 2009. Bilayer PseudoSpin Field-Effect Transistor (BiSFET): a proposed new logic device. Electron Device Letters, IEEE, 30, 158–160."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1715",
+        "unstructured": "[22] Sun, J. Z. 1999. Current-driven magnetic switching in manganite trilayer junctions. Journal of Magnetism and Magnetic Materials, 202, 157–162."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1722",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[29] Shi, J. , Zhang, P. , Xiao, D. , and Niu, Q. 2006. Proper definition of spin current in spin-orbit coupled systems. Phys. Rev. Lett., 96, 076604.",
+        "DOI": "10.1103/PhysRevLett.96.076604"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1712",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[19] Berger, L. 2001. Effect of interfaces on Gilbert damping and ferromagnetic resonance linewidth in magnetic multilayers. Journal of Applied Physics, 90, 4632.",
+        "DOI": "10.1063/1.1405824"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1731",
+        "unstructured": "[38] Ambegaokar, V. , and Halperin, B. I. 1969. Voltage due to thermal noise in the dc Josephson effect. Phys. Rev. Lett., 22, 1364–1366."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1705",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[12] Berger, L. 1984. Exchange interaction between ferromagnetic domain wall and electric current in very thin metallic films. Journal of Applied Physics, 55, 1954.",
+        "DOI": "10.1063/1.333530"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1724",
+        "unstructured": "[31] Tserkovnyak, Y. , Brataas, A. , Bauer, G. E. W. , and Halperin, B. I. 2005. Nonlocal magnetization dynamics in ferromagnetic heterostructures. Rev. Mod. Phys., 77, 1375–1421."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1700",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[7] Takei, S. , Halperin, B. I. , Yacoby, A. , and Tserkovnyak, Y. 2014. Superfluid spin transport through antiferromagnetic insulators. Phys. Rev. B, 90, 094408.",
+        "DOI": "10.1103/PhysRevB.90.094408"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1703",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[10] Garate, I. , and MacDonald, A. 2009. Gilbert damping in conducting ferromagnets. I. Kohn-Sham theory and atomic-scale inhomogeneity. Phys. Rev. B, 79, 064403.",
+        "DOI": "10.1103/PhysRevB.79.064403"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1723",
+        "unstructured": "[30] Brataas, A. , and Hals, K. M. D. 2014. Spin-orbit torques in action. Nature Nanotechnology, 9, 86–88."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1694",
+        "unstructured": "[1] Sonin, E. B. 2010. Spin currents and spin superfluidity. Advances in Physics, 59, 181–255."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1702",
+        "unstructured": "[9] Skarsvåg, H. , Holmqvist, C. , and Brataas, A. 2015. Spin superfluidity and long-range transport in thin-film ferromagnets. Phys. Rev. Lett., 115, 237201."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1718",
+        "unstructured": "[25] Gross, E. P. 1961. Structure of a quantized vortex in boson systems. Il Nuovo Cimento, 20, 454–477."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1701",
+        "unstructured": "[8] Landau, L. D. , and Lifshitz, E. M. 1995. Course of Theoretical Physics, Vol. 9. Oxford: Butterworth-Heinemann."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1714",
+        "unstructured": "[21] Myers, E. B. , Ralph, D. C. , Katine, J. A. , Louie, R. N. , and Buhrman, R. A. 1999. Current-induced switching of domains in magnetic multilayer devices. Science, 285, 867–870."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1728",
+        "unstructured": "[35] Tinkham, M. 1996. Introduction to Superconductivity. 2nd edn. McGraw-Hill, Inc."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1725",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[32] Min, H. , Bistritzer, R. , Su, J.-J. , and MacDonald, A. H. 2008. Room-temperature superfluidity in graphene bilayers. Phys. Rev. B, 78, 121401.",
+        "DOI": "10.1103/PhysRevB.78.121401"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1709",
+        "unstructured": "[16] Slonczewski, J. C. 1996. Current-driven excitation of magnetic multilayers. Journal of Magnetism and Magnetic Materials, 159, L1–L7."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1711",
+        "unstructured": "[18] Berger, L. 1996. Emission of spin waves by a magnetic multilayer traversed by a current. Phys. Rev. B, 54, 9353–9358."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1697",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[4] Nogueira, F. S. , and Bennemann, K.-H. 2004. Spin Josephson effect in ferromagnet/ferromagnet tunnel junctions. EPL (Europhysics Letters), 67, 620.",
+        "DOI": "10.1209/epl/i2003-10305-x"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1729",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[36] Koch, R. H. , Katine, J. A. , and Sun, J. Z. 2004. Time-resolved reversal of spin-transfer switching in a nanomagnet. Phys. Rev. Lett., 92, 088302.",
+        "DOI": "10.1103/PhysRevLett.92.088302"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1695",
+        "unstructured": "[2] König, J. , Bønsager, M. C. , and MacDonald, A. H. 2001. Dissipationless spin transport in thin film ferromagnets. Phys. Rev. Lett., 87, 187202."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1704",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[11] Garate, I. , and MacDonald, A. 2009. Gilbert damping in conducting ferromagnets. II. Model tests of the torque-correlation formula. Phys. Rev. B, 79, 064404.",
+        "DOI": "10.1103/PhysRevB.79.064404"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1706",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[13] Yang, S. A. , Beach, G. S. D. , Knutson, C. , Xiao, D. , Niu, Q. , Tsoi, M. , and Erskine, J. L. 2009. Universal electromotive force induced by domain wall motion. Phys. Rev. Lett., 102, 067201.",
+        "DOI": "10.1103/PhysRevLett.102.067201"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1721",
+        "unstructured": "[28] Anderson, P. W. 1958. Random-phase approximation in the theory of superconductivity. Phys. Rev., 112, 1900–1916."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1720",
+        "unstructured": "[27] Holstein, T. , and Primakoff, H. 1940. Field dependence of the intrinsic domain magnetization of a ferromagnet. Phys. Rev., 58, 1098–1113."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1730",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[37] Krivorotov, I. N. , Emley, N. C. , Garcia, A. G. F. , Sankey, J. C. , Kiselev, S. I. , Ralph, D. C. , and Buhrman, R. A. 2004. Temperature dependence of spin-transfer-induced switching of nanomagnets. Phys. Rev. Lett., 93, 166603.",
+        "DOI": "10.1103/PhysRevLett.93.166603"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1710",
+        "unstructured": "[17] Slonczewski, J. C. 1999. Excitation of spin waves by an electric current. Journal of Magnetism and Magnetic Materials, 195, L261–L268."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1727",
+        "unstructured": "[34] Josephson, B. D. 1962. Possible new effects in superconductive tunnelling. Physics Letters, 1, 251–253."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1696",
+        "unstructured": "[3] Heurich, J. , König, J. , and MacDonald, A. H. 2003. Persistent spin currents in helimagnets. Phys. Rev. B, 68, 064406."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1717",
+        "unstructured": "[24] Landau, L. D. , and Lifshitz, E. M. 1995. Course of Theoretical Physics, Vol. 6. Oxford: Butterworth-Heinemann."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1699",
+        "doi-asserted-by": "crossref",
+        "unstructured": "[6] Chen, H. , Kent, A. D. , MacDonald, A. H. , and Sodemann, I. 2014. Nonlocal transport mediated by spin supercurrents. Phys. Rev. B, 90, 220401.",
+        "DOI": "10.1103/PhysRevB.90.220401"
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1719",
+        "unstructured": "[26] Pitaevskii, L. P. 1961. Vortex lines in an imperfect Bose gas. Soviet Physics JETPUSSR, 13, 451–454."
+      },
+      {
+        "key": "9781316084366.CBO9781316084366A042_CBO9781316084366bib1708",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.25.4515"
+      }
+    ],
+    "container-title": [
+      "Universal Themes of Bose-Einstein Condensation"
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2018,
+          10,
+          4
+        ]
+      ],
+      "date-time": "2018-10-04T15:41:18Z",
+      "timestamp": 1538667678000
+    },
+    "score": 33.004925,
+    "resource": {
+      "primary": {
+        "URL": "https://www.cambridge.org/core/product/identifier/CBO9781316084366A042/type/book_part"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          null
+        ]
+      ]
+    },
+    "references-count": 38,
+    "URL": "https://doi.org/10.1017/9781316084366.029"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          8
+        ]
+      ],
+      "date-time": "2025-10-08T15:34:34Z",
+      "timestamp": 1759937674501
+    },
+    "reference-count": 10,
+    "publisher": "IOP Publishing",
+    "issue": "1",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Eur. J. Phys."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2010,
+          1,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1088/0143-0807/31/1/013",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2009,
+          11,
+          27
+        ]
+      ],
+      "date-time": "2009-11-27T23:50:04Z",
+      "timestamp": 1259365804000
+    },
+    "page": "143-150",
+    "source": "Crossref",
+    "is-referenced-by-count": 11,
+    "title": [
+      "Bose–Einstein condensation of a finite-size Bose system"
+    ],
+    "prefix": "10.1088",
+    "volume": "31",
+    "author": [
+      {
+        "given": "Guozhen",
+        "family": "Su",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jincan",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "published-online": {
+      "date-parts": [
+        [
+          2009,
+          11,
+          26
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "1",
+        "author": "Huang K",
+        "year": "1963",
+        "journal-title": "Statistical Mechanics"
+      },
+      {
+        "key": "2",
+        "author": "Pathria R K",
+        "year": "1972",
+        "journal-title": "Statistical Mechanics"
+      },
+      {
+        "key": "3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0375-9601(03)00510-3"
+      },
+      {
+        "key": "4",
+        "author": "Abramowitz M",
+        "year": "1972",
+        "journal-title": "Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables"
+      },
+      {
+        "key": "5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0375-9601(96)08842-1"
+      },
+      {
+        "key": "6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1119/1.19048"
+      },
+      {
+        "key": "7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF01307482"
+      },
+      {
+        "key": "8",
+        "doi-asserted-by": "publisher",
+        "first-page": "177",
+        "DOI": "10.1088/0143-0807/20/3/307",
+        "volume": "20",
+        "author": "Aguilera-Navarro V C",
+        "year": "1999",
+        "journal-title": "Eur. J. Phys.",
+        "ISSN": "http://id.crossref.org/issn/0143-0807",
+        "issn-type": "print"
+      },
+      {
+        "key": "9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1119/1.18843"
+      },
+      {
+        "key": "10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.54.656"
+      }
+    ],
+    "container-title": [
+      "European Journal of Physics"
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          3,
+          16
+        ]
+      ],
+      "date-time": "2020-03-16T12:48:45Z",
+      "timestamp": 1584362925000
+    },
+    "score": 32.983513,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.1088/0143-0807/31/1/013"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2009,
+          11,
+          26
+        ]
+      ]
+    },
+    "references-count": 10,
+    "journal-issue": {
+      "issue": "1",
+      "published-print": {
+        "date-parts": [
+          [
+            2010,
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "S0143-0807(10)27978-3"
+    ],
+    "URL": "https://doi.org/10.1088/0143-0807/31/1/013",
+    "ISSN": [
+      "0143-0807",
+      "1361-6404"
+    ],
+    "issn-type": [
+      {
+        "value": "0143-0807",
+        "type": "print"
+      },
+      {
+        "value": "1361-6404",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2009,
+          11,
+          26
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T06:29:54Z",
+      "timestamp": 1693895394158
+    },
+    "reference-count": 63,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "1",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2016,
+              5,
+              17
+            ]
+          ],
+          "date-time": "2016-05-17T00:00:00Z",
+          "timestamp": 1463443200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2016,
+              5,
+              17
+            ]
+          ],
+          "date-time": "2016-05-17T00:00:00Z",
+          "timestamp": 1463443200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Sci Rep"
+    ],
+    "abstract": "<jats:title>Abstract</jats:title><jats:p>BCS–Bose-Einstein condensation (BEC) crossover is effected by increasing pairing strength between fermions from weak to strong in the particle-particle channel and has attracted a lot of attention since the experimental realization of quantum degenerate atomic Fermi gases. Here we study the effect of the (often dropped) particle-hole channel on the zero <jats:italic>T</jats:italic> gap Δ(0), superfluid transition temperature <jats:italic>T</jats:italic><jats:sub>c</jats:sub>, the pseudogap at <jats:italic>T</jats:italic><jats:sub>c</jats:sub> and the mean-field ratio 2Δ(0)/\"Equation missing\"<!-- image only, no MathML or LaTex -->, from BCS through BEC regimes, using a pairing fluctuation theory which includes self-consistently the contributions of finite-momentum pairs and features a pseudogap in single particle excitation spectrum. Summing over the infinite particle-hole ladder diagrams, we find a complex dynamical structure for the particle-hole susceptibility χ<jats:sub><jats:italic>ph</jats:italic></jats:sub> and conclude that neglecting the self-energy feedback causes a serious over-estimate of χ<jats:sub><jats:italic>ph</jats:italic></jats:sub>. While our result in the BCS limit agrees with Gor’kov <jats:italic>et al</jats:italic>., the particle-hole channel effect becomes more complex and pronounced in the crossover regime, where χ<jats:sub><jats:italic>ph</jats:italic></jats:sub> is reduced by both a smaller Fermi surface and a big (pseudo)gap. Deep in the BEC regime, the particle-hole channel contributions drop to zero. We predict a density dependence of the magnetic field at the Feshbach resonance, which can be used to quantify χ<jats:sub><jats:italic>ph</jats:italic></jats:sub> and test different theories.</jats:p>",
+    "DOI": "10.1038/srep25772",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2016,
+          5,
+          17
+        ]
+      ],
+      "date-time": "2016-05-17T09:21:41Z",
+      "timestamp": 1463476901000
+    },
+    "update-policy": "http://dx.doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 8,
+    "title": [
+      "Effect of the particle-hole channel on BCS–Bose-Einstein condensation crossover in atomic Fermi gases"
+    ],
+    "prefix": "10.1038",
+    "volume": "6",
+    "author": [
+      {
+        "given": "Qijin",
+        "family": "Chen",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2016,
+          5,
+          17
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "BFsrep25772_CR1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Leggett, A. J. Diatomic molecules and Cooper pairs. In Modern Trends in the Theory of Condensed Matter, 13–27 (Springer-Verlag, Berlin, 1980).",
+        "DOI": "10.1007/BFb0120125"
+      },
+      {
+        "key": "BFsrep25772_CR2",
+        "doi-asserted-by": "crossref",
+        "first-page": "195",
+        "DOI": "10.1007/BF00683774",
+        "volume": "59",
+        "author": "P Nozières",
+        "year": "1985",
+        "unstructured": "Nozières, P. & Schmitt-Rink, S. Bose condensation in an attractive fermion gas: from weak to strong coupling superconductivity. J. Low Temp. Phys. 59, 195–211 (1985).",
+        "journal-title": "J. Low Temp. Phys."
+      },
+      {
+        "key": "BFsrep25772_CR3",
+        "doi-asserted-by": "crossref",
+        "first-page": "423",
+        "DOI": "10.1016/0375-9601(89)90844-X",
+        "volume": "138",
+        "author": "R Friedberg",
+        "year": "1989",
+        "unstructured": "Friedberg, R. & Lee, T. D. Boson-fermion model of superconductivity. Phys. Lett. A 138, 423–427 (1989).",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "BFsrep25772_CR4",
+        "doi-asserted-by": "crossref",
+        "first-page": "3202",
+        "DOI": "10.1103/PhysRevLett.71.3202",
+        "volume": "71",
+        "author": "CAR Sá de Melo",
+        "year": "1993",
+        "unstructured": "Sá de Melo, C. A. R., Randeria, M. & Engelbrecht, J. R. Crossover from BCS to Bose superconductivity: Transition temperature and time-dependent Ginzburg-Landau theory. Phys. Rev. Lett. 71, 3202–3205 (1993).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR5",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Randeria, M. Crossover from BCS theory to Bose-Einstein condensation. In Griffin, A., Snoke, D. & Stringari, S. (eds.) Bose Einstein Condensation, 355–92 (Cambridge Univ. Press, Cambridge, 1995).",
+        "DOI": "10.1017/CBO9780511524240.017"
+      },
+      {
+        "key": "BFsrep25772_CR6",
+        "doi-asserted-by": "crossref",
+        "first-page": "291",
+        "DOI": "10.1007/BF01344058",
+        "volume": "91",
+        "author": "R Haussmann",
+        "year": "1993",
+        "unstructured": "Haussmann, R. Crossover from BCS superconductivity to Bose-Einstein condensation: a self-consistent theory. Z. Phys. B 91, 291–308 (1993).",
+        "journal-title": "Z. Phys. B"
+      },
+      {
+        "key": "BFsrep25772_CR7",
+        "doi-asserted-by": "crossref",
+        "first-page": "194",
+        "DOI": "10.1016/S0921-4534(97)00194-9",
+        "volume": "282–287",
+        "author": "YJ Uemura",
+        "year": "1997",
+        "unstructured": "Uemura, Y. J. Bose-Einstein to BCS crossover picture for high-Tc cuprates. Physica C 282–287, 194–7 (1997).",
+        "journal-title": "Physica C"
+      },
+      {
+        "key": "BFsrep25772_CR8",
+        "doi-asserted-by": "crossref",
+        "first-page": "R11407",
+        "DOI": "10.1103/PhysRevB.56.R11407",
+        "volume": "56",
+        "author": "B Jankó",
+        "year": "1997",
+        "unstructured": "Jankó, B., Maly, J. & Levin, K. Pseudogap effects induced by resonant pair scattering. Phys. Rev. B 56, R11407–10 (1997).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "BFsrep25772_CR9",
+        "doi-asserted-by": "crossref",
+        "first-page": "R5936",
+        "DOI": "10.1103/PhysRevB.58.R5936",
+        "volume": "58",
+        "author": "I Kosztin",
+        "year": "1998",
+        "unstructured": "Kosztin, I., Chen, Q. J., Jankó, B. & Levin, K. Relationship between the pseudo- and superconducting gaps: Effects of residual pairing correlations below Tc . Phys. Rev. B 58, R5936–9 (1998).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "BFsrep25772_CR10",
+        "doi-asserted-by": "crossref",
+        "first-page": "4708",
+        "DOI": "10.1103/PhysRevLett.81.4708",
+        "volume": "81",
+        "author": "QJ Chen",
+        "year": "1998",
+        "unstructured": "Chen, Q. J., Kosztin, I., Jankó, B. & Levin, K. Pairing fluctuation theory of superconducting properties in underdoped to overdoped cuprates. Phys. Rev. Lett. 81, 4708–11 (1998).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR11",
+        "doi-asserted-by": "crossref",
+        "first-page": "15370",
+        "DOI": "10.1103/PhysRevB.61.15370",
+        "volume": "61",
+        "author": "P Pieri",
+        "year": "2000",
+        "unstructured": "Pieri, P. & Strinati, G. C. Strong-coupling in the evolution from BCS superconductivity to Bose-Einstein condensation. Phys. Rev. B 61, 15370–15381 (2000).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "BFsrep25772_CR12",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1016/j.physrep.2005.02.005",
+        "volume": "412",
+        "author": "QJ Chen",
+        "year": "2005",
+        "unstructured": "Chen, Q. J., Stajic, J., Tan, S. N. & Levin, K. BCS-BEC crossover: From high temperature superconductors toultracold superfluids. Phys. Rep. 412, 1–88 (2005).",
+        "journal-title": "Phys. Rep"
+      },
+      {
+        "key": "BFsrep25772_CR13",
+        "doi-asserted-by": "crossref",
+        "first-page": "406",
+        "DOI": "10.1063/1.2199443",
+        "volume": "32",
+        "author": "QJ Chen",
+        "year": "2006",
+        "unstructured": "Chen, Q. J., Stajic, J. & Levin, K. Applying BCS-BEC crossover theory to high temperature superconductors and ultracold atomic fermi gases. Low Temp. Phys. 32, 406–423 (2006). [Fiz. Nizk. Temp. 32, 538–560 (2006)].",
+        "journal-title": "Low Temp. Phys."
+      },
+      {
+        "key": "BFsrep25772_CR14",
+        "doi-asserted-by": "crossref",
+        "first-page": "885",
+        "DOI": "10.1103/RevModPhys.80.885",
+        "volume": "80",
+        "author": "I Bloch",
+        "year": "2008",
+        "unstructured": "Bloch, I., Dalibard, J. & Zwerger, W. Many-body physics with ultracold gases. Rev. Mod. Phys. 80, 885–964 (2008).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "BFsrep25772_CR15",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Zwerger, W. (ed.) The BCS-BEC crossover and the unitary Fermi gas, Lecture Notes in Physics. vol. 836 (Springer, 2012).",
+        "DOI": "10.1007/978-3-642-21978-8"
+      },
+      {
+        "key": "BFsrep25772_CR16",
+        "doi-asserted-by": "crossref",
+        "first-page": "209",
+        "DOI": "10.1146/annurev-conmatphys-031113-133829",
+        "volume": "5",
+        "author": "M Randeria",
+        "year": "2014",
+        "unstructured": "Randeria, M. & Taylor, E. Crossover from Bardeen-Cooper-Schrieffer to Bose-Einstein condensation and the unitary Fermi gas. Annu. Rev. Condens. Matter Phys. 5, 209–32 (2014).",
+        "journal-title": "Annu. Rev. Condens. Matter Phys."
+      },
+      {
+        "key": "BFsrep25772_CR17",
+        "doi-asserted-by": "crossref",
+        "first-page": "47",
+        "DOI": "10.1038/nature01738",
+        "volume": "424",
+        "author": "CA Regal",
+        "year": "2003",
+        "unstructured": "Regal, C. A., Ticknor, C., Bohn, J. L. & Jin, D. S. Creation of ultracold molecules from a Fermi gas of atoms. Nature 424, 47–50 (2003).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "BFsrep25772_CR18",
+        "doi-asserted-by": "crossref",
+        "first-page": "2101",
+        "DOI": "10.1126/science.1093280",
+        "volume": "302",
+        "author": "S Jochim",
+        "year": "2003",
+        "unstructured": "Jochim, S. et al. Bose-Einstein condensation of molecules. Science 302, 2101–2103 (2003).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "BFsrep25772_CR19",
+        "doi-asserted-by": "crossref",
+        "first-page": "250401",
+        "DOI": "10.1103/PhysRevLett.91.250401",
+        "volume": "91",
+        "author": "MW Zwierlein",
+        "year": "2003",
+        "unstructured": "Zwierlein, M. W. et al. Observation of Bose-Einstein condensation of molecules. Phys. Rev. Lett. 91, 250401 (2003).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR20",
+        "doi-asserted-by": "crossref",
+        "first-page": "150402",
+        "DOI": "10.1103/PhysRevLett.92.150402",
+        "volume": "92",
+        "author": "J Kinast",
+        "year": "2004",
+        "unstructured": "Kinast, J., Hemmer, S. L., Gehm, M. E., Turlapov, A. & Thomas, J. E. Evidence for superfluidity in a resonantly interacting Fermi gas. Phys. Rev. Lett. 92, 150402 (2004).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR21",
+        "doi-asserted-by": "crossref",
+        "first-page": "190407",
+        "DOI": "10.1103/PhysRevLett.97.190407",
+        "volume": "97",
+        "author": "GB Partridge",
+        "year": "2006",
+        "unstructured": "Partridge, G. B. et al. Deformation of a trapped Fermi gas with unequal spin populations. Phys. Rev. Lett. 97, 190407 (2006).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR22",
+        "doi-asserted-by": "crossref",
+        "first-page": "043604",
+        "DOI": "10.1103/PhysRevA.66.043604",
+        "volume": "66",
+        "author": "JN Milstein",
+        "year": "2002",
+        "unstructured": "Milstein, J. N., Kokkelmans, S. J. J. M. F. & Holland, M. J. Resonance theory of the crossover from Bardeen-Cooper-Schrieffer superfluidity to Bose-Einstein condensation in a dilute Fermi gas. Phys. Rev. A 66, 043604 (2002).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFsrep25772_CR23",
+        "doi-asserted-by": "crossref",
+        "first-page": "130402",
+        "DOI": "10.1103/PhysRevLett.89.130402",
+        "volume": "89",
+        "author": "Y Ohashi",
+        "year": "2002",
+        "unstructured": "Ohashi, Y. & Griffin, A. BCS-BEC crossover in a gas of Fermi atoms with a Feshbach resonance. Phys. Rev. Lett. 89, 130402 (2002).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR24",
+        "doi-asserted-by": "crossref",
+        "first-page": "063610",
+        "DOI": "10.1103/PhysRevA.69.063610",
+        "volume": "69",
+        "author": "J Stajic",
+        "year": "2004",
+        "unstructured": "Stajic, J. et al. The nature of superfluidity in ultracold Fermi gases near Feshbach resonances. Phys. Rev. A 69, 063610 (2004).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFsrep25772_CR25",
+        "doi-asserted-by": "crossref",
+        "first-page": "220404",
+        "DOI": "10.1103/PhysRevLett.92.220404",
+        "volume": "92",
+        "author": "A Perali",
+        "year": "2004",
+        "unstructured": "Perali, A., Pieri, P., Pisani, L. & Strinati, G. C. BCS-BEC crossover at finite temperature for superfluid trapped fermi atoms. Phys. Rev. Lett. 92, 220404 (2004).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR26",
+        "doi-asserted-by": "crossref",
+        "first-page": "040402",
+        "DOI": "10.1103/PhysRevLett.93.040402",
+        "volume": "93",
+        "author": "H Heiselberg",
+        "year": "2004",
+        "unstructured": "Heiselberg, H. Collective modes of trapped gases at the BEC-BCS crossover. Phys. Rev. Lett. 93, 040402 (2004).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR27",
+        "doi-asserted-by": "crossref",
+        "first-page": "130401",
+        "DOI": "10.1103/PhysRevLett.92.130401",
+        "volume": "92",
+        "author": "GM Falco",
+        "year": "2004",
+        "unstructured": "Falco, G. M. & Stoof, H. T. C. Crossover temperature of Bose-Einstein condensation in an atomic Fermi gas. Phys. Rev. Lett. 92, 130401 (2004).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR28",
+        "doi-asserted-by": "crossref",
+        "first-page": "539",
+        "DOI": "10.1007/s11467-014-0448-7",
+        "volume": "9",
+        "author": "QJ Chen",
+        "year": "2014",
+        "unstructured": "Chen, Q. J. & Wang, J. B. Pseudogap phenomena in ultracold atomic Fermi gases. Front. Phys. 9, 539–570 (2014).",
+        "journal-title": "Front. Phys"
+      },
+      {
+        "key": "BFsrep25772_CR29",
+        "unstructured": "Schrieffer, J. R. Theory of Superconductivity (Perseus Books, Reading, MA, 1983), 3rd edn."
+      },
+      {
+        "key": "BFsrep25772_CR30",
+        "first-page": "1018",
+        "volume": "13",
+        "author": "LP Gor’kov",
+        "year": "1961",
+        "unstructured": "Gor’kov, L. P. & Melik-Barkhudarov, T. K. Contribution to the theory of superconductivity in an imperfect Fermi gas. Sov. Phys. JETP 13, 1018–1022 (1961). [J. Exptl. Theoret. Phys. (USSR) 40, 1452–1458 (1961)].",
+        "journal-title": "Sov. Phys. JETP"
+      },
+      {
+        "key": "BFsrep25772_CR31",
+        "doi-asserted-by": "crossref",
+        "first-page": "433",
+        "DOI": "10.1103/PhysRevLett.17.433",
+        "volume": "17",
+        "author": "NF Berk",
+        "year": "1966",
+        "unstructured": "Berk, N. F. & Schrieffer, J. R. Effect of ferromagnetic spin correlations on superconductivity. Phys. Rev. Lett. 17, 433–435 (1966).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR32",
+        "doi-asserted-by": "crossref",
+        "first-page": "2418",
+        "DOI": "10.1103/PhysRevLett.85.2418",
+        "volume": "85",
+        "author": "H Heiselberg",
+        "year": "2000",
+        "unstructured": "Heiselberg, H., Pethick, C. J., Smith, H. & Viverit, L. Influence of induced interactions on the superfluid transition in dilute Fermi gases. Phys. Rev. Lett. 85, 2418–2421 (2000).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR33",
+        "doi-asserted-by": "crossref",
+        "first-page": "245301",
+        "DOI": "10.1103/PhysRevLett.102.245301",
+        "volume": "102",
+        "author": "D-H Kim",
+        "year": "2009",
+        "unstructured": "Kim, D.-H., Torma, P. & Martikainen, J.-P. Induced interactions for ultracold Fermi gases in optical lattices. Phys. Rev. Lett. 102, 245301 (2009).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR34",
+        "doi-asserted-by": "crossref",
+        "first-page": "260403",
+        "DOI": "10.1103/PhysRevLett.103.260403",
+        "volume": "103",
+        "author": "J-P Martikainen",
+        "year": "2009",
+        "unstructured": "Martikainen, J.-P., Kinnunen, J. J., Torma, P. & Pethick, C. J. Induced interactions and the superfluid transition temperature in a three-component Fermi gas. Phys. Rev. Lett. 103, 260403 (2009).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR35",
+        "doi-asserted-by": "crossref",
+        "first-page": "053636",
+        "DOI": "10.1103/PhysRevA.79.053636",
+        "volume": "79",
+        "author": "Z-Q Yu",
+        "year": "2009",
+        "unstructured": "Yu, Z.-Q., Huang, K. & Yin, L. Induced interaction in a Fermi gas with a BEC-BCS crossover. Phys. Rev. A 79, 053636 (2009).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFsrep25772_CR36",
+        "doi-asserted-by": "crossref",
+        "first-page": "134",
+        "DOI": "10.1038/nphys254",
+        "volume": "2",
+        "author": "AJ Leggett",
+        "year": "2006",
+        "unstructured": "Leggett, A. J. What do we know about high Tc? Nat. Phys. 2, 134–136 (2006).",
+        "journal-title": "Nat. Phys"
+      },
+      {
+        "key": "BFsrep25772_CR37",
+        "doi-asserted-by": "crossref",
+        "first-page": "020513",
+        "DOI": "10.1103/PhysRevB.78.020513",
+        "volume": "78",
+        "author": "QJ Chen",
+        "year": "2008",
+        "unstructured": "Chen, Q. J. & Levin, K. Understanding the protected nodes and collapse of the Fermi arcs in underdoped cuprate superconductors. Phys. Rev. B 78, 020513(R) (2008).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "BFsrep25772_CR38",
+        "doi-asserted-by": "crossref",
+        "first-page": "61",
+        "DOI": "10.1088/0034-4885/62/1/002",
+        "volume": "62",
+        "author": "T Timusk",
+        "year": "1999",
+        "unstructured": "Timusk, T. & Statt, B. The pseudogap in high-temperature superconductors: An experimental survey. Rep. Prog. Phys. 62, 61–122 (1999).",
+        "journal-title": "Rep. Prog. Phys."
+      },
+      {
+        "key": "BFsrep25772_CR39",
+        "doi-asserted-by": "crossref",
+        "first-page": "473",
+        "DOI": "10.1103/RevModPhys.75.473",
+        "volume": "75",
+        "author": "R Damascelli",
+        "year": "2003",
+        "unstructured": "Damascelli, R., Hussain, Z. & Shen, Z.-X. Angle-resolved photoemssion studies of the cuprate superconductors. Rev. Mod. Phys. 75, 473–541 (2003).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "BFsrep25772_CR40",
+        "doi-asserted-by": "publisher",
+        "first-page": "1296",
+        "DOI": "10.1126/science.1109220",
+        "volume": "307",
+        "author": "J Kinast",
+        "year": "2005",
+        "unstructured": "Kinast, J. et al. Heat capacity of a strongly-interacting Fermi gas. Science 307, 1296–1299 (2005). Science Express, doi: 10.1126/science.1109220.",
+        "journal-title": "Science"
+      },
+      {
+        "key": "BFsrep25772_CR41",
+        "doi-asserted-by": "crossref",
+        "first-page": "011602",
+        "DOI": "10.1103/PhysRevA.72.011602",
+        "volume": "72",
+        "author": "Y He",
+        "year": "2005",
+        "unstructured": "He, Y., Chen, Q. J. & Levin, K. Radio-frequency spectroscopy and the pairing gap in trapped Fermi gases. Phys. Rev. A 72, 011602(R) (2005).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFsrep25772_CR42",
+        "doi-asserted-by": "crossref",
+        "first-page": "190402",
+        "DOI": "10.1103/PhysRevLett.102.190402",
+        "volume": "102",
+        "author": "QJ Chen",
+        "year": "2009",
+        "unstructured": "Chen, Q. J. & Levin, K. Momentum resolved radio frequency spectroscopy in trapped Fermi gases. Phys. Rev. Lett. 102, 190402 (2009).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR43",
+        "doi-asserted-by": "crossref",
+        "first-page": "744",
+        "DOI": "10.1038/nature07172",
+        "volume": "454",
+        "author": "JT Stewart",
+        "year": "2008",
+        "unstructured": "Stewart, J. T., Gaebler, J. P. & Jin, D. S. Using photoemission spectroscopy to probe a strongly interacting Fermi gas. Nature (London) 454, 744 (2008).",
+        "journal-title": "Nature (London)"
+      },
+      {
+        "key": "BFsrep25772_CR44",
+        "doi-asserted-by": "crossref",
+        "first-page": "569",
+        "DOI": "10.1038/nphys1709",
+        "volume": "6",
+        "author": "JP Gaebler",
+        "year": "2010",
+        "unstructured": "Gaebler, J. P. et al. Observation of pseudogap behaviour in a strongly interacting Fermi gas. Nat. Phys. 6, 569 (2010).",
+        "journal-title": "Nat. Phys"
+      },
+      {
+        "key": "BFsrep25772_CR45",
+        "doi-asserted-by": "crossref",
+        "first-page": "160402",
+        "DOI": "10.1103/PhysRevLett.96.160402",
+        "volume": "96",
+        "author": "E Burovski",
+        "year": "2006",
+        "unstructured": "Burovski, E., Prokof’ev, N., Svistunov, B. & Troyer, M. Critical temperature and thermodynamics of attractive fermions at unitarity. Phys. Rev. Lett. 96, 160402 (2006).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR46",
+        "doi-asserted-by": "crossref",
+        "first-page": "090404",
+        "DOI": "10.1103/PhysRevLett.96.090404",
+        "volume": "96",
+        "author": "A Bulgac",
+        "year": "2006",
+        "unstructured": "Bulgac, A., Drut, J. & Magierski, P. Thermodynamics of a trapped unitary fermi gas. Phys. Rev. Lett. 96, 090404 (2006).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR47",
+        "doi-asserted-by": "crossref",
+        "first-page": "053621",
+        "DOI": "10.1103/PhysRevA.82.053621",
+        "volume": "82",
+        "author": "O Goulko",
+        "year": "2010",
+        "unstructured": "Goulko, O. & Wingate, M. Thermodynamics of balanced and slightly spin-imbalanced Fermi gases at unitarity. Phys. Rev. A 82, 053621 (2010).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFsrep25772_CR48",
+        "doi-asserted-by": "crossref",
+        "first-page": "165116",
+        "DOI": "10.1103/PhysRevB.76.165116",
+        "volume": "76",
+        "author": "VK Akkineni",
+        "year": "2007",
+        "unstructured": "Akkineni, V. K., Ceperley, D. M. & Trivedi, N. Pairing and superfluid properties of dilute fermion gases at unitarity. Phys. Rev. B 76, 165116 (2007).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "BFsrep25772_CR49",
+        "doi-asserted-by": "crossref",
+        "first-page": "061602",
+        "DOI": "10.1103/PhysRevA.84.061602",
+        "volume": "84",
+        "author": "J Carlson",
+        "year": "2011",
+        "unstructured": "Carlson, J., Gandolfi, S., Schmidt, K. E. & Zhang, S. Auxiliary-field quantum Monte Carlo method for strongly paired fermions. Phys. Rev. A 84, 061602(R) (2011).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFsrep25772_CR50",
+        "doi-asserted-by": "crossref",
+        "first-page": "090401",
+        "DOI": "10.1103/PhysRevLett.110.090401",
+        "volume": "110",
+        "author": "G Wlazlowski",
+        "year": "2013",
+        "unstructured": "Wlazlowski, G., Magierski, P., Drut, J. E., Bulgac, A. & Roche, K. J. Cooper pairing above the critical temperature in a unitary Fermi gas. Phys. Rev. Lett. 110, 090401 (2013).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR51",
+        "doi-asserted-by": "publisher",
+        "first-page": "563",
+        "DOI": "10.1126/science.1214987",
+        "volume": "335",
+        "author": "MJH Ku",
+        "year": "2012",
+        "unstructured": "Ku, M. J. H., Sommer, A. T., Cheuk, L. W. & Zwierlein, M. W. Revealing the superfluid lambda transition in the universal thermodynamics of a unitary Fermi gas. Science 335, 563–567, doi: 10.1126/science.1214987 (2012).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "BFsrep25772_CR52",
+        "doi-asserted-by": "crossref",
+        "first-page": "023610",
+        "DOI": "10.1103/PhysRevA.86.023610",
+        "volume": "86",
+        "author": "QJ Chen",
+        "year": "2012",
+        "unstructured": "Chen, Q. J. Zero density limit extrapolation of the superfluid transition temperature in a unitary atomic Fermi gas on a lattice. Phys. Rev. A 86, 023610 (2012).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFsrep25772_CR53",
+        "doi-asserted-by": "crossref",
+        "first-page": "7083",
+        "DOI": "10.1103/PhysRevB.59.7083",
+        "volume": "59",
+        "author": "QJ Chen",
+        "year": "1999",
+        "unstructured": "Chen, Q. J., Kosztin, I., Jankó, B. & Levin, K. Superconducting transitions from the pseudogap state: d-wave symmetry, lattice and low-dimensional effects. Phys. Rev. B 59, 7083–93 (1999).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "BFsrep25772_CR54",
+        "doi-asserted-by": "crossref",
+        "first-page": "670",
+        "DOI": "10.1103/PhysRev.124.670",
+        "volume": "124",
+        "author": "LP Kadanoff",
+        "year": "1961",
+        "unstructured": "Kadanoff, L. P. & Martin, P. C. Theory of many-particle systems. II. Superconductivity. Phys. Rev. 124, 670–697 (1961).",
+        "journal-title": "Phys. Rev"
+      },
+      {
+        "key": "BFsrep25772_CR55",
+        "doi-asserted-by": "crossref",
+        "first-page": "1273",
+        "DOI": "10.1103/PhysRevLett.27.1273",
+        "volume": "27",
+        "author": "BR Patton",
+        "year": "1971",
+        "unstructured": "Patton, B. R. Fluctuation theory of the superconducting transition in restricted dimensionality. Phys. Rev. Lett. 27, 1273–1276 (1971).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR56",
+        "unstructured": "Chen, Q. J. Generalization of BCS theory to short coherence length superconductors: A BCS-Bose-Einstein crossover scenario. Ph.D. thesis, University of Chicago (2000). (freely accessible in the ProQuest Dissertations & Theses Database online)."
+      },
+      {
+        "key": "BFsrep25772_CR57",
+        "doi-asserted-by": "crossref",
+        "first-page": "224516",
+        "DOI": "10.1103/PhysRevB.76.224516",
+        "volume": "76",
+        "author": "Y He",
+        "year": "2007",
+        "unstructured": "He, Y., Chien, C.-C., Chen, Q. J. & Levin, K. Thermodynamics and superfluid density in BCS-BEC crossover with and without population imbalance. Phys. Rev. B 76, 224516 (2007).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "BFsrep25772_CR58",
+        "doi-asserted-by": "crossref",
+        "first-page": "040401",
+        "DOI": "10.1103/PhysRevLett.98.040401",
+        "volume": "98",
+        "author": "A Altmeyer",
+        "year": "2007",
+        "unstructured": "Altmeyer, A. et al. Precision measurements of collective oscillations in BEC-BCS crossover. Phys. Rev. Lett. 98, 040401 (2007).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR59",
+        "doi-asserted-by": "crossref",
+        "first-page": "469",
+        "DOI": "10.1038/nphys598",
+        "volume": "3",
+        "author": "H Hu",
+        "year": "2007",
+        "unstructured": "Hu, H., Drummond, P. D. & Liu, X. J. Universal thermodynamics of strongly interacting Fermi gases. Nat. Phys. 3, 469–472 (2007).",
+        "journal-title": "Nat. Phys"
+      },
+      {
+        "key": "BFsrep25772_CR60",
+        "doi-asserted-by": "crossref",
+        "first-page": "061605",
+        "DOI": "10.1103/PhysRevA.77.061605",
+        "volume": "77",
+        "author": "H Hu",
+        "year": "2008",
+        "unstructured": "Hu, H., Liu, X.-J. & Drummond, P. Comparative study of strong coupling theories of a trapped Fermi gas at unitarity. Phys. Rev. A 77, 061605(R) (2008).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFsrep25772_CR61",
+        "doi-asserted-by": "crossref",
+        "first-page": "140407",
+        "DOI": "10.1103/PhysRevLett.100.140407",
+        "volume": "100",
+        "author": "KB Gubbels",
+        "year": "2008",
+        "unstructured": "Gubbels, K. B. & Stoof, H. T. C. Renormalization group theory for the imbalanced Fermi gas. Phys. Rev. Lett. 100, 140407 (2008).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFsrep25772_CR62",
+        "doi-asserted-by": "crossref",
+        "first-page": "174528",
+        "DOI": "10.1103/PhysRevB.78.174528",
+        "volume": "78",
+        "author": "S Floerchinger",
+        "year": "2008",
+        "unstructured": "Floerchinger, S., Scherer, M., Diehl, S. & Wetterich, C. Particle-hole fluctuations in BCS-BEC crossover. Phys. Rev. B 78, 174528 (2008).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "BFsrep25772_CR63",
+        "doi-asserted-by": "crossref",
+        "first-page": "180402",
+        "DOI": "10.1103/PhysRevLett.98.180402",
+        "volume": "98",
+        "author": "R Combescot",
+        "year": "2007",
+        "unstructured": "Combescot, R., Recati, A., Lobo, C. & Chevy, F. Normal state of highly polarized Fermi gases: Simple many-body approaches. Phys. Rev. Lett. 98, 180402 (2007).",
+        "journal-title": "Phys. Rev. Lett."
+      }
+    ],
+    "container-title": [
+      "Scientific Reports"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.nature.com/articles/srep25772",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/srep25772.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/srep25772.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          1,
+          4
+        ]
+      ],
+      "date-time": "2023-01-04T15:20:50Z",
+      "timestamp": 1672845650000
+    },
+    "score": 31.61975,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/srep25772"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2016,
+          5,
+          17
+        ]
+      ]
+    },
+    "references-count": 63,
+    "journal-issue": {
+      "issue": "1",
+      "published-online": {
+        "date-parts": [
+          [
+            2016,
+            9,
+            19
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "BFsrep25772"
+    ],
+    "URL": "https://doi.org/10.1038/srep25772",
+    "ISSN": [
+      "2045-2322"
+    ],
+    "issn-type": [
+      {
+        "value": "2045-2322",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2016,
+          5,
+          17
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "18 February 2016",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "22 April 2016",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "17 May 2016",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "The author declares no competing financial interests.",
+        "order": 1,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Competing interests"
+        }
+      }
+    ],
+    "article-number": "25772"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          3,
+          28
+        ]
+      ],
+      "date-time": "2022-03-28T21:12:01Z",
+      "timestamp": 1648501921353
+    },
+    "reference-count": 21,
+    "publisher": "American Physical Society (APS)",
+    "issue": "5",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              1976,
+              9,
+              1
+            ]
+          ],
+          "date-time": "1976-09-01T00:00:00Z",
+          "timestamp": 210384000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://link.aps.org/licenses/aps-default-license"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. B"
+    ],
+    "DOI": "10.1103/physrevb.14.1946",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          7,
+          27
+        ]
+      ],
+      "date-time": "2002-07-27T03:04:22Z",
+      "timestamp": 1027739062000
+    },
+    "page": "1946-1951",
+    "source": "Crossref",
+    "is-referenced-by-count": 16,
+    "title": [
+      "Ground-state lattice vacancies and Bose-Einstein condensation in a quantum crystal"
+    ],
+    "prefix": "10.1103",
+    "volume": "14",
+    "author": [
+      {
+        "given": "Yi-Chen",
+        "family": "Cheng",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          1976,
+          9,
+          1
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevB.14.1946Cc1R1",
+        "volume-title": "Lectures in Theoretical Physics",
+        "author": "G. V. Chester",
+        "year": "1969"
+      },
+      {
+        "key": "PhysRevB.14.1946Cc1R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "256",
+        "DOI": "10.1103/PhysRevA.2.256",
+        "volume": "2",
+        "author": "G. V. Chester",
+        "year": "1970",
+        "journal-title": "Phys. Rev. A."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc2R1",
+        "first-page": "2057",
+        "volume": "56",
+        "author": "A. F. Andreev",
+        "year": "1969",
+        "journal-title": "Zh. Eksp. Theor. Fiz."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc3R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "300",
+        "DOI": "10.1016/0375-9601(69)91006-8",
+        "volume": "30",
+        "author": "J. Sarfatt",
+        "year": "1969",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "PhysRevB.14.1946Cc4R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "411",
+        "DOI": "10.1143/PTPS.46.411",
+        "volume": "46",
+        "author": "H. Matsuda",
+        "year": "1970",
+        "journal-title": "Prog. Theor. Phys. Suppl."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc5R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1543",
+        "DOI": "10.1103/PhysRevLett.25.1543",
+        "volume": "25",
+        "author": "A. J. Leggett",
+        "year": "1970",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc6R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "174",
+        "DOI": "10.1103/PhysRevLett.26.174",
+        "volume": "26",
+        "author": "R. A. Guyer",
+        "year": "1971",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc7R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "611",
+        "DOI": "10.1103/PhysRevLett.26.611",
+        "volume": "26",
+        "author": "W. J. Mullin",
+        "year": "1971",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc8R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "655",
+        "DOI": "10.1007/BF00655458",
+        "volume": "10",
+        "author": "K. S. Liu",
+        "year": "1973",
+        "journal-title": "J. Low Temp. Phys."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc9R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1103/RevModPhys.42.1",
+        "volume": "42",
+        "author": "W. Kohn",
+        "year": "1970",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc10R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "576",
+        "DOI": "10.1103/PhysRev.104.576",
+        "volume": "104",
+        "author": "O. Penrose",
+        "year": "1956",
+        "journal-title": "Phys. Rev."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc11R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "569",
+        "DOI": "10.1143/PTP.16.569",
+        "volume": "16",
+        "author": "T. Matsubara",
+        "year": "1956",
+        "journal-title": "Prog. Theor. Phys."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc11R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "19",
+        "DOI": "10.1143/PTP.17.19",
+        "volume": "17",
+        "author": "T. Matsubara",
+        "year": "1957",
+        "journal-title": "Prog. Theor. Phys."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc12R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "2409",
+        "DOI": "10.1103/PhysRev.131.2409",
+        "volume": "131",
+        "author": "R. Whitlock",
+        "year": "1963",
+        "journal-title": "Phys. Rev."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc13R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "476",
+        "DOI": "10.1103/PhysRevLett.15.476",
+        "volume": "15",
+        "author": "P. R. Zilsel",
+        "year": "1965",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc14R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1247",
+        "DOI": "10.1103/PhysRevA.4.1247",
+        "volume": "4",
+        "author": "W. J. Mullin",
+        "year": "1971",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevB.14.1946Cc15R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "22",
+        "DOI": "10.1143/PTP.47.22",
+        "volume": "47",
+        "author": "S. Takagi",
+        "year": "1972",
+        "journal-title": "Prog. Theor. Phys."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc16R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1771",
+        "DOI": "10.1103/PhysRevA.7.1771",
+        "volume": "7",
+        "author": "Y. C. Cheng",
+        "year": "1973",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevB.14.1946Cc18R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "615",
+        "DOI": "10.1088/0034-4885/30/2/306",
+        "volume": "30",
+        "author": "M. E. Fisher",
+        "year": "1967",
+        "journal-title": "Rep. Prog. Phys."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc19R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "298",
+        "DOI": "10.1103/RevModPhys.38.298",
+        "volume": "38",
+        "author": "P. W. Anderson",
+        "year": "1966",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "PhysRevB.14.1946Cc22R1",
+        "first-page": "507",
+        "volume": "9",
+        "author": "A. Andreev",
+        "year": "1969",
+        "journal-title": "Zh. Eksp. Teor. Fiz. Pis'ma Red."
+      }
+    ],
+    "container-title": [
+      "Physical Review B"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevB.14.1946",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevB.14.1946/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          15
+        ]
+      ],
+      "date-time": "2017-06-15T09:04:37Z",
+      "timestamp": 1497517477000
+    },
+    "score": 30.901634,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevB.14.1946"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1976,
+          9,
+          1
+        ]
+      ]
+    },
+    "references-count": 21,
+    "journal-issue": {
+      "issue": "5",
+      "published-print": {
+        "date-parts": [
+          [
+            1976,
+            9
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevb.14.1946",
+    "ISSN": [
+      "0556-2805"
+    ],
+    "issn-type": [
+      {
+        "value": "0556-2805",
+        "type": "print"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1976,
+          9,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          3,
+          29
+        ]
+      ],
+      "date-time": "2022-03-29T23:55:39Z",
+      "timestamp": 1648598139958
+    },
+    "reference-count": 12,
+    "publisher": "Trans Tech Publications, Ltd.",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2011,
+              11,
+              29
+            ]
+          ],
+          "date-time": "2011-11-29T00:00:00Z",
+          "timestamp": 1322524800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 28,
+        "URL": "https://www.scientific.net/PolicyAndEthics/PublishingPolicies"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2011,
+              11,
+              29
+            ]
+          ],
+          "date-time": "2011-11-29T00:00:00Z",
+          "timestamp": 1322524800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 28,
+        "URL": "https://www.scientific.net/license/TDM_Licenser.pdf"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "AMR"
+    ],
+    "abstract": "<jats:p>The dynamics in the Bose-Einstein Condensation (BEC) process with interaction between three energy-level Bose atoms and Single-Mode active cavity field and between three Energy-Level Bose atoms in the quantum cavity is analyzed using the ordinary method for solving the wave function in the Schrödinger idea from the Heisenberg idea. A wave function has been established for the atoms under the BEC conditions in the quantum cavity, and the factors having effect on the BEC stability in the quantum cavity and the rules for selecting quantum leaps are analyzed.</jats:p>",
+    "DOI": "10.4028/www.scientific.net/amr.403-408.2152",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2011,
+          12,
+          6
+        ]
+      ],
+      "date-time": "2011-12-06T08:58:09Z",
+      "timestamp": 1323161889000
+    },
+    "page": "2152-2155",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "The Dynamics in the Bose-Einstein Condensation Process with Interaction between Three Energy-Level Bose Atoms"
+    ],
+    "prefix": "10.4028",
+    "volume": "403-408",
+    "author": [
+      {
+        "given": "Yan Min",
+        "family": "Li",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Jilin University"
+          }
+        ]
+      },
+      {
+        "given": "Li",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Northeast Normal University"
+          }
+        ]
+      },
+      {
+        "given": "Chen Di",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Northeast Normal University"
+          }
+        ]
+      }
+    ],
+    "member": "2457",
+    "published-online": {
+      "date-parts": [
+        [
+          2011,
+          11
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "2212652",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Anderson MH, Ensher JR, Mathews MR et al, Science 269(1995) 198.",
+        "DOI": "10.1126/science.269.5221.198"
+      },
+      {
+        "key": "2212653",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Davis KB, Mewes M-O, Andrews MR et al, Phys. Rev. Lett 75(1995) 3969.",
+        "DOI": "10.1103/PhysRevLett.75.3969"
+      },
+      {
+        "key": "2212654",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Bradley CC, Sackett CA, Tollett JJ et al, Phys. Rev. Lett 75(1995) 1687.",
+        "DOI": "10.1103/PhysRevLett.75.1687"
+      },
+      {
+        "key": "2212655",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Mewes M-O, Andrews MR, Kum DM et al, Phys. Rev. Lett 275(1997) 582.",
+        "DOI": "10.1103/PhysRevLett.78.582"
+      },
+      {
+        "key": "2212656",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Andrews MR, Townsend. C. G, Miesner H-J et al, Science 275(1997) 637.",
+        "DOI": "10.1126/science.275.5300.637"
+      },
+      {
+        "key": "2212657",
+        "doi-asserted-by": "crossref",
+        "unstructured": "M. Kozuma, L. Deng, E.W. Hagley et al, Phys. Rev. Lett 82(1999) 871.",
+        "DOI": "10.1103/PhysRevLett.82.871"
+      },
+      {
+        "key": "2212658",
+        "doi-asserted-by": "crossref",
+        "unstructured": "L. Deng, E.W. Hagley, J. Wen, nature 398(1999) 218.",
+        "DOI": "10.1038/18395"
+      },
+      {
+        "key": "2212659",
+        "unstructured": "Zhang Li, Wang Cheng, Sun Changpu, Chinese Science 39(1996) 758."
+      },
+      {
+        "key": "2212660",
+        "unstructured": "Zhang Li, Wang Cheng, Sun Changpu, Schinese Journal of Lasers 26(1999) 529."
+      },
+      {
+        "key": "2212661",
+        "unstructured": "A.L. Fetter, J.D. Waleda 1991 Quantum Theory of Many-particle System. Megraw-Hill. 253."
+      },
+      {
+        "key": "2212662",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Zhang Li, Wang Cheng, Li Yanmin, Commun. Theor. Phys. Vol. 41, No. 6 (2004)941-942.",
+        "DOI": "10.1088/0253-6102/41/6/941"
+      },
+      {
+        "key": "2212663",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Zhang Li, Wang Cheng, Li Yanmin, Commun. Theor. Phys. Vol. 43, No. 5(2005)900-904.",
+        "DOI": "10.1088/0253-6102/43/5/028"
+      }
+    ],
+    "container-title": [
+      "Advanced Materials Research"
+    ],
+    "link": [
+      {
+        "URL": "https://www.scientific.net/AMR.403-408.2152.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2021,
+          1,
+          12
+        ]
+      ],
+      "date-time": "2021-01-12T23:33:49Z",
+      "timestamp": 1610494429000
+    },
+    "score": 30.602116,
+    "resource": {
+      "primary": {
+        "URL": "https://www.scientific.net/AMR.403-408.2152"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2011,
+          11
+        ]
+      ]
+    },
+    "references-count": 12,
+    "URL": "https://doi.org/10.4028/www.scientific.net/amr.403-408.2152",
+    "ISSN": [
+      "1662-8985"
+    ],
+    "issn-type": [
+      {
+        "value": "1662-8985",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2011,
+          11
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2023,
+          6,
+          28
+        ]
+      ],
+      "date-time": "2023-06-28T16:34:52Z",
+      "timestamp": 1687970092554
+    },
+    "reference-count": 18,
+    "publisher": "IOP Publishing",
+    "issue": "18",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "J. Phys. A: Math. Gen."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2006,
+          5,
+          5
+        ]
+      ]
+    },
+    "DOI": "10.1088/0305-4470/39/18/011",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2006,
+          4,
+          20
+        ]
+      ],
+      "date-time": "2006-04-20T03:17:13Z",
+      "timestamp": 1145503033000
+    },
+    "page": "4935-4944",
+    "source": "Crossref",
+    "is-referenced-by-count": 11,
+    "title": [
+      "Bose–Einstein condensation of a relativistic Bose gas trapped in a general external potential"
+    ],
+    "prefix": "10.1088",
+    "volume": "39",
+    "author": [
+      {
+        "given": "Guozhen",
+        "family": "Su",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jincan",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Lixuan",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "published-online": {
+      "date-parts": [
+        [
+          2006,
+          4,
+          19
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.138.A1049"
+      },
+      {
+        "key": "2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.43.1277"
+      },
+      {
+        "key": "3",
+        "doi-asserted-by": "crossref",
+        "first-page": "561",
+        "DOI": "10.1103/PhysRevA.25.561",
+        "volume": "25",
+        "author": "Beckmann R",
+        "year": "1982",
+        "journal-title": "Phys. Rev.",
+        "ISSN": "http://id.crossref.org/issn/0556-2791",
+        "issn-type": "print"
+      },
+      {
+        "key": "4",
+        "doi-asserted-by": "crossref",
+        "first-page": "1709",
+        "DOI": "10.1103/PhysRevA.28.1709",
+        "volume": "28",
+        "author": "Dixit V V",
+        "year": "1982",
+        "journal-title": "Phys. Rev.",
+        "ISSN": "http://id.crossref.org/issn/0556-2791",
+        "issn-type": "print"
+      },
+      {
+        "key": "5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.46.1497"
+      },
+      {
+        "key": "6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevD.25.502"
+      },
+      {
+        "key": "7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevD.24.426"
+      },
+      {
+        "key": "8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.39.830"
+      },
+      {
+        "key": "9",
+        "first-page": "637",
+        "volume": "117",
+        "author": "Salasnich L",
+        "year": "2002",
+        "journal-title": "Nuovo Cimento",
+        "ISSN": "http://id.crossref.org/issn/0369-3554",
+        "issn-type": "print"
+      },
+      {
+        "key": "10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.35.4354"
+      },
+      {
+        "key": "11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1322078"
+      },
+      {
+        "key": "12",
+        "doi-asserted-by": "crossref",
+        "first-page": "8289",
+        "DOI": "10.1088/0305-4470/31/41/003",
+        "volume": "31",
+        "author": "Chen L",
+        "year": "1998",
+        "journal-title": "J. Phys. A: Math. Gen.",
+        "ISSN": "http://id.crossref.org/issn/0305-4470",
+        "issn-type": "print"
+      },
+      {
+        "key": "13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.61.063607"
+      },
+      {
+        "key": "14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.59.4657"
+      },
+      {
+        "key": "15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.60.4168"
+      },
+      {
+        "key": "16",
+        "doi-asserted-by": "crossref",
+        "first-page": "3041",
+        "DOI": "10.1088/0305-4470/37/8/014",
+        "volume": "37",
+        "author": "Su G",
+        "year": "2004",
+        "journal-title": "J. Phys. A: Math. Gen.",
+        "ISSN": "http://id.crossref.org/issn/0305-4470",
+        "issn-type": "print"
+      },
+      {
+        "key": "17",
+        "author": "Pathria R K",
+        "year": "1972",
+        "journal-title": "Statistical Mechanics"
+      },
+      {
+        "key": "18",
+        "author": "Huang K",
+        "year": "1987",
+        "journal-title": "Statistical Mechanics"
+      }
+    ],
+    "container-title": [
+      "Journal of Physics A: Mathematical and General"
+    ],
+    "link": [
+      {
+        "URL": "http://stacks.iop.org/0305-4470/39/i=18/a=011/pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          4,
+          11
+        ]
+      ],
+      "date-time": "2020-04-11T07:29:44Z",
+      "timestamp": 1586590184000
+    },
+    "score": 30.489502,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.1088/0305-4470/39/18/011"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2006,
+          4,
+          19
+        ]
+      ]
+    },
+    "references-count": 18,
+    "journal-issue": {
+      "issue": "18",
+      "published-print": {
+        "date-parts": [
+          [
+            2006,
+            5,
+            5
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "S0305-4470(06)15578-X"
+    ],
+    "URL": "https://doi.org/10.1088/0305-4470/39/18/011",
+    "ISSN": [
+      "0305-4470",
+      "1361-6447"
+    ],
+    "issn-type": [
+      {
+        "value": "0305-4470",
+        "type": "print"
+      },
+      {
+        "value": "1361-6447",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2006,
+          4,
+          19
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          2
+        ]
+      ],
+      "date-time": "2022-04-02T16:54:16Z",
+      "timestamp": 1648918456670
+    },
+    "reference-count": 0,
+    "publisher": "World Scientific Pub Co Pte Lt",
+    "issue": "06",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Int. J. Mod. Phys. B"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          1997,
+          3,
+          10
+        ]
+      ]
+    },
+    "DOI": "10.1142/s0217979297000381",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          7,
+          28
+        ]
+      ],
+      "date-time": "2002-07-28T23:09:56Z",
+      "timestamp": 1027897796000
+    },
+    "page": "683-684",
+    "source": "Crossref",
+    "is-referenced-by-count": 1,
+    "title": [
+      "Bose–Einstein Condensation in a Trap"
+    ],
+    "prefix": "10.1142",
+    "volume": "11",
+    "author": [
+      {
+        "given": "Chen Ning",
+        "family": "Yang",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Institute for Theoretical Physics, State University of New York, Stony Brook, New York 11794, USA"
+          },
+          {
+            "name": "Physics Department, The Chinese University of Hong Kong, Hong Kong, P.R.China"
+          }
+        ]
+      }
+    ],
+    "member": "219",
+    "published-online": {
+      "date-parts": [
+        [
+          2012,
+          1,
+          25
+        ]
+      ]
+    },
+    "container-title": [
+      "International Journal of Modern Physics B"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.worldscientific.com/doi/pdf/10.1142/S0217979297000381",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          8,
+          7
+        ]
+      ],
+      "date-time": "2019-08-07T00:31:52Z",
+      "timestamp": 1565137912000
+    },
+    "score": 30.246103,
+    "resource": {
+      "primary": {
+        "URL": "https://www.worldscientific.com/doi/abs/10.1142/S0217979297000381"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1997,
+          3,
+          10
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "06",
+      "published-online": {
+        "date-parts": [
+          [
+            2012,
+            1,
+            25
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            1997,
+            3,
+            10
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1142/S0217979297000381"
+    ],
+    "URL": "https://doi.org/10.1142/s0217979297000381",
+    "ISSN": [
+      "0217-9792",
+      "1793-6578"
+    ],
+    "issn-type": [
+      {
+        "value": "0217-9792",
+        "type": "print"
+      },
+      {
+        "value": "1793-6578",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1997,
+          3,
+          10
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          2
+        ]
+      ],
+      "date-time": "2025-10-02T05:57:56Z",
+      "timestamp": 1759384676371
+    },
+    "reference-count": 31,
+    "publisher": "IOP Publishing",
+    "issue": "4",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "J. Phys. A: Math. Theor."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2008,
+          2,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1088/1751-8113/41/4/045007",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2008,
+          1,
+          16
+        ]
+      ],
+      "date-time": "2008-01-16T04:14:12Z",
+      "timestamp": 1200456852000
+    },
+    "page": "045007",
+    "source": "Crossref",
+    "is-referenced-by-count": 18,
+    "title": [
+      "Bose–Einstein condensation of a relativistic<i>q</i>-deformed Bose gas"
+    ],
+    "prefix": "10.1088",
+    "volume": "41",
+    "author": [
+      {
+        "given": "Guozhen",
+        "family": "Su",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Shukuan",
+        "family": "Cai",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Jincan",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "published-online": {
+      "date-parts": [
+        [
+          2008,
+          1,
+          15
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "1",
+        "first-page": "262",
+        "volume": "16",
+        "author": "Sklyanin E K",
+        "year": "1982",
+        "journal-title": "Funct. Appl."
+      },
+      {
+        "key": "2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF01084171"
+      },
+      {
+        "key": "3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF00704588"
+      },
+      {
+        "key": "4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF01221646"
+      },
+      {
+        "key": "5",
+        "author": "Drinfeld V G",
+        "year": "1986",
+        "journal-title": "Quantum Groups"
+      },
+      {
+        "key": "6",
+        "first-page": "212",
+        "volume": "36",
+        "author": "Drinfeld V G",
+        "year": "1988",
+        "journal-title": "Sov. Math. Dokl.",
+        "ISSN": "http://id.crossref.org/issn/0197-6788",
+        "issn-type": "print"
+      },
+      {
+        "key": "7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0370-2693(93)90601-D"
+      },
+      {
+        "key": "8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0550-3213(93)90316-H"
+      },
+      {
+        "key": "9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0550-3213(90)90115-T"
+      },
+      {
+        "key": "10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0370-2693(92)91561-M"
+      },
+      {
+        "key": "11",
+        "doi-asserted-by": "crossref",
+        "first-page": "4581",
+        "DOI": "10.1088/0305-4470/22/21/020",
+        "volume": "22",
+        "author": "Macfarlance A J",
+        "year": "1989",
+        "journal-title": "J. Phys. A: Math. Gen.",
+        "ISSN": "http://id.crossref.org/issn/0305-4470",
+        "issn-type": "print"
+      },
+      {
+        "key": "12",
+        "doi-asserted-by": "crossref",
+        "first-page": "L873",
+        "DOI": "10.1088/0305-4470/22/18/004",
+        "volume": "22",
+        "author": "Biedenharn L C",
+        "year": "1989",
+        "journal-title": "J. Phys. A: Math. Gen.",
+        "ISSN": "http://id.crossref.org/issn/0305-4470",
+        "issn-type": "print"
+      },
+      {
+        "key": "13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0375-9601(92)90696-J"
+      },
+      {
+        "key": "14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0375-9601(93)90822-H"
+      },
+      {
+        "key": "15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0375-9601(93)90079-F"
+      },
+      {
+        "key": "16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0375-9601(95)00080-M"
+      },
+      {
+        "key": "17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1142/S0217979296000283"
+      },
+      {
+        "key": "18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.57.179"
+      },
+      {
+        "key": "19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.61.1218"
+      },
+      {
+        "key": "20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0378-4371(01)00680-X"
+      },
+      {
+        "key": "21",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0960-0779(01)00025-X"
+      },
+      {
+        "key": "22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0375-9601(01)00816-7"
+      },
+      {
+        "key": "23",
+        "doi-asserted-by": "crossref",
+        "first-page": "10141",
+        "DOI": "10.1088/0305-4470/36/40/001",
+        "volume": "36",
+        "author": "Su G",
+        "year": "2003",
+        "journal-title": "J. Phys. A: Math. Gen.",
+        "ISSN": "http://id.crossref.org/issn/0305-4470",
+        "issn-type": "print"
+      },
+      {
+        "key": "24",
+        "doi-asserted-by": "crossref",
+        "first-page": "P08015",
+        "DOI": "10.1088/1742-5468/2006/08/P08015",
+        "volume": "2006",
+        "author": "Cheianov V V",
+        "year": "2006",
+        "journal-title": "J. Stat. Mech.",
+        "ISSN": "http://id.crossref.org/issn/1742-5468",
+        "issn-type": "print"
+      },
+      {
+        "key": "25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1140/epjb/e2006-00225-7"
+      },
+      {
+        "key": "26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.115.254"
+      },
+      {
+        "key": "27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.135.A1515"
+      },
+      {
+        "key": "28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.158.383"
+      },
+      {
+        "key": "29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.17.1133"
+      },
+      {
+        "key": "30",
+        "doi-asserted-by": "crossref",
+        "first-page": "4935",
+        "DOI": "10.1088/0305-4470/39/18/011",
+        "volume": "39",
+        "author": "Su G",
+        "year": "2006",
+        "journal-title": "J. Phys. A: Math. Gen.",
+        "ISSN": "http://id.crossref.org/issn/0305-4470",
+        "issn-type": "print"
+      },
+      {
+        "key": "31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.99.200406"
+      }
+    ],
+    "container-title": [
+      "Journal of Physics A: Mathematical and Theoretical"
+    ],
+    "link": [
+      {
+        "URL": "http://stacks.iop.org/1751-8121/41/i=4/a=045007/pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          4,
+          11
+        ]
+      ],
+      "date-time": "2020-04-11T08:39:15Z",
+      "timestamp": 1586594355000
+    },
+    "score": 30.079308,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.1088/1751-8113/41/4/045007"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2008,
+          1,
+          15
+        ]
+      ]
+    },
+    "references-count": 31,
+    "journal-issue": {
+      "issue": "4",
+      "published-print": {
+        "date-parts": [
+          [
+            2008,
+            2,
+            1
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "S1751-8113(08)62488-9"
+    ],
+    "URL": "https://doi.org/10.1088/1751-8113/41/4/045007",
+    "ISSN": [
+      "1751-8113",
+      "1751-8121"
+    ],
+    "issn-type": [
+      {
+        "value": "1751-8113",
+        "type": "print"
+      },
+      {
+        "value": "1751-8121",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2008,
+          1,
+          15
+        ]
+      ]
+    }
+  }
+]

@@ -1,0 +1,3561 @@
+[
+  {
+    "institution": [
+      {
+        "name": "Research Square"
+      }
+    ],
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          14
+        ]
+      ],
+      "date-time": "2025-05-14T06:23:49Z",
+      "timestamp": 1747203829937,
+      "version": "3.40.5"
+    },
+    "posted": {
+      "date-parts": [
+        [
+          2021,
+          11,
+          24
+        ]
+      ]
+    },
+    "group-title": "In Review",
+    "reference-count": 0,
+    "publisher": "Springer Science and Business Media LLC",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              11,
+              24
+            ]
+          ],
+          "date-time": "2021-11-24T00:00:00Z",
+          "timestamp": 1637712000000
+        },
+        "content-version": "unspecified",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "accepted": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          26
+        ]
+      ]
+    },
+    "abstract": "<title>Abstract</title>\n        <p>Entanglement is a fundamental resource that allows quantum sensors to surpass the standard quantum limit set by the quantum collapse of independent atoms. Collective cavity-QED systems have succeeded in generating large amounts of directly observed entanglement involving the internal degrees of freedom of laser-cooled atomic ensembles. Here we demonstrate cavity-QED entanglement of external degrees of freedom to realize a matter-wave interferometer of 700 atoms in which each individual atom falls freely under gravity and simultaneously traverses two paths through space while also entangled with the other atoms. We demonstrate both quantum non-demolition measurements and cavity-mediated spin interactions for generating squeezed momentum states with directly observed metrological gain 3.4^{+1.1}_{-0.9} dB and 2.5^{+0.6}_{-0.6} dB below the standard quantum limit respectively. An entangled state is for the first time successfully injected into a Mach-Zehnder light-pulse interferometer with 1.7^{+0.5}_{-0.5} dB of directly observed metrological enhancement. These results open a new path for combining particle delocalization and entanglement for inertial sensors, searches for new physics, particles, and fields, future advanced gravitational wave detectors, and accessing beyond mean-field quantum many-body physics.</p>",
+    "DOI": "10.21203/rs.3.rs-1021592/v1",
+    "type": "posted-content",
+    "created": {
+      "date-parts": [
+        [
+          2021,
+          11,
+          24
+        ]
+      ],
+      "date-time": "2021-11-24T21:00:08Z",
+      "timestamp": 1637787608000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Entanglement-enhanced matter-wave interferometry in a high-finesse cavity"
+    ],
+    "prefix": "10.21203",
+    "author": [
+      {
+        "given": "James",
+        "family": "Thompson",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "JILA and University of Colorado Boulder"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7253-2880",
+        "authenticated-orcid": false,
+        "given": "Graham",
+        "family": "Greve",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Chengyi",
+        "family": "Luo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA and University of Colorado Boulder"
+          }
+        ]
+      },
+      {
+        "given": "Baochen",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA and University of Colorado Boulder"
+          }
+        ]
+      }
+    ],
+    "member": "297",
+    "link": [
+      {
+        "URL": "https://www.researchsquare.com/article/rs-1021592/v1",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.researchsquare.com/article/rs-1021592/v1.html",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          20
+        ]
+      ],
+      "date-time": "2022-10-20T07:06:37Z",
+      "timestamp": 1666249597000
+    },
+    "score": 63.065105,
+    "resource": {
+      "primary": {
+        "URL": "https://www.researchsquare.com/article/rs-1021592/v1"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          11,
+          24
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.21203/rs.3.rs-1021592/v1",
+    "relation": {
+      "is-preprint-of": [
+        {
+          "id-type": "doi",
+          "id": "10.1038/s41586-022-05197-9",
+          "asserted-by": "subject"
+        }
+      ]
+    },
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          11,
+          24
+        ]
+      ]
+    },
+    "subtype": "preprint"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          31
+        ]
+      ],
+      "date-time": "2024-10-31T01:20:04Z",
+      "timestamp": 1730337604342,
+      "version": "3.28.0"
+    },
+    "publisher-location": "Washington, D.C.",
+    "reference-count": 5,
+    "publisher": "Optica Publishing Group",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "abstract": "<jats:p>We demonstrate an entanglement-enhanced matter-wave interferometer in a high-finesse cavity with <jats:inline-formula>\n      <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" id=\"eq1\" display=\"inline\">\n\t<mml:mrow>\n\t  <mml:msubsup>\n\t    <mml:mrow>\n\t      <mml:mn>1.7</mml:mn>\n\t    </mml:mrow>\n\t    <mml:mrow>\n\t      <mml:mo>−</mml:mo>\n\t      <mml:mn>0.5</mml:mn>\n\t    </mml:mrow>\n\t    <mml:mrow>\n\t      <mml:mo>+</mml:mo>\n\t      <mml:mn>0.5</mml:mn>\n\t    </mml:mrow>\n\t  </mml:msubsup>\n\t  <mml:mtext>dB</mml:mtext>\n\t</mml:mrow>\n      </mml:math>\n    </jats:inline-formula> directly observed metrological enhancement of phase resolution. The squeezing is generated through quantum non-demolition measurement and cavity-mediated one-axis twisting dynamics.</jats:p>",
+    "DOI": "10.1364/quantum.2022.qw4c.2",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          8,
+          4
+        ]
+      ],
+      "date-time": "2022-08-04T14:59:35Z",
+      "timestamp": 1659625175000
+    },
+    "page": "QW4C.2",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Entanglement-Enhanced Matter-Wave Interferometry in a High-Finesse Cavity"
+    ],
+    "prefix": "10.1364",
+    "author": [
+      {
+        "given": "Chengyi",
+        "family": "Luo",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Graham P.",
+        "family": "Greve",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Baochen",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "285",
+    "reference": [
+      {
+        "key": "QUANTUM-2022-QW4C.2-R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "181",
+        "DOI": "10.1103/PhysRevLett.67.181",
+        "volume": "67",
+        "author": "Kasevich",
+        "year": "1991",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "QUANTUM-2022-QW4C.2-R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "3554",
+        "DOI": "10.1103/PhysRevA.47.3554",
+        "volume": "47",
+        "author": "Itano",
+        "year": "1993",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "QUANTUM-2022-QW4C.2-R3",
+        "doi-asserted-by": "crossref",
+        "first-page": "093602",
+        "DOI": "10.1103/PhysRevLett.116.093602",
+        "volume": "116",
+        "author": "Cox",
+        "year": "2016",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "QUANTUM-2022-QW4C.2-R4",
+        "doi-asserted-by": "crossref",
+        "first-page": "1552",
+        "DOI": "10.1126/science.aaf3397",
+        "volume": "352",
+        "author": "Hosten",
+        "year": "2016",
+        "journal-title": "Science"
+      },
+      {
+        "key": "QUANTUM-2022-QW4C.2-R6",
+        "doi-asserted-by": "crossref",
+        "first-page": "073602",
+        "DOI": "10.1103/PhysRevLett.104.073602",
+        "volume": "104",
+        "author": "Leroux",
+        "year": "2010",
+        "journal-title": "Phys. Rev. Lett."
+      }
+    ],
+    "event": {
+      "name": "Quantum 2.0",
+      "start": {
+        "date-parts": [
+          [
+            2022
+          ]
+        ]
+      },
+      "sponsor": [
+        "The Optical Society"
+      ],
+      "location": "Boston, MA",
+      "acronym": "QUANTUM"
+    },
+    "container-title": [
+      "Quantum 2.0 Conference and Exhibition"
+    ],
+    "link": [
+      {
+        "URL": "https://opg.optica.org/viewmedia.cfm?URI=QUANTUM-2022-QW4C.2&seq=0",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          9,
+          2
+        ]
+      ],
+      "date-time": "2022-09-02T16:59:48Z",
+      "timestamp": 1662137988000
+    },
+    "score": 57.25099,
+    "resource": {
+      "primary": {
+        "URL": "https://opg.optica.org/abstract.cfm?URI=QUANTUM-2022-QW4C.2"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "references-count": 5,
+    "URL": "https://doi.org/10.1364/quantum.2022.qw4c.2",
+    "published": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          20
+        ]
+      ],
+      "date-time": "2025-11-20T18:56:21Z",
+      "timestamp": 1763664981037,
+      "version": "3.45.0"
+    },
+    "reference-count": 61,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "7932",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              10,
+              19
+            ]
+          ],
+          "date-time": "2022-10-19T00:00:00Z",
+          "timestamp": 1666137600000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              10,
+              19
+            ]
+          ],
+          "date-time": "2022-10-19T00:00:00Z",
+          "timestamp": 1666137600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Nature"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          20
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>\n                    An ensemble of atoms can operate as a quantum sensor by placing atoms in a superposition of two different states. Upon measurement of the sensor, each atom is individually projected into one of the two states. Creating quantum correlations between the atoms, that is entangling them, could lead to resolutions surpassing the standard quantum limit\n                    <jats:sup>1–3</jats:sup>\n                     set by projections of individual atoms. Large amounts of entanglement\n                    <jats:sup>4–6</jats:sup>\n                    involving the internal degrees of freedom of laser-cooled atomic ensembles\n                    <jats:sup>4–16</jats:sup>\n                    have been generated in collective cavity quantum-electrodynamics systems, in which many atoms simultaneously interact with a single optical cavity mode. Here we report a matter-wave interferometer in a cavity quantum-electrodynamics system of 700 atoms that are entangled in their external degrees of freedom. In our system, each individual atom falls freely under gravity and simultaneously traverses two paths through space while entangled with the other atoms. We demonstrate both quantum non-demolition measurements and cavity-mediated spin interactions for generating squeezed momentum states with directly observed sensitivity\n                    <jats:inline-formula>\n                      <jats:alternatives>\n                        <jats:tex-math>$$3\\,.\\,{4}_{-0.9}^{+1.1}$$</jats:tex-math>\n                        <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                          <mml:mrow>\n                            <mml:mn>3</mml:mn>\n                            <mml:mspace/>\n                            <mml:mo>.</mml:mo>\n                            <mml:mspace/>\n                            <mml:msubsup>\n                              <mml:mrow>\n                                <mml:mn>4</mml:mn>\n                              </mml:mrow>\n                              <mml:mrow>\n                                <mml:mo>−</mml:mo>\n                                <mml:mn>0.9</mml:mn>\n                              </mml:mrow>\n                              <mml:mrow>\n                                <mml:mo>+</mml:mo>\n                                <mml:mn>1.1</mml:mn>\n                              </mml:mrow>\n                            </mml:msubsup>\n                          </mml:mrow>\n                        </mml:math>\n                      </jats:alternatives>\n                    </jats:inline-formula>\n                     dB and\n                    <jats:inline-formula>\n                      <jats:alternatives>\n                        <jats:tex-math>$$2\\,.\\,{5}_{-0.6}^{+0.6}$$</jats:tex-math>\n                        <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                          <mml:mrow>\n                            <mml:mn>2</mml:mn>\n                            <mml:mspace/>\n                            <mml:mo>.</mml:mo>\n                            <mml:mspace/>\n                            <mml:msubsup>\n                              <mml:mrow>\n                                <mml:mn>5</mml:mn>\n                              </mml:mrow>\n                              <mml:mrow>\n                                <mml:mo>−</mml:mo>\n                                <mml:mn>0.6</mml:mn>\n                              </mml:mrow>\n                              <mml:mrow>\n                                <mml:mo>+</mml:mo>\n                                <mml:mn>0.6</mml:mn>\n                              </mml:mrow>\n                            </mml:msubsup>\n                          </mml:mrow>\n                        </mml:math>\n                      </jats:alternatives>\n                    </jats:inline-formula>\n                     dB below the standard quantum limit, respectively. We successfully inject an entangled state into a Mach–Zehnder light-pulse interferometer with directly observed sensitivity\n                    <jats:inline-formula>\n                      <jats:alternatives>\n                        <jats:tex-math>$$1\\,.\\,{7}_{-0.5}^{+0.5}$$</jats:tex-math>\n                        <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                          <mml:mrow>\n                            <mml:mn>1</mml:mn>\n                            <mml:mspace/>\n                            <mml:mo>.</mml:mo>\n                            <mml:mspace/>\n                            <mml:msubsup>\n                              <mml:mrow>\n                                <mml:mn>7</mml:mn>\n                              </mml:mrow>\n                              <mml:mrow>\n                                <mml:mo>−</mml:mo>\n                                <mml:mn>0.5</mml:mn>\n                              </mml:mrow>\n                              <mml:mrow>\n                                <mml:mo>+</mml:mo>\n                                <mml:mn>0.5</mml:mn>\n                              </mml:mrow>\n                            </mml:msubsup>\n                          </mml:mrow>\n                        </mml:math>\n                      </jats:alternatives>\n                    </jats:inline-formula>\n                     dB below the standard quantum limit. The combination of particle delocalization and entanglement in our approach may influence developments of enhanced inertial sensors\n                    <jats:sup>17,18</jats:sup>\n                    , searches for new physics, particles and fields\n                    <jats:sup>19–23</jats:sup>\n                    , future advanced gravitational wave detectors\n                    <jats:sup>24,25</jats:sup>\n                    and accessing beyond mean-field quantum many-body physics\n                    <jats:sup>26–30</jats:sup>\n                    .\n                  </jats:p>",
+    "DOI": "10.1038/s41586-022-05197-9",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          19
+        ]
+      ],
+      "date-time": "2022-10-19T12:02:52Z",
+      "timestamp": 1666180972000
+    },
+    "page": "472-477",
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 86,
+    "title": [
+      "Entanglement-enhanced matter-wave interferometry in a high-finesse cavity"
+    ],
+    "prefix": "10.1038",
+    "volume": "610",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-7253-2880",
+        "authenticated-orcid": false,
+        "given": "Graham P.",
+        "family": "Greve",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-9470-5815",
+        "authenticated-orcid": false,
+        "given": "Chengyi",
+        "family": "Luo",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Baochen",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1160-5112",
+        "authenticated-orcid": false,
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          19
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "5197_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "5138",
+        "DOI": "10.1103/PhysRevA.47.5138",
+        "volume": "47",
+        "author": "M Kitagawa",
+        "year": "1993",
+        "unstructured": "Kitagawa, M. & Ueda, M. Squeezed spin states. Phys. Rev. A 47, 5138–5143 (1993).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "5197_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "3554",
+        "DOI": "10.1103/PhysRevA.47.3554",
+        "volume": "47",
+        "author": "WM Itano",
+        "year": "1993",
+        "unstructured": "Itano, W. M. et al. Quantum projection noise: population fluctuations in two-level systems. Phys. Rev. A 47, 3554–3570 (1993).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "5197_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "67",
+        "DOI": "10.1103/PhysRevA.50.67",
+        "volume": "50",
+        "author": "DJ Wineland",
+        "year": "1994",
+        "unstructured": "Wineland, D. J., Bollinger, J. J., Itano, W. M. & Heinzen, D. J. Squeezed atomic states and projection noise in spectroscopy. Phys. Rev. A 50, 67–88 (1994).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "5197_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "505",
+        "DOI": "10.1038/nature16176",
+        "volume": "529",
+        "author": "O Hosten",
+        "year": "2016",
+        "unstructured": "Hosten, O., Engelsen, N. J., Krishnakumar, R. & Kasevich, M. A. Measurement noise 100 times lower than the quantum-projection limit using entangled atoms. Nature 529, 505–508 (2016).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "5197_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "093602",
+        "DOI": "10.1103/PhysRevLett.116.093602",
+        "volume": "116",
+        "author": "KC Cox",
+        "year": "2016",
+        "unstructured": "Cox, K. C., Greve, G. P., Weiner, J. M. & Thompson, J. K. Deterministic Squeezed states with collective measurements and feedback. Phys. Rev. Lett. 116, 093602 (2016).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "925",
+        "DOI": "10.1038/s41567-022-01653-5",
+        "volume": "18",
+        "author": "S Colombo",
+        "year": "2022",
+        "unstructured": "Colombo, S. et al. Time-reversal-based quantum metrology with many-body entangled states. Nat. Phys. 18, 925–930 (2022).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "5197_CR7",
+        "doi-asserted-by": "publisher",
+        "first-page": "073604",
+        "DOI": "10.1103/PhysRevLett.104.073604",
+        "volume": "104",
+        "author": "MH Schleier-Smith",
+        "year": "2010",
+        "unstructured": "Schleier-Smith, M. H., Leroux, I. D. & Vuletić, V. States of an ensemble of two-level atoms with reduced quantum uncertainty. Phys. Rev. Lett. 104, 073604 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR8",
+        "doi-asserted-by": "publisher",
+        "first-page": "133 601",
+        "DOI": "10.1103/PhysRevLett.106.133601",
+        "volume": "106",
+        "author": "Z Chen",
+        "year": "2011",
+        "unstructured": "Chen, Z., Bohnet, J. G., Sankar, S. R., Dai, J. & Thompson, J. K. Conditional spin squeezing of a large ensemble via the vacuum Rabi splitting. Phys. Rev. Lett. 106, 133 601–133 604 (2011).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "389",
+        "DOI": "10.1038/nphys3280",
+        "volume": "11",
+        "author": "G Vasilakis",
+        "year": "2015",
+        "unstructured": "Vasilakis, G. et al. Generation of a squeezed state of an oscillator by stroboscopic back-action-evading measurement. Nat. Phys. 11, 389–392 (2015).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "5197_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "731",
+        "DOI": "10.1038/nphoton.2014.151",
+        "volume": "8",
+        "author": "JG Bohnet",
+        "year": "2014",
+        "unstructured": "Bohnet, J. G. et al. Reduced spin measurement back-action for a phase sensitivity ten times beyond the standard quantum limit. Nat. Photon. 8, 731–736 (2014).",
+        "journal-title": "Nat. Photon."
+      },
+      {
+        "key": "5197_CR11",
+        "unstructured": "Huang, M.-Z. et al. Self-amplifying spin measurement in a long-lived spin-squeezed state. Preprint at https://arxiv.org/pdf/2007.01964.pdf (2020)."
+      },
+      {
+        "key": "5197_CR12",
+        "doi-asserted-by": "publisher",
+        "first-page": "043202",
+        "DOI": "10.1103/PhysRevLett.125.043202",
+        "volume": "125",
+        "author": "BK Malia",
+        "year": "2020",
+        "unstructured": "Malia, B. K., Martínez-Rincón, J., Wu, Y., Hosten, O. & Kasevich, M. A. Free space Ramsey spectroscopy in rubidium with noise below the quantum projection limit. Phys. Rev. Lett. 125, 043202 (2020).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "250801",
+        "DOI": "10.1103/PhysRevLett.104.250801",
+        "volume": "104",
+        "author": "ID Leroux",
+        "year": "2010",
+        "unstructured": "Leroux, I. D., Schleier-Smith, M. H. & Vuletić, V. Orientation-dependent entanglement lifetime in a squeezed atomic clock. Phys. Rev. Lett. 104, 250801 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "073602",
+        "DOI": "10.1103/PhysRevLett.104.073602",
+        "volume": "104",
+        "author": "ID Leroux",
+        "year": "2010",
+        "unstructured": "Leroux, I. D., Schleier-Smith, M. H. & Vuletić, V. Implementation of cavity squeezing of a collective atomic spin. Phys. Rev. Lett. 104, 073602 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "1552",
+        "DOI": "10.1126/science.aaf3397",
+        "volume": "352",
+        "author": "O Hosten",
+        "year": "2016",
+        "unstructured": "Hosten, O., Krishnakumar, R., Engelsen, N. J. & Kasevich, M. A. Quantum phase magnification. Science 352, 1552–1555 (2016).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "5197_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "414",
+        "DOI": "10.1038/s41586-020-3006-1",
+        "volume": "588",
+        "author": "E Pedrozo-Peñafiel",
+        "year": "2020",
+        "unstructured": "Pedrozo-Peñafiel, E. et al. Entanglement on an optical atomic-clock transition. Nature 588, 414–418 (2020).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "5197_CR17",
+        "doi-asserted-by": "publisher",
+        "first-page": "177",
+        "DOI": "10.1103/PhysRevLett.67.177",
+        "volume": "67",
+        "author": "F Riehle",
+        "year": "1991",
+        "unstructured": "Riehle, F., Kisters, T., Witte, A., Helmcke, J. & Bordé, C. J. Optical Ramsey spectroscopy in a rotating frame: Sagnac effect in a matter-wave interferometer. Phys. Rev. Lett. 67, 177–180 (1991).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR18",
+        "doi-asserted-by": "publisher",
+        "first-page": "849",
+        "DOI": "10.1038/23655",
+        "volume": "400",
+        "author": "A Peters",
+        "year": "1999",
+        "unstructured": "Peters, A., Chung, K. Y. & Chu, S. Measurement of gravitational acceleration by dropping atoms. Nature 400, 849–852 (1999).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "5197_CR19",
+        "doi-asserted-by": "publisher",
+        "first-page": "849",
+        "DOI": "10.1126/science.aaa8883",
+        "volume": "349",
+        "author": "P Hamilton",
+        "year": "2015",
+        "unstructured": "Hamilton, P. et al. Atom-interferometry constraints on dark energy. Science 349, 849–851 (2015).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "5197_CR20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/ncomms15529",
+        "volume": "8",
+        "author": "G Rosi",
+        "year": "2017",
+        "unstructured": "Rosi, G. et al. Quantum test of the equivalence principle for atoms in coherent superposition of internal energy states. Nat. Commun. 8, 15529 (2017).",
+        "journal-title": "Nat. Commun."
+      },
+      {
+        "key": "5197_CR21",
+        "doi-asserted-by": "publisher",
+        "first-page": "191",
+        "DOI": "10.1126/science.aap7706",
+        "volume": "360",
+        "author": "RH Parker",
+        "year": "2018",
+        "unstructured": "Parker, R. H., Yu, C., Zhong, W., Estey, B. & Müller, H. Measurement of the fine-structure constant as a test of the Standard Model. Science 360, 191–195 (2018).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "5197_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "61",
+        "DOI": "10.1038/s41586-020-2964-7",
+        "volume": "588",
+        "author": "L Morel",
+        "year": "2020",
+        "unstructured": "Morel, L., Yao, Z., Cladé, P. & Guellati-Khélifa, S. Determination of the fine-structure constant with an accuracy of 81 parts per trillion. Nature 588, 61–65 (2020).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "5197_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "044003",
+        "DOI": "10.1088/2058-9565/abf719",
+        "volume": "6",
+        "author": "M Abe",
+        "year": "2021",
+        "unstructured": "Abe, M. et al. Matter-wave Atomic Gradiometer Interferometric Sensor (MAGIS-100). Quant. Sci. Technol. 6, 044003 (2021).",
+        "journal-title": "Quant. Sci. Technol."
+      },
+      {
+        "key": "5197_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "171102",
+        "DOI": "10.1103/PhysRevLett.110.171102",
+        "volume": "110",
+        "author": "PW Graham",
+        "year": "2013",
+        "unstructured": "Graham, P. W., Hogan, J. M., Kasevich, M. A. & Rajendran, S. New method for gravitational wave detection with atomic sensors. Phys. Rev. Lett. 110, 171102 (2013).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR25",
+        "doi-asserted-by": "publisher",
+        "first-page": "042118",
+        "DOI": "10.1103/PhysRevA.96.042118",
+        "volume": "96",
+        "author": "MA Norcia",
+        "year": "2017",
+        "unstructured": "Norcia, M. A., Cline, J. R. K. & Thompson, J. K. Role of atoms in atomic gravitational-wave detectors. Phys. Rev. A 96, 042118 (2017).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "5197_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "160404",
+        "DOI": "10.1103/PhysRevLett.123.160404",
+        "volume": "123",
+        "author": "RM Kroeze",
+        "year": "2019",
+        "unstructured": "Kroeze, R. M., Guo, Y. & Lev, B. L. Dynamical spin-orbit coupling of a quantum gas. Phys. Rev. Lett. 123, 160404 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "223602",
+        "DOI": "10.1103/PhysRevLett.120.223602",
+        "volume": "120",
+        "author": "M Landini",
+        "year": "2018",
+        "unstructured": "Landini, M. et al. Formation of a spin texture in a quantum gas coupled to a cavity. Phys. Rev. Lett. 120, 223602 (2018).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR28",
+        "doi-asserted-by": "publisher",
+        "first-page": "043602",
+        "DOI": "10.1103/PhysRevLett.127.043602",
+        "volume": "127",
+        "author": "H Keßler",
+        "year": "2021",
+        "unstructured": "Keßler, H. et al. Observation of a dissipative time crystal. Phys. Rev. Lett. 127, 043602 (2021).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR29",
+        "doi-asserted-by": "publisher",
+        "first-page": "143602",
+        "DOI": "10.1103/PhysRevLett.124.143602",
+        "volume": "124",
+        "author": "SC Schuster",
+        "year": "2020",
+        "unstructured": "Schuster, S. C., Wolf, P., Ostermann, S., Slama, S. & Zimmermann, C. Supersolid properties of a Bose-Einstein condensate in a ring resonator. Phys. Rev. Lett. 124, 143602 (2020).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR30",
+        "first-page": "031009",
+        "volume": "9",
+        "author": "B Skinner",
+        "year": "2019",
+        "unstructured": "Skinner, B., Ruhman, J. & Nahum, A. Measurement-Induced phase transitions in the dynamics of entanglement. Phys. Rev. X 9, 031009 (2019).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "5197_CR31",
+        "doi-asserted-by": "publisher",
+        "first-page": "181",
+        "DOI": "10.1103/PhysRevLett.67.181",
+        "volume": "67",
+        "author": "M Kasevich",
+        "year": "1991",
+        "unstructured": "Kasevich, M. & Chu, S. Atomic interferometry using stimulated Raman transitions. Phys. Rev. Lett. 67, 181–184 (1991).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR32",
+        "doi-asserted-by": "publisher",
+        "first-page": "1051",
+        "DOI": "10.1103/RevModPhys.81.1051",
+        "volume": "81",
+        "author": "AD Cronin",
+        "year": "2009",
+        "unstructured": "Cronin, A. D., Schmiedmayer, J. & Pritchard, D. E. Optics and interferometry with atoms and molecules. Rev. Mod. Phys. 81, 1051–1129 (2009).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "5197_CR33",
+        "doi-asserted-by": "publisher",
+        "first-page": "1216",
+        "DOI": "10.1038/nature07332",
+        "volume": "455",
+        "author": "J Esteve",
+        "year": "2008",
+        "unstructured": "Esteve, J., Gross, C., Weller, A., Giovanazzi, S. & Oberthaler, M. K. Squeezing and entanglement in a Bose-Einstein condensate. Nature 455, 1216–1219 (2008).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "5197_CR34",
+        "doi-asserted-by": "publisher",
+        "first-page": "1165",
+        "DOI": "10.1038/nature08919",
+        "volume": "464",
+        "author": "C Gross",
+        "year": "2010",
+        "unstructured": "Gross, C., Zibold, T., Nicklas, E., Estève, J. & Oberthaler, M. K. Nonlinear atom interferometer surpasses classical precision limit. Nature 464, 1165–1169 (2010).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "5197_CR35",
+        "doi-asserted-by": "publisher",
+        "first-page": "608",
+        "DOI": "10.1038/nphys1992",
+        "volume": "7",
+        "author": "R Bücker",
+        "year": "2011",
+        "unstructured": "Bücker, R. et al. Twin-atom beams. Nat. Phys. 7, 608–611 (2011).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "5197_CR36",
+        "doi-asserted-by": "publisher",
+        "first-page": "305",
+        "DOI": "10.1038/nphys2245",
+        "volume": "8",
+        "author": "CD Hamley",
+        "year": "2012",
+        "unstructured": "Hamley, C. D., Gerving, C. S., Hoang, T. M., Bookjans, E. M. & Chapman, M. S. Spin-nematic squeezed vacuum in a quantum gas. Nat. Phys. 8, 305–308 (2012).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "5197_CR37",
+        "doi-asserted-by": "publisher",
+        "first-page": "620",
+        "DOI": "10.1126/science.aag1106",
+        "volume": "355",
+        "author": "X-Y Luo",
+        "year": "2017",
+        "unstructured": "Luo, X.-Y. et al. Deterministic entanglement generation from driving through quantum phase transitions. Science 355, 620–623 (2017).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "5197_CR38",
+        "doi-asserted-by": "publisher",
+        "first-page": "416",
+        "DOI": "10.1126/science.aao2035",
+        "volume": "360",
+        "author": "K Lange",
+        "year": "2018",
+        "unstructured": "Lange, K. et al. Entanglement between two spatially separated atomic modes. Science 360, 416–418 (2018).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "5197_CR39",
+        "doi-asserted-by": "publisher",
+        "first-page": "409",
+        "DOI": "10.1126/science.aao1850",
+        "volume": "360",
+        "author": "M Fadel",
+        "year": "2018",
+        "unstructured": "Fadel, M., Zibold, T., Décamps, B. & Treutlein, P. Spatial entanglement patterns and Einstein-Podolsky-Rosen steering in Bose-Einstein condensates. Science 360, 409–413 (2018).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "5197_CR40",
+        "doi-asserted-by": "publisher",
+        "first-page": "639",
+        "DOI": "10.1038/nature04251",
+        "volume": "438",
+        "author": "D Leibfried",
+        "year": "2005",
+        "unstructured": "Leibfried, D. et al. Creation of a six-atom ‘Schrödinger cat’ state. Nature 438, 639–642 (2005).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "5197_CR41",
+        "doi-asserted-by": "publisher",
+        "first-page": "130506",
+        "DOI": "10.1103/PhysRevLett.106.130506",
+        "volume": "106",
+        "author": "T Monz",
+        "year": "2011",
+        "unstructured": "Monz, T. et al. 14-Qubit entanglement: creation and coherence. Phys. Rev. Lett. 106, 130506 (2011).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR42",
+        "doi-asserted-by": "publisher",
+        "first-page": "140402",
+        "DOI": "10.1103/PhysRevLett.127.140402",
+        "volume": "127",
+        "author": "F Anders",
+        "year": "2021",
+        "unstructured": "Anders, F. et al. Momentum entanglement for atom interferometry. Phys. Rev. Lett. 127, 140402 (2021).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR43",
+        "doi-asserted-by": "publisher",
+        "first-page": "021804",
+        "DOI": "10.1103/PhysRevA.81.021804",
+        "volume": "81",
+        "author": "MH Schleier-Smith",
+        "year": "2010",
+        "unstructured": "Schleier-Smith, M. H., Leroux, I. D. & Vuletić, V. Squeezing the collective spin of a dilute atomic ensemble by cavity feedback. Phys. Rev. A 81, 021804 (2010).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "5197_CR44",
+        "doi-asserted-by": "publisher",
+        "first-page": "223203",
+        "DOI": "10.1103/PhysRevLett.122.223203",
+        "volume": "122",
+        "author": "B Braverman",
+        "year": "2019",
+        "unstructured": "Braverman, B. et al. Near-unitary spin squeezing in 171Yb. Phys. Rev. Lett. 122, 223203 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR45",
+        "doi-asserted-by": "publisher",
+        "first-page": "045010",
+        "DOI": "10.1088/2058-9565/ab455d",
+        "volume": "4",
+        "author": "A Shankar",
+        "year": "2019",
+        "unstructured": "Shankar, A., Salvi, L., Chiofalo, M. L., Poli, N. & Holland, M. J. Squeezed state metrology with Bragg interferometers operating in a cavity. Quant. Sci. Technol. 4, 045010 (2019).",
+        "journal-title": "Quant. Sci. Technol."
+      },
+      {
+        "key": "5197_CR46",
+        "doi-asserted-by": "publisher",
+        "first-page": "033601",
+        "DOI": "10.1103/PhysRevLett.120.033601",
+        "volume": "120",
+        "author": "L Salvi",
+        "year": "2018",
+        "unstructured": "Salvi, L., Poli, N., Vuletić, V. & Tino, G. M. Squeezing on momentum states for atom interferometry. Phys. Rev. Lett. 120, 033601 (2018).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR47",
+        "doi-asserted-by": "publisher",
+        "first-page": "043837",
+        "DOI": "10.1103/PhysRevA.89.043837",
+        "volume": "89",
+        "author": "Z Chen",
+        "year": "2014",
+        "unstructured": "Chen, Z., Bohnet, J. G., Weiner, J. M., Cox, K. C. & Thompson, J. K. Cavity-aided nondemolition measurements for atom counting and spin squeezing. Phys. Rev. A 89, 043837 (2014).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "5197_CR48",
+        "doi-asserted-by": "publisher",
+        "first-page": "093021",
+        "DOI": "10.1088/1367-2630/aa8438",
+        "volume": "19",
+        "author": "J Borregaard",
+        "year": "2017",
+        "unstructured": "Borregaard, J., Davis, E. J., Bentsen, G. S., Schleier-Smith, M. H. & Sørensen, A. S. One- and two-axis squeezing of atomic ensembles in optical cavities. New J. Phys. 19, 093021 (2017).",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "5197_CR49",
+        "doi-asserted-by": "publisher",
+        "first-page": "100405",
+        "DOI": "10.1103/PhysRevLett.114.100405",
+        "volume": "114",
+        "author": "P Hamilton",
+        "year": "2015",
+        "unstructured": "Hamilton, P. et al. Atom interferometry in an optical cavity. Phys. Rev. Lett. 114, 100405 (2015).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR50",
+        "doi-asserted-by": "publisher",
+        "first-page": "745",
+        "DOI": "10.1126/science.aay6428",
+        "volume": "366",
+        "author": "V Xu",
+        "year": "2019",
+        "unstructured": "Xu, V. et al. Probing gravity by holding atoms for 20 seconds. Science 366, 745–749 (2019).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "5197_CR51",
+        "doi-asserted-by": "publisher",
+        "first-page": "061601",
+        "DOI": "10.1103/PhysRevA.94.061601",
+        "volume": "94",
+        "author": "KC Cox",
+        "year": "2016",
+        "unstructured": "Cox, K. C., Greve, G. P., Wu, B. & Thompson, J. K. Spatially homogeneous entanglement for matter-wave interferometry created with time-averaged measurements. Phys. Rev. A 94, 061601 (2016).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "5197_CR52",
+        "doi-asserted-by": "publisher",
+        "first-page": "033625",
+        "DOI": "10.1103/PhysRevA.91.033625",
+        "volume": "91",
+        "author": "Y-L Zhang",
+        "year": "2015",
+        "unstructured": "Zhang, Y.-L., Zou, C.-L., Zou, X.-B., Jiang, L. & Guo, G.-C. Detuning-enhanced cavity spin squeezing. Phys. Rev. A 91, 033625 (2015).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "5197_CR53",
+        "doi-asserted-by": "publisher",
+        "first-page": "090405",
+        "DOI": "10.1103/PhysRevLett.94.090405",
+        "volume": "94",
+        "author": "Y-J Wang",
+        "year": "2005",
+        "unstructured": "Wang, Y.-J. et al. Atom Michelson interferometer on a chip using a Bose-Einstein condensate. Phys. Rev. Lett. 94, 090405 (2005).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR54",
+        "doi-asserted-by": "publisher",
+        "first-page": "030407",
+        "DOI": "10.1103/PhysRevLett.98.030407",
+        "volume": "98",
+        "author": "G-B Jo",
+        "year": "2007",
+        "unstructured": "Jo, G.-B. et al. Long phase coherence time and number squeezing of two Bose-Einstein condensates on an atom chip. Phys. Rev. Lett. 98, 030407 (2007).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR55",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41467-021-22823-8",
+        "volume": "12",
+        "author": "M Gebbe",
+        "year": "2021",
+        "unstructured": "Gebbe, M. et al. Twin-lattice atom interferometry. Nat. Commun. 12, 2544 (2021).",
+        "journal-title": "Nat. Commun."
+      },
+      {
+        "key": "5197_CR56",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41598-018-32165-z",
+        "volume": "8",
+        "author": "B Canuel",
+        "year": "2018",
+        "unstructured": "Canuel, B. et al. Exploring gravity with the MIGA large scale atom interferometer. Sci. Rep. 8, 14064 (2018).",
+        "journal-title": "Sci. Rep."
+      },
+      {
+        "key": "5197_CR57",
+        "doi-asserted-by": "publisher",
+        "first-page": "040402",
+        "DOI": "10.1103/PhysRevLett.121.040402",
+        "volume": "121",
+        "author": "M Jaffe",
+        "year": "2018",
+        "unstructured": "Jaffe, M., Xu, V., Haslinger, P., Müller, H. & Hamilton, P. Efficient adiabatic spin-dependent kicks in an atom interferometer. Phys. Rev. Lett. 121, 040402 (2018).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR58",
+        "doi-asserted-by": "publisher",
+        "first-page": "5768",
+        "DOI": "10.1103/PhysRevLett.81.5768",
+        "volume": "81",
+        "author": "V Vuletić",
+        "year": "1998",
+        "unstructured": "Vuletić, V., Chin, C., Kerman, A. J. & Chu, S. Degenerate Raman sideband cooling of trapped cesium atoms at very high atomic densities. Phys. Rev. Lett. 81, 5768–5771 (1998).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "5197_CR59",
+        "doi-asserted-by": "publisher",
+        "first-page": "37714–37720",
+        "DOI": "10.1364/OE.27.037714",
+        "volume": "27",
+        "author": "M Yamoah",
+        "year": "2019",
+        "unstructured": "Yamoah, M. et al. Robust kHz-linewidth distributed Bragg reflector laser with optoelectronic feedback. Opt. Express 27, 37714–37720 (2019).",
+        "journal-title": "Opt. Express"
+      },
+      {
+        "key": "5197_CR60",
+        "doi-asserted-by": "publisher",
+        "first-page": "044701",
+        "DOI": "10.1063/1.3700247",
+        "volume": "83",
+        "author": "Z Chen",
+        "year": "2012",
+        "unstructured": "Chen, Z., Bohnet, J. G., Weiner, J. M. & Thompson, J. K. A low phase noise microwave source for atomic spin squeezing experiments in 87Rb. Rev. Sci. Instrum. 83, 044701 (2012).",
+        "journal-title": "Rev. Sci. Instrum."
+      },
+      {
+        "key": "5197_CR61",
+        "doi-asserted-by": "publisher",
+        "first-page": "2297",
+        "DOI": "10.1103/PhysRevLett.66.2297",
+        "volume": "66",
+        "author": "M Kasevich",
+        "year": "1991",
+        "unstructured": "Kasevich, M. et al. Atomic velocity selection using stimulated Raman transitions. Phys. Rev. Lett. 66, 2297–2300 (1991).",
+        "journal-title": "Phys. Rev. Lett."
+      }
+    ],
+    "updated-by": [
+      {
+        "updated": {
+          "date-parts": [
+            [
+              2022,
+              12,
+              6
+            ]
+          ],
+          "date-time": "2022-12-06T00:00:00Z",
+          "timestamp": 1670284800000
+        },
+        "DOI": "10.1038/s41586-022-05582-4",
+        "type": "correction",
+        "source": "publisher",
+        "label": "Correction"
+      }
+    ],
+    "container-title": [
+      "Nature"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-05197-9.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-05197-9",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-05197-9.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          7
+        ]
+      ],
+      "date-time": "2022-12-07T03:03:31Z",
+      "timestamp": 1670382211000
+    },
+    "score": 54.771393,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/s41586-022-05197-9"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          19
+        ]
+      ]
+    },
+    "references-count": 61,
+    "journal-issue": {
+      "issue": "7932",
+      "published-print": {
+        "date-parts": [
+          [
+            2022,
+            10,
+            20
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "5197"
+    ],
+    "URL": "https://doi.org/10.1038/s41586-022-05197-9",
+    "ISSN": [
+      "0028-0836",
+      "1476-4687"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0028-0836"
+      },
+      {
+        "type": "electronic",
+        "value": "1476-4687"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          19
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "26 October 2021",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "5 August 2022",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "19 October 2022",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "6 December 2022",
+        "order": 4,
+        "name": "change_date",
+        "label": "Change Date",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "Correction",
+        "order": 5,
+        "name": "change_type",
+        "label": "Change Type",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "A Correction to this paper has been published:",
+        "order": 6,
+        "name": "change_details",
+        "label": "Change Details",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "https://doi.org/10.1038/s41586-022-05582-4",
+        "URL": "https://doi.org/10.1038/s41586-022-05582-4",
+        "order": 7,
+        "name": "change_details",
+        "label": "Change Details",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "The authors declare no competing interests.",
+        "order": 1,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Competing interests"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          2,
+          21
+        ]
+      ],
+      "date-time": "2025-02-21T07:58:06Z",
+      "timestamp": 1740124686872,
+      "version": "3.37.3"
+    },
+    "update-to": [
+      {
+        "updated": {
+          "date-parts": [
+            [
+              2022,
+              12,
+              6
+            ]
+          ],
+          "date-time": "2022-12-06T00:00:00Z",
+          "timestamp": 1670284800000
+        },
+        "DOI": "10.1038/s41586-022-05197-9",
+        "type": "correction",
+        "source": "publisher",
+        "label": "Correction"
+      }
+    ],
+    "reference-count": 0,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "7941",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              12,
+              6
+            ]
+          ],
+          "date-time": "2022-12-06T00:00:00Z",
+          "timestamp": 1670284800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              12,
+              6
+            ]
+          ],
+          "date-time": "2022-12-06T00:00:00Z",
+          "timestamp": 1670284800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Nature"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          22
+        ]
+      ]
+    },
+    "DOI": "10.1038/s41586-022-05582-4",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          6
+        ]
+      ],
+      "date-time": "2022-12-06T20:46:38Z",
+      "timestamp": 1670359598000
+    },
+    "page": "E23-E23",
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Publisher Correction: Entanglement-enhanced matter-wave interferometry in a high-finesse cavity"
+    ],
+    "prefix": "10.1038",
+    "volume": "612",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-7253-2880",
+        "authenticated-orcid": false,
+        "given": "Graham P.",
+        "family": "Greve",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-9470-5815",
+        "authenticated-orcid": false,
+        "given": "Chengyi",
+        "family": "Luo",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Baochen",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1160-5112",
+        "authenticated-orcid": false,
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          6
+        ]
+      ]
+    },
+    "container-title": [
+      "Nature"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-05582-4.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-05582-4",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-022-05582-4.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          21
+        ]
+      ],
+      "date-time": "2022-12-21T13:13:27Z",
+      "timestamp": 1671628407000
+    },
+    "score": 53.853367,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/s41586-022-05582-4"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          6
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "7941",
+      "published-print": {
+        "date-parts": [
+          [
+            2022,
+            12,
+            22
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "5582"
+    ],
+    "URL": "https://doi.org/10.1038/s41586-022-05582-4",
+    "ISSN": [
+      "0028-0836",
+      "1476-4687"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0028-0836"
+      },
+      {
+        "type": "electronic",
+        "value": "1476-4687"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          6
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "6 December 2022",
+        "order": 1,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2023,
+          5,
+          5
+        ]
+      ],
+      "date-time": "2023-05-05T04:18:04Z",
+      "timestamp": 1683260284013
+    },
+    "posted": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "reference-count": 0,
+    "publisher": "Morressier",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "DOI": "10.26226/m.6275705866d5dcf63a31142c",
+    "type": "posted-content",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ],
+      "date-time": "2022-05-25T19:12:35Z",
+      "timestamp": 1653505955000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Entanglement-Enhanced Matter-Wave Interferometer"
+    ],
+    "prefix": "10.26226",
+    "author": [
+      {
+        "given": "Chengyi",
+        "family": "Luo",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Graham",
+        "family": "Greve",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Baochen",
+        "family": "Wu",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Vanessa",
+        "family": "Koh",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "James",
+        "family": "Thompson",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "22980",
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          5,
+          4
+        ]
+      ],
+      "date-time": "2023-05-04T14:55:44Z",
+      "timestamp": 1683212144000
+    },
+    "score": 41.089138,
+    "resource": {
+      "primary": {
+        "URL": "https://www.morressier.com/article/6275705866d5dcf63a31142c"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.26226/m.6275705866d5dcf63a31142c",
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "subtype": "other"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          8,
+          2
+        ]
+      ],
+      "date-time": "2025-08-02T04:46:30Z",
+      "timestamp": 1754109990218,
+      "version": "3.37.3"
+    },
+    "reference-count": 35,
+    "publisher": "American Physical Society (APS)",
+    "issue": "6",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2016,
+              12,
+              2
+            ]
+          ],
+          "date-time": "2016-12-02T00:00:00Z",
+          "timestamp": 1480636800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://link.aps.org/licenses/aps-default-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2017,
+              12,
+              2
+            ]
+          ],
+          "date-time": "2017-12-02T00:00:00Z",
+          "timestamp": 1512172800000
+        },
+        "content-version": "am",
+        "delay-in-days": 365,
+        "URL": "http://link.aps.org/licenses/aps-default-accepted-manuscript-license"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000161",
+        "name": "National Institute of Standards and Technology",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000161",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000185",
+        "name": "Defense Advanced Research Projects Agency",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000185",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000183",
+        "name": "Army Research Office",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000183",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1125844"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. A"
+    ],
+    "DOI": "10.1103/physreva.94.061601",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2016,
+          12,
+          2
+        ]
+      ],
+      "date-time": "2016-12-02T17:08:24Z",
+      "timestamp": 1480698504000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 16,
+    "title": [
+      "Spatially homogeneous entanglement for matter-wave interferometry created with time-averaged measurements"
+    ],
+    "prefix": "10.1103",
+    "volume": "94",
+    "author": [
+      {
+        "given": "Kevin C.",
+        "family": "Cox",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Graham P.",
+        "family": "Greve",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Baochen",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2016,
+          12,
+          2
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevA.94.061601Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.47.3554"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.116.093602"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature16176"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/ncomms7896"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1240420"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2015.5"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.93.023804"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.93.021404"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0031-8949/91/5/053006"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature13433"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.112.203002"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevD.88.116005"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aaa8883"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.92.063816"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/13/6/065021"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.89.043837"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OL.39.004005"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature08919"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.0901550106"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.113.093601"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.113.103004"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys2245"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.46.R6797"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature16155"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.114.100405"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.94.090405"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.99.173201"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/17/8/083022"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.99.083001"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.75.051405"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.073604"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2014.151"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.073602"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.133601"
+      },
+      {
+        "key": "PhysRevA.94.061601Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.99.093902"
+      }
+    ],
+    "container-title": [
+      "Physical Review A"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/accepted/10.1103/PhysRevA.94.061601",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "unspecified"
+      },
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevA.94.061601",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevA.94.061601/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          4,
+          6
+        ]
+      ],
+      "date-time": "2017-04-06T10:40:57Z",
+      "timestamp": 1491475257000
+    },
+    "score": 36.11722,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevA.94.061601"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2016,
+          12,
+          2
+        ]
+      ]
+    },
+    "references-count": 35,
+    "journal-issue": {
+      "issue": "6",
+      "published-print": {
+        "date-parts": [
+          [
+            2016,
+            12
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physreva.94.061601",
+    "ISSN": [
+      "2469-9926",
+      "2469-9934"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "2469-9926"
+      },
+      {
+        "type": "electronic",
+        "value": "2469-9934"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2016,
+          12,
+          2
+        ]
+      ]
+    },
+    "article-number": "061601"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          31
+        ]
+      ],
+      "date-time": "2024-10-31T01:21:42Z",
+      "timestamp": 1730337702038,
+      "version": "3.28.0"
+    },
+    "publisher-location": "Washington, D.C.",
+    "reference-count": 6,
+    "publisher": "Optica Publishing Group",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "abstract": "<jats:p>An entanglement-enhanced matter-wave interferometer is demonstrated in a high-finessecavity with \n1.7<jats:sub>−0.5</jats:sub><jats:sup>+0.5</jats:sup> dB directly observed phase resolution below the standard quantum limit. By exploiting the interaction between matter-wave and cavity, we also demonstrate a cavity-medicated momentum exchange interaction.</jats:p>",
+    "DOI": "10.1364/quantum.2023.qtu4b.3",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T14:04:25Z",
+      "timestamp": 1693922665000
+    },
+    "page": "QTu4B.3",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Squeezed Matter-Wave Interferometer and Momentum Exchange Interaction in a High-Finesse Cavity"
+    ],
+    "prefix": "10.1364",
+    "author": [
+      {
+        "given": "Chengyi",
+        "family": "Luo",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Graham P.",
+        "family": "Greve",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Vanessa P.",
+        "family": "Koh",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Baochen",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Haoqing",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "John D.",
+        "family": "Wilson",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Anjun",
+        "family": "Chu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Murray J.",
+        "family": "Holland",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Ana Maria",
+        "family": "Rey",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "285",
+    "reference": [
+      {
+        "key": "QUANTUM-2023-QTu4B.3-R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "181",
+        "DOI": "10.1103/PhysRevLett.67.181",
+        "volume": "67",
+        "author": "Kasevich",
+        "year": "1991",
+        "journal-title": "Phys. Rev. Lett"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.3-R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "3554",
+        "DOI": "10.1103/PhysRevA.47.3554",
+        "volume": "47",
+        "author": "Itano",
+        "year": "1993",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.3-R3",
+        "doi-asserted-by": "crossref",
+        "first-page": "093602",
+        "DOI": "10.1103/PhysRevLett.116.093602",
+        "volume": "116",
+        "author": "Cox",
+        "year": "2016",
+        "journal-title": "Phys. Rev. Lett"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.3-R4",
+        "doi-asserted-by": "crossref",
+        "first-page": "472",
+        "DOI": "10.1038/s41586-022-05197-9",
+        "volume": "610",
+        "author": "Graham P Greve",
+        "year": "2022",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.3-R5",
+        "doi-asserted-by": "crossref",
+        "first-page": "259",
+        "DOI": "10.1126/science.aar3102",
+        "volume": "361",
+        "author": "Norcia",
+        "year": "2018",
+        "journal-title": "Science"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.3-R6",
+        "doi-asserted-by": "crossref",
+        "first-page": "010405",
+        "DOI": "10.1103/PhysRevLett.122.010405",
+        "volume": "122",
+        "author": "Davis",
+        "year": "2019",
+        "journal-title": "Physical review letters"
+      }
+    ],
+    "event": {
+      "name": "Quantum 2.0",
+      "start": {
+        "date-parts": [
+          [
+            2023
+          ]
+        ]
+      },
+      "sponsor": [
+        "The Optical Society"
+      ],
+      "location": "Denver, Colorado",
+      "acronym": "QUANTUM"
+    },
+    "container-title": [
+      "Optica Quantum 2.0 Conference and Exhibition"
+    ],
+    "link": [
+      {
+        "URL": "https://opg.optica.org/viewmedia.cfm?URI=QUANTUM-2023-QTu4B.3&seq=0",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T14:04:28Z",
+      "timestamp": 1693922668000
+    },
+    "score": 24.53263,
+    "resource": {
+      "primary": {
+        "URL": "https://opg.optica.org/abstract.cfm?URI=QUANTUM-2023-QTu4B.3"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "references-count": 6,
+    "URL": "https://doi.org/10.1364/quantum.2023.qtu4b.3",
+    "published": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          2
+        ]
+      ],
+      "date-time": "2025-10-02T23:29:42Z",
+      "timestamp": 1759447782237,
+      "version": "3.41.2"
+    },
+    "reference-count": 12,
+    "publisher": "AIP Publishing",
+    "issue": "9",
+    "content-domain": {
+      "domain": [
+        "pubs.aip.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2009,
+          3,
+          2
+        ]
+      ]
+    },
+    "abstract": "<jats:p>We have experimentally investigated self-mixing interference produced by the feedback of light from a polymer micrometer-sized cantilever into a vertical-cavity surface-emitting laser for sensing applications. In particular we have investigated how the visibility of the optical output power and the junction voltage depends on the laser injection current and the distance to the cantilever. The highest power visibility obtained from cantilevers without reflective coatings was ∼60%, resulting in a very high sensitivity of 45 mV/nm with a noise floor below 1.2 mV. Different detection schemes are discussed.</jats:p>",
+    "DOI": "10.1063/1.3086893",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2009,
+          3,
+          4
+        ]
+      ],
+      "date-time": "2009-03-04T01:25:52Z",
+      "timestamp": 1236129952000
+    },
+    "update-policy": "https://doi.org/10.1063/aip-crossmark-policy-page",
+    "source": "Crossref",
+    "is-referenced-by-count": 20,
+    "title": [
+      "Self-mixing interferometry in vertical-cavity surface-emitting lasers for nanomechanical cantilever sensing"
+    ],
+    "prefix": "10.1063",
+    "volume": "94",
+    "author": [
+      {
+        "given": "David",
+        "family": "Larsson",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Technical University of Denmark 1 Department of Photonics Engineering, , Ørsteds Plads, DK 2800 Kgs Lyngby, Denmark"
+          }
+        ]
+      },
+      {
+        "given": "Anders",
+        "family": "Greve",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Technical University of Denmark 2 Department of Micro and Nanotechnology, , Ørsteds Plads, DK 2800 Kgs Lyngby, Denmark"
+          }
+        ]
+      },
+      {
+        "given": "Jørn M.",
+        "family": "Hvam",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Technical University of Denmark 1 Department of Photonics Engineering, , Ørsteds Plads, DK 2800 Kgs Lyngby, Denmark"
+          }
+        ]
+      },
+      {
+        "given": "Anja",
+        "family": "Boisen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Technical University of Denmark 2 Department of Micro and Nanotechnology, , Ørsteds Plads, DK 2800 Kgs Lyngby, Denmark"
+          }
+        ]
+      },
+      {
+        "given": "Kresten",
+        "family": "Yvind",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Technical University of Denmark 1 Department of Photonics Engineering, , Ørsteds Plads, DK 2800 Kgs Lyngby, Denmark"
+          }
+        ]
+      }
+    ],
+    "member": "317",
+    "published-online": {
+      "date-parts": [
+        [
+          2009,
+          3,
+          3
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "2023080108152428300_c1",
+        "first-page": "4474",
+        "volume": "27",
+        "year": "1988",
+        "journal-title": "Appl. Opt."
+      },
+      {
+        "key": "2023080108152428300_c2",
+        "doi-asserted-by": "publisher",
+        "first-page": "1577",
+        "DOI": "10.1109/50.320940",
+        "volume": "12",
+        "year": "1994",
+        "journal-title": "J. Lightwave Technol."
+      },
+      {
+        "key": "2023080108152428300_c3",
+        "doi-asserted-by": "publisher",
+        "first-page": "1643",
+        "DOI": "10.1109/3.970912",
+        "volume": "37",
+        "year": "2001",
+        "journal-title": "IEEE J. Quantum Electron."
+      },
+      {
+        "key": "2023080108152428300_c4",
+        "doi-asserted-by": "publisher",
+        "first-page": "102",
+        "DOI": "10.1109/JQE.2005.861623",
+        "volume": "42",
+        "year": "2006",
+        "journal-title": "IEEE J. Quantum Electron."
+      },
+      {
+        "key": "2023080108152428300_c5",
+        "doi-asserted-by": "crossref",
+        "first-page": "113",
+        "DOI": "10.1016/S0924-4247(00)00478-7",
+        "volume": "87",
+        "year": "2001",
+        "journal-title": "Sens. Actuators, A"
+      },
+      {
+        "key": "2023080108152428300_c6",
+        "doi-asserted-by": "publisher",
+        "first-page": "3396",
+        "DOI": "10.1364/OE.14.003396",
+        "volume": "14",
+        "year": "2006",
+        "journal-title": "Opt. Express"
+      },
+      {
+        "key": "2023080108152428300_c7",
+        "doi-asserted-by": "publisher",
+        "first-page": "115",
+        "DOI": "10.1016/S0925-4005(01)00856-5",
+        "volume": "79",
+        "year": "2001",
+        "journal-title": "Sens. Actuators B"
+      },
+      {
+        "key": "2023080108152428300_c8",
+        "doi-asserted-by": "publisher",
+        "first-page": "113901",
+        "DOI": "10.1063/1.2187437",
+        "volume": "88",
+        "year": "2006",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2023080108152428300_c9",
+        "doi-asserted-by": "publisher",
+        "first-page": "1621",
+        "DOI": "10.1016/j.mee.2006.01.175",
+        "volume": "83",
+        "year": "2006",
+        "journal-title": "Microelectron. Eng."
+      },
+      {
+        "key": "2023080108152428300_c10"
+      },
+      {
+        "key": "2023080108152428300_c11",
+        "doi-asserted-by": "publisher",
+        "first-page": "416",
+        "DOI": "10.1109/2944.605687",
+        "volume": "3",
+        "year": "1997",
+        "journal-title": "IEEE J. Sel. Top. Quantum Electron."
+      },
+      {
+        "key": "2023080108152428300_c12",
+        "first-page": "78",
+        "volume-title": "Diode Lasers and Photonic Integrated Circuits",
+        "year": "1995",
+        "edition": "2nd ed."
+      }
+    ],
+    "container-title": [
+      "Applied Physics Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://pubs.aip.org/aip/apl/article-pdf/doi/10.1063/1.3086893/16686412/091103_1_online.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://pubs.aip.org/aip/apl/article-pdf/doi/10.1063/1.3086893/16686412/091103_1_online.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          1
+        ]
+      ],
+      "date-time": "2023-08-01T08:18:52Z",
+      "timestamp": 1690877932000
+    },
+    "score": 24.401073,
+    "resource": {
+      "primary": {
+        "URL": "https://pubs.aip.org/apl/article/94/9/091103/923344/Self-mixing-interferometry-in-vertical-cavity"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2009,
+          3,
+          2
+        ]
+      ]
+    },
+    "references-count": 12,
+    "journal-issue": {
+      "issue": "9",
+      "published-print": {
+        "date-parts": [
+          [
+            2009,
+            3,
+            2
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1063/1.3086893",
+    "ISSN": [
+      "0003-6951",
+      "1077-3118"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0003-6951"
+      },
+      {
+        "type": "electronic",
+        "value": "1077-3118"
+      }
+    ],
+    "published-other": {
+      "date-parts": [
+        [
+          2009,
+          3,
+          2
+        ]
+      ]
+    },
+    "published": {
+      "date-parts": [
+        [
+          2009,
+          3,
+          2
+        ]
+      ]
+    },
+    "article-number": "091103"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          27
+        ]
+      ],
+      "date-time": "2025-03-27T03:00:30Z",
+      "timestamp": 1743044430483,
+      "version": "3.40.3"
+    },
+    "publisher-location": "Heidelberg",
+    "reference-count": 27,
+    "publisher": "Springer International Publishing",
+    "isbn-type": [
+      {
+        "type": "print",
+        "value": "9783319000732"
+      },
+      {
+        "type": "electronic",
+        "value": "9783319000749"
+      }
+    ],
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2013,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2013-01-01T00:00:00Z",
+          "timestamp": 1356998400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2013,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2013-01-01T00:00:00Z",
+          "timestamp": 1356998400000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2013
+        ]
+      ]
+    },
+    "DOI": "10.1007/978-3-319-00074-9_7",
+    "type": "book-chapter",
+    "created": {
+      "date-parts": [
+        [
+          2013,
+          4,
+          15
+        ]
+      ],
+      "date-time": "2013-04-15T23:35:45Z",
+      "timestamp": 1366068945000
+    },
+    "page": "99-117",
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Entanglement Between a Single Quantum Dot Spin and a Single Photon"
+    ],
+    "prefix": "10.1007",
+    "author": [
+      {
+        "given": "Kristiaan",
+        "family": "De Greve",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2013,
+          3,
+          14
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "7_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "1023",
+        "DOI": "10.1038/nature07127",
+        "volume": "453",
+        "author": "H J Kimble",
+        "year": "2008",
+        "unstructured": "H. J. Kimble. The quantum internet. Nature, 453:1023, 2008.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "195",
+        "DOI": "10.1038/nature11023",
+        "volume": "484",
+        "author": "S Ritter",
+        "year": "2012",
+        "unstructured": "S. Ritter, C. Nölleke, C. Hahn, A. Reiserer, A. Neuzner, M. Uphoff, M. Mücke, E. Figueroa, J. Bochmann, and G. Rempe. An elementary quantum network of single atoms in optical cavities. Nature, 484:195, 2012.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "730",
+        "DOI": "10.1038/nature09256",
+        "volume": "466",
+        "author": "E Togan",
+        "year": "2010",
+        "unstructured": "E. Togan, Y. Chu, A.S. Trifonov, L. Jiang, J. Maze, L. Childress, M. V. G. Dutt, A. S. Sørensen, P. R. Hemmer, A. S. Zibrov, and M. D. Lukin. Quantum entanglement between an optical photon and a solid-state spin qubit. Nature, 466:730, 2010.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "153",
+        "DOI": "10.1038/nature02377",
+        "volume": "428",
+        "author": "B B Blinov",
+        "year": "2004",
+        "unstructured": "B. B. Blinov, D. L. Moehring, L.-M. Duan, and C. Monroe. Observation of entanglement between a single trapped atom and a single photon. Nature, 428:153, 2004.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "488",
+        "DOI": "10.1126/science.1143835",
+        "volume": "317",
+        "author": "T Wilk",
+        "year": "2007",
+        "unstructured": "T. Wilk, S. C. Webster, A. Kuhn, and G. Rempe. Single-atom single-photon quantum interface. Science, 317:488, 2007.",
+        "journal-title": "Science"
+      },
+      {
+        "key": "7_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "413",
+        "DOI": "10.1038/35106500",
+        "volume": "414",
+        "author": "L.-M. Duan",
+        "year": "2001",
+        "unstructured": "L.-M. Duan, M. D. Lukin, J. I. Cirac, and P. Zoller. Long-distance quantum communication with atomic ensembles and linear optics. Nature, 414:413, 2001.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR7",
+        "doi-asserted-by": "publisher",
+        "first-page": "5932",
+        "DOI": "10.1103/PhysRevLett.81.5932",
+        "volume": "81",
+        "author": "H.-J. Briegel",
+        "year": "1998",
+        "unstructured": "H.-J. Briegel, W. Dür, J. I. Cirac, and P. Zoller. Quantum repeaters: The role of imperfect local operations in quantum communication. Phys. Rev. Lett., 81:5932, 1998.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "7_CR8",
+        "doi-asserted-by": "publisher",
+        "first-page": "1098",
+        "DOI": "10.1038/nature07241",
+        "volume": "454",
+        "author": "Z.-S. Yuan",
+        "year": "2008",
+        "unstructured": "Z.-S. Yuan, Y.-A. Chen, B. Zhao, S. Chen, J. Schmiedmayer, and J.-W. Pan. Experimental demonstration of a BDCZ quantum repeater node. Nature, 454:1098, 2008.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "482",
+        "DOI": "10.1038/nature11120",
+        "volume": "485",
+        "author": "A Stute",
+        "year": "2012",
+        "unstructured": "A. Stute, B. Casabone, P. Schindler, T. Monz, P. O. Schmidt, B. Brandstätter, T. E. Northup, and R. Blatt. Tunable ion-photon entanglement in an optical cavity. Nature, 485:482, 2012.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "68",
+        "DOI": "10.1038/nature06118",
+        "volume": "449",
+        "author": "D L Moehring",
+        "year": "2007",
+        "unstructured": "D. L. Moehring et al. Entanglement of single-atom quantum bits at a distance. Nature, 449:68, 2007.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR11",
+        "doi-asserted-by": "publisher",
+        "first-page": "828",
+        "DOI": "10.1038/nature04353",
+        "volume": "438",
+        "author": "C W Chou",
+        "year": "2005",
+        "unstructured": "C. W. Chou et al. Measurement-induced entanglement for excitation stored in remote atomic ensembles. Nature, 438:828, 2005.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR12",
+        "doi-asserted-by": "publisher",
+        "first-page": "343",
+        "DOI": "10.1038/nphoton.2007.75",
+        "volume": "1",
+        "author": "H Takesue",
+        "year": "2007",
+        "unstructured": "H. Takesue, S. W. Nam, Q. Zhang, R. H. Hadfield, T. Honjo, K. Tamaki, and Y. Yamamoto. Quantum key distribution over a 40-dB channel loss using superconducting single-photon detectors. Nat. Photonics, 1:343, 2007.",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "7_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "2282",
+        "DOI": "10.1126/science.290.5500.2282",
+        "volume": "290",
+        "author": "P Michler",
+        "year": "2000",
+        "unstructured": "P. Michler, A. Kiraz, C. Becher, W. V. Schoenfeld, P. M. Petroff, L. Zhang, E. Hu, and A. Imamoglu. A quantum dot single-photon turnstile device. Science, 290:2282, 2000.",
+        "journal-title": "Science"
+      },
+      {
+        "key": "7_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "418",
+        "DOI": "10.1016/S1386-9477(02)00157-1",
+        "volume": "13",
+        "author": "E Moreau",
+        "year": "2002",
+        "unstructured": "E. Moreau, I. Robert, L. Manin, V. Thierry-Mieg, J. M. Gérard, and I. Abram. A single-mode solid-state source of single photons based on isolated quantum dots in a micropillar. Physica E, 13:418, 2002.",
+        "journal-title": "Physica E"
+      },
+      {
+        "key": "7_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "233602",
+        "DOI": "10.1103/PhysRevLett.89.233602",
+        "volume": "89",
+        "author": "M Pelton",
+        "year": "2002",
+        "unstructured": "M. Pelton, C. Santori, J. Vuckovic, B. Zhang, G. S. Solomon, J. Plant, and Y. Yamamoto. Efficient source of single photons: A single quantum dot in a micropost microcavity. Phys. Rev. Lett., 89:233602, 2002.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "7_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "421",
+        "DOI": "10.1038/nature11577",
+        "volume": "491",
+        "author": "K De Greve",
+        "year": "2012",
+        "unstructured": "K. De Greve, L. Yu, P. L. McMahon, J. S. Pelc, C. M. Natarajan, N. Y. Kim, E. Abe, S. Mier, C. Schneider, M. Kamp, S. Höfling, R. H. Hadfield, A. Forchel, M. M. Fejer, and Y. Yamamoto. Quantum-dot spin-photon entanglement via frequency downconversion to telecom wavelength. Nature, 491:421, 2012.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR17",
+        "doi-asserted-by": "publisher",
+        "first-page": "2208",
+        "DOI": "10.1103/PhysRevA.25.2208",
+        "volume": "25",
+        "author": "M O Scully",
+        "year": "1982",
+        "unstructured": "M. O. Scully and K. Drühl. Quantum eraser: A proposed photon correlation experiment concerning observation and “delayed choice” in quantum mechanics. Phys. Rev. A, 25:2208, 1982.",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "7_CR18",
+        "doi-asserted-by": "publisher",
+        "first-page": "632",
+        "DOI": "10.1038/nphoton.2010.161",
+        "volume": "4",
+        "author": "R B Patel",
+        "year": "2010",
+        "unstructured": "R. B. Patel, A. J. Bennett, I. Farrer, C. A. Nicoll, D. A. Ritchie, and A. J. Shields. Two-photon interference of the emission from electrically tunable remote quantum dots. Nat. Photonics, 4:632, 2010.",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "7_CR19",
+        "doi-asserted-by": "crossref",
+        "unstructured": "M. O. Scully and M. S. Zubairy. Quantum optics. Cambridge University Press, 1997.",
+        "DOI": "10.1017/CBO9780511813993"
+      },
+      {
+        "key": "7_CR20",
+        "unstructured": "R. W. Boyd. Nonlinear optics. Academic Press, 2003."
+      },
+      {
+        "key": "7_CR21",
+        "unstructured": "J. S. Pelc, L. Yu, K. De Greve, C. M. Natarajan, P. L. McMahon, et al. 1550-nm downconversion quantum interface for a single quantum dot spin. in preparation."
+      },
+      {
+        "key": "7_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "205324",
+        "DOI": "10.1103/PhysRevB.69.205324",
+        "volume": "69",
+        "author": "C Santori",
+        "year": "2004",
+        "unstructured": "C. Santori, D. Fattal, J. Vuckovic, G. S. Solomon, E. Waks, and Y. Yamamoto. Submicrosecond correlations in photoluminescence from InAs quantum dots. Phys. Rev. B, 69:205324, 2004.",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "7_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "218",
+        "DOI": "10.1038/nature07530",
+        "volume": "456",
+        "author": "D Press",
+        "year": "2008",
+        "unstructured": "D. Press, T. D. Ladd, B. Zhang, and Y. Yamamoto. Complete quantum control of a single quantum dot spin using ultrafast optical pulses. Nature, 456:218, 2008.",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "7_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "367",
+        "DOI": "10.1038/nphoton.2010.83",
+        "volume": "4",
+        "author": "D Press",
+        "year": "2010",
+        "unstructured": "D. Press, K. De Greve, P. McMahon, T. D. Ladd, B. Friess, C. Schneider, M. Kamp, S. Höfling, A. Forchel, and Y. Yamamoto. Ultrafast optical spin echo in a single quantum dot. Nat. Photonics, 4:367, 2010.",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "7_CR25",
+        "doi-asserted-by": "publisher",
+        "first-page": "180502",
+        "DOI": "10.1103/PhysRevLett.93.180502",
+        "volume": "93",
+        "author": "I Marcikic",
+        "year": "2004",
+        "unstructured": "I. Marcikic, H. de Riedmatten, H. Zbinden, M. Legré, and N. Gisin. Distribution of Time-Bin Entangled Qubits over 50 km of Optical Fiber. Phys. Rev. Lett., 93:180502, 2004.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "7_CR26",
+        "doi-asserted-by": "crossref",
+        "first-page": "2044",
+        "DOI": "10.1103/PhysRevLett.59.2044",
+        "volume": "59",
+        "author": "C. K. Hong",
+        "year": "1987",
+        "unstructured": "C. K. Hong, Z. Y. Ou, and Mandel L. Measurement of Subpicosecond Time Intervals between Two Photons by Interference. Phys. Rev. Lett., 59:2044, 1987.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "7_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "594",
+        "DOI": "10.1038/nature01086",
+        "volume": "419",
+        "author": "C Santori",
+        "year": "2002",
+        "unstructured": "C. Santori, D. Fattal, J. Vuckovic, G. S. Solomon, and Y. Yamamoto. Indistinguishible photons from a single-photon device. Nature, 419:594, 2002.",
+        "journal-title": "Nature"
+      }
+    ],
+    "container-title": [
+      "Springer Theses",
+      "Towards Solid-State Quantum Repeaters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.springer.com/content/pdf/10.1007/978-3-319-00074-9_7",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          2,
+          1
+        ]
+      ],
+      "date-time": "2023-02-01T02:44:12Z",
+      "timestamp": 1675219452000
+    },
+    "score": 23.742975,
+    "resource": {
+      "primary": {
+        "URL": "https://link.springer.com/10.1007/978-3-319-00074-9_7"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2013
+        ]
+      ]
+    },
+    "ISBN": [
+      "9783319000732",
+      "9783319000749"
+    ],
+    "references-count": 27,
+    "URL": "https://doi.org/10.1007/978-3-319-00074-9_7",
+    "ISSN": [
+      "2190-5053",
+      "2190-5061"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "2190-5053"
+      },
+      {
+        "type": "electronic",
+        "value": "2190-5061"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2013
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "14 March 2013",
+        "order": 1,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ChapterHistory",
+          "label": "Chapter History"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          22
+        ]
+      ],
+      "date-time": "2024-10-22T18:13:49Z",
+      "timestamp": 1729620829333,
+      "version": "3.28.0"
+    },
+    "reference-count": 46,
+    "publisher": "IEEE",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2015,
+          4
+        ]
+      ]
+    },
+    "DOI": "10.1109/fcs.2015.7138857",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2015,
+          7,
+          6
+        ]
+      ],
+      "date-time": "2015-07-06T17:12:01Z",
+      "timestamp": 1436202721000
+    },
+    "page": "351-356",
+    "source": "Crossref",
+    "is-referenced-by-count": 1,
+    "title": [
+      "Generating entanglement between atomic spins with low-noise probing of an optical cavity"
+    ],
+    "prefix": "10.1109",
+    "author": [
+      {
+        "given": "Kevin C.",
+        "family": "Cox",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Joshua M.",
+        "family": "Weiner",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Graham P.",
+        "family": "Greve",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "263",
+    "reference": [
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref39",
+        "DOI": "10.1364/OL.37.001989"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref38",
+        "DOI": "10.1103/PhysRevLett.106.133601"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref33",
+        "DOI": "10.1103/PhysRevLett.92.230801"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref32",
+        "DOI": "10.1103/PhysRevLett.104.133601"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref31",
+        "DOI": "10.1103/PhysRevLett.104.250801"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref30",
+        "DOI": "10.1103/PhysRevLett.104.073604"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref37",
+        "DOI": "10.1103/PhysRevA.89.043837"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref36",
+        "DOI": "10.1209/epl/i1998-00277-9"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref35",
+        "DOI": "10.1103/PhysRevLett.112.190403"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref34",
+        "DOI": "10.1103/PhysRevLett.111.090801"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref10",
+        "DOI": "10.1103/PhysRevLett.106.133601"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref11",
+        "DOI": "10.1073/pnas.0901550106"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref40",
+        "DOI": "10.1063/1.3700247"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref12",
+        "DOI": "10.1103/PhysRevLett.109.253605"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref13",
+        "DOI": "10.1038/nphys1992"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref14",
+        "DOI": "10.1038/nphys2245"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref15",
+        "DOI": "10.1103/PhysRevLett.111.143001"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref16",
+        "DOI": "10.1103/PhysRevLett.112.155304"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref17",
+        "DOI": "10.1103/PhysRevLett.113.103004"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref18",
+        "DOI": "10.1103/PhysRevLett.104.073602"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref19",
+        "DOI": "10.1126/science.1097576"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref4",
+        "DOI": "10.1109/JSEN.2011.2157679"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref28",
+        "DOI": "10.1038/nature08919"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref3",
+        "DOI": "10.1103/PhysRevLett.78.2046"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref27",
+        "DOI": "10.1038/nature07332"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref6",
+        "DOI": "10.1103/PhysRevLett.106.080801"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref5",
+        "DOI": "10.1103/PhysRevLett.98.070801"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref29",
+        "DOI": "10.1126/science.1208798"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref8",
+        "DOI": "10.1103/PhysRevA.47.3554"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "crossref",
+        "first-page": "269",
+        "DOI": "10.1126/science.1248213",
+        "article-title": "Order of magnitude smaller limit on the electric dipole moment of the electron",
+        "volume": "343",
+        "year": "2014",
+        "journal-title": "Science"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1126/science.1240420",
+        "article-title": "An atomic clock with 10&#x2013;18 instability",
+        "author": "hinkley",
+        "year": "2013",
+        "journal-title": "Science"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref9",
+        "DOI": "10.1038/nphoton.2014.151"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref1",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref20",
+        "DOI": "10.1038/nature04251"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref46",
+        "DOI": "10.1016/j.physletb.2009.06.011"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref45",
+        "DOI": "10.1088/0026-1394/38/1/4"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref22",
+        "DOI": "10.1103/PhysRevLett.86.5870"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref21",
+        "DOI": "10.1103/PhysRevLett.106.130506"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref24",
+        "DOI": "10.1103/PhysRevA.47.5138"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref42",
+        "DOI": "10.1109/TUFFC.2010.1457"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref23",
+        "DOI": "10.1103/PhysRevA.46.R6797"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref41",
+        "DOI": "10.1103/PhysRevA.79.061401"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref26",
+        "DOI": "10.1103/PhysRevLett.109.260502"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref44",
+        "DOI": "10.1103/PhysRevLett.114.100405"
+      },
+      {
+        "key": "ref25",
+        "doi-asserted-by": "crossref",
+        "first-page": "256",
+        "DOI": "10.1038/35005011",
+        "article-title": "Experimental entanglement of four particles",
+        "volume": "404",
+        "author": "sackett",
+        "year": "2000",
+        "journal-title": "Nature"
+      },
+      {
+        "doi-asserted-by": "publisher",
+        "key": "ref43",
+        "DOI": "10.1103/PhysRevX.5.021011"
+      }
+    ],
+    "event": {
+      "name": "2015 Joint Conference of the IEEE International Frequency Control Symposium & the European Frequency and Time Forum (FCS)",
+      "start": {
+        "date-parts": [
+          [
+            2015,
+            4,
+            12
+          ]
+        ]
+      },
+      "location": "Denver, CO, USA",
+      "end": {
+        "date-parts": [
+          [
+            2015,
+            4,
+            16
+          ]
+        ]
+      }
+    },
+    "container-title": [
+      "2015 Joint Conference of the IEEE International Frequency Control Symposium &amp; the European Frequency and Time Forum"
+    ],
+    "link": [
+      {
+        "URL": "http://xplorestaging.ieee.org/ielx7/7126857/7138776/07138857.pdf?arnumber=7138857",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          23
+        ]
+      ],
+      "date-time": "2017-06-23T11:11:54Z",
+      "timestamp": 1498216314000
+    },
+    "score": 22.644085,
+    "resource": {
+      "primary": {
+        "URL": "http://ieeexplore.ieee.org/document/7138857/"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          4
+        ]
+      ]
+    },
+    "references-count": 46,
+    "URL": "https://doi.org/10.1109/fcs.2015.7138857",
+    "published": {
+      "date-parts": [
+        [
+          2015,
+          4
+        ]
+      ]
+    }
+  }
+]

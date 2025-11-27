@@ -15,6 +15,7 @@ from langchain_ollama import OllamaLLM   # ← import LLM class
 from extract_referenced_papers import extract_referenced_papers_balanced
 from module_rag_builder import build_rag_dataset
 from build_literature_rag import build_literature_rag
+from rag_ingester import create_or_update_vectorstore
 #from slide_enrichment_module import enrich_presentation_plan
 from notion_extractor_module import extract_specialized_notions
 
@@ -83,7 +84,7 @@ if(False):
         unpaywall_email="myemail@ens.fr", # set your email here for Unpaywall
         parallel_workers=6,
     )
-if(True):
+if(False):
     build_literature_rag(
         pdf_folder=Path(output_dir_article)  /"pdfs_litterature",
         rag_folder=Path(output_dir_article)  /"RAG/literature_rag",
@@ -91,7 +92,15 @@ if(True):
         max_workers=1,          # safe default (GROBID runs locally)
         skip_existing=True      # won't reprocess if chunks already exist
     )
-
+if(True):
+    create_or_update_vectorstore(
+        data_folder="./rag_data",
+        persist_directory="./chroma_db",
+        #embedding_model_name="BAAI/bge-small-en-v1.5",   # change whenever you want "Snowflake/snowflake-arctic-embed-l"
+        embedding_model_name="Snowflake/snowflake-arctic-embed-l",
+        include_pdfs=True,
+        # chunk_size and overlap are auto-set perfectly — you almost never need to touch them
+    )
 #    build_rag_dataset(
 #        csv_input=Path(output_dir_summary) /"06_relevant_references.csv",
 #        notions_txt=Path(output_dir_summary) /"05_Extracted_notions.txt",

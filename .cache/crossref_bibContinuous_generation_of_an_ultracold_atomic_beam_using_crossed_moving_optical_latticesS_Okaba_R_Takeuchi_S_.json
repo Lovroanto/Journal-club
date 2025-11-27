@@ -1,0 +1,1119 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          30
+        ]
+      ],
+      "date-time": "2025-10-30T02:08:36Z",
+      "timestamp": 1761790116430,
+      "version": "3.37.3"
+    },
+    "reference-count": 48,
+    "publisher": "American Physical Society (APS)",
+    "issue": "3",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              3,
+              5
+            ]
+          ],
+          "date-time": "2024-03-05T00:00:00Z",
+          "timestamp": 1709596800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://link.aps.org/licenses/aps-default-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              3,
+              5
+            ]
+          ],
+          "date-time": "2025-03-05T00:00:00Z",
+          "timestamp": 1741132800000
+        },
+        "content-version": "am",
+        "delay-in-days": 365,
+        "URL": "https://link.aps.org/licenses/aps-default-accepted-manuscript-license"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100002241",
+        "name": "Japan Science and Technology Agency",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "JPMJMI18A1"
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100002241",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.aps.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Phys. Rev. Applied"
+    ],
+    "accepted": {
+      "date-parts": [
+        [
+          2024,
+          2,
+          8
+        ]
+      ]
+    },
+    "DOI": "10.1103/physrevapplied.21.034006",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ],
+      "date-time": "2024-03-05T15:57:43Z",
+      "timestamp": 1709654263000
+    },
+    "update-policy": "https://doi.org/10.1103/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 9,
+    "title": [
+      "Continuous generation of an ultracold atomic beam using crossed moving optical lattices"
+    ],
+    "prefix": "10.1103",
+    "volume": "21",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0006-5180-0368",
+        "authenticated-orcid": true,
+        "given": "Shoichi",
+        "family": "Okaba",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Applied Physics, Graduate School of Engineering, The University of Tokyo, Bunkyo-ku, Tokyo 113-8656, Japan"
+          },
+          {
+            "name": "Space-Time Engineering Research Team, RIKEN Center for Advanced Photonics, Wako, Saitama 351-0198, Japan"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0000-7400-8070",
+        "authenticated-orcid": true,
+        "given": "Ryoto",
+        "family": "Takeuchi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Applied Physics, Graduate School of Engineering, The University of Tokyo, Bunkyo-ku, Tokyo 113-8656, Japan"
+          },
+          {
+            "name": "Quantum Metrology Laboratory, RIKEN, Wako, Saitama 351-0198, Japan"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0009-5179-8255",
+        "authenticated-orcid": true,
+        "given": "Shigenori",
+        "family": "Tsuji",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Space-Time Engineering Research Team, RIKEN Center for Advanced Photonics, Wako, Saitama 351-0198, Japan"
+          },
+          {
+            "name": "JEOL Ltd., Akishima, Tokyo 196-8558, Japan"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8500-3678",
+        "authenticated-orcid": true,
+        "given": "Hidetoshi",
+        "family": "Katori",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Applied Physics, Graduate School of Engineering, The University of Tokyo, Bunkyo-ku, Tokyo 113-8656, Japan"
+          },
+          {
+            "name": "Space-Time Engineering Research Team, RIKEN Center for Advanced Photonics, Wako, Saitama 351-0198, Japan"
+          },
+          {
+            "name": "Quantum Metrology Laboratory, RIKEN, Wako, Saitama 351-0198, Japan"
+          }
+        ]
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevApplied.21.034006Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-022-04603-6"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-023-06927-3"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature15750"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aal3837"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s42254-020-0195-3"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-021-03585-1"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2015.5"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.1601231"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2016.231"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.67.181"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.67.177"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.97.240801"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature13433"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.116.183003"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.47.3554"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.170802"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/176280a0"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.123.073202"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/epl/i1998-00122-9"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.17.024061"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-022-04731-z"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc24R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/S1049-250X(08)60186-X",
+        "volume-title": "Optical Dipole Traps for Neutral Atoms",
+        "author": "R. Grimm",
+        "year": "2000"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.12.044014"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0022-3727/32/18/201"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.83.5194"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S1049-250X(02)80011-8"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.86.608"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.87.230401"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys698"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.75.3253"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/12/12/123015"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.213002"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/8/8/159"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.053001"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc37R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.101.013420"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc38R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.103.023331"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc39R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1354362"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc40R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.76.033418"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc41R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.35848/1882-0786/accb3c"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc42R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/442151a"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc43R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.35848/1882-0786/ac0e16"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc44R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.92.153004"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc45R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.223001"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc46R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/S1049-250X(08)60101-9",
+        "volume-title": "Evaporative Cooling of Trapped Atoms",
+        "author": "W. Ketterle",
+        "year": "1996"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc47R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.71.1"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc48R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.82.1116"
+      },
+      {
+        "key": "PhysRevApplied.21.034006Cc49R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.100.113002"
+      }
+    ],
+    "container-title": [
+      "Physical Review Applied"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.aps.org/accepted/10.1103/PhysRevApplied.21.034006",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "unspecified"
+      },
+      {
+        "URL": "https://link.aps.org/article/10.1103/PhysRevApplied.21.034006",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevApplied.21.034006/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          11,
+          12
+        ]
+      ],
+      "date-time": "2024-11-12T23:53:16Z",
+      "timestamp": 1731455596000
+    },
+    "score": 85.06433,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevApplied.21.034006"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ]
+    },
+    "references-count": 48,
+    "journal-issue": {
+      "issue": "3",
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            3
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevapplied.21.034006",
+    "ISSN": [
+      "2331-7019"
+    ],
+    "issn-type": [
+      {
+        "type": "electronic",
+        "value": "2331-7019"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          5
+        ]
+      ]
+    },
+    "article-number": "034006"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          19
+        ]
+      ],
+      "date-time": "2025-11-19T09:39:57Z",
+      "timestamp": 1763545197553,
+      "version": "3.37.3"
+    },
+    "reference-count": 29,
+    "publisher": "IOP Publishing",
+    "issue": "4",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2023,
+              4,
+              20
+            ]
+          ],
+          "date-time": "2023-04-20T00:00:00Z",
+          "timestamp": 1681948800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 19,
+        "URL": "http://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2023,
+              4,
+              20
+            ]
+          ],
+          "date-time": "2023-04-20T00:00:00Z",
+          "timestamp": 1681948800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 19,
+        "URL": "https://iopscience.iop.org/info/page/text-and-data-mining"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100002241",
+        "name": "Japan Science and Technology Agency",
+        "doi-asserted-by": "crossref",
+        "award": [
+          "JPMJMI18A1"
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100002241",
+            "id-type": "DOI",
+            "asserted-by": "crossref"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "iopscience.iop.org"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Appl. Phys. Express"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title>\n               <jats:p>We have demonstrated the continuous outcoupling of ultracold <jats:sup>88</jats:sup>Sr atoms using a moving optical lattice. While Sr atoms are Zeeman-slowed and magneto-optically trapped on the <jats:sup>1</jats:sup>S<jats:sub>0</jats:sub>–<jats:sup>1</jats:sup>P<jats:sub>1</jats:sub> transition, the atoms relaxed to the 5s5p <jats:sup>3</jats:sup>P<jats:sub>2</jats:sub> metastable state are magnetically trapped and Doppler cooled on the 5s5p <jats:sup>3</jats:sup>P<jats:sub>2</jats:sub>–5s4d <jats:sup>3</jats:sup>D<jats:sub>3</jats:sub> transition at 2.92 <jats:italic>μ</jats:italic>m. By optically pumping the atoms to the 5s5p <jats:sup>3</jats:sup>P<jats:sub>0</jats:sub> state, we outcouple the atoms by a moving optical lattice. Such a continuous atomic source enables superradiant lasers and the zero-dead-time operation of atom interferometers and optical lattice clocks.</jats:p>",
+    "DOI": "10.35848/1882-0786/accb3c",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          6
+        ]
+      ],
+      "date-time": "2023-04-06T22:45:43Z",
+      "timestamp": 1680821143000
+    },
+    "page": "042003",
+    "update-policy": "https://doi.org/10.1088/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 14,
+    "title": [
+      "Continuous outcoupling of ultracold strontium atoms combining three different traps"
+    ],
+    "prefix": "10.35848",
+    "volume": "16",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0000-7400-8070",
+        "authenticated-orcid": true,
+        "given": "Ryoto",
+        "family": "Takeuchi",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0002-5017-8889",
+        "authenticated-orcid": false,
+        "given": "Hayaki",
+        "family": "Chiba",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0006-5180-0368",
+        "authenticated-orcid": false,
+        "given": "Shoichi",
+        "family": "Okaba",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6066-0145",
+        "authenticated-orcid": false,
+        "given": "Masao",
+        "family": "Takamoto",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0009-5179-8255",
+        "authenticated-orcid": false,
+        "given": "Shigenori",
+        "family": "Tsuji",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8500-3678",
+        "authenticated-orcid": true,
+        "given": "Hidetoshi",
+        "family": "Katori",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "published-online": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          20
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "apexaccb3cbib1",
+        "doi-asserted-by": "publisher",
+        "first-page": "683",
+        "DOI": "10.1038/s41586-022-04731-z",
+        "volume": "606",
+        "author": "Chen",
+        "year": "2022",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "apexaccb3cbib2",
+        "doi-asserted-by": "publisher",
+        "first-page": "71",
+        "DOI": "10.1038/nature12941",
+        "volume": "506",
+        "author": "Bloom",
+        "year": "2014",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "apexaccb3cbib3",
+        "doi-asserted-by": "publisher",
+        "first-page": "185",
+        "DOI": "10.1038/nphoton.2015.5",
+        "volume": "9",
+        "author": "Ushijima",
+        "year": "2015",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "apexaccb3cbib4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.67.181",
+        "volume": "67",
+        "author": "Kasevich",
+        "year": "1991",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.aau7948",
+        "volume": "4",
+        "author": "Savoie",
+        "year": "2018",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "first-page": "p. 133",
+        "article-title": "Local oscillator induced instabilities in trapped ion frequency standards",
+        "author": "Dick",
+        "key": "apexaccb3cbib6"
+      },
+      {
+        "key": "apexaccb3cbib7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/12/6/065026",
+        "volume": "12",
+        "author": "Lodewyck",
+        "year": "2010",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "apexaccb3cbib8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.170802",
+        "volume": "111",
+        "author": "Biedermann",
+        "year": "2013",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib9",
+        "doi-asserted-by": "publisher",
+        "first-page": "48",
+        "DOI": "10.1038/nphoton.2016.231",
+        "volume": "11",
+        "author": "Schioppo",
+        "year": "2017",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "apexaccb3cbib10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.1601231",
+        "volume": "2",
+        "author": "Norcia",
+        "year": "2016",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "key": "apexaccb3cbib11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.35848/1882-0786/ac0e16",
+        "volume": "14",
+        "author": "Katori",
+        "year": "2021",
+        "journal-title": "Appl. Phys. Express"
+      },
+      {
+        "year": "1999",
+        "author": "Metcalf",
+        "key": "apexaccb3cbib12"
+      },
+      {
+        "key": "apexaccb3cbib13",
+        "doi-asserted-by": "publisher",
+        "first-page": "2194",
+        "DOI": "10.1364/JOSAB.6.002194",
+        "volume": "6",
+        "author": "Hall",
+        "year": "1989",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "apexaccb3cbib14",
+        "doi-asserted-by": "publisher",
+        "first-page": "1116",
+        "DOI": "10.1103/PhysRevLett.82.1116",
+        "volume": "82",
+        "author": "Katori",
+        "year": "1999",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib15",
+        "doi-asserted-by": "publisher",
+        "first-page": "2072",
+        "DOI": "10.1364/JOSAB.6.002072",
+        "volume": "6",
+        "author": "Weiss",
+        "year": "1989",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "apexaccb3cbib16",
+        "doi-asserted-by": "publisher",
+        "first-page": "2084",
+        "DOI": "10.1364/JOSAB.6.002084",
+        "volume": "6",
+        "author": "Lett",
+        "year": "1989",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "apexaccb3cbib17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.122.203202",
+        "volume": "122",
+        "author": "Urvoy",
+        "year": "2019",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.93.073003",
+        "volume": "93",
+        "author": "Loftus",
+        "year": "2004",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.119.223202",
+        "volume": "119",
+        "author": "Bennetts",
+        "year": "2017",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "year": "2022",
+        "author": "Cline",
+        "key": "apexaccb3cbib20"
+      },
+      {
+        "key": "apexaccb3cbib21",
+        "doi-asserted-by": "crossref",
+        "first-page": "382",
+        "DOI": "10.1063/1.1354362",
+        "volume": "551",
+        "author": "Katori",
+        "year": "2001",
+        "journal-title": "AIP Conf. Proc."
+      },
+      {
+        "key": "apexaccb3cbib22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.65.041401",
+        "volume": "65",
+        "author": "Grünert",
+        "year": "2002",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "apexaccb3cbib23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.101.013420",
+        "volume": "101",
+        "author": "Hobson",
+        "year": "2020",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "apexaccb3cbib24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.103.023331",
+        "volume": "103",
+        "author": "Akatsuka",
+        "year": "2021",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "apexaccb3cbib25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.96.103003",
+        "volume": "96",
+        "author": "Brusch",
+        "year": "2006",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.76.033418",
+        "volume": "76",
+        "author": "Yang",
+        "year": "2007",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "apexaccb3cbib27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.100.113002",
+        "volume": "100",
+        "author": "Berglund",
+        "year": "2008",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "apexaccb3cbib28",
+        "doi-asserted-by": "publisher",
+        "first-page": "483",
+        "DOI": "10.1364/JOSAB.9.000483",
+        "volume": "9",
+        "author": "Helmerson",
+        "year": "1992",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "apexaccb3cbib29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.100.042513",
+        "volume": "100",
+        "author": "Hashiguchi",
+        "year": "2019",
+        "journal-title": "Phys. Rev. A"
+      }
+    ],
+    "container-title": [
+      "Applied Physics Express"
+    ],
+    "link": [
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c",
+        "content-type": "text/html",
+        "content-version": "am",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "similarity-checking"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          21
+        ]
+      ],
+      "date-time": "2023-04-21T12:47:02Z",
+      "timestamp": 1682081222000
+    },
+    "score": 28.881039,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.35848/1882-0786/accb3c"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          1
+        ]
+      ]
+    },
+    "references-count": 29,
+    "journal-issue": {
+      "issue": "4",
+      "published-online": {
+        "date-parts": [
+          [
+            2023,
+            4,
+            20
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2023,
+            4,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.35848/1882-0786/accb3c",
+    "ISSN": [
+      "1882-0778",
+      "1882-0786"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "1882-0778"
+      },
+      {
+        "type": "electronic",
+        "value": "1882-0786"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          1
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Continuous outcoupling of ultracold strontium atoms combining three different traps",
+        "name": "article_title",
+        "label": "Article Title"
+      },
+      {
+        "value": "Applied Physics Express",
+        "name": "journal_title",
+        "label": "Journal Title"
+      },
+      {
+        "value": "paper",
+        "name": "article_type",
+        "label": "Article Type"
+      },
+      {
+        "value": "© 2023 The Author(s). Published on behalf of The Japan Society of Applied Physics by IOP Publishing Ltd.",
+        "name": "copyright_information",
+        "label": "Copyright Information"
+      },
+      {
+        "value": "2023-03-28",
+        "name": "date_received",
+        "label": "Date Received",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "2023-04-05",
+        "name": "date_accepted",
+        "label": "Date Accepted",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "2023-04-20",
+        "name": "date_epub",
+        "label": "Online publication date",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,4356 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          21
+        ]
+      ],
+      "date-time": "2025-11-21T18:18:13Z",
+      "timestamp": 1763749093392,
+      "version": "3.37.3"
+    },
+    "reference-count": 57,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              11
+            ]
+          ],
+          "date-time": "2024-01-11T00:00:00Z",
+          "timestamp": 1704931200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              11
+            ]
+          ],
+          "date-time": "2024-01-11T00:00:00Z",
+          "timestamp": 1704931200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      }
+    ],
+    "funder": [
+      {
+        "name": "NSF graduate research fellowship"
+      },
+      {
+        "DOI": "10.13039/100000185",
+        "name": "United States Department of Defense | Defense Advanced Research Projects Agency",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000185",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Nat. Phys."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          2
+        ]
+      ]
+    },
+    "DOI": "10.1038/s41567-023-02310-1",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          11
+        ]
+      ],
+      "date-time": "2024-01-11T11:02:26Z",
+      "timestamp": 1704970946000
+    },
+    "page": "208-213",
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 69,
+    "title": [
+      "Direct comparison of two spin-squeezed optical clock ensembles at the 10−17 level"
+    ],
+    "prefix": "10.1038",
+    "volume": "20",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0009-7232-2336",
+        "authenticated-orcid": false,
+        "given": "John M.",
+        "family": "Robinson",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0003-0445-1378",
+        "authenticated-orcid": false,
+        "given": "Maya",
+        "family": "Miklos",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6690-4892",
+        "authenticated-orcid": false,
+        "given": "Yee Ming",
+        "family": "Tso",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Colin J.",
+        "family": "Kennedy",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Tobias",
+        "family": "Bothwell",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1117-8616",
+        "authenticated-orcid": false,
+        "given": "Dhruv",
+        "family": "Kedar",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1160-5112",
+        "authenticated-orcid": false,
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0076-2112",
+        "authenticated-orcid": false,
+        "given": "Jun",
+        "family": "Ye",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          11
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "2310_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "065004",
+        "DOI": "10.1088/1681-7575/ab4089",
+        "volume": "56",
+        "author": "T Bothwell",
+        "year": "2019",
+        "unstructured": "Bothwell, T. et al. JILA SrI optical lattice clock with uncertainty of 2.0 × 10−18. Metrologia 56, 065004 (2019).",
+        "journal-title": "Metrologia"
+      },
+      {
+        "key": "2310_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "033201",
+        "DOI": "10.1103/PhysRevLett.123.033201",
+        "volume": "123",
+        "author": "SM Brewer",
+        "year": "2019",
+        "unstructured": "Brewer, S. M. et al. 27Al+ quantum-logic clock with a systematic uncertainty below 10−18. Phys. Rev. Lett. 123, 033201 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "87",
+        "DOI": "10.1038/s41586-018-0738-2",
+        "volume": "564",
+        "author": "WF McGrew",
+        "year": "2018",
+        "unstructured": "McGrew, W. F. et al. Atomic clock performance enabling geodesy below the centimetre level. Nature 564, 87–90 (2018).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "564",
+        "DOI": "10.1038/s41586-021-03253-4",
+        "volume": "591",
+        "author": "K Beloy",
+        "year": "2021",
+        "unstructured": "Beloy, K. et al. Frequency ratio measurements at 18-digit accuracy using an optical clock network. Nature 591, 564–569 (2021).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "093010",
+        "DOI": "10.1088/1367-2630/abaace",
+        "volume": "22",
+        "author": "BM Roberts",
+        "year": "2020",
+        "unstructured": "Roberts, B. M. et al. Search for transient variations of the fine structure constant and dark matter using fiber-linked optical atomic clocks. New J. Phys. 22, 093010 (2020).",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "2310_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "204",
+        "DOI": "10.1038/s41586-019-0972-2",
+        "volume": "567",
+        "author": "C Sanner",
+        "year": "2019",
+        "unstructured": "Sanner, C. et al. Optical clock comparison for Lorentz symmetry testing. Nature 567, 204–208 (2019).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR7",
+        "doi-asserted-by": "publisher",
+        "first-page": "201302",
+        "DOI": "10.1103/PhysRevLett.125.201302",
+        "volume": "125",
+        "author": "CJ Kennedy",
+        "year": "2020",
+        "unstructured": "Kennedy, C. J. et al. Precision metrology meets cosmology: improved constraints on ultralight dark matter from atom-cavity frequency comparisons. Phys. Rev. Lett. 125, 201302 (2020).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR8",
+        "doi-asserted-by": "publisher",
+        "first-page": "411",
+        "DOI": "10.1038/s41566-020-0619-8",
+        "volume": "14",
+        "author": "M Takamoto",
+        "year": "2020",
+        "unstructured": "Takamoto, M. et al. Test of general relativity by a pair of transportable optical lattice clocks. Nat. Photonics 14, 411–415 (2020).",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "2310_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "1067",
+        "DOI": "10.1038/s41567-022-01678-w",
+        "volume": "18",
+        "author": "N Schine",
+        "year": "2022",
+        "unstructured": "Schine, N., Young, A. W., Eckner, W. J., Martin, M. J. & Kaufman, A. M. Long-lived Bell states in an array of optical clock qubits. Nat. Phys. 18, 1067–1073 (2022).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "2310_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "420",
+        "DOI": "10.1038/s41586-021-04349-7",
+        "volume": "602",
+        "author": "T Bothwell",
+        "year": "2022",
+        "unstructured": "Bothwell, T. et al. Resolving the gravitational redshift across a millimetre-scale atomic sample. Nature 602, 420–424 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR11",
+        "doi-asserted-by": "publisher",
+        "first-page": "3554",
+        "DOI": "10.1103/PhysRevA.47.3554",
+        "volume": "47",
+        "author": "WM Itano",
+        "year": "1993",
+        "unstructured": "Itano, W. M. et al. Quantum projection noise: population fluctuations in two-level systems. Phys. Rev. A 47, 3554–3570 (1993).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2310_CR12",
+        "doi-asserted-by": "publisher",
+        "first-page": "063814",
+        "DOI": "10.1103/PhysRevA.92.063814",
+        "volume": "92",
+        "author": "A Al-Masoudi",
+        "year": "2015",
+        "unstructured": "Al-Masoudi, A., Dörscher, S., Häfner, S., Sterr, U. & Lisdat, C. Noise and instability of an optical lattice clock. Phys. Rev. A 92, 063814 (2015).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2310_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "eadc9242",
+        "DOI": "10.1126/sciadv.adc9242",
+        "volume": "8",
+        "author": "A Aeppli",
+        "year": "2022",
+        "unstructured": "Aeppli, A. et al. Hamiltonian engineering of spin-orbit-coupled fermions in a Wannier–Stark optical lattice clock. Sci. Adv. 8, eadc9242 (2022).",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "key": "2310_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "103201",
+        "DOI": "10.1103/PhysRevLett.120.103201",
+        "volume": "120",
+        "author": "GE Marti",
+        "year": "2018",
+        "unstructured": "Marti, G. E. et al. Imaging optical frequencies with 100 μHz precision and 1.1 μm resolution. Phys. Rev. Lett. 120, 103201 (2018).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "714",
+        "DOI": "10.1038/s41566-019-0493-4",
+        "volume": "13",
+        "author": "E Oelker",
+        "year": "2019",
+        "unstructured": "Oelker, E. et al. Demonstration of 4.8 × 10−17 stability at 1 s for two independent optical clocks. Nat. Photonics 13, 714–719 (2019).",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "2310_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "222",
+        "DOI": "10.1038/nphoton.2011.35",
+        "volume": "5",
+        "author": "V Giovannetti",
+        "year": "2011",
+        "unstructured": "Giovannetti, V. et al. Advances in quantum metrology. Nat. Photonics 5, 222 (2011).",
+        "journal-title": "Nat. Photonics"
+      },
+      {
+        "key": "2310_CR17",
+        "doi-asserted-by": "publisher",
+        "first-page": "021404",
+        "DOI": "10.1103/PhysRevA.93.021404",
+        "volume": "93",
+        "author": "ES Polzik",
+        "year": "2016",
+        "unstructured": "Polzik, E. S. et al. Entanglement and spin squeezing in a network of distant optical lattice clocks. Phys. Rev. A 93, 021404 (2016).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2310_CR18",
+        "doi-asserted-by": "publisher",
+        "first-page": "R6797",
+        "DOI": "10.1103/PhysRevA.46.R6797",
+        "volume": "46",
+        "author": "DJ Wineland",
+        "year": "1992",
+        "unstructured": "Wineland, D. J., Bollinger, J. J., Itano, W. M., Moore, F. L. & Heinzen, D. J. Spin squeezing and reduced quantum noise in spectroscopy. Phys. Rev. A 46, R6797–R6800 (1992).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2310_CR19",
+        "doi-asserted-by": "publisher",
+        "first-page": "5138",
+        "DOI": "10.1103/PhysRevA.47.5138",
+        "volume": "47",
+        "author": "M Kitagawa",
+        "year": "1993",
+        "unstructured": "Kitagawa, M. & Ueda, M. Squeezed spin states. Phys. Rev. A 47, 5138–5143 (1993).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2310_CR20",
+        "doi-asserted-by": "publisher",
+        "first-page": "10960",
+        "DOI": "10.1073/pnas.0901550106",
+        "volume": "106",
+        "author": "J Appel",
+        "year": "2009",
+        "unstructured": "Appel, J. et al. Mesoscopic atomic entanglement for precision measurements beyond the standard quantum limit. Proc. Natl Acad. Sci. USA 106, 10960–10965 (2009).",
+        "journal-title": "Proc. Natl Acad. Sci. USA"
+      },
+      {
+        "key": "2310_CR21",
+        "doi-asserted-by": "publisher",
+        "first-page": "073602",
+        "DOI": "10.1103/PhysRevLett.104.073602",
+        "volume": "104",
+        "author": "ID Leroux",
+        "year": "2010",
+        "unstructured": "Leroux, I. D., Schleier-Smith, M. H. & Vuletić, V. Implementation of cavity squeezing of a collective atomic spin. Phys. Rev. Lett. 104, 073602 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "250801",
+        "DOI": "10.1103/PhysRevLett.104.250801",
+        "volume": "104",
+        "author": "ID Leroux",
+        "year": "2010",
+        "unstructured": "Leroux, I. D., Schleier-Smith, M. H. & Vuletić, V. Orientation-dependent entanglement lifetime in a squeezed atomic clock. Phys. Rev. Lett. 104, 250801 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "073604",
+        "DOI": "10.1103/PhysRevLett.104.073604",
+        "volume": "104",
+        "author": "MH Schleier-Smith",
+        "year": "2010",
+        "unstructured": "Schleier-Smith, M. H., Leroux, I. D. & Vuletić, V. States of an ensemble of two-level atoms with reduced quantum uncertainty. Phys. Rev. Lett. 104, 073604 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "133601",
+        "DOI": "10.1103/PhysRevLett.106.133601",
+        "volume": "106",
+        "author": "Z Chen",
+        "year": "2011",
+        "unstructured": "Chen, Z., Bohnet, J. G., Sankar, S. R., Dai, J. & Thompson, J. K. Conditional spin squeezing of a large ensemble via the vacuum Rabi splitting. Phys. Rev. Lett. 106, 133601 (2011).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR25",
+        "doi-asserted-by": "publisher",
+        "first-page": "093602",
+        "DOI": "10.1103/PhysRevLett.116.093602",
+        "volume": "116",
+        "author": "KC Cox",
+        "year": "2016",
+        "unstructured": "Cox, K. C., Greve, G. P., Weiner, J. M. & Thompson, J. K. Deterministic squeezed states with collective measurements and feedback. Phys. Rev. Lett. 116, 093602 (2016).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "505",
+        "DOI": "10.1038/nature16176",
+        "volume": "529",
+        "author": "O Hosten",
+        "year": "2016",
+        "unstructured": "Hosten, O., Engelsen, N. J., Krishnakumar, R. & Kasevich, M. A. Measurement noise 100 times lower than the quantum-projection limit using entangled atoms. Nature 529, 505–508 (2016).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "035005",
+        "DOI": "10.1103/RevModPhys.90.035005",
+        "volume": "90",
+        "author": "L Pezzè",
+        "year": "2018",
+        "unstructured": "Pezzè, L., Smerzi, A., Oberthaler, M. K., Schmied, R. & Treutlein, P. Quantum metrology with nonclassical states of atomic ensembles. Rev. Mod. Phys. 90, 035005 (2018).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "2310_CR28",
+        "doi-asserted-by": "publisher",
+        "first-page": "689",
+        "DOI": "10.1038/s41586-022-05088-z",
+        "volume": "609",
+        "author": "BC Nichol",
+        "year": "2022",
+        "unstructured": "Nichol, B. C. et al. An elementary quantum network of entangled optical atomic clocks. Nature 609, 689–694 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR29",
+        "doi-asserted-by": "publisher",
+        "first-page": "604",
+        "DOI": "10.1038/s41586-022-04435-4",
+        "volume": "603",
+        "author": "CD Marciniak",
+        "year": "2022",
+        "unstructured": "Marciniak, C. D. et al. Optimal metrology with programmable quantum sensors. Nature 603, 604–609 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR30",
+        "doi-asserted-by": "publisher",
+        "first-page": "133601",
+        "DOI": "10.1103/PhysRevLett.104.133601",
+        "volume": "104",
+        "author": "W Wasilewski",
+        "year": "2010",
+        "unstructured": "Wasilewski, W. et al. Quantum noise limited and entanglement-assisted magnetometry. Phys. Rev. Lett. 104, 133601 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR31",
+        "unstructured": "Greve, G. P., Luo, C., Wu, B. & Thompson, J. K. Entanglement-enhanced matter-wave interferometry in a high-finesse cavity. Preprint at arxiv.org/abs/2110.14027 (2021)."
+      },
+      {
+        "key": "2310_CR32",
+        "doi-asserted-by": "publisher",
+        "first-page": "661",
+        "DOI": "10.1038/s41586-022-05363-z",
+        "volume": "612",
+        "author": "BK Malia",
+        "year": "2022",
+        "unstructured": "Malia, B. K., Wu, Y., Martínez-Rincón, J. & Kasevich, M. A. Distributed quantum sensing with mode-entangled spin-squeezed atomic states. Nature 612, 661–665 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR33",
+        "doi-asserted-by": "publisher",
+        "first-page": "789",
+        "DOI": "10.1088/1681-7575/aae008",
+        "volume": "55",
+        "author": "S Weyers",
+        "year": "2018",
+        "unstructured": "Weyers, S. et al. Advances in the accuracy, stability, and reliability of the PTB primary fountain clocks. Metrologia 55, 789–805 (2018).",
+        "journal-title": "Metrologia"
+      },
+      {
+        "key": "2310_CR34",
+        "doi-asserted-by": "publisher",
+        "first-page": "414",
+        "DOI": "10.1038/s41586-020-3006-1",
+        "volume": "588",
+        "author": "E Pedrozo-Peñafiel",
+        "year": "2020",
+        "unstructured": "Pedrozo-Peñafiel, E. et al. Entanglement on an optical atomic-clock transition. Nature 588, 414–418 (2020).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR35",
+        "doi-asserted-by": "publisher",
+        "first-page": "425",
+        "DOI": "10.1038/s41586-021-04344-y",
+        "volume": "602",
+        "author": "X Zheng",
+        "year": "2022",
+        "unstructured": "Zheng, X. et al. Differential clock comparisons with a multiplexed optical lattice clock. Nature 602, 425–430 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR36",
+        "first-page": "041052",
+        "volume": "10",
+        "author": "W Bowden",
+        "year": "2020",
+        "unstructured": "Bowden, W., Vianello, A., Hill, I. R., Schioppo, M. & Hobson, R. Improving the q factor of an optical atomic clock using quantum nondemolition measurement. Phys. Rev. X 10, 041052 (2020).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "2310_CR37",
+        "doi-asserted-by": "publisher",
+        "first-page": "210502",
+        "DOI": "10.1063/5.0121372",
+        "volume": "121",
+        "author": "S Colombo",
+        "year": "2022",
+        "unstructured": "Colombo, S., Pedrozo-Peñafiel, E. & Vuletić, V. Entanglement-enhanced optical atomic clocks. Appl. Phys. Lett. 121, 210502 (2022).",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2310_CR38",
+        "doi-asserted-by": "publisher",
+        "first-page": "263202",
+        "DOI": "10.1103/PhysRevLett.118.263202",
+        "volume": "118",
+        "author": "DG Matei",
+        "year": "2017",
+        "unstructured": "Matei, D. G. et al. 1.5 μm lasers with sub-10 mHz linewidth. Phys. Rev. Lett. 118, 263202 (2017).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR39",
+        "doi-asserted-by": "publisher",
+        "first-page": "023804",
+        "DOI": "10.1103/PhysRevA.93.023804",
+        "volume": "93",
+        "author": "MA Norcia",
+        "year": "2016",
+        "unstructured": "Norcia, M. A. & Thompson, J. K. Strong coupling on a forbidden transition in strontium and nondestructive atom counting. Phys. Rev. A 93, 023804 (2016).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2310_CR40",
+        "doi-asserted-by": "publisher",
+        "first-page": "4157",
+        "DOI": "10.1103/PhysRevLett.80.4157",
+        "volume": "80",
+        "author": "CJ Hood",
+        "year": "1998",
+        "unstructured": "Hood, C. J., Chapman, M. S., Lynn, T. W. & Kimble, H. J. Real-time cavity QED with single atoms. Phys. Rev. Lett. 80, 4157–4160 (1998).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR41",
+        "doi-asserted-by": "publisher",
+        "first-page": "063816",
+        "DOI": "10.1103/PhysRevA.92.063816",
+        "volume": "92",
+        "author": "J Hu",
+        "year": "2015",
+        "unstructured": "Hu, J., Chen, W., Vendeiro, Z., Zhang, H. & Vuletić, V. Entangled collective-spin states of atomic ensembles under nonuniform atom-light interaction. Phys. Rev. A 92, 063816 (2015).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2310_CR42",
+        "unstructured": "Schleier-Smith, M. Cavity-enabled Spin Squeezing for a Quantum-enhanced Atomic Clock. PhD thesis, Massachusetts Institute of Technology (2011)."
+      },
+      {
+        "key": "2310_CR43",
+        "doi-asserted-by": "publisher",
+        "first-page": "223203",
+        "DOI": "10.1103/PhysRevLett.122.223203",
+        "volume": "122",
+        "author": "B Braverman",
+        "year": "2019",
+        "unstructured": "Braverman, B. et al. Near-unitary spin squeezing in 171Yb. Phys. Rev. Lett. 122, 223203 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR44",
+        "doi-asserted-by": "publisher",
+        "first-page": "124043",
+        "DOI": "10.1103/PhysRevD.94.124043",
+        "volume": "94",
+        "author": "S Kolkowitz",
+        "year": "2016",
+        "unstructured": "Kolkowitz, S. et al. Gravitational wave detection with optical lattice atomic clocks. Phys. Rev. D. 94, 124043 (2016).",
+        "journal-title": "Phys. Rev. D."
+      },
+      {
+        "key": "2310_CR45",
+        "doi-asserted-by": "publisher",
+        "first-page": "582",
+        "DOI": "10.1038/nphys3000",
+        "volume": "10",
+        "author": "P Kómár",
+        "year": "2014",
+        "unstructured": "Kómár, P. et al. A quantum network of clocks. Nat. Phys. 10, 582–587 (2014).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "2310_CR46",
+        "doi-asserted-by": "publisher",
+        "first-page": "053601",
+        "DOI": "10.1103/PhysRevLett.116.053601",
+        "volume": "116",
+        "author": "E Davis",
+        "year": "2016",
+        "unstructured": "Davis, E., Bentsen, G. & Schleier-Smith, M. Approaching the Heisenberg limit without single-particle detection. Phys. Rev. Lett. 116, 053601 (2016).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR47",
+        "first-page": "041045",
+        "volume": "11",
+        "author": "R Kaubruegger",
+        "year": "2021",
+        "unstructured": "Kaubruegger, R., Vasilyev, D. V., Schulte, M., Hammerer, K. & Zoller, P. Quantum variational optimization of Ramsey interferometry and atomic clocks. Phys. Rev. X 11, 041045 (2021).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "2310_CR48",
+        "doi-asserted-by": "publisher",
+        "first-page": "925",
+        "DOI": "10.1038/s41567-022-01653-5",
+        "volume": "18",
+        "author": "S Colombo",
+        "year": "2022",
+        "unstructured": "Colombo, S. et al. Time-reversal-based quantum metrology with many-body entangled states. Nat. Phys. 18, 925–930 (2022).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "2310_CR49",
+        "doi-asserted-by": "publisher",
+        "first-page": "040301",
+        "DOI": "10.1103/PRXQuantum.2.040301",
+        "volume": "2",
+        "author": "L Pezzè",
+        "year": "2021",
+        "unstructured": "Pezzè, L. & Smerzi, A. Quantum phase estimation algorithm with Gaussian spin states. PRX Quantum 2, 040301 (2021).",
+        "journal-title": "PRX Quantum"
+      },
+      {
+        "key": "2310_CR50",
+        "doi-asserted-by": "publisher",
+        "first-page": "1467",
+        "DOI": "10.1126/science.1254978",
+        "volume": "345",
+        "author": "X Zhang",
+        "year": "2014",
+        "unstructured": "Zhang, X. et al. Spectroscopic observation of SU(N)-symmetric interactions in Sr orbital magnetism. Science 345, 1467–1473 (2014).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "2310_CR51",
+        "doi-asserted-by": "publisher",
+        "first-page": "399",
+        "DOI": "10.1038/s41567-017-0029-0",
+        "volume": "14",
+        "author": "SL Bromley",
+        "year": "2018",
+        "unstructured": "Bromley, S. L. et al. Dynamics of interacting fermions under spin–orbit coupling in an optical lattice clock. Nat. Phys. 14, 399–404 (2018).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "2310_CR52",
+        "doi-asserted-by": "publisher",
+        "first-page": "602",
+        "DOI": "10.1038/s41586-020-2224-x",
+        "volume": "580",
+        "author": "JA Muniz",
+        "year": "2020",
+        "unstructured": "Muniz, J. A. et al. Exploring dynamical phase transitions with cold atoms in an optical cavity. Nature 580, 602–607 (2020).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "2310_CR53",
+        "first-page": "011002",
+        "volume": "8",
+        "author": "VD Vaidya",
+        "year": "2018",
+        "unstructured": "Vaidya, V. D. et al. Tunable-range, photon-mediated atomic interactions in multimode cavity qed. Phys. Rev. X 8, 011002 (2018).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "2310_CR54",
+        "doi-asserted-by": "publisher",
+        "first-page": "060402",
+        "DOI": "10.1103/PhysRevLett.125.060402",
+        "volume": "125",
+        "author": "EJ Davis",
+        "year": "2020",
+        "unstructured": "Davis, E. J. et al. Protecting spin coherence in a tunable Heisenberg model. Phys. Rev. Lett. 125, 060402 (2020).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "2310_CR55",
+        "doi-asserted-by": "publisher",
+        "first-page": "1496",
+        "DOI": "10.1126/science.aaw4465",
+        "volume": "366",
+        "author": "N Dogra",
+        "year": "2019",
+        "unstructured": "Dogra, N. et al. Dissipation-induced structural instability and chiral dynamics in a quantum gas. Science 366, 1496–1499 (2019).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "2310_CR56",
+        "doi-asserted-by": "publisher",
+        "first-page": "051804",
+        "DOI": "10.1103/PhysRevA.69.051804",
+        "volume": "69",
+        "author": "J Sauer",
+        "year": "2004",
+        "unstructured": "Sauer, J., Fortier, K., Chang, M., Hamley, C. & Chapman, M. Cavity QED with optically transported atoms. Phys. Rev. A 69, 051804 (2004).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "2310_CR57",
+        "doi-asserted-by": "publisher",
+        "first-page": "043837",
+        "DOI": "10.1103/PhysRevA.89.043837",
+        "volume": "89",
+        "author": "Z Chen",
+        "year": "2014",
+        "unstructured": "Chen, Z., Bohnet, J. G., Weiner, J. M., Cox, K. C. & Thompson, J. K. Cavity-aided nondemolition measurements for atom counting and spin squeezing. Phys. Rev. A 89, 043837 (2014).",
+        "journal-title": "Phys. Rev. A"
+      }
+    ],
+    "container-title": [
+      "Nature Physics"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.nature.com/articles/s41567-023-02310-1.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41567-023-02310-1",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41567-023-02310-1.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          2,
+          17
+        ]
+      ],
+      "date-time": "2024-02-17T11:08:50Z",
+      "timestamp": 1708168130000
+    },
+    "score": 61.826668,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/s41567-023-02310-1"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          11
+        ]
+      ]
+    },
+    "references-count": 57,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            2
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "2310"
+    ],
+    "URL": "https://doi.org/10.1038/s41567-023-02310-1",
+    "ISSN": [
+      "1745-2473",
+      "1745-2481"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "1745-2473"
+      },
+      {
+        "type": "electronic",
+        "value": "1745-2481"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          11
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "18 April 2023",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "30 October 2023",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "11 January 2024",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "The authors declare no competing interests.",
+        "order": 1,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Competing interests"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          9,
+          10
+        ]
+      ],
+      "date-time": "2022-09-10T11:13:13Z",
+      "timestamp": 1662808393700
+    },
+    "posted": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "reference-count": 0,
+    "publisher": "Morressier",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "DOI": "10.26226/m.6275705966d5dcf63a31149a",
+    "type": "posted-content",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ],
+      "date-time": "2022-05-25T20:10:57Z",
+      "timestamp": 1653509457000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Towards a Spin Squeezed Strontium Optical Lattice Clock with Entanglement Enhanced Performance"
+    ],
+    "prefix": "10.26226",
+    "author": [
+      {
+        "given": "Yee",
+        "family": "Ming Tso",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "John",
+        "family": "Robinson",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Maya",
+        "family": "Miklos",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Josephine",
+        "family": "Meyer",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Colin",
+        "family": "Kennedy",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Tobias",
+        "family": "Bothwell",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "James",
+        "family": "Thompson",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jun",
+        "family": "Ye",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "22980",
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          9,
+          10
+        ]
+      ],
+      "date-time": "2022-09-10T10:43:02Z",
+      "timestamp": 1662806582000
+    },
+    "score": 36.518044,
+    "resource": {
+      "primary": {
+        "URL": "https://www.morressier.com/article/6275705966d5dcf63a31149a"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.26226/m.6275705966d5dcf63a31149a",
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "subtype": "other"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          31
+        ]
+      ],
+      "date-time": "2024-10-31T01:21:39Z",
+      "timestamp": 1730337699841,
+      "version": "3.28.0"
+    },
+    "publisher-location": "Washington, D.C.",
+    "reference-count": 6,
+    "publisher": "Optica Publishing Group",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "abstract": "<jats:p>We perform a self-synchronous clock comparison between two spin-squeezed ensembles in a strontium optical lattice clock to directly measure 2.0(3) dB of metrological gain beyond quantum projection noise-limited operation, averaging down to the 10<jats:italic>\n      <jats:sup>−</jats:sup>\n    </jats:italic><jats:sup>17</jats:sup> level.</jats:p>",
+    "DOI": "10.1364/quantum.2023.qtu4b.1",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T14:04:19Z",
+      "timestamp": 1693922659000
+    },
+    "page": "QTu4B.1",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Spin Squeezing-Enhanced Stability in an Optical Lattice Clock Comparison"
+    ],
+    "prefix": "10.1364",
+    "author": [
+      {
+        "given": "Maya",
+        "family": "Miklos",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Yee Ming",
+        "family": "Tso",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "John M.",
+        "family": "Robinson",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Joonseok",
+        "family": "Hur",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Jun",
+        "family": "Ye",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "285",
+    "reference": [
+      {
+        "key": "QUANTUM-2023-QTu4B.1-R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "103201",
+        "DOI": "10.1103/PhysRevLett.120.103201",
+        "volume": "120",
+        "author": "Marti",
+        "year": "2018",
+        "journal-title": "Phys. Rev. Lett"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.1-R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "714",
+        "DOI": "10.1038/s41566-019-0493-4",
+        "volume": "13",
+        "author": "Oelker",
+        "year": "2019",
+        "journal-title": "Nature Photonics"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.1-R3",
+        "doi-asserted-by": "crossref",
+        "first-page": "414",
+        "DOI": "10.1038/s41586-020-3006-1",
+        "volume": "588",
+        "author": "Pedrozo-Peñafiel",
+        "year": "2020",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.1-R5",
+        "doi-asserted-by": "crossref",
+        "first-page": "023804",
+        "DOI": "10.1103/PhysRevA.93.023804",
+        "volume": "93",
+        "author": "Norcia",
+        "year": "2016",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.1-R6",
+        "doi-asserted-by": "crossref",
+        "first-page": "3554",
+        "DOI": "10.1103/PhysRevA.47.3554",
+        "volume": "47",
+        "author": "Itano",
+        "year": "1993",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "QUANTUM-2023-QTu4B.1-R7",
+        "doi-asserted-by": "crossref",
+        "first-page": "073604",
+        "DOI": "10.1103/PhysRevLett.104.073604",
+        "volume": "104",
+        "author": "Schleier-Smith",
+        "year": "2010",
+        "journal-title": "Phys. Rev. Lett"
+      }
+    ],
+    "event": {
+      "name": "Quantum 2.0",
+      "start": {
+        "date-parts": [
+          [
+            2023
+          ]
+        ]
+      },
+      "sponsor": [
+        "The Optical Society"
+      ],
+      "location": "Denver, Colorado",
+      "acronym": "QUANTUM"
+    },
+    "container-title": [
+      "Optica Quantum 2.0 Conference and Exhibition"
+    ],
+    "link": [
+      {
+        "URL": "https://opg.optica.org/viewmedia.cfm?URI=QUANTUM-2023-QTu4B.1&seq=0",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T14:04:22Z",
+      "timestamp": 1693922662000
+    },
+    "score": 29.958885,
+    "resource": {
+      "primary": {
+        "URL": "https://opg.optica.org/abstract.cfm?URI=QUANTUM-2023-QTu4B.1"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "references-count": 6,
+    "URL": "https://doi.org/10.1364/quantum.2023.qtu4b.1",
+    "published": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          11
+        ]
+      ],
+      "date-time": "2025-11-11T21:57:15Z",
+      "timestamp": 1762898235812
+    },
+    "reference-count": 6,
+    "publisher": "American Association for the Advancement of Science (AAAS)",
+    "issue": "4728",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Science"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          1985,
+          11,
+          22
+        ]
+      ]
+    },
+    "DOI": "10.1126/science.230.4728.927",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2006,
+          10,
+          5
+        ]
+      ],
+      "date-time": "2006-10-05T19:42:50Z",
+      "timestamp": 1160077370000
+    },
+    "page": "927-929",
+    "source": "Crossref",
+    "is-referenced-by-count": 17,
+    "title": [
+      "Bell Labs Generates Squeezed Light"
+    ],
+    "prefix": "10.1126",
+    "volume": "230",
+    "author": [
+      {
+        "given": "Arthur L.",
+        "family": "Robinson",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "221",
+    "reference": [
+      {
+        "key": "e_1_2_1_1_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1693",
+        "DOI": "10.1103/PhysRevD.23.1693",
+        "volume": "23",
+        "year": "1981",
+        "unstructured": "CAVES, C. M., PHYSICAL REVIEW D 23: 1693 (1981).",
+        "journal-title": "PHYSICAL REVIEW D"
+      },
+      {
+        "key": "e_1_2_1_2_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1622",
+        "DOI": "10.1103/PhysRevA.31.1622",
+        "volume": "31",
+        "year": "1985",
+        "unstructured": "REID, M.D., GENERATION OF SQUEEZED STATES VIA DEGENERATE 4-WAVE MIXING, PHYSICAL REVIEW A 31: 1622 (1985).",
+        "journal-title": "PHYSICAL REVIEW A"
+      },
+      {
+        "key": "e_1_2_1_3_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "2409",
+        "DOI": "10.1103/PhysRevLett.55.2409",
+        "volume": "55",
+        "year": "1985",
+        "unstructured": "Slusher, R .E., Physical Review Letters 55: 2409 (1985).",
+        "journal-title": "Physical Review Letters"
+      },
+      {
+        "key": "e_1_2_1_4_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "141",
+        "DOI": "10.1038/306141a0",
+        "volume": "306",
+        "year": "1983",
+        "unstructured": "WALLS, D.F., SQUEEZED STATES OF LIGHT, NATURE 306: 141 (1983).",
+        "journal-title": "NATURE"
+      },
+      {
+        "key": "e_1_2_1_5_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "2226",
+        "DOI": "10.1103/PhysRevA.13.2226",
+        "volume": "13",
+        "year": "1976",
+        "unstructured": "YUEN, H.P., 2-PHOTON COHERENT STATES OF RADIATION-FIELD, PHYSICAL REVIEW A 13: 2226 (1976).",
+        "journal-title": "PHYSICAL REVIEW A"
+      },
+      {
+        "key": "e_1_2_1_6_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "300",
+        "DOI": "10.1103/PhysRevA.32.300",
+        "volume": "32",
+        "year": "1985",
+        "unstructured": "YURKE, B, SQUEEZED-COHERENT-STATE GENERATION VIA 4-WAVE MIXERS AND DETECTION VIA HOMODYNE DETECTORS, PHYSICAL REVIEW A 32: 300 (1985).",
+        "journal-title": "PHYSICAL REVIEW A"
+      }
+    ],
+    "container-title": [
+      "Science"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.science.org/doi/pdf/10.1126/science.230.4728.927",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          12
+        ]
+      ],
+      "date-time": "2024-01-12T09:20:24Z",
+      "timestamp": 1705051224000
+    },
+    "score": 28.301579,
+    "resource": {
+      "primary": {
+        "URL": "https://www.science.org/doi/10.1126/science.230.4728.927"
+      }
+    },
+    "subtitle": [
+      "Quantum fluctuations set a minimum noise level in optical signals, but nonlinear optics provides a way to squeeze below this limit"
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1985,
+          11,
+          22
+        ]
+      ]
+    },
+    "references-count": 6,
+    "journal-issue": {
+      "issue": "4728",
+      "published-print": {
+        "date-parts": [
+          [
+            1985,
+            11,
+            22
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1126/science.230.4728.927"
+    ],
+    "URL": "https://doi.org/10.1126/science.230.4728.927",
+    "ISSN": [
+      "0036-8075",
+      "1095-9203"
+    ],
+    "issn-type": [
+      {
+        "value": "0036-8075",
+        "type": "print"
+      },
+      {
+        "value": "1095-9203",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1985,
+          11,
+          22
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          23
+        ]
+      ],
+      "date-time": "2025-11-23T09:56:19Z",
+      "timestamp": 1763891779695,
+      "version": "3.45.0"
+    },
+    "reference-count": 17,
+    "publisher": "MDPI AG",
+    "issue": "10",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2018,
+              10,
+              4
+            ]
+          ],
+          "date-time": "2018-10-04T00:00:00Z",
+          "timestamp": 1538611200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000002",
+        "name": "National Institutes of Health",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "U54 EB020406"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000002",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Genes"
+    ],
+    "abstract": "<jats:p>Genetic testing has expanded out of the research laboratory into medical practice and the direct-to-consumer market. Rapid analysis of the resulting genotype data now has a significant impact. We present a method for summarizing personal genotypes as ‘genotype fingerprints’ that meets these needs. Genotype fingerprints can be derived from any single nucleotide polymorphism-based assay, and remain comparable as chip designs evolve to higher marker densities. We demonstrate that these fingerprints support distinguishing types of relationships among closely related individuals and closely related individuals from individuals from the same background population, as well as high-throughput identification of identical genotypes, individuals in known background populations, and de novo separation of subpopulations within a large cohort through extremely rapid comparisons. Although fingerprints do not preserve anonymity, they provide a useful degree of privacy by summarizing a genotype while preventing reconstruction of individual marker states. Genotype fingerprints are therefore well-suited as a format for public aggregation of genetic information to support ancestry and relatedness determination without revealing personal health risk status.</jats:p>",
+    "DOI": "10.3390/genes9100481",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2018,
+          10,
+          4
+        ]
+      ],
+      "date-time": "2018-10-04T12:29:57Z",
+      "timestamp": 1538656197000
+    },
+    "page": "481",
+    "update-policy": "https://doi.org/10.3390/mdpi_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 5,
+    "title": [
+      "Genotype Fingerprints Enable Fast and Private Comparison of Genetic Testing Results for Research and Direct-to-Consumer Applications"
+    ],
+    "prefix": "10.3390",
+    "volume": "9",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-0878-114X",
+        "authenticated-orcid": false,
+        "given": "Max",
+        "family": "Robinson",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Institute for Systems Biology, 401 Terry Ave N, Seattle, WA 98109, USA"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8060-5955",
+        "authenticated-orcid": false,
+        "given": "Gustavo",
+        "family": "Glusman",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute for Systems Biology, 401 Terry Ave N, Seattle, WA 98109, USA"
+          }
+        ]
+      }
+    ],
+    "member": "1968",
+    "published-online": {
+      "date-parts": [
+        [
+          2018,
+          10,
+          4
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "ref_1",
+        "unstructured": "Canada, R. (2018, August 17). Exploring Microarray Chips. Available online: http://haplogroup.org/exploring-microarray-chips/."
+      },
+      {
+        "key": "ref_2",
+        "unstructured": "(2018, August 17). List of DNA testing companies—ISOGG Wiki. Available online: https://isogg.org/wiki/List_of_DNA_testing_companies."
+      },
+      {
+        "key": "ref_3",
+        "doi-asserted-by": "crossref",
+        "first-page": "518",
+        "DOI": "10.1373/clinchem.2010.158220",
+        "article-title": "Concordance study of 3 direct-to-consumer genetic-testing services",
+        "volume": "57",
+        "author": "Imai",
+        "year": "2011",
+        "journal-title": "Clin. Chem."
+      },
+      {
+        "key": "ref_4",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Glusman, G., Cariaso, M., Jimenez, R., Swan, D., Greshake, B., Bhak, J., Logan, D.W., and Corpas, M. (2012). Low budget analysis of Direct-To-Consumer genomic testing familial data. F1000 Research, 1.",
+        "DOI": "10.12688/f1000research.1-3.v1"
+      },
+      {
+        "key": "ref_5",
+        "doi-asserted-by": "crossref",
+        "first-page": "75",
+        "DOI": "10.1534/genetics.117.1122",
+        "article-title": "Benchmarking relatedness inference methods with genome-wide data from thousands of relatives",
+        "volume": "207",
+        "author": "Ramstetter",
+        "year": "2017",
+        "journal-title": "Genetics"
+      },
+      {
+        "key": "ref_6",
+        "doi-asserted-by": "crossref",
+        "first-page": "308",
+        "DOI": "10.1093/nar/29.1.308",
+        "article-title": "dbSNP: The NCBI database of genetic variation",
+        "volume": "29",
+        "author": "Sherry",
+        "year": "2001",
+        "journal-title": "Nucleic Acids Res."
+      },
+      {
+        "key": "ref_7",
+        "doi-asserted-by": "crossref",
+        "first-page": "136",
+        "DOI": "10.3389/fgene.2017.00136",
+        "article-title": "Ultrafast comparison of personal genomes via precomputed genome fingerprints",
+        "volume": "8",
+        "author": "Glusman",
+        "year": "2017",
+        "journal-title": "Front. Genet."
+      },
+      {
+        "key": "ref_8",
+        "unstructured": "(2018, August 17). Genotype fingerprints’ homepage. Available online: http://db.systemsbiology.net/gestalt/genotype_fingerprints."
+      },
+      {
+        "key": "ref_9",
+        "unstructured": "Glusman, G., Cariaso, M., Jimenez, R., Swan, D., Greshake, B., Bhak, J., Logan, D.W., and Corpas, M. (2018, August 17). 23andMe SNP chip genotype data 2012. Available online: https://figshare.com/articles/23andMe_SNP_chip_genotype_data/92682."
+      },
+      {
+        "key": "ref_10",
+        "unstructured": "Indyk, P., and Motwani, R. Approximate nearest neighbors. Proceedings of the thirtieth annual ACM symposium on Theory of computing—STOC ’98;."
+      },
+      {
+        "key": "ref_11",
+        "doi-asserted-by": "crossref",
+        "first-page": "2867",
+        "DOI": "10.1093/bioinformatics/btq559",
+        "article-title": "Robust relationship inference in genome-wide association studies",
+        "volume": "26",
+        "author": "Manichaikul",
+        "year": "2010",
+        "journal-title": "Bioinformatics"
+      },
+      {
+        "key": "ref_12",
+        "doi-asserted-by": "crossref",
+        "first-page": "17453",
+        "DOI": "10.1038/srep17453",
+        "article-title": "High level of inbreeding in final phase of 1000 Genomes Project",
+        "volume": "5",
+        "author": "Gazal",
+        "year": "2015",
+        "journal-title": "Sci. Rep."
+      },
+      {
+        "key": "ref_13",
+        "doi-asserted-by": "crossref",
+        "first-page": "1219",
+        "DOI": "10.1016/S0002-9297(07)62952-8",
+        "article-title": "Improved inference of relationship for pairs of individuals",
+        "volume": "67",
+        "author": "Epstein",
+        "year": "2000",
+        "journal-title": "Am. J. Hum. Genet."
+      },
+      {
+        "key": "ref_14",
+        "doi-asserted-by": "crossref",
+        "first-page": "2202",
+        "DOI": "10.1093/bioinformatics/btv112",
+        "article-title": "Unified representation of genetic variants",
+        "volume": "31",
+        "author": "Tan",
+        "year": "2015",
+        "journal-title": "Bioinformatics"
+      },
+      {
+        "key": "ref_15",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Erlich, Y., Williams, J.B., Glazer, D., Yocum, K., Farahany, N., Olson, M., Narayanan, A., Stein, L.D., Witkowski, J.A., and Kain, R.C. (2014). Redefining genomic privacy: Trust and empowerment. PLoS Biol., 12.",
+        "DOI": "10.1371/journal.pbio.1001983"
+      },
+      {
+        "key": "ref_16",
+        "doi-asserted-by": "crossref",
+        "first-page": "799",
+        "DOI": "10.1093/jamia/ocw167",
+        "article-title": "Addressing beacon re-identification attacks: Quantification and mitigation of privacy risks",
+        "volume": "24",
+        "author": "Raisaro",
+        "year": "2017",
+        "journal-title": "J. Am. Med. Inform. Assoc."
+      },
+      {
+        "key": "ref_17",
+        "doi-asserted-by": "crossref",
+        "first-page": "3216",
+        "DOI": "10.1093/bioinformatics/btr540",
+        "article-title": "Kaviar: An accessible system for testing SNV novelty",
+        "volume": "27",
+        "author": "Glusman",
+        "year": "2011",
+        "journal-title": "Bioinformatics"
+      }
+    ],
+    "container-title": [
+      "Genes"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.mdpi.com/2073-4425/9/10/481/pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          11
+        ]
+      ],
+      "date-time": "2025-10-11T15:24:01Z",
+      "timestamp": 1760196241000
+    },
+    "score": 23.387215,
+    "resource": {
+      "primary": {
+        "URL": "https://www.mdpi.com/2073-4425/9/10/481"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          10,
+          4
+        ]
+      ]
+    },
+    "references-count": 17,
+    "journal-issue": {
+      "issue": "10",
+      "published-online": {
+        "date-parts": [
+          [
+            2018,
+            10
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "genes9100481"
+    ],
+    "URL": "https://doi.org/10.3390/genes9100481",
+    "ISSN": [
+      "2073-4425"
+    ],
+    "issn-type": [
+      {
+        "type": "electronic",
+        "value": "2073-4425"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          10,
+          4
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          21
+        ]
+      ],
+      "date-time": "2025-11-21T12:15:45Z",
+      "timestamp": 1763727345811,
+      "version": "3.37.3"
+    },
+    "reference-count": 62,
+    "publisher": "American Chemical Society (ACS)",
+    "issue": "10",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "J. Chem. Theory Comput."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2018,
+          10,
+          9
+        ]
+      ]
+    },
+    "DOI": "10.1021/acs.jctc.8b00335",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          2
+        ]
+      ],
+      "date-time": "2018-08-02T00:38:07Z",
+      "timestamp": 1533170287000
+    },
+    "page": "5303-5309",
+    "source": "Crossref",
+    "is-referenced-by-count": 21,
+    "title": [
+      "Comparison of the Transition Dipole Moments Calculated by TDDFT with High Level Wave Function Theory"
+    ],
+    "prefix": "10.1021",
+    "volume": "14",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-2760-7163",
+        "authenticated-orcid": true,
+        "given": "David",
+        "family": "Robinson",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Chemistry and Forensics, School of Science and Technology, Nottingham Trent University, Clifton Lane, Nottingham NG11 8NS, United Kingdom"
+          }
+        ]
+      }
+    ],
+    "member": "316",
+    "published-online": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          1
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "ref1/cit1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1039/b803727b"
+      },
+      {
+        "key": "ref2/cit2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/ct800149y"
+      },
+      {
+        "key": "ref3/cit3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.chemphys.2007.08.005"
+      },
+      {
+        "key": "ref4/cit4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.chemphys.2011.03.019"
+      },
+      {
+        "key": "ref5/cit5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1383587"
+      },
+      {
+        "key": "ref6/cit6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cplett.2005.11.084"
+      },
+      {
+        "key": "ref7/cit7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/anie.200602907"
+      },
+      {
+        "key": "ref8/cit8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/jp906278t"
+      },
+      {
+        "key": "ref9/cit9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.4769078"
+      },
+      {
+        "key": "ref10/cit10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cplett.2006.01.068"
+      },
+      {
+        "key": "ref11/cit11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2202735"
+      },
+      {
+        "key": "ref12/cit12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2166018"
+      },
+      {
+        "key": "ref13/cit13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cplett.2006.01.031"
+      },
+      {
+        "key": "ref14/cit14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/ja056676h"
+      },
+      {
+        "key": "ref15/cit15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.chemphys.2006.07.037"
+      },
+      {
+        "key": "ref16/cit16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2770700"
+      },
+      {
+        "key": "ref17/cit17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2715573"
+      },
+      {
+        "key": "ref18/cit18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cplett.2008.09.071"
+      },
+      {
+        "key": "ref19/cit19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/ar800163d"
+      },
+      {
+        "key": "ref20/cit20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cplett.2010.04.071"
+      },
+      {
+        "key": "ref21/cit21",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qua.23208"
+      },
+      {
+        "key": "ref22/cit22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qua.24438"
+      },
+      {
+        "key": "ref23/cit23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2831900"
+      },
+      {
+        "key": "ref24/cit24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/acs.jctc.6b00498"
+      },
+      {
+        "key": "ref25/cit25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1688752"
+      },
+      {
+        "key": "ref26/cit26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/jp709900k"
+      },
+      {
+        "key": "ref27/cit27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/ct100662n"
+      },
+      {
+        "key": "ref28/cit28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1747293"
+      },
+      {
+        "key": "ref29/cit29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/ja952035i"
+      },
+      {
+        "key": "ref30/cit30",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/jp808943d"
+      },
+      {
+        "key": "ref31/cit31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/jp9071108"
+      },
+      {
+        "key": "ref32/cit32",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/jp200492s"
+      },
+      {
+        "key": "ref33/cit33",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.464913"
+      },
+      {
+        "key": "ref34/cit34",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF00533485"
+      },
+      {
+        "key": "ref35/cit35",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.444267"
+      },
+      {
+        "key": "ref36/cit36",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.470315"
+      },
+      {
+        "key": "ref37/cit37",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.473322"
+      },
+      {
+        "key": "ref38/cit38",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0065-3276(05)50003-0"
+      },
+      {
+        "key": "ref39/cit39",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2889385"
+      },
+      {
+        "key": "ref40/cit40",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2973541"
+      },
+      {
+        "key": "ref41/cit41",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/ct500495n"
+      },
+      {
+        "key": "ref42/cit42",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/acs.jctc.7b00921"
+      },
+      {
+        "key": "ref43/cit43",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/acs.jctc.7b01224"
+      },
+      {
+        "key": "ref44/cit44",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/00268976.2013.859313"
+      },
+      {
+        "key": "ref45/cit45",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.4892418"
+      },
+      {
+        "key": "ref46/cit46",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.38.3098"
+      },
+      {
+        "key": "ref47/cit47",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.37.785"
+      },
+      {
+        "key": "ref48/cit48",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.33.8822"
+      },
+      {
+        "key": "ref49/cit49",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2370993"
+      },
+      {
+        "key": "ref50/cit50",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/jz201525m"
+      },
+      {
+        "key": "ref51/cit51",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/00268970010018431"
+      },
+      {
+        "key": "ref52/cit52",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.77.3865"
+      },
+      {
+        "key": "ref53/cit53",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00214-007-0310-x"
+      },
+      {
+        "key": "ref54/cit54",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1774975"
+      },
+      {
+        "key": "ref55/cit55",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cplett.2004.06.011"
+      },
+      {
+        "key": "ref56/cit56",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/jz201170d"
+      },
+      {
+        "key": "ref57/cit57",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2834918"
+      },
+      {
+        "key": "ref58/cit58",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1039/b810189b"
+      },
+      {
+        "key": "ref59/cit59",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0009-2614(99)01149-5"
+      },
+      {
+        "key": "ref60/cit60",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/00268976.2014.952696"
+      },
+      {
+        "key": "ref61/ref61_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "269",
+        "DOI": "10.1002/wcms.1172",
+        "volume": "4",
+        "author": "Aidas K.",
+        "year": "2014",
+        "journal-title": "Wiley Interdiscip. Rev. -Comput. Mol. Sci"
+      },
+      {
+        "key": "ref62/cit62",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1021/ja039556n"
+      }
+    ],
+    "container-title": [
+      "Journal of Chemical Theory and Computation"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://pubs.acs.org/doi/pdf/10.1021/acs.jctc.8b00335",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          16
+        ]
+      ],
+      "date-time": "2023-04-16T18:57:32Z",
+      "timestamp": 1681671452000
+    },
+    "score": 22.851017,
+    "resource": {
+      "primary": {
+        "URL": "https://pubs.acs.org/doi/10.1021/acs.jctc.8b00335"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          1
+        ]
+      ]
+    },
+    "references-count": 62,
+    "journal-issue": {
+      "issue": "10",
+      "published-print": {
+        "date-parts": [
+          [
+            2018,
+            10,
+            9
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1021/acs.jctc.8b00335"
+    ],
+    "URL": "https://doi.org/10.1021/acs.jctc.8b00335",
+    "ISSN": [
+      "1549-9618",
+      "1549-9626"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "1549-9618"
+      },
+      {
+        "type": "electronic",
+        "value": "1549-9626"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          4
+        ]
+      ],
+      "date-time": "2022-04-04T23:02:21Z",
+      "timestamp": 1649113341222
+    },
+    "reference-count": 12,
+    "publisher": "IOP Publishing",
+    "issue": "9",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "J. Phys. B: At. Mol. Opt. Phys."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2000,
+          5,
+          14
+        ]
+      ]
+    },
+    "DOI": "10.1088/0953-4075/33/9/105",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          8,
+          25
+        ]
+      ],
+      "date-time": "2002-08-25T10:37:55Z",
+      "timestamp": 1030271875000
+    },
+    "page": "L345-L348",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "The effect of nonanalyticities in coupling potentials on transition probabilities in two-level systems"
+    ],
+    "prefix": "10.1088",
+    "volume": "33",
+    "author": [
+      {
+        "given": "E J",
+        "family": "Robinson",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "published-online": {
+      "date-parts": [
+        [
+          2000,
+          4,
+          27
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "1",
+        "author": "Bleistein N",
+        "year": "1986"
+      },
+      {
+        "key": "2",
+        "doi-asserted-by": "crossref",
+        "first-page": "L547",
+        "DOI": "10.1088/0953-4075/26/17/004",
+        "volume": "26",
+        "author": "Crothers D S F",
+        "year": "1993",
+        "journal-title": "J. Phys. B: At. Mol. Opt. Phys.",
+        "ISSN": "http://id.crossref.org/issn/0022-3700",
+        "issn-type": "print"
+      },
+      {
+        "key": "3",
+        "doi-asserted-by": "crossref",
+        "first-page": "2515",
+        "DOI": "10.1088/0953-4075/29/12/014",
+        "volume": "29",
+        "author": "Nesbitt B S",
+        "year": "1996",
+        "journal-title": "J. Phys. B: At. Mol. Opt. Phys.",
+        "ISSN": "http://id.crossref.org/issn/0953-4075",
+        "issn-type": "print"
+      },
+      {
+        "key": "4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.24.2239"
+      },
+      {
+        "key": "5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.29.1665"
+      },
+      {
+        "key": "6",
+        "doi-asserted-by": "crossref",
+        "first-page": "3687",
+        "DOI": "10.1088/0022-3700/18/18/010",
+        "volume": "18",
+        "author": "Robinson E J",
+        "year": "1985",
+        "journal-title": "J. Phys. B: At. Mol. Phys.",
+        "ISSN": "http://id.crossref.org/issn/0022-3700",
+        "issn-type": "print"
+      },
+      {
+        "key": "7",
+        "doi-asserted-by": "crossref",
+        "first-page": "L657",
+        "DOI": "10.1088/0022-3700/18/18/004",
+        "volume": "18",
+        "author": "Robinson E J",
+        "year": "1985",
+        "journal-title": "J. Phys. B: At. Mol. Phys.",
+        "ISSN": "http://id.crossref.org/issn/0022-3700",
+        "issn-type": "print"
+      },
+      {
+        "key": "8",
+        "doi-asserted-by": "crossref",
+        "first-page": "13",
+        "DOI": "10.1088/0953-8984/5/1/004",
+        "volume": "5",
+        "author": "Robinson E J",
+        "year": "1993",
+        "journal-title": "J. Phys.: Condens. Matter",
+        "ISSN": "http://id.crossref.org/issn/0953-8984",
+        "issn-type": "print"
+      },
+      {
+        "key": "9",
+        "doi-asserted-by": "crossref",
+        "first-page": "L595",
+        "DOI": "10.1088/0953-4075/28/19/001",
+        "volume": "28",
+        "author": "Robinson E J",
+        "year": "1995",
+        "journal-title": "J. Phys. B: At. Mol. Opt. Phys.",
+        "ISSN": "http://id.crossref.org/issn/0953-4075",
+        "issn-type": "print"
+      },
+      {
+        "key": "10",
+        "doi-asserted-by": "crossref",
+        "first-page": "L847",
+        "DOI": "10.1088/0022-3700/17/24/002",
+        "volume": "17",
+        "author": "Robinson E J",
+        "year": "1983",
+        "journal-title": "J. Phys. B: At. Mol. Phys.",
+        "ISSN": "http://id.crossref.org/issn/0022-3700",
+        "issn-type": "print"
+      },
+      {
+        "key": "11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.40.502"
+      },
+      {
+        "key": "12",
+        "doi-asserted-by": "crossref",
+        "first-page": "1975",
+        "DOI": "10.1088/0953-4075/28/10/010",
+        "volume": "28",
+        "author": "Vitanov N V",
+        "year": "1995",
+        "journal-title": "J. Phys. B: At. Mol. Opt. Phys.",
+        "ISSN": "http://id.crossref.org/issn/0022-3700",
+        "issn-type": "print"
+      }
+    ],
+    "container-title": [
+      "Journal of Physics B: Atomic, Molecular and Optical Physics"
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          4,
+          10
+        ]
+      ],
+      "date-time": "2020-04-10T18:32:09Z",
+      "timestamp": 1586543529000
+    },
+    "score": 22.692722,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.1088/0953-4075/33/9/105"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2000,
+          4,
+          27
+        ]
+      ]
+    },
+    "references-count": 12,
+    "journal-issue": {
+      "issue": "9",
+      "published-print": {
+        "date-parts": [
+          [
+            2000,
+            5,
+            14
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "S0953-4075(00)50207-7"
+    ],
+    "URL": "https://doi.org/10.1088/0953-4075/33/9/105",
+    "ISSN": [
+      "0953-4075",
+      "1361-6455"
+    ],
+    "issn-type": [
+      {
+        "value": "0953-4075",
+        "type": "print"
+      },
+      {
+        "value": "1361-6455",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2000,
+          4,
+          27
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          22
+        ]
+      ],
+      "date-time": "2025-11-22T11:33:03Z",
+      "timestamp": 1763811183448,
+      "version": "3.37.3"
+    },
+    "reference-count": 65,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "7980",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2023,
+              8,
+              30
+            ]
+          ],
+          "date-time": "2023-08-30T00:00:00Z",
+          "timestamp": 1693353600000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2023,
+              8,
+              30
+            ]
+          ],
+          "date-time": "2023-08-30T00:00:00Z",
+          "timestamp": 1693353600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Nature"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          28
+        ]
+      ]
+    },
+    "DOI": "10.1038/s41586-023-06360-6",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          30
+        ]
+      ],
+      "date-time": "2023-08-30T16:02:14Z",
+      "timestamp": 1693411334000
+    },
+    "page": "734-739",
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 110,
+    "title": [
+      "Realizing spin squeezing with Rydberg interactions in an optical clock"
+    ],
+    "prefix": "10.1038",
+    "volume": "621",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-0833-7137",
+        "authenticated-orcid": false,
+        "given": "William J.",
+        "family": "Eckner",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-2114-6848",
+        "authenticated-orcid": false,
+        "given": "Nelson",
+        "family": "Darkwah Oppong",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6111-1375",
+        "authenticated-orcid": false,
+        "given": "Alec",
+        "family": "Cao",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3490-4046",
+        "authenticated-orcid": false,
+        "given": "Aaron W.",
+        "family": "Young",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0510-0775",
+        "authenticated-orcid": false,
+        "given": "William R.",
+        "family": "Milner",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "John M.",
+        "family": "Robinson",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0076-2112",
+        "authenticated-orcid": false,
+        "given": "Jun",
+        "family": "Ye",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4956-5814",
+        "authenticated-orcid": false,
+        "given": "Adam M.",
+        "family": "Kaufman",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          30
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "6360_CR1",
+        "doi-asserted-by": "crossref",
+        "first-page": "073604",
+        "DOI": "10.1103/PhysRevLett.104.073604",
+        "volume": "104",
+        "author": "MH Schleier-Smith",
+        "year": "2010",
+        "unstructured": "Schleier-Smith, M. H., Leroux, I. D. & Vuletić, V. States of an ensemble of two-level atoms with reduced quantum uncertainty. Phys. Rev. Lett. 104, 073604 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR2",
+        "doi-asserted-by": "crossref",
+        "first-page": "995",
+        "DOI": "10.1126/science.aal3837",
+        "volume": "357",
+        "author": "C Gross",
+        "year": "2017",
+        "unstructured": "Gross, C. & Bloch, I. Quantum simulations with ultracold atoms in optical lattices. Science 357, 995–1001 (2017).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "6360_CR3",
+        "doi-asserted-by": "crossref",
+        "first-page": "132",
+        "DOI": "10.1038/s41567-019-0733-z",
+        "volume": "16",
+        "author": "A Browaeys",
+        "year": "2020",
+        "unstructured": "Browaeys, A. & Lahaye, T. Many-body physics with individually controlled Rydberg atoms. Nat. Phys. 16, 132–142 (2020).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "6360_CR4",
+        "doi-asserted-by": "crossref",
+        "first-page": "408",
+        "DOI": "10.1038/s41586-020-3009-y",
+        "volume": "588",
+        "author": "AW Young",
+        "year": "2020",
+        "unstructured": "Young, A. W. et al. Half-minute-scale atomic coherence and high relative stability in a tweezer clock. Nature 588, 408–413 (2020).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR5",
+        "first-page": "041052",
+        "volume": "9",
+        "author": "IS Madjarov",
+        "year": "2019",
+        "unstructured": "Madjarov, I. S. et al. An atomic-array optical clock with single-atom readout. Phys. Rev. X 9, 041052 (2019).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "6360_CR6",
+        "doi-asserted-by": "crossref",
+        "first-page": "035302",
+        "DOI": "10.1103/PhysRevLett.115.035302",
+        "volume": "115",
+        "author": "T Fukuhara",
+        "year": "2015",
+        "unstructured": "Fukuhara, T. et al. Spatially resolved detection of a spin-entanglement wave in a Bose–Hubbard chain. Phys. Rev. Lett. 115, 035302 (2015).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR7",
+        "doi-asserted-by": "crossref",
+        "first-page": "77",
+        "DOI": "10.1038/nature15750",
+        "volume": "528",
+        "author": "R Islam",
+        "year": "2015",
+        "unstructured": "Islam, R. et al. Measuring entanglement entropy in a quantum many-body system. Nature 528, 77–83 (2015).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR8",
+        "doi-asserted-by": "crossref",
+        "first-page": "794",
+        "DOI": "10.1126/science.aaf6725",
+        "volume": "353",
+        "author": "AM Kaufman",
+        "year": "2016",
+        "unstructured": "Kaufman, A. M. et al. Quantum thermalization through entanglement in an isolated many-body system. Science 353, 794–800 (2016).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "6360_CR9",
+        "doi-asserted-by": "crossref",
+        "first-page": "457",
+        "DOI": "10.1038/s41586-022-04603-6",
+        "volume": "604",
+        "author": "T Graham",
+        "year": "2022",
+        "unstructured": "Graham, T. et al. Multi-qubit entanglement and algorithms on a neutral-atom quantum computer. Nature 604, 457–462 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR10",
+        "doi-asserted-by": "crossref",
+        "first-page": "451",
+        "DOI": "10.1038/s41586-022-04592-6",
+        "volume": "604",
+        "author": "D Bluvstein",
+        "year": "2022",
+        "unstructured": "Bluvstein, D. et al. A quantum processor based on coherent transport of entangled atom arrays. Nature 604, 451–456 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR11",
+        "unstructured": "Zhang, W.-Y. et al. Functional building blocks for scalable multipartite entanglement in optical lattices. Preprint at https://arxiv.org/abs/2210.02936 (2022)."
+      },
+      {
+        "key": "6360_CR12",
+        "doi-asserted-by": "crossref",
+        "first-page": "424006",
+        "DOI": "10.1088/1751-8113/47/42/424006",
+        "volume": "47",
+        "author": "G Tóth",
+        "year": "2014",
+        "unstructured": "Tóth, G. & Apellaniz, I. Quantum metrology from a quantum information science perspective. J. Phys. A 47, 424006 (2014).",
+        "journal-title": "J. Phys. A"
+      },
+      {
+        "key": "6360_CR13",
+        "doi-asserted-by": "crossref",
+        "first-page": "260505",
+        "DOI": "10.1103/PhysRevLett.123.260505",
+        "volume": "123",
+        "author": "R Kaubruegger",
+        "year": "2019",
+        "unstructured": "Kaubruegger, R. et al. Variational spin-squeezing algorithms on programmable quantum sensors. Phys. Rev. Lett. 123, 260505 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR14",
+        "first-page": "041045",
+        "volume": "11",
+        "author": "R Kaubruegger",
+        "year": "2021",
+        "unstructured": "Kaubruegger, R., Vasilyev, D. V., Schulte, M., Hammerer, K. & Zoller, P. Quantum variational optimization of Ramsey interferometry and atomic clocks. Phys. Rev. X 11, 041045 (2021).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "6360_CR15",
+        "doi-asserted-by": "crossref",
+        "first-page": "190403",
+        "DOI": "10.1103/PhysRevLett.112.190403",
+        "volume": "112",
+        "author": "EM Kessler",
+        "year": "2014",
+        "unstructured": "Kessler, E. M. et al. Heisenberg-limited atom clocks based on entangled qubits. Phys. Rev. Lett. 112, 190403 (2014).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR16",
+        "doi-asserted-by": "crossref",
+        "first-page": "210503",
+        "DOI": "10.1103/PhysRevLett.125.210503",
+        "volume": "125",
+        "author": "L Pezzè",
+        "year": "2020",
+        "unstructured": "Pezzè, L. & Smerzi, A. Heisenberg-limited noisy atomic clock using a hybrid coherent and squeezed state protocol. Phys. Rev. Lett. 125, 210503 (2020).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR17",
+        "doi-asserted-by": "crossref",
+        "first-page": "035005",
+        "DOI": "10.1103/RevModPhys.90.035005",
+        "volume": "90",
+        "author": "L Pezzè",
+        "year": "2018",
+        "unstructured": "Pezzè, L., Smerzi, A., Oberthaler, M. K., Schmied, R. & Treutlein, P. Quantum metrology with nonclassical states of atomic ensembles. Rev. Mod. Phys. 90, 035005 (2018).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "6360_CR18",
+        "doi-asserted-by": "crossref",
+        "first-page": "238",
+        "DOI": "10.1038/s41586-021-03226-7",
+        "volume": "590",
+        "author": "KM Backes",
+        "year": "2021",
+        "unstructured": "Backes, K. M. et al. A quantum enhanced search for dark matter axions. Nature 590, 238–242 (2021).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR19",
+        "doi-asserted-by": "crossref",
+        "first-page": "231107",
+        "DOI": "10.1103/PhysRevLett.123.231107",
+        "volume": "123",
+        "author": "M Tse",
+        "year": "2019",
+        "unstructured": "Tse, M. et al. Quantum-enhanced Advanced LIGO detectors in the era of gravitational-wave astronomy. Phys. Rev. Lett. 123, 231107 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR20",
+        "doi-asserted-by": "crossref",
+        "first-page": "637",
+        "DOI": "10.1103/RevModPhys.87.637",
+        "volume": "87",
+        "author": "AD Ludlow",
+        "year": "2015",
+        "unstructured": "Ludlow, A. D., Boyd, M. M., Ye, J., Peik, E. & Schmidt, P. O. Optical atomic clocks. Rev. Mod. Phys. 87, 637–701 (2015).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "6360_CR21",
+        "doi-asserted-by": "crossref",
+        "first-page": "204",
+        "DOI": "10.1038/s41586-019-0972-2",
+        "volume": "567",
+        "author": "C Sanner",
+        "year": "2019",
+        "unstructured": "Sanner, C. et al. Optical clock comparison for Lorentz symmetry testing. Nature 567, 204–208 (2019).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR22",
+        "doi-asserted-by": "crossref",
+        "first-page": "201302",
+        "DOI": "10.1103/PhysRevLett.125.201302",
+        "volume": "125",
+        "author": "CJ Kennedy",
+        "year": "2020",
+        "unstructured": "Kennedy, C. J. et al. Precision metrology meets cosmology: improved constraints on ultralight dark matter from atom-cavity frequency comparisons. Phys. Rev. Lett. 125, 201302 (2020).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR23",
+        "doi-asserted-by": "crossref",
+        "first-page": "420",
+        "DOI": "10.1038/s41586-021-04349-7",
+        "volume": "602",
+        "author": "T Bothwell",
+        "year": "2022",
+        "unstructured": "Bothwell, T. et al. Resolving the gravitational redshift across a millimetre-scale atomic sample. Nature 602, 420–424 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR24",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Zheng, X., Dolde, J., Lim, H. M. & Kolkowitz, S. A lab-based test of the gravitational redshift with a miniature clock network. Preprint at https://arxiv.org/abs/2207.07145 (2022).",
+        "DOI": "10.1038/s41467-023-40629-8"
+      },
+      {
+        "key": "6360_CR25",
+        "doi-asserted-by": "crossref",
+        "first-page": "472",
+        "DOI": "10.1038/s41586-022-05197-9",
+        "volume": "610",
+        "author": "GP Greve",
+        "year": "2022",
+        "unstructured": "Greve, G. P., Luo, C., Wu, B. & Thompson, J. K. Entanglement-enhanced matter-wave interferometry in a high-finesse cavity. Nature 610, 472–477 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR26",
+        "doi-asserted-by": "crossref",
+        "first-page": "223203",
+        "DOI": "10.1103/PhysRevLett.122.223203",
+        "volume": "122",
+        "author": "B Braverman",
+        "year": "2019",
+        "unstructured": "Braverman, B. et al. Near-unitary spin squeezing in 171Yb. Phys. Rev. Lett. 122, 223203 (2019).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR27",
+        "doi-asserted-by": "crossref",
+        "first-page": "661",
+        "DOI": "10.1038/s41586-022-05363-z",
+        "volume": "612",
+        "author": "BK Malia",
+        "year": "2022",
+        "unstructured": "Malia, B. K., Wu, Y., Martínez-Rincón, J. & Kasevich, M. A. Distributed quantum sensing with mode-entangled spin-squeezed atomic states. Nature 612, 661–665 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR28",
+        "doi-asserted-by": "crossref",
+        "first-page": "414",
+        "DOI": "10.1038/s41586-020-3006-1",
+        "volume": "588",
+        "author": "E Pedrozo-Peñafiel",
+        "year": "2020",
+        "unstructured": "Pedrozo-Peñafiel, E. et al. Entanglement on an optical atomic-clock transition. Nature 588, 414–418 (2020).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR29",
+        "doi-asserted-by": "crossref",
+        "first-page": "925",
+        "DOI": "10.1038/s41567-022-01653-5",
+        "volume": "18",
+        "author": "S Colombo",
+        "year": "2022",
+        "unstructured": "Colombo, S. et al. Time-reversal-based quantum metrology with many-body entangled states. Nat. Phys. 18, 925–930 (2022).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "6360_CR30",
+        "unstructured": "Robinson, J. M. et al. Direct comparison of two spin squeezed optical clocks below the quantum projection noise limit. Preprint at https://arxiv.org/abs/2211.08621 (2022)."
+      },
+      {
+        "key": "6360_CR31",
+        "doi-asserted-by": "crossref",
+        "first-page": "041803",
+        "DOI": "10.1103/PhysRevA.65.041803",
+        "volume": "65",
+        "author": "I Bouchoule",
+        "year": "2002",
+        "unstructured": "Bouchoule, I. & Mølmer, K. Spin squeezing of atoms by the dipole interaction in virtually excited Rydberg states. Phys. Rev. A 65, 041803 (2002).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "6360_CR32",
+        "doi-asserted-by": "crossref",
+        "first-page": "103601",
+        "DOI": "10.1103/PhysRevLett.112.103601",
+        "volume": "112",
+        "author": "LIR Gil",
+        "year": "2014",
+        "unstructured": "Gil, L. I. R., Mukherjee, R., Bridge, E. M., Jones, M. P. A. & Pohl, T. Spin squeezing in a Rydberg lattice clock. Phys. Rev. Lett. 112, 103601 (2014).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR33",
+        "doi-asserted-by": "crossref",
+        "first-page": "71",
+        "DOI": "10.1038/nphys3487",
+        "volume": "12",
+        "author": "Y-Y Jau",
+        "year": "2016",
+        "unstructured": "Jau, Y.-Y., Hankin, A., Keating, T., Deutsch, I. H. & Biedermann, G. Entangling atomic spins with a Rydberg-dressed spin-flip blockade. Nat. Phys. 12, 71–74 (2016).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "6360_CR34",
+        "doi-asserted-by": "crossref",
+        "first-page": "063601",
+        "DOI": "10.1103/PhysRevLett.124.063601",
+        "volume": "124",
+        "author": "V Borish",
+        "year": "2020",
+        "unstructured": "Borish, V., Marković, O., Hines, J. A., Rajagopal, S. V. & Schleier-Smith, M. Transverse-field Ising dynamics in a Rydberg-dressed atomic gas. Phys. Rev. Lett. 124, 063601 (2020).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR35",
+        "first-page": "021036",
+        "volume": "11",
+        "author": "E Guardado-Sanchez",
+        "year": "2021",
+        "unstructured": "Guardado-Sanchez, E. et al. Quench dynamics of a Fermi gas with strong nonlocal interactions. Phys. Rev. X 11, 021036 (2021).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "6360_CR36",
+        "first-page": "041063",
+        "volume": "7",
+        "author": "J Zeiher",
+        "year": "2017",
+        "unstructured": "Zeiher, J. et al. Coherent many-body spin dynamics in a long-range interacting Ising chain. Phys. Rev. X 7, 041063 (2017).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "6360_CR37",
+        "doi-asserted-by": "crossref",
+        "first-page": "023106",
+        "DOI": "10.1103/PhysRevA.103.023106",
+        "volume": "103",
+        "author": "J Van Damme",
+        "year": "2021",
+        "unstructured": "Van Damme, J., Zheng, X., Saffman, M., Vavilov, M. G. & Kolkowitz, S. Impacts of random filling on spin squeezing via Rydberg dressing in optical clocks. Phys. Rev. A 103, 023106 (2021).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "6360_CR38",
+        "doi-asserted-by": "crossref",
+        "first-page": "72",
+        "DOI": "10.1038/s42254-018-0003-5",
+        "volume": "1",
+        "author": "N Friis",
+        "year": "2019",
+        "unstructured": "Friis, N., Vitagliano, G., Malik, M. & Huber, M. Entanglement certification from theory to experiment. Nat. Rev. Phys. 1, 72–87 (2019).",
+        "journal-title": "Nat. Rev. Phys."
+      },
+      {
+        "key": "6360_CR39",
+        "doi-asserted-by": "crossref",
+        "first-page": "R6797",
+        "DOI": "10.1103/PhysRevA.46.R6797",
+        "volume": "46",
+        "author": "DJ Wineland",
+        "year": "1992",
+        "unstructured": "Wineland, D. J., Bollinger, J. J., Itano, W. M., Moore, F. L. & Heinzen, D. J. Spin squeezing and reduced quantum noise in spectroscopy. Phys. Rev. A 46, R6797–R6800 (1992).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "6360_CR40",
+        "doi-asserted-by": "crossref",
+        "first-page": "425",
+        "DOI": "10.1038/s41586-021-04344-y",
+        "volume": "602",
+        "author": "X Zheng",
+        "year": "2022",
+        "unstructured": "Zheng, X. et al. Differential clock comparisons with a multiplexed optical lattice clock. Nature 602, 425–430 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR41",
+        "doi-asserted-by": "crossref",
+        "first-page": "103201",
+        "DOI": "10.1103/PhysRevLett.120.103201",
+        "volume": "120",
+        "author": "GE Marti",
+        "year": "2018",
+        "unstructured": "Marti, G. E. et al. Imaging optical frequencies with 100μHz precision and 1.1μm resolution. Phys. Rev. Lett. 120, 103201 (2018).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR42",
+        "doi-asserted-by": "crossref",
+        "first-page": "885",
+        "DOI": "10.1126/science.abo0608",
+        "volume": "377",
+        "author": "AW Young",
+        "year": "2022",
+        "unstructured": "Young, A. W., Eckner, W. J., Schine, N., Childs, A. M. & Kaufman, A. M. Tweezer-programmable 2D quantum walks in a Hubbard-regime lattice. Science 377, 885–889 (2022).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "6360_CR43",
+        "doi-asserted-by": "crossref",
+        "first-page": "033613",
+        "DOI": "10.1103/PhysRevA.76.033613",
+        "volume": "76",
+        "author": "JK Stockton",
+        "year": "2007",
+        "unstructured": "Stockton, J. K., Wu, X. & Kasevich, M. A. Bayesian estimation of differential interferometer phase. Phys. Rev. A 76, 033613 (2007).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "6360_CR44",
+        "doi-asserted-by": "crossref",
+        "first-page": "1067",
+        "DOI": "10.1038/s41567-022-01678-w",
+        "volume": "18",
+        "author": "N Schine",
+        "year": "2022",
+        "unstructured": "Schine, N., Young, A. W., Eckner, W. J., Martin, M. J. & Kaufman, A. M. Long-lived Bell states in an array of optical clock qubits. Nat. Phys. 18, 1067–1073 (2022).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "6360_CR45",
+        "doi-asserted-by": "crossref",
+        "first-page": "87",
+        "DOI": "10.1038/s41586-018-0738-2",
+        "volume": "564",
+        "author": "WF McGrew",
+        "year": "2018",
+        "unstructured": "McGrew, W. F. et al. Atomic clock performance enabling geodesy below the centimetre level. Nature 564, 87–90 (2018).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR46",
+        "doi-asserted-by": "crossref",
+        "first-page": "195302",
+        "DOI": "10.1103/PhysRevLett.104.195302",
+        "volume": "104",
+        "author": "N Henkel",
+        "year": "2010",
+        "unstructured": "Henkel, N., Nath, R. & Pohl, T. Three-dimensional roton excitations and supersolid formation in Rydberg-excited Bose–Einstein condensates. Phys. Rev. Lett. 104, 195302 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR47",
+        "doi-asserted-by": "crossref",
+        "first-page": "5138",
+        "DOI": "10.1103/PhysRevA.47.5138",
+        "volume": "47",
+        "author": "M Kitagawa",
+        "year": "1993",
+        "unstructured": "Kitagawa, M. & Ueda, M. Squeezed spin states. Phys. Rev. A 47, 5138–5143 (1993).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "6360_CR48",
+        "doi-asserted-by": "crossref",
+        "first-page": "L012033",
+        "DOI": "10.1103/PhysRevResearch.5.L012033",
+        "volume": "5",
+        "author": "JT Young",
+        "year": "2023",
+        "unstructured": "Young, J. T., Muleady, S. R., Perlin, M. A., Kaufman, A. M. & Rey, A. M. Enhancing spin squeezing using soft-core interactions. Phys. Rev. Res. 5, L012033 (2023).",
+        "journal-title": "Phys. Rev. Res."
+      },
+      {
+        "key": "6360_CR49",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Block, M. et al. A universal theory of spin squeezing. Preprint at https://arxiv.org/abs/2301.09636 (2023).",
+        "DOI": "10.26226/m.6275705866d5dcf63a311421"
+      },
+      {
+        "key": "6360_CR50",
+        "doi-asserted-by": "crossref",
+        "first-page": "1149",
+        "DOI": "10.1126/science.abd9547",
+        "volume": "374",
+        "author": "S Geier",
+        "year": "2021",
+        "unstructured": "Geier, S. et al. Floquet Hamiltonian engineering of an isolated many-body spin system. Science 374, 1149–1152 (2021).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "6360_CR51",
+        "doi-asserted-by": "crossref",
+        "first-page": "604",
+        "DOI": "10.1038/s41586-022-04435-4",
+        "volume": "603",
+        "author": "CD Marciniak",
+        "year": "2022",
+        "unstructured": "Marciniak, C. D. et al. Optimal metrology with programmable quantum sensors. Nature 603, 604–609 (2022).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR52",
+        "first-page": "041052",
+        "volume": "10",
+        "author": "W Bowden",
+        "year": "2020",
+        "unstructured": "Bowden, W., Vianello, A., Hill, I. R., Schioppo, M. & Hobson, R. Improving the Q factor of an optical atomic clock using quantum nondemolition measurement. Phys. Rev. X 10, 041052 (2020).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "6360_CR53",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Bornet, G. et al. Scalable spin squeezing in a dipolar Rydberg atom array. Preprint at https://arxiv.org/abs/2303.08053 (2023).",
+        "DOI": "10.1038/s41586-023-06414-9"
+      },
+      {
+        "key": "6360_CR54",
+        "unstructured": "Franke, J. et al. Quantum-enhanced sensing on an optical transition via emergent collective quantum correlations. Preprint at https://arxiv.org/abs/2303.10688 (2023)."
+      },
+      {
+        "key": "6360_CR55",
+        "first-page": "041054",
+        "volume": "8",
+        "author": "MA Norcia",
+        "year": "2018",
+        "unstructured": "Norcia, M. A., Young, A. W. & Kaufman, A. M. Microscopic control and detection of ultracold strontium in optical-tweezer arrays. Phys. Rev. X 8, 041054 (2018).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "6360_CR56",
+        "doi-asserted-by": "crossref",
+        "first-page": "83",
+        "DOI": "10.1038/s41586-018-0458-7",
+        "volume": "561",
+        "author": "A Kumar",
+        "year": "2018",
+        "unstructured": "Kumar, A., Wu, T.-Y., Giraldo, F. & Weiss, D. S. Sorting ultracold atoms in a three-dimensional optical lattice in a realization of Maxwell’s demon. Nature 561, 83–87 (2018).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6360_CR57",
+        "doi-asserted-by": "crossref",
+        "first-page": "1024",
+        "DOI": "10.1126/science.aah3752",
+        "volume": "354",
+        "author": "M Endres",
+        "year": "2016",
+        "unstructured": "Endres, M. et al. Atom-by-atom assembly of defect-free one-dimensional cold atom arrays. Science 354, 1024–1027 (2016).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "6360_CR58",
+        "doi-asserted-by": "crossref",
+        "first-page": "1021",
+        "DOI": "10.1126/science.aah3778",
+        "volume": "354",
+        "author": "D Barredo",
+        "year": "2016",
+        "unstructured": "Barredo, D., De Léséleuc, S., Lienhard, V., Lahaye, T. & Browaeys, A. An atom-by-atom assembler of defect-free arbitrary two-dimensional atomic arrays. Science 354, 1021–1023 (2016).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "6360_CR59",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Young, A. W. et al. An atomic boson sampler. Preprint at https://arxiv.org/abs/2307.06936 (2023).",
+        "DOI": "10.21203/rs.3.rs-3179504/v1"
+      },
+      {
+        "key": "6360_CR60",
+        "doi-asserted-by": "crossref",
+        "first-page": "083001",
+        "DOI": "10.1103/PhysRevLett.96.083001",
+        "volume": "96",
+        "author": "AV Taichenachev",
+        "year": "2006",
+        "unstructured": "Taichenachev, A. V. et al. Magnetic field-induced spectroscopy of forbidden optical transitions with application to lattice-based optical atomic clocks. Phys. Rev. Lett. 96, 083001 (2006).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR61",
+        "doi-asserted-by": "crossref",
+        "first-page": "263202",
+        "DOI": "10.1103/PhysRevLett.118.263202",
+        "volume": "118",
+        "author": "DG Matei",
+        "year": "2017",
+        "unstructured": "Matei, D. G. et al. 1.5 μm lasers with sub-10 mHz linewidth. Phys. Rev. Lett. 118, 263202 (2017).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6360_CR62",
+        "doi-asserted-by": "crossref",
+        "first-page": "714",
+        "DOI": "10.1038/s41566-019-0493-4",
+        "volume": "13",
+        "author": "E Oelker",
+        "year": "2019",
+        "unstructured": "Oelker, E. et al. Demonstration of 4.8 × 10−17 stability at 1 s for two independent optical clocks. Nat. Photon. 13, 714–719 (2019).",
+        "journal-title": "Nat. Photon."
+      },
+      {
+        "key": "6360_CR63",
+        "doi-asserted-by": "crossref",
+        "first-page": "1141",
+        "DOI": "10.1002/(SICI)1097-0258(20000515)19:9<1141::AID-SIM479>3.0.CO;2-F",
+        "volume": "19",
+        "author": "J Carpenter",
+        "year": "2000",
+        "unstructured": "Carpenter, J. & Bithell, J. Bootstrap confidence intervals: when, which, what? A practical guide for medical statisticians. Stat. Med. 19, 1141–1164 (2000).",
+        "journal-title": "Stat. Med."
+      },
+      {
+        "key": "6360_CR64",
+        "doi-asserted-by": "crossref",
+        "first-page": "586",
+        "DOI": "10.1214/aos/1176345462",
+        "volume": "9",
+        "author": "B Efron",
+        "year": "1981",
+        "unstructured": "Efron, B. & Stein, C. The jackknife estimate of variance. Ann. Stat. 9, 586–596 (1981).",
+        "journal-title": "Ann. Stat."
+      },
+      {
+        "key": "6360_CR65",
+        "doi-asserted-by": "crossref",
+        "first-page": "083007",
+        "DOI": "10.1088/1367-2630/15/8/083007",
+        "volume": "15",
+        "author": "M van den Worm",
+        "year": "2013",
+        "unstructured": "van den Worm, M., Sawyer, B. C., Bollinger, J. J. & Kastner, M. Relaxation timescales and decay of correlations in a long-range interacting quantum simulator. New J. Phys. 15, 083007 (2013).",
+        "journal-title": "New J. Phys."
+      }
+    ],
+    "container-title": [
+      "Nature"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.nature.com/articles/s41586-023-06360-6.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-023-06360-6",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-023-06360-6.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          27
+        ]
+      ],
+      "date-time": "2023-09-27T13:09:42Z",
+      "timestamp": 1695820182000
+    },
+    "score": 21.855524,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/s41586-023-06360-6"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          30
+        ]
+      ]
+    },
+    "references-count": 65,
+    "journal-issue": {
+      "issue": "7980",
+      "published-print": {
+        "date-parts": [
+          [
+            2023,
+            9,
+            28
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "6360"
+    ],
+    "URL": "https://doi.org/10.1038/s41586-023-06360-6",
+    "ISSN": [
+      "0028-0836",
+      "1476-4687"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0028-0836"
+      },
+      {
+        "type": "electronic",
+        "value": "1476-4687"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          30
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "14 March 2023",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "22 June 2023",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "30 August 2023",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "The authors declare no competing interests.",
+        "order": 1,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Competing interests"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          9,
+          10
+        ]
+      ],
+      "date-time": "2022-09-10T12:14:44Z",
+      "timestamp": 1662812084781
+    },
+    "posted": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "reference-count": 0,
+    "publisher": "Morressier",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "DOI": "10.26226/m.6275705c66d5dcf63a311598",
+    "type": "posted-content",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ],
+      "date-time": "2022-05-25T21:02:22Z",
+      "timestamp": 1653512542000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Record Precision in a 1D Optical Lattice Clock"
+    ],
+    "prefix": "10.26226",
+    "author": [
+      {
+        "given": "Kyungtae",
+        "family": "Kim",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Alexander",
+        "family": "Aeppli",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Tobias",
+        "family": "Bothwell",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Colin",
+        "family": "Kennedy",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "John",
+        "family": "Robinson",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jun",
+        "family": "Ye",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "22980",
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          9,
+          10
+        ]
+      ],
+      "date-time": "2022-09-10T11:45:41Z",
+      "timestamp": 1662810341000
+    },
+    "score": 21.644825,
+    "resource": {
+      "primary": {
+        "URL": "https://www.morressier.com/article/6275705c66d5dcf63a311598"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.26226/m.6275705c66d5dcf63a311598",
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "subtype": "other"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          31
+        ]
+      ],
+      "date-time": "2025-10-31T16:27:12Z",
+      "timestamp": 1761928032331
+    },
+    "reference-count": 46,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "10",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2020,
+              11,
+              3
+            ]
+          ],
+          "date-time": "2020-11-03T00:00:00Z",
+          "timestamp": 1604361600000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.springer.com/tdm"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2020,
+              11,
+              3
+            ]
+          ],
+          "date-time": "2020-11-03T00:00:00Z",
+          "timestamp": 1604361600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://www.springer.com/tdm"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Silicon"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2021,
+          10
+        ]
+      ]
+    },
+    "DOI": "10.1007/s12633-020-00811-9",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2020,
+          11,
+          3
+        ]
+      ],
+      "date-time": "2020-11-03T10:02:46Z",
+      "timestamp": 1604397766000
+    },
+    "page": "3521-3529",
+    "update-policy": "http://dx.doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 20,
+    "title": [
+      "Ultra Compact, High Contrast Ratio Based all Optical OR Gate Using Two Dimensional Photonic Crystals"
+    ],
+    "prefix": "10.1007",
+    "volume": "13",
+    "author": [
+      {
+        "given": "K. Rama",
+        "family": "Prabha",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "S.",
+        "family": "Robinson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2020,
+          11,
+          3
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "issue": "7",
+        "key": "811_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "2249",
+        "DOI": "10.1007/s11082-014-0102-1",
+        "volume": "47",
+        "author": "A Salmanpour",
+        "year": "2015",
+        "unstructured": "Salmanpour A, Mohammadnejad S, Bahrami A (2015) Photonic crystal logic gates an overview. Optical Quantum Electronics 47(7):2249–2275",
+        "journal-title": "Optical Quantum Electronics"
+      },
+      {
+        "issue": "9",
+        "key": "811_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "950",
+        "DOI": "10.1016/j.ijleo.2015.03.003",
+        "volume": "126",
+        "author": "P Rani",
+        "year": "2015",
+        "unstructured": "Rani P, Kalra Y, Sinha RK (2015) Design of all optical logic gates in photonic crystal waveguides. Optik 126(9):950–955",
+        "journal-title": "Optik"
+      },
+      {
+        "issue": "19",
+        "key": "811_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "5764",
+        "DOI": "10.1016/j.ijleo.2014.07.037",
+        "volume": "125",
+        "author": "SK Ajaykumar",
+        "year": "2014",
+        "unstructured": "Ajaykumar SK, Raghuwanshi SK (2014) Implementation of XOR/XNOR & AND logic gates by using Mach-Zehnder interferometers. Optik 125(19):5764–5767",
+        "journal-title": "Optik"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "140",
+        "DOI": "10.1007/s11107-016-0683-7",
+        "volume": "34",
+        "author": "EH Shaik",
+        "year": "2017",
+        "unstructured": "Shaik EH, Rangaswamy N (2017) Multimode interference based photonic crystal logic gates with simple structure and improved contrast ratio. Photonic Network Communication 34(1):140–148",
+        "journal-title": "Photonic Network Communication"
+      },
+      {
+        "issue": "2",
+        "key": "811_CR5",
+        "first-page": "475",
+        "volume": "126",
+        "author": "M Noori",
+        "year": "2015",
+        "unstructured": "Noori M, Soroosh N (2015) A comprehensive comparison of photonic band gap and self collimation base 2D square array waveguides. Optik 126(2):475–478",
+        "journal-title": "Optik"
+      },
+      {
+        "issue": "2",
+        "key": "811_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "173",
+        "DOI": "10.1007/s13320-012-0054-7",
+        "volume": "2",
+        "author": "X Susan Christina",
+        "year": "2012",
+        "unstructured": "Susan Christina X, Kabilan AP (2012) Design of optical logic gates using self-collimated beams in 2D photonic crystal. Photonic sensors 2(2):173–179",
+        "journal-title": "Photonic sensors"
+      },
+      {
+        "issue": "6",
+        "key": "811_CR7",
+        "doi-asserted-by": "publisher",
+        "first-page": "1428",
+        "DOI": "10.1109/2944.902198",
+        "volume": "6",
+        "author": "KE Stubkjaer",
+        "year": "2000",
+        "unstructured": "Stubkjaer KE (2000) Semiconductor optical amplifier based all optical logic gates for high speed optical processing. IEEEJ SelTop quantum electron 6(6):1428–1435",
+        "journal-title": "IEEEJ SelTop quantum electron"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR8",
+        "first-page": "30",
+        "volume": "3",
+        "author": "R Arunkumar",
+        "year": "2017",
+        "unstructured": "Arunkumar R, Suganya T, Robinson S (2017) Design and analysis of photonic crystal elliptical ring resonator based pressure sensors. Photonic Optical technology 3(1):30–33",
+        "journal-title": "Photonic Optical technology"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "349",
+        "DOI": "10.21917/ijme.2017.0061",
+        "volume": "3",
+        "author": "T Suganya",
+        "year": "2017",
+        "unstructured": "Suganya T, Robinson S (2017) 2D photonic crystal based biosensor using rhombic ring resonator for glucose monitoring. ICTACT Microelectron 3(1):349–353",
+        "journal-title": "ICTACT Microelectron"
+      },
+      {
+        "issue": "3",
+        "key": "811_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "248",
+        "DOI": "10.1007/s13320-014-0198-8",
+        "volume": "4",
+        "author": "KV Shanthi",
+        "year": "2014",
+        "unstructured": "Shanthi KV, Robinson S (2014) Two dimensional photonic crystal based sensor for pressure sensing. Photonic sensors 4(3):248–253",
+        "journal-title": "Photonic sensors"
+      },
+      {
+        "issue": "4",
+        "key": "811_CR11",
+        "first-page": "1",
+        "volume": "2",
+        "author": "T BetsySaral",
+        "year": "2016",
+        "unstructured": "BetsySaral T, Robinson S, Arunkumar R (2016) Two dimensional photonic crystal based compact power splitters. International journal of Photonics and Optical Technology 2(4):1–5",
+        "journal-title": "International journal of Photonics and Optical Technology"
+      },
+      {
+        "issue": "4",
+        "key": "811_CR12",
+        "doi-asserted-by": "publisher",
+        "first-page": "2482",
+        "DOI": "10.1007/s11664-019-06947-8",
+        "volume": "48",
+        "author": "T Zhao",
+        "year": "2019",
+        "unstructured": "Zhao T, Asghari M, Mehdizadeh F (2019) All optical digital 2-1 multiplexer using photonic crystal based non linear ring resonators. J Electron Mater 48(4):2482–2486",
+        "journal-title": "J Electron Mater"
+      },
+      {
+        "issue": "2",
+        "key": "811_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "74",
+        "DOI": "10.1016/j.opelre.2017.05.003",
+        "volume": "25",
+        "author": "K Venkatachalam",
+        "year": "2017",
+        "unstructured": "Venkatachalam K, Robinson S, Dhamodharan SK (2017) Performance analysis of an eight channel demultiplexers using a 2D photonic crystal quasi square ring resonator. Opto electronics review 25(2):74–79",
+        "journal-title": "Opto electronics review"
+      },
+      {
+        "issue": "2",
+        "key": "811_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "146",
+        "DOI": "10.1007/s11107-014-0483-x",
+        "volume": "29",
+        "author": "HA Banaei",
+        "year": "2015",
+        "unstructured": "Banaei HA (2015) Optical wavelength demultiplexer based on photonic crystal ring resonators. Photonic networks communications 29(2):146–150",
+        "journal-title": "Photonic networks communications"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "83",
+        "DOI": "10.1007/s11107-018-0795-3",
+        "volume": "37",
+        "author": "F Haddadan",
+        "year": "2019",
+        "unstructured": "Haddadan F, Soroosh M (2019) Low power all optical 8 to 3 encoder using photonic crystal based waveguides. Photon Netw Commun 37(1):83–89",
+        "journal-title": "Photon Netw Commun"
+      },
+      {
+        "key": "811_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "144",
+        "DOI": "10.1016/j.matlet.2019.05.040",
+        "volume": "251",
+        "author": "R Rajasekar",
+        "year": "2018",
+        "unstructured": "Rajasekar R, Latha R, Robinson S (2018) Ultra contrast ratio optical encoder using photonic crystal waveguide. Mater Lett 251:144–147",
+        "journal-title": "Mater Lett"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR17",
+        "doi-asserted-by": "publisher",
+        "first-page": "122",
+        "DOI": "10.1007/s11107-017-0724-x",
+        "volume": "35",
+        "author": "S Khosravi",
+        "year": "2018",
+        "unstructured": "Khosravi S, Zavvari M (2018) Design and analysis of integrated all optical 2*4 decoder based on 2D photonic crystal. Photon Netw Commun 35(1):122–128",
+        "journal-title": "Photon Netw Commun"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR18",
+        "doi-asserted-by": "publisher",
+        "first-page": "55",
+        "DOI": "10.1016/j.photonics.2017.10.002",
+        "volume": "27",
+        "author": "H Sharifi",
+        "year": "2017",
+        "unstructured": "Sharifi H, Hamidi SM, Navi K (2017) All optical photonic crystal logic gates using non-linear directional coupler. Photonics and Nanostructures 27(1):55–63",
+        "journal-title": "Photonics and Nanostructures"
+      },
+      {
+        "issue": "11",
+        "key": "811_CR19",
+        "doi-asserted-by": "publisher",
+        "first-page": "114001",
+        "DOI": "10.1117/1.OE.51.11.114001",
+        "volume": "51",
+        "author": "S Robinson",
+        "year": "2012",
+        "unstructured": "Robinson S, Nakkeeran R (2012) Couple mode theory analysis for circular photonic crystal ring resonant or based add drop filter. Opt Eng 51(11):114001",
+        "journal-title": "Opt Eng"
+      },
+      {
+        "issue": "3",
+        "key": "811_CR20",
+        "doi-asserted-by": "publisher",
+        "first-page": "142",
+        "DOI": "10.4236/opj.2011.13024",
+        "volume": "1",
+        "author": "S Robinson",
+        "year": "2011",
+        "unstructured": "Robinson S, Nakkeeran R (2011) PCRR based band pass filter for C and L+U bands of ITU-T G.694.2 CWDM systems. Optics and Photonic Journal 1(3):142–149",
+        "journal-title": "Optics and Photonic Journal"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR21",
+        "doi-asserted-by": "publisher",
+        "first-page": "30",
+        "DOI": "10.1007/s11082-017-1301-3",
+        "volume": "50",
+        "author": "A Rahmani",
+        "year": "2018",
+        "unstructured": "Rahmani A, Mehdizadeh F (2018) Application of non-linear PhCRRs in realizing all optical half-adder. Optical and quantum electronics Springer 50(1):30",
+        "journal-title": "Optical and quantum electronics Springer"
+      },
+      {
+        "issue": "2",
+        "key": "811_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "837",
+        "DOI": "10.1007/s10825-018-1161-5",
+        "volume": "17",
+        "author": "K Janani",
+        "year": "2018",
+        "unstructured": "Janani K, Rajesh R, Shankar T (2018) Design of an optical half-adder using cohesive twin- structured PCRR. J Comput Electron 17(2):837–844",
+        "journal-title": "J Comput Electron"
+      },
+      {
+        "issue": "6",
+        "key": "811_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "1687",
+        "DOI": "10.1007/s11468-019-00955-4",
+        "volume": "14",
+        "author": "R Rajasekar",
+        "year": "2019",
+        "unstructured": "Rajasekar R, Parameshwari K, Robinson S (2019) Nano optical switch based on photonic crystal based ring resonator. Plasmonics 14(6):1687–1697",
+        "journal-title": "Plasmonics"
+      },
+      {
+        "key": "811_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "325",
+        "DOI": "10.1007/978-981-13-6159-3_35",
+        "volume": "546",
+        "author": "Mainka",
+        "year": "2020",
+        "unstructured": "Mainka, Sharma S, Zafar R, Mahdieh MH, Singh G, Salim M (2020) High Contrast Ratio Based All-Optical OR and NOR Plasmonic Logic Gate Operating at E Band. Optical and Wireless Technologies 546:325–332",
+        "journal-title": "Optical and Wireless Technologies"
+      },
+      {
+        "key": "811_CR25",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Roya Ebrahimi Meymand, Ali Soleymani, Nosrat Granpayeh, “All-optical AND, OR, and XOR logic gates based on coherent perfect absorption in graphene-based Meta surface at terahertz region”. Optics Communications, Vol. 458, https://doi.org/10.1016/j.optcom.2019.124772,2020",
+        "DOI": "10.1016/j.optcom.2019.124772,2020"
+      },
+      {
+        "issue": "2",
+        "key": "811_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "154",
+        "DOI": "10.1007/s11801-020-9046-9",
+        "volume": "16",
+        "author": "Y Qing-bo",
+        "year": "2020",
+        "unstructured": "Qing-bo Y, Wu R, Zhen L, Lu-yao Z (2020) All-optical non-gate and NOR gate design of two-dimensional photonic crystal ring resonator. Optoelectron Lett 16(2):154–160",
+        "journal-title": "Optoelectron Lett"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR27",
+        "first-page": "139",
+        "volume": "78",
+        "author": "K Goudarzi",
+        "year": "2019",
+        "unstructured": "Goudarzi K, Mir A, Chaharmahali I, Goudarzi D (2019) All optical XOR and OR logic gates based on line and point defects in 2-D photonic crystal. Opt Laser Technol 78(1):139–142",
+        "journal-title": "Opt Laser Technol"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR28",
+        "first-page": "2387",
+        "volume": "282",
+        "author": "M Pirzadi",
+        "year": "2019",
+        "unstructured": "Pirzadi M, Mir A, Bodaghi D (2019) Realization of ultra-accurate and compact all-optical photonic crystal OR logic gate. IEEE Photon Technol Lett 282(1):2387–2390",
+        "journal-title": "IEEE Photon Technol Lett"
+      },
+      {
+        "issue": "9",
+        "key": "811_CR29",
+        "doi-asserted-by": "publisher",
+        "first-page": "693",
+        "DOI": "10.1080/09500340.2014.1003256",
+        "volume": "62",
+        "author": "A Salmanpour",
+        "year": "2015",
+        "unstructured": "Salmanpour A, Mohammadnejad S, Bahrami A (2015) All optical Photonic crystal AND, XOR, and OR logic gates using non-linear Kerr Effect and Ring resonators. J Mod Opt 62(9):693–700",
+        "journal-title": "J Mod Opt"
+      },
+      {
+        "issue": "9",
+        "key": "811_CR30",
+        "doi-asserted-by": "publisher",
+        "first-page": "1005",
+        "DOI": "10.1080/09500340.2019.1598587",
+        "volume": "66",
+        "author": "TS Mostafa",
+        "year": "2019",
+        "unstructured": "Mostafa TS, Mohammed NA, El-Rabaie E-SM (2019) Ultra-high bit rate all-optical AND/OR logic gates based on photonic crystal with multi-wavelength simultaneous operation. J Mod Opt 66(9):1005–1016",
+        "journal-title": "J Mod Opt"
+      },
+      {
+        "key": "811_CR31",
+        "doi-asserted-by": "publisher",
+        "first-page": "105611",
+        "DOI": "10.1016/j.optlastec.2019.105611",
+        "volume": "119",
+        "author": "A Kotb",
+        "year": "2019",
+        "unstructured": "Kotb A, Zoiros KE (2019) Ultra fast performance of all optical AND& OR logic operations at 160 Gbits/s using photonic crystal semiconductor optical amplifier. Optics and laser technology 119:105611",
+        "journal-title": "Optics and laser technology"
+      },
+      {
+        "issue": "1",
+        "key": "811_CR32",
+        "doi-asserted-by": "publisher",
+        "first-page": "175",
+        "DOI": "10.1016/j.optcom.2017.11.043",
+        "volume": "41",
+        "author": "HME Hussien",
+        "year": "2018",
+        "unstructured": "Hussien HME, Ali TA, Rafat NH (2018) New designs of a complete set of photonic crystals logic gates. Opt Commun 41(1):175–181",
+        "journal-title": "Opt Commun"
+      },
+      {
+        "key": "811_CR33",
+        "doi-asserted-by": "publisher",
+        "first-page": "227",
+        "DOI": "10.1016/j.optcom.2013.02.014",
+        "volume": "298–299",
+        "author": "P Rani",
+        "year": "2013",
+        "unstructured": "Rani P, Kalra Y, Sinha RK (2013) Realization of AND gate in Y Shaped Photonic crystal. Optics Communication Elsevier 298–299:227–231",
+        "journal-title": "Optics Communication Elsevier"
+      },
+      {
+        "issue": "12",
+        "key": "811_CR34",
+        "doi-asserted-by": "publisher",
+        "first-page": "3689",
+        "DOI": "10.1007/s11082-015-0238-7",
+        "volume": "47",
+        "author": "A Salmanpour",
+        "year": "2015",
+        "unstructured": "Salmanpour A, Mohammadnejad S, Omran PT (2015) All optical photonic crystal NOT and OR logic gates using non-linear Kerr effect and ring resonators. Opt Quant Electron 47(12):3689–3703",
+        "journal-title": "Opt Quant Electron"
+      },
+      {
+        "issue": "3",
+        "key": "811_CR35",
+        "first-page": "335",
+        "volume": "48",
+        "author": "EH Shaik",
+        "year": "2015",
+        "unstructured": "Shaik EH, Rangaswamy N (2015) Improved design of all- optical photonic crystal logic gates using T-shaped waveguide. Optical and Quantum Electronics 48(3):335",
+        "journal-title": "Optical and Quantum Electronics"
+      },
+      {
+        "issue": "9",
+        "key": "811_CR36",
+        "first-page": "499",
+        "volume": "66",
+        "author": "G Tavakoli",
+        "year": "2019",
+        "unstructured": "Tavakoli G, Alipour-Banaei H, Hassangholizadeh-Kashtiban M (2019) A novel proposal for all-optical compact and fast XOR/XNOR gate based on photonic crystal. J Mod Opt 66(9):499–605",
+        "journal-title": "J Mod Opt"
+      },
+      {
+        "issue": "7",
+        "key": "811_CR37",
+        "doi-asserted-by": "publisher",
+        "first-page": "228",
+        "DOI": "10.1007/s11082-019-1914-9",
+        "volume": "51",
+        "author": "MR Geraili",
+        "year": "2019",
+        "unstructured": "Mohammad Reza Geraili, Seyed Ebrahim Hosseini, Mohammad Bagher Tavakoli,·Mehrdad Shokooh Saremi, \"Application of non-linear photonic crystal ring resonators in realizing all optical OR/NOT/AND gates”. Optical and quantum electronics, Vol. 51, No. 7, pp. 228, 2019",
+        "journal-title": "Optical and quantum electronics"
+      },
+      {
+        "key": "811_CR38",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Mohebzadeh-Bahabady A, Olyaee S (2018) Designing low power and high contrast ratio all optical NOT logic gate for using in optical integrated circuits, Vol. 51,No. 3",
+        "DOI": "10.1007/s11082-018-1715-6"
+      },
+      {
+        "key": "811_CR39",
+        "doi-asserted-by": "publisher",
+        "first-page": "429",
+        "DOI": "10.1007/978-981-13-6159-3_45",
+        "volume": "546",
+        "author": "A Saharia",
+        "year": "2019",
+        "unstructured": "Saharia A, Mudgal N, Agarwal A, Sahu S, Jain S, Ghunawat AK, Singh G (2019) A Comparative Study of Various All-Optical Logic Gates. Optical and wireless technologies 546:429–437",
+        "journal-title": "Optical and wireless technologies"
+      },
+      {
+        "key": "811_CR40",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Filho GSB, Martins FLB, Junior MF, Araújo AAR, Nascimento JC, Coelho AG, de Fraga WB (2018) All-Optical Logic Gates and Boolean Expressions in a Photonic Mach–Zehnder Interferometer. Journal of optical communication, Vol. 40, No. 1",
+        "DOI": "10.1515/joc-2017-0032"
+      },
+      {
+        "key": "811_CR41",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Fariborz Parandin M, Malmir R (2020) Reconfigurable all optical half adder and optical XOR and AND logic gates based on 2D photonic crystals”. Optical and quantum electronics, Vol. 52, No. 56, https://doi.org/10.1007/s11082-019-2167-3",
+        "DOI": "10.1007/s11082-019-2167-3"
+      },
+      {
+        "issue": "10",
+        "key": "811_CR42",
+        "doi-asserted-by": "publisher",
+        "first-page": "941",
+        "DOI": "10.1080/09500340.2015.1111455",
+        "volume": "63",
+        "author": "EH Shaik",
+        "year": "2016",
+        "unstructured": "Shaik EH, Rangaswamy N (2016) Design of photonic crystal-based all-optical ANDgate using T-shaped waveguide. J Mod Opt 63(10):941–949",
+        "journal-title": "J Mod Opt"
+      },
+      {
+        "key": "811_CR43",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Jayabharathan JK, Subhalakshmi G, Robinson S (2018) Performance evaluation of Two dimensional photonic crystal all optical AND/OR logic gates, Vol. 39, No. 3, 10.1515/joc-2018-0105, pp.1–8",
+        "DOI": "10.1515/joc-2018-0105"
+      },
+      {
+        "key": "811_CR44",
+        "doi-asserted-by": "publisher",
+        "first-page": "237",
+        "DOI": "10.1016/j.ijleo.2018.10.188",
+        "volume": "179",
+        "author": "A Kumar",
+        "year": "2019",
+        "unstructured": "Kumar A, Medhekar S (2019) All optical NOT and NOR gates using interference in the structures based on 2D linear photonic crystal ring resonator. Optik 179:237–243",
+        "journal-title": "Optik"
+      },
+      {
+        "key": "811_CR45",
+        "doi-asserted-by": "publisher",
+        "first-page": "253",
+        "DOI": "10.1016/j.spmi.2016.11.038",
+        "volume": "101",
+        "author": "F Parandin",
+        "year": "2016",
+        "unstructured": "Parandin F, Karkhanehchi MM (2016) Terahertz all-optical NOR\\& AND logic gates based on 2D photonic crystals. Superlattice Microst 101:253–2604",
+        "journal-title": "Superlattice Microst"
+      },
+      {
+        "issue": "14",
+        "key": "811_CR46",
+        "doi-asserted-by": "publisher",
+        "first-page": "3528",
+        "DOI": "10.1016/j.optcom.2011.03.069",
+        "volume": "284",
+        "author": "Y Ishizaka",
+        "year": "2015",
+        "unstructured": "Ishizaka Y, Kawaguchi Y, Saitoh K, Koshiba M (2015) Design of ultra-compact all optical XOR &AND logic gates with low power consumption. Opt Commun 284(14):3528–3533",
+        "journal-title": "Opt Commun"
+      }
+    ],
+    "container-title": [
+      "Silicon"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.springer.com/content/pdf/10.1007/s12633-020-00811-9.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://link.springer.com/article/10.1007/s12633-020-00811-9/fulltext.html",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://link.springer.com/content/pdf/10.1007/s12633-020-00811-9.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2021,
+          9,
+          28
+        ]
+      ],
+      "date-time": "2021-09-28T04:24:28Z",
+      "timestamp": 1632803068000
+    },
+    "score": 21.219854,
+    "resource": {
+      "primary": {
+        "URL": "https://link.springer.com/10.1007/s12633-020-00811-9"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2020,
+          11,
+          3
+        ]
+      ]
+    },
+    "references-count": 46,
+    "journal-issue": {
+      "issue": "10",
+      "published-print": {
+        "date-parts": [
+          [
+            2021,
+            10
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "811"
+    ],
+    "URL": "https://doi.org/10.1007/s12633-020-00811-9",
+    "ISSN": [
+      "1876-990X",
+      "1876-9918"
+    ],
+    "issn-type": [
+      {
+        "value": "1876-990X",
+        "type": "print"
+      },
+      {
+        "value": "1876-9918",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2020,
+          11,
+          3
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "12 June 2020",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "27 October 2020",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "3 November 2020",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      }
+    ]
+  }
+]

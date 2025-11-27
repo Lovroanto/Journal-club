@@ -1,0 +1,3344 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          18
+        ]
+      ],
+      "date-time": "2025-06-18T16:22:55Z",
+      "timestamp": 1750263775485
+    },
+    "reference-count": 0,
+    "publisher": "Optica Publishing Group",
+    "issue": "10",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2007,
+              5,
+              2
+            ]
+          ],
+          "date-time": "2007-05-02T00:00:00Z",
+          "timestamp": 1178064000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 121,
+        "URL": "https://doi.org/10.1364/OA_License_v1#VOR-OA"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2007,
+              5,
+              2
+            ]
+          ],
+          "date-time": "2007-05-02T00:00:00Z",
+          "timestamp": 1178064000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 121,
+        "URL": "https://opg.optica.org/policies/opg-tdm-policy.json"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Opt. Express"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "DOI": "10.1364/oe.15.006019",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2007,
+          5,
+          14
+        ]
+      ],
+      "date-time": "2007-05-14T20:35:21Z",
+      "timestamp": 1179174921000
+    },
+    "page": "6019",
+    "source": "Crossref",
+    "is-referenced-by-count": 6,
+    "title": [
+      "Self ordering threshold and superradiant backscattering to slow a fast gas beam in a ring cavity with counter propagating pump"
+    ],
+    "prefix": "10.1364",
+    "volume": "15",
+    "author": [
+      {
+        "given": "C.",
+        "family": "Maes",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "J. K.",
+        "family": "Asbóth",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "H.",
+        "family": "Ritsch",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "285",
+    "published-online": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "container-title": [
+      "Optics Express"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.osapublishing.org/viewmedia.cfm?URI=oe-15-10-6019&seq=0",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          7,
+          18
+        ]
+      ],
+      "date-time": "2024-07-18T20:44:03Z",
+      "timestamp": 1721335443000
+    },
+    "score": 110.985535,
+    "resource": {
+      "primary": {
+        "URL": "https://opg.optica.org/oe/abstract.cfm?uri=oe-15-10-6019"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "10",
+      "published-online": {
+        "date-parts": [
+          [
+            2007
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2007
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1364/oe.15.006019",
+    "ISSN": [
+      "1094-4087"
+    ],
+    "issn-type": [
+      {
+        "value": "1094-4087",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          2,
+          21
+        ]
+      ],
+      "date-time": "2025-02-21T10:35:16Z",
+      "timestamp": 1740134116881,
+      "version": "3.37.3"
+    },
+    "reference-count": 22,
+    "publisher": "IOP Publishing",
+    "issue": "10R",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              1990,
+              10,
+              1
+            ]
+          ],
+          "date-time": "1990-10-01T00:00:00Z",
+          "timestamp": 654739200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://iopscience.iop.org/page/copyright"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              1990,
+              10,
+              1
+            ]
+          ],
+          "date-time": "1990-10-01T00:00:00Z",
+          "timestamp": 654739200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://iopscience.iop.org/info/page/text-and-data-mining"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "iopscience.iop.org"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Jpn. J. Appl. Phys."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          1990,
+          10,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:p> \n The laser beam of an Ar<jats:sup>+</jats:sup>-laser used for the laser recrystallization of silicon-on-insulator material in a three-dimensional integration process can contain large contributions from higher transversal electro-magnetic (TEM) laser modes of which the doughnut shaped TEM<jats:sub>01<jats:sup>*</jats:sup>\n                  </jats:sub>-mode is by far the most important one. An analytical expression is derived for the surface temperature of a bulk silicon wafer irradiated by a pseudo-stationary mixed-mode TEM<jats:sub>00</jats:sub>-TEM<jats:sub>01<jats:sup>*</jats:sup>\n                  </jats:sub> laser spot. The melt threshold of the irradiated wafer is determined as a function of the TEM<jats:sub>01<jats:sup>*</jats:sup>\n                  </jats:sub>-mode contribution and as a function of the ratio of the laser power absorptance in the liquid to the laser power absorptance in the solid material. The influence of the TEM<jats:sub>01<jats:sup>*</jats:sup>\n                  </jats:sub>-mode contribution on the size of the mixed solid-liquid `slush'-zone is studied quantitatively. \n </jats:p>",
+    "DOI": "10.1143/jjap.29.1873",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2005,
+          2,
+          23
+        ]
+      ],
+      "date-time": "2005-02-23T01:46:41Z",
+      "timestamp": 1109123201000
+    },
+    "page": "1873",
+    "update-policy": "https://doi.org/10.1088/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 3,
+    "title": [
+      "The Melt Threshold of Silicon Irradiated by a Multi-Mode Argon Laser Beam"
+    ],
+    "prefix": "10.35848",
+    "volume": "29",
+    "author": [
+      {
+        "given": "G. J.",
+        "family": "Willems",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "H. E.",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "reference": [
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "3919",
+        "DOI": "10.1063/1.324265",
+        "volume": "48",
+        "year": "1977",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "786",
+        "DOI": "10.1063/1.90505",
+        "volume": "33",
+        "year": "1978",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "3895",
+        "DOI": "10.1063/1.324261",
+        "volume": "48",
+        "year": "1977",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "274",
+        "DOI": "10.1063/1.327420",
+        "volume": "51",
+        "year": "1980",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "4364",
+        "DOI": "10.1063/1.331217",
+        "volume": "53",
+        "year": "1982",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "2646",
+        "DOI": "10.1063/1.332339",
+        "volume": "54",
+        "year": "1983",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "4357",
+        "DOI": "10.1063/1.331216",
+        "volume": "53",
+        "year": "1982",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "7545",
+        "DOI": "10.1063/1.330123",
+        "volume": "53",
+        "year": "1982",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "year": "1981",
+        "key": ""
+      },
+      {
+        "year": "1984",
+        "key": ""
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1347",
+        "DOI": "10.1109/T-ED.1985.22122",
+        "volume": "32",
+        "year": "1985",
+        "journal-title": "IEEE Trans. Electron Devices"
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "51",
+        "DOI": "10.1063/1.1753770",
+        "volume": "2",
+        "year": "1963",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1312",
+        "DOI": "10.1109/PROC.1966.5119",
+        "volume": "54",
+        "year": "1966",
+        "journal-title": "Proc. IEEE"
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "355",
+        "DOI": "10.1364/AO.8.000355",
+        "volume": "8",
+        "year": "1969",
+        "journal-title": "Appl. Opt."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "358",
+        "DOI": "10.1063/1.93939",
+        "volume": "42",
+        "year": "1983",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "year": "1983",
+        "key": ""
+      },
+      {
+        "year": "1984",
+        "key": ""
+      },
+      {
+        "year": "1986",
+        "key": ""
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1219",
+        "DOI": "10.1063/1.345720",
+        "volume": "67",
+        "year": "1990",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1546",
+        "DOI": "10.1143/JJAP.22.1546",
+        "volume": "22",
+        "year": "1983",
+        "journal-title": "Jpn. J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "3408",
+        "DOI": "10.1063/1.339304",
+        "volume": "62",
+        "year": "1987",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "year": "1972",
+        "key": ""
+      }
+    ],
+    "container-title": [
+      "Japanese Journal of Applied Physics"
+    ],
+    "link": [
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          6
+        ]
+      ],
+      "date-time": "2022-12-06T13:21:10Z",
+      "timestamp": 1670332870000
+    },
+    "score": 23.470419,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.1873"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1990,
+          10,
+          1
+        ]
+      ]
+    },
+    "references-count": 22,
+    "journal-issue": {
+      "issue": "10R",
+      "published-print": {
+        "date-parts": [
+          [
+            1990,
+            10,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1143/jjap.29.1873",
+    "ISSN": [
+      "0021-4922",
+      "1347-4065"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0021-4922"
+      },
+      {
+        "type": "electronic",
+        "value": "1347-4065"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1990,
+          10,
+          1
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "The Melt Threshold of Silicon Irradiated by a Multi-Mode Argon Laser Beam",
+        "name": "article_title",
+        "label": "Article Title"
+      },
+      {
+        "value": "Japanese Journal of Applied Physics",
+        "name": "journal_title",
+        "label": "Journal Title"
+      },
+      {
+        "value": "paper",
+        "name": "article_type",
+        "label": "Article Type"
+      },
+      {
+        "value": "Copyright (c) 1990 The Japan Society of Applied Physics",
+        "name": "copyright_information",
+        "label": "Copyright Information"
+      },
+      {
+        "value": "1990-05-21",
+        "name": "date_received",
+        "label": "Date Received",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "1990-07-21",
+        "name": "date_accepted",
+        "label": "Date Accepted",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "name": "date_epub",
+        "label": "Online publication date",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          23
+        ]
+      ],
+      "date-time": "2024-10-23T08:46:27Z",
+      "timestamp": 1729673187496,
+      "version": "3.28.0"
+    },
+    "reference-count": 15,
+    "publisher": "IEEE",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2017,
+          3
+        ]
+      ]
+    },
+    "DOI": "10.1109/icassp.2017.7952838",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          20
+        ]
+      ],
+      "date-time": "2017-06-20T17:35:36Z",
+      "timestamp": 1497980136000
+    },
+    "page": "3654-3658",
+    "source": "Crossref",
+    "is-referenced-by-count": 2,
+    "title": [
+      "Joint alpha-fairness based DSM and user encoding ordering for zero-forcing nonlinear precoding in G. fast downstream transmission"
+    ],
+    "prefix": "10.1109",
+    "author": [
+      {
+        "given": "Wouter",
+        "family": "Lanneer",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Paschalis",
+        "family": "Tsiaflakis",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Jochen",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Marc",
+        "family": "Moonen",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "263",
+    "reference": [
+      {
+        "key": "ref10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ICC.2015.7248444"
+      },
+      {
+        "key": "ref11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/EUSIPCO.2016.7760256"
+      },
+      {
+        "journal-title": "Understanding DigitalSubscriber Line Technology",
+        "year": "1999",
+        "author": "thomas",
+        "key": "ref12"
+      },
+      {
+        "key": "ref13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TCOMM.2006.877962"
+      },
+      {
+        "key": "ref14",
+        "doi-asserted-by": "crossref",
+        "first-page": "57",
+        "DOI": "10.1109/JSTSP.2007.914876",
+        "article-title": "Dynamic Spectrum Management: Complexity and Duality",
+        "volume": "2",
+        "author": "luo",
+        "year": "2008",
+        "journal-title": "IEEE J Sel Topics Signal Process"
+      },
+      {
+        "key": "ref15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/JSTSP.2007.910266"
+      },
+      {
+        "key": "ref4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ISSSE.1998.738086"
+      },
+      {
+        "key": "ref3",
+        "article-title": "Linear and nonlinear precoding based dynamic spectrum management for downstream vectored G.fast transmission",
+        "author": "lanneer",
+        "year": "2016",
+        "journal-title": "IEEE Trans Commun to be published"
+      },
+      {
+        "key": "ref6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/CDC.2008.4738709"
+      },
+      {
+        "key": "ref5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/GLOCOM.2015.7417180"
+      },
+      {
+        "key": "ref8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TIT.2003.817421"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/GLOCOM.2013.6831503"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TCOMM.2007.896121"
+      },
+      {
+        "key": "ref9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/JSAC.2002.1007389"
+      },
+      {
+        "journal-title": "Fast Access to Subscriber Terminals (FAST) - Physical Layer Specification",
+        "year": "2016",
+        "key": "ref1"
+      }
+    ],
+    "event": {
+      "name": "2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)",
+      "start": {
+        "date-parts": [
+          [
+            2017,
+            3,
+            5
+          ]
+        ]
+      },
+      "location": "New Orleans, LA",
+      "end": {
+        "date-parts": [
+          [
+            2017,
+            3,
+            9
+          ]
+        ]
+      }
+    },
+    "container-title": [
+      "2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)"
+    ],
+    "link": [
+      {
+        "URL": "http://xplorestaging.ieee.org/ielx7/7943262/7951776/07952838.pdf?arnumber=7952838",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          9,
+          26
+        ]
+      ],
+      "date-time": "2019-09-26T07:25:33Z",
+      "timestamp": 1569482733000
+    },
+    "score": 23.080479,
+    "resource": {
+      "primary": {
+        "URL": "http://ieeexplore.ieee.org/document/7952838/"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2017,
+          3
+        ]
+      ]
+    },
+    "references-count": 15,
+    "URL": "https://doi.org/10.1109/icassp.2017.7952838",
+    "published": {
+      "date-parts": [
+        [
+          2017,
+          3
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          3
+        ]
+      ],
+      "date-time": "2025-11-03T01:41:01Z",
+      "timestamp": 1762134061302,
+      "version": "build-2065373602"
+    },
+    "reference-count": 0,
+    "publisher": "CSIRO Publishing",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              8,
+              29
+            ]
+          ],
+          "date-time": "2025-08-29T00:00:00Z",
+          "timestamp": 1756425600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 7563,
+        "URL": "https://doi.org/10.1071/journalslicense"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2004,
+          12,
+          14
+        ]
+      ]
+    },
+    "abstract": "<jats:p>Fast-cleaving embryos have significantly higher chances of reaching advanced developmental stages, and hatched blastocysts developed from fast-cleaving embryos have higher total cell and inner cell mass cell numbers. Few data are available on the prevalence of apoptosis in blastocysts resulting from fast-cleaving bovine embryos. Therefore, it was the aim of this study to search for a correlation between this early quality marker (timing of first cleavage) and a later quality marker (apoptosis in blastocyst stage). A total of 836 immature bovine oocytes were matured and fertilized invitro. Presumed zygotes were denuded 24 h after fertilization and cultured in 50 µL droplets of modified SOF medium without serum at 39.0°C in 5% CO2, 5% O2, and 90% N2. At 30 h, 36 h and 48 h post-fertilization (PF), zygotes that had developed to the 2-cell stage or beyond were placed in new droplets and cultured in separate groups. In each of the 3 replicates a control group of 100 presumed zygotes was cultured in SOF medium without manipulation. After 24 h of culture, the SOF medium was supplemented with fetal calf serum (FCS) up to 10%. Blastocysts were evaluated at Days 7 and 8, and fixed in 4% paraformaldehyde. After TUNEL staining, total cell number and TUNEL-positive cells were counted for each group. An univariate analysis of variance was used with % apoptotic cells as the dependent variable, timing of first cleavage as the fixed factor, and replicate as the random factor (mixed model ANOVA). The mean cumulative blastocyst yields in the control group were 20.9% and 27.0% at Days 7 and 8, respectively, which were not different from the total yields from manipulated embryos (Table 1). The cumulative cleavage rates for manipulated embryos were 44.9, 65.1, and 85.7% at 30, 36, and 48 h PF, respectively. The blastocyst yields at Days 7 and 8 PF were declining for embryos which cleaved later, with a distinct drop (P &amp;lt; 0.05) between the 36-h and 48-h groups. The percentage of apoptotic cells in Day 7 blastocysts was significantly lower in the 30-h compared with the 36-h and 48-h groups (P &amp;lt; 0.05). Within the 30-h and 36-h groups, Day 8 blastocysts had significantly more apoptotic cells than Day 7 blastocysts (P &amp;lt; 0.05), but no differences could be detected between groups at day 8. In conclusion, this experiment has confirmed the increased chances of early-cleaving embryos to reach the blastocyst stage. The higher percentages of apoptosis in late cleaving embryos at Day 7 and in all blastocysts at day 8 as determined by TUNEL staining could be an indication of lower blastocyst quality.</jats:p>\n                  <jats:p>Table 1. Blastocyst yield (number and percentage) and percentage of apoptotic cells (APC) at Days 7 and 8 PF</jats:p>",
+    "DOI": "10.1071/rdv17n2ab258",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2004,
+          12,
+          14
+        ]
+      ],
+      "date-time": "2004-12-14T20:03:51Z",
+      "timestamp": 1103054631000
+    },
+    "page": "258-258",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "258 APOPTOSIS IN FAST- AND SLOW-CLEAVING BOVINE EMBRYOS IN VITRO"
+    ],
+    "prefix": "10.1071",
+    "volume": "17",
+    "author": [
+      {
+        "given": "L.",
+        "family": "Vandaele",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "A ADepartment of Reproduction, Obstretics and Herd Health, Faculty of Veterinary Medicine, Ghent University, 9320 Ghent, Belgium. Email: leen.vandaele@Ugent.be"
+          }
+        ]
+      },
+      {
+        "given": "B.",
+        "family": "Mateusen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "A ADepartment of Reproduction, Obstretics and Herd Health, Faculty of Veterinary Medicine, Ghent University, 9320 Ghent, Belgium. Email: leen.vandaele@Ugent.be"
+          }
+        ]
+      },
+      {
+        "given": "D.",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "A ADepartment of Reproduction, Obstretics and Herd Health, Faculty of Veterinary Medicine, Ghent University, 9320 Ghent, Belgium. Email: leen.vandaele@Ugent.be"
+          }
+        ]
+      },
+      {
+        "given": "A.",
+        "family": "Van Soom",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "A ADepartment of Reproduction, Obstretics and Herd Health, Faculty of Veterinary Medicine, Ghent University, 9320 Ghent, Belgium. Email: leen.vandaele@Ugent.be"
+          }
+        ]
+      }
+    ],
+    "member": "67",
+    "published-online": {
+      "date-parts": [
+        [
+          2005,
+          1,
+          1
+        ]
+      ]
+    },
+    "container-title": [
+      "Reproduction, Fertility and Development"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://connectsci.au/rd/article-pdf/17/2/258/1256505/rdv17n2ab258.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://connectsci.au/rd/article-pdf/17/2/258/1256505/rdv17n2ab258.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          3
+        ]
+      ],
+      "date-time": "2025-11-03T01:36:01Z",
+      "timestamp": 1762133761000
+    },
+    "score": 22.912746,
+    "resource": {
+      "primary": {
+        "URL": "https://connectsci.au/rd/article/17/2/258/185229/258-APOPTOSIS-IN-FAST-AND-SLOW-CLEAVING-BOVINE"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2004,
+          12,
+          14
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2004,
+            12,
+            14
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1071/rdv17n2ab258",
+    "ISSN": [
+      "1031-3613",
+      "1448-5990"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "1031-3613"
+      },
+      {
+        "type": "electronic",
+        "value": "1448-5990"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2004,
+          12,
+          14
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          7,
+          8
+        ]
+      ],
+      "date-time": "2024-07-08T08:21:33Z",
+      "timestamp": 1720426893990
+    },
+    "reference-count": 46,
+    "publisher": "Elsevier BV",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2019,
+              4,
+              1
+            ]
+          ],
+          "date-time": "2019-04-01T00:00:00Z",
+          "timestamp": 1554076800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      }
+    ],
+    "funder": [
+      {
+        "name": "PROHEALTH project",
+        "award": [
+          "613574"
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Veterinary Parasitology"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2019,
+          4
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.vetpar.2018.11.016",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2018,
+          12,
+          21
+        ]
+      ],
+      "date-time": "2018-12-21T19:47:52Z",
+      "timestamp": 1545421672000
+    },
+    "page": "1-8",
+    "update-policy": "http://dx.doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 4,
+    "special_numbering": "C",
+    "title": [
+      "Differential gene response to coccidiosis in modern fast growing and slow growing broiler genotypes"
+    ],
+    "prefix": "10.1016",
+    "volume": "268",
+    "author": [
+      {
+        "given": "Tim",
+        "family": "Giles",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Tommy",
+        "family": "van Limbergen",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Panagiotis",
+        "family": "Sakkas",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Aouatif",
+        "family": "Belkhiri",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Dominiek",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Ilias",
+        "family": "Kyriazakis",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J.",
+        "family": "Mendez",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Paul",
+        "family": "Barrow",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Neil",
+        "family": "Foster",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0005",
+        "doi-asserted-by": "crossref",
+        "first-page": "58",
+        "DOI": "10.1128/CMR.15.1.58-65.2002",
+        "article-title": "Recent advances in biology and immunobiology of Eimeria species and in diagnosis and control of infection with these coccidian parasites of poultry",
+        "volume": "15",
+        "author": "Allen",
+        "year": "2002",
+        "journal-title": "Clin. Microbiol. Rev."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0010",
+        "doi-asserted-by": "crossref",
+        "first-page": "2203",
+        "DOI": "10.3382/ps.0602203",
+        "article-title": "Eimeria tenella infection enhances Salmonella typhimurium infection in chickens",
+        "volume": "60",
+        "author": "Arakawa",
+        "year": "1981",
+        "journal-title": "Poult. Sci."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0015",
+        "doi-asserted-by": "crossref",
+        "first-page": "1760",
+        "DOI": "10.3382/ps.2008-00129",
+        "article-title": "Sensitivity of Eimeria field isolates in the United States: responses of nicarbazin-containing anticoccidials",
+        "volume": "87",
+        "author": "Bafundo",
+        "year": "2008",
+        "journal-title": "Poult. Sci."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0020",
+        "doi-asserted-by": "crossref",
+        "first-page": "12",
+        "DOI": "10.1016/j.pt.2013.10.003",
+        "article-title": "Securing poultry production from the ever-present Eimeria challenge",
+        "volume": "30",
+        "author": "Blake",
+        "year": "2014",
+        "journal-title": "Trends Parasitol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0025",
+        "doi-asserted-by": "crossref",
+        "first-page": "2073",
+        "DOI": "10.1182/blood.V86.6.2073.bloodjournal8662073",
+        "article-title": "The t(10;11) translocation in acute myeloid leukemia (M5) consistently fuses the leucine zipper motif of AF10 onto the HRX gene",
+        "volume": "86",
+        "author": "Chaplin",
+        "year": "1995",
+        "journal-title": "Blood"
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0030",
+        "doi-asserted-by": "crossref",
+        "first-page": "159",
+        "DOI": "10.1016/0169-4758(93)90137-5",
+        "article-title": "Resistance to anticoccidial drugs in fowl",
+        "volume": "9",
+        "author": "Chapman",
+        "year": "1993",
+        "journal-title": "Parasitol. Today"
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0035",
+        "doi-asserted-by": "crossref",
+        "first-page": "1774",
+        "DOI": "10.3382/ps/pew091",
+        "article-title": "The epizootiology of Eimeria infections in commercial broiler chickens where anticoccidial drug programs were employed in six successive flocks to control coccidiosis",
+        "volume": "95",
+        "author": "Chapman",
+        "year": "2016",
+        "journal-title": "Poult. Sci."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0040",
+        "doi-asserted-by": "crossref",
+        "first-page": "455",
+        "DOI": "10.1007/s10806-016-9615-x",
+        "article-title": "A systematic review of public attitudes, perceptions and behaviours towards production diseases associated with farm animal welfare",
+        "volume": "29",
+        "author": "Clark",
+        "year": "2016",
+        "journal-title": "J. Agric. Ethics"
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0045",
+        "doi-asserted-by": "crossref",
+        "first-page": "112",
+        "DOI": "10.1016/j.foodpol.2017.01.006",
+        "article-title": "Citizens, consumers and farm animal welfare: a meta-analysis of willingness-to-pay studies",
+        "volume": "68",
+        "author": "Clark",
+        "year": "2017",
+        "journal-title": "Food Policy"
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0050",
+        "doi-asserted-by": "crossref",
+        "first-page": "231",
+        "DOI": "10.1016/j.pt.2016.08.007",
+        "article-title": "Are Eimeria genetically diverse, and does it matter?",
+        "volume": "33",
+        "author": "Clark",
+        "year": "2017",
+        "journal-title": "Trends Parasitol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0055",
+        "doi-asserted-by": "crossref",
+        "first-page": "58",
+        "DOI": "10.1016/j.vetpar.2009.02.001",
+        "article-title": "Host response to simultaneous infections with Eimeria acervulina, maxima and tenella: a cumulation of single responses",
+        "volume": "162",
+        "author": "Cornelissen",
+        "year": "2009",
+        "journal-title": "Vet. Parasitol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0060",
+        "doi-asserted-by": "crossref",
+        "first-page": "1323",
+        "DOI": "10.1189/jlb.2A1114-534R",
+        "article-title": "Class 3 semaphorins induce F-actin reorganization in human dendritic cells: role in cell migration",
+        "volume": "100",
+        "author": "Curreli",
+        "year": "2016",
+        "journal-title": "J. Leukoc. Biol. Suppl."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0065",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1637/7306-11150R",
+        "article-title": "Recent advances in immunomodulation and vaccination strategies against coccidiosis",
+        "volume": "49",
+        "author": "Dalloul",
+        "year": "2005",
+        "journal-title": "Avian Dis."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0070",
+        "doi-asserted-by": "crossref",
+        "first-page": "3281",
+        "DOI": "10.1038/sj.onc.1204419",
+        "article-title": "The synovial sarcoma associated protein SYT interacts with the acute leukemia associated protein AF10",
+        "volume": "20",
+        "author": "De Bruijn",
+        "year": "2001",
+        "journal-title": "Oncogene."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0075",
+        "first-page": "160",
+        "article-title": "Coccidiosis in poultry: review on diagnosis, control, prevention and interaction with overall gut health",
+        "author": "De Gussem",
+        "year": "2007",
+        "journal-title": "Proceedings of the XVI European Symposium on Poultry Nutrition"
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0080",
+        "doi-asserted-by": "crossref",
+        "first-page": "249",
+        "DOI": "10.1016/j.pneurobio.2003.06.001",
+        "article-title": "Role of semaphorins in the adult nervous system",
+        "volume": "71",
+        "author": "De Wit",
+        "year": "2003",
+        "journal-title": "Prog. Neurobiol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0085",
+        "doi-asserted-by": "crossref",
+        "first-page": "2918",
+        "DOI": "10.1099/jgv.0.000979",
+        "article-title": "Differential gene expression in chicken primary B cells infected ex vivo with attenuated and very virulent strains of infectious bursal disease virus (IBDV)",
+        "volume": "98",
+        "author": "Dulwich",
+        "year": "2017",
+        "journal-title": "J. Gen. Virol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0090",
+        "doi-asserted-by": "crossref",
+        "first-page": "339",
+        "DOI": "10.1089/jir.2008.0103",
+        "article-title": "Identification of chicken granulocyte colony-stimulating factor (G-CSF/CSF3): the previously described myelomonocytic growth factor is actually CSF3",
+        "volume": "29",
+        "author": "Gibson",
+        "year": "2009",
+        "journal-title": "J. Interferon Cytokine Res."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0095",
+        "doi-asserted-by": "crossref",
+        "first-page": "877",
+        "DOI": "10.1534/genetics.115.186650",
+        "article-title": "Is continued genetic improvement of livestock sustainable?",
+        "volume": "202",
+        "author": "Hill",
+        "year": "2016",
+        "journal-title": "Genetics."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0100",
+        "doi-asserted-by": "crossref",
+        "first-page": "815",
+        "DOI": "10.1016/j.cyto.2012.08.005",
+        "article-title": "Molecular characterization and immunological roles of avian IL-22 and its soluble receptor IL-22 binding protein",
+        "volume": "60",
+        "author": "Kim",
+        "year": "2012",
+        "journal-title": "Cytokine."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0105",
+        "doi-asserted-by": "crossref",
+        "first-page": "2527",
+        "DOI": "10.1128/IAI.69.4.2527-2534.2001",
+        "article-title": "Analysis of chicken mucosal immune response to Eimeria tenella and Eimeria maxima infection by quantitative reverse transcription-PCR",
+        "volume": "69",
+        "author": "Laurent",
+        "year": "2001",
+        "journal-title": "Infect. Immun."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0110",
+        "doi-asserted-by": "crossref",
+        "first-page": "629",
+        "DOI": "10.1016/S0145-305X(01)00023-4",
+        "article-title": "Divergence of the inflammatory response in two types of chickens",
+        "volume": "25",
+        "author": "Leshchinsky",
+        "year": "2001",
+        "journal-title": "Dev. Comp. Immunol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0115",
+        "doi-asserted-by": "crossref",
+        "first-page": "2271",
+        "DOI": "10.1084/jem.20061308",
+        "article-title": "Interleukin (IL)-22 and IL-17 are coexpressed by Th17 cells and cooperatively enhance expression of antimicrobial peptides",
+        "volume": "203",
+        "author": "Liang",
+        "year": "2006",
+        "journal-title": "J. Expt. Med."
+      },
+      {
+        "issue": "April (26)",
+        "key": "10.1016/j.vetpar.2018.11.016_bib0120",
+        "article-title": "Identification of transcriptional modules and key genes in chickens infected with salmonella Enterica Serovar Pullorum using integrated coexpression analyses",
+        "author": "Liu",
+        "year": "2017",
+        "journal-title": "Biomed Res. Int."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0125",
+        "article-title": "The leukemia-associated Mllt10/Af10-Dot1l are Tcf4/β-catenin coactivators essential for intestinal homeostasis",
+        "volume": "16",
+        "author": "Mahmoudi",
+        "year": "2010",
+        "journal-title": "PLoS Biol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0130",
+        "doi-asserted-by": "crossref",
+        "first-page": "463",
+        "DOI": "10.1186/s13071-016-1756-2",
+        "article-title": "Viral proteins expressed in the protozoan parasite Eimeria tenella are detected by the chicken immune system",
+        "volume": "9",
+        "author": "Marugan-Hernandez",
+        "year": "2016",
+        "journal-title": "Parasit. Vectors"
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0135",
+        "doi-asserted-by": "crossref",
+        "first-page": "94",
+        "DOI": "10.1016/j.abb.2013.10.012",
+        "article-title": "14-3-3ε and NAV2 interact to regulate neurite outgrowth and axon elongation",
+        "volume": "540",
+        "author": "Marzinke",
+        "year": "2013",
+        "journal-title": "Arch. Biochem. Biophys."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0140",
+        "doi-asserted-by": "crossref",
+        "first-page": "275",
+        "DOI": "10.1080/03079457.2016.1150587",
+        "article-title": "Necrotic enteritis predisposing factors in broiler chickens",
+        "volume": "45",
+        "author": "Moore",
+        "year": "2016",
+        "journal-title": "Avian Pathol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0145",
+        "doi-asserted-by": "crossref",
+        "first-page": "3506",
+        "DOI": "10.1091/mbc.e10-03-0259",
+        "article-title": "Adducins regulate remodeling of apical junctions in human epithelial cells",
+        "volume": "21",
+        "author": "Naydenov",
+        "year": "2010",
+        "journal-title": "Mol. Cell. Biol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0150",
+        "doi-asserted-by": "crossref",
+        "first-page": "8675",
+        "DOI": "10.1074/jbc.M109.086959",
+        "article-title": "Myosin 1G is an abundant class I myosin in lymphocytes whose localization at the plasma membrane depends on its ancient divergent pleckstrin homology (PH) domain (Myo1PH)",
+        "volume": "285",
+        "author": "Patino-Lopez",
+        "year": "2010",
+        "journal-title": "J. Biol. Chem."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0155",
+        "doi-asserted-by": "crossref",
+        "first-page": "615",
+        "DOI": "10.1080/03079457.2017.1337269",
+        "article-title": "Validation of a quantitative Eimeria spp. PCR for fresh droppings of broiler chickens",
+        "volume": "46",
+        "author": "Peek",
+        "year": "2017",
+        "journal-title": "Avian Pathol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0160",
+        "doi-asserted-by": "crossref",
+        "first-page": "e45",
+        "DOI": "10.1093/nar/29.9.e45",
+        "article-title": "A new mathematical model for relative quantification in real-time RT–PCR",
+        "volume": "29",
+        "author": "Pfaffl",
+        "year": "2001",
+        "journal-title": "Nucleic Acids Res."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0165",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.3382/ps.0740001",
+        "article-title": "Effect of Eimeria tenella infection on Salmonella enteritidis infection in chickens",
+        "volume": "74",
+        "author": "Qin",
+        "year": "1995",
+        "journal-title": "Poult. Sci."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0170",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1371/journal.pone.0153671",
+        "article-title": "Genome wide host gene expression analysis in chicken lungs infected with avian influenza viruses",
+        "volume": "11",
+        "author": "Ranaware",
+        "year": "2016",
+        "journal-title": "PLoS One"
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0175",
+        "doi-asserted-by": "crossref",
+        "first-page": "9207",
+        "DOI": "10.1128/JVI.00929-06",
+        "article-title": "Transcriptional profiling reveals a possible role for the timing of the inflammatory response in determining susceptibility to a viral infection",
+        "volume": "80",
+        "author": "Ruby",
+        "year": "2006",
+        "journal-title": "J. Virol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0180",
+        "doi-asserted-by": "crossref",
+        "first-page": "5190",
+        "DOI": "10.1073/pnas.85.14.5190",
+        "article-title": "The CD4 receptor is complexed in detergent lysates to a protein-tyrosine kinase (pp58) from human T lymphocytes",
+        "volume": "85",
+        "author": "Rudd",
+        "year": "1988",
+        "journal-title": "Proc. Natl. Acad. Sci. U. S. A."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0185",
+        "doi-asserted-by": "crossref",
+        "first-page": "285",
+        "DOI": "10.1016/S0065-308X(05)60005-X",
+        "article-title": "The biology of avian Eimeria with an emphasis on their control by vaccination",
+        "volume": "60",
+        "author": "Shirley",
+        "year": "2005",
+        "journal-title": "Adv. Parasitol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0190",
+        "doi-asserted-by": "crossref",
+        "first-page": "2469",
+        "DOI": "10.1128/JVI.02828-14",
+        "article-title": "Analysis of the early immune response to infection by infectious bursal disease virus in chickens differing in their resistance to the disease",
+        "volume": "89",
+        "author": "Smith",
+        "year": "2015",
+        "journal-title": "J. Virol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0195",
+        "doi-asserted-by": "crossref",
+        "first-page": "66",
+        "DOI": "10.1007/s13593-016-0398-2",
+        "article-title": "Efficiency in the broiler chicken",
+        "volume": "36",
+        "author": "Tallentire",
+        "year": "2016",
+        "journal-title": "Agron. Sustain. Dev."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0200",
+        "doi-asserted-by": "crossref",
+        "first-page": "1168",
+        "DOI": "10.1038/s41598-018-19231-2",
+        "article-title": "Artificial selection for improved energy efficiency is reaching its limits in broiler chickens",
+        "volume": "18",
+        "author": "Tallentire",
+        "year": "2018",
+        "journal-title": "Sci. Rep."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0205",
+        "doi-asserted-by": "crossref",
+        "first-page": "129",
+        "DOI": "10.1007/s12185-016-2162-4",
+        "article-title": "Cellular players of hematopoietic stem cell mobilization in the bone marrow niche",
+        "volume": "105",
+        "author": "Tay",
+        "year": "2016",
+        "journal-title": "Int. J. Hematol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0210",
+        "doi-asserted-by": "crossref",
+        "first-page": "256",
+        "DOI": "10.1080/01652176.1988.9694182",
+        "article-title": "Influence of coccidiosis on growth rate and feed conversion in broilers after experimental infections with Eimeria acervulina and Eimeria maxima",
+        "volume": "10",
+        "author": "Voeten",
+        "year": "1988",
+        "journal-title": "Vet. Q."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0215",
+        "doi-asserted-by": "crossref",
+        "first-page": "341",
+        "DOI": "10.1016/S0020-7519(98)00212-4",
+        "article-title": "The efficacy and economic benefits of Paracox, a live attenuated anticoccidial vaccine, in commercial trials with standard broiler chickens in the United Kingdom",
+        "volume": "29",
+        "author": "Williams",
+        "year": "1999",
+        "journal-title": "Int. J. Parasitol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0220",
+        "doi-asserted-by": "crossref",
+        "first-page": "12",
+        "DOI": "10.1007/s10875-008-9264-6",
+        "article-title": "CD72, a coreceptor with both positive and negative effects on B lymphocyte development and function",
+        "volume": "29",
+        "author": "Wu",
+        "year": "2009",
+        "journal-title": "J. Clin. Immunol."
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0225",
+        "doi-asserted-by": "crossref",
+        "first-page": "648",
+        "DOI": "10.1038/nature05505",
+        "article-title": "Interleukin (IL)-22, a T(H)17 cytokine, mediates IL-23-induced dermal inflammation and acanthosis",
+        "volume": "445",
+        "author": "Zheng",
+        "year": "2007",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "10.1016/j.vetpar.2018.11.016_bib0230",
+        "doi-asserted-by": "crossref",
+        "first-page": "2970",
+        "DOI": "10.3382/ps.2014-04291",
+        "article-title": "Growth, efficiency, and yield of commercial broilers from 1957, 1978, and 2005",
+        "volume": "93",
+        "author": "Zuidhof",
+        "year": "2014",
+        "journal-title": "Poult. Sci."
+      }
+    ],
+    "container-title": [
+      "Veterinary Parasitology"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0304401718303881?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0304401718303881?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          11,
+          12
+        ]
+      ],
+      "date-time": "2019-11-12T18:00:42Z",
+      "timestamp": 1573581642000
+    },
+    "score": 18.59792,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0304401718303881"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          4
+        ]
+      ]
+    },
+    "references-count": 46,
+    "alternative-id": [
+      "S0304401718303881"
+    ],
+    "URL": "https://doi.org/10.1016/j.vetpar.2018.11.016",
+    "ISSN": [
+      "0304-4017"
+    ],
+    "issn-type": [
+      {
+        "value": "0304-4017",
+        "type": "print"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2019,
+          4
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "Differential gene response to coccidiosis in modern fast growing and slow growing broiler genotypes",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "Veterinary Parasitology",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.vetpar.2018.11.016",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2018 Elsevier B.V. All rights reserved.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          26
+        ]
+      ],
+      "date-time": "2025-10-26T13:52:03Z",
+      "timestamp": 1761486723452
+    },
+    "reference-count": 14,
+    "publisher": "AIP Publishing",
+    "issue": "7",
+    "content-domain": {
+      "domain": [
+        "pubs.aip.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          1991,
+          2,
+          18
+        ]
+      ]
+    },
+    "abstract": "<jats:p>Boron-doping spikes in Si have been grown by fast gas switching chemical vapor deposition at 800 or 850 °C using Si2H6 in 0.03 or 0.1 atm H2, respectively. The B2H6 doping gas was added for 2 s in two ways, viz. during growth, or as a flush while the Si2H6 was interrupted. High-resolution secondary-ion mass spectrometry (HR-SIMS) analysis has revealed the sharpest as-measured SIMS dopant profiles reported for Si grown by deposition from the gas phase. Electrical measurements show the sheet resistivity of the B spikes to be as low as 580 Ω/⧠.</jats:p>",
+    "DOI": "10.1063/1.104523",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          7,
+          26
+        ]
+      ],
+      "date-time": "2002-07-26T13:36:40Z",
+      "timestamp": 1027690600000
+    },
+    "page": "711-713",
+    "update-policy": "http://dx.doi.org/10.1063/aip-crossmark-policy-page",
+    "source": "Crossref",
+    "is-referenced-by-count": 17,
+    "title": [
+      "Sharp boron spikes in silicon grown by fast gas switching chemical vapor deposition"
+    ],
+    "prefix": "10.1063",
+    "volume": "58",
+    "author": [
+      {
+        "given": "P. J.",
+        "family": "Roksnoer",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      },
+      {
+        "given": "J. W. F. M.",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      },
+      {
+        "given": "A. T.",
+        "family": "Vink",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      },
+      {
+        "given": "C. J.",
+        "family": "Vriezema",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      },
+      {
+        "given": "P. C.",
+        "family": "Zalm",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      }
+    ],
+    "member": "317",
+    "reference": [
+      {
+        "key": "2024020302030466500_r1"
+      },
+      {
+        "key": "2024020302030466500_r1a",
+        "volume": "183",
+        "year": "1989",
+        "journal-title": "Thin Solid Films"
+      },
+      {
+        "key": "2024020302030466500_r1b",
+        "volume": "184",
+        "year": "1990",
+        "journal-title": "Thin Solid Films"
+      },
+      {
+        "key": "2024020302030466500_r2",
+        "doi-asserted-by": "crossref",
+        "first-page": "113",
+        "DOI": "10.1063/1.98255",
+        "volume": "50",
+        "year": "1987",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2024020302030466500_r3"
+      },
+      {
+        "key": "2024020302030466500_r4",
+        "doi-asserted-by": "crossref",
+        "first-page": "1012",
+        "DOI": "10.1063/1.96620",
+        "volume": "48",
+        "year": "1986",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2024020302030466500_r5",
+        "doi-asserted-by": "crossref",
+        "first-page": "1601",
+        "DOI": "10.1063/1.97793",
+        "volume": "50",
+        "year": "1987",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2024020302030466500_r6",
+        "doi-asserted-by": "crossref",
+        "first-page": "431",
+        "DOI": "10.1016/0022-0248(84)90445-7",
+        "volume": "68",
+        "year": "1984",
+        "journal-title": "J. Cryst. Growth"
+      },
+      {
+        "key": "2024020302030466500_r6a",
+        "doi-asserted-by": "crossref",
+        "first-page": "L574",
+        "DOI": "10.1143/JJAP.21.L574",
+        "volume": "21",
+        "year": "1982",
+        "journal-title": "Jpn. J. Appl. Phys."
+      },
+      {
+        "key": "2024020302030466500_r7",
+        "doi-asserted-by": "crossref",
+        "first-page": "271",
+        "DOI": "10.1016/0022-0248(87)90142-4",
+        "volume": "84",
+        "year": "1987",
+        "journal-title": "J. Cryst. Growth"
+      },
+      {
+        "key": "2024020302030466500_r8",
+        "doi-asserted-by": "crossref",
+        "first-page": "2427",
+        "DOI": "10.1149/1.2097401",
+        "volume": "136",
+        "year": "1989",
+        "journal-title": "J. Electrochem. Soc."
+      },
+      {
+        "key": "2024020302030466500_r9",
+        "doi-asserted-by": "crossref",
+        "first-page": "1067",
+        "DOI": "10.1063/1.343041",
+        "volume": "65",
+        "year": "1989",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "2024020302030466500_r10",
+        "doi-asserted-by": "crossref",
+        "first-page": "299",
+        "DOI": "10.1016/0040-6090(89)90454-9",
+        "volume": "183",
+        "year": "1989",
+        "journal-title": "Thin Solid Films"
+      },
+      {
+        "key": "2024020302030466500_r11",
+        "first-page": "35",
+        "volume": "12",
+        "year": "1987",
+        "journal-title": "MRS Bull."
+      }
+    ],
+    "container-title": [
+      "Applied Physics Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://pubs.aip.org/aip/apl/article-pdf/58/7/711/18480910/711_1_online.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://pubs.aip.org/aip/apl/article-pdf/58/7/711/18480910/711_1_online.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          2,
+          3
+        ]
+      ],
+      "date-time": "2024-02-03T02:03:12Z",
+      "timestamp": 1706925792000
+    },
+    "score": 17.333359,
+    "resource": {
+      "primary": {
+        "URL": "https://pubs.aip.org/apl/article/58/7/711/449991/Sharp-boron-spikes-in-silicon-grown-by-fast-gas"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1991,
+          2,
+          18
+        ]
+      ]
+    },
+    "references-count": 14,
+    "journal-issue": {
+      "issue": "7",
+      "published-print": {
+        "date-parts": [
+          [
+            1991,
+            2,
+            18
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1063/1.104523",
+    "ISSN": [
+      "0003-6951",
+      "1077-3118"
+    ],
+    "issn-type": [
+      {
+        "value": "0003-6951",
+        "type": "print"
+      },
+      {
+        "value": "1077-3118",
+        "type": "electronic"
+      }
+    ],
+    "published-other": {
+      "date-parts": [
+        [
+          1991,
+          2,
+          18
+        ]
+      ]
+    },
+    "published": {
+      "date-parts": [
+        [
+          1991,
+          2,
+          18
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          20
+        ]
+      ],
+      "date-time": "2024-09-20T15:12:19Z",
+      "timestamp": 1726845139229
+    },
+    "reference-count": 23,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "9-11",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2007,
+              1,
+              30
+            ]
+          ],
+          "date-time": "2007-01-30T00:00:00Z",
+          "timestamp": 1170115200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "http://www.springer.com/tdm"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Opt Quant Electron"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2007,
+          3,
+          12
+        ]
+      ]
+    },
+    "DOI": "10.1007/s11082-006-9024-x",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2007,
+          1,
+          29
+        ]
+      ],
+      "date-time": "2007-01-29T06:04:10Z",
+      "timestamp": 1170050650000
+    },
+    "page": "761-780",
+    "source": "Crossref",
+    "is-referenced-by-count": 14,
+    "title": [
+      "Self-phase modulation in slow-wave structures: A comparative numerical analysis"
+    ],
+    "prefix": "10.1007",
+    "volume": "38",
+    "author": [
+      {
+        "given": "Francesco",
+        "family": "Morichetti",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Andrea",
+        "family": "Melloni",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Jaroslav",
+        "family": "Čáp",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Jiří",
+        "family": "Petráćek",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Peter",
+        "family": "Bienstman",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Gino",
+        "family": "Priem",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Bjorn",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Michele",
+        "family": "Lauritano",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Gaetano",
+        "family": "Bellanca",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2007,
+          1,
+          30
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "9024_CR1",
+        "doi-asserted-by": "crossref",
+        "first-page": "554",
+        "DOI": "10.1364/OL.25.000554",
+        "volume": "25",
+        "author": "P.P. Absil",
+        "year": "2000",
+        "unstructured": "Absil P.P., Hryniewicz J.V., Little B.E., Cho P.S., Wilson R.A., Joneckis L.G. and Ho P.T. (2000). Opt. Lett. 25:554",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "9024_CR2",
+        "volume-title": "Nonlinear Fiber Optics",
+        "author": "G.P. Agrawal",
+        "year": "1999",
+        "unstructured": "Agrawal G.P. (1999). Nonlinear Fiber Optics. Academic Press, New York"
+      },
+      {
+        "key": "9024_CR3",
+        "doi-asserted-by": "crossref",
+        "first-page": "3868",
+        "DOI": "10.1364/OPEX.13.003868",
+        "volume": "13",
+        "author": "S. Blair",
+        "year": "2005",
+        "unstructured": "Blair S. (2005). Opt. Exp. 13:3868",
+        "journal-title": "Opt. Exp."
+      },
+      {
+        "key": "9024_CR4",
+        "volume-title": "Nonlinear Optics",
+        "author": "R.W. Boyd",
+        "year": "1992",
+        "unstructured": "Boyd R.W. (1992). Nonlinear Optics. Academic Press, New York"
+      },
+      {
+        "key": "9024_CR5",
+        "unstructured": "CAMFR, http://camfr.sourceforge.net"
+      },
+      {
+        "key": "9024_CR6",
+        "doi-asserted-by": "crossref",
+        "first-page": "1945",
+        "DOI": "10.1364/OL.28.001945",
+        "volume": "28",
+        "author": "Y. Chen",
+        "year": "2003",
+        "unstructured": "Chen Y., Pasrija G., Farhang-Boroujeny B., Blair S. (2003). Opt Lett 28:1945",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "9024_CR7",
+        "first-page": "2904",
+        "volume": "E85-B",
+        "author": "A. Christ",
+        "year": "2002",
+        "unstructured": "Christ A., J. Fröhlich and N. Kuster. 2002 IEICE Trans. Commun. E85-B:2904",
+        "journal-title": "IEICE Trans. Commun."
+      },
+      {
+        "key": "9024_CR8",
+        "doi-asserted-by": "crossref",
+        "first-page": "769",
+        "DOI": "10.1364/OL.29.000769",
+        "volume": "29",
+        "author": "J.E. Heebner",
+        "year": "2004",
+        "unstructured": "Heebner J.E., Lepeshkin N.N., Schweinsberg A., Wicks G.W., Boyd R.W., Grover R., Ho P.T. (2004). Opt Lett 29:769",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "9024_CR9",
+        "doi-asserted-by": "crossref",
+        "first-page": "364",
+        "DOI": "10.1109/8.558652",
+        "volume": "45",
+        "author": "R.M. Joseph",
+        "year": "1997",
+        "unstructured": "Joseph R.M., Taflove A. (1997). IEEE Trans. Antennas Propag. 45:364",
+        "journal-title": "Antennas Propag."
+      },
+      {
+        "key": "9024_CR10",
+        "doi-asserted-by": "crossref",
+        "first-page": "98",
+        "DOI": "10.1109/TMTT.1975.1128510",
+        "volume": "MTT23",
+        "author": "E.F. Kuester",
+        "year": "1975",
+        "unstructured": "Kuester E.F., Chang D.C. (1975). IEEE Trans Microwave Theor Tech MTT-23:98",
+        "journal-title": "IEEE Trans Microwave Theor Tech"
+      },
+      {
+        "key": "9024_CR11",
+        "doi-asserted-by": "crossref",
+        "first-page": "S494",
+        "DOI": "10.1088/1464-4258/8/7/S29",
+        "volume": "8",
+        "author": "M. Lauritano",
+        "year": "2006",
+        "unstructured": "Lauritano M., Parini A, Bellanca G., Trillo S., Conforti M., Locatelli A., De Angelis C (2006). J. Opt. A: Pure Appl. Opt. 8:S494",
+        "journal-title": "J. Opt. A: Pure Appl. Opt."
+      },
+      {
+        "key": "9024_CR12",
+        "doi-asserted-by": "crossref",
+        "first-page": "108",
+        "DOI": "10.1016/0030-4018(80)90104-2",
+        "volume": "33",
+        "author": "L.A. Lugiato",
+        "year": "1980",
+        "unstructured": "Lugiato L.A. (1980). Opt. Commun. 33:108",
+        "journal-title": "Opt. Commun."
+      },
+      {
+        "key": "9024_CR13",
+        "doi-asserted-by": "crossref",
+        "first-page": "15",
+        "DOI": "10.1023/B:OQEL.0000015627.57555.a0",
+        "volume": "36",
+        "author": "B. Maes",
+        "year": "2004",
+        "unstructured": "Maes B., Bienstman P. and Baets R. (2004). Opt. Quantum. Elect. 36:15",
+        "journal-title": "Opt. Quantum. Elect."
+      },
+      {
+        "key": "9024_CR14",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Melloni A., F. Morichetti and M. Martinelli. Opt. Phot. News 44 2003a",
+        "DOI": "10.1364/OPN.14.11.000044"
+      },
+      {
+        "key": "9024_CR15",
+        "doi-asserted-by": "crossref",
+        "first-page": "365",
+        "DOI": "10.1023/A:1022957319379",
+        "volume": "35",
+        "author": "A. Melloni",
+        "year": "2003",
+        "unstructured": "Melloni A., Morichetti F., Martinelli M. (2003). Opt. Quantum. Elect. 35:365",
+        "journal-title": "Opt. Quantum. Elect."
+      },
+      {
+        "key": "9024_CR16",
+        "unstructured": "Melloni, A., F. Morichetti, S. Pietralunga and M. Martinelli. In: Proceeding of the 11th European Conference on Integrated Optics, Prague, 2003c, p. 97."
+      },
+      {
+        "key": "9024_CR17",
+        "doi-asserted-by": "crossref",
+        "first-page": "273",
+        "DOI": "10.1364/JOSAA.20.000273",
+        "volume": "20",
+        "author": "A. Melloni",
+        "year": "2003d",
+        "unstructured": "Melloni A., Floridi M., Morichetti F., Martinelli M. (2003d). J. Opt. Soc. Am. A 20:273",
+        "journal-title": "J. Opt. Soc. Am."
+      },
+      {
+        "key": "9024_CR18",
+        "doi-asserted-by": "crossref",
+        "first-page": "331",
+        "DOI": "10.1016/j.optcom.2006.03.030",
+        "volume": "265",
+        "author": "J. Petráček",
+        "year": "2006",
+        "unstructured": "Petráček J. (2006). Opt. Comm. 265:331",
+        "journal-title": "Opt. Comm."
+      },
+      {
+        "key": "9024_CR19",
+        "unstructured": "Stignani S. (2001) Graduation Thesis. Politecnico di Milano"
+      },
+      {
+        "key": "9024_CR20",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Taflove, A. Computational Electrodynamics: The Finite Difference Time Domain Method for Electromagnetics. Artech House, Boston, 1995.",
+        "DOI": "10.1007/978-1-4899-1394-4_41"
+      },
+      {
+        "key": "9024_CR21",
+        "doi-asserted-by": "crossref",
+        "first-page": "387",
+        "DOI": "10.1364/JOSAB.17.000387",
+        "volume": "17",
+        "author": "Y. Xu",
+        "year": "2000",
+        "unstructured": "Xu Y., Lee R.K. and Yariv A. (2000). J. Opt. Soc. Am. B 17:387",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "9024_CR22",
+        "volume-title": "Optical Waves in Crystals",
+        "author": "A. Yariv",
+        "year": "1984",
+        "unstructured": "Yariv A., Yeh P. (1984) Optical Waves in Crystals. Wiley John, & Sons"
+      },
+      {
+        "key": "9024_CR23",
+        "doi-asserted-by": "crossref",
+        "first-page": "302",
+        "DOI": "10.1109/TAP.1966.1138693",
+        "volume": "14",
+        "author": "K.S. Yee",
+        "year": "1966",
+        "unstructured": "Yee K.S. (1966). IEEE Trans Antennas Propag 14:302",
+        "journal-title": "IEEE Trans. Antennas Propag."
+      }
+    ],
+    "container-title": [
+      "Optical and Quantum Electronics"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1007/s11082-006-9024-x.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://link.springer.com/article/10.1007/s11082-006-9024-x/fulltext.html",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1007/s11082-006-9024-x",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          6,
+          3
+        ]
+      ],
+      "date-time": "2019-06-03T10:01:30Z",
+      "timestamp": 1559556090000
+    },
+    "score": 17.213972,
+    "resource": {
+      "primary": {
+        "URL": "http://link.springer.com/10.1007/s11082-006-9024-x"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2007,
+          1,
+          30
+        ]
+      ]
+    },
+    "references-count": 23,
+    "journal-issue": {
+      "issue": "9-11",
+      "published-print": {
+        "date-parts": [
+          [
+            2007,
+            3,
+            12
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "9024"
+    ],
+    "URL": "https://doi.org/10.1007/s11082-006-9024-x",
+    "ISSN": [
+      "0306-8919",
+      "1572-817X"
+    ],
+    "issn-type": [
+      {
+        "value": "0306-8919",
+        "type": "print"
+      },
+      {
+        "value": "1572-817X",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2007,
+          1,
+          30
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          3,
+          31
+        ]
+      ],
+      "date-time": "2022-03-31T22:38:36Z",
+      "timestamp": 1648766316290
+    },
+    "reference-count": 0,
+    "publisher": "The Japan Society of Applied Physics",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          1990
+        ]
+      ]
+    },
+    "DOI": "10.7567/ssdm.1990.c-7-7",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2015,
+          11,
+          6
+        ]
+      ],
+      "date-time": "2015-11-06T12:02:00Z",
+      "timestamp": 1446811320000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Sharp Boron Spikes in Silicon Grown at Reduced Pressures by Fast-Gas-Switching-CVD"
+    ],
+    "prefix": "10.7567",
+    "author": [
+      {
+        "given": "A. T.",
+        "family": "Vink",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "P. J.",
+        "family": "Roksnoer",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J. W. F. M.",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "C. J.",
+        "family": "Vriezema",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "P. C.",
+        "family": "Zalm",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "328",
+    "event": {
+      "name": "1990 International Conference on Solid State Devices and Materials",
+      "location": "Hotel Sendai Plaza, Sendai, Japan",
+      "acronym": "SSDM1990",
+      "number": "22",
+      "sponsor": [
+        "The Japan Society of Applied Physics"
+      ],
+      "start": {
+        "date-parts": [
+          [
+            1990,
+            8,
+            22
+          ]
+        ]
+      },
+      "end": {
+        "date-parts": [
+          [
+            1990,
+            8,
+            24
+          ]
+        ]
+      }
+    },
+    "container-title": [
+      "Extended Abstracts of the 1990 International Conference on Solid State Devices and Materials"
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2015,
+          11,
+          11
+        ]
+      ],
+      "date-time": "2015-11-11T09:02:27Z",
+      "timestamp": 1447232547000
+    },
+    "score": 17.138573,
+    "resource": {
+      "primary": {
+        "URL": "https://confit.atlas.jp/guide/organizer/ssdm/ssdm1990/subject/C-7-7/detail"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1990
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.7567/ssdm.1990.c-7-7",
+    "published": {
+      "date-parts": [
+        [
+          1990
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          2,
+          3
+        ]
+      ],
+      "date-time": "2024-02-03T03:41:46Z",
+      "timestamp": 1706931706785
+    },
+    "reference-count": 14,
+    "publisher": "AIP Publishing",
+    "issue": "25",
+    "content-domain": {
+      "domain": [
+        "pubs.aip.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          1991,
+          12,
+          16
+        ]
+      ]
+    },
+    "abstract": "<jats:p>Sharp phosphorus doping spikes in silicon were grown by fast-gas-switching chemical vapor deposition at temperatures between 800 and 850 °C using disilane and phosphine in 0.03, 0.1, and 1 atm hydrogen carrier gas. The phosphine doping gas was added while growing silicon at a rate of 0.15–0.5 nm/s. High depth resolution secondary ion mass spectrometry measurements have revealed sharp and high concentration dopant profiles. Peak phosphorus concentrations up to 7×1019 cm−3 and a full width at half maximum of 7 nm were obtained. Electrical measurements show that at these concentrations about 40% of the dopant atoms is electrically active in structures grown at 1 atm. Formation of doping tails is shown to be suppressed at atmospheric hydrogen pressure.</jats:p>",
+    "DOI": "10.1063/1.105711",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          7,
+          26
+        ]
+      ],
+      "date-time": "2002-07-26T13:33:50Z",
+      "timestamp": 1027690430000
+    },
+    "page": "3297-3299",
+    "update-policy": "http://dx.doi.org/10.1063/aip-crossmark-policy-page",
+    "source": "Crossref",
+    "is-referenced-by-count": 8,
+    "title": [
+      "Sharp phosphorus spikes in silicon grown by fast gas-switching chemical vapor deposition at reduced and atmospheric pressure"
+    ],
+    "prefix": "10.1063",
+    "volume": "59",
+    "author": [
+      {
+        "given": "P. J.",
+        "family": "Roksnoer",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, P. O. Box 80.000, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      },
+      {
+        "given": "J. W. F. M.",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, P. O. Box 80.000, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      },
+      {
+        "given": "A. T.",
+        "family": "Vink",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, P. O. Box 80.000, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      },
+      {
+        "given": "C. J.",
+        "family": "Vriezema",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, P. O. Box 80.000, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      },
+      {
+        "given": "P. C.",
+        "family": "Zalm",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Philips Research Laboratories, P. O. Box 80.000, 5600 JA Eindhoven, The Netherlands"
+          }
+        ]
+      }
+    ],
+    "member": "317",
+    "reference": [
+      {
+        "key": "2024020303193263400_r1",
+        "volume": "183",
+        "year": "1989",
+        "journal-title": "Thin Solid Films"
+      },
+      {
+        "key": "2024020303193263400_r1a",
+        "volume": "184",
+        "year": "1990",
+        "journal-title": "Thin Solid Films"
+      },
+      {
+        "key": "2024020303193263400_r2",
+        "doi-asserted-by": "crossref",
+        "first-page": "2485",
+        "DOI": "10.1063/1.342794",
+        "volume": "65",
+        "year": "1989",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "2024020303193263400_r3",
+        "doi-asserted-by": "crossref",
+        "first-page": "113",
+        "DOI": "10.1063/1.98255",
+        "volume": "50",
+        "year": "1987",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2024020303193263400_r4"
+      },
+      {
+        "key": "2024020303193263400_r5",
+        "doi-asserted-by": "crossref",
+        "first-page": "93",
+        "DOI": "10.1016/0040-6090(90)90402-Y",
+        "volume": "184",
+        "year": "1990",
+        "journal-title": "Thin Solid Films"
+      },
+      {
+        "key": "2024020303193263400_r6",
+        "doi-asserted-by": "crossref",
+        "first-page": "711",
+        "DOI": "10.1063/1.104523",
+        "volume": "58",
+        "year": "1991",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2024020303193263400_r7",
+        "doi-asserted-by": "crossref",
+        "first-page": "L2307",
+        "DOI": "10.1143/JJAP.29.L2307",
+        "volume": "29",
+        "year": "1990",
+        "journal-title": "Jpn. J. Appl. Phys."
+      },
+      {
+        "key": "2024020303193263400_r8",
+        "doi-asserted-by": "crossref",
+        "first-page": "1286",
+        "DOI": "10.1063/1.104338",
+        "volume": "58",
+        "year": "1991",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2024020303193263400_r9"
+      },
+      {
+        "key": "2024020303193263400_r10"
+      },
+      {
+        "key": "2024020303193263400_r11",
+        "doi-asserted-by": "crossref",
+        "first-page": "1896",
+        "DOI": "10.1063/1.105066",
+        "volume": "58",
+        "year": "1991",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "2024020303193263400_r12",
+        "doi-asserted-by": "crossref",
+        "first-page": "2402",
+        "DOI": "10.1116/1.577286",
+        "volume": "9",
+        "year": "1991",
+        "journal-title": "J. Vac. Sci. Technol. A"
+      },
+      {
+        "key": "2024020303193263400_r13"
+      }
+    ],
+    "container-title": [
+      "Applied Physics Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://pubs.aip.org/aip/apl/article-pdf/59/25/3297/18486087/3297_1_online.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://pubs.aip.org/aip/apl/article-pdf/59/25/3297/18486087/3297_1_online.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          2,
+          3
+        ]
+      ],
+      "date-time": "2024-02-03T03:20:18Z",
+      "timestamp": 1706930418000
+    },
+    "score": 16.585438,
+    "resource": {
+      "primary": {
+        "URL": "https://pubs.aip.org/apl/article/59/25/3297/59418/Sharp-phosphorus-spikes-in-silicon-grown-by-fast"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1991,
+          12,
+          16
+        ]
+      ]
+    },
+    "references-count": 14,
+    "journal-issue": {
+      "issue": "25",
+      "published-print": {
+        "date-parts": [
+          [
+            1991,
+            12,
+            16
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1063/1.105711",
+    "ISSN": [
+      "0003-6951",
+      "1077-3118"
+    ],
+    "issn-type": [
+      {
+        "value": "0003-6951",
+        "type": "print"
+      },
+      {
+        "value": "1077-3118",
+        "type": "electronic"
+      }
+    ],
+    "published-other": {
+      "date-parts": [
+        [
+          1991,
+          12,
+          16
+        ]
+      ]
+    },
+    "published": {
+      "date-parts": [
+        [
+          1991,
+          12,
+          16
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          2,
+          21
+        ]
+      ],
+      "date-time": "2025-02-21T10:34:55Z",
+      "timestamp": 1740134095720,
+      "version": "3.37.3"
+    },
+    "reference-count": 16,
+    "publisher": "IOP Publishing",
+    "issue": "12A",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              1990,
+              12,
+              1
+            ]
+          ],
+          "date-time": "1990-12-01T00:00:00Z",
+          "timestamp": 660009600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://iopscience.iop.org/page/copyright"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              1990,
+              12,
+              1
+            ]
+          ],
+          "date-time": "1990-12-01T00:00:00Z",
+          "timestamp": 660009600000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://iopscience.iop.org/info/page/text-and-data-mining"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "iopscience.iop.org"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Jpn. J. Appl. Phys."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          1990,
+          12,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:p> \n Boron doping spikes in Si were grown by fast-gas-switching CVD at 800 and 850°C using Si<jats:sub>2</jats:sub>H<jats:sub>6</jats:sub> and B<jats:sub>2</jats:sub>H<jats:sub>6</jats:sub> in 0.03, 0.1 and 1 atm H<jats:sub>2</jats:sub> as the carrier gas. The B<jats:sub>2</jats:sub>H<jats:sub>6</jats:sub> doping gas was added for 2 s by two methods, namely during growth or as a flush while the Si<jats:sub>2</jats:sub>H<jats:sub>6</jats:sub> flow was interrupted. High-resolution SIMS measurements have revealed extremely sharp and highly concentrated dopant profiles. Peak B concentrations up to 5×10<jats:sup>21</jats:sup> cm<jats:sup>-3</jats:sup> and, at 1 atm H<jats:sub>2</jats:sub>, a FWHM of 3 nm were obtained. Electrical measurements show that for B-spikes having a FWHM value of 4–5 nm, a sheet resistivity of as low as 580  Ω/ \\Box can be obtained. \n </jats:p>",
+    "DOI": "10.1143/jjap.29.l2307",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2005,
+          2,
+          23
+        ]
+      ],
+      "date-time": "2005-02-23T01:49:12Z",
+      "timestamp": 1109123352000
+    },
+    "page": "L2307",
+    "update-policy": "https://doi.org/10.1088/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 4,
+    "title": [
+      "Sharp Boron Spikes in Silicon Grown at Reduced and Atmospheric Pressure by Fast-Gas-Switching CVD"
+    ],
+    "prefix": "10.35848",
+    "volume": "29",
+    "author": [
+      {
+        "given": "Adriaan T.",
+        "family": "Vink",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Piet J.",
+        "family": "Roksnoer",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Johannes W. F. M.",
+        "family": "Maes",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Cornelis J.",
+        "family": "Vriezema",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Leo J.",
+        "family": "van Ijzendoorn",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Peer C.",
+        "family": "Zalm",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "266",
+    "reference": [
+      {
+        "volume": "183",
+        "year": "1989",
+        "key": ""
+      },
+      {
+        "volume": "184",
+        "year": "1989",
+        "key": ""
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "113",
+        "DOI": "10.1063/1.98255",
+        "volume": "50",
+        "year": "1987",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": ""
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1012",
+        "DOI": "10.1063/1.96620",
+        "volume": "48",
+        "year": "1986",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1601",
+        "DOI": "10.1063/1.97793",
+        "volume": "50",
+        "year": "1987",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "L574",
+        "DOI": "10.1143/JJAP.21.L574",
+        "volume": "21",
+        "year": "1982",
+        "journal-title": "Jpn. J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "431",
+        "DOI": "10.1016/0022-0248(84)90445-7",
+        "volume": "68",
+        "year": "1984",
+        "journal-title": "J. Cryst. Growth"
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "271",
+        "DOI": "10.1016/0022-0248(87)90142-4",
+        "volume": "84",
+        "year": "1987",
+        "journal-title": "J. Cryst. Growth"
+      },
+      {
+        "key": ""
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "1067",
+        "DOI": "10.1063/1.343041",
+        "volume": "65",
+        "year": "1989",
+        "journal-title": "J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "35",
+        "DOI": "10.1557/S0883769400067208",
+        "volume": "12",
+        "year": "1987",
+        "journal-title": "MRS Bulletin"
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "L954",
+        "DOI": "10.1143/JJAP.27.L954",
+        "volume": "27",
+        "year": "1988",
+        "journal-title": "Jpn. J. Appl. Phys."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "33",
+        "DOI": "10.1016/0022-0248(88)90430-7",
+        "volume": "92",
+        "year": "1988",
+        "journal-title": "J. Cryst. Growth"
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "2427",
+        "DOI": "10.1149/1.2097401",
+        "volume": "136",
+        "year": "1989",
+        "journal-title": "J. Electrochem. Soc."
+      },
+      {
+        "key": "",
+        "doi-asserted-by": "publisher",
+        "first-page": "2485",
+        "DOI": "10.1063/1.342794",
+        "volume": "65",
+        "year": "1989",
+        "journal-title": "J. Appl. Phys."
+      }
+    ],
+    "container-title": [
+      "Japanese Journal of Applied Physics"
+    ],
+    "link": [
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.L2307",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.L2307/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.L2307/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.L2307/pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          6
+        ]
+      ],
+      "date-time": "2022-12-06T13:49:39Z",
+      "timestamp": 1670334579000
+    },
+    "score": 15.180477,
+    "resource": {
+      "primary": {
+        "URL": "https://iopscience.iop.org/article/10.1143/JJAP.29.L2307"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1990,
+          12,
+          1
+        ]
+      ]
+    },
+    "references-count": 16,
+    "journal-issue": {
+      "issue": "12A",
+      "published-print": {
+        "date-parts": [
+          [
+            1990,
+            12,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1143/jjap.29.l2307",
+    "ISSN": [
+      "0021-4922",
+      "1347-4065"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0021-4922"
+      },
+      {
+        "type": "electronic",
+        "value": "1347-4065"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1990,
+          12,
+          1
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Sharp Boron Spikes in Silicon Grown at Reduced and Atmospheric Pressure by Fast-Gas-Switching CVD",
+        "name": "article_title",
+        "label": "Article Title"
+      },
+      {
+        "value": "Japanese Journal of Applied Physics",
+        "name": "journal_title",
+        "label": "Journal Title"
+      },
+      {
+        "value": "paper",
+        "name": "article_type",
+        "label": "Article Type"
+      },
+      {
+        "value": "Copyright (c) 1990 The Japan Society of Applied Physics",
+        "name": "copyright_information",
+        "label": "Copyright Information"
+      },
+      {
+        "value": "1990-08-23",
+        "name": "date_received",
+        "label": "Date Received",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "1990-10-20",
+        "name": "date_accepted",
+        "label": "Date Accepted",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "name": "date_epub",
+        "label": "Online publication date",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      }
+    ]
+  }
+]

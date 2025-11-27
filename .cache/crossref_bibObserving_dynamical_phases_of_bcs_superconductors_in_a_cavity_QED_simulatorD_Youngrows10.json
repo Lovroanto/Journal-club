@@ -1,0 +1,3446 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          24
+        ]
+      ],
+      "date-time": "2025-11-24T16:45:04Z",
+      "timestamp": 1764002704436,
+      "version": "3.37.3"
+    },
+    "reference-count": 55,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "7996",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              24
+            ]
+          ],
+          "date-time": "2024-01-24T00:00:00Z",
+          "timestamp": 1706054400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              24
+            ]
+          ],
+          "date-time": "2024-01-24T00:00:00Z",
+          "timestamp": 1706054400000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Nature"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          25
+        ]
+      ]
+    },
+    "DOI": "10.1038/s41586-023-06911-x",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          24
+        ]
+      ],
+      "date-time": "2024-01-24T17:02:39Z",
+      "timestamp": 1706115759000
+    },
+    "page": "679-684",
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 26,
+    "title": [
+      "Observing dynamical phases of BCS superconductors in a cavity QED simulator"
+    ],
+    "prefix": "10.1038",
+    "volume": "625",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-3461-7116",
+        "authenticated-orcid": false,
+        "given": "Dylan J.",
+        "family": "Young",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8489-9831",
+        "authenticated-orcid": false,
+        "given": "Anjun",
+        "family": "Chu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Eric Yilun",
+        "family": "Song",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Diego",
+        "family": "Barberena",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4978-8938",
+        "authenticated-orcid": false,
+        "given": "David",
+        "family": "Wellnitz",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Zhijing",
+        "family": "Niu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Vera M.",
+        "family": "Schäfer",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0201-281X",
+        "authenticated-orcid": false,
+        "given": "Robert J.",
+        "family": "Lewis-Swan",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7176-9413",
+        "authenticated-orcid": false,
+        "given": "Ana Maria",
+        "family": "Rey",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1160-5112",
+        "authenticated-orcid": false,
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          24
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "6911_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "1175",
+        "DOI": "10.1103/PhysRev.108.1175",
+        "volume": "108",
+        "author": "J Bardeen",
+        "year": "1957",
+        "unstructured": "Bardeen, J., Cooper, L. N. & Schrieffer, J. R. Theory of superconductivity. Phys. Rev. 108, 1175 (1957).",
+        "journal-title": "Phys. Rev."
+      },
+      {
+        "key": "6911_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "097005",
+        "DOI": "10.1103/PhysRevLett.96.097005",
+        "volume": "96",
+        "author": "EA Yuzbashyan",
+        "year": "2006",
+        "unstructured": "Yuzbashyan, E. A., Tsyplyatyev, O. & Altshuler, B. L. Relaxation and persistent oscillations of the order parameter in fermionic condensates. Phys. Rev. Lett. 96, 097005 (2006).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "230403",
+        "DOI": "10.1103/PhysRevLett.96.230403",
+        "volume": "96",
+        "author": "RA Barankov",
+        "year": "2006",
+        "unstructured": "Barankov, R. A. & Levitov, L. S. Synchronization in the BCS pairing dynamics as a critical phenomenon. Phys. Rev. Lett. 96, 230403 (2006).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "230404",
+        "DOI": "10.1103/PhysRevLett.96.230404",
+        "volume": "96",
+        "author": "EA Yuzbashyan",
+        "year": "2006",
+        "unstructured": "Yuzbashyan, E. A. & Dzero, M. Dynamical vanishing of the order parameter in a fermionic condensate. Phys. Rev. Lett. 96, 230404 (2006).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "2",
+        "DOI": "10.1016/j.aop.2006.10.009",
+        "volume": "322",
+        "author": "V Gurarie",
+        "year": "2007",
+        "unstructured": "Gurarie, V. & Radzihovsky, L. Resonantly paired fermionic superfluids. Ann. Phys. 322, 2–119 (2007).",
+        "journal-title": "Ann. Phys."
+      },
+      {
+        "key": "6911_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "075301",
+        "DOI": "10.1103/PhysRevLett.103.075301",
+        "volume": "103",
+        "author": "V Gurarie",
+        "year": "2009",
+        "unstructured": "Gurarie, V. Nonequilibrium dynamics of weakly and strongly paired superconductors. Phys. Rev. Lett. 103, 075301 (2009).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR7",
+        "doi-asserted-by": "publisher",
+        "first-page": "104511",
+        "DOI": "10.1103/PhysRevB.88.104511",
+        "volume": "88",
+        "author": "MS Foster",
+        "year": "2013",
+        "unstructured": "Foster, M. S., Dzero, M., Gurarie, V. & Yuzbashyan, E. A. Quantum quench in a p + ip superfluid: winding numbers and topological states far from equilibrium. Phys. Rev. B 88, 104511 (2013).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "6911_CR8",
+        "doi-asserted-by": "publisher",
+        "first-page": "033628",
+        "DOI": "10.1103/PhysRevA.91.033628",
+        "volume": "91",
+        "author": "EA Yuzbashyan",
+        "year": "2015",
+        "unstructured": "Yuzbashyan, E. A., Dzero, M., Gurarie, V. & Foster, M. S. Quantum quench phase diagrams of an s-wave BCS-BEC condensate. Phys. Rev. A 91, 033628 (2015).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "6911_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "173601",
+        "DOI": "10.1103/PhysRevLett.126.173601",
+        "volume": "126",
+        "author": "RJ Lewis-Swan",
+        "year": "2021",
+        "unstructured": "Lewis-Swan, R. J. et al. Cavity-QED quantum simulator of dynamical phases of a Bardeen–Cooper–Schrieffer superconductor. Phys. Rev. Lett. 126, 173601 (2021).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "L042032",
+        "DOI": "10.1103/PhysRevResearch.4.L042032",
+        "volume": "4",
+        "author": "SP Kelly",
+        "year": "2022",
+        "unstructured": "Kelly, S. P., Thompson, J. K., Rey, A. M. & Marino, J. Resonant light enhances phase coherence in a cavity QED simulator of fermionic superfluidity. Phys. Rev. Res. 4, L042032 (2022).",
+        "journal-title": "Phys. Rev. Res."
+      },
+      {
+        "key": "6911_CR11",
+        "doi-asserted-by": "publisher",
+        "first-page": "75",
+        "DOI": "10.1080/00018732.2017.1331615",
+        "volume": "66",
+        "author": "GR Stewart",
+        "year": "2017",
+        "unstructured": "Stewart, G. R. Unconventional superconductivity. Adv. Phys. 66, 75–196 (2017).",
+        "journal-title": "Adv. Phys."
+      },
+      {
+        "key": "6911_CR12",
+        "doi-asserted-by": "publisher",
+        "first-page": "076501",
+        "DOI": "10.1088/1361-6633/aa6ac7",
+        "volume": "80",
+        "author": "M Sato",
+        "year": "2017",
+        "unstructured": "Sato, M. & Ando, Y. Topological superconductors: a review. Rep. Prog. Phys. 80, 076501 (2017).",
+        "journal-title": "Rep. Prog. Phys."
+      },
+      {
+        "key": "6911_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "462",
+        "DOI": "10.1038/s42254-021-00324-3",
+        "volume": "3",
+        "author": "X Zhou",
+        "year": "2021",
+        "unstructured": "Zhou, X. et al. High-temperature superconductivity. Nat. Rev. Phys. 3, 462–465 (2021).",
+        "journal-title": "Nat. Rev. Phys."
+      },
+      {
+        "key": "6911_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "035001",
+        "DOI": "10.1103/RevModPhys.89.035001",
+        "volume": "89",
+        "author": "E Shuryak",
+        "year": "2017",
+        "unstructured": "Shuryak, E. Strongly coupled quark-gluon plasma in heavy ion collisions. Rev. Mod. Phys. 89, 035001 (2017).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "6911_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "015002",
+        "DOI": "10.1103/RevModPhys.88.015002",
+        "volume": "88",
+        "author": "D Harlow",
+        "year": "2016",
+        "unstructured": "Harlow, D. Jerusalem lectures on black holes and quantum information. Rev. Mod. Phys. 88, 015002 (2016).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "6911_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "116001",
+        "DOI": "10.1088/1361-6633/ac906c",
+        "volume": "85",
+        "author": "J Marino",
+        "year": "2022",
+        "unstructured": "Marino, J., Eckstein, M., Foster, M. & Rey, A.-M. Dynamical phase transitions in the collisionless pre-thermal states of isolated quantum systems: theory and experiments. Rep. Prog. Phys. 85, 116001 (2022).",
+        "journal-title": "Rep. Prog. Phys."
+      },
+      {
+        "key": "6911_CR17",
+        "first-page": "1018",
+        "volume": "38",
+        "author": "AF Volkov",
+        "year": "1974",
+        "unstructured": "Volkov, A. F. & Kogan, S. M. Collisionless relaxation of the energy gap in superconductors. J. Exp. Theor. Phys. 38, 1018 (1974). [Russian original—Zh. Eksp. Teor. Fiz. 65, 2038 (1973)].",
+        "journal-title": "J. Exp. Theor. Phys."
+      },
+      {
+        "key": "6911_CR18",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Yuzbashyan, E. A., Altshuler, B. L., Kuznetsov, V. B. & Enolskii, V. Z. Solution for the dynamics of the BCS and central spin problems. J. Phys.: Math. Gen. 38, 7831 (2005).",
+        "DOI": "10.1088/0305-4470/38/36/003"
+      },
+      {
+        "key": "6911_CR19",
+        "doi-asserted-by": "publisher",
+        "first-page": "160401",
+        "DOI": "10.1103/PhysRevLett.93.160401",
+        "volume": "93",
+        "author": "RA Barankov",
+        "year": "2004",
+        "unstructured": "Barankov, R. A., Levitov, L. S. & Spivak, B. Z. Collective Rabi oscillations and solitons in a time-dependent BCS pairing problem. Phys. Rev. Lett. 93, 160401 (2004).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR20",
+        "doi-asserted-by": "publisher",
+        "first-page": "184507",
+        "DOI": "10.1103/PhysRevB.78.184507",
+        "volume": "78",
+        "author": "EA Yuzbashyan",
+        "year": "2008",
+        "unstructured": "Yuzbashyan, E. A. Normal and anomalous solitons in the theory of dynamical Cooper pairing. Phys. Rev. B 78, 184507 (2008).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "6911_CR21",
+        "doi-asserted-by": "publisher",
+        "first-page": "076403",
+        "DOI": "10.1103/PhysRevLett.113.076403",
+        "volume": "113",
+        "author": "MS Foster",
+        "year": "2014",
+        "unstructured": "Foster, M. S., Gurarie, V., Dzero, M. & Yuzbashyan, E. A. Quench-induced Floquet topological p-wave superfluids. Phys. Rev. Lett. 113, 076403 (2014).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "023011",
+        "DOI": "10.1103/PhysRevResearch.5.023011",
+        "volume": "5",
+        "author": "HPO Collado",
+        "year": "2023",
+        "unstructured": "Collado, H. P. O., Defenu, N. & Lorenzana, J. Engineering Higgs dynamics by spectral singularities. Phys. Rev. Res. 5, 023011 (2023).",
+        "journal-title": "Phys. Rev. Res."
+      },
+      {
+        "key": "6911_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "4539",
+        "DOI": "10.1073/pnas.1218742110",
+        "volume": "110",
+        "author": "B Mansart",
+        "year": "2013",
+        "unstructured": "Mansart, B. et al. Coupling of a high-energy excitation to superconducting quasiparticles in a cuprate from coherent charge fluctuation spectroscopy. Proc. Natl Acad. Sci. USA 110, 4539–4544 (2013).",
+        "journal-title": "Proc. Natl Acad. Sci. USA"
+      },
+      {
+        "key": "6911_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "057002",
+        "DOI": "10.1103/PhysRevLett.111.057002",
+        "volume": "111",
+        "author": "R Matsunaga",
+        "year": "2013",
+        "unstructured": "Matsunaga, R. et al. Higgs amplitude mode in the BCS superconductors Nb1−xTixN induced by terahertz pulse excitation. Phys. Rev. Lett. 111, 057002 (2013).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR25",
+        "doi-asserted-by": "publisher",
+        "first-page": "1145",
+        "DOI": "10.1126/science.1254697",
+        "volume": "345",
+        "author": "R Matsunaga",
+        "year": "2014",
+        "unstructured": "Matsunaga, R. et al. Light-induced collective pseudospin precession resonating with Higgs mode in a superconductor. Science 345, 1145–1149 (2014).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "6911_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "209",
+        "DOI": "10.1146/annurev-conmatphys-031113-133829",
+        "volume": "5",
+        "author": "M Randeria",
+        "year": "2014",
+        "unstructured": "Randeria, M. & Taylor, E. BCS-BEC crossover and the unitary Fermi gas. Annu. Rev. Condens. Matter Phys. 5, 209–232 (2014).",
+        "journal-title": "Annu. Rev. Condens. Matter Phys."
+      },
+      {
+        "key": "6911_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "781",
+        "DOI": "10.1038/s41567-018-0128-6",
+        "volume": "14",
+        "author": "A Behrle",
+        "year": "2018",
+        "unstructured": "Behrle, A. et al. Higgs mode in a strongly interacting fermionic superfluid. Nat. Phys. 14, 781–785 (2018).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "6911_CR28",
+        "doi-asserted-by": "publisher",
+        "first-page": "1900",
+        "DOI": "10.1103/PhysRev.112.1900",
+        "volume": "112",
+        "author": "PW Anderson",
+        "year": "1958",
+        "unstructured": "Anderson, P. W. Random-phase approximation in the theory of superconductivity. Phys. Rev. 112, 1900 (1958).",
+        "journal-title": "Phys. Rev."
+      },
+      {
+        "key": "6911_CR29",
+        "doi-asserted-by": "publisher",
+        "first-page": "060402",
+        "DOI": "10.1103/PhysRevLett.125.060402",
+        "volume": "125",
+        "author": "EJ Davis",
+        "year": "2020",
+        "unstructured": "Davis, E. J. et al. Protecting spin coherence in a tunable Heisenberg model. Phys. Rev. Lett. 125, 060402 (2020).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR30",
+        "doi-asserted-by": "publisher",
+        "first-page": "259",
+        "DOI": "10.1126/science.aar3102",
+        "volume": "361",
+        "author": "MA Norcia",
+        "year": "2018",
+        "unstructured": "Norcia, M. A. et al. Cavity-mediated collective spin-exchange interactions in a strontium superradiant laser. Science 361, 259–262 (2018).",
+        "journal-title": "Science"
+      },
+      {
+        "key": "6911_CR31",
+        "doi-asserted-by": "publisher",
+        "first-page": "130801",
+        "DOI": "10.1103/PhysRevLett.89.130801",
+        "volume": "89",
+        "author": "JC Allred",
+        "year": "2002",
+        "unstructured": "Allred, J. C., Lyman, R. N., Kornack, T. W. & Romalis, M. V. High-sensitivity atomic magnetometer unaffected by spin-exchange relaxation. Phys. Rev. Lett. 89, 130801 (2002).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR32",
+        "doi-asserted-by": "publisher",
+        "first-page": "045025",
+        "DOI": "10.1088/1367-2630/10/4/045025",
+        "volume": "10",
+        "author": "A Kleine",
+        "year": "2008",
+        "unstructured": "Kleine, A., Kollath, C., McCulloch, I. P., Giamarchi, T. & Schollwoeck, U. Excitations in two-component Bose gases. New J. Phys. 10, 045025 (2008).",
+        "journal-title": "New J. Phys."
+      },
+      {
+        "key": "6911_CR33",
+        "doi-asserted-by": "publisher",
+        "first-page": "020401",
+        "DOI": "10.1103/PhysRevLett.105.020401",
+        "volume": "105",
+        "author": "C Deutsch",
+        "year": "2010",
+        "unstructured": "Deutsch, C. et al. Spin self-rephasing and very long coherence times in a trapped atomic ensemble. Phys. Rev. Lett. 105, 020401 (2010).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR34",
+        "doi-asserted-by": "publisher",
+        "first-page": "eaax1568",
+        "DOI": "10.1126/sciadv.aax1568",
+        "volume": "5",
+        "author": "S Smale",
+        "year": "2019",
+        "unstructured": "Smale, S. et al. Observation of a transition between dynamical phases in a quantum degenerate Fermi gas. Sci. Adv. 5, eaax1568 (2019).",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "key": "6911_CR35",
+        "doi-asserted-by": "publisher",
+        "first-page": "602",
+        "DOI": "10.1038/s41586-020-2224-x",
+        "volume": "580",
+        "author": "JA Muniz",
+        "year": "2020",
+        "unstructured": "Muniz, J. A. et al. Exploring dynamical phase transitions with cold atoms in an optical cavity. Nature 580, 602–607 (2020).",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "6911_CR36",
+        "doi-asserted-by": "publisher",
+        "first-page": "1104",
+        "DOI": "10.1038/s41567-023-02035-1",
+        "volume": "19",
+        "author": "M Baghdad",
+        "year": "2023",
+        "unstructured": "Baghdad, M. et al. Spectral engineering of cavity-protected polaritons in an atomic ensemble. Nat. Phys. 19, 1104–1109 (2023).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "6911_CR37",
+        "doi-asserted-by": "publisher",
+        "first-page": "1128",
+        "DOI": "10.1038/s41567-023-02033-3",
+        "volume": "19",
+        "author": "N Sauerwein",
+        "year": "2023",
+        "unstructured": "Sauerwein, N. et al. Engineering random spin models with atoms in a high-finesse cavity. Nat. Phys. 19, 1128–1134 (2023).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "6911_CR38",
+        "doi-asserted-by": "publisher",
+        "first-page": "221",
+        "DOI": "10.1016/0029-5582(64)90687-X",
+        "volume": "52",
+        "author": "R Richardson",
+        "year": "1964",
+        "unstructured": "Richardson, R. & Sherman, N. Exact eigenstates of the pairing-force Hamiltonian. Nucl. Phys. 52, 221–238 (1964).",
+        "journal-title": "Nucl. Phys."
+      },
+      {
+        "key": "6911_CR39",
+        "doi-asserted-by": "publisher",
+        "first-page": "1087",
+        "DOI": "10.1051/jphys:0197600370100108700",
+        "volume": "37",
+        "author": "M Gaudin",
+        "year": "1976",
+        "unstructured": "Gaudin, M. Diagonalization of a class of spin Hamiltonians. J. Phys. 37, 1087–1098 (1976).",
+        "journal-title": "J. Phys."
+      },
+      {
+        "key": "6911_CR40",
+        "doi-asserted-by": "publisher",
+        "first-page": "261107",
+        "DOI": "10.1063/1.4773241",
+        "volume": "101",
+        "author": "JM Weiner",
+        "year": "2012",
+        "unstructured": "Weiner, J. M., Cox, K. C., Bohnet, J. G., Chen, Z. & Thompson, J. K. Superradiant Raman laser magnetometer. Appl. Phys. Lett. 101, 261107 (2012).",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "6911_CR41",
+        "doi-asserted-by": "publisher",
+        "first-page": "013826",
+        "DOI": "10.1103/PhysRevA.88.013826",
+        "volume": "88",
+        "author": "JG Bohnet",
+        "year": "2013",
+        "unstructured": "Bohnet, J. G., Chen, Z., Weiner, J. M., Cox, K. C. & Thompson, J. K. Active and passive sensing of collective atomic coherence in a superradiant laser. Phys. Rev. A 88, 013826 (2013).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "6911_CR42",
+        "doi-asserted-by": "publisher",
+        "first-page": "e1601231",
+        "DOI": "10.1126/sciadv.1601231",
+        "volume": "2",
+        "author": "MA Norcia",
+        "year": "2016",
+        "unstructured": "Norcia, M. A., Winchester, M. N., Cline, J. R. & Thompson, J. K. Superradiance on the millihertz linewidth strontium clock transition. Sci. Adv. 2, e1601231 (2016).",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "key": "6911_CR43",
+        "doi-asserted-by": "publisher",
+        "first-page": "052305",
+        "DOI": "10.1103/PhysRevA.77.052305",
+        "volume": "77",
+        "author": "AM Rey",
+        "year": "2008",
+        "unstructured": "Rey, A. M., Jiang, L., Fleischhauer, M., Demler, E. & Lukin, M. D. Many-body protected entanglement generation in interacting spin systems. Phys. Rev. A 77, 052305 (2008).",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "6911_CR44",
+        "doi-asserted-by": "publisher",
+        "first-page": "197001",
+        "DOI": "10.1103/PhysRevLett.109.197001",
+        "volume": "109",
+        "author": "AM Black-Schaffer",
+        "year": "2012",
+        "unstructured": "Black-Schaffer, A. M. Edge properties and Majorana fermions in the proposed chiral d-wave superconducting state of doped graphene. Phys. Rev. Lett. 109, 197001 (2012).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR45",
+        "doi-asserted-by": "publisher",
+        "first-page": "158",
+        "DOI": "10.1038/nphys2208",
+        "volume": "8",
+        "author": "R Nandkishore",
+        "year": "2012",
+        "unstructured": "Nandkishore, R., Levitov, L. S. & Chubukov, A. V. Chiral superconductivity from repulsive interactions in doped graphene. Nat. Phys. 8, 158–163 (2012).",
+        "journal-title": "Nat. Phys."
+      },
+      {
+        "key": "6911_CR46",
+        "doi-asserted-by": "publisher",
+        "first-page": "020507",
+        "DOI": "10.1103/PhysRevB.86.020507",
+        "volume": "86",
+        "author": "ML Kiesel",
+        "year": "2012",
+        "unstructured": "Kiesel, M. L., Platt, C., Hanke, W., Abanin, D. A. & Thomale, R. Competing many-body instabilities and unconventional superconductivity in graphene. Phys. Rev. B 86, 020507 (2012).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "6911_CR47",
+        "doi-asserted-by": "publisher",
+        "first-page": "097001",
+        "DOI": "10.1103/PhysRevLett.111.097001",
+        "volume": "111",
+        "author": "ML Kiesel",
+        "year": "2013",
+        "unstructured": "Kiesel, M. L., Platt, C., Hanke, W. & Thomale, R. Model evidence of an anisotropic chiral d + id-wave pairing state for the water-intercalated NaxCoO2 ⋅ yH2O superconductor. Phys. Rev. Lett. 111, 097001 (2013).",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "6911_CR48",
+        "doi-asserted-by": "publisher",
+        "first-page": "020509",
+        "DOI": "10.1103/PhysRevB.89.020509",
+        "volume": "89",
+        "author": "MH Fischer",
+        "year": "2014",
+        "unstructured": "Fischer, M. H. et al. Chiral d-wave superconductivity in SrPtAs. Phys. Rev. B 89, 020509 (2014).",
+        "journal-title": "Phys. Rev. B"
+      },
+      {
+        "key": "6911_CR49",
+        "doi-asserted-by": "publisher",
+        "first-page": "040324",
+        "DOI": "10.1103/PRXQuantum.3.040324",
+        "volume": "3",
+        "author": "A Shankar",
+        "year": "2022",
+        "unstructured": "Shankar, A. et al. Simulating dynamical phases of chiral p + ip superconductors with a trapped ion magnet. PRX Quantum 3, 040324 (2022).",
+        "journal-title": "PRX Quantum"
+      },
+      {
+        "key": "6911_CR50",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Laughlin, R. Magnetic induction of $${d}_{{x}^{2}-{y}^{2}}+i{d}_{xy}$$ order in high-Tc superconductors. Phys. Rev. Lett. 80, 5188 (1998).",
+        "DOI": "10.1103/PhysRevLett.80.5188"
+      },
+      {
+        "key": "6911_CR51",
+        "doi-asserted-by": "publisher",
+        "first-page": "373",
+        "DOI": "10.1103/RevModPhys.78.373",
+        "volume": "78",
+        "author": "AV Balatsky",
+        "year": "2006",
+        "unstructured": "Balatsky, A. V., Vekhter, I. & Zhu, J.-X. Impurity-induced states in conventional and unconventional superconductors. Rev. Mod. Phys. 78, 373 (2006).",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "6911_CR52",
+        "doi-asserted-by": "publisher",
+        "first-page": "126001",
+        "DOI": "10.1088/0034-4885/72/12/126001",
+        "volume": "72",
+        "author": "T Schäfer",
+        "year": "2009",
+        "unstructured": "Schäfer, T. & Teaney, D. Nearly perfect fluidity: from cold atomic gases to hot quark gluon plasmas. Rep. Prog. Phys. 72, 126001 (2009).",
+        "journal-title": "Rep. Prog. Phys."
+      },
+      {
+        "key": "6911_CR53",
+        "doi-asserted-by": "publisher",
+        "first-page": "065008",
+        "DOI": "10.1103/PhysRevD.84.065008",
+        "volume": "84",
+        "author": "Y Pehlivan",
+        "year": "2011",
+        "unstructured": "Pehlivan, Y., Balantekin, A., Kajino, T. & Yoshida, T. Invariants of collective neutrino oscillations. Phys. Rev. D 84, 065008 (2011).",
+        "journal-title": "Phys. Rev. D"
+      },
+      {
+        "key": "6911_CR54",
+        "first-page": "021036",
+        "volume": "8",
+        "author": "MA Norcia",
+        "year": "2018",
+        "unstructured": "Norcia, M. A. et al. Frequency measurements of superradiance from the strontium clock transition. Phys. Rev. X 8, 021036 (2018).",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "6911_CR55",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Young, D. J. et al. Data for: observing dynamical phases of BCS superconductors in a cavity QED simulator. Dryad https://doi.org/10.5061/dryad.7h44j100j (2023).",
+        "DOI": "10.5061/dryad.7h44j100j"
+      }
+    ],
+    "container-title": [
+      "Nature"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.nature.com/articles/s41586-023-06911-x.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-023-06911-x",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://www.nature.com/articles/s41586-023-06911-x.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          26
+        ]
+      ],
+      "date-time": "2024-01-26T18:04:20Z",
+      "timestamp": 1706292260000
+    },
+    "score": 59.60056,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/s41586-023-06911-x"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          24
+        ]
+      ]
+    },
+    "references-count": 55,
+    "journal-issue": {
+      "issue": "7996",
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            1,
+            25
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "6911"
+    ],
+    "URL": "https://doi.org/10.1038/s41586-023-06911-x",
+    "ISSN": [
+      "0028-0836",
+      "1476-4687"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0028-0836"
+      },
+      {
+        "type": "electronic",
+        "value": "1476-4687"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          24
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "21 June 2023",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "29 November 2023",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "24 January 2024",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "The authors declare no competing interests.",
+        "order": 1,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Competing interests"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2023,
+          7,
+          24
+        ]
+      ],
+      "date-time": "2023-07-24T12:40:18Z",
+      "timestamp": 1690202418507
+    },
+    "posted": {
+      "date-parts": [
+        [
+          2023,
+          5,
+          31
+        ]
+      ]
+    },
+    "reference-count": 0,
+    "publisher": "Morressier",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "DOI": "10.26226/m.6466363539790e0012bf4adc",
+    "type": "posted-content",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          5,
+          31
+        ]
+      ],
+      "date-time": "2023-05-31T04:25:32Z",
+      "timestamp": 1685507132000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Experimental Observation of BCS Dynamical Phases in a Strontium Cavity-QED System"
+    ],
+    "prefix": "10.26226",
+    "author": [
+      {
+        "given": "Dylan",
+        "family": "Young",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Anjun",
+        "family": "Chu",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Eric",
+        "family": "Song",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Diego",
+        "family": "Barberena",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "David",
+        "family": "Wellnitz",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Zhijing",
+        "family": "Niu",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Vera",
+        "family": "Schafer",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Ana",
+        "family": "Maria Rey",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "James",
+        "family": "Thompson",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "22980",
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          7,
+          24
+        ]
+      ],
+      "date-time": "2023-07-24T12:20:16Z",
+      "timestamp": 1690201216000
+    },
+    "score": 46.962517,
+    "resource": {
+      "primary": {
+        "URL": "https://www.morressier.com/article/6466363539790e0012bf4adc"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          5,
+          31
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.26226/m.6466363539790e0012bf4adc",
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          5,
+          31
+        ]
+      ]
+    },
+    "subtype": "other"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          31
+        ]
+      ],
+      "date-time": "2024-10-31T01:20:14Z",
+      "timestamp": 1730337614662,
+      "version": "3.28.0"
+    },
+    "publisher-location": "Washington, D.C.",
+    "reference-count": 4,
+    "publisher": "Optica Publishing Group",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "abstract": "<jats:p>We simulate out-of-equilibrium dynamics in Bardeen-Cooper-Schrieffer model of superconductivity using ~10<jats:sup>6</jats:sup> Sr atoms coupled via cavity-mediated spin-exchange inter-actions. In doing so, we observe three theoretically-predicted dynamical phases and identify corresponding phase transitions.</jats:p>",
+    "DOI": "10.1364/quantum.2023.qm3a.7",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T13:59:45Z",
+      "timestamp": 1693922385000
+    },
+    "page": "QM3A.7",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Experimental Observation of BCS Dynamical Phases in a Strontium Cavity-QED System"
+    ],
+    "prefix": "10.1364",
+    "author": [
+      {
+        "given": "Dylan J.",
+        "family": "Young",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Anjun",
+        "family": "Chu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Eric Yilun",
+        "family": "Song",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Diego",
+        "family": "Barberena",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "David",
+        "family": "Wellnitz",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Zhijing",
+        "family": "Niu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Vera M.",
+        "family": "Schäfer",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Ana Maria",
+        "family": "Rey",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "285",
+    "reference": [
+      {
+        "key": "QUANTUM-2023-QM3A.7-R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "230403",
+        "DOI": "10.1103/PhysRevLett.96.230403",
+        "volume": "96",
+        "author": "Barankov",
+        "year": "2006",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "QUANTUM-2023-QM3A.7-R3",
+        "doi-asserted-by": "crossref",
+        "first-page": "1145",
+        "DOI": "10.1126/science.1254697",
+        "volume": "345",
+        "author": "Matsunaga",
+        "year": "2014",
+        "journal-title": "Science"
+      },
+      {
+        "key": "QUANTUM-2023-QM3A.7-R4",
+        "doi-asserted-by": "crossref",
+        "first-page": "173601",
+        "DOI": "10.1103/PhysRevLett.126.173601",
+        "volume": "126",
+        "author": "Lewis-Swan",
+        "year": "2021",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "QUANTUM-2023-QM3A.7-R5",
+        "doi-asserted-by": "crossref",
+        "first-page": "259",
+        "DOI": "10.1126/science.aar3102",
+        "volume": "361",
+        "author": "Norcia",
+        "year": "2018",
+        "journal-title": "Science"
+      }
+    ],
+    "event": {
+      "name": "Quantum 2.0",
+      "start": {
+        "date-parts": [
+          [
+            2023
+          ]
+        ]
+      },
+      "sponsor": [
+        "The Optical Society"
+      ],
+      "location": "Denver, Colorado",
+      "acronym": "QUANTUM"
+    },
+    "container-title": [
+      "Optica Quantum 2.0 Conference and Exhibition"
+    ],
+    "link": [
+      {
+        "URL": "https://opg.optica.org/viewmedia.cfm?URI=QUANTUM-2023-QM3A.7&seq=0",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T13:59:46Z",
+      "timestamp": 1693922386000
+    },
+    "score": 41.136353,
+    "resource": {
+      "primary": {
+        "URL": "https://opg.optica.org/abstract.cfm?URI=QUANTUM-2023-QM3A.7"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "references-count": 4,
+    "URL": "https://doi.org/10.1364/quantum.2023.qm3a.7",
+    "published": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          22
+        ]
+      ],
+      "date-time": "2025-10-22T02:50:53Z",
+      "timestamp": 1761101453079,
+      "version": "3.41.2"
+    },
+    "reference-count": 62,
+    "publisher": "American Physical Society (APS)",
+    "issue": "17",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              4,
+              27
+            ]
+          ],
+          "date-time": "2021-04-27T00:00:00Z",
+          "timestamp": 1619481600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://link.aps.org/licenses/aps-default-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              4,
+              27
+            ]
+          ],
+          "date-time": "2022-04-27T00:00:00Z",
+          "timestamp": 1651017600000
+        },
+        "content-version": "am",
+        "delay-in-days": 365,
+        "URL": "https://link.aps.org/licenses/aps-default-accepted-manuscript-license"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000181",
+        "name": "Air Force Office of Scientific Research",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "FA9550-18-1-0319"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000181",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000185",
+        "name": "Defense Advanced Research Projects Agency",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000185",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000183",
+        "name": "Army Research Office",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "W911NF-16-1-0576",
+          "W911NF-19-1-0210"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000183",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "PHY1820885",
+          "PHY-1734006",
+          "QLCI-2016244"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000161",
+        "name": "National Institute of Standards and Technology",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000161",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000015",
+        "name": "U.S. Department of Energy",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000015",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100006132",
+        "name": "Office of Science",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100006132",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "name": "National Quantum Information Science Research Centers"
+      },
+      {
+        "name": "Quantum Systems Accelerator"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.aps.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Phys. Rev. Lett."
+    ],
+    "accepted": {
+      "date-parts": [
+        [
+          2021,
+          3,
+          22
+        ]
+      ]
+    },
+    "DOI": "10.1103/physrevlett.126.173601",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2021,
+          4,
+          27
+        ]
+      ],
+      "date-time": "2021-04-27T12:20:16Z",
+      "timestamp": 1619526016000
+    },
+    "update-policy": "https://doi.org/10.1103/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 27,
+    "title": [
+      "Cavity-QED Quantum Simulator of Dynamical Phases of a Bardeen-Cooper-Schrieffer Superconductor"
+    ],
+    "prefix": "10.1103",
+    "volume": "126",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-0201-281X",
+        "authenticated-orcid": true,
+        "given": "Robert J.",
+        "family": "Lewis-Swan",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Homer L. Dodge Department of Physics and Astronomy, The University of Oklahoma, Norman, Oklahoma 73019, USA"
+          },
+          {
+            "name": "Center for Quantum Research and Technology, The University of Oklahoma, Norman, Oklahoma 73019, USA"
+          },
+          {
+            "name": "JILA, NIST, Department of Physics, University of Colorado, Boulder, Colorado 80309, USA"
+          },
+          {
+            "name": "Center for Theory of Quantum Matter, University of Colorado, Boulder, Colorado 80309, USA"
+          }
+        ]
+      },
+      {
+        "given": "Diego",
+        "family": "Barberena",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, Department of Physics, University of Colorado, Boulder, Colorado 80309, USA"
+          },
+          {
+            "name": "Center for Theory of Quantum Matter, University of Colorado, Boulder, Colorado 80309, USA"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6749-221X",
+        "authenticated-orcid": true,
+        "given": "Julia R. K.",
+        "family": "Cline",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, Department of Physics, University of Colorado, Boulder, Colorado 80309, USA"
+          }
+        ]
+      },
+      {
+        "given": "Dylan J.",
+        "family": "Young",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, Department of Physics, University of Colorado, Boulder, Colorado 80309, USA"
+          }
+        ]
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, Department of Physics, University of Colorado, Boulder, Colorado 80309, USA"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7176-9413",
+        "authenticated-orcid": true,
+        "given": "Ana Maria",
+        "family": "Rey",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "JILA, NIST, Department of Physics, University of Colorado, Boulder, Colorado 80309, USA"
+          },
+          {
+            "name": "Center for Theory of Quantum Matter, University of Colorado, Boulder, Colorado 80309, USA"
+          }
+        ]
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2021,
+          4,
+          27
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevLett.126.173601Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2011/11/P11003",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.110.135704",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1361-6633/aaaf9a",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.120.130601",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.123.053601",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.125.093604",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.119.080501",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature24654",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-020-2224-x",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.aax1568",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.124.043001",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.125.240504",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature09009",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.1417132112",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.121.163601",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.103.056403",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.105.076401",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/95/66007",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.91.205136",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qute.201800043",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc21R1",
+        "first-page": "1018",
+        "type": "journal-article",
+        "volume": "38",
+        "author": "A. F. Volkov",
+        "year": "1974",
+        "journal-title": "Sov. Phys. JETP",
+        "ISSN": "https://id.crossref.org/issn/0038-5646",
+        "issn-type": "print"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.93.160401",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.72.144524",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.72.220503",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.96.097005",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.96.230403",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.91.033628",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.98.214519",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.99.174509",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.101.054502",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevD.84.065008",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.057002",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1254697",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.125.053602",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aar3102",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.125.060402",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc37R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.8.011002",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc38R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.85.553",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc39R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.107.277202",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc40R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.107.277201",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc41R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.126.133603",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc42R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/ab151e",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc43R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.aop.2006.10.009",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc44R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.88.104511",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc45R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.122.010405",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc46R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/2058-9565/ab455d",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc47R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0305-4470/4/3/00",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc50R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cpc.2012.08.016",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc51R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.121.070403",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc53R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1051/jphys:01982004302019700",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc54R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.52.1810",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc55R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.53.302.2",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc56R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1070/PU1986v029n03ABEH003179",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc57R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.89.090402",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc58R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.101.150401",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc59R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.105.020401",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc60R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.240801",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc61R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.77.052305",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc62R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/17/8/083063",
+        "type": "journal-article"
+      },
+      {
+        "volume-title": "Chemical Oscillations, Waves, and Turbulence",
+        "year": "2003",
+        "author": "K. Y",
+        "key": "PhysRevLett.126.173601Cc63R1",
+        "type": "book"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc64R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.116.250402",
+        "type": "journal-article"
+      },
+      {
+        "key": "PhysRevLett.126.173601Cc65R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.94.144206",
+        "type": "journal-article"
+      }
+    ],
+    "container-title": [
+      "Physical Review Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.aps.org/accepted/10.1103/PhysRevLett.126.173601",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "unspecified"
+      },
+      {
+        "URL": "https://link.aps.org/article/10.1103/PhysRevLett.126.173601",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevLett.126.173601/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          7,
+          31
+        ]
+      ],
+      "date-time": "2025-07-31T23:59:44Z",
+      "timestamp": 1754006384000
+    },
+    "score": 39.34677,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevLett.126.173601"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          4,
+          27
+        ]
+      ]
+    },
+    "references-count": 62,
+    "journal-issue": {
+      "issue": "17",
+      "published-print": {
+        "date-parts": [
+          [
+            2021,
+            4
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevlett.126.173601",
+    "ISSN": [
+      "0031-9007",
+      "1079-7114"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0031-9007"
+      },
+      {
+        "type": "electronic",
+        "value": "1079-7114"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          4,
+          27
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2020-12-02",
+        "name": "date_received",
+        "label": "Date Received",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "© 2021 American Physical Society",
+        "name": "copyright_statement",
+        "label": "Copyright statement",
+        "group": {
+          "name": "copyright",
+          "label": "copyright"
+        }
+      },
+      {
+        "value": "2021",
+        "name": "copyright_year",
+        "label": "Copyright year",
+        "group": {
+          "name": "copyright",
+          "label": "copyright"
+        }
+      },
+      {
+        "value": "us",
+        "name": "copyright_holder",
+        "label": "Copyright holder",
+        "group": {
+          "name": "copyright",
+          "label": "copyright"
+        }
+      },
+      {
+        "value": "American Physical Society",
+        "name": "copyright_holder",
+        "label": "Copyright holder",
+        "group": {
+          "name": "copyright",
+          "label": "copyright"
+        }
+      }
+    ],
+    "article-number": "173601"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          31
+        ]
+      ],
+      "date-time": "2024-10-31T01:20:08Z",
+      "timestamp": 1730337608959,
+      "version": "3.28.0"
+    },
+    "publisher-location": "Washington, D.C.",
+    "reference-count": 3,
+    "publisher": "Optica Publishing Group",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "abstract": "<jats:p>We experimentally demonstrate all three predicted dynamical phases of quenched superconductors using strontium atoms coupled to a high-finesse cavity. We show that this rich phenomenology can also be observed with a similar but different Hamiltonian.</jats:p>",
+    "DOI": "10.1364/quantum.2023.qm2a.2",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T13:59:33Z",
+      "timestamp": 1693922373000
+    },
+    "page": "QM2A.2",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Cavity QED as a Platform for Simulating Dynamical Phases of Quenched Superconductors"
+    ],
+    "prefix": "10.1364",
+    "author": [
+      {
+        "given": "Eric Yilun",
+        "family": "Song",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Dylan J.",
+        "family": "Young",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Anjun",
+        "family": "Chu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Diego",
+        "family": "Barberena",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "David",
+        "family": "Wellnitz",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Zhijing",
+        "family": "Niu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Vera M.",
+        "family": "Schäfer",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Ana Maria",
+        "family": "Rey",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "285",
+    "reference": [
+      {
+        "key": "QUANTUM-2023-QM2A.2-R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1175",
+        "DOI": "10.1103/PhysRev.108.1175",
+        "volume": "108",
+        "author": "Bardeen",
+        "year": "1957",
+        "journal-title": "Phys. Rev."
+      },
+      {
+        "key": "QUANTUM-2023-QM2A.2-R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "230403",
+        "DOI": "10.1103/PhysRevLett.96.230403",
+        "volume": "96",
+        "author": "Barankov",
+        "year": "2006",
+        "journal-title": "Phys. Rev. Lett"
+      },
+      {
+        "key": "QUANTUM-2023-QM2A.2-R3",
+        "doi-asserted-by": "crossref",
+        "first-page": "173601",
+        "DOI": "10.1103/PhysRevLett.126.173601",
+        "volume": "126",
+        "author": "Lewis-Swan",
+        "year": "2021",
+        "journal-title": "Phys. Rev. Lett."
+      }
+    ],
+    "event": {
+      "sponsor": [
+        "The Optical Society"
+      ],
+      "acronym": "QUANTUM",
+      "name": "Quantum 2.0",
+      "start": {
+        "date-parts": [
+          [
+            2023
+          ]
+        ]
+      },
+      "location": "Denver, Colorado"
+    },
+    "container-title": [
+      "Optica Quantum 2.0 Conference and Exhibition"
+    ],
+    "link": [
+      {
+        "URL": "https://opg.optica.org/viewmedia.cfm?URI=QUANTUM-2023-QM2A.2&seq=0",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ],
+      "date-time": "2023-09-05T13:59:35Z",
+      "timestamp": 1693922375000
+    },
+    "score": 39.339905,
+    "resource": {
+      "primary": {
+        "URL": "https://opg.optica.org/abstract.cfm?URI=QUANTUM-2023-QM2A.2"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "references-count": 3,
+    "URL": "https://doi.org/10.1364/quantum.2023.qm2a.2",
+    "published": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          4
+        ]
+      ],
+      "date-time": "2024-09-04T03:28:03Z",
+      "timestamp": 1725420483313
+    },
+    "publisher-location": "Washington, D.C.",
+    "reference-count": 0,
+    "publisher": "OSA",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2006
+        ]
+      ]
+    },
+    "DOI": "10.1364/fio.2006.ftux4",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2013,
+          5,
+          14
+        ]
+      ],
+      "date-time": "2013-05-14T20:11:21Z",
+      "timestamp": 1368562281000
+    },
+    "page": "FTuX4",
+    "source": "Crossref",
+    "is-referenced-by-count": 1,
+    "title": [
+      "Cavity QED with nanocrystals and silica microresonators"
+    ],
+    "prefix": "10.1364",
+    "author": [
+      {
+        "given": "Hailin",
+        "family": "Wang",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Young-Shin",
+        "family": "Park",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Andrew",
+        "family": "Cook",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "285",
+    "event": {
+      "name": "Frontiers in Optics",
+      "start": {
+        "date-parts": [
+          [
+            2006
+          ]
+        ]
+      },
+      "sponsor": [
+        "The Optical Society"
+      ],
+      "location": "Rochester, New York",
+      "acronym": "FiO"
+    },
+    "container-title": [
+      "Frontiers in Optics"
+    ],
+    "link": [
+      {
+        "URL": "https://www.osapublishing.org/viewmedia.cfm?URI=FiO-2006-FTuX4&seq=0",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          1,
+          26
+        ]
+      ],
+      "date-time": "2022-01-26T20:43:35Z",
+      "timestamp": 1643229815000
+    },
+    "score": 26.909983,
+    "resource": {
+      "primary": {
+        "URL": "https://opg.optica.org/abstract.cfm?URI=FiO-2006-FTuX4"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2006
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.1364/fio.2006.ftux4",
+    "published": {
+      "date-parts": [
+        [
+          2006
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          9,
+          10
+        ]
+      ],
+      "date-time": "2022-09-10T14:41:58Z",
+      "timestamp": 1662820918211
+    },
+    "posted": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "reference-count": 0,
+    "publisher": "Morressier",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "DOI": "10.26226/m.6275705d66d5dcf63a311660",
+    "type": "posted-content",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ],
+      "date-time": "2022-05-25T20:58:29Z",
+      "timestamp": 1653512309000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Exploring Dynamical Phases in a Multilevel Atom-Cavity System"
+    ],
+    "prefix": "10.26226",
+    "author": [
+      {
+        "given": "Dylan",
+        "family": "Young",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "James",
+        "family": "Thompson",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Ana",
+        "family": "Maria Rey",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Julia",
+        "family": "Cline",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Vera",
+        "family": "Schafer",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Zhijing",
+        "family": "Niu",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Robert",
+        "family": "Lewis-Swan",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Diego",
+        "family": "Barberena",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Anjun",
+        "family": "Chu",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "22980",
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          9,
+          10
+        ]
+      ],
+      "date-time": "2022-09-10T14:22:31Z",
+      "timestamp": 1662819751000
+    },
+    "score": 26.500626,
+    "resource": {
+      "primary": {
+        "URL": "https://www.morressier.com/article/6275705d66d5dcf63a311660"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.26226/m.6275705d66d5dcf63a311660",
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          25
+        ]
+      ]
+    },
+    "subtype": "other"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          26
+        ]
+      ],
+      "date-time": "2025-10-26T14:07:42Z",
+      "timestamp": 1761487662315
+    },
+    "reference-count": 33,
+    "publisher": "American Chemical Society (ACS)",
+    "issue": "9",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Nano Lett."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2006,
+          9,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1021/nl061342r",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2006,
+          8,
+          15
+        ]
+      ],
+      "date-time": "2006-08-15T11:16:49Z",
+      "timestamp": 1155640609000
+    },
+    "page": "2075-2079",
+    "source": "Crossref",
+    "is-referenced-by-count": 342,
+    "title": [
+      "Cavity QED with Diamond Nanocrystals and Silica Microspheres"
+    ],
+    "prefix": "10.1021",
+    "volume": "6",
+    "author": [
+      {
+        "given": "Young-Shin",
+        "family": "Park",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Physics, University of Oregon, Eugene, Oregon 97403"
+          }
+        ]
+      },
+      {
+        "given": "Andrew K.",
+        "family": "Cook",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Physics, University of Oregon, Eugene, Oregon 97403"
+          }
+        ]
+      },
+      {
+        "given": "Hailin",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Physics, University of Oregon, Eugene, Oregon 97403"
+          }
+        ]
+      }
+    ],
+    "member": "316",
+    "published-online": {
+      "date-parts": [
+        [
+          2006,
+          8,
+          15
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "nl061342rb00001/nl061342rb00001_1",
+        "volume-title": "CA",
+        "author": "Cavity Quantum Electrodynamics",
+        "year": "1994"
+      },
+      {
+        "key": "nl061342rb00002/nl061342rb00002_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "127",
+        "DOI": "10.1238/Physica.Topical.076a00127",
+        "volume": "76",
+        "author": "Kimble H.",
+        "year": "1998",
+        "journal-title": "J. Phys. Scr., T"
+      },
+      {
+        "key": "nl061342rb00003/nl061342rb00003_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "565",
+        "DOI": "10.1103/RevModPhys.73.565",
+        "volume": "73",
+        "author": "Raimond J. M.",
+        "year": "2001",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "nl061342rb00004/nl061342rb00004_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1372",
+        "DOI": "10.1126/science.1078446",
+        "volume": "298",
+        "author": "Mabuchi H.",
+        "year": "2002",
+        "journal-title": "Science"
+      },
+      {
+        "key": "nl061342rb00005/nl061342rb00005_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "233603",
+        "DOI": "10.1103/PhysRevLett.93.233603",
+        "volume": "93",
+        "author": "Boca A.",
+        "year": "2004",
+        "journal-title": "J. Phys. Rev. Lett."
+      },
+      {
+        "key": "nl061342rb00006/nl061342rb00006_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "033002",
+        "DOI": "10.1103/PhysRevLett.94.033002",
+        "volume": "94",
+        "author": "Maunz P.",
+        "year": "2005",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "nl061342rb00007/nl061342rb00007_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "162",
+        "DOI": "10.1038/nature02851",
+        "volume": "431",
+        "author": "Wallraff A.",
+        "year": "2004",
+        "journal-title": "J. Nature"
+      },
+      {
+        "key": "nl061342rb00008/nl061342rb00008_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "200",
+        "DOI": "10.1038/nature03119",
+        "volume": "432",
+        "author": "Yoshie T.",
+        "year": "2004",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "nl061342rb00009/nl061342rb00009_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "197",
+        "DOI": "10.1038/nature02969",
+        "volume": "432",
+        "author": "Reithmaier J. P.",
+        "year": "2004",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "nl061342rb00010/nl061342rb00010_1",
+        "unstructured": "Properties and Growth of Diamond; Davies, G., Ed.; INSPEC:  London, 1994."
+      },
+      {
+        "key": "nl061342rb00011/nl061342rb00011_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "768",
+        "DOI": "10.1364/JOSAB.9.000768",
+        "volume": "9",
+        "author": "Redman D.",
+        "year": "1992",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "nl061342rb00012/nl061342rb00012_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4190",
+        "DOI": "10.1063/1.1626791",
+        "volume": "83",
+        "author": "Kennedy T. A.",
+        "year": "2003",
+        "journal-title": "J. Appl. Phys. Lett."
+      },
+      {
+        "key": "nl061342rb00013/nl061342rb00013_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "290",
+        "DOI": "10.1103/PhysRevLett.85.290",
+        "volume": "85",
+        "author": "Kurtsiefer C.",
+        "year": "2000",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "nl061342rb00014/nl061342rb00014_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "061802",
+        "DOI": "10.1103/PhysRevA.64.061802",
+        "volume": "64",
+        "author": "Beveratos A.",
+        "year": "2001",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "nl061342rb00015/nl061342rb00015_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "076401",
+        "DOI": "10.1103/PhysRevLett.92.076401",
+        "volume": "92",
+        "author": "Jelezko F.",
+        "year": "2004",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "nl061342rb00015/nl061342rb00015_2",
+        "doi-asserted-by": "crossref",
+        "first-page": "041802",
+        "DOI": "10.1103/PhysRevA.67.041802",
+        "volume": "67",
+        "author": "Jelezko F.",
+        "year": "2003",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "nl061342rb00015/nl061342rb00015_3",
+        "doi-asserted-by": "crossref",
+        "first-page": "2160",
+        "DOI": "10.1063/1.1507838",
+        "volume": "81",
+        "author": "Jelezko F.",
+        "year": "2002",
+        "journal-title": "Appl. Phys. Lett."
+      },
+      {
+        "key": "nl061342rb00016/nl061342rb00016_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "393",
+        "DOI": "10.1016/0375-9601(89)90912-2",
+        "volume": "137",
+        "author": "Braginsky V. B.",
+        "year": "1989",
+        "journal-title": "Phys. Lett. A"
+      },
+      {
+        "key": "nl061342rb00017/nl061342rb00017_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "925",
+        "DOI": "10.1038/nature01371",
+        "volume": "421",
+        "author": "Armani D. K.",
+        "year": "2003",
+        "journal-title": "J. Nature"
+      },
+      {
+        "key": "nl061342rb00018/nl061342rb00018_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "53",
+        "DOI": "10.1016/S0921-5107(97)00080-9",
+        "volume": "48",
+        "author": "Lefevre-Seguin V.",
+        "year": "1997",
+        "journal-title": "Mater. Sci. Eng., B"
+      },
+      {
+        "key": "nl061342rb00019/nl061342rb00019_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "033806",
+        "DOI": "10.1103/PhysRevA.67.033806",
+        "volume": "67",
+        "author": "Buck J. R.",
+        "year": "2003",
+        "journal-title": "J. Phys. Rev. A"
+      },
+      {
+        "key": "nl061342rb00020/nl061342rb00020_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "013817",
+        "DOI": "10.1103/PhysRevA.71.013817",
+        "volume": "71",
+        "author": "Spillane S. M.",
+        "year": "2005",
+        "journal-title": "J. Phys. Rev. A"
+      },
+      {
+        "key": "nl061342rb00021/nl061342rb00021_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "771",
+        "DOI": "10.1364/OL.24.000771",
+        "volume": "24",
+        "author": "Fan X.",
+        "year": "1999",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "nl061342rb00021/nl061342rb00021_2",
+        "first-page": "394",
+        "volume-title": "Quantum Coherence, Correlations and Decoherence in Semiconductor Nanostructures",
+        "author": "Wang H.",
+        "year": "2003"
+      },
+      {
+        "key": "nl061342rb00022/nl061342rb00022_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "557",
+        "DOI": "10.1021/nl060003v",
+        "volume": "6",
+        "author": "Le Thomas N.",
+        "year": "2006",
+        "journal-title": "Nano. Lett."
+      },
+      {
+        "key": "nl061342rb00023/nl061342rb00023_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "74",
+        "DOI": "10.1103/PhysRevLett.85.74",
+        "volume": "85",
+        "author": "Cai M.",
+        "year": "2000",
+        "journal-title": "J. Phys. Rev. Lett."
+      },
+      {
+        "key": "nl061342rb00024/nl061342rb00024_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1943",
+        "DOI": "10.1364/OL.26.001943",
+        "volume": "26",
+        "author": "Lacey S.",
+        "year": "2001",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "nl061342rb00025/nl061342rb00025_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "033902",
+        "DOI": "10.1103/PhysRevLett.91.033902",
+        "volume": "91",
+        "author": "Lacey S.",
+        "year": "2003",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "nl061342rb00026/nl061342rb00026_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "235",
+        "DOI": "10.1007/s100530050087",
+        "volume": "1",
+        "author": "Treussart F.",
+        "year": "1998",
+        "journal-title": "Eur. Phys. J. D"
+      },
+      {
+        "key": "nl061342rb00027/nl061342rb00027_1",
+        "first-page": "1",
+        "volume": "202",
+        "author": "Kuhn S.",
+        "year": "2002",
+        "journal-title": "J. Microsc."
+      },
+      {
+        "key": "nl061342rb00028/nl061342rb00028_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3788",
+        "DOI": "10.1103/PhysRevLett.75.3788",
+        "volume": "75",
+        "author": "Pellizzari T.",
+        "year": "1995",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "nl061342rb00029/nl061342rb00029_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3221",
+        "DOI": "10.1103/PhysRevLett.78.3221",
+        "volume": "78",
+        "author": "Cirac J. I.",
+        "year": "1997",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "nl061342rb00030/nl061342rb00030_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "030504",
+        "DOI": "10.1103/PhysRevLett.95.030504",
+        "volume": "95",
+        "author": "Yao W.",
+        "year": "2005",
+        "journal-title": "J. Phys. Rev. Lett."
+      }
+    ],
+    "container-title": [
+      "Nano Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://pubs.acs.org/doi/pdf/10.1021/nl061342r",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          3,
+          9
+        ]
+      ],
+      "date-time": "2023-03-09T12:58:26Z",
+      "timestamp": 1678366706000
+    },
+    "score": 23.631409,
+    "resource": {
+      "primary": {
+        "URL": "https://pubs.acs.org/doi/10.1021/nl061342r"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2006,
+          8,
+          15
+        ]
+      ]
+    },
+    "references-count": 33,
+    "journal-issue": {
+      "issue": "9",
+      "published-print": {
+        "date-parts": [
+          [
+            2006,
+            9,
+            1
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1021/nl061342r"
+    ],
+    "URL": "https://doi.org/10.1021/nl061342r",
+    "ISSN": [
+      "1530-6984",
+      "1530-6992"
+    ],
+    "issn-type": [
+      {
+        "value": "1530-6984",
+        "type": "print"
+      },
+      {
+        "value": "1530-6992",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2006,
+          8,
+          15
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          23
+        ]
+      ],
+      "date-time": "2024-10-23T00:59:31Z",
+      "timestamp": 1729645171770,
+      "version": "3.28.0"
+    },
+    "reference-count": 2,
+    "publisher": "IEEE",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2007,
+          5
+        ]
+      ]
+    },
+    "DOI": "10.1109/qels.2007.4431622",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2008,
+          1,
+          18
+        ]
+      ],
+      "date-time": "2008-01-18T14:22:50Z",
+      "timestamp": 1200666170000
+    },
+    "page": "1-2",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Strong-coupling cavity QED with nitrogen vacancy centers and silica microspheres"
+    ],
+    "prefix": "10.1109",
+    "author": [
+      {
+        "family": "Hailin Wang",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "family": "Young-Shin Park",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "family": "Yumin Shen",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Andrew",
+        "family": "Cook",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "263",
+    "reference": [
+      {
+        "key": "ref2",
+        "doi-asserted-by": "crossref",
+        "first-page": "2075",
+        "DOI": "10.1021/nl061342r",
+        "volume": "6",
+        "author": "park",
+        "year": "2006",
+        "journal-title": "Nano Letters"
+      },
+      {
+        "key": "ref1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.033902"
+      }
+    ],
+    "event": {
+      "name": "2007 Quantum Electronics and Laser Science Conference",
+      "start": {
+        "date-parts": [
+          [
+            2007,
+            5,
+            6
+          ]
+        ]
+      },
+      "location": "Baltimore, MD, USA",
+      "end": {
+        "date-parts": [
+          [
+            2007,
+            5,
+            11
+          ]
+        ]
+      }
+    },
+    "container-title": [
+      "2007 Quantum Electronics and Laser Science Conference"
+    ],
+    "link": [
+      {
+        "URL": "http://xplorestaging.ieee.org/ielx5/4430981/4430982/04431622.pdf?arnumber=4431622",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          17
+        ]
+      ],
+      "date-time": "2017-06-17T23:09:13Z",
+      "timestamp": 1497740953000
+    },
+    "score": 23.420197,
+    "resource": {
+      "primary": {
+        "URL": "http://ieeexplore.ieee.org/document/4431622/"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2007,
+          5
+        ]
+      ]
+    },
+    "references-count": 2,
+    "URL": "https://doi.org/10.1109/qels.2007.4431622",
+    "published": {
+      "date-parts": [
+        [
+          2007,
+          5
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          6
+        ]
+      ],
+      "date-time": "2022-10-06T19:07:26Z",
+      "timestamp": 1665083246059
+    },
+    "reference-count": 27,
+    "publisher": "Physical Society of Japan",
+    "issue": "5",
+    "content-domain": {
+      "domain": [
+        "journals.jps.jp"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "J. Phys. Soc. Jpn."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2014,
+          5,
+          15
+        ]
+      ]
+    },
+    "DOI": "10.7566/jpsj.83.053301",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2014,
+          4,
+          2
+        ]
+      ],
+      "date-time": "2014-04-02T01:00:32Z",
+      "timestamp": 1396400432000
+    },
+    "page": "053301",
+    "update-policy": "http://dx.doi.org/10.7566/jps_crossmarkpolicy",
+    "source": "Crossref",
+    "is-referenced-by-count": 1,
+    "title": [
+      "On Realization of a Cavity-QED Laser Emitting a Highly Sub-Poissonian, Anti-Bunched Beam of Photons in a CW Fashion"
+    ],
+    "prefix": "10.7566",
+    "volume": "83",
+    "author": [
+      {
+        "given": "Young-Tak",
+        "family": "Chough",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Healthcare &amp; Medical Technology, Gwangju University, Gwangju 503-703, Republic of Korea"
+          }
+        ]
+      }
+    ],
+    "member": "4365",
+    "reference": [
+      {
+        "key": "r01/r01_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.7566/JPSJ.82.014401"
+      },
+      {
+        "key": "r02/r02_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.34.3077"
+      },
+      {
+        "key": "r03/r03_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/6/1/097"
+      },
+      {
+        "key": "r03/r03_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.54.551"
+      },
+      {
+        "key": "r03/r03_3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.64.2783"
+      },
+      {
+        "key": "r04/r04_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.73.3375"
+      },
+      {
+        "key": "r04/r04_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.52.1691"
+      },
+      {
+        "key": "r04/r04_3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.55.4492"
+      },
+      {
+        "key": "r04/r04_4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.55.4492"
+      },
+      {
+        "key": "r06/r06_1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1007/978-3-540-47620-7",
+        "volume-title": "An Open Systems Approach to Quantum Optics, Lecture Notes in Physics",
+        "volume": "18",
+        "author": "Carmichael H. J.",
+        "year": "1993"
+      },
+      {
+        "key": "r06/r06_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.46.R6801"
+      },
+      {
+        "key": "r06/r06_3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.45.4879"
+      },
+      {
+        "key": "r07/r07_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1355-5111/8/1/008"
+      },
+      {
+        "key": "r07/r07_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.54.4351"
+      },
+      {
+        "key": "r08/r08_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.60.1582"
+      },
+      {
+        "key": "r08/r08_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0375-9601(99)00147-4"
+      },
+      {
+        "key": "r08/r08_3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0030-4018(98)00066-2"
+      },
+      {
+        "key": "r09/r09_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.55.3033"
+      },
+      {
+        "key": "r09/r09_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.49.2933"
+      },
+      {
+        "key": "r11/r11_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.optcom.2005.12.071"
+      },
+      {
+        "key": "r11/r11_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1143/JPSJ.72.811"
+      },
+      {
+        "key": "r11/r11_3",
+        "unstructured": "C. Fang-Yen, Ph. D. Thesis, M.I.T. (2002)."
+      },
+      {
+        "key": "r12/r12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.96.093603"
+      },
+      {
+        "key": "r13/r13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/6/1/097"
+      },
+      {
+        "key": "r14/r14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.62.013807"
+      },
+      {
+        "key": "r14/r14_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.40.2471"
+      },
+      {
+        "key": "r15/r15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.063827"
+      }
+    ],
+    "container-title": [
+      "Journal of the Physical Society of Japan"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://journals.jps.jp/doi/pdf/10.7566/JPSJ.83.053301",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2021,
+          6,
+          1
+        ]
+      ],
+      "date-time": "2021-06-01T03:44:55Z",
+      "timestamp": 1622519095000
+    },
+    "score": 22.576546,
+    "resource": {
+      "primary": {
+        "URL": "http://journals.jps.jp/doi/10.7566/JPSJ.83.053301"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          5,
+          15
+        ]
+      ]
+    },
+    "references-count": 27,
+    "journal-issue": {
+      "issue": "5",
+      "published-print": {
+        "date-parts": [
+          [
+            2014,
+            5,
+            15
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.7566/JPSJ.83.053301"
+    ],
+    "URL": "https://doi.org/10.7566/jpsj.83.053301",
+    "ISSN": [
+      "0031-9015",
+      "1347-4073"
+    ],
+    "issn-type": [
+      {
+        "value": "0031-9015",
+        "type": "print"
+      },
+      {
+        "value": "1347-4073",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2014,
+          5,
+          15
+        ]
+      ]
+    }
+  }
+]

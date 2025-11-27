@@ -1,0 +1,4909 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          25
+        ]
+      ],
+      "date-time": "2025-11-25T14:14:06Z",
+      "timestamp": 1764080046879,
+      "version": "3.40.5"
+    },
+    "reference-count": 41,
+    "publisher": "American Physical Society (APS)",
+    "issue": "3",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              7,
+              25
+            ]
+          ],
+          "date-time": "2024-07-25T00:00:00Z",
+          "timestamp": 1721865600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.aps.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "PRX Quantum"
+    ],
+    "accepted": {
+      "date-parts": [
+        [
+          2024,
+          6,
+          21
+        ]
+      ]
+    },
+    "abstract": "<jats:p>Assembling and maintaining large arrays of individually addressable atoms is a key requirement for continued scaling of neutral-atom-based quantum computers and simulators. In this work, we demonstrate a new paradigm for assembly of atomic arrays, based on a synergistic combination of optical tweezers and cavity-enhanced optical lattices, and the incremental filling of a target array from a repetitively filled reservoir. In this protocol, the tweezers provide microscopic rearrangement of atoms, while the cavity-enhanced lattices enable the creation of large numbers of optical traps with sufficient depth for rapid low-loss imaging of atoms. We apply this protocol to demonstrate near-deterministic filling (99% per-site occupancy) of 1225-site arrays of optical traps. Because the reservoir is repeatedly filled with fresh atoms, the array can be maintained in a filled state indefinitely. We anticipate that this protocol will be compatible with mid-circuit reloading of atoms into a quantum processor, which will be a key capability for running large-scale error-corrected quantum computations whose durations exceed the lifetime of a single atom in the system.</jats:p>\n          <jats:sec>\n            <jats:title/>\n            <jats:supplementary-material>\n              <jats:permissions>\n                <jats:copyright-statement>Published by the American Physical Society</jats:copyright-statement>\n                <jats:copyright-year>2024</jats:copyright-year>\n              </jats:permissions>\n            </jats:supplementary-material>\n          </jats:sec>",
+    "DOI": "10.1103/prxquantum.5.030316",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          7,
+          25
+        ]
+      ],
+      "date-time": "2024-07-25T15:50:22Z",
+      "timestamp": 1721922622000
+    },
+    "update-policy": "https://doi.org/10.1103/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 51,
+    "title": [
+      "Iterative Assembly of \n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\" overflow=\"scroll\"><mml:msup><mml:mi/><mml:mn>171</mml:mn></mml:msup></mml:math>\n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\" overflow=\"scroll\"><mml:mi>Yb</mml:mi></mml:math>\n Atom Arrays with Cavity-Enhanced Optical Lattices"
+    ],
+    "prefix": "10.1103",
+    "volume": "5",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-2276-9473",
+        "authenticated-orcid": true,
+        "given": "M. A.",
+        "family": "Norcia",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "H.",
+        "family": "Kim",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "W. B.",
+        "family": "Cairncross",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "Stone",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "A.",
+        "family": "Ryou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "Jaffe",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "M. O.",
+        "family": "Brown",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "K.",
+        "family": "Barnes",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "P.",
+        "family": "Battaglino",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "T. C.",
+        "family": "Bohdanowicz",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "A.",
+        "family": "Brown",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "K.",
+        "family": "Cassella",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "C.-A.",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "R.",
+        "family": "Coxe",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "D.",
+        "family": "Crow",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "J.",
+        "family": "Epstein",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "C.",
+        "family": "Griger",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "E.",
+        "family": "Halperin",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "F.",
+        "family": "Hummel",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "A. M. W.",
+        "family": "Jones",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "J. M.",
+        "family": "Kindem",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "J.",
+        "family": "King",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "K.",
+        "family": "Kotru",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "J.",
+        "family": "Lauigan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "Lu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "E.",
+        "family": "Megidish",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "J.",
+        "family": "Marjanovic",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "McDonald",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "T.",
+        "family": "Mittiga",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "J. A.",
+        "family": "Muniz",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "S.",
+        "family": "Narayanaswami",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "C.",
+        "family": "Nishiguchi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "T.",
+        "family": "Paule",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "K. A.",
+        "family": "Pawlak",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "L. S.",
+        "family": "Peng",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "K. L.",
+        "family": "Pudenz",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "D.",
+        "family": "Rodríguez Pérez",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "A.",
+        "family": "Smull",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "D.",
+        "family": "Stack",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "Urbanek",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "R. J. M.",
+        "family": "van de Veerdonk",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "Z.",
+        "family": "Vendeiro",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "L.",
+        "family": "Wadleigh",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "T.",
+        "family": "Wilkason",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "T.-Y.",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "X.",
+        "family": "Xie",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "E.",
+        "family": "Zalys-Geller",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "X.",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      },
+      {
+        "given": "B. J.",
+        "family": "Bloom",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing"
+          }
+        ]
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2024,
+          7,
+          25
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PRXQuantum.5.030316Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aal3837"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41567-021-01357-2"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/ncomms13317"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aah3778"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aah3752"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-021-03585-1"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-021-03582-4"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.010502"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.010503"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41567-020-0903-z"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41567-022-01678-w"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-023-06927-3"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.abo0608"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-024-07304-4"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-020-3009-y"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PRXQuantum.3.030314"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/35082512"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.108.023107"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.9.011057"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.12.021027"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OPTICA.513551"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevResearch.5.L032009"
+      },
+      {
+        "volume-title": "Proc. of Precise Time and Time Interval",
+        "author": "G. Dick",
+        "key": "PRXQuantum.5.030316Cc25R1"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.13.041035"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.13.041034"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.12.011040"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.ade5337"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.91.053405"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.102.063107"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.73.033605"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OL.414076"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/JOSAB.401262"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.122.143002"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc37R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PRXQuantum.4.030337"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc38R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.129.203602"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc39R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.13.041051"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc40R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OE.16.012688"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc41R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.108.053325"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc42R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.78.033425"
+      },
+      {
+        "key": "PRXQuantum.5.030316Cc43R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.56.R1095"
+      }
+    ],
+    "container-title": [
+      "PRX Quantum"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.aps.org/article/10.1103/PRXQuantum.5.030316",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PRXQuantum.5.030316/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          10
+        ]
+      ],
+      "date-time": "2025-03-10T14:11:42Z",
+      "timestamp": 1741615902000
+    },
+    "score": 28.807034,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PRXQuantum.5.030316"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          7,
+          25
+        ]
+      ]
+    },
+    "references-count": 41,
+    "journal-issue": {
+      "issue": "3",
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            7
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/prxquantum.5.030316",
+    "ISSN": [
+      "2691-3399"
+    ],
+    "issn-type": [
+      {
+        "type": "electronic",
+        "value": "2691-3399"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          7,
+          25
+        ]
+      ]
+    },
+    "article-number": "030316"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          9
+        ]
+      ],
+      "date-time": "2025-10-09T12:59:01Z",
+      "timestamp": 1760014741935,
+      "version": "3.37.3"
+    },
+    "reference-count": 33,
+    "publisher": "American Physical Society (APS)",
+    "issue": "26",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2017,
+              6,
+              26
+            ]
+          ],
+          "date-time": "2017-06-26T00:00:00Z",
+          "timestamp": 1498435200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://link.aps.org/licenses/aps-default-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2018,
+              6,
+              26
+            ]
+          ],
+          "date-time": "2018-06-26T00:00:00Z",
+          "timestamp": 1529971200000
+        },
+        "content-version": "am",
+        "delay-in-days": 365,
+        "URL": "http://link.aps.org/licenses/aps-default-accepted-manuscript-license"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000185",
+        "name": "Defense Advanced Research Projects Agency",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000185",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000183",
+        "name": "Army Research Office",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000183",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1125844"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100000108",
+        "name": "Physiotherapy Foundation of Canada",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/501100000108",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000161",
+        "name": "National Institute of Standards and Technology",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000161",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. Lett."
+    ],
+    "DOI": "10.1103/physrevlett.118.263601",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          27
+        ]
+      ],
+      "date-time": "2017-06-27T02:08:31Z",
+      "timestamp": 1498529311000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 36,
+    "title": [
+      "Magnetically Induced Optical Transparency on a Forbidden Transition in Strontium for Cavity-Enhanced Spectroscopy"
+    ],
+    "prefix": "10.1103",
+    "volume": "118",
+    "author": [
+      {
+        "given": "Matthew N.",
+        "family": "Winchester",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Matthew A.",
+        "family": "Norcia",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Julia R. K.",
+        "family": "Cline",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          26
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevLett.118.263601Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2012.217"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1240420"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2015.5"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1154622"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevD.94.124043"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.110.171102"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys3137"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.100.140801"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1192720"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.93.250602"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.84.063813"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.114.093002"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.92.053820"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature10920"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.6.011025"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.1601231"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.102.163601"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.66.2593"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature09093"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.76.053814"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF01331827"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/17561"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/35054017"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys1152"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature11361"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1217901"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.93.041802"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.93.023804"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.89.043837"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.53.2711"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1238/Physica.Topical.076a00127"
+      },
+      {
+        "key": "PhysRevLett.118.263601Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.76.033804"
+      }
+    ],
+    "container-title": [
+      "Physical Review Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/accepted/10.1103/PhysRevLett.118.263601",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "unspecified"
+      },
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevLett.118.263601",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevLett.118.263601/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          1,
+          3
+        ]
+      ],
+      "date-time": "2025-01-03T00:10:36Z",
+      "timestamp": 1735863036000
+    },
+    "score": 27.566597,
+    "resource": {
+      "primary": {
+        "URL": "http://link.aps.org/doi/10.1103/PhysRevLett.118.263601"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          26
+        ]
+      ]
+    },
+    "references-count": 33,
+    "journal-issue": {
+      "issue": "26",
+      "published-print": {
+        "date-parts": [
+          [
+            2017,
+            6
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevlett.118.263601",
+    "ISSN": [
+      "0031-9007",
+      "1079-7114"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0031-9007"
+      },
+      {
+        "type": "electronic",
+        "value": "1079-7114"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          26
+        ]
+      ]
+    },
+    "article-number": "263601"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          26
+        ]
+      ],
+      "date-time": "2025-11-26T16:30:01Z",
+      "timestamp": 1764174601672,
+      "version": "3.37.3"
+    },
+    "reference-count": 76,
+    "publisher": "American Physical Society (APS)",
+    "issue": "4",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2018,
+              12,
+              28
+            ]
+          ],
+          "date-time": "2018-12-28T00:00:00Z",
+          "timestamp": 1545955200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100006015",
+        "name": "JILA, University of Colorado",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1734006"
+        ],
+        "id": [
+          {
+            "id": "10.13039/100006015",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000161",
+        "name": "National Institute of Standards and Technology",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000161",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.aps.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Phys. Rev. X"
+    ],
+    "DOI": "10.1103/physrevx.8.041054",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2018,
+          12,
+          28
+        ]
+      ],
+      "date-time": "2018-12-28T08:22:24Z",
+      "timestamp": 1545985344000
+    },
+    "update-policy": "https://doi.org/10.1103/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 159,
+    "title": [
+      "Microscopic Control and Detection of Ultracold Strontium in Optical-Tweezer Arrays"
+    ],
+    "prefix": "10.1103",
+    "volume": "8",
+    "author": [
+      {
+        "given": "M. A.",
+        "family": "Norcia",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "A. W.",
+        "family": "Young",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "A. M.",
+        "family": "Kaufman",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2018,
+          12,
+          28
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevX.8.041054Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/PT.3.3626"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.80.885"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.87.637"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aal3837"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/35082512"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature08482"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature10748"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.114.100503"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aaf6725"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature22362"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature09827"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1260364"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1250057"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aah3778"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aah3752"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-018-0458-7"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-018-0450-2"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature15750"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature24622"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.8.021070"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature09378"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1192368"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.108.103001"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.2.041014"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.115.263001"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aad9041"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.116.235301"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.101.170504"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.84.032322"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.82.053624"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.103.135301"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.121.225303"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aam5538"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2016.231"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2015.5"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc37R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00340-009-3488-x"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc38R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/18/2/023016"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc39R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.96.043626"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc40R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature22338"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc41R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aar7797"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc42R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.56.755"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc43R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.051603"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc44R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature08917"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc45R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.6.021030"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc46R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.98.070501"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc47R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0953-4075/44/18/184010"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc48R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0953-4075/44/18/184001"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc49R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.110.253003"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc50R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature18274"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc51R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.112.103601"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc52R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.114.193001"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc53R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.97.063423"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc54R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.80.052703"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc55R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.91.053001"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc56R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.82.2313"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc57R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.121.123603"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc58R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.107.165301"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc59R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.120.243201"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc61R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature23458"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc63R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/aaa950"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc65R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1148259"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc66R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.3449176"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc67R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.110.133001"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc68R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.75.4011"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc69R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.89.472"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc70R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.75.281"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc72R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.114.213002"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc73R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.023402"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc74R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature12941"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc75R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1154622"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc76R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.7.041063"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc77R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.8.041055"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc79R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.92.040501"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc80R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/00018732.2014.933502"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc81R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1140/epjd/e2013-30729-x"
+      },
+      {
+        "key": "PhysRevX.8.041054Cc82R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.012115"
+      }
+    ],
+    "container-title": [
+      "Physical Review X"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.aps.org/article/10.1103/PhysRevX.8.041054",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevX.8.041054/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2018,
+          12,
+          28
+        ]
+      ],
+      "date-time": "2018-12-28T13:07:13Z",
+      "timestamp": 1546002433000
+    },
+    "score": 25.402699,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevX.8.041054"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          12,
+          28
+        ]
+      ]
+    },
+    "references-count": 76,
+    "journal-issue": {
+      "issue": "4",
+      "published-print": {
+        "date-parts": [
+          [
+            2018,
+            12
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevx.8.041054",
+    "ISSN": [
+      "2160-3308"
+    ],
+    "issn-type": [
+      {
+        "type": "electronic",
+        "value": "2160-3308"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          12,
+          28
+        ]
+      ]
+    },
+    "article-number": "041054"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          10,
+          30
+        ]
+      ],
+      "date-time": "2024-10-30T17:42:48Z",
+      "timestamp": 1730310168850,
+      "version": "3.28.0"
+    },
+    "reference-count": 63,
+    "publisher": "SPIE",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1117/12.2515582",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          1
+        ]
+      ],
+      "date-time": "2019-03-01T11:16:35Z",
+      "timestamp": 1551438995000
+    },
+    "page": "78",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "An active optical frequency reference using a pulsed superradiant laser"
+    ],
+    "prefix": "10.1117",
+    "author": [
+      {
+        "given": "Juan",
+        "family": "Muniz Silva",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Julia",
+        "family": "Cline",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "James K.",
+        "family": "Thompson",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Matthew",
+        "family": "Norcia",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "member": "189",
+    "reference": [
+      {
+        "key": "R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/42/5/012"
+      },
+      {
+        "key": "R2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/47/1/008"
+      },
+      {
+        "volume-title": "Global navigation satellite systems, inertial navigation, and integration",
+        "year": "2013",
+        "author": "Grewal",
+        "key": "R3"
+      },
+      {
+        "key": "R4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-0-387-69534-1"
+      },
+      {
+        "key": "R5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2015.5"
+      },
+      {
+        "key": "R6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/53/4/1123"
+      },
+      {
+        "key": "R7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OPTICA.3.000563"
+      },
+      {
+        "key": "R8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2016.231"
+      },
+      {
+        "key": "R9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aam5538"
+      },
+      {
+        "key": "R10",
+        "first-page": "6",
+        "article-title": "Systematic evaluation of an atomic clock at 2 × 10−18 total uncertainty",
+        "author": "Nicholson",
+        "year": "2015",
+        "journal-title": "Nature Communications"
+      },
+      {
+        "key": "R11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.070802"
+      },
+      {
+        "key": "R12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.87.637"
+      },
+      {
+        "key": "R13",
+        "first-page": "7",
+        "article-title": "A clock network for geodesy and fundamental science",
+        "author": "Lisdat",
+        "year": "2016",
+        "journal-title": "Nature Communications"
+      },
+      {
+        "key": "R14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1236929"
+      },
+      {
+        "key": "R15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1254978"
+      },
+      {
+        "key": "R16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-018-0661-6"
+      },
+      {
+        "key": "R17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41567-017-0042-3"
+      },
+      {
+        "key": "R18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-018-0738-2"
+      },
+      {
+        "key": "R19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1361-6633/aab409"
+      },
+      {
+        "key": "R20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1154622"
+      },
+      {
+        "article-title": "Optical clock comparison test of lorentz symmetry",
+        "year": "2018",
+        "author": "Sanner",
+        "key": "R21"
+      },
+      {
+        "key": "R22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.90.025008"
+      },
+      {
+        "key": "R23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys3137"
+      },
+      {
+        "volume-title": "Frequency Standards: Basics and Applications",
+        "year": "2006",
+        "author": "Riehle",
+        "key": "R24"
+      },
+      {
+        "key": "R25",
+        "first-page": "555",
+        "article-title": "Optical atomic clocks",
+        "volume": "36",
+        "author": "Poli",
+        "year": "2013",
+        "journal-title": "Nuovo Cimento Rivista Serie"
+      },
+      {
+        "key": "R26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.83.331"
+      },
+      {
+        "key": "R27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/51/3/174"
+      },
+      {
+        "key": "R28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0026-1394/51/1/108"
+      },
+      {
+        "key": "R29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.5.361"
+      },
+      {
+        "key": "R30",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.81.033847"
+      },
+      {
+        "key": "R31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.102.163601"
+      },
+      {
+        "key": "R32",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRev.93.99"
+      },
+      {
+        "key": "R33",
+        "article-title": "The coherence brightened laser",
+        "volume-title": "[Proc. of the 3rd Int. Congress on Quant. Elec.]",
+        "volume": "35",
+        "author": "Dicke",
+        "year": "1964"
+      },
+      {
+        "key": "R34",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0370-1573(82)90102-8"
+      },
+      {
+        "key": "R35",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/JOSAB.29.000178"
+      },
+      {
+        "key": "R36",
+        "first-page": "021036",
+        "article-title": "Frequency measurements of superradiance from the strontium clock transition",
+        "volume": "8",
+        "author": "Norcia",
+        "year": "2018",
+        "journal-title": "Phys. Rev. X"
+      },
+      {
+        "key": "R37",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/B978-0-12-385508-4.00004-8"
+      },
+      {
+        "key": "R38",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/sciadv.1601231"
+      },
+      {
+        "article-title": "New Tools for Precision Measurement and Quantum Science with Narrow Linewidth Optical Transitions",
+        "year": "2017",
+        "author": "Norcia",
+        "key": "R39"
+      },
+      {
+        "key": "R40",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1148259"
+      },
+      {
+        "key": "R41",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1142/S0218271807011826"
+      },
+      {
+        "key": "R42",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TUFFC.2012.2210"
+      },
+      {
+        "key": "R43",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.093604"
+      },
+      {
+        "key": "R44",
+        "first-page": "221",
+        "article-title": "Statistics of atomic frequency standards",
+        "volume-title": "Proceedings of the IEEE",
+        "volume": "54",
+        "author": "Allan",
+        "year": "1966"
+      },
+      {
+        "key": "R45",
+        "first-page": "133",
+        "article-title": "Local oscillator induced instabilities in trapped ion frequency standards",
+        "volume-title": "Proc. of Precise Time and Time Interval",
+        "author": "Dick",
+        "year": "1987"
+      },
+      {
+        "key": "R46",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aar3102"
+      },
+      {
+        "issue": "1",
+        "key": "R47",
+        "first-page": "89",
+        "article-title": "Comparison of quantum and semiclassical radiation theories with application to the beam maser",
+        "volume-title": "Proceedings of the IEEE",
+        "volume": "51",
+        "author": "Jaynes",
+        "year": "1963"
+      },
+      {
+        "key": "R48",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1238/Physica.Topical.076a00127"
+      },
+      {
+        "key": "R49",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.63.240"
+      },
+      {
+        "key": "R50",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.93.233603"
+      },
+      {
+        "key": "R51",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/17/1/007"
+      },
+      {
+        "key": "R52",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature03119"
+      },
+      {
+        "key": "R53",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.96.127006"
+      },
+      {
+        "key": "R54",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.93.023804"
+      },
+      {
+        "key": "R55",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.84.063813"
+      },
+      {
+        "key": "R56",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/epl/i1998-00277-9"
+      },
+      {
+        "key": "R57",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.113.263603"
+      },
+      {
+        "key": "R58",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.100.103601"
+      },
+      {
+        "key": "R59",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.89.043837"
+      },
+      {
+        "key": "R60",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.116.093602"
+      },
+      {
+        "key": "R61",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.133601"
+      },
+      {
+        "key": "R62",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphoton.2014.151"
+      },
+      {
+        "article-title": "Driven-dissipative quantum dynamics in ultra long-lived dipoles in an optical cavity",
+        "year": "2018",
+        "author": "Barberena",
+        "key": "R63"
+      }
+    ],
+    "event": {
+      "name": "Optical, Opto-Atomic, and Entanglement-Enhanced Precision Metrology",
+      "start": {
+        "date-parts": [
+          [
+            2019,
+            2,
+            2
+          ]
+        ]
+      },
+      "location": "San Francisco, United States",
+      "end": {
+        "date-parts": [
+          [
+            2019,
+            2,
+            7
+          ]
+        ]
+      }
+    },
+    "container-title": [
+      "Optical, Opto-Atomic, and Entanglement-Enhanced Precision Metrology"
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          14
+        ]
+      ],
+      "date-time": "2019-03-14T16:34:16Z",
+      "timestamp": 1552581256000
+    },
+    "score": 23.805717,
+    "resource": {
+      "primary": {
+        "URL": "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/10934/2515582/An-active-optical-frequency-reference-using-a-pulsed-superradiant-laser/10.1117/12.2515582.full"
+      }
+    },
+    "editor": [
+      {
+        "given": "Selim M.",
+        "family": "Shahriar",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Jacob",
+        "family": "Scheuer",
+        "sequence": "first",
+        "affiliation": []
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          1
+        ]
+      ]
+    },
+    "references-count": 63,
+    "URL": "https://doi.org/10.1117/12.2515582",
+    "published": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          14
+        ]
+      ],
+      "date-time": "2025-11-14T17:43:09Z",
+      "timestamp": 1763142189080,
+      "version": "3.40.5"
+    },
+    "reference-count": 42,
+    "publisher": "American Physical Society (APS)",
+    "issue": "4",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2023,
+              11,
+              22
+            ]
+          ],
+          "date-time": "2023-11-22T00:00:00Z",
+          "timestamp": 1700611200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.aps.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Phys. Rev. X"
+    ],
+    "DOI": "10.1103/physrevx.13.041034",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          11,
+          22
+        ]
+      ],
+      "date-time": "2023-11-22T15:12:18Z",
+      "timestamp": 1700665938000
+    },
+    "update-policy": "https://doi.org/10.1103/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 55,
+    "title": [
+      "Midcircuit Qubit Measurement and Rearrangement in a \n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mml:mrow><mml:mmultiscripts><mml:mrow><mml:mi>Yb</mml:mi></mml:mrow><mml:mprescripts/><mml:none/><mml:mrow><mml:mn>171</mml:mn></mml:mrow></mml:mmultiscripts></mml:mrow></mml:math>\n Atomic Array"
+    ],
+    "prefix": "10.1103",
+    "volume": "13",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-2276-9473",
+        "authenticated-orcid": true,
+        "given": "M. A.",
+        "family": "Norcia",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "W. B.",
+        "family": "Cairncross",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "K.",
+        "family": "Barnes",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "P.",
+        "family": "Battaglino",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "A.",
+        "family": "Brown",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M. O.",
+        "family": "Brown",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "K.",
+        "family": "Cassella",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "C.-A.",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "R.",
+        "family": "Coxe",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "D.",
+        "family": "Crow",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J.",
+        "family": "Epstein",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "C.",
+        "family": "Griger",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "A. M. W.",
+        "family": "Jones",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "H.",
+        "family": "Kim",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J. M.",
+        "family": "Kindem",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J.",
+        "family": "King",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "S. S.",
+        "family": "Kondov",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "K.",
+        "family": "Kotru",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J.",
+        "family": "Lauigan",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M.",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M.",
+        "family": "Lu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "E.",
+        "family": "Megidish",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J.",
+        "family": "Marjanovic",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M.",
+        "family": "McDonald",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "T.",
+        "family": "Mittiga",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J. A.",
+        "family": "Muniz",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "S.",
+        "family": "Narayanaswami",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "C.",
+        "family": "Nishiguchi",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "R.",
+        "family": "Notermans",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "T.",
+        "family": "Paule",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "K. A.",
+        "family": "Pawlak",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "L. S.",
+        "family": "Peng",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "A.",
+        "family": "Ryou",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "A.",
+        "family": "Smull",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "D.",
+        "family": "Stack",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M.",
+        "family": "Stone",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "A.",
+        "family": "Sucich",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M.",
+        "family": "Urbanek",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "R. J. M.",
+        "family": "van de Veerdonk",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Z.",
+        "family": "Vendeiro",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "T.",
+        "family": "Wilkason",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "T.-Y.",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "X.",
+        "family": "Xie",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "X.",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "B. J.",
+        "family": "Bloom",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2023,
+          11,
+          22
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevX.13.041034Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.52.R2493"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.55.900"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1499754"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.86.032324"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-021-03928-y"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-022-05434-1"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.128.160503"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.ade5337"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.125.080504"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature00784"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-021-03318-4"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-022-04592-6"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.129.203602"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.8.041055"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.8.041054"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.122.143002"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41467-022-29977-z"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.12.021027"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.12.021028"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevResearch.4.023245"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys645"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aag3349"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aag1430"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aag1635"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41567-019-0478-8"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.125.010403"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.133003"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.133002"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.119.180503"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.119.180504"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.aay0644"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.9.041052"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.203601"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.203602"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc37R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.160501"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc39R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PRXQuantum.3.020326"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc40R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-021-03582-4"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc41R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.129.083001"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc42R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PRXQuantum.4.030337"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc43R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.13.041035"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc44R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/01621459.1927.10502953"
+      },
+      {
+        "key": "PhysRevX.13.041034Cc45R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.97.063419"
+      }
+    ],
+    "container-title": [
+      "Physical Review X"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.aps.org/article/10.1103/PhysRevX.13.041034",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevX.13.041034/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          11,
+          22
+        ]
+      ],
+      "date-time": "2023-11-22T15:12:20Z",
+      "timestamp": 1700665940000
+    },
+    "score": 8.923731,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevX.13.041034"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          11,
+          22
+        ]
+      ]
+    },
+    "references-count": 42,
+    "journal-issue": {
+      "issue": "4",
+      "published-print": {
+        "date-parts": [
+          [
+            2023,
+            11
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevx.13.041034",
+    "ISSN": [
+      "2160-3308"
+    ],
+    "issn-type": [
+      {
+        "type": "electronic",
+        "value": "2160-3308"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          11,
+          22
+        ]
+      ]
+    },
+    "article-number": "041034"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          25
+        ]
+      ],
+      "date-time": "2025-11-25T14:16:06Z",
+      "timestamp": 1764080166471,
+      "version": "3.43.0"
+    },
+    "reference-count": 58,
+    "publisher": "American Physical Society (APS)",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              5,
+              21
+            ]
+          ],
+          "date-time": "2025-05-21T00:00:00Z",
+          "timestamp": 1747785600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.aps.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "PRX Quantum"
+    ],
+    "accepted": {
+      "date-parts": [
+        [
+          2025,
+          4,
+          8
+        ]
+      ]
+    },
+    "abstract": "<jats:p>Arrays of optically trapped neutral atoms are a promising architecture for the realization of quantum computers. In order to run increasingly complex algorithms, it is advantageous to demonstrate high-fidelity and flexible gates between long-lived and highly coherent qubit states. In this work, we demonstrate a universal high-fidelity gate set with individually controlled and parallel application of single-qubit gates and two-qubit gates operating on the ground-state nuclear-spin qubit in arrays of tweezer-trapped <a:math xmlns:a=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><a:msup><a:mi/><a:mn>171</a:mn></a:msup></a:math><c:math xmlns:c=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><c:mi>Yb</c:mi></c:math> atoms. We utilize the long lifetime, flexible control, and high gate fidelity of our system to characterize native gates using single- and two-qubit Clifford and symmetric subspace randomized-benchmarking circuits with more than 200 controlled-<e:math xmlns:e=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><e:mi>Z</e:mi></e:math> () gates applied to one or two pairs of atoms. We measure our two-qubit entangling gate fidelity to be 99.72(3)% (99.40(3)%) with (without) postselection. In addition, we introduce a simple and optimized method for calibration of multiparameter quantum gates. These results represent important milestones toward executing complex and general quantum computation with neutral atoms.</jats:p>",
+    "DOI": "10.1103/prxquantum.6.020334",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          21
+        ]
+      ],
+      "date-time": "2025-05-21T11:06:06Z",
+      "timestamp": 1747825566000
+    },
+    "update-policy": "https://doi.org/10.1103/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 13,
+    "title": [
+      "High-Fidelity Universal Gates in the \n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mml:msup><mml:mi/><mml:mn>171</mml:mn></mml:msup></mml:math>\n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mml:mi>Yb</mml:mi></mml:math>\n Ground-State Nuclear-Spin Qubit"
+    ],
+    "prefix": "10.1103",
+    "volume": "6",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-6756-6218",
+        "authenticated-orcid": true,
+        "given": "J. A.",
+        "family": "Muniz",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "Stone",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "D. T.",
+        "family": "Stack",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-2554-2562",
+        "authenticated-orcid": true,
+        "given": "M.",
+        "family": "Jaffe",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "J. M.",
+        "family": "Kindem",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "L.",
+        "family": "Wadleigh",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "E.",
+        "family": "Zalys-Geller",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1627-069X",
+        "authenticated-orcid": true,
+        "given": "X.",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "C.-A.",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-2276-9473",
+        "authenticated-orcid": true,
+        "given": "M. A.",
+        "family": "Norcia",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "J.",
+        "family": "Epstein",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "E.",
+        "family": "Halperin",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0180-6615",
+        "authenticated-orcid": true,
+        "given": "F.",
+        "family": "Hummel",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7718-7251",
+        "authenticated-orcid": true,
+        "given": "T.",
+        "family": "Wilkason",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0008-2073-3507",
+        "authenticated-orcid": true,
+        "given": "K.",
+        "family": "Barnes",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "P.",
+        "family": "Battaglino",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "T. C.",
+        "family": "Bohdanowicz",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "G.",
+        "family": "Booth",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0007-0603-3750",
+        "authenticated-orcid": true,
+        "given": "A.",
+        "family": "Brown",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "M. O.",
+        "family": "Brown",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-2077-6853",
+        "authenticated-orcid": true,
+        "given": "W. B.",
+        "family": "Cairncross",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-1409-8155",
+        "authenticated-orcid": true,
+        "given": "K.",
+        "family": "Cassella",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-9185-4524",
+        "authenticated-orcid": true,
+        "given": "R.",
+        "family": "Coxe",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "D.",
+        "family": "Crow",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0005-7373-2223",
+        "authenticated-orcid": true,
+        "given": "M.",
+        "family": "Feldkamp",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0005-7099-0833",
+        "authenticated-orcid": true,
+        "given": "C.",
+        "family": "Griger",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0003-8545-6508",
+        "authenticated-orcid": true,
+        "given": "A.",
+        "family": "Heinz",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0000-2524-3488",
+        "authenticated-orcid": true,
+        "given": "A. M. W.",
+        "family": "Jones",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7413-8067",
+        "authenticated-orcid": true,
+        "given": "H.",
+        "family": "Kim",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "J.",
+        "family": "King",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "K.",
+        "family": "Kotru",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "J.",
+        "family": "Lauigan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0005-1160-2984",
+        "authenticated-orcid": true,
+        "given": "J.",
+        "family": "Marjanovic",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "E.",
+        "family": "Megidish",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "Meredith",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "M.",
+        "family": "McDonald",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "R.",
+        "family": "Morshead",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0002-6844-2190",
+        "authenticated-orcid": true,
+        "given": "S.",
+        "family": "Narayanaswami",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8329-8508",
+        "authenticated-orcid": true,
+        "given": "C.",
+        "family": "Nishiguchi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "T.",
+        "family": "Paule",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "K. A.",
+        "family": "Pawlak",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0003-8677-1753",
+        "authenticated-orcid": true,
+        "given": "K. L.",
+        "family": "Pudenz",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9731-6041",
+        "authenticated-orcid": true,
+        "given": "D. Rodríguez",
+        "family": "Pérez",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "given": "A.",
+        "family": "Ryou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-7854-4647",
+        "authenticated-orcid": true,
+        "given": "J.",
+        "family": "Simon",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          },
+          {
+            "id": [
+              {
+                "id": "https://ror.org/00f54p054",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Stanford University"
+          }
+        ]
+      },
+      {
+        "given": "A.",
+        "family": "Smull",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9960-7424",
+        "authenticated-orcid": true,
+        "given": "M.",
+        "family": "Urbanek",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0007-5528-7650",
+        "authenticated-orcid": true,
+        "given": "R. J. M.",
+        "family": "van de Veerdonk",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0124-8545",
+        "authenticated-orcid": true,
+        "given": "Z.",
+        "family": "Vendeiro",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4732-2579",
+        "authenticated-orcid": true,
+        "given": "T.-Y.",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4575-6103",
+        "authenticated-orcid": true,
+        "given": "X.",
+        "family": "Xie",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-6831-0601",
+        "authenticated-orcid": true,
+        "given": "B. J.",
+        "family": "Bloom",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/05vxfdm89",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Atom Computing, Inc."
+          }
+        ]
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          21
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PRXQuantum.6.020334Cc1R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.89.022321",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PRXQuantum.5.030316",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.22.024073",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.ade5337",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.129.203602",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.13.041051",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.13.041034",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.13.041035",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-023-06927-3",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41467-022-29977-z",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.123.170503",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-023-06481-y",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41567-020-0903-z",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.15.011009",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.12.021027",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41567-024-02479-z",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.110.022607",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.74.4091",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.82.1971",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys1178",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevResearch.2.013317",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PRXQuantum.6.010331",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1464-4266/7/10/021",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.80.012304",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.108.053325",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.96.022330",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.108.260503",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.106.180504",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.85.042311",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc32R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.92.062315",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc33R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.010502",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.123.230501",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.12.021028",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.85.2208",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc37R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.20.1521",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc38R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-024-08005-8",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc39R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/npjqi.2016.33",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc40R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.107.042611",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc41R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.97.063419",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc42R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.6028/jres.103.019",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc43R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0079-6565(86)80005-X",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc44R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0022-2364(79)90265-8",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc45R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OL.34.000914",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc46R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0953-4075/49/20/202001",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc47R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.128.033201",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc48R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.22331/q-2022-05-13-712",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc49R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.13.041013",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc51R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.108.260503",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc52R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-023-06438-1",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc54R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41586-022-04592-6",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc55R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.18.064005",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc56R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.110.042821",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc57R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.5.031043",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc58R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.4.021034",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc60R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PRXQuantum.5.040342",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc61R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OL.19.001777",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc63R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.physleta.2007.02.069",
+        "type": "journal-article"
+      },
+      {
+        "key": "PRXQuantum.6.020334Cc64R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/ab1800",
+        "type": "journal-article"
+      }
+    ],
+    "container-title": [
+      "PRX Quantum"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.aps.org/article/10.1103/PRXQuantum.6.020334",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PRXQuantum.6.020334/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          8,
+          5
+        ]
+      ],
+      "date-time": "2025-08-05T16:44:25Z",
+      "timestamp": 1754412265000
+    },
+    "score": 7.6727133,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PRXQuantum.6.020334"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          21
+        ]
+      ]
+    },
+    "references-count": 58,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2025,
+            5
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/prxquantum.6.020334",
+    "relation": {
+      "has-preprint": [
+        {
+          "id-type": "doi",
+          "id": "10.48550/arXiv.2411.11708",
+          "asserted-by": "subject"
+        }
+      ]
+    },
+    "ISSN": [
+      "2691-3399"
+    ],
+    "issn-type": [
+      {
+        "type": "electronic",
+        "value": "2691-3399"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          21
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2024-12-02",
+        "name": "date_received",
+        "label": "Date Received",
+        "group": {
+          "name": "publication_dates",
+          "label": "Publication dates"
+        }
+      },
+      {
+        "value": "Published by the American Physical Society",
+        "name": "copyright_statement",
+        "label": "Copyright statement",
+        "group": {
+          "name": "copyright",
+          "label": "copyright"
+        }
+      },
+      {
+        "value": "2025",
+        "name": "copyright_year",
+        "label": "Copyright year",
+        "group": {
+          "name": "copyright",
+          "label": "copyright"
+        }
+      }
+    ],
+    "article-number": "020334"
+  }
+]

@@ -1,0 +1,2094 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          21
+        ]
+      ],
+      "date-time": "2025-10-21T14:37:06Z",
+      "timestamp": 1761057426546,
+      "version": "3.40.5"
+    },
+    "reference-count": 40,
+    "publisher": "American Physical Society (APS)",
+    "issue": "4",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              1998,
+              10,
+              1
+            ]
+          ],
+          "date-time": "1998-10-01T00:00:00Z",
+          "timestamp": 907200000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://link.aps.org/licenses/aps-default-license"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. A"
+    ],
+    "DOI": "10.1103/physreva.58.3030",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          7,
+          26
+        ]
+      ],
+      "date-time": "2002-07-26T21:41:14Z",
+      "timestamp": 1027719674000
+    },
+    "page": "3030-3042",
+    "source": "Crossref",
+    "is-referenced-by-count": 115,
+    "title": [
+      "Cooling an atom in a weakly driven high-<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mml:mi>Q</mml:mi></mml:math>cavity"
+    ],
+    "prefix": "10.1103",
+    "volume": "58",
+    "author": [
+      {
+        "given": "Gerald",
+        "family": "Hechenblaikner",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Markus",
+        "family": "Gangl",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Peter",
+        "family": "Horak",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Helmut",
+        "family": "Ritsch",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          1998,
+          10,
+          1
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "volume-title": "Fundamental Systems in Quantum Optics, Proceedings of the Les Houches Summer School, Session LIII",
+        "year": "1992",
+        "author": "S. Haroche",
+        "key": "PhysRevA.58.3030Cc1R1"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc2R1",
+        "first-page": "681",
+        "volume": "69",
+        "author": "E. M. Pourcel",
+        "year": "1946",
+        "journal-title": "Phys. Rev."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc3R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "233",
+        "DOI": "10.1103/PhysRevLett.47.233",
+        "volume": "47",
+        "author": "D. Kleppner",
+        "year": "1981",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc4R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "89",
+        "DOI": "10.1109/PROC.1963.1664",
+        "volume": "51",
+        "author": "E. T. Jaynes",
+        "year": "1963",
+        "journal-title": "Proc. IEEE"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc5R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "551",
+        "DOI": "10.1103/PhysRevLett.54.551",
+        "volume": "54",
+        "author": "D. Meschede",
+        "year": "1985",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc5R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "1899",
+        "DOI": "10.1103/PhysRevLett.59.1899",
+        "author": "M. Brune",
+        "year": "1987",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc6R1",
+        "first-page": "S1",
+        "volume": "60",
+        "author": "Q. A. Turchette",
+        "year": "1995",
+        "journal-title": "Appl. Phys. B: Lasers Opt."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc7R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1723",
+        "DOI": "10.1103/PhysRevLett.67.1723",
+        "volume": "67",
+        "author": "T. W. Mossberg",
+        "year": "1991",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc8R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3385",
+        "DOI": "10.1103/PhysRevA.47.3385",
+        "volume": "47",
+        "author": "M. Lewenstein",
+        "year": "1993",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc9R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "275",
+        "DOI": "10.1016/0030-4018(95)00504-2",
+        "volume": "120",
+        "author": "K. Molmer",
+        "year": "1995",
+        "journal-title": "Opt. Commun."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc10R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1421",
+        "DOI": "10.1103/PhysRevA.46.1421",
+        "volume": "46",
+        "author": "Y. Shevy",
+        "year": "1992",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc11R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "7777",
+        "DOI": "10.1103/PhysRevA.44.7777",
+        "volume": "44",
+        "author": "R. Graham",
+        "year": "1991",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc12R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3011",
+        "DOI": "10.1103/PhysRevA.49.3011",
+        "volume": "49",
+        "author": "T. Zaugg",
+        "year": "1994",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc13R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4354",
+        "DOI": "10.1103/PhysRevA.46.4354",
+        "volume": "46",
+        "author": "J. I. Cirac",
+        "year": "1992",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc14R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "833",
+        "DOI": "10.1103/PhysRevA.56.833",
+        "volume": "56",
+        "author": "A. C. Doherty",
+        "year": "1997",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc15R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "269",
+        "DOI": "10.1016/S0030-4018(96)00718-3",
+        "volume": "137",
+        "author": "K. S. Wong",
+        "year": "1997",
+        "journal-title": "Opt. Commun."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc16R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4804",
+        "DOI": "10.1103/PhysRevA.57.4804",
+        "volume": "57",
+        "author": "A. C. Doherty",
+        "year": "1998",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc17R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1376",
+        "DOI": "10.1103/PhysRevLett.63.1376",
+        "volume": "63",
+        "author": "C. M. Savage",
+        "year": "1989",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc18R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "775",
+        "DOI": "10.1103/PhysRevLett.59.775",
+        "volume": "59",
+        "author": "M. Lewenstein",
+        "year": "1987",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc19R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3187",
+        "DOI": "10.1103/PhysRevA.56.3187",
+        "volume": "56",
+        "author": "K. M. Gheri",
+        "year": "1997",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc20R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4835",
+        "DOI": "10.1103/PhysRevLett.74.4835",
+        "volume": "74",
+        "author": "J. Jacobson",
+        "year": "1995",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc21R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4144",
+        "DOI": "10.1103/PhysRevLett.76.4144",
+        "volume": "76",
+        "author": "M. O. Scully",
+        "year": "1996",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc22R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "353",
+        "DOI": "10.1016/0030-4018(93)90502-V",
+        "volume": "97",
+        "author": "J. I. Cirac",
+        "year": "1993",
+        "journal-title": "Opt. Commun."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc23R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "233",
+        "DOI": "10.1007/BF01135867",
+        "volume": "60",
+        "author": "G. Rempe",
+        "year": "1995",
+        "journal-title": "Appl. Phys. B: Lasers Opt."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc24R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "93",
+        "DOI": "10.1209/epl/i1996-00192-1",
+        "volume": "36",
+        "author": "A. Lambrecht",
+        "year": "1996",
+        "journal-title": "Europhys. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc25R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "634",
+        "DOI": "10.1103/PhysRevLett.78.634",
+        "volume": "78",
+        "author": "J.-F. Roch",
+        "year": "1997",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc26R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3375",
+        "DOI": "10.1103/PhysRevLett.73.3375",
+        "volume": "73",
+        "author": "K. An",
+        "year": "1994",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc27R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1393",
+        "DOI": "10.1364/OL.21.001393",
+        "volume": "21",
+        "author": "H. Mabuchi",
+        "year": "1996",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc28R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "7162",
+        "DOI": "10.1103/PhysRevA.46.7162",
+        "volume": "46",
+        "author": "W. Ren",
+        "year": "1992",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc29R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "752",
+        "DOI": "10.1103/PhysRevA.51.752",
+        "volume": "51",
+        "author": "W. Ren",
+        "year": "1995",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc30R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4974",
+        "DOI": "10.1103/PhysRevLett.79.4974",
+        "volume": "79",
+        "author": "P. Horak",
+        "year": "1997",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "volume-title": "Fundamental Systems in Quantum Optics, Proceedings of the Les Houches Summer School, Session LIII",
+        "year": "1992",
+        "author": "C. Cohen-Tannoudji",
+        "key": "PhysRevA.58.3030Cc31R1"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc32R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1707",
+        "DOI": "10.1364/JOSAB.2.001707",
+        "volume": "2",
+        "author": "J. Dalibard",
+        "year": "1985",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc34R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1007/978-3-662-09642-0",
+        "volume-title": "Quantum Noise",
+        "author": "C. W. Gardiner",
+        "year": "1991"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc35R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1606",
+        "DOI": "10.1103/PhysRevA.21.1606",
+        "volume": "21",
+        "author": "J. P. Gordon",
+        "year": "1980",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc36R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "833",
+        "DOI": "10.1103/PhysRevA.56.833",
+        "volume": "56",
+        "author": "A. C. Doherty",
+        "year": "1997",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc37R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "19",
+        "DOI": "10.1209/0295-5075/14/1/004",
+        "volume": "14",
+        "author": "S. Haroche",
+        "year": "1991",
+        "journal-title": "Europhys. Lett."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc38R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "2023",
+        "DOI": "10.1364/JOSAB.6.002023",
+        "volume": "6",
+        "author": "J. Dalibard",
+        "year": "1989",
+        "journal-title": "J. Opt. Soc. Am. B"
+      },
+      {
+        "key": "PhysRevA.58.3030Cc39R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "373",
+        "DOI": "10.1016/0030-4018(79)90374-2",
+        "volume": "30",
+        "author": "V. G. Minogin",
+        "year": "1979",
+        "journal-title": "Opt. Commun."
+      },
+      {
+        "key": "PhysRevA.58.3030Cc40R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4195",
+        "DOI": "10.1088/0953-4075/25/20/016",
+        "volume": "25",
+        "author": "K. Berg-Sørensen",
+        "year": "1992",
+        "journal-title": "J. Phys. B"
+      }
+    ],
+    "container-title": [
+      "Physical Review A"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevA.58.3030",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevA.58.3030/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          12,
+          9
+        ]
+      ],
+      "date-time": "2017-12-09T20:50:40Z",
+      "timestamp": 1512852640000
+    },
+    "score": 49.021805,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevA.58.3030"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1998,
+          10,
+          1
+        ]
+      ]
+    },
+    "references-count": 40,
+    "journal-issue": {
+      "issue": "4",
+      "published-print": {
+        "date-parts": [
+          [
+            1998,
+            10
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physreva.58.3030",
+    "ISSN": [
+      "1050-2947",
+      "1094-1622"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "1050-2947"
+      },
+      {
+        "type": "electronic",
+        "value": "1094-1622"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1998,
+          10,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          20
+        ]
+      ],
+      "date-time": "2025-11-20T18:13:01Z",
+      "timestamp": 1763662381581,
+      "version": "3.32.0"
+    },
+    "reference-count": 19,
+    "publisher": "American Physical Society (APS)",
+    "issue": "25",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              1997,
+              12,
+              22
+            ]
+          ],
+          "date-time": "1997-12-22T00:00:00Z",
+          "timestamp": 882748800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://link.aps.org/licenses/aps-default-license"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. Lett."
+    ],
+    "DOI": "10.1103/physrevlett.79.4974",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          7,
+          27
+        ]
+      ],
+      "date-time": "2002-07-27T02:13:35Z",
+      "timestamp": 1027736015000
+    },
+    "page": "4974-4977",
+    "source": "Crossref",
+    "is-referenced-by-count": 229,
+    "title": [
+      "Cavity-Induced Atom Cooling in the Strong Coupling Regime"
+    ],
+    "prefix": "10.1103",
+    "volume": "79",
+    "author": [
+      {
+        "given": "Peter",
+        "family": "Horak",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Gerald",
+        "family": "Hechenblaikner",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Klaus M.",
+        "family": "Gheri",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Herwig",
+        "family": "Stecher",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Helmut",
+        "family": "Ritsch",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          1997,
+          12,
+          22
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevLett.79.4974Cc1R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "198",
+        "DOI": "10.1126/science.269.5221.198",
+        "volume": "269",
+        "author": "M. H. Anderson",
+        "year": "1995",
+        "journal-title": "Science"
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc1R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "3969",
+        "DOI": "10.1103/PhysRevLett.75.3969",
+        "volume": "75",
+        "author": "K. B. Davis",
+        "year": "1995",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc2R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1295",
+        "DOI": "10.1103/PhysRevA.53.1295",
+        "volume": "53",
+        "author": "L. Davidovic",
+        "year": "1996",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc3R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3187",
+        "DOI": "10.1103/PhysRevA.56.3187",
+        "volume": "56",
+        "author": "K. M. Gheri",
+        "year": "1997",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc4R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4710",
+        "DOI": "10.1103/PhysRevLett.75.4710",
+        "volume": "75",
+        "author": "Q. A. Turchette",
+        "year": "1995",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc5R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4835",
+        "DOI": "10.1103/PhysRevLett.74.4835",
+        "volume": "74",
+        "author": "J. Jacobson",
+        "year": "1995",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc6R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "4144",
+        "DOI": "10.1103/PhysRevLett.76.4144",
+        "volume": "76",
+        "author": "M. O. Scully",
+        "year": "1996",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc7R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3385",
+        "DOI": "10.1103/PhysRevA.47.3385",
+        "volume": "47",
+        "author": "M. Lewenstein",
+        "year": "1993",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc8R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "353",
+        "DOI": "10.1016/0030-4018(93)90502-V",
+        "volume": "97",
+        "author": "J. I. Cirac",
+        "year": "1993",
+        "journal-title": "Opt. Commun."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc9R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "233",
+        "DOI": "10.1007/BF01135867",
+        "volume": "60",
+        "author": "G. Rempe",
+        "year": "1995",
+        "journal-title": "Appl. Phys. B"
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc10R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "93",
+        "DOI": "10.1209/epl/i1996-00192-1",
+        "volume": "36",
+        "author": "A. Lambrecht",
+        "year": "1996",
+        "journal-title": "Europhys. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc11R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "634",
+        "DOI": "10.1103/PhysRevLett.78.634",
+        "volume": "78",
+        "author": "J.-F. Roch",
+        "year": "1997",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc12R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3375",
+        "DOI": "10.1103/PhysRevLett.73.3375",
+        "volume": "73",
+        "author": "K. An",
+        "year": "1994",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc13R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1393",
+        "DOI": "10.1364/OL.21.001393",
+        "volume": "21",
+        "author": "H. Mabuchi",
+        "year": "1996",
+        "journal-title": "Opt. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc14R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "833",
+        "DOI": "10.1103/PhysRevA.56.833",
+        "volume": "56",
+        "author": "A. C. Doherty",
+        "year": "1997",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc15R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1606",
+        "DOI": "10.1103/PhysRevA.21.1606",
+        "volume": "21",
+        "author": "J. P. Gordon",
+        "year": "1980",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "volume-title": "Fundamental Systems in Quantum Optics,",
+        "year": "1992",
+        "author": "C. Cohen-Tannoudji",
+        "key": "PhysRevLett.79.4974Cc16R1"
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc17R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "580",
+        "DOI": "10.1103/PhysRevLett.68.580",
+        "volume": "68",
+        "author": "J. Dalibard",
+        "year": "1992",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "PhysRevLett.79.4974Cc17R2",
+        "doi-asserted-by": "crossref",
+        "first-page": "4879",
+        "DOI": "10.1103/PhysRevA.45.4879",
+        "volume": "45",
+        "author": "R. Dunn",
+        "year": "1992",
+        "journal-title": "Phys. Rev. A"
+      }
+    ],
+    "container-title": [
+      "Physical Review Letters"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevLett.79.4974",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevLett.79.4974/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          1,
+          2
+        ]
+      ],
+      "date-time": "2025-01-02T21:55:59Z",
+      "timestamp": 1735854959000
+    },
+    "score": 33.893364,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevLett.79.4974"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          1997,
+          12,
+          22
+        ]
+      ]
+    },
+    "references-count": 19,
+    "journal-issue": {
+      "issue": "25",
+      "published-print": {
+        "date-parts": [
+          [
+            1997,
+            12
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevlett.79.4974",
+    "ISSN": [
+      "0031-9007",
+      "1079-7114"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0031-9007"
+      },
+      {
+        "type": "electronic",
+        "value": "1079-7114"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1997,
+          12,
+          22
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          4
+        ]
+      ],
+      "date-time": "2024-09-04T13:35:28Z",
+      "timestamp": 1725456928105
+    },
+    "publisher-location": "Boston",
+    "reference-count": 11,
+    "publisher": "Kluwer Academic Publishers",
+    "isbn-type": [
+      {
+        "type": "print",
+        "value": "0306464713"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "DOI": "10.1007/0-306-47103-5_20",
+    "type": "book-chapter",
+    "created": {
+      "date-parts": [
+        [
+          2005,
+          12,
+          11
+        ]
+      ],
+      "date-time": "2005-12-11T04:59:42Z",
+      "timestamp": 1134277182000
+    },
+    "page": "285-289",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Scissors Mode And Superfluidity Of A Trapped Bose-Einstein Condensed Gas"
+    ],
+    "prefix": "10.1007",
+    "author": [
+      {
+        "given": "O. M.",
+        "family": "Maragò",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "S. A.",
+        "family": "Hopkins",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "J.",
+        "family": "Arlt",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "E.",
+        "family": "Hodby",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "G.",
+        "family": "Hechenblaikner",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "C. J.",
+        "family": "Foot",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "297",
+    "reference": [
+      {
+        "key": "20_CR1",
+        "doi-asserted-by": "crossref",
+        "first-page": "198",
+        "DOI": "10.1126/science.269.5221.198",
+        "volume": "269",
+        "author": "M.H. Anderson",
+        "year": "1995",
+        "unstructured": "Anderson, M.H., et al., 1995, Science 269: 198; Davis, K.B., et al., 1995, Phys. Rev. Lett. 75: 3969. For a review see: Bose-Einstein Condensation. In Atomic Gases, Proceedings of the International School of Physics “Enrico Fermi”, 1999, (M. Inguscio, S. Stringari and C.E. Wieman, eds.), IOS Press, Amsterdam.",
+        "journal-title": "Science"
+      },
+      {
+        "key": "20_CR2",
+        "volume-title": "Superfluidity and Superconductivity",
+        "author": "D.R. Tilley",
+        "year": "1991",
+        "unstructured": "Tilley, D.R., and Tilley, J., 1991, Superfluidity and Superconductivity. Adam Hilger Ltd, Bristol and Boston, 3rd ed.",
+        "edition": "3rd ed."
+      },
+      {
+        "key": "20_CR3",
+        "doi-asserted-by": "crossref",
+        "first-page": "2498",
+        "DOI": "10.1103/PhysRevLett.83.2498",
+        "volume": "83",
+        "author": "M.R. Matthews",
+        "year": "1999",
+        "unstructured": "Matthews MR., et al., 1999, Phys. Rev. Lett. 83: 2498.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "20_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "2502",
+        "DOI": "10.1103/PhysRevLett.83.2502",
+        "volume": "83",
+        "author": "C. Raman",
+        "year": "1999",
+        "unstructured": "Raman, C., et al., 1999, Phys. Rev. Lett. 83: 2502.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "20_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "420",
+        "DOI": "10.1103/PhysRevLett.77.420",
+        "volume": "77",
+        "author": "D.S. Jin",
+        "year": "1996",
+        "unstructured": "Jin, D.S., et al., 1996, Phys.Rev.Lett. 77:420;Mewes,M.-O., 1996, et al., Phys.Rev. Lett. 77: 988.",
+        "journal-title": "Phys.Rev.Lett."
+      },
+      {
+        "key": "20_CR6",
+        "doi-asserted-by": "publisher",
+        "first-page": "637",
+        "DOI": "10.1126/science.275.5300.637",
+        "volume": "275",
+        "author": "M.R. Andrews",
+        "year": "1997",
+        "unstructured": "Andrews, MR., et al., 1997, Science 275: 637; Hall, D.S., Matthews, M.R., Wieman, C.E., and Cornell, E.A., 1998, Phys. Rev. Lett. 81: 1543; Anderson, B.P., and Kasevich, M.A., 1998, Science 282: 1686.",
+        "journal-title": "Science"
+      },
+      {
+        "key": "20_CR7",
+        "doi-asserted-by": "crossref",
+        "first-page": "4452",
+        "DOI": "10.1103/PhysRevLett.83.4452",
+        "volume": "83",
+        "author": "D. Guery-Odelin",
+        "year": "1999",
+        "unstructured": "Guery-Odelin, D., and Stringari, S., 1999, Phys. Rev. Lett. 83: 4452.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "20_CR8",
+        "doi-asserted-by": "publisher",
+        "first-page": "1532",
+        "DOI": "10.1103/PhysRevLett.41.1532",
+        "volume": "41",
+        "author": "N. Iudice Lo",
+        "year": "1978",
+        "unstructured": "Lo Iudice, N., and Palumbo, F., 1978, Phys. Rev. Lett. 41: 1532; Lipparini, E., and Stringari, S., 1983, Phys. Lett. B 130: 139.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "20_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "R1851",
+        "DOI": "10.1103/PhysRevC.59.R1851",
+        "volume": "59",
+        "author": "J. Enders",
+        "year": "1999",
+        "unstructured": "Enders, J., et al., 1999, Phys. Rev. C 59: R1851.",
+        "journal-title": "Phys. Rev. C"
+      },
+      {
+        "key": "20_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "3352",
+        "DOI": "10.1103/PhysRevLett.74.3352",
+        "volume": "74",
+        "author": "W. Petrich",
+        "year": "1995",
+        "unstructured": "Petrich, W., et al., 1995, Phys. Rev. Lett. 74: 3352.",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "20_CR11",
+        "unstructured": "Arlt, J., et al., 1999, to be published in J. Phys. B, Dec."
+      }
+    ],
+    "container-title": [
+      "Bose-Einstein Condensates and Atom Lasers"
+    ],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1007/0-306-47103-5_20.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2021,
+          4,
+          27
+        ]
+      ],
+      "date-time": "2021-04-27T04:17:11Z",
+      "timestamp": 1619497031000
+    },
+    "score": 17.99221,
+    "resource": {
+      "primary": {
+        "URL": "http://link.springer.com/10.1007/0-306-47103-5_20"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          null
+        ]
+      ]
+    },
+    "ISBN": [
+      "0306464713"
+    ],
+    "references-count": 11,
+    "URL": "https://doi.org/10.1007/0-306-47103-5_20"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          25
+        ]
+      ],
+      "date-time": "2025-11-25T06:57:43Z",
+      "timestamp": 1764053863100,
+      "version": "3.37.3"
+    },
+    "reference-count": 42,
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2024-01-01T00:00:00Z",
+          "timestamp": 1704067200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2024-01-01T00:00:00Z",
+          "timestamp": 1704067200000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2024-01-01T00:00:00Z",
+          "timestamp": 1704067200000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100002946",
+        "name": "Max-Planck-Institut für Gravitationsphysik (Albert-Einstein-Institut), based on a grant by the Deutsches Zentrum für Luft- und Raumfahrt",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/501100002946",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "name": "Bundesministerium für Wirtschaft und Klimaschutz based on a resolution of the German Bundestag",
+        "award": [
+          "50 OQ 1801"
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "IEEE Trans. Instrum. Meas."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "DOI": "10.1109/tim.2023.3332388",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          11,
+          13
+        ]
+      ],
+      "date-time": "2023-11-13T19:12:11Z",
+      "timestamp": 1699902731000
+    },
+    "page": "1-10",
+    "source": "Crossref",
+    "is-referenced-by-count": 5,
+    "title": [
+      "Performance Analysis of Sequential Carrier- and Code-Tracking Receivers in the Context of High-Precision Spaceborne Metrology Systems"
+    ],
+    "prefix": "10.1109",
+    "volume": "73",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0002-9583-0244",
+        "authenticated-orcid": false,
+        "given": "Philipp",
+        "family": "Euringer",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Airbus Space Systems, Airbus Defence and Space GmbH, Immenstaad am Bodensee, Germany"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-4183-1770",
+        "authenticated-orcid": false,
+        "given": "Gerald",
+        "family": "Hechenblaikner",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Airbus Space Systems, Airbus Defence and Space GmbH, Immenstaad am Bodensee, Germany"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8764-7525",
+        "authenticated-orcid": false,
+        "given": "Francis",
+        "family": "Soualle",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Airbus Space Systems, Airbus Defence and Space GmbH, Taufkirchen, Germany"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3688-3250",
+        "authenticated-orcid": false,
+        "given": "Walter",
+        "family": "Fichter",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute of Flight Mechanics and Controls', University of Stuttgart, Stuttgart, Germany"
+          }
+        ]
+      }
+    ],
+    "member": "263",
+    "reference": [
+      {
+        "key": "ref1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0273-1177(03)90323-1"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/ptep/ptaa083"
+      },
+      {
+        "key": "ref3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/ptep/ptaa165"
+      },
+      {
+        "key": "ref4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/ptep/ptab019"
+      },
+      {
+        "volume-title": "LISA assessment study report (yellow book)",
+        "year": "2011",
+        "author": "Danzmann",
+        "key": "ref5"
+      },
+      {
+        "key": "ref6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.12942/lrr-2005-4"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1361-6382/ab9d5b"
+      },
+      {
+        "key": "ref8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevD.106.022004"
+      },
+      {
+        "key": "ref9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0264-9381/28/9/094008"
+      },
+      {
+        "key": "ref10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OE.18.020759"
+      },
+      {
+        "key": "ref11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OE.19.015937"
+      },
+      {
+        "volume-title": "Laser ranging and data communication for the laser interferometer space antenna",
+        "year": "2012",
+        "author": "Delgado",
+        "key": "ref12"
+      },
+      {
+        "key": "ref13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.2405113"
+      },
+      {
+        "key": "ref14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/5.0058659"
+      },
+      {
+        "key": "ref15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s12217-019-09769-9"
+      },
+      {
+        "key": "ref16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.4865121"
+      },
+      {
+        "key": "ref17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.4927071"
+      },
+      {
+        "key": "ref18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.44.4693"
+      },
+      {
+        "key": "ref19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.43.5022"
+      },
+      {
+        "key": "ref20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/JOSAA.30.000941"
+      },
+      {
+        "key": "ref21",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.17.024025"
+      },
+      {
+        "key": "ref22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.20.014016"
+      },
+      {
+        "key": "ref23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.4905579"
+      },
+      {
+        "key": "ref24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.4928489"
+      },
+      {
+        "key": "ref25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.5011654"
+      },
+      {
+        "key": "ref26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-6596/154/1/012025"
+      },
+      {
+        "key": "ref27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0264-9381/30/7/075008"
+      },
+      {
+        "key": "ref28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.optcom.2023.129558"
+      },
+      {
+        "volume-title": "LISA metrology system—Final report",
+        "year": "2014",
+        "author": "Barke",
+        "key": "ref29"
+      },
+      {
+        "key": "ref30",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-1-4615-5717-3"
+      },
+      {
+        "key": "ref31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/0471732699"
+      },
+      {
+        "key": "ref32",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/j.2161-4296.2001.tb00247.x"
+      },
+      {
+        "volume-title": "Interferometry at low frequencies: Optical phase measurement for LISA and LISA pathfinder",
+        "year": "2007",
+        "author": "Wand",
+        "key": "ref33"
+      },
+      {
+        "key": "ref34",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/AO.33.005041"
+      },
+      {
+        "key": "ref35",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/AO.33.005037"
+      },
+      {
+        "key": "ref36",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevApplied.14.054013"
+      },
+      {
+        "volume-title": "LISA Performance Model and Error Budget",
+        "year": "2021",
+        "key": "ref37"
+      },
+      {
+        "key": "ref38",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.21236/ADA460257"
+      },
+      {
+        "key": "ref39",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/j.2161-4296.1992.tb02276.x"
+      },
+      {
+        "key": "ref40",
+        "first-page": "1636",
+        "article-title": "Effect of linear time-invariant distortions on RNSS code tracking accuracy",
+        "volume-title": "Proc. 15th Int. Tech. Meeting Satell. Division Inst. Navigat.",
+        "author": "Betz"
+      },
+      {
+        "key": "ref41",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TAES.2009.5310316"
+      },
+      {
+        "key": "ref42",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1117/12.2673859"
+      }
+    ],
+    "container-title": [
+      "IEEE Transactions on Instrumentation and Measurement"
+    ],
+    "link": [
+      {
+        "URL": "http://xplorestaging.ieee.org/ielx7/19/10367905/10316302.pdf?arnumber=10316302",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          12
+        ]
+      ],
+      "date-time": "2024-01-12T01:26:44Z",
+      "timestamp": 1705022804000
+    },
+    "score": 17.853415,
+    "resource": {
+      "primary": {
+        "URL": "https://ieeexplore.ieee.org/document/10316302/"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "references-count": 42,
+    "URL": "https://doi.org/10.1109/tim.2023.3332388",
+    "ISSN": [
+      "0018-9456",
+      "1557-9662"
+    ],
+    "issn-type": [
+      {
+        "type": "print",
+        "value": "0018-9456"
+      },
+      {
+        "type": "electronic",
+        "value": "1557-9662"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          7
+        ]
+      ],
+      "date-time": "2024-09-07T22:57:08Z",
+      "timestamp": 1725749828469
+    },
+    "reference-count": 0,
+    "publisher": "SPIE",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          10
+        ]
+      ]
+    },
+    "DOI": "10.1117/12.2673859",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          10
+        ]
+      ],
+      "date-time": "2023-08-10T16:41:50Z",
+      "timestamp": 1691685710000
+    },
+    "page": "12",
+    "source": "Crossref",
+    "is-referenced-by-count": 2,
+    "title": [
+      "Modeling of digital receiver-induced ranging bias variations in the context of high precision space-borne metrology systems"
+    ],
+    "prefix": "10.1117",
+    "author": [
+      {
+        "given": "Philipp",
+        "family": "Euringer",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Gerald",
+        "family": "Hechenblaikner",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Francis",
+        "family": "Soualle",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Simon",
+        "family": "Delchambre",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Tobias",
+        "family": "Ziegler",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Walter",
+        "family": "Fichter",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "189",
+    "event": {
+      "name": "Modeling Aspects in Optical Metrology IX",
+      "start": {
+        "date-parts": [
+          [
+            2023,
+            6,
+            26
+          ]
+        ]
+      },
+      "location": "Munich, Germany",
+      "end": {
+        "date-parts": [
+          [
+            2023,
+            6,
+            30
+          ]
+        ]
+      }
+    },
+    "container-title": [
+      "Modeling Aspects in Optical Metrology IX"
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          25
+        ]
+      ],
+      "date-time": "2023-08-25T12:36:12Z",
+      "timestamp": 1692966972000
+    },
+    "score": 15.740249,
+    "resource": {
+      "primary": {
+        "URL": "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12619/2673859/Modeling-of-digital-receiver-induced-ranging-bias-variations-in-the/10.1117/12.2673859.full"
+      }
+    },
+    "editor": [
+      {
+        "given": "Bryan M.",
+        "family": "Barnes",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Bernd",
+        "family": "Bodermann",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Karsten",
+        "family": "Frenner",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          10
+        ]
+      ]
+    },
+    "references-count": 0,
+    "URL": "https://doi.org/10.1117/12.2673859",
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          8,
+          10
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          3
+        ]
+      ],
+      "date-time": "2024-03-03T14:28:09Z",
+      "timestamp": 1709476089079
+    },
+    "reference-count": 19,
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "issue": "5",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2011,
+              5,
+              1
+            ]
+          ],
+          "date-time": "2011-05-01T00:00:00Z",
+          "timestamp": 1304208000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "IEEE J. Quantum Electron."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2011,
+          5
+        ]
+      ]
+    },
+    "DOI": "10.1109/jqe.2011.2108637",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2011,
+          3,
+          29
+        ]
+      ],
+      "date-time": "2011-03-29T19:58:03Z",
+      "timestamp": 1301428683000
+    },
+    "page": "651-660",
+    "source": "Crossref",
+    "is-referenced-by-count": 15,
+    "title": [
+      "Digital Laser Frequency Control and Phase-Stabilization Loops in a High Precision Space-Borne Metrology System"
+    ],
+    "prefix": "10.1109",
+    "volume": "47",
+    "author": [
+      {
+        "given": "G",
+        "family": "Hechenblaikner",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "V",
+        "family": "Wand",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M",
+        "family": "Kersten",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "K",
+        "family": "Danzmann",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "A",
+        "family": "García",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "G",
+        "family": "Heinzel",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "M",
+        "family": "Nofrarias",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "F",
+        "family": "Steier",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "263",
+    "reference": [
+      {
+        "key": "ref10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.77.053809"
+      },
+      {
+        "key": "ref11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF00702605"
+      },
+      {
+        "key": "ref12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/JQE.2010.2044867"
+      },
+      {
+        "key": "ref13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OL.23.001280"
+      },
+      {
+        "key": "ref14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0264-9381/22/10/002"
+      },
+      {
+        "key": "ref15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0264-9381/20/10/318"
+      },
+      {
+        "key": "ref16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/AO.49.005665"
+      },
+      {
+        "key": "ref17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0264-9381/23/8/S21"
+      },
+      {
+        "key": "ref18",
+        "author": "hannes",
+        "year": "2008",
+        "journal-title": "Lisa Pathfinder"
+      },
+      {
+        "key": "ref19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/JOSAA.27.002078"
+      },
+      {
+        "key": "ref4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-6596/154/1/012023"
+      },
+      {
+        "key": "ref3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/AO.47.005007"
+      },
+      {
+        "key": "ref6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0264-9381/26/9/094001"
+      },
+      {
+        "key": "ref5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/452018a"
+      },
+      {
+        "key": "ref8",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1007/978-3-662-05155-9",
+        "author": "demtrder",
+        "year": "2003",
+        "journal-title": "Laser Spectroscopy"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1364/OL.5.000015"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "crossref",
+        "first-page": "70802-1",
+        "DOI": "10.1103/PhysRevLett.104.070802",
+        "article-title": "Frequency comparison of two high-accuracy <formula formulatype=\"inline\"><tex Notation=\"TeX\">${\\rm Al}^{+}$</tex> </formula> optical clocks",
+        "volume": "104",
+        "author": "chou",
+        "year": "2010",
+        "journal-title": "Phys Rev Lett"
+      },
+      {
+        "key": "ref1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1808",
+        "DOI": "10.1126/science.1154622",
+        "article-title": "Frequency ratio of <formula formulatype=\"inline\"><tex Notation=\"TeX\">${\\rm Al}^{+}$</tex></formula> and <formula formulatype=\"inline\"><tex Notation=\"TeX\">${\\rm Hg}^{+}$</tex></formula> single-ion optical clocks; metrology at the 17th decimal place",
+        "volume": "319",
+        "author": "rosenband",
+        "year": "2008",
+        "journal-title": "Science"
+      },
+      {
+        "key": "ref9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.82.3799"
+      }
+    ],
+    "container-title": [
+      "IEEE Journal of Quantum Electronics"
+    ],
+    "link": [
+      {
+        "URL": "http://xplorestaging.ieee.org/ielx5/3/5738950/05738954.pdf?arnumber=5738954",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          10
+        ]
+      ],
+      "date-time": "2021-10-10T23:52:43Z",
+      "timestamp": 1633909963000
+    },
+    "score": 14.295052,
+    "resource": {
+      "primary": {
+        "URL": "http://ieeexplore.ieee.org/document/5738954/"
+      }
+    },
+    "issued": {
+      "date-parts": [
+        [
+          2011,
+          5
+        ]
+      ]
+    },
+    "references-count": 19,
+    "journal-issue": {
+      "issue": "5"
+    },
+    "URL": "https://doi.org/10.1109/jqe.2011.2108637",
+    "ISSN": [
+      "0018-9197",
+      "1558-1713"
+    ],
+    "issn-type": [
+      {
+        "value": "0018-9197",
+        "type": "print"
+      },
+      {
+        "value": "1558-1713",
+        "type": "electronic"
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2011,
+          5
+        ]
+      ]
+    }
+  }
+]
