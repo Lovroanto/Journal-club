@@ -152,137 +152,124 @@ def _generate_presentation_plan(
     llm: BaseLanguageModel,
 ) -> str:
     print(f"4. Generating presentation plan (target: {desired_slides or 'auto'} slides)...")
-    # ───── Figure overview ─────
-    fig_lines = []
-    for fid, data in figure_summaries.items():
-        s = data.get("summary", "(no summary)")
-        label = data.get("article_label", fid.replace("fig_", ""))
-        fig_lines.append(f"Figure {label}: {s}")
+
+    # Figures overview
+    fig_lines = [f"Figure {data.get('article_label', fid.replace('fig_', ''))}: {data.get('summary', '')}"
+                 for fid, data in figure_summaries.items()]
     figures_overview = "\n".join(fig_lines) if fig_lines else "No figures."
+
     target_text = (
-        "Decide the optimal number of slides yourself (typically 12–18 for 20 min)."
-        if desired_slides == 0
-        else f"Target approximately {desired_slides} slides (±20%)."
+        f"You must create approximately {desired_slides} slides (±2 is acceptable)."
+        if desired_slides > 0 else
+        "Choose the optimal number of slides (typically 12–18 for a 20-minute talk)."
     )
-    # ───── STAGE 1: Clean plan from the narrative (single call) ─────
-    print(" → Stage 1: Clean logical plan from the final narrative...")
-    prompt_stage1 = f"""
-You are preparing a 20-minute journal-club presentation.
-Definitive paper summary (follow its exact logical flow):
-\"\"\"{final_summary[:22000]}\"\"\"
+
+    strict_group_prompt = f"""
+You are an expert journal club presenter. Create a clear, logical presentation plan.
+
+Paper summary (follow exactly):
+\"\"\"{final_summary[:24000]}\"\"\"
+
 Available figures:
-\"\"\"{figures_overview[:12000]}\"\"\"
+\"\"\"{figures_overview}\"\"\"
+
 {target_text}
-Create a clean slide plan:
-- One main idea per slide
-- Always say which figure/panel to show
-- Never overload a slide
-Format exactly:
-# Slide 1: Title
-→ 1–2 sentence description
-→ Show: Figure ...
-Output ONLY the full plan starting with Slide 1.
+
+OUTPUT IN THIS EXACT FORMAT — NO EXCEPTIONS:
+
+**Group Title (Slides X–Y)**
+<Full content for this group of slides>
+You may suggest internal structure like:
+• Slide X: Focus on [specific point]
+• Slide X+1: Show Figure Z and explain [detail]
+But the whole group must be one coherent block.
+
+Rules:
+- Every group starts with **Title (Slides A–B)**
+- Never output single slides without a range
+- Never use # Slide 1: format
+- Never use numbered lists outside the group
+- Always mention relevant figures
+- Be exhaustive: no key result or figure must be missing
+- Groups should be logically coherent (e.g. "Results – Three Regimes", "Methods", "Breakthrough Mechanism")
+
+Start with the first group now.
 """
-    clean_plan = llm.invoke(prompt_stage1).strip()
-    # ───── STAGE 2: Refine chain over bullet chunks (zero omission) ─────
-    print(" → Stage 2: Injecting missing facts via refine chain...")
-    from langchain_text_splitters import RecursiveCharacterTextSplitter
-    from langchain.chains.summarize import load_summarize_chain
-    from langchain_core.documents import Document
-    from langchain.prompts import PromptTemplate
-    # Split bullets
+
+    # Stage 1: Get perfectly structured groups
+    plan = llm.invoke(strict_group_prompt).strip()
+
+    # Stage 2: Refine with factual bullets (keeps format intact)
     splitter = RecursiveCharacterTextSplitter(chunk_size=3500, chunk_overlap=200)
-    bullet_chunks = splitter.split_text(factual_bullets)
-    bullet_docs = [Document(page_content=c) for c in bullet_chunks]
-    # Initial document = the clean plan we just created
-    initial_doc = Document(page_content=clean_plan)
-    # Prompts (now correctly using LangChain variables)
-    question_prompt = PromptTemplate.from_template("{text}")
-    refine_prompt = PromptTemplate.from_template(
-        """CURRENT SLIDE PLAN (DO NOT renumber or delete any existing slide):
+    bullet_docs = [Document(page_content=c) for c in splitter.split_text(factual_bullets)]
+
+    refine_prompt = PromptTemplate.from_template("""
+CURRENT PLAN (keep the **Group (Slides X–Y)** format exactly):
 \"\"\"{existing_answer}\"\"\"
-Integrate the following factual claims.
-Only add a new slide or extend an existing one if a crucial result, number, method detail, or figure is missing.
-New factual content:
+
+Integrate any missing facts from:
 \"\"\"{text}\"\"\"
-Figures reminder:
-\"\"\"{figures}\"\"\"
-{target}
-Output the complete updated slide plan in the same format.
-"""
-    )
+
+Only add content inside existing groups or create a new group if truly necessary.
+Preserve the **Title (Slides ...)** header style.
+""")
+
     chain = load_summarize_chain(
         llm=llm,
         chain_type="refine",
-        question_prompt=question_prompt,
+        question_prompt=PromptTemplate.from_template("{text}"),
         refine_prompt=refine_prompt,
-        return_intermediate_steps=False,
-        input_key="input_documents",
-        output_key="output_text",
     )
-    # Run chain: first doc = clean plan, then all bullet chunks
+
     result = chain.invoke({
-        "input_documents": [initial_doc] + bullet_docs,
-        "figures": figures_overview[:10000],
-        "target": target_text,
+        "input_documents": [Document(page_content=plan)] + bullet_docs,
+        "figures": figures_overview,
     })
-    return result["output_text"].strip()
+
+    final_plan = result["output_text"].strip()
+    return final_plan
 # ==================== NEW: SPLIT PLAN INTO INDIVIDUAL SLIDE FILES ====================
 def _split_plan_into_slides(plan_text: str, output_dir: Path):
     """
-    Splits the presentation plan into individual .txt files.
-    Handles the exact format your LLM currently uses:
-    
-    **1. Introduction** (Slide 1) - 2 minutes
-    Content...
-    **2. Next Section** (Slide 2) - 2 minutes
-    ...
+    Splits only by **Group Title (Slides X–Y)** blocks.
+    One file per logical group → perfect for your next module.
     """
     output_dir.mkdir(parents=True, exist_ok=True)
-    
-    lines = plan_text.splitlines()
-    current_block: list[str] = []
-    slide_counter = 1
 
-    def save_block():
-        nonlocal slide_counter
-        if not current_block:
-            return
-        content = "\n".join(current_block).strip()
-        if not content:
-            return
+    # Split on lines that match **Anything (Slides X–Y)**
+    pattern = re.compile(r'^(\s*\*\*.*?\(Slides? [\d–\-]+.*?\)\*\*)', re.MULTILINE)
+    parts = pattern.split(plan_text)
 
-        # Extract title from the first line (the one with **Title**)
-        first_line = current_block[0]
-        # Remove bold markers and everything after the closing **
-        title = re.sub(r'\*\*([^()*]+)\*\*.*', r'\1', first_line).strip()
-        if not title:
-            title = f"Slide_{slide_counter}"
-
-        # Clean filename
-        safe_title = re.sub(r'[^\w\s-]', '', title).strip()
-        safe_title = re.sub(r'\s+', '_', safe_title)
-        filename = f"{str(slide_counter).zfill(3)}_{safe_title}.txt"
-
-        _write(output_dir / filename, content + "\n")
-        slide_counter += 1
-
-    for line in lines:
-        # Detect new slide: line starts with ** followed by number and dot
-        if re.match(r'^\s*\*\*\s*\d+\.', line):
-            if current_block:
-                save_block()
-                current_block = []
-            current_block.append(line)
+    blocks = []
+    for i in range(1, len(parts), 2):
+        header = parts[i].strip()
+        if i + 1 < len(parts):
+            body = parts[i + 1]
+            # Find where next header starts
+            next_header = pattern.search(body)
+            if next_header:
+                body = body[:next_header.start()]
         else:
-            if current_block or line.strip():
-                current_block.append(line)
+            body = ""
+        blocks.append(header + "\n" + body.strip())
 
-    # Save the last block
-    if current_block:
-        save_block()
+    # Fallback: if no groups found, save whole thing
+    if not blocks:
+        blocks = [plan_text]
 
-    print(f"   → Created {slide_counter - 1} individual slide files in: {output_dir}")
+    for idx, block in enumerate(blocks, 1):
+        # Extract clean title
+        title_match = re.search(r'\*\*(.*?)\*\*', block)
+        title = title_match.group(1).split('(Slides')[0].strip() if title_match else f"Group_{idx}"
+        safe_title = re.sub(r'[^\w\s\-]', '', title)
+        safe_title = re.sub(r'\s+', '_', safe_title).strip('_')[:80]
+        if not safe_title:
+            safe_title = f"Group_{idx}"
+
+        filename = f"{str(idx).zfill(3)}_{safe_title}.txt"
+        _write(output_dir / filename, block.strip() + "\n")
+
+    print(f"   → Created {len(blocks)} logical slide-group files in: {output_dir}")
 # ==================== PUBLIC API ====================
 def generate_global_and_plan(
     summaries_dir: str,
