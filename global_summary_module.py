@@ -291,7 +291,19 @@ def _generate_high_level_group_plan(
       - PURPOSE
       - CONTENT_SCOPE
       - KEY_TRANSITIONS
-      - KEY_TERMS   # <<< NEW >>>
+      - KEY_TERMS
+
+    Model C (hybrid narrative):
+      1) Motivation / why this matters
+      2) Physical mechanism & theory essentials
+      3) Experimental implementation
+      4) Observed regimes / results
+      5) Interpretation, implications, outlook
+
+    The LLM is asked to:
+      - Build an INTERNAL meta-plan (phases + dependencies)
+      - Then emit PUBLIC metadata groups respecting that order
+      - Make KEY_TRANSITIONS causal / dependency-based (not just “links to next”)
     """
 
     logger.info("4) Generating high-level plan with metadata (style=%s)...", slide_style)
@@ -300,88 +312,100 @@ def _generate_high_level_group_plan(
     if desired_slides and desired_slides > 0:
         target_info = f"Aim for approximately {desired_slides} slides (±2)."
     else:
-        target_info = "Recommend 12–18 slides for a 20-minute talk."
+        target_info = "Recommend 12–18 slides for a ~20-minute talk."
 
     internal_prompt = f"""
-You are designing a pedagogical scientific presentation.
+You are designing a pedagogical scientific presentation using this FACTUAL summary:
 
-STEP 1 (INTERNAL OUTLINE — PRIVATE):
-Create an internal outline with:
- - story arc (1–3 sentences)
- - 3–8 major conceptual blocks
- - purpose and constraints per block
- - what to include vs skip
- - rough slide allocation
- - figure-to-block mapping (there are {num_figs} figures)
+\"\"\"{final_summary[:24000]}\"\"\"
 
-This outline is **private reasoning**. Do NOT include it in the final plan.
+Figures:
+\"\"\"{figures_over[:4000]}\"\"\"
 
-STEP 2 (PUBLIC METADATA PLAN — REQUIRED OUTPUT):
-Produce the final plan with the following strict structure:
+You MUST follow a hybrid teaching model (Model C):
 
+PHASES (INTERNAL STRUCTURE):
+1) MOTIVATION
+   - Why continuous lasing and this experiment matter
+   - High-level impact (gate depth, sensing, simulation)
+2) PHYSICAL MECHANISM
+   - Key concepts: self-organization, recoil-induced processes, cross-over regime
+3) EXPERIMENTAL IMPLEMENTATION
+   - Atom–cavity setup, cooling, lattice, fields, detection
+4) OBSERVED REGIMES & RESULTS
+   - Zones (I–IV), frequency behavior, linewidths, g2, beatnote, self-regulation
+5) INTERPRETATION & OUTLOOK
+   - What the results mean, implications, open questions
+
+STEP 1 — INTERNAL_OUTLINE (PRIVATE, DO NOT OUTPUT AS FINAL PLAN):
+- Map the paper onto these 5 phases.
+- For each phase, decide:
+  * what MUST be known before it,
+  * what new understanding it adds,
+  * which figures belong to it,
+  * a rough slide count.
+- This outline is PRIVATE reasoning.
+
+STEP 2 — PUBLIC METADATA PLAN (THIS IS THE OUTPUT):
+Create a SEQUENCE of slide groups that follow the dependency order of the phases.
 For EACH group output EXACTLY:
 
 ===SLIDE_GROUP: Title | Slides A–B===
-PURPOSE: one concise sentence
-CONTENT_SCOPE: 1–2 short sentences describing allowed content
-KEY_TRANSITIONS: how it links to previous/next group
-KEY_TERMS: comma-separated list of 5–10 essential keywords   # <<< NEW >>>
+PURPOSE: one concise sentence describing the narrative ROLE of this group
+CONTENT_SCOPE: 1–2 short sentences describing what content is allowed here
+KEY_TRANSITIONS: a causal or dependency-based sentence explaining WHY the next group follows this one
+KEY_TERMS: comma-separated list of 5–10 essential keywords defining this group’s conceptual boundary
 
 Rules:
-- Titles: 3–7 words
-- Groups: consecutive slide ranges starting at 1, non-overlapping
-- ≤ {max_groups} groups total
-- No full slide text — this is a blueprint
-- Content level: medium density (style {slide_style})
-- KEY_TERMS define the conceptual boundary (only include terms supported by the paper)
-
-Paper summary:
-\"\"\"{final_summary[:24000]}\"\"\"
-
-Figures overview:
-\"\"\"{figures_over[:4000]}\"\"\"
+- Titles: 3–7 words, descriptive.
+- Groups: consecutive slide ranges starting at 1, non-overlapping.
+- ≤ {max_groups} groups total.
+- No full slide content — this is a blueprint.
+- KEY_TRANSITIONS must be meaningful:
+  * “Because … we now need to …”
+  * “To interpret these results we must now …”
+  * “Since we introduced X, the next step is to show Y …”
+- KEY_TERMS must be supported by the summary, not invented.
+- Try to map early groups to MOTIVATION + MECHANISM, middle to SETUP + REGIMES, late to INTERPRETATION.
 
 Target: {target_info}
 
 Output:
-1) INTERNAL_OUTLINE
-2) PUBLIC_METADATAPLAN (only the blocks above)
+1) INTERNAL_OUTLINE (label it clearly; will be ignored later)
+2) PUBLIC METADATA PLAN (only the groups in the exact format above)
 """
 
-    # ----------------------------------------------------------------------
-    # LLM CALL
-    # ----------------------------------------------------------------------
     try:
         out = llm.invoke(internal_prompt).strip()
     except Exception as e:
         logger.error("LLM failed to generate high-level plan: %s", e)
 
         fallback_blocks = [
-            ("Introduction", 1, 2,
-             "Set context and question.",
-             "Define motivation and basic concept.",
-             "Lead to Experimental Setup.",
-             "introduction, context, motivation, research question, overview"),
-            ("Experimental Setup", 3, 4,
-             "Explain apparatus and key variables.",
-             "Hardware, geometry, cooling, parameters only.",
-             "Lead to Gain Mechanism.",
-             "cooling, ring cavity, Sr atoms, apparatus, parameters"),
-            ("Gain Mechanism", 5, 6,
-             "Explain how gain enables lasing.",
-             "Conceptual mechanism; no results.",
-             "Lead to Observations.",
-             "gain, Raman, population inversion, mechanism, concept"),
-            ("Observations", 7, 11,
-             "Present core results and figures.",
-             "Behaviors, figures, quantitative outcomes.",
-             "Lead to Implications.",
-             "results, figures, emission, linewidth, behavior"),
-            ("Implications & Conclusions", 12, 14,
-             "Interpret results and limitations.",
-             "Outlook, implications, limitations.",
-             "Close.",
-             "implications, outlook, conclusions, limitations")
+            ("Title & Motivation", 1, 3,
+             "Introduce the work and why continuous lasing matters.",
+             "State achievement and high-level motivation.",
+             "Leads into broader introduction of concepts and mechanisms.",
+             "continuous lasing, neutral atoms, motivation, overview, quantum technologies"),
+            ("Physical Mechanism", 4, 6,
+             "Give the audience the key physical ideas behind continuous lasing.",
+             "Explain self-organization, recoil processes, and cross-over regime.",
+             "Prepares the audience to understand how the experiment implements the mechanism.",
+             "self-organization, recoil, cross-over regime, gain, cavity"),
+            ("Experimental Setup", 7, 9,
+             "Describe how the experiment realizes the mechanism.",
+             "Explain cavity, atoms, cooling, lattice, and detection.",
+             "Enables understanding of the observed regimes and data.",
+             "cavity, molasses, lattice, Zeeman, 689 nm, 813 nm"),
+            ("Regimes & Results", 10, 14,
+             "Present zones, frequency behavior, and lasing properties.",
+             "Describe zones I–IV, g2, beatnote, linewidth, and stability.",
+             "Leads naturally into interpretation and implications.",
+             "zones, I-IV, g2, beatnote, linewidth, stability"),
+            ("Interpretation & Outlook", 15, 19,
+             "Interpret results and discuss implications for quantum technologies.",
+             "Summarize mechanism, self-regulation, and possible applications.",
+             "Closes the talk.",
+             "implications, quantum gates, sensing, simulation, conclusions")
         ]
 
         blocks_text = []
@@ -392,12 +416,10 @@ Output:
             )
         return "\n".join(blocks_text)
 
-    # ----------------------------------------------------------------------
-    # EXTRACT METADATA BLOCKS
-    # ----------------------------------------------------------------------
+    # --- Extract only PUBLIC METADATA PLAN blocks ---------------------------
     lines = out.splitlines()
-    blocks = []
-    cur = []
+    blocks: List[str] = []
+    cur: List[str] = []
 
     for ln in lines:
         stripped = ln.strip()
@@ -409,25 +431,24 @@ Output:
             stripped.upper().startswith("PURPOSE:") or
             stripped.upper().startswith("CONTENT_SCOPE:") or
             stripped.upper().startswith("KEY_TRANSITIONS:") or
-            stripped.upper().startswith("KEY_TERMS:")     # <<< NEW >>>
+            stripped.upper().startswith("KEY_TERMS:")
         ):
             cur.append(stripped)
         else:
+            # ignore internal_outline / commentary
             continue
 
     if cur:
         blocks.append("\n".join(cur))
 
     if not blocks:
-        logger.warning("No metadata blocks parsed; using fallback.")
+        logger.warning("No metadata blocks parsed; using fallback plan.")
         return _generate_high_level_group_plan(
             final_summary, figure_summaries, desired_slides,
             llm, max_groups=max_groups, slide_style=slide_style
         )
 
-    # ----------------------------------------------------------------------
-    # VALIDATE & PARSE RANGE INFO
-    # ----------------------------------------------------------------------
+    # --- Validate slide ranges; if missing or broken, assign automatically ---
     parsed = [_parse_plan_header_block(b) for b in blocks]
 
     has_ranges = all(
@@ -438,17 +459,15 @@ Output:
     if has_ranges:
         return "\n\n".join(blocks)
 
-    # ----------------------------------------------------------------------
-    # AUTO-ASSIGN RANGES
-    # ----------------------------------------------------------------------
-    total_slides = desired_slides if desired_slides and desired_slides > 0 else 14
+    # Auto-assign ranges if LLM did not provide or broke them
+    total_slides = desired_slides if desired_slides and desired_slides > 0 else 19
     n = len(parsed)
 
     base = total_slides // n
     rem = total_slides - base * n
-    sizes = [base + (1 if i < rem else 0) for i in range(n)]
+    sizes = [base + (1 if i < rem else 0) for _ in range(n)]
 
-    assigned = []
+    assigned: List[str] = []
     cur_slide = 1
 
     for idx, item in enumerate(parsed):
@@ -480,134 +499,198 @@ def _generate_group_details(
     slide_style: str = "B",
 ) -> str:
     """
-    group_block_text: the metadata block for the group (header + PURPOSE/CONTENT_SCOPE/KEY_TRANSITIONS)
-    previous_summary: dict with keys:
-        - covered_concepts: set/list of short concept strings
-        - covered_figures: set/list of figure labels covered
-        - narrative_so_far: short paragraph describing what was covered so far
-        - last_slide: last slide number used
-    Returns a concise blueprint for group slides (medium-density by default):
-      - Group learning goals (3 bullets)
-      - Per-slide "Slide N: Focus" lines (only idea-level)
-      - Figures to include (Figure X - reason)
-      - Transition note to next group
-    The generator is constrained: must not repeat covered_concepts or covered_figures, must respect CONTENT_SCOPE.
+    Generate a concise blueprint for ONE slide group, respecting:
+      - PURPOSE
+      - CONTENT_SCOPE
+      - KEY_TRANSITIONS
+      - KEY_TERMS
+      - previously covered concepts / keywords / figures
+
+    Output format:
+      ===SLIDE_GROUP: ...===
+      <blank>
+      <learning goals>
+      <blank>
+      <Slide N: focus ...>
+      <blank>
+      <Include: Figure ...>
+      <blank>
+      Transition: ...
     """
-    # Parse header to get title & range
+
+    # ---- Parse header for title & slide range ----
     header_line = ""
     for ln in group_block_text.splitlines():
         if ln.strip().startswith("===SLIDE_GROUP:"):
             header_line = ln.strip()
             break
-    title_match = re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|\s*Slides\s*([0-9]+)[–-]([0-9]+)\s*===', header_line)
+
+    title_match = re.search(
+        r'===SLIDE_GROUP:\s*(.*?)\s*\|\s*Slides\s*([0-9]+)[–-]([0-9]+)\s*===',
+        header_line
+    )
     if title_match:
         title = title_match.group(1).strip()
         slide_from = int(title_match.group(2))
         slide_to = int(title_match.group(3))
     else:
-        # fallback: try to parse a single number or default
-        title = re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', header_line).group(1).strip() if re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', header_line) else "Group"
-        slide_from, slide_to = previous_summary.get("last_slide", 0) + 1, previous_summary.get("last_slide", 0) + 1
+        title = (
+            re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', header_line).group(1).strip()
+            if re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', header_line)
+            else "Group"
+        )
+        slide_from = previous_summary.get("last_slide", 0) + 1
+        slide_to = slide_from
 
-    # extract purpose/content_scope/transitions
+    # ---- Extract PURPOSE, CONTENT_SCOPE, KEY_TRANSITIONS, KEY_TERMS ----
     purpose = ""
     content_scope = ""
     key_transitions = ""
+    key_terms_raw = ""
     for ln in group_block_text.splitlines():
-        if ln.strip().upper().startswith("PURPOSE:"):
-            purpose = ln.split(":",1)[1].strip()
-        elif ln.strip().upper().startswith("CONTENT_SCOPE:"):
-            content_scope = ln.split(":",1)[1].strip()
-        elif ln.strip().upper().startswith("KEY_TRANSITIONS:"):
-            key_transitions = ln.split(":",1)[1].strip()
+        s = ln.strip()
+        u = s.upper()
+        if u.startswith("PURPOSE:"):
+            purpose = s.split(":", 1)[1].strip()
+        elif u.startswith("CONTENT_SCOPE:"):
+            content_scope = s.split(":", 1)[1].strip()
+        elif u.startswith("KEY_TRANSITIONS:"):
+            key_transitions = s.split(":", 1)[1].strip()
+        elif u.startswith("KEY_TERMS:"):
+            key_terms_raw = s.split(":", 1)[1].strip()
 
-    # Build the constrained prompt
+    key_terms = [t.strip() for t in key_terms_raw.split(",") if t.strip()]
+
+    # ---- Previous coverage (for non-repetition) ----
     prev_concepts = previous_summary.get("covered_concepts", []) or []
     prev_figs = previous_summary.get("covered_figures", []) or []
+    prev_keywords = previous_summary.get("covered_keywords", []) or []
     narrative_so_far = previous_summary.get("narrative_so_far", "") or ""
-    prev_last_slide = previous_summary.get("last_slide", 0) or 0
 
-    # The generator's job is to propose *which content should be included* in each slide (idea-level),
-    # not to fully write slide text. That's what you asked (decide which content needs to be in each part).
+    # ---- Build constrained prompt ----
     prompt = f"""
-You must generate a concise blueprint for the slide group below.
-DO NOT write full slide prose. Produce ideas (what belongs where) at medium density.
+You are designing slides for ONE group in a scientific talk.
 
-GROUP METADATA:
+GROUP METADATA (authoritative):
 {group_block_text}
 
 Group title: {title}
 Slides: {slide_from}-{slide_to} (inclusive)
 
-PREVIOUSLY COVERED (must NOT be repeated):
-Covered concepts: {', '.join(prev_concepts) or 'None'}
-Covered figures: {', '.join(prev_figs) or 'None'}
-Narrative so far (short):
-\"\"\"{narrative_so_far[:2000]}\"\"\"
+GROUP KEY_TERMS (allowed main concepts for this group):
+{", ".join(key_terms) or "None given"}
 
-PAPER SUMMARY (reference; do not repeat the whole thing):
+PREVIOUSLY COVERED (DO NOT REINTRODUCE as new explanations):
+- Concepts (high-level phrases): {", ".join(prev_concepts) or "None"}
+- Keywords: {", ".join(prev_keywords) or "None"}
+- Figures: {", ".join(prev_figs) or "None"}
+
+Narrative so far:
+\"\"\"{narrative_so_far[:1500]}\"\"\"
+
+PAPER SUMMARY (reference only):
 \"\"\"{final_summary[:24000]}\"\"\"
 
 FIGURES OVERVIEW:
-\"\"\"{figures_overview[:4000]}\"\"\"
+\"\"\"{figures_overview[:3500]}\"\"\"
 
-FACTUAL BULLETS (short list of facts; prefer exact figures/phrases):
+FACTUAL BULLETS (atomic facts, methods, results, figures):
 \"\"\"{factual_bullets[:20000]}\"\"\"
 
-CONSTRAINTS:
-- Respect CONTENT_SCOPE exactly: only include items that fall under the scope.
-- Do NOT repeat any covered concepts or figures.
-- If a needed fact is missing for deciding placement, mark it as MISSING_FACT: <what is missing>.
-- Output MUST contain ONLY the sections below, in this order, separated by blank lines:
+YOUR TASK:
+Create a concise blueprint for this group.
 
-1) Group learning goals (3 short bullets, each start with "- ")
-2) Per-slide blueprint: for each slide N in the range output exactly "Slide N: <one-line focus>"
-   (focus should be an idea-level sentence, 8-18 words)
-3) Figures to include: lines "Include: Figure X - short reason" (only figures relevant to this group)
-4) Transition to next group: one short sentence starting with "Transition:"
+CRITICAL CONSTRAINTS:
+- Respect CONTENT_SCOPE strictly.
+- Use GROUP KEY_TERMS as the primary conceptual backbone.
+- You may *refer* to earlier concepts, but do NOT re-explain or repeat them as new.
+- Do NOT introduce new big topics that are not in KEY_TERMS or the paper summary.
+- Ensure the blueprint makes sense as part of a full talk: this group should move the story forward according to KEY_TRANSITIONS.
 
-Keep medium-density (B): enough to indicate required content, but not full text. Keep concise.
-"""
+OUTPUT FORMAT (exactly, in this order, with blank lines between sections):
+
+1) Group learning goals (3 bullets)
+   - Exactly 3 lines
+   - Each line MUST start with "- "
+   - Each 6–14 words long
+   - Focus on what the audience should understand after this group
+
+2) Per-slide blueprint
+   - For EACH slide N from {slide_from} to {slide_to}, output exactly one line:
+     Slide N: <one-line focus>
+   - Each focus: 8–18 words
+   - Focus = idea-level requirement, not full text
+   - Use GROUP KEY_TERMS wherever possible
+
+3) Figures to include
+   - 1+ lines of the form:
+     Include: Figure X - short reason
+   - Only include figures that are relevant to this group’s CONTENT_SCOPE
+   - If genuinely none, output exactly: Include: None
+
+4) Transition to next group
+   - Exactly one line
+   - Starts with: Transition:
+   - Give a causal or dependency-based link using KEY_TRANSITIONS meaningfully
+   - Example style: "Transition: Because we now understand X, we can examine Y next."
+
+Do NOT add extra sections, headings, or commentary outside this structure.
+    """
+
     try:
         raw = llm.invoke(prompt).strip()
     except Exception as e:
         logger.error("LLM error when generating group details for '%s': %s", title, e)
-        # Fallback: create minimal blueprint using purpose and content_scope
+        # Fallback: minimal blueprint
         slides = slide_to - slide_from + 1
-        group_goals = f"- {purpose}\n- Key items from scope: {content_scope}\n- Convey link to next section"
-        per_slide = "\n".join([f"Slide {n}: {title} — core idea" for n in range(slide_from, slide_to+1)])
+        group_goals = (
+            f"- {purpose}\n"
+            f"- Key items from scope: {content_scope}\n"
+            f"- Prepare audience for: {key_transitions or 'next section'}"
+        )
+        per_slide = "\n".join(
+            [f"Slide {n}: {title} — core idea" for n in range(slide_from, slide_to + 1)]
+        )
         figures_line = "Include: None"
         transition = f"Transition: {key_transitions or 'Proceed to next group.'}"
         raw = f"{group_goals}\n\n{per_slide}\n\n{figures_line}\n\n{transition}"
 
-    # Attempt to parse LLM raw output into sections; fallback to heuristics if parsing fails.
+    # ---- Parse output into sections (robust but simple) ----
     sections = {"goals": "", "per_slide": "", "figures": "", "transition": ""}
-    # Split in double-newline blocks
     blocks = [b.strip() for b in re.split(r'\n\s*\n', raw) if b.strip()]
-    # Heuristic assignment
-    if blocks:
-        # assign first block to goals, find the block that contains "Slide" lines for per_slide, "Include:" lines for figures, "Transition:" for transition
-        for b in blocks:
-            if any(re.match(r'^(Slide|Slide\s+[0-9]+:)', ln.strip()) for ln in b.splitlines()):
-                sections["per_slide"] = b
-            elif any(ln.strip().startswith("Include:") for ln in b.splitlines()):
-                sections["figures"] = b
-            elif any(ln.strip().startswith("Transition:") for ln in b.splitlines()):
-                sections["transition"] = b
-            elif b.startswith("- ") or b.count("\n") <= 3 and not sections["goals"]:
-                sections["goals"] = b
-        # Fill defaults if empty
-        if not sections["goals"]:
-            sections["goals"] = "- " + purpose
-        if not sections["per_slide"]:
-            slides = slide_to - slide_from + 1
-            sections["per_slide"] = "\n".join([f"Slide {n}: {purpose} (idea-level)" for n in range(slide_from, slide_to+1)])
-        if not sections["figures"]:
-            sections["figures"] = "Include: None"
-        if not sections["transition"]:
-            sections["transition"] = f"Transition: {key_transitions or 'Proceed to next group.'}"
 
-    # Return a canonical blueprint format
+    if blocks:
+        for b in blocks:
+            lines = [ln.strip() for ln in b.splitlines() if ln.strip()]
+            if all(ln.startswith("- ") for ln in lines) and not sections["goals"]:
+                sections["goals"] = b
+            elif any(re.match(r'^Slide\s+[0-9]+:', ln) for ln in lines):
+                sections["per_slide"] = b
+            elif any(ln.startswith("Include:") for ln in lines):
+                sections["figures"] = b
+            elif any(ln.startswith("Transition:") for ln in lines):
+                sections["transition"] = [ln for ln in lines if ln.startswith("Transition:")][0]
+
+    # ---- Fill defaults if missing ----
+    if not sections["goals"]:
+        sections["goals"] = (
+            f"- {purpose}\n"
+            f"- Key items from scope: {content_scope}\n"
+            f"- Prepare audience for: {key_transitions or 'next group'}"
+        )
+
+    if not sections["per_slide"]:
+        sections["per_slide"] = "\n".join(
+            [f"Slide {n}: {purpose} (idea-level)" for n in range(slide_from, slide_to + 1)]
+        )
+
+    if not sections["figures"]:
+        sections["figures"] = "Include: None"
+
+    if not sections["transition"]:
+        sections["transition"] = f"Transition: {key_transitions or 'Proceed to next group.'}"
+
+    # ---- Canonical blueprint ----
     blueprint = (
         f"{header_line}\n\n"
         f"{sections['goals']}\n\n"
@@ -625,41 +708,63 @@ def _final_plan_check_and_fix(
     """
     Run light checks:
     - Consecutive slide numbering
-    - Duplicate slide numbers across groups
-    - Repeated slide titles in different groups (warn)
-    - Check that per-slide counts match group ranges (simple heuristic)
+    - Duplicate slide numbers across groups (implicit via non-consecutive check)
+    - Reused figures (warn)
+    - Per-slide count vs declared range
+    - Weak or missing KEY_TRANSITIONS (warn)
+    - Per-slide focus length outside 8–18 words (warn)
     Returns (plan_text (unchanged), list_of_warnings)
     """
-    warnings = []
-    # Extract headers and ranges
+    warnings: List[str] = []
+
+    # --- Slide ranges / consecutiveness ---
     headers = [ln for ln in plan_text.splitlines() if ln.strip().startswith("===SLIDE_GROUP:")]
     ranges = []
     for h in headers:
         m = re.search(r'Slides\s*([0-9]+)[–-]([0-9]+)', h)
         if m:
             ranges.append((int(m.group(1)), int(m.group(2)), h))
-    # Check consecutiveness
+
     if ranges:
-        # Sort by start
         ranges_sorted = sorted(ranges, key=lambda x: x[0])
         last_end = 0
         for s, e, h in ranges_sorted:
             if s != last_end + 1:
-                warnings.append(f"Non-consecutive slide range detected at header: {h} (expected start {last_end+1}).")
+                warnings.append(
+                    f"Non-consecutive slide range at header: {h} (expected start {last_end + 1})."
+                )
             last_end = e
-    # Check duplicates of figures across groups? Just warn if figure labels appear multiple times in group figure lists
-    fig_mentions = {}
+
+    # --- Reused figures across groups ---
+    fig_mentions: Dict[str, int] = {}
     for text in detailed_group_texts:
         figs = re.findall(r'Include:\s*Figure\s*([0-9A-Za-z_]+)', text)
         for f in figs:
-            fig_mentions.setdefault(f, 0)
-            fig_mentions[f] += 1
+            fig_mentions[f] = fig_mentions.get(f, 0) + 1
     repeated_figs = [f for f, c in fig_mentions.items() if c > 1]
     if repeated_figs:
-        warnings.append(f"Figures mentioned in multiple groups (may be fine): {', '.join(repeated_figs)}")
-    # Check per-slide counts vs declared ranges
+        warnings.append(
+            f"Figures mentioned in multiple groups (may be fine, but check): {', '.join(repeated_figs)}"
+        )
+
+    # --- KEY_TRANSITIONS quality from plan_text ---
+    plan_blocks = re.split(r'(?=^===SLIDE_GROUP:)', plan_text, flags=re.M)
+    plan_blocks = [b.strip() for b in plan_blocks if b.strip()]
+    for pb in plan_blocks:
+        meta = _parse_plan_header_block(pb)
+        tr = (meta.get("key_transitions") or "").strip()
+        header = meta.get("header", "").strip()
+        if not tr or tr.lower() in {"none", "n/a", "no transition"}:
+            warnings.append(f"Group has weak or missing KEY_TRANSITIONS: {header}")
+        elif len(tr.split()) < 6:
+            warnings.append(f"Group has very short KEY_TRANSITIONS, consider enriching: {header}")
+
+    # --- Per-slide counts & length checks in detailed blueprints ---
     for block_text in detailed_group_texts:
-        header = next((ln for ln in block_text.splitlines() if ln.strip().startswith("===SLIDE_GROUP:")), None)
+        header = next(
+            (ln for ln in block_text.splitlines() if ln.strip().startswith("===SLIDE_GROUP:")),
+            None,
+        )
         if not header:
             continue
         m = re.search(r'Slides\s*([0-9]+)[–-]([0-9]+)', header)
@@ -667,10 +772,29 @@ def _final_plan_check_and_fix(
             continue
         a, b = int(m.group(1)), int(m.group(2))
         declared_count = b - a + 1
-        per_slide_lines = [ln for ln in block_text.splitlines() if re.match(r'\s*Slide\s+[0-9]+:', ln)]
-        # If the number of Slide lines mismatches the declared range, warn
+
+        per_slide_lines = [
+            ln.strip()
+            for ln in block_text.splitlines()
+            if re.match(r'^Slide\s+[0-9]+:', ln.strip())
+        ]
         if len(per_slide_lines) != declared_count:
-            warnings.append(f"Group '{header}' declared {declared_count} slides but has {len(per_slide_lines)} Slide lines.")
+            warnings.append(
+                f"Group '{header}' declared {declared_count} slides but has {len(per_slide_lines)} 'Slide N:' lines."
+            )
+
+        # Check length of each slide focus
+        for ln in per_slide_lines:
+            try:
+                focus = ln.split(":", 1)[1].strip()
+            except Exception:
+                continue
+            word_count = len(focus.split())
+            if word_count < 6 or word_count > 22:
+                warnings.append(
+                    f"Slide focus length out of range ({word_count} words) in group '{header}': {ln}"
+                )
+
     return plan_text, warnings
 
 # ---------- RAG hook (placeholder) ----------
@@ -707,15 +831,18 @@ def _process_and_split_groups(
     if not blocks:
         logger.warning("No plan blocks found.")
         return
-    previous_summary = {
+
+    previous_summary: Dict[str, Any] = {
         "covered_concepts": [],
         "covered_figures": [],
+        "covered_keywords": [],   # NEW: aggregated KEY_TERMS from previous groups
         "narrative_so_far": "",
-        "last_slide": 0
+        "last_slide": 0,
     }
-    detailed_texts = []
+    detailed_texts: List[str] = []
+
     for block in blocks:
-        # Generate details
+        # Generate details for this group
         detailed = _generate_group_details(
             block,
             final_summary,
@@ -723,53 +850,92 @@ def _process_and_split_groups(
             factual_bullets,
             previous_summary,
             llm,
-            slide_style=slide_style
+            slide_style=slide_style,
         )
-        # Update previous_summary by extracting compact concepts and figures (heuristic)
-        # Concepts: collect lines from goals and slide focuses (short phrases)
-        goals = [ln.strip()[2:].strip() for ln in detailed.splitlines() if ln.strip().startswith("- ")]
-        per_slide_lines = [ln.strip() for ln in detailed.splitlines() if re.match(r'^Slide\s+[0-9]+:', ln.strip())]
-        figures_lines = [ln.strip() for ln in detailed.splitlines() if ln.strip().startswith("Include:")]
+
+        # ---- Update previous_summary ----
+        # 1) Concepts: from goals + slide focuses
+        goals = [
+            ln.strip()[2:].strip()
+            for ln in detailed.splitlines()
+            if ln.strip().startswith("- ")
+        ]
+        per_slide_lines = [
+            ln.strip()
+            for ln in detailed.splitlines()
+            if re.match(r'^Slide\s+[0-9]+:', ln.strip())
+        ]
+        figures_lines = [
+            ln.strip()
+            for ln in detailed.splitlines()
+            if ln.strip().startswith("Include:")
+        ]
+
         # Extract figure labels from figures_lines
-        figs = []
+        figs: List[str] = []
         for fl in figures_lines:
             m = re.findall(r'Figure\s*([0-9A-Za-z_]+)', fl)
             if m:
                 figs.extend(m)
-        # Append to covered_concepts minimal tokens
+
+        # Compact concept tokens
         for g in goals:
-            # pick up short noun phrases (simple heuristic: first 6 words)
             tok = " ".join(g.split()[:6])
             if tok and tok not in previous_summary["covered_concepts"]:
                 previous_summary["covered_concepts"].append(tok)
+
         for ps in per_slide_lines:
-            # collect the focus phrases
-            focus = ps.split(":",1)[1].strip() if ":" in ps else ps
+            focus = ps.split(":", 1)[1].strip() if ":" in ps else ps
             token = " ".join(focus.split()[:6])
             if token and token not in previous_summary["covered_concepts"]:
                 previous_summary["covered_concepts"].append(token)
+
+        # 2) Figures
         for f in figs:
             if f not in previous_summary["covered_figures"]:
                 previous_summary["covered_figures"].append(f)
-        # update narrative_so_far (append short sentence)
-        title_line = next((ln for ln in block.splitlines() if ln.strip().startswith("===SLIDE_GROUP:")), block.splitlines()[0])
-        previous_summary["narrative_so_far"] = (previous_summary["narrative_so_far"] + " " + title_line).strip()[:1800]
-        # update last slide
+
+        # 3) Keywords from plan block (KEY_TERMS line)
+        for ln in block.splitlines():
+            s = ln.strip()
+            if s.upper().startswith("KEY_TERMS:"):
+                kw_raw = s.split(":", 1)[1].strip()
+                kws = [t.strip() for t in kw_raw.split(",") if t.strip()]
+                for k in kws:
+                    if k not in previous_summary["covered_keywords"]:
+                        previous_summary["covered_keywords"].append(k)
+
+        # 4) Narrative so far: append header line
+        title_line = next(
+            (ln for ln in block.splitlines() if ln.strip().startswith("===SLIDE_GROUP:")),
+            block.splitlines()[0],
+        )
+        previous_summary["narrative_so_far"] = (
+            previous_summary["narrative_so_far"] + " " + title_line
+        ).strip()[:1800]
+
+        # 5) Last slide number
         m = re.search(r'Slides\s*([0-9]+)[–-]([0-9]+)', block)
         if m:
             previous_summary["last_slide"] = int(m.group(2))
         else:
-            # heuristically increment
-            previous_summary["last_slide"] = previous_summary.get("last_slide", 0) + len(per_slide_lines)
-        # Write to file per group
-        # Build safe filename
+            previous_summary["last_slide"] = previous_summary.get("last_slide", 0) + len(
+                per_slide_lines
+            )
+
+        # ---- Write per-group blueprint ----
         title_match = re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', block)
-        title = title_match.group(1).strip() if title_match else f"Group_{previous_summary['last_slide']}"
+        title = (
+            title_match.group(1).strip()
+            if title_match
+            else f"Group_{previous_summary['last_slide']}"
+        )
         safe_title = re.sub(r'[^\w\s\-]', '', title)
         safe_title = re.sub(r'\s+', '_', safe_title).strip('_')[:100] or f"Group_{previous_summary['last_slide']}"
         filename = f"{str(previous_summary['last_slide']).zfill(3)}_{safe_title}.txt"
         _write(output_dir / filename, detailed + "\n")
         detailed_texts.append(detailed)
+
     # Final verification
     _, warnings = _final_plan_check_and_fix(plan_text, detailed_texts)
     if warnings:
