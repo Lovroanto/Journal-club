@@ -242,32 +242,40 @@ def _figures_overview_text(figure_summaries: Dict[str, dict]) -> str:
 # ---------- Helper: parse plan headers that include metadata ----------
 def _parse_plan_header_block(block_text: str) -> Dict[str, Any]:
     """
-    Parse a block in the plan that includes header + metadata lines (PURPOSE / CONTENT_SCOPE / KEY_TRANSITIONS).
-    Expected block structure in the plan file:
-    ===SLIDE_GROUP: Title | Slides A–B===
-    PURPOSE: ...
-    CONTENT_SCOPE: ...
-    KEY_TRANSITIONS: ...
+    Parse a block in the plan that includes:
+      - header
+      - PURPOSE
+      - CONTENT_SCOPE
+      - KEY_TRANSITIONS
+      - KEY_TERMS   # <<< NEW >>>
     """
     header_line = ""
     purpose = ""
     content_scope = ""
     key_transitions = ""
-    lines = block_text.strip().splitlines()
-    for i, ln in enumerate(lines):
-        if ln.strip().startswith("===SLIDE_GROUP:"):
-            header_line = ln.strip()
-        elif ln.strip().upper().startswith("PURPOSE:"):
-            purpose = ln.split(":", 1)[1].strip()
-        elif ln.strip().upper().startswith("CONTENT_SCOPE:"):
-            content_scope = ln.split(":", 1)[1].strip()
-        elif ln.strip().upper().startswith("KEY_TRANSITIONS:"):
-            key_transitions = ln.split(":", 1)[1].strip()
+    key_terms = ""   # <<< NEW >>>
+
+    for ln in block_text.strip().splitlines():
+        stripped = ln.strip()
+        U = stripped.upper()
+
+        if stripped.startswith("===SLIDE_GROUP:"):
+            header_line = stripped
+        elif U.startswith("PURPOSE:"):
+            purpose = stripped.split(":", 1)[1].strip()
+        elif U.startswith("CONTENT_SCOPE:"):
+            content_scope = stripped.split(":", 1)[1].strip()
+        elif U.startswith("KEY_TRANSITIONS:"):
+            key_transitions = stripped.split(":", 1)[1].strip()
+        elif U.startswith("KEY_TERMS:"):       # <<< NEW >>>
+            key_terms = stripped.split(":", 1)[1].strip()
+
     return {
         "header": header_line,
         "purpose": purpose,
         "content_scope": content_scope,
-        "key_transitions": key_transitions
+        "key_transitions": key_transitions,
+        "key_terms": key_terms,   # <<< NEW >>>
     }
 def _generate_high_level_group_plan(
     final_summary: str,
@@ -284,10 +292,6 @@ def _generate_high_level_group_plan(
       - CONTENT_SCOPE
       - KEY_TRANSITIONS
       - KEY_TERMS   # <<< NEW >>>
-
-    Implementation:
-      1) LLM makes INTERNAL_OUTLINE (hidden)
-      2) Then emits PUBLIC METADATA PLAN (only the structured blocks)
     """
 
     logger.info("4) Generating high-level plan with metadata (style=%s)...", slide_style)
@@ -341,14 +345,17 @@ Target: {target_info}
 
 Output:
 1) INTERNAL_OUTLINE
-2) PUBLIC METADATA PLAN (only the blocks above)
+2) PUBLIC_METADATAPLAN (only the blocks above)
 """
 
+    # ----------------------------------------------------------------------
+    # LLM CALL
+    # ----------------------------------------------------------------------
     try:
         out = llm.invoke(internal_prompt).strip()
     except Exception as e:
         logger.error("LLM failed to generate high-level plan: %s", e)
-        # Fallback (now with KEY_TERMS)
+
         fallback_blocks = [
             ("Introduction", 1, 2,
              "Set context and question.",
@@ -385,7 +392,9 @@ Output:
             )
         return "\n".join(blocks_text)
 
-    # --- Extract structured blocks -------------------------------------------
+    # ----------------------------------------------------------------------
+    # EXTRACT METADATA BLOCKS
+    # ----------------------------------------------------------------------
     lines = out.splitlines()
     blocks = []
     cur = []
@@ -416,18 +425,22 @@ Output:
             llm, max_groups=max_groups, slide_style=slide_style
         )
 
-    # --- Slide range validation / reassignment --------------------------------
-    parsed = []
-    for b in blocks:
-        parsed.append(_parse_plan_header_block(b))
+    # ----------------------------------------------------------------------
+    # VALIDATE & PARSE RANGE INFO
+    # ----------------------------------------------------------------------
+    parsed = [_parse_plan_header_block(b) for b in blocks]
 
-    has_ranges = all(re.search(r'\|\s*Slides\s*[0-9]+[–-][0-9]+', block["header"])
-                     for block in parsed)
+    has_ranges = all(
+        re.search(r'\|\s*Slides\s*[0-9]+[–-][0-9]+', block["header"])
+        for block in parsed
+    )
 
     if has_ranges:
         return "\n\n".join(blocks)
 
-    # Auto-assign consecutive ranges if LLM failed to do so
+    # ----------------------------------------------------------------------
+    # AUTO-ASSIGN RANGES
+    # ----------------------------------------------------------------------
     total_slides = desired_slides if desired_slides and desired_slides > 0 else 14
     n = len(parsed)
 
@@ -435,29 +448,26 @@ Output:
     rem = total_slides - base * n
     sizes = [base + (1 if i < rem else 0) for i in range(n)]
 
-    assigned_blocks = []
+    assigned = []
     cur_slide = 1
 
     for idx, item in enumerate(parsed):
         size = sizes[idx]
-        a = cur_slide
-        b = cur_slide + size - 1
+        a, b = cur_slide, cur_slide + size - 1
         cur_slide = b + 1
 
-        header = item["header"]
-        title_match = re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', header)
+        title_match = re.search(r'===SLIDE_GROUP:\s*(.*?)\s*\|', item["header"])
         title = title_match.group(1).strip() if title_match else f"Group_{idx+1}"
 
-        block_text = (
+        assigned.append(
             f"===SLIDE_GROUP: {title} | Slides {a}-{b}===\n"
             f"PURPOSE: {item.get('purpose','')}\n"
             f"CONTENT_SCOPE: {item.get('content_scope','')}\n"
             f"KEY_TRANSITIONS: {item.get('key_transitions','')}\n"
-            f"KEY_TERMS: {item.get('key_terms','')}\n"  # <<< NEW >>>
+            f"KEY_TERMS: {item.get('key_terms','')}\n"
         )
-        assigned_blocks.append(block_text)
 
-    return "\n".join(assigned_blocks)
+    return "\n".join(assigned)
 
 # ---------- Per-group generation with cumulative previous_summary ----------
 def _generate_group_details(
