@@ -27,95 +27,91 @@ def _extract_notions_refine_chain(
     plan_text: str,
     llm: BaseLanguageModel
 ) -> str:
-    """Run a refine chain to extract specialized notions."""
+    """
+    🔥 Updated scientific notion extractor (improved over original version)
 
-    # ---- Split into chunks ----
+    Extracts domain-specific concepts from the contextual summary or full summary.
+    Now returns enriched terms in the form:
+
+        <notion> — <short meaning (≤8 words)>
+
+    Designed for downstream RAG / Literature lookup.
+    """
+
+    # --------------- Chunking ---------------
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from langchain.prompts import PromptTemplate
+    from langchain.chains.summarize import load_summarize_chain
+    from langchain_core.documents import Document
+
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1200,
         chunk_overlap=200
     )
-    chunks = splitter.split_text(plan_text)
-    docs = [Document(page_content=c) for c in chunks]
+    docs = [Document(page_content=c) for c in splitter.split_text(plan_text)]
 
-    # ---- Prompts ----
+    # --------------- NEW Prompts ---------------
+
     question_prompt = PromptTemplate.from_template(
         """
-You are extracting the *core scientific concepts* from a plan of presentation.
-Use the logic of the sentences to understand which notions are central to the presentation. 
-Follow these rules strictly:
+You are extracting core scientific notions from a research summary.
 
-1. Extract only concepts that are explicitly part of:
-   - the main goal or motivation
-   - key physical processes
-   - experimental setup components
-   - theoretical models or mechanisms
-   - phenomena central to the paper’s results
-2. Ignore:
-   - generic physics terms
-   - side phenomena
-   - figure labels, section headers, or meta-text
+You must return **ONLY** the key concepts that are central to understanding the work.
+These include:
 
-Format:
-- One concept per line starting with "- "
-- Each line must be a short noun phrase, no sentences
-- DO NOT add, merge, or rewrite concepts
+✓ physical / quantum mechanisms
+✓ theoretical constructs or regimes
+✓ experimental subsystems / apparatus
+✓ named phenomena or emergent behavior
+✓ measurement tools or spectroscopic signals
+✓ important parameters (if experimentally decisive)
 
-Examples:
+⚠ KEEP terms even if mentioned once *if they are domain-distinctive*.
 
-Good:
-- Recoil-induced resonance (RIR)
-- High-finesse ring cavity
+EXCLUDE completely:
 
-Bad:
-- "Slide 4 illustrates…"           # meta-text
-- "Zone I, II, III, IV"             # figure labels
-- "This allows for better cooling"  # consequence
+✗ generic words (feedback, atoms, photons, cooling)
+✗ figure references, slide labels
+✗ broad phrases without scientific identity
+✗ consequences or motivations instead of mechanisms
 
-Text:
+OUTPUT FORMAT (strict):
+- <notion> — <short meaning (≤8 words)>
+
+Example GOOD output:
+- recoil-induced resonance — momentum grating driven gain
+- cross-over regime — cavity linewidth ≈ gain linewidth
+- self-regulated atomic loss — stabilizes dressed cavity detuning
+
+Text to extract from:
 \"\"\"{text}\"\"\"
 
-Return ONLY the bullet list following the rules.
+Return ONLY bullet lines in the exact format.
 """
     )
 
     refine_prompt = PromptTemplate.from_template(
         """
-Current extracted core notions:
+Current extracted notions:
 \"\"\"{existing_answer}\"\"\"
 
-New text chunk to analyze:
+New text:
 \"\"\"{text}\"\"\"
 
-Your task:
-- Identify ONLY new *core scientific notions* that are central to the article.
-- A core notion is any concept that is part of:
-  * the logic of the sentences points to it
-  * main goal or motivation
-  * key physical process
-  * experimental setup component
-  * theoretical model or mechanism
-  * phenomenon essential for understanding the claims
-- Ignore:
-  * generic terms
-  * secondary or side effects
-  * consequences
-  * figure labels, slide numbers, section headers
-  * anything mentioned only once that is not central
+TASK:
+• Append only new scientific notions, do NOT remove earlier ones.
+• Same bullet formatting:
+    - notion — meaning (≤8 words)
+• New notions may be kept even if only one appearance
+    if scientifically distinctive or named.
 
-Rules:
-1. Each bullet must contain ONE concept only.
-2. Use a short noun phrase; do NOT write full sentences.
-3. DO NOT reword, merge, or invent concepts.
-4. DO NOT repeat any notion already in {existing_answer}.
-5. Focus on the sentence logic — pick notions that the text emphasizes as central.
-6. Keep the same bullet format as the existing list.
+🚫 Do NOT add duplicates, paraphrases, merged concepts, or sentences.
 
-Return the UPDATED bullet list including both previous notions and new valid ones.
-
+Return the updated notion list in the same bullet style.
 """
     )
 
-    # ---- Refine chain ----
+    # --------------- Refine extraction ---------------
     chain = load_summarize_chain(
         llm=llm,
         chain_type="refine",
@@ -126,10 +122,7 @@ Return the UPDATED bullet list including both previous notions and new valid one
         output_key="output_text",
     )
 
-    result = chain.invoke({
-        "input_documents": docs
-    })
-
+    result = chain.invoke({"input_documents": docs})
     return result["output_text"].strip()
 
 

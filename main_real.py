@@ -18,6 +18,8 @@ from build_literature_rag import build_literature_rag
 from rag_ingester import create_or_update_vectorstore
 from notion_extractor_module import extract_specialized_notions
 from slide_enrichment_module import enrich_presentation_plan
+from supplementary_linker import integrate_supplementary
+from generate_slides import generate_slides
 
 pdf_file = "/home/lbarisic/ai_data/Journal_Club/First/main/s41567-025-02854-4.pdf"
 output_dir_article = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Decomposition/"
@@ -28,6 +30,12 @@ output_dir_article = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Decom
 LLM_MODEL = "llama3.1"
 llm = OllamaLLM(model="llama3.1")  # ← create LLM object once
 
+
+
+
+
+main_folder = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Decomposition/main/"
+supp_folder = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Decomposition/supplementary/"
 if (False):
     # --------------------------
     # 1) Standard mode
@@ -68,7 +76,7 @@ if(False):
 # --------------------------
 # generating the global summary and presentation plan
 # --------------------------
-if(True):
+if(False):
     generate_global_and_plan(
         summaries_dir=output_dir_summary,
         output_dir=output_dir_summary,
@@ -76,17 +84,29 @@ if(True):
         desired_slides=0,
         llm=llm
     )
+
+if(False):
+    integrate_supplementary(
+        chunks_dir=str(Path(output_dir_summary) / "supplementary_chunks"),
+        #chunks_dir=supp_folder, # this is only if the process pdf was done
+        summary_output_file=str(Path(output_dir_summary) / "06_supplementary_global.txt"),
+        slides_dir=str(Path(output_dir_summary) / "slides"),
+        llm=llm
+    )
+
 # --------------------------
 # extracting notions from presentation plan
 # --------------------------
 if(False):
     extract_specialized_notions(
-        Path(output_dir_summary) /"04_presentation_plan.txt",
+        Path(output_dir_summary) /"03_main_contextualized.txt",
         Path(output_dir_summary) /"05_Extracted_notions.txt",
         model="llama3.1:latest",
         num_repeats=5,
         min_occurrences=3
     )
+
+
 # --------------------------
 # extracting referenced papers balanced
 # --------------------------
@@ -148,14 +168,39 @@ if (False):
         embedding_model_name="BAAI/bge-small-en-v1.5",
         include_pdfs=True,
     )
-
-if (False):
-    enrich_presentation_plan(
-        summaries_dir=output_dir_summary,
-        plan_path=Path(output_dir_summary) /"04_presentation_plan.txt",
-        output_dir=output_dir_summary /"07_final_presentation",
-        llm=llm
+    create_or_update_vectorstore(
+        data_folder=Path(output_dir_article)  /"figures",
+        persist_directory=str(Path(output_dir_article)  /"figures" / "chroma_db"),
+        embedding_model_name="BAAI/bge-small-en-v1.5",
+        include_pdfs=True,
     )
+if(True):
+    generate_slides(
+        blueprint_text=blueprint,
+        db_paths={
+            "main": str(Path(main_folder) / "chroma_db"),
+            "figs": str(Path(output_dir_article)  /"figures" / "chroma_db"),
+            "sup": str(Path(supp_folder) / "chroma_db"),
+            "lit": str(Path(output_dir_article)  /"RAG/literature_rag" / "chroma_db")
+        },
+        output_dir=Path(output_dir_summary) /"Finalplan_slides",
+        model_name="llama3:70b"
+    )
+
+
+
+
+
+
+
+
+#if (True):
+#    enrich_presentation_plan(
+#        summaries_dir=output_dir_summary,
+#        plan_path=Path(output_dir_summary) /"04_presentation_plan.txt",
+#        output_dir=output_dir_summary /"07_final_presentation",
+#        llm=llm
+#    )
 
 
 

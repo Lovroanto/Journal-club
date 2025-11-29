@@ -465,7 +465,7 @@ Output:
 
     base = total_slides // n
     rem = total_slides - base * n
-    sizes = [base + (1 if i < rem else 0) for _ in range(n)]
+    sizes = [base + (1 if i < rem else 0) for i in range(n)]
 
     assigned: List[str] = []
     cur_slide = 1
