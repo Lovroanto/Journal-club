@@ -1,0 +1,228 @@
+Big picture
+
+You’re building a multi-stage presentation generator for one scientific paper:
+
+Planning stage (LLM, no RAG):
+Parse slide-group plans → generate per-slide context → propose candidate paper bullets for each slide.
+
+Global resolution stage (no LLM):
+Resolve duplicates across the whole presentation: pick where each bullet is introduced (primary) and where it’s only a reminder or dropped.
+
+Next stages (future):
+Use RAG to write final slide content + narration, then export to PPTX.
+
+Right now, (1) and (2) are working.
+
+Data objects (what we keep in memory)
+SlidePlan and SlideGroupPlan (from planning.py)
+
+SlidePlan: one slide blueprint line + group metadata + suggested figures
+
+SlideGroupPlan: group-level metadata + list of SlidePlan
+
+BulletPoint (from bullets.py)
+
+bullet_id like BP_001
+
+text factual bullet statement
+
+BulletCandidate (from assignment.py)
+
+One “possible use” of a bullet on a slide:
+
+bullet_id
+
+slide_uid (globally unique, e.g. 003_Intro::Slide_2)
+
+priority (0..1)
+
+exclusivity (strong/medium/weak)
+
+argument (why it fits this slide)
+
+SlideBundle and PlanningResult (from models.py)
+
+SlideBundle: slide_uid + SlidePlan + slide_context + list of BulletCandidate
+
+PlanningResult: result of planning one slide group (slides + bullets + candidates)
+
+PresentationPlan (from presentation_models.py)
+
+List of PlanningResult (all groups)
+
+Convenience properties:
+
+all_slides (merged dict slide_uid → SlideBundle)
+
+all_candidates (flattened list of BulletCandidate)
+
+BulletUsage and BulletResolutionResult (from bullet_resolution.py)
+
+After global duplicate handling:
+
+For each slide, for each bullet occurrence:
+
+usage = primary | reminder | drop
+
+primary_slide_uid tells where it was introduced
+
+A global report with counts.
+
+Modules / files and responsibilities
+__init__.py
+
+Exposes the public API of your package (imports/exports).
+
+Keeps imports aligned with the current class-based design.
+
+llm.py
+
+One job: call the LLM (Ollama wrapper).
+
+Used by: assignment.py, slide_context.py.
+
+planning.py
+
+Parses each slide-group plan .txt.
+
+Output:
+
+SlideGroupPlan (group name/purpose/scope/transition/supmat notes)
+
+slides: List[SlidePlan] (Slide 1:..., Slide 2:...)
+
+bullets.py
+
+Reads the paper bullet summary file and produces numbered bullets.
+
+Output: List[BulletPoint].
+
+slide_context.py
+
+For each slide, generates a short slide_context:
+
+why the slide exists
+
+what it sets up
+
+connection to previous/next
+
+Output: a string stored inside SlideBundle.
+
+assignment.py
+
+Given one slide group + all paper bullets, asks the LLM for candidates.
+
+Output: List[BulletCandidate].
+
+Candidates are allowed to overlap across slides (duplicates are fine here).
+
+models.py
+
+Defines planning-stage in-memory structures:
+
+SlideBundle
+
+PlanningResult
+
+pipeline.py
+
+Orchestrates the planning stage for one group:
+
+parse slide group plan (planning.py)
+
+number bullets (bullets.py)
+
+generate candidates (assignment.py)
+
+generate slide contexts (slide_context.py)
+
+build SlideBundles and return PlanningResult
+
+Optional: writes one debug JSON per run (if enabled).
+
+presentation_models.py
+
+Defines PresentationPlan (list of group PlanningResults).
+
+Adds convenience accessors all_slides, all_candidates.
+
+presentation_pipeline.py
+
+Runs pipeline.py over all group files in a folder (sorted).
+
+Output: PresentationPlan.
+
+Optional: writes one debug JSON for the entire presentation.
+
+Also includes load_presentation_plan_from_debug(...) so you can skip LLM planning during debugging by loading cached JSON.
+
+bullet_resolution.py
+
+Global pass across the whole PresentationPlan:
+
+chooses a primary introduction slide for each bullet
+
+marks other uses as reminder (high relevance) or drop (low relevance)
+
+Output: BulletResolutionResult
+
+Optional: writes one debug JSON (resolution results).
+
+global_resolver.py
+
+Older placeholder / earlier concept for global assignment.
+
+Current system’s “global resolution” is implemented in bullet_resolution.py.
+
+You can keep global_resolver.py as deprecated or repurpose later.
+
+localmain.py
+
+Test harness:
+
+runs full presentation planning (or loads cache with SKIP_PLANNING)
+
+runs global bullet resolution
+
+prints per-slide summary (plan/context + primary/reminder counts)
+
+writes debug JSONs when enabled
+
+Current end-to-end flow
+
+localmain.py calls run_presentation_planning(...)
+→ returns PresentationPlan with:
+
+each slide has plan + context + candidate bullets
+
+localmain.py calls resolve_bullets_globally(...)
+→ returns global mapping:
+
+“introduce bullet here”
+
+“remind later here”
+
+“drop weak duplicates”
+
+This gives you the final structured planning artifacts needed to start the RAG slide writing stage.
+
+What comes next (future modules)
+
+Next stage will consume:
+
+SlideBundle.slide_plan + slide_context
+
+BulletUsage primary bullets for on-slide points
+
+reminders for narration
+
+plus RAG stores for the paper text/figures/supmat
+
+Then produce:
+
+final slide title + bullets + narration + figure placement
+
+then PPTX export
+
+If you want, next we can define a single “SlideSpec” object that is exactly the contract between “planning/resolution” and “RAG slide writing.”

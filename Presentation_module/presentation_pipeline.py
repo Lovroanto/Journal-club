@@ -4,10 +4,14 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Dict, Any
 
 from .pipeline import run_planning_pipeline
 from .presentation_models import PresentationPlan
+from .models import PlanningResult, SlideBundle
+from .planning import SlideGroupPlan, SlidePlan
+from .bullets import BulletPoint
+from .assignment import BulletCandidate
 
 
 def run_presentation_planning(
@@ -17,37 +21,64 @@ def run_presentation_planning(
     output_dir: Optional[Union[str, Path]] = None,
     debug_save: bool = False,
     debug_filename: str = "presentation_planning_debug.json",
+    continue_on_error: bool = True,
+    error_log_filename: str = "planning_errors.json",
 ) -> PresentationPlan:
     """
-    Runs planning for ALL slide-group txt files in a folder.
+    Runs planning for ALL slide-group .txt files in a folder.
 
     - Each .txt file in slide_groups_dir is treated as one slide-group plan.
-    - Produces a list of PlanningResult objects bundled into PresentationPlan.
+    - Produces PlanningResult objects bundled into PresentationPlan.
     - Optionally writes ONE debug JSON for the whole presentation.
+    - If a group fails (LLM JSON, parsing, etc):
+        - if continue_on_error=True: logs the error and continues
+        - else: raises immediately
+    - If output_dir is provided and errors occur, writes ONE errors file.
     """
 
     slide_groups_dir = Path(slide_groups_dir)
     bullet_summary_file = Path(bullet_summary_file)
 
-    # Pick up all .txt files; sort by filename so 001_, 002_... define order
     group_files = sorted(slide_groups_dir.glob("*.txt"))
 
-    groups: List = []
-    for f in group_files:
-        # Use the filename stem as run_name => stable group_id and slide_uid prefix
-        run_name = f.stem
+    groups: List[PlanningResult] = []
+    errors: List[Dict[str, Any]] = []
 
-        res = run_planning_pipeline(
-            slide_group_file=f,
-            bullet_summary_file=bullet_summary_file,
-            model=model,
-            output_dir=None,        # avoid per-group files
-            run_name=run_name,
-            debug_save=False,       # centralized debug below
-        )
-        groups.append(res)
+    for f in group_files:
+        run_name = f.stem
+        try:
+            res = run_planning_pipeline(
+                slide_group_file=f,
+                bullet_summary_file=bullet_summary_file,
+                model=model,
+                output_dir=None,      # avoid per-group files
+                run_name=run_name,
+                debug_save=False,     # centralized debug below
+            )
+            groups.append(res)
+
+        except Exception as e:
+            err = {
+                "group_file": str(f),
+                "run_name": run_name,
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+            }
+            errors.append(err)
+
+            if not continue_on_error:
+                raise
+
+            # continue to next group
+            continue
 
     plan = PresentationPlan(groups=groups)
+
+    # Write one error log (only if needed)
+    if output_dir is not None and errors:
+        out_dir = Path(output_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / error_log_filename).write_text(json.dumps(errors, indent=2), encoding="utf-8")
 
     # Optional: ONE debug file for the whole presentation
     if debug_save and output_dir is not None:
@@ -58,7 +89,10 @@ def run_presentation_planning(
         payload = {
             "slide_groups_dir": str(slide_groups_dir),
             "bullet_summary_file": str(bullet_summary_file),
-            "num_groups": len(plan.groups),
+            "num_groups_total": len(group_files),
+            "num_groups_success": len(plan.groups),
+            "num_groups_failed": len(errors),
+            "errors": errors,  # include in debug file too
             "groups": [
                 {
                     "group_id": g.group_id,
@@ -66,6 +100,7 @@ def run_presentation_planning(
                     "purpose": g.group_plan.purpose,
                     "scope": g.group_plan.scope,
                     "transition": g.group_plan.transition,
+                    "supmat_notes": g.group_plan.supmat_notes,
                     "num_slides": len(g.slides),
                     "slides": [
                         {
@@ -95,3 +130,79 @@ def run_presentation_planning(
         debug_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     return plan
+
+
+def load_presentation_plan_from_debug(debug_json_path: Union[str, Path]) -> PresentationPlan:
+    """
+    Load PresentationPlan back from the debug JSON produced by run_presentation_planning().
+    This is for debugging only (skip LLM calls).
+    """
+    p = Path(debug_json_path)
+    data = json.loads(p.read_text(encoding="utf-8"))
+
+    groups = []
+    for g in data["groups"]:
+        group_plan = SlideGroupPlan(
+            group_name=g["group_name"],
+            purpose=g.get("purpose"),
+            scope=g.get("scope"),
+            key_terms=[],
+            transition=g.get("transition"),
+            supmat_notes=g.get("supmat_notes"),
+            slides=[],
+        )
+
+        slides_dict = {}
+        for s in g["slides"]:
+            sp = SlidePlan(
+                slide_id=int(s["slide_id"]),
+                blueprint_text=s["plan"],
+                group_name=g["group_name"],
+                group_purpose=g.get("purpose"),
+                group_scope=g.get("scope"),
+                group_transition=g.get("transition"),
+                suggested_figures=s.get("suggested_figures", []),
+                supmat_notes=g.get("supmat_notes"),
+            )
+            group_plan.slides.append(sp)
+
+            bundle = SlideBundle(
+                slide_uid=s["slide_uid"],
+                slide_plan=sp,
+                slide_context=s.get("slide_context", ""),
+                candidates=[],
+            )
+
+            for c in s.get("candidates", []):
+                bundle.candidates.append(
+                    BulletCandidate(
+                        bullet_id=c["bullet_id"],
+                        slide_uid=s["slide_uid"],
+                        priority=float(c["priority"]),
+                        exclusivity=str(c["exclusivity"]),
+                        argument=str(c["argument"]),
+                    )
+                )
+
+            slides_dict[s["slide_uid"]] = bundle
+
+        numbered_bullets = [
+            BulletPoint(bullet_id=b["bullet_id"], text=b["text"])
+            for b in g.get("numbered_bullets", data.get("numbered_bullets", []))
+        ]
+
+        all_cands = []
+        for b in slides_dict.values():
+            all_cands.extend(b.candidates)
+
+        groups.append(
+            PlanningResult(
+                group_id=g["group_id"],
+                group_plan=group_plan,
+                numbered_bullets=numbered_bullets,
+                candidates=all_cands,
+                slides=slides_dict,
+            )
+        )
+
+    return PresentationPlan(groups=groups)

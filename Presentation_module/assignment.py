@@ -27,7 +27,8 @@ class BulletCandidate:
 def _extract_first_json_array(raw: str) -> list:
     """
     Robustly parse the first JSON array found in raw LLM output.
-    Handles cases where model prints text before/after JSON.
+    - Handles text before/after JSON.
+    - Handles trailing corruption by trimming the tail until valid.
     """
     raw = raw.strip()
 
@@ -39,17 +40,42 @@ def _extract_first_json_array(raw: str) -> list:
     except json.JSONDecodeError:
         pass
 
-    # 2) Try substring from first '[' to last ']'
+    # 2) Extract substring from first '[' to last ']'
     start = raw.find("[")
     end = raw.rfind("]")
-    if start != -1 and end != -1 and end > start:
-        candidate = raw[start : end + 1]
+    if start == -1 or end == -1 or end <= start:
+        raise ValueError("No JSON array bracketed by [ ... ] found in model output.")
+
+    candidate = raw[start : end + 1]
+
+    # 3) Try parse candidate
+    try:
         parsed = json.loads(candidate)
         if isinstance(parsed, list):
             return parsed
+    except json.JSONDecodeError:
+        pass
 
-    raise ValueError(f"Could not extract a JSON array from model output:\n{raw}")
+    # 4) Tail-trim recovery: often the model breaks near the end
+    # Scan backwards for a closing ']' and attempt parse at each possible cut.
+    # Limit scans to last ~50k chars to avoid huge slowdowns.
+    scan_from = max(0, len(candidate) - 50000)
+    for cut in range(len(candidate) - 1, scan_from, -1):
+        if candidate[cut] != "]":
+            continue
+        snippet = candidate[: cut + 1]
+        try:
+            parsed = json.loads(snippet)
+            if isinstance(parsed, list):
+                return parsed
+        except json.JSONDecodeError:
+            continue
 
+    # If we got here, we couldn't recover
+    raise ValueError(
+        "Could not parse a valid JSON array from model output (even after trimming). "
+        "Enable debug_save=True to inspect candidates_raw.txt."
+    )
 
 def propose_bullet_candidates(
     group_plan: SlideGroupPlan,
