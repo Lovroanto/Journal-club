@@ -175,16 +175,23 @@ if (False):
         include_pdfs=True,
     )
 if(True):
+    
+    slide_group_file = str(Path(output_dir_summary) /"slides/003_Introduction_to_Continuous_Lasing.txt")    # contains Slide X + context
+    global_context_file = str(Path(output_dir_summary) /"04_presentation_plan.txt"  )      # summary of whole paper (you already generated this earlier) 
+    db_paths = {
+        "main": str(Path(main_folder) / "chroma_db"),
+        "figs": str(Path(output_dir_article)  /"figures" / "chroma_db"),
+        "sup": str(Path(supp_folder) / "chroma_db"),
+        "lit": str(Path(output_dir_article)  /"RAG/literature_rag" / "chroma_db")
+    }
+
+    output_dir_slides = str(Path(output_dir_summary) /"Finalplan_slides")    # one .txt per slide will appear here
     generate_slides(
-        blueprint_text=blueprint,
-        db_paths={
-            "main": str(Path(main_folder) / "chroma_db"),
-            "figs": str(Path(output_dir_article)  /"figures" / "chroma_db"),
-            "sup": str(Path(supp_folder) / "chroma_db"),
-            "lit": str(Path(output_dir_article)  /"RAG/literature_rag" / "chroma_db")
-        },
-        output_dir=Path(output_dir_summary) /"Finalplan_slides",
-        model_name="llama3:70b"
+        slide_group_file=slide_group_file,
+        global_context_file=global_context_file,
+        db_paths=db_paths,
+        output_dir=output_dir_slides,
+        model=LLM_MODEL
     )
 
 
