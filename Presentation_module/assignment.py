@@ -58,17 +58,18 @@ def propose_bullet_candidates(
     group_id: Optional[str] = None,
     debug_save: bool = False,
     debug_dir: Optional[Union[str, Path]] = None,
+    min_per_slide: int = 6,
+    max_per_slide: int = 12,
 ) -> List[BulletCandidate]:
     """
     For ONE slide group:
-    - Ask LLM to propose *candidate* placements bullet -> slide_uid (0..N per bullet).
-    - Each candidate includes priority (0..1) and exclusivity (strong/medium/weak).
-    - Keeps everything in memory as BulletCandidate objects.
-    - Optionally writes debug files (raw + parsed + skipped) if debug_save=True.
+    - Ask LLM to propose candidates PER SLIDE (top-N bullets per slide).
+    - The same bullet may appear on multiple slides with different priority.
+    - Returns in-memory BulletCandidate objects.
+    - (Optional) debug raw + parsed JSON (you can keep this during debugging).
     """
 
     if group_id is None:
-        # Fallback: use group name, but file-stem is better if you pass it in
         group_id = group_plan.group_name.replace(" ", "_")
 
     slide_blueprints = [
@@ -100,43 +101,46 @@ SLIDES (use slide_uid exactly as given):
 NUMBERED BULLETS (use bullet_id exactly as given):
 {json.dumps(bullet_list, indent=2)}
 
-TASK:
-Propose CANDIDATE placements of bullets into slides for THIS group.
+TASK (IMPORTANT):
+For EACH slide, select between {min_per_slide} and {max_per_slide} bullet points that could support that slide's plan.
 
 Rules:
-- You may output ZERO candidates for a bullet if it is not useful in this group.
-- Prefer 0 or 1 candidate per bullet; allow 2 only if truly necessary.
-- Do NOT output "Not assigned". If you don't assign it, just omit it.
-- Do NOT repeat the same bullet across many slides.
-
-For each candidate you MUST provide ALL keys:
-- bullet_id
-- slide_uid
-- priority: number from 0.0 to 1.0 (how strongly it belongs on that slide)
-- exclusivity: one of ["strong","medium","weak"]
-    strong = essential/only makes sense here
-    medium = good fit, but could go elsewhere
-    weak = optional/context; could be moved/removed
-- argument: SPECIFIC reason tied to the slide blueprint (not generic)
+- You MUST return a list entry for every slide_uid.
+- For each slide_uid, output {min_per_slide}–{max_per_slide} candidates.
+- It is OK if the SAME bullet_id appears in candidates for multiple slides, with different priorities.
+  (We will decide final placement later across the full presentation.)
+- Use priority to express relevance:
+    0.85–1.00 = essential for this slide
+    0.60–0.85 = good support
+    0.35–0.60 = weak but plausible
+  Do NOT output priorities below 0.35.
+- exclusivity meaning:
+    strong = particularly tied to this slide / hard to move
+    medium = reasonable here, could be elsewhere
+    weak = optional support / could be moved
+- argument must be specific to the slide plan and the bullet text (no generic filler).
 
 OUTPUT FORMAT:
-Return ONLY a JSON array. The output MUST begin with '[' and end with ']'.
-No commentary, no markdown.
+Return ONLY valid JSON. No commentary, no markdown.
+The output MUST begin with '[' and end with ']'.
 
 [
   {{
-    "bullet_id": "BP_001",
     "slide_uid": "{group_id}::Slide_1",
-    "priority": 0.82,
-    "exclusivity": "strong",
-    "argument": "..."
+    "candidates": [
+      {{
+        "bullet_id": "BP_001",
+        "priority": 0.82,
+        "exclusivity": "medium",
+        "argument": "..."
+      }}
+    ]
   }}
 ]
 """
 
     raw = call_llm(model, prompt)
 
-    # Optional debug writing: raw output
     if debug_save and debug_dir is not None:
         d = Path(debug_dir)
         d.mkdir(parents=True, exist_ok=True)
@@ -144,7 +148,6 @@ No commentary, no markdown.
 
     data = _extract_first_json_array(raw)
 
-    # Optional debug writing: parsed JSON
     if debug_save and debug_dir is not None:
         d = Path(debug_dir)
         (d / "candidates.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
@@ -152,49 +155,52 @@ No commentary, no markdown.
     out: List[BulletCandidate] = []
     skipped: List[dict] = []
 
-    for item in data:
-        # Required fields
-        bullet_id = str(item.get("bullet_id", "")).strip()
-        slide_uid = str(item.get("slide_uid", "")).strip()
+    # Expect: list of {"slide_uid": "...", "candidates": [ ... ]}
+    for slide_block in data:
+        slide_uid = str(slide_block.get("slide_uid", "")).strip()
+        cand_list = slide_block.get("candidates", [])
 
-        if not bullet_id or not slide_uid:
-            skipped.append(item)
+        if not slide_uid or not isinstance(cand_list, list):
+            skipped.append(slide_block)
             continue
 
-        # Argument (accept common alternative key "reason")
-        argument = str(item.get("argument", "")).strip()
-        if not argument:
-            argument = str(item.get("reason", "")).strip()
-        if not argument:
-            argument = "MISSING_ARGUMENT_FROM_MODEL"
+        for item in cand_list:
+            bullet_id = str(item.get("bullet_id", "")).strip()
+            if not bullet_id:
+                skipped.append(item)
+                continue
 
-        # Priority (robust parsing + clamp)
-        try:
-            priority = float(item.get("priority", 0.5))
-        except (TypeError, ValueError):
-            priority = 0.5
+            argument = str(item.get("argument", "")).strip()
+            if not argument:
+                argument = str(item.get("reason", "")).strip()
+            if not argument:
+                argument = "MISSING_ARGUMENT_FROM_MODEL"
 
-        if priority < 0.0:
-            priority = 0.0
-        elif priority > 1.0:
-            priority = 1.0
+            try:
+                priority = float(item.get("priority", 0.5))
+            except (TypeError, ValueError):
+                priority = 0.5
 
-        # Exclusivity (robust parsing)
-        exclusivity = str(item.get("exclusivity", "medium")).strip().lower()
-        if exclusivity not in ("strong", "medium", "weak"):
-            exclusivity = "medium"
+            # clamp & enforce minimum (we don't want 0.0 noise)
+            if priority < 0.35:
+                priority = 0.35
+            elif priority > 1.0:
+                priority = 1.0
 
-        out.append(
-            BulletCandidate(
-                bullet_id=bullet_id,
-                slide_uid=slide_uid,
-                priority=priority,
-                exclusivity=exclusivity,  # type: ignore
-                argument=argument,
+            exclusivity = str(item.get("exclusivity", "medium")).strip().lower()
+            if exclusivity not in ("strong", "medium", "weak"):
+                exclusivity = "medium"
+
+            out.append(
+                BulletCandidate(
+                    bullet_id=bullet_id,
+                    slide_uid=slide_uid,
+                    priority=priority,
+                    exclusivity=exclusivity,  # type: ignore
+                    argument=argument,
+                )
             )
-        )
 
-    # Optional debug writing: skipped items
     if debug_save and debug_dir is not None and skipped:
         d = Path(debug_dir)
         (d / "candidates_skipped_items.json").write_text(

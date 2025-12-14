@@ -11,21 +11,16 @@ from .assignment import BulletCandidate
 
 @dataclass
 class SlideBundle:
-    """
-    One slide, with its plan (blueprint) + candidate bullet matches.
-    """
     slide_uid: str
     slide_plan: SlidePlan
+    slide_context: str = ""  # NEW: why this slide exists + how it connects
     candidates: List[BulletCandidate] = field(default_factory=list)
 
 
 @dataclass
 class PlanningResult:
-    """
-    One slide-group run result: plans + bullets + candidates, all in memory.
-    """
     group_id: str
     group_plan: SlideGroupPlan
     numbered_bullets: List[BulletPoint]
     candidates: List[BulletCandidate]
-    slides: Dict[str, SlideBundle]  # slide_uid -> SlideBundle
+    slides: Dict[str, SlideBundle]

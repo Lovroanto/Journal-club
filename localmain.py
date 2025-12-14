@@ -1,37 +1,29 @@
 from pathlib import Path
-from Presentation_module.pipeline import run_planning_pipeline
+from Presentation_module.presentation_pipeline import run_presentation_planning
 
-# ----------------------------
-# Project paths
-# ----------------------------
 project_root = Path("/home/lbarisic/ai_data/Journal_Club/First/Newversion/Summary")
 
-slide_group_file = project_root / "slides/003_Introduction_to_Continuous_Lasing.txt"
+slide_groups_dir = project_root / "slides"                 # folder of group .txt files
 bullet_summary_file = project_root / "01_main_factual_bullets.txt"
+output_dir = project_root / "slides_newversion"            # where to write ONE debug file
 
-output_dir = project_root / "slides_newversion"
+DEBUG_SAVE = True
 
-# ----------------------------
-# Debug toggle
-# ----------------------------
-DEBUG_SAVE = True  # set False to keep everything only in memory (no output files)
-
-# ----------------------------
-# Run planning pipeline
-# ----------------------------
-per_slide_bullets = run_planning_pipeline(
-    slide_group_file=slide_group_file,
+presentation = run_presentation_planning(
+    slide_groups_dir=slide_groups_dir,
     bullet_summary_file=bullet_summary_file,
     model="llama3.1",
     output_dir=output_dir,
-    run_name="intro_continuous_lasing",
     debug_save=DEBUG_SAVE,
 )
 
-# ----------------------------
-# Console debug output
-# ----------------------------
-for slide_uid, bullets in sorted(per_slide_bullets.items()):
-    print(f"\n=== {slide_uid} ({len(bullets)} bullets) ===")
-    for bp in bullets:
-        print(f"{bp.bullet_id}: {bp.text}")
+print(f"\nPlanned {len(presentation.groups)} slide groups.")
+print(f"Total slides: {len(presentation.all_slides)}")
+print(f"Total candidates: {len(presentation.all_candidates)}")
+
+# Optional: quick per-slide print
+for uid, bundle in sorted(presentation.all_slides.items()):
+    print(f"\n--- {uid} ---")
+    print(f"Plan: {bundle.slide_plan.blueprint_text}")
+    print(f"Context: {bundle.slide_context}")
+    print(f"Candidates: {len(bundle.candidates)}")

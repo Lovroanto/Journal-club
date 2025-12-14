@@ -10,6 +10,8 @@ from .planning import parse_slide_group_file, SlideGroupPlan, SlidePlan
 from .bullets import number_bullet_points, BulletPoint
 from .assignment import BulletCandidate, propose_bullet_candidates
 from .models import PlanningResult, SlideBundle
+from .slide_context import build_slide_context  # add near imports at top
+
 
 
 def _ensure_dir(p: Path) -> None:
@@ -76,10 +78,25 @@ def run_planning_pipeline(
         for s in group_plan.slides
     }
 
-    slides: Dict[str, SlideBundle] = {
-        uid: SlideBundle(slide_uid=uid, slide_plan=sp)
-        for uid, sp in slideplan_by_uid.items()
-    }
+    # Build slide bundles with slide_context
+    slides: Dict[str, SlideBundle] = {}
+
+    # Sort slide_uids by slide_id to get previous/next continuity inside the group
+    ordered = sorted(
+        slideplan_by_uid.items(),
+        key=lambda kv: kv[1].slide_id
+    )
+
+    prev_blueprint = None
+    for uid, sp in ordered:
+        ctx = build_slide_context(
+            group_plan=group_plan,
+            slide_plan=sp,
+            model=model,
+            prev_slide_blueprint=prev_blueprint,
+        )
+        slides[uid] = SlideBundle(slide_uid=uid, slide_plan=sp, slide_context=ctx)
+        prev_blueprint = sp.blueprint_text
 
     # Attach candidates to slides
     for c in candidates:
@@ -116,6 +133,7 @@ def run_planning_pipeline(
                     "slide_uid": uid,
                     "slide_id": bundle.slide_plan.slide_id,
                     "plan": bundle.slide_plan.blueprint_text,
+                    "slide_context": bundle.slide_context,
                     "suggested_figures": bundle.slide_plan.suggested_figures,
                     "candidates": [
                         {
