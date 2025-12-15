@@ -57,6 +57,35 @@ def _slide_order_map(presentation: PresentationPlan) -> Dict[str, int]:
             idx += 1
     return order
 
+def load_bullet_resolution_from_debug(path: Union[str, Path]) -> BulletResolutionResult:
+    p = Path(path)
+    data = json.loads(p.read_text(encoding="utf-8"))
+
+    primary_by_bullet = data["primary_by_bullet"]
+
+    usage_by_slide = {}
+    for slide_uid, items in data["usage_by_slide"].items():
+        usage_by_slide[slide_uid] = [
+            BulletUsage(
+                bullet_id=i["bullet_id"],
+                bullet_text=i.get("bullet_text", ""),
+                slide_uid=slide_uid,
+                usage=i["usage"],
+                priority=float(i["priority"]),
+                exclusivity=str(i["exclusivity"]),
+                argument=str(i.get("argument", "")),
+                primary_slide_uid=str(i["primary_slide_uid"]),
+            )
+            for i in items
+        ]
+
+    report = data.get("report", {})
+    return BulletResolutionResult(
+        primary_by_bullet=primary_by_bullet,
+        usage_by_slide=usage_by_slide,
+        report=report,
+    )
+
 
 def resolve_bullets_globally(
     presentation: PresentationPlan,
