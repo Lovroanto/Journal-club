@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import json
+import re
+import hashlib
 from dataclasses import asdict
 from pathlib import Path
-from typing import Dict, List, Optional, Union, Any
+from typing import Any, Dict, List, Optional, Union, Tuple
 
 from .llm import call_llm
 from .presentation_models import PresentationPlan
@@ -128,6 +130,33 @@ def _extract_first_json_object(raw: str) -> dict:
     raise ValueError("Could not parse JSON object from model output (even after trimming).")
 
 
+def _build_bullet_text_lookup(presentation: PresentationPlan) -> Dict[str, str]:
+    """
+    bullet_id -> bullet_text from PresentationPlan (most reliable, if IDs align)
+    """
+    out: Dict[str, str] = {}
+    for g in getattr(presentation, "groups", []):
+        for b in getattr(g, "numbered_bullets", []) or []:
+            bid = str(getattr(b, "bullet_id", "")).strip()
+            txt = str(getattr(b, "text", "")).strip()
+            if bid and txt:
+                out[bid] = txt
+    return out
+
+
+def _build_candidate_argument_lookup(bundle) -> Dict[str, str]:
+    """
+    bullet_id -> candidate.argument (very useful fallback when bullet text is missing)
+    """
+    out: Dict[str, str] = {}
+    for c in list(getattr(bundle, "candidates", []) or []):
+        bid = str(getattr(c, "bullet_id", "") or "").strip()
+        arg = str(getattr(c, "argument", "") or "").strip()
+        if bid and arg:
+            out[bid] = arg
+    return out
+
+
 def _safe_get(obj: Any, key: str, default=None):
     if obj is None:
         return default
@@ -136,25 +165,54 @@ def _safe_get(obj: Any, key: str, default=None):
     return getattr(obj, key, default)
 
 
+def _tokenize_for_overlap(s: str) -> set:
+    s = (s or "").lower()
+    toks = re.findall(r"[a-z0-9]+", s)
+    return {t for t in toks if len(t) >= 4}
+
+
+def _looks_like_results_slide(plan_text: str, slide_context: str) -> bool:
+    s = (plan_text + " " + slide_context).lower()
+    explicit = ["results", "result", "data", "measurement", "measured", "observed", "scan", "spectrum"]
+    regime = ["regime", "regimes", "zones", "zone i", "zone ii", "zone iii", "zone iv", "hysteresis", "frequency pinning"]
+
+    if any(k in s for k in explicit):
+        return True
+
+    hits = 0
+    for k in regime + ["linewidth", "threshold", "bistability"]:
+        if k in s:
+            hits += 1
+
+    return hits >= 2
+
+
 def _infer_priority_for_bullet_on_slide(bundle, bullet_id: Optional[str], bullet_text: str) -> float:
-    """
-    Try to infer priority from bundle.candidates.
-    - Prefer matching by bullet_id
-    - fallback: conservative default
-    """
-    if not hasattr(bundle, "candidates") or bundle.candidates is None:
-        return 0.6
+    cands = list(getattr(bundle, "candidates", []) or [])
+    base: float = 0.70 if not cands else 0.65
 
-    if bullet_id:
-        ps = [
-            float(getattr(c, "priority", 0.0))
-            for c in bundle.candidates
-            if getattr(c, "bullet_id", None) == bullet_id
-        ]
+    if bullet_id and cands:
+        ps = [float(getattr(c, "priority", base)) for c in cands if getattr(c, "bullet_id", None) == bullet_id]
         if ps:
-            return float(max(ps))
+            base = max(base, float(max(ps)))
 
-    return 0.6
+    plan = ""
+    ctx = ""
+    try:
+        plan = str(getattr(getattr(bundle, "slide_plan", None), "blueprint_text", "") or "")
+    except Exception:
+        plan = ""
+    try:
+        ctx = str(getattr(bundle, "slide_context", "") or "")
+    except Exception:
+        ctx = ""
+
+    overlap = _tokenize_for_overlap(bullet_text) & _tokenize_for_overlap(plan + " " + ctx)
+    if overlap:
+        bump = min(0.15, 0.03 * len(overlap))
+        base = min(0.95, base + bump)
+
+    return float(max(0.0, min(1.0, base)))
 
 
 def _build_bullet_requirements(
@@ -163,12 +221,7 @@ def _build_bullet_requirements(
     must_cutoff: float = 0.75,
     should_cutoff: float = 0.55,
 ) -> List[dict]:
-    """
-    Convert "primary" resolved bullets into MUST/SHOULD/OPTIONAL requirements.
-    Uses candidate priority if possible.
-    """
     reqs: List[dict] = []
-
     for u in primary_usages:
         bullet_text = (_safe_get(u, "bullet_text", "") or "").strip()
         if not bullet_text:
@@ -198,64 +251,175 @@ def _build_bullet_requirements(
     return reqs
 
 
-def _normalize_tagged_lines(
-    text: str,
-    allowed=("MAIN", "FIG", "SUP", "LIT"),
-    default_tag="MAIN",
-    max_lines: int = 10,
-) -> str:
-    """
-    CRITICAL FIX: do not drop everything if model forgot tags.
-    - If tagged lines exist, keep them.
-    - Else salvage bullet lines and prefix with [MAIN].
-    - Else salvage sentences and prefix with [MAIN].
-    """
-    text = (text or "").strip()
-    if not text:
-        return ""
+def _fallback_requirements_from_candidates(
+    bundle,
+    bullet_text_by_id: Dict[str, str],
+    max_items: int = 4,
+) -> List[dict]:
+    cands = list(getattr(bundle, "candidates", []) or [])
+    if not cands:
+        return []
 
-    lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
+    cands.sort(key=lambda c: float(getattr(c, "priority", 0.0)), reverse=True)
+    cands = cands[:max_items]
 
-    # 1) keep allowed tagged lines
-    tagged: List[str] = []
-    for ln in lines:
-        for tag in allowed:
-            if ln.startswith(f"[{tag}]"):
-                tagged.append(ln)
-                break
-    if tagged:
-        return "\n".join(tagged[:max_lines]).strip()
+    reqs: List[dict] = []
+    for c in cands:
+        bullet_id = getattr(c, "bullet_id", None)
+        pr = float(getattr(c, "priority", 0.6))
 
-    # 2) salvage bullet-ish lines
-    bullets: List[str] = []
-    for ln in lines:
-        s = ln.lstrip("-*•").strip()
-        if not s or len(s) < 6:
+        bullet_text = ""
+        if bullet_id:
+            bullet_text = (bullet_text_by_id.get(str(bullet_id).strip(), "") or "").strip()
+
+        level = "MUST" if pr >= 0.80 else "SHOULD"
+        reqs.append(
+            {
+                "bullet_id": bullet_id,
+                "text": bullet_text,
+                "priority": round(pr, 3),
+                "level": level,
+            }
+        )
+
+    level_order = {"MUST": 0, "SHOULD": 1, "OPTIONAL": 2}
+    reqs.sort(key=lambda r: (level_order.get(r["level"], 9), -r["priority"]))
+    return reqs
+
+
+def _norm_text(s: str) -> str:
+    return " ".join((s or "").split()).strip()
+
+
+def _dedupe_evidence(evidence: List[EvidenceChunk]) -> List[EvidenceChunk]:
+    seen: set = set()
+    out: List[EvidenceChunk] = []
+    for e in evidence:
+        txt = _norm_text(getattr(e, "text", "") or "")
+        if not txt:
             continue
-        low = s.lower()
-        if low.startswith("here are") or low.startswith("summary") or low.startswith("the following"):
+        key = txt.lower()
+        h = hashlib.sha1(key[:4000].encode("utf-8", errors="ignore")).hexdigest()
+        if h in seen:
             continue
-        bullets.append(f"[{default_tag}] {s}")
-    if bullets:
-        return "\n".join(bullets[:max_lines]).strip()
+        seen.add(h)
+        out.append(e)
+    return out
 
-    # 3) salvage sentences from paragraph
-    joined = " ".join(lines)
-    parts: List[str] = []
-    buf = ""
-    for ch in joined:
-        buf += ch
-        if ch in ".!?":
-            s = buf.strip()
-            buf = ""
-            if len(s) >= 20:
-                parts.append(s)
-    if buf.strip():
-        parts.append(buf.strip())
 
-    parts = parts[:max_lines]
-    parts = [f"[{default_tag}] {p}" for p in parts if p]
-    return "\n".join(parts).strip()
+def _normalize_tagged_lines(raw: str, allowed_tags: Tuple[str, ...]) -> str:
+    raw = _strip_code_fences(raw or "")
+    lines = [l.strip() for l in raw.splitlines()]
+    lines = [l for l in lines if l]
+
+    tag_re = re.compile(r"^\[(%s)\]\s*" % "|".join(re.escape(t) for t in allowed_tags), flags=re.IGNORECASE)
+    num_re = re.compile(r"^\s*(?:[-*]|\d+[\).\]]|•)\s*")
+
+    kept: List[str] = []
+    for l in lines:
+        l2 = num_re.sub("", l).strip()
+        if tag_re.match(l2):
+            kept.append(l2)
+
+    if not kept and lines:
+        return "\n".join(lines)
+
+    return "\n".join(kept)
+
+
+def _validate_slide_spec_json(data: dict, slide_uid: str, suggested_figures: List[str]) -> None:
+    if not isinstance(data, dict):
+        raise ValueError("SlideSpec JSON is not an object")
+
+    if data.get("slide_uid") != slide_uid:
+        raise ValueError(f"slide_uid mismatch: {data.get('slide_uid')} != {slide_uid}")
+
+    title = str(data.get("title", "")).strip()
+    if not title:
+        raise ValueError("Missing/empty title")
+
+    fig = data.get("figure_used", None)
+    if fig is not None and fig not in suggested_figures:
+        raise ValueError("figure_used must be one of suggested_figures or null")
+
+    bullets = data.get("on_slide_bullets", None)
+    if not isinstance(bullets, list):
+        raise ValueError("on_slide_bullets must be a list")
+
+    bullets2 = [str(b).strip() for b in bullets if str(b).strip()]
+    if not (5 <= len(bullets2) <= 7):
+        raise ValueError("on_slide_bullets must contain 5–7 non-empty items")
+
+    transition = str(data.get("transition", "")).strip()
+    if not transition:
+        raise ValueError("Missing/empty transition")
+
+    reminders = data.get("reminders", [])
+    if not isinstance(reminders, list):
+        raise ValueError("reminders must be a list")
+
+    for r in reminders:
+        if not isinstance(r, (str, int, float)):
+            raise ValueError("reminders items must be strings")
+        if not str(r).strip():
+            raise ValueError("reminders must not contain empty items")
+
+
+def _count_evidence_sources(evidence: List[EvidenceChunk]) -> Dict[str, int]:
+    counts: Dict[str, int] = {}
+    for e in evidence or []:
+        src = str(getattr(e, "source", "") or "").strip().upper() or "UNKNOWN"
+        counts[src] = counts.get(src, 0) + 1
+    return counts
+
+
+def _slice_evidence_by_source(evidence: List[EvidenceChunk], source: str) -> List[EvidenceChunk]:
+    src = (source or "").upper().strip()
+    out: List[EvidenceChunk] = []
+    for e in evidence or []:
+        if str(getattr(e, "source", "") or "").upper().strip() == src:
+            out.append(e)
+    return out
+
+
+def _evidence_text(evidence: List[EvidenceChunk]) -> str:
+    return "\n\n".join([f"[{e.source}]\n{e.text}" for e in (evidence or [])])
+
+
+def _merge_fact_banks(banks: List[str]) -> str:
+    """
+    Merge multiple line-lists into one, lightly de-dup by normalized text (ignoring tag).
+    Preserves tags.
+    """
+    seen = set()
+    out_lines: List[str] = []
+
+    for bank in banks:
+        for line in (bank or "").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if not line.startswith("[") or "]" not in line:
+                continue
+            tag = line[: line.find("]") + 1]
+            body = _norm_text(line[line.find("]") + 1 :]).lower()
+            key = hashlib.sha1(body[:2000].encode("utf-8", errors="ignore")).hexdigest()
+            if key in seen:
+                continue
+            seen.add(key)
+            out_lines.append(f"{tag} {line[line.find(']')+1:].strip()}".strip())
+
+    return "\n".join(out_lines)
+
+
+def _format_requirements_for_query(bullet_requirements: Optional[List[dict]]) -> List[str]:
+    req_lines: List[str] = []
+    for r in (bullet_requirements or []):
+        txt = str(r.get("text", "") or "").strip()
+        lvl = str(r.get("level", "") or "").strip()
+        if txt:
+            req_lines.append(f"- ({lvl}) {txt}")
+    return req_lines
 
 
 # ----------------------------
@@ -268,56 +432,108 @@ def retrieve_evidence_for_slide(
     slide_context: str,
     primary_bullets: List[str],
     reminder_bullets: List[str],
+    bullet_requirements: Optional[List[dict]],
+    candidate_arguments: Optional[List[str]],
     rag: RAGStores,
-    k_main: int = 6,
-    k_figs: int = 4,
-    k_sup: int = 3,
-    k_lit: int = 2,
+    k_main: int = 18,
+    k_figs: int = 10,
+    k_sup: int = 10,
+    k_lit: int = 8,
     use_figs: bool = True,
     use_sup: bool = False,
     use_lit: bool = False,
     include_reminders_in_query: bool = False,
 ) -> List[EvidenceChunk]:
-    parts = [
-        f"PLAN: {plan_text}",
-        "PRIMARY BULLETS (key claims to support):",
-        *[f"- {b}" for b in primary_bullets],
-    ]
+    """
+    High-recall retrieval.
 
-    if slide_context:
-        short_ctx = " ".join(slide_context.split()[:40])
-        parts.append(f"CONTEXT (short): {short_ctx}")
+    MAIN is queried in multiple ways:
+    - plan/context only
+    - bullets only
+    - plan/context + bullets together (strong)
+    - requirements/candidate arguments (extra intent signal)
+
+    This matches the design goal:
+    retrieve as much as possible now; selection happens later.
+    """
+
+    req_lines = _format_requirements_for_query(bullet_requirements)
+    cand_lines = [f"- {a}" for a in (candidate_arguments or []) if str(a or "").strip()]
+
+    plan_ctx_block = "\n".join([p for p in [
+        f"PLAN: {plan_text}",
+        f"CONTEXT: {slide_context}" if slide_context else "",
+    ] if p]).strip()
+
+    bullets_block = "\n".join(
+        ["PRIMARY BULLETS:"] + [f"- {b}" for b in primary_bullets if str(b or "").strip()]
+    ).strip()
 
     if include_reminders_in_query and reminder_bullets:
-        parts += ["REMINDERS:"] + [f"- {b}" for b in reminder_bullets]
+        bullets_block += "\n" + "\n".join(["REMINDERS:"] + [f"- {b}" for b in reminder_bullets])
 
-    query = "\n".join(parts)
+    intent_block = "\n".join(
+        (["BULLET REQUIREMENTS:"] + req_lines + ["CANDIDATE ARGUMENTS:"] + cand_lines)
+        if (req_lines or cand_lines)
+        else []
+    ).strip()
+
+    # Queries: separate + combined
+    q_plan = plan_ctx_block
+    q_bullets = bullets_block
+    q_combo = "\n\n".join([x for x in [plan_ctx_block, bullets_block] if x]).strip()
+    q_intent = "\n\n".join([x for x in [plan_ctx_block, bullets_block, intent_block] if x]).strip()
 
     evidence: List[EvidenceChunk] = []
 
-    main_docs = rag.main.similarity_search(query, k=k_main)
+    # ---- MAIN: multiple passes, higher recall
+    main_docs = []
+    if q_plan:
+        main_docs += rag.main.similarity_search(q_plan, k=max(4, k_main // 3))
+    if q_bullets:
+        main_docs += rag.main.similarity_search(q_bullets, k=max(4, k_main // 3))
+    if q_combo:
+        main_docs += rag.main.similarity_search(q_combo, k=k_main)
+    if q_intent and q_intent != q_combo:
+        main_docs += rag.main.similarity_search(q_intent, k=max(4, k_main // 2))
+
     for t in _docs_to_text(main_docs):
         evidence.append(EvidenceChunk(source="MAIN", text=t))
 
+    # ---- FIG: use combo + bullets
     if use_figs:
-        fig_docs = rag.figs.similarity_search(query, k=k_figs)
+        fig_docs = []
+        if q_combo:
+            fig_docs += rag.figs.similarity_search(q_combo, k=k_figs)
+        elif q_bullets:
+            fig_docs += rag.figs.similarity_search(q_bullets, k=k_figs)
         for t in _docs_to_text(fig_docs):
             evidence.append(EvidenceChunk(source="FIG", text=t))
 
+    # ---- SUP: use intent + combo (if enabled)
     if use_sup and rag.sup is not None:
-        sup_docs = rag.sup.similarity_search(query, k=k_sup)
+        sup_docs = []
+        if q_intent:
+            sup_docs += rag.sup.similarity_search(q_intent, k=k_sup)
+        elif q_combo:
+            sup_docs += rag.sup.similarity_search(q_combo, k=k_sup)
         for t in _docs_to_text(sup_docs):
             evidence.append(EvidenceChunk(source="SUP", text=t))
 
+    # ---- LIT: use plan + combo (if enabled)
     if use_lit and rag.lit is not None:
-        lit_docs = rag.lit.similarity_search(query, k=k_lit)
+        lit_docs = []
+        if q_plan:
+            lit_docs += rag.lit.similarity_search(q_plan, k=max(3, k_lit // 2))
+        if q_combo:
+            lit_docs += rag.lit.similarity_search(q_combo, k=k_lit)
         for t in _docs_to_text(lit_docs):
             evidence.append(EvidenceChunk(source="LIT", text=t))
 
-    return evidence
+    return _dedupe_evidence(evidence)
 
 
-def distill_evidence_for_slide(
+def _distill_facts_for_source(
     slide_uid: str,
     plan_text: str,
     slide_context: str,
@@ -325,9 +541,14 @@ def distill_evidence_for_slide(
     reminder_bullets: List[str],
     evidence: List[EvidenceChunk],
     model: str,
+    target_source: str,
+    n_min: int,
+    n_max: int,
+    is_results: bool,
     debug_path: Optional[Path] = None,
 ) -> str:
-    ev_txt = "\n\n".join([f"[{e.source}]\n{e.text}" for e in evidence])
+    src = target_source.upper().strip()
+    ev_txt = _evidence_text(evidence)
 
     prompt = f"""
 You are an evidence distiller for ONE slide of a scientific talk.
@@ -336,38 +557,116 @@ SLIDE_UID: {slide_uid}
 PLAN: {plan_text}
 CONTEXT (role): {slide_context}
 
-PRIMARY BULLETS (what must be supported):
+PRIMARY BULLETS (claims to support):
 {json.dumps(primary_bullets, indent=2)}
 
+REMINDERS (optional; lower priority):
+{json.dumps(reminder_bullets, indent=2)}
+
 TASK:
-From the evidence below, extract 6–12 short FACTS that directly help explain this slide.
+Extract {n_min}–{n_max} short FACTS from the evidence ONLY for source [{src}] that directly help this slide.
 
 Rules:
-- Prefer facts that explain the PLAN and the PRIMARY BULLETS.
-- Each fact should ideally start with [MAIN]/[FIG]/[SUP]/[LIT] but if you forget, still output bullet lines.
-- Avoid experimental setup unless the PLAN explicitly requires it.
-- Do NOT summarize the whole paper.
+- Every line MUST start with [{src}] exactly.
+- Facts must be relevant to PLAN + PRIMARY BULLETS.
+- Prefer mechanism/causal phrasing if PLAN is "how/why/facilitates/enables".
+- STRICT: Do NOT list experimental setup details (lasers, lattice beams, molasses, etc.)
+  unless they directly explain the PLAN mechanism (continuous lasing via cavity QED / pinning / gain / inversion).
+- STRICT: {"You MAY mention zones/regimes if relevant." if is_results else "Do NOT mention zones I/II/III/IV or regime labels unless the PLAN explicitly says results/regimes."}
 - Keep each fact to one sentence.
+- No numbering, no preamble.
 
 EVIDENCE:
 {ev_txt}
 
 OUTPUT:
-Return ONLY the list of facts as plain text lines.
+Return ONLY the list of facts, one per line.
 """
-
     raw = call_llm(model, prompt).strip()
-    raw = _normalize_tagged_lines(raw, max_lines=12)
+    raw2 = _normalize_tagged_lines(raw, (src,))
+    if debug_path is not None:
+        debug_path.parent.mkdir(parents=True, exist_ok=True)
+        debug_path.write_text(raw2, encoding="utf-8")
+    return raw2
+
+
+def distill_evidence_for_slide(
+    slide_uid: str,
+    plan_text: str,
+    slide_context: str,
+    primary_bullets: List[str],
+    reminder_bullets: Optional[List[str]] = None,
+    evidence: Optional[List[EvidenceChunk]] = None,
+    model: str = "llama3.1",
+    debug_path: Optional[Path] = None,
+) -> str:
+    evidence = evidence or []
+    reminder_bullets = reminder_bullets or []
+
+    is_results = _looks_like_results_slide(plan_text, slide_context)
+    counts = _count_evidence_sources(evidence)
+
+    banks: List[str] = []
+
+    if counts.get("MAIN", 0) > 0:
+        banks.append(
+            _distill_facts_for_source(
+                slide_uid, plan_text, slide_context, primary_bullets, reminder_bullets,
+                _slice_evidence_by_source(evidence, "MAIN"),
+                model=model, target_source="MAIN",
+                n_min=8, n_max=14,
+                is_results=is_results,
+                debug_path=(debug_path.parent / (debug_path.stem + "__MAIN.txt")) if debug_path else None,
+            )
+        )
+
+    if counts.get("FIG", 0) > 0:
+        banks.append(
+            _distill_facts_for_source(
+                slide_uid, plan_text, slide_context, primary_bullets, reminder_bullets,
+                _slice_evidence_by_source(evidence, "FIG"),
+                model=model, target_source="FIG",
+                n_min=3, n_max=6,
+                is_results=is_results,
+                debug_path=(debug_path.parent / (debug_path.stem + "__FIG.txt")) if debug_path else None,
+            )
+        )
+
+    if counts.get("SUP", 0) > 0:
+        banks.append(
+            _distill_facts_for_source(
+                slide_uid, plan_text, slide_context, primary_bullets, reminder_bullets,
+                _slice_evidence_by_source(evidence, "SUP"),
+                model=model, target_source="SUP",
+                n_min=3, n_max=6,
+                is_results=is_results,
+                debug_path=(debug_path.parent / (debug_path.stem + "__SUP.txt")) if debug_path else None,
+            )
+        )
+
+    if counts.get("LIT", 0) > 0:
+        banks.append(
+            _distill_facts_for_source(
+                slide_uid, plan_text, slide_context, primary_bullets, reminder_bullets,
+                _slice_evidence_by_source(evidence, "LIT"),
+                model=model, target_source="LIT",
+                n_min=2, n_max=5,
+                is_results=is_results,
+                debug_path=(debug_path.parent / (debug_path.stem + "__LIT.txt")) if debug_path else None,
+            )
+        )
+
+    merged = _merge_fact_banks(banks)
 
     if debug_path is not None:
         debug_path.parent.mkdir(parents=True, exist_ok=True)
-        debug_path.write_text(raw, encoding="utf-8")
+        debug_path.write_text(merged, encoding="utf-8")
 
-    return raw
+    return merged
 
 
 # ----------------------------
-# Keypoints + Speech
+# Content planning (key points) + speech
 # ----------------------------
 
 def select_key_points_for_slide(
@@ -379,38 +678,45 @@ def select_key_points_for_slide(
     model: str,
     debug_path: Optional[Path] = None,
 ) -> str:
+    is_results = _looks_like_results_slide(plan_text, slide_context)
+
     prompt = f"""
-You are selecting KEY POINTS for ONE slide.
+You are planning the CONTENT of ONE slide.
 
 SLIDE_UID: {slide_uid}
 PLAN: {plan_text}
 CONTEXT: {slide_context}
 
-BULLET REQUIREMENTS:
+BULLET REQUIREMENTS (MUST items are mandatory):
 {json.dumps(bullet_requirements, indent=2)}
 
-DISTILLED FACTS:
+DISTILLED FACTS (fact bank; MAIN is primary, others are supporting):
 {distilled_facts}
 
 TASK:
-Pick 5–8 KEY POINTS this slide MUST communicate.
+Pick 6–10 KEY POINTS that this slide should communicate.
+
 Rules:
-- Must cover all items with level MUST.
-- SHOULD items should be included if they fit.
-- Each key point should be grounded in the distilled facts.
-- Output as plain text bullet lines. Tags like [MAIN]/[FIG]/[SUP]/[LIT] are preferred but not mandatory.
+- Each key point must be grounded in the facts above and start with [MAIN]/[FIG]/[SUP]/[LIT].
+- Prefer [MAIN] key points when overlapping information exists; use [FIG]/[SUP]/[LIT] only for added nuance/details.
+- Cover ALL items with level MUST (explicitly).
+- If PLAN is mechanism/how/why/facilitates/enables: key points must explain a causal chain:
+  (why cavity helps → how gain/inversion arises → what limits/defines it → why this enables precision).
+- {"You MAY include zones/regimes." if is_results else "Do NOT include zones/regimes unless PLAN explicitly says results/regimes."}
+- Avoid wasting points on setup unless required by PLAN.
+- No numbering, no preamble.
 
 OUTPUT:
-Return ONLY the list of key points as plain text lines.
+Return ONLY the list of key points, one per line.
 """
+
     raw = call_llm(model, prompt).strip()
-    raw = _normalize_tagged_lines(raw, max_lines=10)
+    raw2 = _normalize_tagged_lines(raw, ("MAIN", "FIG", "SUP", "LIT"))
 
     if debug_path is not None:
         debug_path.parent.mkdir(parents=True, exist_ok=True)
-        debug_path.write_text(raw, encoding="utf-8")
-
-    return raw
+        debug_path.write_text(raw2, encoding="utf-8")
+    return raw2
 
 
 def generate_speaker_notes(
@@ -436,28 +742,29 @@ KEY POINTS (grounded):
 {key_points}
 
 TASK:
-Write 150–220 words speaker notes.
+Write 160–240 words speaker notes.
 
 Rules:
 - Must explicitly cover all level MUST requirements.
-- SHOULD items should be included if they fit naturally.
-- Do not invent facts not supported by KEY POINTS.
+- SHOULD requirements should be included if they fit naturally.
+- Stay aligned with PLAN + CONTEXT; do not drift into unrelated results.
+- Do not invent facts beyond key points.
 - No headings, no "Slide 1/2", just a single paragraph.
 
 OUTPUT:
-Return ONLY the speaker notes text.
+Return ONLY the speaker notes paragraph.
 """
     raw = call_llm(model, prompt).strip()
+    raw2 = _strip_code_fences(raw).strip()
 
     if debug_path is not None:
         debug_path.parent.mkdir(parents=True, exist_ok=True)
-        debug_path.write_text(raw, encoding="utf-8")
-
-    return raw
+        debug_path.write_text(raw2, encoding="utf-8")
+    return raw2
 
 
 # ----------------------------
-# Slide spec generation (3-step)
+# Slide spec generation (JSON)
 # ----------------------------
 
 def generate_slide_spec(
@@ -473,8 +780,9 @@ def generate_slide_spec(
     debug_raw_path: Optional[Path] = None,
     debug_keypoints_path: Optional[Path] = None,
     debug_speech_path: Optional[Path] = None,
+    max_json_attempts: int = 3,
 ) -> SlideSpec:
-    # 1) Key points
+
     key_points = select_key_points_for_slide(
         slide_uid=slide_uid,
         plan_text=plan_text,
@@ -485,7 +793,6 @@ def generate_slide_spec(
         debug_path=debug_keypoints_path,
     )
 
-    # 2) Speaker notes
     speaker_notes = generate_speaker_notes(
         slide_uid=slide_uid,
         plan_text=plan_text,
@@ -496,72 +803,95 @@ def generate_slide_spec(
         debug_path=debug_speech_path,
     )
 
-    # 3) Compress to slide JSON (ONLY slide text, do not regenerate speech)
     prompt = f"""
-SYSTEM CONTRACT:
-- Generate EXACTLY ONE slide: {slide_uid}
+SYSTEM CONTRACT (MUST FOLLOW):
+- You are generating EXACTLY ONE slide: {slide_uid}
 - Output MUST be a SINGLE JSON object and NOTHING ELSE.
-- JSON MUST include "slide_uid" = "{slide_uid}"
+- JSON MUST include the field "slide_uid" and it MUST equal "{slide_uid}".
 
 SLIDE_UID: {slide_uid}
 PLAN: {plan_text}
+CONTEXT: {slide_context}
+
 SUGGESTED FIGURES: {json.dumps(suggested_figures, indent=2)}
 
-SPEAKER NOTES (DO NOT rewrite; only compress into slide bullets):
+SPEAKER NOTES (ground truth):
 {speaker_notes}
 
-KEY POINTS:
+KEY POINTS (grounded):
 {key_points}
+
+REMINDERS (optional):
+{json.dumps(reminder_bullets, indent=2)}
 
 TASK:
 Create slide content as a compression of the speaker notes.
 
 Rules:
-- 3–5 on-slide bullets, short phrases (no long sentences).
+- Produce 5–7 on-slide bullets (short phrases, no full sentences).
+- At least 2 bullets must directly express the PLAN (cavity QED → continuous lasing → high precision).
+- At least 1 bullet must reflect the highest-priority MUST requirement.
+- Prefer causal/mechanism phrasing if PLAN says "how/why/facilitates/enables".
 - figure_used must be one of suggested_figures or null.
-- transition: 1 sentence leading to the next slide.
-- reminders: can be empty list.
+- transition: 1 sentence leading to next slide.
+- reminders: keep as short list (can be empty).
 
-OUTPUT JSON:
+OUTPUT (STRICT JSON ONLY):
 {{
   "slide_uid": "{slide_uid}",
   "title": "short title",
   "figure_used": null,
-  "on_slide_bullets": ["...", "...", "..."],
+  "on_slide_bullets": ["...", "...", "...", "...", "..."],
   "transition": "...",
   "reminders": []
 }}
 """
 
-    raw = call_llm(model, prompt).strip()
+    last_raw = ""
+    last_err: Optional[Exception] = None
 
-    if debug_raw_path is not None:
-        debug_raw_path.parent.mkdir(parents=True, exist_ok=True)
-        debug_raw_path.write_text(raw, encoding="utf-8")
+    for attempt in range(1, max_json_attempts + 1):
+        raw = call_llm(model, prompt).strip()
+        last_raw = raw
 
-    data = _extract_first_json_object(raw)
-    data["slide_uid"] = slide_uid  # force correct
+        if debug_raw_path is not None:
+            debug_raw_path.parent.mkdir(parents=True, exist_ok=True)
+            debug_raw_path.write_text(raw, encoding="utf-8")
 
-    title = str(data.get("title", "")).strip()
-    figure_used = data.get("figure_used", None)
-    on_slide_bullets = [str(x).strip() for x in data.get("on_slide_bullets", [])]
-    transition = str(data.get("transition", "")).strip()
-    reminders = [str(x).strip() for x in data.get("reminders", [])]
+        try:
+            data = _extract_first_json_object(raw)
+            data["slide_uid"] = slide_uid
+            _validate_slide_spec_json(data, slide_uid=slide_uid, suggested_figures=suggested_figures)
 
-    return SlideSpec(
-        slide_uid=slide_uid,
-        title=title,
-        figure_used=figure_used,
-        on_slide_bullets=on_slide_bullets,
-        speaker_notes=speaker_notes,   # keep the richer speech we generated
-        transition=transition,
-        reminders=reminders,
-        evidence=evidence,
+            title = str(data.get("title", "")).strip()
+            figure_used = data.get("figure_used", None)
+            on_slide_bullets = [str(x).strip() for x in data.get("on_slide_bullets", []) if str(x).strip()]
+            transition = str(data.get("transition", "")).strip()
+            reminders = [str(x).strip() for x in data.get("reminders", []) if str(x).strip()]
+
+            return SlideSpec(
+                slide_uid=slide_uid,
+                title=title,
+                figure_used=figure_used,
+                on_slide_bullets=on_slide_bullets,
+                speaker_notes=speaker_notes,
+                transition=transition,
+                reminders=reminders,
+                evidence=evidence,
+            )
+        except Exception as e:
+            last_err = e
+            continue
+
+    raise ValueError(
+        f"Failed to generate valid SlideSpec JSON for {slide_uid} after {max_json_attempts} attempts.\n"
+        f"Last error: {last_err}\n"
+        f"Last raw output (first 800 chars):\n{(last_raw or '')[:800]}"
     )
 
 
 # ----------------------------
-# Presentation realization (all slides or subset)
+# Presentation realization
 # ----------------------------
 
 def realize_presentation_slides(
@@ -575,6 +905,7 @@ def realize_presentation_slides(
 ) -> Dict[str, SlideSpec]:
 
     slide_specs: Dict[str, SlideSpec] = {}
+    bullet_text_by_id: Dict[str, str] = _build_bullet_text_lookup(presentation)
 
     all_items = sorted(presentation.all_slides.items())
     if only_slide_uids is not None:
@@ -583,25 +914,75 @@ def realize_presentation_slides(
 
     for slide_uid, bundle in all_items:
         usages = resolved.usage_by_slide.get(slide_uid, [])
+
         primary_usages = [u for u in usages if _safe_get(u, "usage", "") == "primary"]
         reminder_usages = [u for u in usages if _safe_get(u, "usage", "") == "reminder"]
 
+        # Backfill bullet_text from bullet_id if missing
+        for u in primary_usages + reminder_usages:
+            txt = (_safe_get(u, "bullet_text", "") or "").strip()
+            if not txt:
+                bid = _safe_get(u, "bullet_id", None)
+                if bid:
+                    fallback_txt = (bullet_text_by_id.get(str(bid).strip(), "") or "").strip()
+                    if isinstance(u, dict):
+                        u["bullet_text"] = fallback_txt
+                    else:
+                        try:
+                            setattr(u, "bullet_text", fallback_txt)
+                        except Exception:
+                            pass
+
         primary_texts = [(_safe_get(u, "bullet_text", "") or "").strip() for u in primary_usages]
         primary_texts = [t for t in primary_texts if t]
+
         reminder_texts = [(_safe_get(u, "bullet_text", "") or "").strip() for u in reminder_usages]
         reminder_texts = [t for t in reminder_texts if t]
 
         bullet_requirements = _build_bullet_requirements(bundle, primary_usages)
 
-        # Debug: requirements JSON
+        # ✅ fill requirement text from bullet_text_by_id first, then candidate arguments
+        cand_arg_by_id = _build_candidate_argument_lookup(bundle)
+
+        for r in bullet_requirements:
+            if (not (r.get("text") or "").strip()) and r.get("bullet_id"):
+                r["text"] = (bullet_text_by_id.get(str(r["bullet_id"]).strip(), "") or "").strip()
+
+            if not (r.get("text") or "").strip():
+                bid = str(r.get("bullet_id") or "").strip()
+                if bid and bid in cand_arg_by_id:
+                    r["text"] = cand_arg_by_id[bid]
+
+        if (not bullet_requirements) or (not any((r.get("text") or "").strip() for r in bullet_requirements)):
+            bullet_requirements = _fallback_requirements_from_candidates(
+                bundle=bundle,
+                bullet_text_by_id=bullet_text_by_id,
+                max_items=4,
+            )
+
+            # fill fallback requirements too
+            for r in bullet_requirements:
+                if not (r.get("text") or "").strip():
+                    bid = str(r.get("bullet_id") or "").strip()
+                    if bid and bid in cand_arg_by_id:
+                        r["text"] = cand_arg_by_id[bid]
+
         if debug_save and output_dir is not None:
             req_path = Path(output_dir) / "slide_realization_requirements" / f"{slide_uid.replace('::','__')}.json"
             req_path.parent.mkdir(parents=True, exist_ok=True)
             req_path.write_text(json.dumps(bullet_requirements, indent=2), encoding="utf-8")
 
+        plan_lower = (bundle.slide_plan.blueprint_text + " " + (bundle.slide_context or "")).lower()
+
         use_figs = bool(getattr(bundle.slide_plan, "suggested_figures", []))
-        use_sup = False
-        use_lit = False
+        use_sup = bool(getattr(bundle.slide_plan, "supmat_notes", None)) or any(
+            k in plan_lower for k in ["equation", "model", "derivation", "mechanism", "rate", "linewidth", "gain"]
+        )
+        use_lit = any(
+            k in plan_lower for k in ["introduce", "definition", "background", "motivation", "overview", "cavity qed"]
+        )
+
+        candidate_arguments = list(cand_arg_by_id.values())
 
         evidence = retrieve_evidence_for_slide(
             slide_uid=slide_uid,
@@ -609,12 +990,19 @@ def realize_presentation_slides(
             slide_context=bundle.slide_context,
             primary_bullets=primary_texts,
             reminder_bullets=reminder_texts,
+            bullet_requirements=bullet_requirements,
+            candidate_arguments=candidate_arguments,
             rag=rag,
             use_figs=use_figs,
             use_sup=use_sup,
             use_lit=use_lit,
             include_reminders_in_query=False,
         )
+
+        if debug_save and output_dir is not None:
+            counts_path = Path(output_dir) / "slide_realization_evidence_counts" / f"{slide_uid.replace('::','__')}.json"
+            counts_path.parent.mkdir(parents=True, exist_ok=True)
+            counts_path.write_text(json.dumps(_count_evidence_sources(evidence), indent=2), encoding="utf-8")
 
         distilled_debug = None
         if debug_save and output_dir is not None:
@@ -634,6 +1022,7 @@ def realize_presentation_slides(
         debug_raw_path = None
         debug_keypoints_path = None
         debug_speech_path = None
+
         if debug_save and output_dir is not None:
             base = Path(output_dir)
             debug_raw_path = base / "slide_realization_raw" / f"{slide_uid.replace('::','__')}.txt"
@@ -653,6 +1042,7 @@ def realize_presentation_slides(
             debug_raw_path=debug_raw_path,
             debug_keypoints_path=debug_keypoints_path,
             debug_speech_path=debug_speech_path,
+            max_json_attempts=3,
         )
 
         slide_specs[slide_uid] = spec
