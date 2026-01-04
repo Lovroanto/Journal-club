@@ -89,10 +89,8 @@ def propose_bullet_candidates(
 ) -> List[BulletCandidate]:
     """
     For ONE slide group:
-    - Ask LLM to propose candidates PER SLIDE (top-N bullets per slide).
-    - The same bullet may appear on multiple slides with different priority.
-    - Returns in-memory BulletCandidate objects.
-    - (Optional) debug raw + parsed JSON (you can keep this during debugging).
+    - Ask LLM to propose bullet candidates PER SLIDE
+    - AND assign at most ONE figure per slide (from available figures)
     """
 
     if group_id is None:
@@ -109,9 +107,10 @@ def propose_bullet_candidates(
 
     bullet_list = [{"bullet_id": b.bullet_id, "text": b.text} for b in bullets]
 
+    available_figures = group_plan.available_figures or []
+
     prompt = f"""
 You are planning a scientific presentation about ONE paper.
-
 We are currently working on ONE SLIDE GROUP.
 
 GROUP_ID: {group_id}
@@ -124,35 +123,39 @@ SUPMAT_NOTES: {group_plan.supmat_notes}
 SLIDES (use slide_uid exactly as given):
 {json.dumps(slide_blueprints, indent=2)}
 
+AVAILABLE FIGURES (each figure can be used at most once):
+{json.dumps(available_figures, indent=2)}
+
 NUMBERED BULLETS (use bullet_id exactly as given):
 {json.dumps(bullet_list, indent=2)}
 
-TASK (IMPORTANT):
-For EACH slide, select between {min_per_slide} and {max_per_slide} bullet points that could support that slide's plan.
+TASK:
+For EACH slide:
+1) Select between {min_per_slide} and {max_per_slide} bullet points that could support the slide.
+2) Optionally assign ONE figure from AVAILABLE FIGURES that best supports the slide.
+   - A figure may be used by at most ONE slide.
+   - If no figure is appropriate, set figure_used to null.
 
-Rules:
-- You MUST return a list entry for every slide_uid.
-- For each slide_uid, output {min_per_slide}–{max_per_slide} candidates.
-- It is OK if the SAME bullet_id appears in candidates for multiple slides, with different priorities.
-  (We will decide final placement later across the full presentation.)
-- Use priority to express relevance:
-    0.85–1.00 = essential for this slide
+Rules for bullets:
+- Same bullet_id may appear on multiple slides with different priorities.
+- Priority scale:
+    0.85–1.00 = essential
     0.60–0.85 = good support
     0.35–0.60 = weak but plausible
-  Do NOT output priorities below 0.35.
-- exclusivity meaning:
-    strong = particularly tied to this slide / hard to move
-    medium = reasonable here, could be elsewhere
-    weak = optional support / could be moved
-- argument must be specific to the slide plan and the bullet text (no generic filler).
+- Do NOT output priorities below 0.35.
+- exclusivity:
+    strong = tightly bound to this slide
+    medium = movable
+    weak = optional
+- argument must be specific and technical.
 
 OUTPUT FORMAT:
 Return ONLY valid JSON. No commentary, no markdown.
-The output MUST begin with '[' and end with ']'.
 
 [
   {{
     "slide_uid": "{group_id}::Slide_1",
+    "figure_used": "Figure X description" | null,
     "candidates": [
       {{
         "bullet_id": "BP_001",
@@ -179,41 +182,42 @@ The output MUST begin with '[' and end with ']'.
         (d / "candidates.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
 
     out: List[BulletCandidate] = []
-    skipped: List[dict] = []
 
-    # Expect: list of {"slide_uid": "...", "candidates": [ ... ]}
+    # NEW: map slide_uid → figure_used
+    figure_by_slide: dict[str, Optional[str]] = {}
+
     for slide_block in data:
         slide_uid = str(slide_block.get("slide_uid", "")).strip()
-        cand_list = slide_block.get("candidates", [])
+        if not slide_uid:
+            continue
 
-        if not slide_uid or not isinstance(cand_list, list):
-            skipped.append(slide_block)
+        fig = slide_block.get("figure_used", None)
+        if isinstance(fig, str):
+            fig = fig.strip()
+        else:
+            fig = None
+
+        figure_by_slide[slide_uid] = fig
+
+        cand_list = slide_block.get("candidates", [])
+        if not isinstance(cand_list, list):
             continue
 
         for item in cand_list:
             bullet_id = str(item.get("bullet_id", "")).strip()
             if not bullet_id:
-                skipped.append(item)
                 continue
 
-            argument = str(item.get("argument", "")).strip()
-            if not argument:
-                argument = str(item.get("reason", "")).strip()
-            if not argument:
-                argument = "MISSING_ARGUMENT_FROM_MODEL"
+            argument = str(item.get("argument", "")).strip() or "MISSING_ARGUMENT"
 
             try:
                 priority = float(item.get("priority", 0.5))
             except (TypeError, ValueError):
                 priority = 0.5
 
-            # clamp & enforce minimum (we don't want 0.0 noise)
-            if priority < 0.35:
-                priority = 0.35
-            elif priority > 1.0:
-                priority = 1.0
+            priority = max(0.35, min(priority, 1.0))
 
-            exclusivity = str(item.get("exclusivity", "medium")).strip().lower()
+            exclusivity = str(item.get("exclusivity", "medium")).lower()
             if exclusivity not in ("strong", "medium", "weak"):
                 exclusivity = "medium"
 
@@ -227,11 +231,10 @@ The output MUST begin with '[' and end with ']'.
                 )
             )
 
-    if debug_save and debug_dir is not None and skipped:
-        d = Path(debug_dir)
-        (d / "candidates_skipped_items.json").write_text(
-            json.dumps(skipped, indent=2),
-            encoding="utf-8",
-        )
+    # 🔗 Attach figure_used back to SlidePlan objects
+    for s in group_plan.slides:
+        uid = f"{group_id}::Slide_{s.slide_id}"
+        s.figure_used = figure_by_slide.get(uid)
 
     return out
+

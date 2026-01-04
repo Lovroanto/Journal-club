@@ -1,5 +1,3 @@
-# Presentation_module/presentation_pipeline.py
-
 from __future__ import annotations
 
 import json
@@ -26,14 +24,6 @@ def run_presentation_planning(
 ) -> PresentationPlan:
     """
     Runs planning for ALL slide-group .txt files in a folder.
-
-    - Each .txt file in slide_groups_dir is treated as one slide-group plan.
-    - Produces PlanningResult objects bundled into PresentationPlan.
-    - Optionally writes ONE debug JSON for the whole presentation.
-    - If a group fails (LLM JSON, parsing, etc):
-        - if continue_on_error=True: logs the error and continues
-        - else: raises immediately
-    - If output_dir is provided and errors occur, writes ONE errors file.
     """
 
     slide_groups_dir = Path(slide_groups_dir)
@@ -51,9 +41,9 @@ def run_presentation_planning(
                 slide_group_file=f,
                 bullet_summary_file=bullet_summary_file,
                 model=model,
-                output_dir=None,      # avoid per-group files
+                output_dir=None,
                 run_name=run_name,
-                debug_save=False,     # centralized debug below
+                debug_save=False,
             )
             groups.append(res)
 
@@ -69,16 +59,16 @@ def run_presentation_planning(
             if not continue_on_error:
                 raise
 
-            # continue to next group
-            continue
-
     plan = PresentationPlan(groups=groups)
 
-    # Write one error log (only if needed)
+    # Write error log if needed
     if output_dir is not None and errors:
         out_dir = Path(output_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / error_log_filename).write_text(json.dumps(errors, indent=2), encoding="utf-8")
+        (out_dir / error_log_filename).write_text(
+            json.dumps(errors, indent=2),
+            encoding="utf-8",
+        )
 
     # Optional: ONE debug file for the whole presentation
     if debug_save and output_dir is not None:
@@ -92,7 +82,7 @@ def run_presentation_planning(
             "num_groups_total": len(group_files),
             "num_groups_success": len(plan.groups),
             "num_groups_failed": len(errors),
-            "errors": errors,  # include in debug file too
+            "errors": errors,
             "groups": [
                 {
                     "group_id": g.group_id,
@@ -101,6 +91,7 @@ def run_presentation_planning(
                     "scope": g.group_plan.scope,
                     "transition": g.group_plan.transition,
                     "supmat_notes": g.group_plan.supmat_notes,
+                    "available_figures": g.group_plan.available_figures,
                     "num_slides": len(g.slides),
                     "slides": [
                         {
@@ -108,7 +99,7 @@ def run_presentation_planning(
                             "slide_id": b.slide_plan.slide_id,
                             "plan": b.slide_plan.blueprint_text,
                             "slide_context": b.slide_context,
-                            "suggested_figures": b.slide_plan.suggested_figures,
+                            "figure_used": b.slide_plan.figure_used,
                             "num_candidates": len(b.candidates),
                             "candidates": [
                                 {
@@ -127,20 +118,26 @@ def run_presentation_planning(
             ],
         }
 
-        debug_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        debug_path.write_text(
+            json.dumps(payload, indent=2),
+            encoding="utf-8",
+        )
 
     return plan
 
 
-def load_presentation_plan_from_debug(debug_json_path: Union[str, Path]) -> PresentationPlan:
+def load_presentation_plan_from_debug(
+    debug_json_path: Union[str, Path]
+) -> PresentationPlan:
     """
-    Load PresentationPlan back from the debug JSON produced by run_presentation_planning().
-    This is for debugging only (skip LLM calls).
+    Load PresentationPlan back from debug JSON (skip LLM calls).
     """
+
     p = Path(debug_json_path)
     data = json.loads(p.read_text(encoding="utf-8"))
 
     groups = []
+
     for g in data["groups"]:
         group_plan = SlideGroupPlan(
             group_name=g["group_name"],
@@ -149,10 +146,12 @@ def load_presentation_plan_from_debug(debug_json_path: Union[str, Path]) -> Pres
             key_terms=[],
             transition=g.get("transition"),
             supmat_notes=g.get("supmat_notes"),
+            available_figures=g.get("available_figures", []),
             slides=[],
         )
 
         slides_dict = {}
+
         for s in g["slides"]:
             sp = SlidePlan(
                 slide_id=int(s["slide_id"]),
@@ -161,9 +160,10 @@ def load_presentation_plan_from_debug(debug_json_path: Union[str, Path]) -> Pres
                 group_purpose=g.get("purpose"),
                 group_scope=g.get("scope"),
                 group_transition=g.get("transition"),
-                suggested_figures=s.get("suggested_figures", []),
+                figure_used=s.get("figure_used"),
                 supmat_notes=g.get("supmat_notes"),
             )
+
             group_plan.slides.append(sp)
 
             bundle = SlideBundle(

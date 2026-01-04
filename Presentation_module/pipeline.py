@@ -1,17 +1,14 @@
-# Presentation_module/pipeline.py
-
 from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from .planning import parse_slide_group_file, SlideGroupPlan, SlidePlan
 from .bullets import number_bullet_points, BulletPoint
 from .assignment import BulletCandidate, propose_bullet_candidates
 from .models import PlanningResult, SlideBundle
-from .slide_context import build_slide_context  # add near imports at top
-
+from .slide_context import build_slide_context
 
 
 def _ensure_dir(p: Path) -> None:
@@ -31,14 +28,11 @@ def run_planning_pipeline(
     PLANNING STAGE (NO RAG, NO FINAL SLIDES)
 
     For ONE slide group:
-      1) Parse slide-group plan -> SlideGroupPlan + SlidePlan objects
-      2) Parse + number article bullets -> BulletPoint objects
-      3) Ask LLM for *candidate* bullet placements -> BulletCandidate objects
-      4) Attach candidates to slides (in memory)
-      5) Optionally write ONE debug JSON file
-
-    Returns:
-        PlanningResult (pure in-memory representation)
+      1) Parse slide-group plan
+      2) Parse + number article bullets
+      3) Ask LLM for bullet candidates
+      4) Build slide bundles (plan + candidates + context)
+      5) Optional debug JSON
     """
 
     slide_group_file = Path(slide_group_file)
@@ -55,7 +49,7 @@ def run_planning_pipeline(
     raw_bullets = bullet_summary_file.read_text(encoding="utf-8")
     numbered_bullets: List[BulletPoint] = number_bullet_points(raw_bullets)
 
-    # Use run_name as a stable group_id for slide_uid construction
+    # Stable group_id
     group_id = run_name
 
     # --------------------------------------------------
@@ -66,22 +60,20 @@ def run_planning_pipeline(
         bullets=numbered_bullets,
         model=model,
         group_id=group_id,
-        debug_save=False,   # all debug handled here, not in assignment.py
+        debug_save=False,
         debug_dir=None,
     )
 
     # --------------------------------------------------
-    # 4) Build slide bundles (plan + candidates)
+    # 4) Build slide bundles
     # --------------------------------------------------
     slideplan_by_uid: Dict[str, SlidePlan] = {
         f"{group_id}::Slide_{s.slide_id}": s
         for s in group_plan.slides
     }
 
-    # Build slide bundles with slide_context
     slides: Dict[str, SlideBundle] = {}
 
-    # Sort slide_uids by slide_id to get previous/next continuity inside the group
     ordered = sorted(
         slideplan_by_uid.items(),
         key=lambda kv: kv[1].slide_id
@@ -95,16 +87,20 @@ def run_planning_pipeline(
             model=model,
             prev_slide_blueprint=prev_blueprint,
         )
-        slides[uid] = SlideBundle(slide_uid=uid, slide_plan=sp, slide_context=ctx)
+        slides[uid] = SlideBundle(
+            slide_uid=uid,
+            slide_plan=sp,
+            slide_context=ctx,
+        )
         prev_blueprint = sp.blueprint_text
 
-    # Attach candidates to slides
+    # Attach bullet candidates
     for c in candidates:
         if c.slide_uid in slides:
             slides[c.slide_uid].candidates.append(c)
 
     # --------------------------------------------------
-    # 5) Build PlanningResult (in memory)
+    # 5) Build PlanningResult
     # --------------------------------------------------
     result = PlanningResult(
         group_id=group_id,
@@ -115,7 +111,7 @@ def run_planning_pipeline(
     )
 
     # --------------------------------------------------
-    # 6) Optional: ONE debug JSON
+    # 6) Optional debug JSON
     # --------------------------------------------------
     if debug_save and output_dir is not None:
         out_base = Path(output_dir) / run_name
@@ -128,13 +124,14 @@ def run_planning_pipeline(
             "scope": result.group_plan.scope,
             "transition": result.group_plan.transition,
             "supmat_notes": result.group_plan.supmat_notes,
+            "available_figures": result.group_plan.available_figures,
             "slides": [
                 {
                     "slide_uid": uid,
                     "slide_id": bundle.slide_plan.slide_id,
                     "plan": bundle.slide_plan.blueprint_text,
                     "slide_context": bundle.slide_context,
-                    "suggested_figures": bundle.slide_plan.suggested_figures,
+                    "figure_used": bundle.slide_plan.figure_used,
                     "candidates": [
                         {
                             "bullet_id": c.bullet_id,
@@ -154,6 +151,9 @@ def run_planning_pipeline(
         }
 
         debug_path = out_base / debug_filename
-        debug_path.write_text(json.dumps(debug_payload, indent=2), encoding="utf-8")
+        debug_path.write_text(
+            json.dumps(debug_payload, indent=2),
+            encoding="utf-8",
+        )
 
     return result

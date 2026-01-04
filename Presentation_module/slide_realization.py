@@ -1029,11 +1029,13 @@ def realize_presentation_slides(
             debug_keypoints_path = base / "slide_realization_keypoints" / f"{slide_uid.replace('::','__')}.txt"
             debug_speech_path = base / "slide_realization_speech" / f"{slide_uid.replace('::','__')}.txt"
 
+        figure_used = getattr(bundle.slide_plan, "figure_used", None)
+
         spec = generate_slide_spec(
             slide_uid=slide_uid,
             plan_text=bundle.slide_plan.blueprint_text,
             slide_context=bundle.slide_context,
-            suggested_figures=bundle.slide_plan.suggested_figures,
+            suggested_figures=[figure_used] if figure_used else [],
             bullet_requirements=bullet_requirements,
             reminder_bullets=reminder_texts,
             distilled_facts=distilled_facts,
@@ -1044,7 +1046,6 @@ def realize_presentation_slides(
             debug_speech_path=debug_speech_path,
             max_json_attempts=3,
         )
-
         slide_specs[slide_uid] = spec
 
     if debug_save and output_dir is not None:
