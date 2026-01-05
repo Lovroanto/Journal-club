@@ -49,11 +49,14 @@ def run_planning_pipeline(
     raw_bullets = bullet_summary_file.read_text(encoding="utf-8")
     numbered_bullets: List[BulletPoint] = number_bullet_points(raw_bullets)
 
-    # Stable group_id
-    group_id = run_name
+    # --------------------------------------------------
+    # 3) Stable group_id (CRITICAL FIX)
+    # --------------------------------------------------
+    # Must match slide-group identity, NOT run_name
+    group_id = slide_group_file.stem
 
     # --------------------------------------------------
-    # 3) Candidate generation (LLM)
+    # 4) Candidate generation (LLM)
     # --------------------------------------------------
     candidates: List[BulletCandidate] = propose_bullet_candidates(
         group_plan=group_plan,
@@ -65,7 +68,7 @@ def run_planning_pipeline(
     )
 
     # --------------------------------------------------
-    # 4) Build slide bundles
+    # 5) Build slide bundles
     # --------------------------------------------------
     slideplan_by_uid: Dict[str, SlidePlan] = {
         f"{group_id}::Slide_{s.slide_id}": s
@@ -100,7 +103,7 @@ def run_planning_pipeline(
             slides[c.slide_uid].candidates.append(c)
 
     # --------------------------------------------------
-    # 5) Build PlanningResult
+    # 6) Build PlanningResult
     # --------------------------------------------------
     result = PlanningResult(
         group_id=group_id,
@@ -111,10 +114,10 @@ def run_planning_pipeline(
     )
 
     # --------------------------------------------------
-    # 6) Optional debug JSON
+    # 7) Optional debug JSON
     # --------------------------------------------------
     if debug_save and output_dir is not None:
-        out_base = Path(output_dir) / run_name
+        out_base = Path(output_dir) / group_id
         _ensure_dir(out_base)
 
         debug_payload = {

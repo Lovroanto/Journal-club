@@ -19,7 +19,7 @@ def run_presentation_planning(
     output_dir: Optional[Union[str, Path]] = None,
     debug_save: bool = False,
     debug_filename: str = "presentation_planning_debug.json",
-    continue_on_error: bool = True,
+    continue_on_error: bool = False,
     error_log_filename: str = "planning_errors.json",
 ) -> PresentationPlan:
     """
