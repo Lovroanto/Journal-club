@@ -26,56 +26,82 @@ class BulletCandidate:
 
 def _extract_first_json_array(raw: str) -> list:
     """
-    Robustly parse the first JSON array found in raw LLM output.
-    - Handles text before/after JSON.
-    - Handles trailing corruption by trimming the tail until valid.
+    Extract ALL JSON arrays from model output and merge them.
+    Handles:
+      - Multiple arrays (one per slide)
+      - Code fences
+      - Extra text / markdown
+      - Single objects
     """
-    raw = raw.strip()
 
-    # 1) Try direct parse
-    try:
-        parsed = json.loads(raw)
-        if isinstance(parsed, list):
-            return parsed
-    except json.JSONDecodeError:
-        pass
+    if not raw or not raw.strip():
+        raise ValueError("LLM returned empty output.")
 
-    # 2) Extract substring from first '[' to last ']'
-    start = raw.find("[")
-    end = raw.rfind("]")
-    if start == -1 or end == -1 or end <= start:
-        raise ValueError("No JSON array bracketed by [ ... ] found in model output.")
+    s = raw.strip()
 
-    candidate = raw[start : end + 1]
+    # ---- strip code fences
+    if s.startswith("```"):
+        s = s.split("\n", 1)[1] if "\n" in s else ""
+        if "```" in s:
+            s = s.rsplit("```", 1)[0]
+        s = s.strip()
 
-    # 3) Try parse candidate
-    try:
-        parsed = json.loads(candidate)
-        if isinstance(parsed, list):
-            return parsed
-    except json.JSONDecodeError:
-        pass
+    results = []
 
-    # 4) Tail-trim recovery: often the model breaks near the end
-    # Scan backwards for a closing ']' and attempt parse at each possible cut.
-    # Limit scans to last ~50k chars to avoid huge slowdowns.
-    scan_from = max(0, len(candidate) - 50000)
-    for cut in range(len(candidate) - 1, scan_from, -1):
-        if candidate[cut] != "]":
-            continue
-        snippet = candidate[: cut + 1]
-        try:
-            parsed = json.loads(snippet)
-            if isinstance(parsed, list):
-                return parsed
-        except json.JSONDecodeError:
-            continue
+    i = 0
+    n = len(s)
+    while i < n:
+        if s[i] == "[":
+            depth = 1
+            j = i + 1
+            while j < n and depth > 0:
+                if s[j] == "[":
+                    depth += 1
+                elif s[j] == "]":
+                    depth -= 1
+                j += 1
 
-    # If we got here, we couldn't recover
-    raise ValueError(
-        "Could not parse a valid JSON array from model output (even after trimming). "
-        "Enable debug_save=True to inspect candidates_raw.txt."
-    )
+            candidate = s[i:j]
+            try:
+                parsed = json.loads(candidate)
+                if isinstance(parsed, list):
+                    results.extend(parsed)
+            except json.JSONDecodeError:
+                pass
+
+            i = j
+        elif s[i] == "{":
+            # fallback: single object
+            depth = 1
+            j = i + 1
+            while j < n and depth > 0:
+                if s[j] == "{":
+                    depth += 1
+                elif s[j] == "}":
+                    depth -= 1
+                j += 1
+
+            candidate = s[i:j]
+            try:
+                parsed = json.loads(candidate)
+                if isinstance(parsed, dict):
+                    results.append(parsed)
+            except json.JSONDecodeError:
+                pass
+
+            i = j
+        else:
+            i += 1
+
+    if not results:
+        raise ValueError(
+            "Could not extract any JSON arrays from model output.\n"
+            "First 800 chars:\n" + s[:800]
+        )
+
+    return results
+
+
 
 def propose_bullet_candidates(
     group_plan: SlideGroupPlan,

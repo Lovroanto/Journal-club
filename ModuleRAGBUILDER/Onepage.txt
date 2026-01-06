@@ -1,0 +1,53 @@
+One-page call flow (module-level)
+
+build_rag_dataset() (rag_builder.py) is the entry point. It creates folders and a JsonCache (utils.py), loads notions + a CSV of papers, optionally fetches Wikipedia context for each notion via get_wikipedia_context() (wikipedia_fetcher.py → _wiki_call()), chunks the text, and writes .txt files. If PDF downloading is enabled, it schedules parallel jobs (ThreadPool) per paper: first it tries to discover a DOI with find_doi_for_paper() (rag_builder.py), which calls crossref_search_aggressive() (Crossref /works search) and uses clean_string_similarity() to pick a DOI; if that fails it falls back to find_preprint_candidates() (preprint_search.py → search_arxiv_by_title() / search_zenodo() / search_osf()**) to produce candidate landing/PDF URLs. If a DOI was found and an Unpaywall email is provided, it asks unpaywall_pdf_url()(**rag_builder.py**) (or alternativelyunpaywall_pdf()in **unpaywall.py**, which is basically the same API call duplicated) to get an OA PDF link. Then each job callsdownload_pdf_for_paper()(**pdf_downloader.py**) which tries, in order: download Unpaywall PDF viahttp_stream_download(), then DOI content negotiation via doi_content_negotiation_download()(usesnormalize_doi()from **doi_negotiation.py**), then DOI resolution viaresolve_doi()(**doi_negotiation.py** →_safe_head()→ maybesafe_get()and HTML regex), then publisher-specific guessing viafind_publisher_pdf()(**publisher_handlers.py** →handle*()→_check_pdf()), and finally (optional) browser automation fallback via playwright_fetch_pdf()(**playwright_fallback.py**). Throughout, all modules useinfo()/warn()from **utils.py** for logging and share request settings viaUSER_AGENT/REQUESTS_TIMEOUT. Separately, there are “preprint verification” helpers in **llm_preprint_verification.py** (llm_guess_arxiv_ids/categories) intended as a late fallback: they call an llm_callable(prompt)to guess arXiv IDs/categories, which should then be validated usingarxiv_by_title()(**arxiv_search.py**) or broader preprint search; howeverrag_builder.py currently imports functions that don’t exist in that file (generate_preprint_search_queries, verify_preprint_candidate`), so that integration is incomplete/broken as written.
+
+Quick call edges (who calls who)
+
+rag_builder.py
+
+build_rag_dataset → get_wikipedia_context
+
+build_rag_dataset → find_doi_for_paper → crossref_search_aggressive / find_preprint_candidates
+
+build_rag_dataset → unpaywall_pdf_url (duplicate of unpaywall.unpaywall_pdf)
+
+build_rag_dataset → download_pdf_for_paper
+
+pdf_downloader.py
+
+download_pdf_for_paper → http_stream_download
+
+download_pdf_for_paper → doi_content_negotiation_download → normalize_doi
+
+download_pdf_for_paper → resolve_doi → _safe_head/_safe_get → regex HTML pdf sniff
+
+download_pdf_for_paper → find_publisher_pdf → handle_* → _check_pdf
+
+download_pdf_for_paper → playwright_fetch_pdf (optional)
+
+preprint_search.py
+
+find_preprint_candidates → search_arxiv_by_title / search_zenodo / search_osf
+
+llm_preprint_verification.py
+
+llm_guess_* → llm_callable(prompt) (then should feed into arXiv/preprint search)
+
+arxiv_search.py
+
+arxiv_by_title is a standalone validator/search helper
+
+utils.py
+
+used everywhere for USER_AGENT, REQUESTS_TIMEOUT, info/warn, JsonCache, clean_filename
+
+Biggest “next fixes” implied by the call graph
+
+Fix rag_builder.py integrity: missing imports (re, json) + truncated tail + wrong imports from llm_preprint_verification.py.
+
+Deduplicate Unpaywall: keep either rag_builder.unpaywall_pdf_url or unpaywall.unpaywall_pdf.
+
+Make discovery outputs feed downloader: find_doi_for_paper returns landing_cands but download_pdf_for_paper ignores them (it only uses DOI→resolve landing). Passing/using landing candidates would increase hit-rate.
+
+Unify arXiv logic: arxiv_search.py and preprint_search.search_arxiv_by_title overlap (same API, different return shape).
