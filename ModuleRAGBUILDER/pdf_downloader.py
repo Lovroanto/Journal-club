@@ -5,6 +5,7 @@ Uses:
  - doi_negotiation.resolve_doi
  - publisher_handlers.find_publisher_pdf
  - playwright_fallback.playwright_fetch_pdf (optional)
+ - institution_gateway.download_pdf_via_gateway (optional)
 Exposes:
  - download_pdf_for_paper(...) -> (meta_dict, pdf_path_or_None)
 """
@@ -12,36 +13,59 @@ Exposes:
 from pathlib import Path
 from typing import Optional, Tuple, List, Dict
 import requests
+
 from .utils import USER_AGENT, REQUESTS_TIMEOUT, info, warn, JsonCache, clean_filename
 from .doi_negotiation import resolve_doi, normalize_doi
 from .publisher_handlers import find_publisher_pdf
 from .playwright_fallback import playwright_fetch_pdf
+from .institution_gateway import download_pdf_via_gateway
+
+# -----------------------
+# Configure gateway here
+# -----------------------
+# Put your private base string here. It must be a prefix, the DOI gets appended.
+# Example: "https://myinfoirmation/"
+INSTITUTION_GATEWAY_BASE: Optional[str] = "https://sci-hub.se/"
+# If your gateway needs URL-encoded DOI, keep True (safe default).
+INSTITUTION_GATEWAY_URL_ENCODE_DOI: bool = True
+
 
 PDF_HEADERS = {
     "User-Agent": USER_AGENT,
     "Accept": "application/pdf,application/octet-stream,*/*;q=0.8",
 }
 
-SESSION_HEADERS = {
-    "User-Agent": USER_AGENT
-}
+SESSION_HEADERS = {"User-Agent": USER_AGENT}
+
 
 # Simple HTTP download with %PDF validation
-def http_stream_download(url: str, dest: Path, referer: Optional[str] = None, max_retries: int = 3) -> bool:
+def http_stream_download(
+    url: str,
+    dest: Path,
+    referer: Optional[str] = None,
+    max_retries: int = 3,
+) -> bool:
     s = requests.Session()
     s.headers.update(SESSION_HEADERS)
     headers = PDF_HEADERS.copy()
     if referer:
         headers["Referer"] = referer
+
     for attempt in range(1, max_retries + 1):
         try:
-            with s.get(url, headers=headers, stream=True, timeout=REQUESTS_TIMEOUT, allow_redirects=True) as r:
+            with s.get(
+                url,
+                headers=headers,
+                stream=True,
+                timeout=REQUESTS_TIMEOUT,
+                allow_redirects=True,
+            ) as r:
                 r.raise_for_status()
-                # read first 4 bytes
                 raw = r.raw.read(4)
                 ctype = r.headers.get("Content-Type", "") or ""
                 if raw != b"%PDF" and "pdf" not in ctype.lower():
                     raise Exception(f"Missing %PDF signature and content-type {ctype!r}")
+
                 tmp = dest.with_suffix(dest.suffix + ".part")
                 with open(tmp, "wb") as f:
                     f.write(raw)
@@ -49,14 +73,15 @@ def http_stream_download(url: str, dest: Path, referer: Optional[str] = None, ma
                         if chunk:
                             f.write(chunk)
                 tmp.replace(dest)
+
             info(f"[Download] Saved PDF: {dest}")
             return True
+
         except Exception as e:
             warn(f"[Download] attempt {attempt} failed for {url}: {e}")
-            # backoff
             import time
             time.sleep(0.8 * attempt)
-            continue
+
     return False
 
 
@@ -68,13 +93,21 @@ def doi_content_negotiation_download(doi: str, dest: Path) -> Optional[str]:
     norm = normalize_doi(doi)
     url = f"https://doi.org/{norm}"
     headers = {"User-Agent": USER_AGENT, "Accept": "application/pdf"}
+
     try:
-        with requests.get(url, headers=headers, stream=True, allow_redirects=True, timeout=REQUESTS_TIMEOUT) as r:
+        with requests.get(
+            url,
+            headers=headers,
+            stream=True,
+            allow_redirects=True,
+            timeout=REQUESTS_TIMEOUT,
+        ) as r:
             r.raise_for_status()
             raw = r.raw.read(4)
             ct = r.headers.get("Content-Type", "") or ""
             if raw != b"%PDF" and "pdf" not in ct.lower():
                 raise Exception(f"Content negotiation didn't yield PDF; content-type {ct}")
+
             tmp = dest.with_suffix(dest.suffix + ".part")
             with open(tmp, "wb") as f:
                 f.write(raw)
@@ -82,8 +115,10 @@ def doi_content_negotiation_download(doi: str, dest: Path) -> Optional[str]:
                     if chunk:
                         f.write(chunk)
             tmp.replace(dest)
-            info(f"[DOINeg] Saved PDF via content negotiation: {dest}")
-            return str(dest)
+
+        info(f"[DOINeg] Saved PDF via content negotiation: {dest}")
+        return str(dest)
+
     except Exception as e:
         warn(f"[DOINeg] failed for {doi}: {e}")
         return None
@@ -99,33 +134,52 @@ def download_pdf_for_paper(
     rag_dir: Path,
     cache: JsonCache,
     unpaywall_pdf_url: Optional[str] = None,
-    use_playwright: bool = False
+    use_playwright: bool = False,
 ) -> Tuple[Dict, Optional[str]]:
     """
     High-level function to attempt downloads and return metadata dict + pdf_path (or None).
     Steps:
       - Try unpaywall pdf (if provided)
+      - Try institution gateway (if configured and DOI exists)
       - Try doi content negotiation
       - Use resolve_doi to get landing_url and embedded pdf
       - Try publisher-specific handler on landing_url
-      - Try discovered candidate links / landing candidates
       - Playwright fallback if enabled
     """
     meta: Dict = {"title": title, "authors": authors, "year": year, "journal": journal, "doi": doi}
     safe = clean_filename(f"{(authors.split(',')[0] if authors else 'author')}_{year}_{title[:80]}")
     pdf_path = pdf_dir / f"{safe}.pdf"
 
+    # IMPORTANT: avoid "local variable 'r' referenced before assignment"
+    r: Optional[Dict] = None
+
     # 1) Unpaywall PDF preferred
     if unpaywall_pdf_url:
         info("[DL] Trying Unpaywall URL")
-        meta["tried"] = [("unpaywall", unpaywall_pdf_url)]
+        meta.setdefault("tried", []).append(("unpaywall", unpaywall_pdf_url))
         if http_stream_download(unpaywall_pdf_url, pdf_path, referer=None):
             return meta, str(pdf_path)
+
+    # 1.5) Institution gateway (if configured)
+    if doi and INSTITUTION_GATEWAY_BASE:
+        info("[DL] Trying institution gateway")
+        meta.setdefault("tried", []).append(("institution_gateway", INSTITUTION_GATEWAY_BASE))
+        gw = download_pdf_via_gateway(
+            doi=doi,
+            dest=pdf_path,
+            gateway_base=INSTITUTION_GATEWAY_BASE,
+            url_encode_doi=INSTITUTION_GATEWAY_URL_ENCODE_DOI,
+        )
+        if gw:
+            info("[DL] Institution gateway: FOUND PDF")
+            return meta, gw
+        else:
+            info("[DL] Institution gateway: no PDF")
 
     # 2) DOI content negotiation
     if doi:
         info("[DL] Trying DOI content negotiation")
-        meta.setdefault("tried", []).append(("doi_negotiation", doi))
+        meta.setdefault("tried", []).append(("doi_content_negotiation", doi))
         cn = doi_content_negotiation_download(doi, pdf_path)
         if cn:
             return meta, cn
@@ -135,7 +189,6 @@ def download_pdf_for_paper(
         info("[DL] Resolving DOI landing")
         r = resolve_doi(doi)
         meta["doi_resolve"] = r
-        # if resolve returns pdf_url try it
         if r.get("pdf_url"):
             meta.setdefault("tried", []).append(("doi_resolve_pdf", r.get("pdf_url")))
             if http_stream_download(r.get("pdf_url"), pdf_path, referer=r.get("landing_url")):
@@ -143,10 +196,9 @@ def download_pdf_for_paper(
 
     # 4) Publisher-specific handler on landing url(s)
     landing_candidates: List[str] = []
-    # collect landing candidates
     if r and r.get("landing_url"):
         landing_candidates.append(r.get("landing_url"))
-    # optionally accept more landing candidates from cache/meta
+
     for lc in landing_candidates:
         if not lc:
             continue
@@ -157,16 +209,13 @@ def download_pdf_for_paper(
             if http_stream_download(pub_pdf, pdf_path, referer=lc):
                 return meta, str(pdf_path)
 
-    # 5) Try naive candidate patterns derived from title/journal if any (not exhaustive)
-    # This area can be extended by caller by providing candidate URLs in meta.
-    # 6) Playwright fallback
+    # 5) Playwright fallback
     if use_playwright:
         info("[DL] Trying Playwright fallback")
-        meta.setdefault("tried", []).append(("playwright", None))
+        meta.setdefault("tried", []).append(("playwright", landing_candidates[0] if landing_candidates else None))
         ok = playwright_fetch_pdf(landing_candidates[0] if landing_candidates else "about:blank", pdf_path)
         if ok:
             return meta, str(pdf_path)
 
-    # Nothing found
     info("[DL] No PDF found for paper")
     return meta, None
