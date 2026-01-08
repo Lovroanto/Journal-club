@@ -29,6 +29,16 @@ def _docs_to_text(docs) -> List[str]:
             out.append(str(d))
     return out
 
+def _rewrite_plan_for_figure(plan: str, figure: str) -> str:
+    return (
+        f"Explain {figure} clearly and use it to support the following message:\n"
+        f"{plan}"
+    )
+
+
+def _make_figure_only_slide_uid(base_uid: str, fig_idx: int) -> str:
+    return f"{base_uid}::Figure_{fig_idx+1}"
+
 
 def _strip_code_fences(s: str) -> str:
     s = (s or "").strip()
@@ -907,133 +917,70 @@ def realize_presentation_slides(
     slide_specs: Dict[str, SlideSpec] = {}
     bullet_text_by_id: Dict[str, str] = _build_bullet_text_lookup(presentation)
 
+    # Track used figures PER GROUP
+    used_figures: Dict[str, set] = {}
+
     all_items = sorted(presentation.all_slides.items())
     if only_slide_uids is not None:
         only_set = set(only_slide_uids)
         all_items = [(uid, b) for (uid, b) in all_items if uid in only_set]
 
+    # ----------------------------
+    # FIRST PASS: normal slides
+    # ----------------------------
+
     for slide_uid, bundle in all_items:
+        group = bundle.slide_plan.group_name
+        used_figures.setdefault(group, set())
+
+        figure_used = getattr(bundle.slide_plan, "figure_used", None)
+        if figure_used:
+            used_figures[group].add(figure_used)
+
+        # 🔹 Enforce figure-centric plan
+        plan_text = bundle.slide_plan.blueprint_text
+        if figure_used:
+            plan_text = _rewrite_plan_for_figure(plan_text, figure_used)
+
         usages = resolved.usage_by_slide.get(slide_uid, [])
 
         primary_usages = [u for u in usages if _safe_get(u, "usage", "") == "primary"]
         reminder_usages = [u for u in usages if _safe_get(u, "usage", "") == "reminder"]
 
-        # Backfill bullet_text from bullet_id if missing
-        for u in primary_usages + reminder_usages:
-            txt = (_safe_get(u, "bullet_text", "") or "").strip()
-            if not txt:
-                bid = _safe_get(u, "bullet_id", None)
-                if bid:
-                    fallback_txt = (bullet_text_by_id.get(str(bid).strip(), "") or "").strip()
-                    if isinstance(u, dict):
-                        u["bullet_text"] = fallback_txt
-                    else:
-                        try:
-                            setattr(u, "bullet_text", fallback_txt)
-                        except Exception:
-                            pass
-
-        primary_texts = [(_safe_get(u, "bullet_text", "") or "").strip() for u in primary_usages]
-        primary_texts = [t for t in primary_texts if t]
-
-        reminder_texts = [(_safe_get(u, "bullet_text", "") or "").strip() for u in reminder_usages]
-        reminder_texts = [t for t in reminder_texts if t]
+        primary_texts = [(_safe_get(u, "bullet_text", "") or "").strip() for u in primary_usages if (_safe_get(u, "bullet_text", "") or "").strip()]
+        reminder_texts = [(_safe_get(u, "bullet_text", "") or "").strip() for u in reminder_usages if (_safe_get(u, "bullet_text", "") or "").strip()]
 
         bullet_requirements = _build_bullet_requirements(bundle, primary_usages)
 
-        # ✅ fill requirement text from bullet_text_by_id first, then candidate arguments
-        cand_arg_by_id = _build_candidate_argument_lookup(bundle)
-
-        for r in bullet_requirements:
-            if (not (r.get("text") or "").strip()) and r.get("bullet_id"):
-                r["text"] = (bullet_text_by_id.get(str(r["bullet_id"]).strip(), "") or "").strip()
-
-            if not (r.get("text") or "").strip():
-                bid = str(r.get("bullet_id") or "").strip()
-                if bid and bid in cand_arg_by_id:
-                    r["text"] = cand_arg_by_id[bid]
-
-        if (not bullet_requirements) or (not any((r.get("text") or "").strip() for r in bullet_requirements)):
-            bullet_requirements = _fallback_requirements_from_candidates(
-                bundle=bundle,
-                bullet_text_by_id=bullet_text_by_id,
-                max_items=4,
-            )
-
-            # fill fallback requirements too
-            for r in bullet_requirements:
-                if not (r.get("text") or "").strip():
-                    bid = str(r.get("bullet_id") or "").strip()
-                    if bid and bid in cand_arg_by_id:
-                        r["text"] = cand_arg_by_id[bid]
-
-        if debug_save and output_dir is not None:
-            req_path = Path(output_dir) / "slide_realization_requirements" / f"{slide_uid.replace('::','__')}.json"
-            req_path.parent.mkdir(parents=True, exist_ok=True)
-            req_path.write_text(json.dumps(bullet_requirements, indent=2), encoding="utf-8")
-
-        plan_lower = (bundle.slide_plan.blueprint_text + " " + (bundle.slide_context or "")).lower()
-
-        use_figs = bool(getattr(bundle.slide_plan, "suggested_figures", []))
-        use_sup = bool(getattr(bundle.slide_plan, "supmat_notes", None)) or any(
-            k in plan_lower for k in ["equation", "model", "derivation", "mechanism", "rate", "linewidth", "gain"]
-        )
-        use_lit = any(
-            k in plan_lower for k in ["introduce", "definition", "background", "motivation", "overview", "cavity qed"]
-        )
-
-        candidate_arguments = list(cand_arg_by_id.values())
+        candidate_arguments = list(_build_candidate_argument_lookup(bundle).values())
 
         evidence = retrieve_evidence_for_slide(
             slide_uid=slide_uid,
-            plan_text=bundle.slide_plan.blueprint_text,
+            plan_text=plan_text,
             slide_context=bundle.slide_context,
             primary_bullets=primary_texts,
             reminder_bullets=reminder_texts,
             bullet_requirements=bullet_requirements,
             candidate_arguments=candidate_arguments,
             rag=rag,
-            use_figs=use_figs,
-            use_sup=use_sup,
-            use_lit=use_lit,
-            include_reminders_in_query=False,
+            use_figs=bool(figure_used),
+            use_sup=True,
+            use_lit=True,
         )
-
-        if debug_save and output_dir is not None:
-            counts_path = Path(output_dir) / "slide_realization_evidence_counts" / f"{slide_uid.replace('::','__')}.json"
-            counts_path.parent.mkdir(parents=True, exist_ok=True)
-            counts_path.write_text(json.dumps(_count_evidence_sources(evidence), indent=2), encoding="utf-8")
-
-        distilled_debug = None
-        if debug_save and output_dir is not None:
-            distilled_debug = Path(output_dir) / "slide_realization_distilled" / f"{slide_uid.replace('::','__')}.txt"
 
         distilled_facts = distill_evidence_for_slide(
             slide_uid=slide_uid,
-            plan_text=bundle.slide_plan.blueprint_text,
+            plan_text=plan_text,
             slide_context=bundle.slide_context,
             primary_bullets=primary_texts,
             reminder_bullets=reminder_texts,
             evidence=evidence,
             model=model,
-            debug_path=distilled_debug,
         )
-
-        debug_raw_path = None
-        debug_keypoints_path = None
-        debug_speech_path = None
-
-        if debug_save and output_dir is not None:
-            base = Path(output_dir)
-            debug_raw_path = base / "slide_realization_raw" / f"{slide_uid.replace('::','__')}.txt"
-            debug_keypoints_path = base / "slide_realization_keypoints" / f"{slide_uid.replace('::','__')}.txt"
-            debug_speech_path = base / "slide_realization_speech" / f"{slide_uid.replace('::','__')}.txt"
-
-        figure_used = getattr(bundle.slide_plan, "figure_used", None)
 
         spec = generate_slide_spec(
             slide_uid=slide_uid,
-            plan_text=bundle.slide_plan.blueprint_text,
+            plan_text=plan_text,
             slide_context=bundle.slide_context,
             suggested_figures=[figure_used] if figure_used else [],
             bullet_requirements=bullet_requirements,
@@ -1041,19 +988,73 @@ def realize_presentation_slides(
             distilled_facts=distilled_facts,
             evidence=evidence,
             model=model,
-            debug_raw_path=debug_raw_path,
-            debug_keypoints_path=debug_keypoints_path,
-            debug_speech_path=debug_speech_path,
-            max_json_attempts=3,
         )
+
         slide_specs[slide_uid] = spec
 
-    if debug_save and output_dir is not None:
-        out = Path(output_dir)
-        out.mkdir(parents=True, exist_ok=True)
-        (out / "slide_specs_debug.json").write_text(
-            json.dumps({k: asdict(v) for k, v in slide_specs.items()}, indent=2),
-            encoding="utf-8",
+        # 🔹 Track ACTUAL used figure (from SlideSpec)
+        if spec.figure_used:
+            used_figures[group].add(spec.figure_used)
+
+    # ------------------------------------
+    # SECOND PASS: add missing figure slides
+    # ------------------------------------
+
+    for group in presentation.groups:
+        available = list(getattr(group, "available_figures", []) or [])
+        unused = [f for f in available if f not in used_figures.get(group.group_name, set())]
+
+        if not unused:
+            continue
+
+        # Insert after last slide of group
+        base_uid = max(
+            uid for uid in slide_specs
+            if uid.startswith(group.group_name)
         )
+
+        for i, fig in enumerate(unused):
+            new_uid = _make_figure_only_slide_uid(base_uid, i)
+
+            plan_text = f"Explain {fig} and why it matters for this section."
+            slide_context = "This slide exists to ensure all key figures are explicitly explained."
+
+            evidence = retrieve_evidence_for_slide(
+                slide_uid=new_uid,
+                plan_text=plan_text,
+                slide_context=slide_context,
+                primary_bullets=[],
+                reminder_bullets=[],
+                bullet_requirements=None,
+                candidate_arguments=[],
+                rag=rag,
+                use_figs=True,
+                use_sup=False,
+                use_lit=False,
+            )
+
+            distilled_facts = distill_evidence_for_slide(
+                slide_uid=new_uid,
+                plan_text=plan_text,
+                slide_context=slide_context,
+                primary_bullets=[],
+                reminder_bullets=[],
+                evidence=evidence,
+                model=model,
+            )
+
+            spec = generate_slide_spec(
+                slide_uid=new_uid,
+                plan_text=plan_text,
+                slide_context=slide_context,
+                suggested_figures=[fig],
+                bullet_requirements=[],
+                reminder_bullets=[],
+                distilled_facts=distilled_facts,
+                evidence=evidence,
+                model=model,
+            )
+
+            slide_specs[new_uid] = spec
 
     return slide_specs
