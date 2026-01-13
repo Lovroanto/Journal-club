@@ -917,7 +917,7 @@ def realize_presentation_slides(
     slide_specs: Dict[str, SlideSpec] = {}
     bullet_text_by_id: Dict[str, str] = _build_bullet_text_lookup(presentation)
 
-    # Track used figures PER GROUP
+    # Track used figures PER GROUP NAME
     used_figures: Dict[str, set] = {}
 
     all_items = sorted(presentation.all_slides.items())
@@ -925,45 +925,60 @@ def realize_presentation_slides(
         only_set = set(only_slide_uids)
         all_items = [(uid, b) for (uid, b) in all_items if uid in only_set]
 
-    # ----------------------------
-    # FIRST PASS: normal slides
-    # ----------------------------
+    # =====================================================
+    # FIRST PASS: narrative-driven slides
+    # =====================================================
 
     for slide_uid, bundle in all_items:
-        group = bundle.slide_plan.group_name
-        used_figures.setdefault(group, set())
+        group_name = bundle.slide_plan.group_name
+        used_figures.setdefault(group_name, set())
 
-        figure_used = getattr(bundle.slide_plan, "figure_used", None)
-        if figure_used:
-            used_figures[group].add(figure_used)
-
-        # 🔹 Enforce figure-centric plan
         plan_text = bundle.slide_plan.blueprint_text
-        if figure_used:
-            plan_text = _rewrite_plan_for_figure(plan_text, figure_used)
+        slide_context = bundle.slide_context
 
         usages = resolved.usage_by_slide.get(slide_uid, [])
-
         primary_usages = [u for u in usages if _safe_get(u, "usage", "") == "primary"]
         reminder_usages = [u for u in usages if _safe_get(u, "usage", "") == "reminder"]
 
-        primary_texts = [(_safe_get(u, "bullet_text", "") or "").strip() for u in primary_usages if (_safe_get(u, "bullet_text", "") or "").strip()]
-        reminder_texts = [(_safe_get(u, "bullet_text", "") or "").strip() for u in reminder_usages if (_safe_get(u, "bullet_text", "") or "").strip()]
+        primary_texts = [
+            (_safe_get(u, "bullet_text", "") or "").strip()
+            for u in primary_usages
+            if (_safe_get(u, "bullet_text", "") or "").strip()
+        ]
+        reminder_texts = [
+            (_safe_get(u, "bullet_text", "") or "").strip()
+            for u in reminder_usages
+            if (_safe_get(u, "bullet_text", "") or "").strip()
+        ]
 
         bullet_requirements = _build_bullet_requirements(bundle, primary_usages)
-
         candidate_arguments = list(_build_candidate_argument_lookup(bundle).values())
+
+        # ✅ DIRECT lookup: groups ARE SlideGroupPlan
+        slide_group = next(
+            (pr.slide_group for pr in presentation.groups
+            if pr.slide_group.group_name == group_name),
+            None,
+        )
+
+        if slide_group is None:
+            continue  # meta / warnings group
+
+        available_figures = [
+            f for f in (slide_group.available_figures or [])
+            if f not in used_figures[group_name]
+        ]
 
         evidence = retrieve_evidence_for_slide(
             slide_uid=slide_uid,
             plan_text=plan_text,
-            slide_context=bundle.slide_context,
+            slide_context=slide_context,
             primary_bullets=primary_texts,
             reminder_bullets=reminder_texts,
             bullet_requirements=bullet_requirements,
             candidate_arguments=candidate_arguments,
             rag=rag,
-            use_figs=bool(figure_used),
+            use_figs=bool(available_figures),
             use_sup=True,
             use_lit=True,
         )
@@ -971,7 +986,7 @@ def realize_presentation_slides(
         distilled_facts = distill_evidence_for_slide(
             slide_uid=slide_uid,
             plan_text=plan_text,
-            slide_context=bundle.slide_context,
+            slide_context=slide_context,
             primary_bullets=primary_texts,
             reminder_bullets=reminder_texts,
             evidence=evidence,
@@ -981,8 +996,8 @@ def realize_presentation_slides(
         spec = generate_slide_spec(
             slide_uid=slide_uid,
             plan_text=plan_text,
-            slide_context=bundle.slide_context,
-            suggested_figures=[figure_used] if figure_used else [],
+            slide_context=slide_context,
+            suggested_figures=available_figures,
             bullet_requirements=bullet_requirements,
             reminder_bullets=reminder_texts,
             distilled_facts=distilled_facts,
@@ -992,32 +1007,48 @@ def realize_presentation_slides(
 
         slide_specs[slide_uid] = spec
 
-        # 🔹 Track ACTUAL used figure (from SlideSpec)
         if spec.figure_used:
-            used_figures[group].add(spec.figure_used)
+            used_figures[group_name].add(spec.figure_used)
 
-    # ------------------------------------
-    # SECOND PASS: add missing figure slides
-    # ------------------------------------
+    # =====================================================
+    # SECOND PASS: forced figure explanation slides
+    # =====================================================
 
-    for group in presentation.groups:
-        available = list(getattr(group, "available_figures", []) or [])
-        unused = [f for f in available if f not in used_figures.get(group.group_name, set())]
+    for pr in presentation.groups:
 
-        if not unused:
+        slide_group = pr.slide_group
+        group_name = slide_group.group_name
+        used_figures.setdefault(group_name, set())
+
+        unused_figures = [
+            f for f in (slide_group.available_figures or [])
+            if f not in used_figures[group_name]
+        ]
+
+        if not unused_figures:
             continue
 
-        # Insert after last slide of group
-        base_uid = max(
-            uid for uid in slide_specs
-            if uid.startswith(group.group_name)
-        )
+        group_slide_uids = [
+            uid for uid, bundle in presentation.all_slides.items()
+            if bundle.slide_plan.group_name == group_name and uid in slide_specs
+        ]
 
-        for i, fig in enumerate(unused):
+        if not group_slide_uids:
+            continue
+
+        base_uid = max(group_slide_uids)
+
+        for i, fig in enumerate(unused_figures):
             new_uid = _make_figure_only_slide_uid(base_uid, i)
 
-            plan_text = f"Explain {fig} and why it matters for this section."
-            slide_context = "This slide exists to ensure all key figures are explicitly explained."
+            plan_text = (
+                "Explain the scientific insight conveyed by this figure and "
+                "why it matters in the context of the overall story."
+            )
+            slide_context = (
+                "This slide exists to explain a figure that did not naturally "
+                "fit into the narrative flow of earlier slides."
+            )
 
             evidence = retrieve_evidence_for_slide(
                 slide_uid=new_uid,
@@ -1056,5 +1087,8 @@ def realize_presentation_slides(
             )
 
             slide_specs[new_uid] = spec
+            used_figures[group_name].add(fig)
 
     return slide_specs
+
+
