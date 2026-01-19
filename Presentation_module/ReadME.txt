@@ -43,6 +43,27 @@ Role: Cleans up overlapping proposals → enforces "introduce once, recall later
 bullets.py:
 
 This small module is responsible for extracting and structuring bullet points from raw text (typically a paper summary or abstract).
+Type alias:
+
+    SourceType
+    Literal: "MAIN", "FIG", "SUP", or "LIT" — indicates where a piece of evidence comes from.
+
+Classes:
+
+    EvidenceChunk
+    One retrieved supporting text chunk.
+    Holds: source (SourceType), text (the chunk), metadata (dict, default empty).
+    SlideSpec
+    Complete final specification for one rendered slide.
+    Holds:
+        slide_uid
+        title
+        figure_used (optional)
+        on_slide_bullets (list of bullet texts shown on slide)
+        speaker_notes (full narration text)
+        transition (text to next slide)
+        reminders (list, default empty)
+        evidence (list of EvidenceChunk, default empty)
 
 BulletPoint Dataclass: Simple container for a single bullet with:
 bullet_id: Unique identifier like "BP_001"

@@ -1,0 +1,706 @@
+#!/usr/bin/env python3
+"""
+grobid_preprocessor.py
+Fully backward-compatible with the call you posted.
+All new LLM/hybrid logic is inside – you do **not** need to pass extra arguments.
+"""
+
+import os
+import re
+import shutil
+import subprocess
+import requests
+from pathlib import Path
+from typing import Dict, List, Tuple, Optional
+from bs4 import BeautifulSoup
+import fitz  # PyMuPDF
+from langchain_ollama import OllamaLLM
+
+# ----------------------------------------------------------------------
+# CONFIG
+# ----------------------------------------------------------------------
+DEFAULT_CHUNK_SIZE = 4000
+OLLAMA_MODEL = "llama3.1"          # change if you use another model
+LLM_TIMEOUT = 30
+
+SUPP_PATTERNS = [
+    r"Methods",
+    r"Supplementary Material",
+    r"Supplementary Information",
+    r"Supplemental Material",
+    r"Supporting Information",
+    r"Supplementary Methods",
+    r"Supplementary Figures",
+    r"Supplementary Table",
+    r"Supplementary Text",
+    r"SUPPLEMENTARY",
+    r"Supplementary materials",
+    r"Additional Information",
+]
+
+# ----------------------------------------------------------------------
+# Utilities
+# ----------------------------------------------------------------------
+def save_text(path: Path, text: str):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+def clean_filename(text: str, maxlen: int = 120) -> str:
+    s = re.sub(r'[\\/*?:"<>|]', "", text)
+    s = re.sub(r"\s+", "_", s).strip("_")
+    return s[:maxlen]
+
+# ----------------------------------------------------------------------
+# PDF pre-clean helpers
+# ----------------------------------------------------------------------
+def tool_exists(cmd: str) -> bool:
+    return shutil.which(cmd) is not None
+
+def try_ghostscript_clean(input_pdf: str, output_pdf: str) -> bool:
+    if not tool_exists("gs"): return False
+    try:
+        gs_cmd = [
+            "gs", "-q", "-dNOPAUSE", "-dBATCH", "-sDEVICE=pdfwrite",
+            "-dCompatibilityLevel=1.7", "-dPDFSETTINGS=/prepress",
+            f"-sOutputFile={output_pdf}", input_pdf
+        ]
+        subprocess.run(gs_cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except Exception: return False
+
+def try_qpdf_linearize(input_pdf: str, output_pdf: str) -> bool:
+    if not tool_exists("qpdf"): return False
+    try:
+        qpdf_cmd = ["qpdf", "--linearize", input_pdf, output_pdf]
+        subprocess.run(qpdf_cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except Exception:
+        try:
+            qpdf_cmd = ["qpdf", input_pdf, output_pdf]
+            subprocess.run(qpdf_cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            return True
+        except Exception: return False
+
+def produce_temp_cleaned_pdf(original_pdf: str, output_dir: Path) -> str:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    tmp_pdf = output_dir / "tmp_cleaned.pdf"
+    if try_ghostscript_clean(original_pdf, tmp_pdf): return str(tmp_pdf)
+    if try_qpdf_linearize(original_pdf, tmp_pdf): return str(tmp_pdf)
+    try:
+        shutil.copyfile(original_pdf, tmp_pdf)
+        return str(tmp_pdf)
+    except Exception:
+        return str(original_pdf)
+
+# ----------------------------------------------------------------------
+# TEI metadata extraction
+# ----------------------------------------------------------------------
+def extract_metadata_from_tei(tei_xml: str) -> Dict:
+    soup = BeautifulSoup(tei_xml, "lxml-xml")
+    tei_header = soup.find("teiHeader")
+    title = ""
+    authors = []
+    abstract_text = ""
+
+    if tei_header:
+        t = tei_header.find("title", {"level": "a", "type": "main"}) or tei_header.find("title")
+        title = t.get_text(" ", strip=True) if t else ""
+
+        analytic = tei_header.find("analytic")
+        if analytic:
+            for author in analytic.find_all("author"):
+                forename = author.find("forename", {"type": "first"})
+                surname = author.find("surname")
+                first = forename.get_text(strip=True) if forename else ""
+                last = surname.get_text(strip=True) if surname else ""
+                if first or last:
+                    authors.append({"first": first, "last": last})
+
+        abstract_tag = tei_header.find("abstract")
+        if abstract_tag:
+            abs_ps = abstract_tag.find_all("p")
+            if abs_ps:
+                abstract_text = " ".join(p.get_text(" ", strip=True) for p in abs_ps)
+            else:
+                abstract_text = abstract_tag.get_text(" ", strip=True)
+
+    return {"title": title, "authors": authors, "abstract": abstract_text}
+
+# ----------------------------------------------------------------------
+# Figures & References
+# ----------------------------------------------------------------------
+def extract_figures(tei_xml: str, output_dir: Path, rag_mode: bool = False, article_name: str = None):
+    soup = BeautifulSoup(tei_xml, "lxml-xml")
+    figures = soup.find_all("figure")
+    fig_dir = output_dir if rag_mode else (output_dir / "figures")
+    fig_dir.mkdir(parents=True, exist_ok=True)
+
+    for fig in figures:
+        fig_id = fig.get("xml:id") or fig.get("id") or "fig_unknown"
+        head = fig.find("head")
+        fig_title = head.get_text(" ", strip=True) if head else ""
+        fig_desc = fig.find("figDesc").get_text(" ", strip=True) if fig.find("figDesc") else ""
+        content = f"FIGURE ID: {fig_id}\nTITLE_IN_ARTICLE: {fig_title}\nDESCRIPTION:\n{fig_desc}\n"
+        fname = f"{clean_filename(article_name)}_{fig_id}.txt" if rag_mode and article_name else f"{fig_id}.txt"
+        save_text(fig_dir / fname, content)
+
+def extract_references(tei_xml: str, output_dir: Path):
+    soup = BeautifulSoup(tei_xml, "lxml-xml")
+    list_bibl = soup.find("listBibl")
+    out_file = output_dir / "references.txt"
+    if not list_bibl:
+        save_text(out_file, "NO REFERENCES FOUND\n")
+        return
+
+    out_lines = []
+    for bibl in list_bibl.find_all("biblStruct"):
+        ref_id = bibl.get("xml:id", "unknown_id")
+        title_tag = bibl.find("title", {"level": "a", "type": "main"}) or bibl.find("title")
+        title = title_tag.get_text(" ", strip=True) if title_tag else ""
+        authors = []
+        for pers in bibl.find_all("persName"):
+            fn = pers.find("forename", {"type": "first"})
+            sn = pers.find("surname")
+            first = fn.get_text(strip=True) if fn else ""
+            last = sn.get_text(strip=True) if sn else ""
+            if first or last:
+                authors.append(f"{first} {last}".strip())
+        authors_str = ", ".join(authors)
+        journal_tag = bibl.find("title", {"level": "j"})
+        journal = journal_tag.get_text(" ", strip=True) if journal_tag else ""
+        date_tag = bibl.find("date", {"type": "published"}) or bibl.find("date")
+        year = date_tag.get("when") or date_tag.get_text(" ", strip=True) if date_tag else ""
+        idnos = [f"{i.get('type', 'unknown')}:{i.get_text(strip=True)}" for i in bibl.find_all("idno")]
+        entry = [
+            f"ID: {ref_id}",
+            f"Title: {title}",
+            f"Authors: {authors_str}",
+            f"Journal: {journal}",
+            f"Year: {year}",
+            "IDNOS:"
+        ] + ([f" - {x}" for x in idnos] or [" - None"]) + ["-" * 50]
+        out_lines.append("\n".join(entry))
+
+    save_text(out_file, "\n\n".join(out_lines))
+
+# ----------------------------------------------------------------------
+# Paragraph cleaning & figure ref normalisation
+# ----------------------------------------------------------------------
+def clean_paragraph_and_extract_figures(p_tag) -> Tuple[str, List[str]]:
+    for b in p_tag.find_all("ref", {"type": "bibr"}):
+        b.decompose()
+    figures = []
+    for f in p_tag.find_all("ref", {"type": "figure"}):
+        fig_text = f.get_text(" ", strip=True)
+        fig_target = f.get("target", "").lstrip("#")
+        if not fig_target:
+            m = re.search(r"fig(?:ure)?\s*[_\s]?(\d+)", fig_text, re.IGNORECASE)
+            fig_target = m.group(1) if m else "unknown"
+        label = f"{fig_target}: {fig_text}"
+        figures.append(label)
+        f.string = f"(fig {fig_target}: {fig_text})"
+    cleaned = p_tag.get_text(" ", strip=True)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    return cleaned, sorted(set(figures))
+
+# ----------------------------------------------------------------------
+# Helpers for main/supplementary detection
+# ----------------------------------------------------------------------
+def count_paragraphs_in_div(div) -> int:
+    return len(div.find_all("p"))
+
+def detect_supplementary_by_keyword(div_text: str) -> bool:
+    return any(re.search(pat, div_text, re.IGNORECASE) for pat in SUPP_PATTERNS)
+
+# ----------------------------------------------------------------------
+# Raw PDF extraction + LLM fallback
+# ----------------------------------------------------------------------
+def extract_pdf_text(pdf_path: str) -> str:
+    doc = fitz.open(pdf_path)
+    pages = [page.get_text("text").strip() for page in doc]
+    doc.close()
+    return "\n\n".join(pages)
+
+def separate_refs_and_supplementary(full_text: str):
+    refs_match = re.search(r"(?mi)\n\s*References\s*\n", full_text)
+    if refs_match:
+        refs_start = refs_match.start()
+        print(f"[DEBUG] Raw PDF: References at char {refs_start}")
+        refs_text = full_text[refs_start:]
+        body_text = full_text[:refs_start]
+    else:
+        print("[DEBUG] Raw PDF: NO References section")
+        body_text = full_text
+        refs_text = ""
+    return body_text, refs_text
+
+"""
+def find_end_of_numbered_refs(text_after_refs: str, max_lookahead: int = 3000) -> int:
+    lines = text_after_refs.splitlines()
+    last_numbered = 0
+    expected = 1
+    for i, line in enumerate(lines):
+        if i * 100 > max_lookahead:  # avoid infinite loop
+            break
+        prefix = line.strip()[:30]
+        m = re.match(r"^\s*(\d+)\.\s+", prefix)
+        if m:
+            num = int(m.group(1))
+            if num >= expected:
+                expected = num + 1
+            last_numbered = i
+        else:
+            if last_numbered >= 2:
+                break
+    offset = sum(len(l) + 1 for l in lines[: last_numbered + 1])
+    return offset
+"""
+# ----------------------------------------------------------------------
+# 3. (Optional) tiny safety wrapper for the numbered‑list scanner
+# ----------------------------------------------------------------------
+def find_end_of_numbered_refs(text_after_refs: str) -> int:
+    """Used only as a fallback – kept for completeness."""
+    lines = text_after_refs.splitlines()
+    last = 0
+    for i, line in enumerate(lines):
+        if re.match(r"^\s*\d+\.\s+", line.lstrip()[:30]):
+            last = i
+        else:
+            if last >= 2:
+                break
+    return sum(len(l) + 1 for l in lines[: last + 1])
+
+
+# ----------------------------------------------------------------------
+# 1. Find the TRUE supplementary heading by asking Ollama on each candidate
+# ----------------------------------------------------------------------
+def get_post_references_chunk(full_text: str, max_chars: int = 5000) -> str:
+    """
+    1. Locate References header.
+    2. Find ALL matches of SUPP_PATTERNS after it.
+    3. For each match, ask Ollama: “Is this the start of Supplementary Material?”
+    4. Return text starting at the first confirmed heading.
+    """
+    # ---- 1. References header ----
+    refs_match = re.search(r"(?mi)\n\s*References?\s*\n", full_text)
+    if not refs_match:
+        print("[DEBUG] Raw PDF: No References header – using last 1/3")
+        start = len(full_text) * 2 // 3
+    else:
+        start = refs_match.end()
+        print(f"[DEBUG] Raw PDF: References ends at char {start}")
+
+    tail = full_text[start:]
+
+    # ---- 2. Find all candidate positions ----
+    candidates = []
+    for pat in SUPP_PATTERNS:
+        for m in re.finditer(pat, tail, re.IGNORECASE):
+            candidates.append((m.start(), m.group(0)))
+
+    if not candidates:
+        print("[DEBUG] Raw PDF: No supp keywords – fallback")
+        return tail[:max_chars]
+
+    print(f"[DEBUG] Raw PDF: Found {len(candidates)} candidate keywords: {', '.join(c[1] for c in candidates[:5])}...")
+
+    # ---- 3. Ask Ollama to validate each candidate ----
+    llm = OllamaLLM(model=OLLAMA_MODEL, timeout=LLM_TIMEOUT)
+
+    for idx, (pos, keyword) in enumerate(candidates):
+        # extract a small window around the keyword (500 chars before + 500 after)
+        window_start = max(0, pos - 500)
+        window = tail[window_start : pos + 500]
+        context = f"...{window}..."
+
+        prompt = f"""
+You are checking if a heading marks the **start of Supplementary Material / Methods**.
+So you can recognise that by being a consistent text about physics startin g to explain 
+or describe something and that it is not using the word "{keyword}" to refer to something 
+else but more like a title.
+
+Heading: "{keyword}"
+Context (500 chars before + after):
+\"\"\"{context}\"\"\"
+
+Answer only:
+- YES if this is the **first heading of the Supplementary section**
+- NO if it is in references, main text, or not the start
+
+Return only YES or NO.
+"""
+
+        try:
+            resp = llm.invoke(prompt).strip().upper()
+            print(f"[LLM] Candidate {idx+1}: '{keyword}' → {resp}")
+            if resp == "YES":
+                # confirmed! start chunk right after the heading
+                chunk_start = start + pos + len(keyword)
+                chunk = full_text[chunk_start : chunk_start + max_chars]
+                print(f"[DEBUG] CONFIRMED supp start at char {chunk_start} (after '{keyword}')")
+                return chunk.strip()
+        except Exception as e:
+            print(f"[LLM] Error on candidate {idx+1}: {e}")
+            continue
+
+    # ---- 4. No confirmation → fallback ----
+    print("[DEBUG] No confirmed supp heading – using first candidate")
+    first_pos = candidates[0][0]
+    chunk_start = start + first_pos
+    return full_text[chunk_start : chunk_start + max_chars].strip()
+
+
+# ----------------------------------------------------------------------
+# 2. Extract the first real paragraph AFTER the confirmed heading
+# ----------------------------------------------------------------------
+# ----------------------------------------------------------------------
+# 1. Ask Ollama for the first paragraph → return list of 5-word windows
+# ----------------------------------------------------------------------
+def ask_llm_for_supplementary_keywords(text_chunk: str) -> List[str]:
+    """
+    Returns a list of 10-word sliding windows from the first real paragraph.
+    """
+    if not text_chunk or len(text_chunk.strip()) < 150:
+        print("[LLM] Input too short – skipping")
+        return []
+
+    llm = OllamaLLM(model=OLLAMA_MODEL, timeout=LLM_TIMEOUT)
+
+    prompt = f"""
+You are given text that starts **right after** a confirmed Supplementary heading.
+
+Return **exactly the first 20–30 words of the first real paragraph**.
+Do NOT include:
+- the heading
+- figure captions
+- equations
+- references
+
+If none found, return: NO_SUPP_FOUND
+
+Text:
+\"\"\"{text_chunk}\"\"\"
+
+Return only the paragraph text.
+"""
+
+    try:
+        preview = text_chunk[:500]
+        print("\n=== LLM INPUT (after confirmed heading) ===")
+        print(preview + ("…" if len(text_chunk) > 500 else ""))
+        print("=== END INPUT ===\n")
+
+        print(f"[LLM] Sending {len(text_chunk)} chars to Ollama...")
+        resp = llm.invoke(prompt).strip()
+        resp = resp.strip('"\',.').strip()
+        print(f"[LLM] Raw response: {resp}")
+
+        if resp == "NO_SUPP_FOUND" or len(resp.split()) < 15:
+            return []
+
+        # ---- Split into 10-word sliding windows ----
+        words = resp.split()
+        windows = []
+        for i in range(len(words) - 9):  # 10-word window
+            window = " ".join(words[i:i+10])
+            windows.append(window)
+        print(f"[LLM] Generated {len(windows)} ten-word windows")
+        return windows
+
+    except Exception as e:
+        print(f"[LLM] Error: {e}")
+        return []
+
+
+# ----------------------------------------------------------------------
+# Section extraction (GROBID + LLM hybrid) – **keeps old signature**
+# ----------------------------------------------------------------------
+def extract_sections(tei_xml: str,
+                     chunk_size: int = DEFAULT_CHUNK_SIZE,
+                     pdf_path: Optional[str] = None) -> Tuple[List[Dict], List[Dict]]:
+    soup = BeautifulSoup(tei_xml, "lxml-xml")
+    tei_text = soup.get_text(separator=" ", strip=True)
+
+    body = soup.find("body")
+    divs = body.find_all("div") if body else soup.find_all("div")
+    if not divs:
+        cleaned = re.sub(r"\s+", " ", soup.get_text(" ", strip=True)).strip()
+        return ([{"text": cleaned, "figures": [], "section_title": None}], [])
+
+    div_paragraph_counts = [count_paragraphs_in_div(d) for d in divs]
+
+    # ---- GROBID structural detection (unchanged) ----
+    main_div_index = None
+    supp_div_index = None
+
+    if div_paragraph_counts[0] >= 5:
+        main_div_index = 0
+        for i in range(1, len(divs)):
+            if div_paragraph_counts[i] >= 3:
+                supp_div_index = i
+                break
+    else:
+        if len(div_paragraph_counts) > 1 and div_paragraph_counts[1] >= 5:
+            main_div_index = 1
+            for i in range(2, len(divs)):
+                if div_paragraph_counts[i] >= 3:
+                    supp_div_index = i
+                    break
+
+    if main_div_index is None:
+        for i, d in enumerate(divs):
+            txt = d.get_text(" ", strip=True)
+            if not detect_supplementary_by_keyword(txt) and div_paragraph_counts[i] >= 3:
+                main_div_index = i
+                break
+        if main_div_index is None:
+            main_div_index = 0
+
+        for j in range(main_div_index + 1, len(divs)):
+            if detect_supplementary_by_keyword(divs[j].get_text(" ", strip=True)) or div_paragraph_counts[j] >= 3:
+                supp_div_index = j
+                break
+
+    print(f"[DEBUG] GROBID thinks supplementary starts at div {supp_div_index} (main ends at {main_div_index})")
+
+    # === LLM fallback: 5-word windows + <p> alignment ===
+    if pdf_path and supp_div_index is not None:
+        try:
+            raw_text = extract_pdf_text(pdf_path)
+            post_refs_chunk = get_post_references_chunk(raw_text, max_chars=5000)
+            llm_windows = ask_llm_for_supplementary_keywords(post_refs_chunk)
+
+            if llm_windows:
+                print(f"[LLM] Trying {len(llm_windows)} five-word windows to match in TEI...")
+                tei_soup = BeautifulSoup(tei_xml, "lxml-xml")
+
+                # Search all windows in TEI
+                matches = []
+                for win in llm_windows:
+                    pattern = re.escape(win)
+                    for m in re.finditer(pattern, tei_text, re.IGNORECASE):
+                        matches.append((win, m.start()))
+                matches.sort(key=lambda x: x[1])  # earliest first
+
+                if matches:
+                    best_win, best_pos = matches[0]
+                    print(f"[LLM] Best window match: '{best_win}' at TEI char {best_pos}")
+
+                    # ---- Walk back to nearest <p> start ----
+                    p_tags = tei_soup.find_all("p")
+                    para_start_pos = None
+                    for p in p_tags:
+                        p_text = p.get_text(" ", strip=True)
+                        p_pos = tei_text.find(p_text)
+                        if p_pos != -1 and p_pos <= best_pos < p_pos + len(p_text):
+                            para_start_pos = p_pos
+                            print(f"[LLM] Aligned to <p> starting at TEI char {para_start_pos}")
+                            break
+
+                    if para_start_pos is not None:
+                        # Find which div contains this <p>
+                        cum = 0
+                        for idx, div in enumerate(divs):
+                            div_len = len(div.get_text(" ", strip=True))
+                            if cum <= para_start_pos < cum + div_len:
+                                if idx < supp_div_index:
+                                    print(f"[LLM] Overriding GROBID: supp start {supp_div_index} → {idx}")
+                                    supp_div_index = idx
+                                break
+                            cum += div_len
+                else:
+                    print("[LLM] No window matched in TEI")
+            else:
+                print("[LLM] No windows from LLM")
+        except Exception as e:
+            print(f"[LLM] Failed: {e}")
+
+    # ---- Final split ----
+    main_divs = divs[main_div_index:supp_div_index] if supp_div_index is not None else divs[main_div_index:]
+    supp_divs = divs[supp_div_index:] if supp_div_index is not None else []
+
+    print(f"[DEBUG] Final split: main {main_div_index}:{supp_div_index or 'end'}, supp {supp_div_index or 'none'}")
+
+    # ---- Chunk production (unchanged) ----
+    def produce_chunks_from_divs(div_list: List, label: str) -> List[Dict]:
+        chunks = []
+        cur_text = ""
+        cur_figs = set()
+        cur_title = None
+
+        def flush():
+            nonlocal cur_text, cur_figs, cur_title
+            if not cur_text.strip(): return
+            if cur_figs:
+                cur_text = cur_text.rstrip() + "\n\nFigures used in this chunk: " + ", ".join(sorted(cur_figs)) + "\n"
+            chunks.append({"text": cur_text.strip(), "figures": sorted(cur_figs), "section_title": cur_title})
+            cur_text = ""
+            cur_figs = set()
+            cur_title = None
+
+        for div in div_list:
+            head = div.find("head")
+            head_txt = head.get_text(" ", strip=True) if head else None
+            if head_txt:
+                if cur_text and len(cur_text) + len(head_txt) > chunk_size:
+                    flush()
+                cur_text += ("\n" + head_txt + "\n") if cur_text else (head_txt + "\n")
+                cur_title = head_txt
+
+            for p in div.find_all("p"):
+                para, figs = clean_paragraph_and_extract_figures(p)
+                if len(para) > chunk_size:
+                    if cur_text: flush()
+                    start = 0
+                    while start < len(para):
+                        part = para[start:start+chunk_size]
+                        if start + chunk_size < len(para):
+                            sp = part.rfind(" ")
+                            if sp > 100: part = part[:sp]
+                        txt = part.strip()
+                        if figs:
+                            txt += "\n\nFigures used in this chunk: " + ", ".join(sorted(set(figs))) + "\n"
+                        chunks.append({"text": txt, "figures": sorted(set(figs)), "section_title": cur_title})
+                        start += len(part)
+                else:
+                    if not cur_text:
+                        cur_text = para + "\n"
+                        cur_figs.update(figs)
+                    elif len(cur_text) + len(para) > chunk_size:
+                        flush()
+                        cur_text = para + "\n"
+                        cur_figs.update(figs)
+                    else:
+                        cur_text += para + "\n"
+                        cur_figs.update(figs)
+        flush()
+        return chunks
+
+    main_chunks = produce_chunks_from_divs(main_divs, "main")
+    supp_chunks = produce_chunks_from_divs(supp_divs, "supplementary") if supp_divs else []
+    return main_chunks, supp_chunks
+
+# ----------------------------------------------------------------------
+# PUBLIC ENTRYPOINT – **EXACT SAME SIGNATURE**
+# ----------------------------------------------------------------------
+def preprocess_pdf(pdf_path: str,
+                   output_dir: str,
+                   chunk_size: int = DEFAULT_CHUNK_SIZE,
+                   rag_mode: bool = False,
+                   article_name: str = None,
+                   keep_references: bool = False,
+                   preclean_pdf: bool = False,
+                   use_grobid_consolidation: bool = False) -> Dict:
+
+    out_dir = Path(output_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # ---- PDF to send (optional cleaning) ----
+    pdf_to_send = str(pdf_path)
+    tmp_pdf = None
+    if preclean_pdf:
+        tmp_pdf = produce_temp_cleaned_pdf(str(pdf_path), out_dir)
+        pdf_to_send = tmp_pdf
+
+    # ---- GROBID call ----
+    url = "http://localhost:8070/api/processFulltextDocument"
+    params = {}
+    if use_grobid_consolidation:
+        params["consolidateHeader"] = "1"
+        params["consolidateCitations"] = "1"
+
+    with open(pdf_to_send, "rb") as f:
+        r = requests.post(url, params=params, files={"input": f}, timeout=120)
+    tei_xml = r.text
+
+    raw_tei_path = out_dir / "raw_tei.xml"
+    save_text(raw_tei_path, tei_xml)
+
+    # ---- Metadata, figures, references ----
+    meta = extract_metadata_from_tei(tei_xml)
+    title_path = out_dir / "title.txt"
+    with open(title_path, "w", encoding="utf-8") as fh:
+        fh.write(f"Title: {meta.get('title','')}\n\nAuthors:\n")
+        for a in meta.get("authors", []):
+            fh.write(f" - {a.get('first','')} {a.get('last','')}\n")
+        fh.write(f"\nAbstract:\n{meta.get('abstract','')}\n")
+
+    extract_figures(tei_xml, out_dir, rag_mode=rag_mode, article_name=article_name)
+    if not rag_mode:
+        extract_references(tei_xml, out_dir)
+
+    # ---- Chunking (LLM hybrid inside) ----
+    main_chunks, supp_chunks = extract_sections(
+        tei_xml,
+        chunk_size=chunk_size,
+        pdf_path=str(pdf_path)          # <-- we need the raw PDF for LLM
+    )
+
+    # ---- Save chunks ----
+    if rag_mode:
+        pfx_main = f"{clean_filename(article_name)}_main_chunk" if article_name else "main_chunk"
+        pfx_sup  = f"{clean_filename(article_name)}_sup_chunk"  if article_name else "sup_chunk"
+        for i, c in enumerate(main_chunks, 1):
+            save_text(out_dir / f"{pfx_main}{str(i).zfill(3)}.txt", c["text"])
+        for i, c in enumerate(supp_chunks, 1):
+            save_text(out_dir / f"{pfx_sup}{str(i).zfill(3)}.txt", c["text"])
+    else:
+        main_dir = out_dir / "main"
+        supp_dir = out_dir / "supplementary"
+        main_dir.mkdir(parents=True, exist_ok=True)
+        supp_dir.mkdir(parents=True, exist_ok=True)
+        for i, c in enumerate(main_chunks, 1):
+            save_text(main_dir / f"main_chunk{str(i).zfill(3)}.txt", c["text"])
+        for i, c in enumerate(supp_chunks, 1):
+            save_text(supp_dir / f"sup_chunk{str(i).zfill(3)}.txt", c["text"])
+
+    # ---- Figure maps (standard mode) ----
+    if not rag_mode:
+        main_figs = set()
+        supp_figs = set()
+        main_map = {}
+        supp_map = {}
+        for idx, c in enumerate(main_chunks, 1):
+            for f in c.get("figures", []):
+                main_figs.add(f)
+                main_map.setdefault(f, []).append(str(idx).zfill(3))
+        for idx, c in enumerate(supp_chunks, 1):
+            for f in c.get("figures", []):
+                supp_figs.add(f)
+                supp_map.setdefault(f, []).append(str(idx).zfill(3))
+        save_text(out_dir / "figmain.txt", "\n".join(sorted(main_figs)))
+        save_text(out_dir / "figsup.txt", "\n".join(sorted(supp_figs)))
+        with open(out_dir / "figmain_map.txt", "w", encoding="utf-8") as fm:
+            for k in sorted(main_map):
+                fm.write(f"{k} -> {', '.join(main_map[k])}\n")
+        with open(out_dir / "figsup_map.txt", "w", encoding="utf-8") as fm:
+            for k in sorted(supp_map):
+                fm.write(f"{k} -> {', '.join(supp_map[k])}\n")
+
+    # ---- Optional: with_references folder ----
+    if keep_references and not rag_mode:
+        refs_text = (out_dir / "references.txt").read_text(encoding="utf-8") if (out_dir / "references.txt").exists() else ""
+        wr_dir = out_dir / "with_references"
+        wr_main = wr_dir / "main"
+        wr_supp = wr_dir / "supplementary"
+        wr_main.mkdir(parents=True, exist_ok=True)
+        wr_supp.mkdir(parents=True, exist_ok=True)
+        for i, c in enumerate(main_chunks, 1):
+            save_text(wr_main / f"main_chunk{str(i).zfill(3)}.txt", c["text"] + "\n\n" + refs_text)
+        for i, c in enumerate(supp_chunks, 1):
+            save_text(wr_supp / f"sup_chunk{str(i).zfill(3)}.txt", c["text"] + "\n\n" + refs_text)
+
+    # ---- Cleanup temp PDF ----
+    if preclean_pdf and tmp_pdf:
+        try:
+            Path(tmp_pdf).unlink(missing_ok=True)
+        except Exception:
+            pass
+
+    return {
+        "raw_tei": str(raw_tei_path),
+        "title_txt": str(title_path),
+        "main_chunks": len(main_chunks),
+        "supp_chunks": len(supp_chunks),
+    }

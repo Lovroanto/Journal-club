@@ -1,0 +1,729 @@
+grobid_processor.py — summary (for packaging + LLM understanding)
+Classes
+
+No classes defined in this file.
+
+Global constants / state
+
+MODEL = "llama3.1": model name (used conceptually; actual LLM instance uses same).
+
+Similarity / diff tuning:
+
+SIMILARITY_THRESHOLD = 0.7
+
+MAX_DIFF_TO_SHOW = 200
+
+MIN_CHAR_DIFF = 15
+
+DEFAULT_AUTHOR_RATIO = 0.60
+
+HTML_DIFF = HtmlDiff(...)
+
+llm = OllamaLLM(model="llama3.1"): local LLM client (used mainly for supplementary boundary detection if passed through).
+
+Figure caption numbering globals:
+
+_figure_counter (int), _figure_lock (unused here)
+
+Used to name extracted figure caption files sequentially.
+
+External modules imported (internal project dependencies)
+
+These are other files/modules you likely need in the same package:
+
+sentence_alignment.align_clean_to_grobid, sentence_alignment.save_alignment_report
+
+Align sentence lists (clean PDF text vs TEI-extracted sentences) and generate “what to change”.
+
+tei_supplementary_detector.detect_supplementary_boundary, tei_supplementary_detector.split_main_and_supp_by_boundary
+
+Detect where supplementary material starts in TEI.
+
+apply_tei_changes.apply_instructions_to_tei
+
+Apply alignment-driven instructions to modify TEI XML.
+
+Other important third-party deps:
+
+requests (HTTP to GROBID)
+
+fitz (PyMuPDF) (PDF text + image extraction)
+
+lxml.etree (parsing TEI)
+
+bs4.BeautifulSoup (TEI parsing + cleaning)
+
+difflib.SequenceMatcher, difflib.HtmlDiff (sentence similarity + diff)
+
+Function index (grouped by purpose)
+A) Small file/text utilities
+
+save_text(path: Path, text: str)
+
+Uses: Path.mkdir, open()
+
+Does: write UTF-8 text to a file, ensuring parent folder exists.
+
+clean_filename(text: str, maxlen: int = 120) -> str
+
+Uses: re.sub
+
+Does: sanitize a string for filenames (remove invalid chars, compress whitespace to _, truncate).
+
+reset_figure_counter()
+
+Uses: global _figure_counter
+
+Does: reset caption numbering to 0.
+
+_get_next_figure_number() -> int
+
+Uses: global _figure_counter
+
+Does: increments and returns next figure index.
+
+B) PDF “pre-clean” helpers (optional, before sending to GROBID)
+
+tool_exists(cmd: str) -> bool
+
+Uses: shutil.which
+
+Does: checks if external binary exists in PATH.
+
+try_ghostscript_clean(input_pdf: str, output_pdf: str) -> bool
+
+Uses: tool_exists, subprocess.run
+
+Does: rebuild PDF using Ghostscript gs to fix structure; returns success/failure.
+
+try_qpdf_linearize(input_pdf: str, output_pdf: str) -> bool
+
+Uses: tool_exists, subprocess.run
+
+Does: rewrite/linearize via qpdf, fallback to simple rewrite if linearize fails.
+
+produce_temp_cleaned_pdf(original_pdf: str, output_dir: Path) -> str
+
+Uses: try_ghostscript_clean, try_qpdf_linearize, shutil.copyfile
+
+Does: produces output_dir/tmp_cleaned.pdf using gs or qpdf; if neither works copies original; returns path to use.
+
+C) “GROBID output checking” pipeline (clean PDF text → sentence files → alignment)
+
+extract_pdf_text(pdf_path) -> str
+
+Uses: fitz.open, page.get_text("text")
+
+Does: extract full raw text from PDF pages.
+
+extract_and_remove_figure_captions(text: str, out_dir: Optional[Path]) -> (cleaned_text, count)
+
+Uses: _get_next_figure_number, regex caption matcher, file writes
+
+Does:
+
+Finds caption blocks like “Fig. 1 …”
+
+Optionally saves each caption as figure_###.txt in out_dir
+
+Always removes caption text from the main body text
+
+Returns cleaned text + number removed.
+
+remove_figure_axis_labels(text: str) -> str
+
+Uses: regex filters
+
+Does: removes junk lines common near figures (units, short numeric strings, tiny tokens).
+
+is_equation_block(line: str) -> bool
+
+Uses: regex and heuristics
+
+Does: flags lines that are mostly math symbols / equations to remove them from text cleaning.
+
+find_references_block(text: str) -> Optional[(start,end)]
+
+Uses: regex for headings + numbered list detection
+
+Does: detect the likely “References” section boundaries in raw PDF text (so it can be separated/treated differently).
+
+is_metadata_date_line(line: str) -> bool
+
+Uses: regex rules
+
+Does: detect “Received/Accepted/Published…” or journal volume/issue/page lines or lines containing emails.
+
+is_author_or_affiliation_line(line: str, ratio=DEFAULT_AUTHOR_RATIO) -> bool
+
+Uses: uppercase/word heuristics
+
+Does: detects author/affiliation blocks (high uppercase density) to remove while keeping normal headings.
+
+prepare_pdf_for_grobid_check(pdf_path, output_dir, ..., extract_figures=True) -> str
+
+Uses:
+
+PDF reading + optional image extraction via fitz
+
+find_references_block
+
+extract_and_remove_figure_captions
+
+remove_figure_axis_labels
+
+is_equation_block, is_metadata_date_line, is_author_or_affiliation_line
+
+reset_figure_counter
+
+Does (important):
+
+Extracts raw PDF text
+
+Optionally extracts embedded images to output_dir/figure_from_pdf/
+
+Removes figure captions into text files (and removes them from body)
+
+Removes axis labels, metadata/date lines, author blocks, equation junk
+
+Writes cleaned text (default cleaned_article.txt)
+
+Prints a preview + info
+
+Renames caption files to align with image ids if images exist
+
+Returns final cleaned text string.
+
+extract_all_sentences_to_single_file(text, output_path, ...)
+
+Uses: regex sentence splitting with abbreviation-protection; file writing
+
+Does: writes each “good” sentence as:
+
+SENTENCE 001 ::: ... ////
+
+filters by min word count and valid punctuation ending.
+
+_extract_sentences_exact_logic(text, min_words=3) -> List[str]
+
+Uses: same sentence rules as above
+
+Does: internal reusable sentence extractor so captions and other sources match identical logic.
+
+append_figure_captions_to_sentence_file(figures_folder, sentence_file, ...)
+
+Uses: _extract_sentences_exact_logic, filesystem scan
+
+Does: finds caption .txt files in a folder, extracts sentences, appends them to sentence_file with a FIG### tag.
+
+correct_overmerged_sentences(input_path, output_path, ...)
+
+Uses: regex heuristics over multi-line blocks
+
+Does: fixes the common first “overmerged” sentence block (title/author lines merged with actual text). Keeps only the last “real” paragraph start.
+
+extract_grobid_text(tei_path: Path) -> str
+
+Uses: lxml.etree
+
+Does: extracts the raw text content of <tei:body> from TEI, normalized whitespace.
+
+load_cleaned_text(txt_path: Path) -> str
+
+Does: read cleaned text file.
+
+split_into_sentences(text: str) -> List[str]
+
+Does: simple regex sentence split (different from the “exact logic” functions).
+
+similarity(a,b) -> float
+
+Uses: SequenceMatcher
+
+Does: lowercased similarity ratio.
+
+char_diff_count(a,b) -> int
+
+Uses: SequenceMatcher.get_opcodes
+
+Does: approximate character-level diff size.
+
+sentence_diff(cleaned_sents, grobid_sents) -> List[dict]
+
+Uses: SequenceMatcher, similarity, char_diff_count
+
+Does: identifies:
+
+sentences missing in grobid
+
+possible misplacements (similar but with meaningful diffs)
+
+get_context(sents, idx, n=2) -> str
+
+Does: returns local neighborhood context string around a sentence index.
+
+html_word_diff(a,b) -> str
+
+Uses: HTML_DIFF.make_table
+
+Does: generates HTML diff table for a pair of sentences.
+
+extract_structured_sentences_from_tei(tei_path, output_txt_path)
+
+Uses: lxml.etree, extract_next_sentence
+
+Does (important):
+
+Walks TEI <body> in <div>/<p> order
+
+Buffers text across paragraphs to recover sentences that span <p> boundaries
+
+Writes sentences with provenance tags: DIVxxPARAyy.
+
+append_figure_captions_from_tei(tei_path, sentence_file, ...)
+
+Uses: _extract_sentences_exact_logic, TEI parsing
+
+Does: extracts <figure> captions (<figDesc>/<head>) from TEI and appends them into the TEI sentence file with FIG### ids.
+
+extract_next_sentence(text) -> Optional[(sentence,end_pos)]
+
+Uses: SENTENCE_END_PATTERN + abbreviation protection
+
+Does: returns the first complete sentence found in a growing buffer.
+
+D) TEI metadata/figures/references extraction (after GROBID)
+
+extract_metadata_from_tei(tei_xml: str) -> Dict
+
+Uses: BeautifulSoup TEI parsing
+
+Does: extracts title, authors (first/last), abstract text.
+
+extract_figures(tei_xml, output_dir, rag_mode=False, article_name=None)
+
+Uses: BeautifulSoup
+
+Does: for each <figure>, writes a figure text file containing id/title/figDesc. In rag_mode can prefix by article_name.
+
+extract_references(tei_xml, output_dir)
+
+Uses: BeautifulSoup
+
+Does: writes references.txt by iterating <biblStruct>; extracts author/title/journal/year/idnos.
+
+has_real_references_from_tei(tei_xml: str) -> bool
+
+Defined twice (duplicate); final one overrides earlier.
+
+Uses: BeautifulSoup
+
+Does: “bulletproof” check that references are real (counts biblStruct entries that have meaningful fields like authors/title/year/doi).
+
+E) Paragraph cleaning + chunking (main vs supplementary)
+
+clean_paragraph_and_extract_figures(p_tag) -> (cleaned_text, figure_ids)
+
+Uses: BeautifulSoup tag manipulation, regex
+
+Does:
+
+removes inline bibliography refs <ref type="bibr">
+
+normalizes figure refs <ref type="figure"> into inline (fig fig_x: label)
+
+collects unique figure labels used in that paragraph.
+
+count_paragraphs_in_div(div) -> int
+
+Does: number of <p> in a TEI <div>.
+
+detect_supplementary_by_keyword(div_text: str) -> bool
+
+Uses: SUPP_PATTERNS
+
+Does: basic keyword-based supplementary detector (older/simple helper; main pipeline uses detect_supplementary_boundary instead).
+
+extract_sections(tei_xml, chunk_size=..., overlap=0, include_supplementary=True, llm=None, ...) -> (main_chunks, supp_chunks)
+
+Uses:
+
+detect_supplementary_boundary (from tei_supplementary_detector)
+
+clean_paragraph_and_extract_figures
+
+Does (important):
+
+Parses TEI <div> blocks
+
+Computes an approximate split point for supplementary material using imported detector (optionally LLM-assisted)
+
+Produces chunk dictionaries:
+
+{"text": ..., "figures": [...], "section_title": ...}
+
+Chunking behavior:
+
+keeps paragraphs intact unless a single paragraph exceeds chunk_size
+
+optional overlap between consecutive chunks (character overlap from previous chunk tail)
+
+appends “Figures used in this chunk: …” line at end of chunk text if figures were referenced.
+
+Main entrypoint
+
+preprocess_pdf(pdf_path, output_dir, chunk_size=..., overlap=0, rag_mode=False, ..., correct_grobid=True, process_supplementary=True, ...) -> Dict
+High-level pipeline (important):
+
+Output folder setup
+
+Optional PDF preclean
+
+Uses: produce_temp_cleaned_pdf
+
+Call GROBID
+
+POST to local GROBID server /api/processFulltextDocument
+
+Saves raw_tei.xml
+
+Optional “GROBID correction pipeline” (correct_grobid=True)
+
+Uses:
+
+prepare_pdf_for_grobid_check (skips image extraction if rag_mode=True)
+
+extract_all_sentences_to_single_file
+
+correct_overmerged_sentences
+
+append_figure_captions_to_sentence_file (only if not rag_mode)
+
+extract_structured_sentences_from_tei
+
+append_figure_captions_from_tei (only if not rag_mode)
+
+align_clean_to_grobid (imported) → produces report + instruction file
+
+apply_instructions_to_tei (imported) → writes NEWraw_tei.xml
+
+Result: switches “final TEI” to corrected TEI.
+
+Metadata + figure extraction (debug mode only)
+
+If not rag_mode: extract_metadata_from_tei, extract_figures
+
+References
+
+If not rag_mode: extract_references
+
+Then has_real_references_from_tei
+
+If refs not real: deletes references.txt
+
+Chunking
+
+Uses:: extract_sections(final_tei_xml, chunk_size, overlap, include_supplementary=process_supplementary, ...)
+
+Save chunks
+
+If rag_mode: chunks saved directly into output_dir with prefixes using article_name
+
+Else: output_dir/main/ and output_dir/supplementary/
+
+Debug figure maps (not rag_mode)
+
+Builds:
+
+figmain.txt, figmain_map.txt, and similarly figsup* if supplementary exists
+
+Optional “with_references” chunk copies
+
+If keep_references=True and references are real: writes with_references/main/ (+ supplementary)
+
+Cleanup
+
+Deletes temporary cleaned PDF
+
+If rag_mode: deletes debug artifacts (raw_tei.xml, NEWraw_tei.xml, figure folders, checktxt folder, etc.)
+
+Return dict
+
+Paths to raw/final TEI, title file (maybe)
+
+chunk directories
+
+counts and has_references
+
+Notable issues / refactor targets (useful when modularizing)
+
+Duplicate function: has_real_references_from_tei appears twice; the second one overrides the first. Should keep only one definition.
+
+Many responsibilities in one file: PDF cleaning, sentence extraction, TEI correction, chunking, and I/O are all in one module. Natural split candidates:
+
+pdf_cleaning.py (fitz-based raw text + caption removal + metadata stripping)
+
+sentence_extraction.py (sentence splitting, structured extraction from TEI)
+
+tei_extract.py (metadata/figures/references extraction)
+
+chunking.py (extract_sections + overlap logic)
+
+pipeline.py or processor.py (preprocess_pdf orchestrator)
+
+Hardcoded GROBID URL http://localhost:8070/... should become config/env.
+
+Global LLM instance llm = OllamaLLM(...) might be better injected (you already pass llm into extract_sections and preprocess_pdf).
+
+
+
+sentence_alignment.py — summary
+Classes
+Sentence (dataclass)
+
+Fields:
+
+num: int — sentence number from the file (SENTENCE 001 ...)
+
+is_clean: bool — True for “clean PDF-derived” sentences, False for “GROBID TEI-derived”
+
+metadata: str — provenance / tag (e.g., DIV02PARA03 or FIG012, etc.)
+
+text: str — sentence text
+
+link: int = 0 — linked sentence number on the other side (0 = none)
+
+link_score: float = 0.0 — similarity score for link
+
+partner: Optional[Sentence] = None — direct pointer to matched Sentence (bidirectional)
+
+Purpose: a single structure for representing a sentence plus alignment info.
+
+Functions
+1) Parsing / normalization
+parse_sentences(file_path: Path, is_clean: bool) -> List[Sentence]
+
+Uses: Path.read_text, re, Sentence
+Input file format expected: repeated blocks containing SENTENCE <num> <metadata> ::: <text> ////
+What it does:
+
+Reads a sentence file (the output produced by your pipeline).
+
+Normalizes whitespace aggressively (collapses to single spaces).
+
+Splits on sentence terminator marker ////.
+
+Extracts:
+
+num from SENTENCE(\d+)
+
+metadata from the text between the number and :::
+
+text from after ::: until the block end
+
+Removes a caption prefix line like # Original label: ... if present.
+
+Returns a list of Sentence objects with link=0, partner=None.
+
+Important detail: It also tries to merge “spillover” fragments if splitting produced extra chunks before the next SENTENCE ....
+
+2) Similarity
+similarity(a: str, b: str) -> float
+
+Uses: difflib.SequenceMatcher
+What it does: case-insensitive similarity ratio between two strings.
+
+3) Link finalization
+establish_bidirectional_links(clean_sents: List[Sentence], grobid_dict: Dict[int, Sentence]) -> None
+
+Uses: Sentence.partner, Sentence.link, Sentence.link_score
+What it does:
+
+For each clean sentence that has a nonzero link with positive score:
+
+Assigns clean.partner = grobid_sentence
+
+Assigns grobid.partner = clean_sentence
+
+This creates easy navigation both ways after alignment/conflict-resolution.
+
+4) Main alignment entrypoint (the one used by grobid_processor.py)
+align_clean_to_grobid(clean_txt_path, grobid_txt_path, min_score_to_accept=0.25, output_report=..., output_reorder=...) -> List[Dict]
+
+Uses:
+
+parse_sentences
+
+similarity
+
+conflict resolution logic with defaultdict
+
+save_alignment_report
+
+generate_reorder_instructions
+
+What it does (core logic):
+
+Parse inputs
+
+clean_sents from “clean sentence file”
+
+grobid_sents from “TEI-derived sentence file”
+
+Builds clean_dict and grobid_dict by sentence number.
+
+Step 1: best-match pass
+
+For each clean sentence, scans all grobid sentences and finds the highest similarity.
+
+If best score ≥ min_score_to_accept, stores:
+
+clean.link = best_grobid.num
+
+clean.link_score = best_score
+
+Step 2: conflict resolution (many clean → same grobid)
+
+Groups all claims per grobid_num.
+
+If multiple clean sentences claim the same grobid sentence:
+
+Sort by score
+
+Highest score becomes the winner (keeps link_score)
+
+All other claimants keep the same link but get link_score = 0.0 (marked as rejected later)
+
+Also sets the reverse link on the grobid sentence (grobid.link = winner.clean_num).
+
+Build results list (list[dict])
+For each clean sentence:
+
+If no match or rejected: status = not_found / rejected, score=0.0
+
+If accepted: status=match, include grobid provenance + grobid text.
+
+Writes outputs
+
+save_alignment_report(...) → human-readable alignment log
+
+generate_reorder_instructions(...) → the key file WhatToChange.txt that drives TEI editing
+
+Returns: the results list of dictionaries (for debugging / downstream use).
+
+5) Output report writer
+save_alignment_report(alignment_results, output_path, threshold_used) -> None
+
+Uses: sorting + formatting + Path.write_text
+What it does:
+
+Writes a readable report listing clean sentence numbers and their matched grobid sentence numbers + provenance + “strength” label:
+
+STRONG if score ≥ 0.75
+
+WEAK if ≥ 0.4
+
+VERY WEAK otherwise
+
+Prints the saved path.
+
+6) Instruction generator (drives TEI correction)
+generate_reorder_instructions(alignment_results, clean_sents, grobid_sents, grobid_dict, output_path) -> None
+
+Uses:
+
+establish_bidirectional_links
+
+Counter (majority detection)
+
+figure detection via re.search(r'FIG\d+')
+
+extensive instruction formatting
+
+Path.write_text
+
+What it does (important):
+Produces sequential “edit instructions” in a text file that a later module (apply_tei_changes.py) can apply.
+
+It deliberately outputs instructions in two phases:
+
+Phase A — “Figure blocks first”
+
+Groups clean sentences whose metadata contains FIG### into figure_groups.
+
+Sorts figure groups by first sentence number.
+
+For each figure block:
+
+Determines majority figure id on the grobid side by inspecting matched grobid metadata (uses Counter).
+
+Uses that “majority grobid figure” as an anchor to reduce unnecessary moves.
+
+Iterates clean sentences in order and for each:
+
+If matched: emits either:
+
+silent anchor update, or
+
+PLACE ... / MOVE ... AFTER ... lines
+
+If not matched: emits
+
+INSERT CLEAN ... lines including a short preview
+
+Includes “false split suppression”:
+
+If a clean sentence was a rejected claimant (link != 0 but link_score == 0)
+
+and a nearby sentence strongly matches the same grobid target
+
+then suppress that rejected one (treat as false split noise).
+
+Phase B — “Main text after figures”
+
+Runs the same logic for all non-figure clean sentences.
+
+Places the first sentence as assumed correct (“silent start”).
+
+Otherwise uses:
+
+PLACE GROBID ... AT END OF DOCUMENT
+
+MOVE GROBID ... AFTER ...
+
+INSERT CLEAN ...
+
+Finally writes “END OF INSTRUCTIONS” footer.
+
+Net effect: WhatToChange.txt describes how to reorder/insert sentences so TEI matches the clean-text order, with special handling to keep figure-caption blocks together and processed first.
+
+Script usage
+
+At bottom:
+
+if __name__ == "__main__": align_clean_to_grobid(Path("clean.txt"), Path("grobid.txt"), ...)
+Used for standalone testing.
+
+How this module is used by grobid_processor.py
+
+grobid_processor.preprocess_pdf() calls:
+
+align_clean_to_grobid(clean_file, grobid_file, ..., output_reorder=WhatToChange.txt)
+Then apply_tei_changes.apply_instructions_to_tei(...) consumes that WhatToChange.txt.
+
+So sentence_alignment.py is the bridge between:
+
+“cleaned PDF sentence sequence”
+and
+
+“TEI-derived sentence sequence”
+by generating explicit edit/move/insert instructions.
+
+Notable refactor / packaging notes
+
+This module is already nicely separable as alignment/ or tei_correction/alignment.py.
+
+alignment_results parameter in generate_reorder_instructions is currently unused beyond calling establish_bidirectional_links (it relies on clean_sents state instead). You could remove that parameter or use it for sanity checks.
+
+Complexity hotspot: align_clean_to_grobid does an O(N_clean × N_grobid) full scan similarity. If files are large, this is the scaling bottleneck.
+

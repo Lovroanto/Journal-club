@@ -1,0 +1,360 @@
+arxiv_search.py:
+
+Defines constants:
+
+HEADERS (uses USER_AGENT from .utils)
+
+ARXIV_SEARCH (arXiv API URL)
+
+Defines function:
+
+arxiv_by_title(title: str) -> Optional[Dict]
+
+Does: calls arXiv API with a title query, takes the first result, regex-extracts entry_id and pdf_url.
+
+Takes: title
+
+Calls: requests.get, .utils.info, .utils.warn, uses .utils.REQUESTS_TIMEOUT, re.search
+
+Returns: None if no result/error, else {"entry_id": ..., "pdf_url": ...}
+
+crossref_pdf_search.py:
+
+Defines constant:
+
+HEADERS (uses USER_AGENT from .utils)
+
+Defines functions:
+
+crossref_metadata(doi: str) -> Optional[Dict]
+
+Does: fetches Crossref /works/{doi} metadata and returns the "message" block.
+
+Calls: requests.get, .utils.info, .utils.warn
+
+crossref_pdf_link(doi: str) -> Optional[str]
+
+Does: extracts a PDF URL from Crossref metadata (link entries with content-type=application/pdf).
+
+Calls: crossref_metadata, .utils.info
+
+Returns: PDF URL or None
+
+
+doi_negotiation.py
+
+Defines constant: HEADERS (User-Agent + Accept prefers PDF)
+
+Defines functions:
+
+normalize_doi(doi: str) -> str
+
+Does: strips DOI: and https://doi.org/ wrappers.
+
+Calls: re.sub
+
+_safe_head(url: str) -> Optional[Response]
+
+Does: requests.head(... allow_redirects=True) with timeout; returns None on error.
+
+Calls: requests.head, .utils.warn
+
+_safe_get(url: str) -> Optional[Response]
+
+Does: requests.get(... allow_redirects=True) with timeout; returns None on error.
+
+Calls: requests.get, .utils.warn
+
+resolve_doi(doi: str) -> Dict
+
+Does: normalize → HEAD https://doi.org/{doi} → if PDF by content-type return direct; else GET landing page → if PDF return; else regex-scan HTML for .pdf link (first match) and return it.
+
+Calls: normalize_doi, _safe_head, _safe_get, .utils.info, .utils.warn, re.findall, urllib.parse.urljoin (only if needed)
+
+Returns: dict with doi, resolver_url, landing_url, pdf_url, status (status like head_failed/get_failed/direct_pdf/pdf_in_html/no_pdf).
+
+llm_preprint_verification.py:
+
+Defines functions (LLM fallback only):
+
+llm_guess_arxiv_ids(llm_callable, title, abstract=None) -> List[str]
+
+Does: prompts an LLM to guess 1–3 possible arXiv IDs for a paper.
+
+Calls: llm_callable(prompt), .utils.info
+
+Used by: later validated via arxiv_search.py
+
+llm_guess_arxiv_categories(llm_callable, title, abstract=None) -> List[str]
+
+Does: prompts an LLM to guess 1–3 arXiv categories for broader search.
+
+Calls: llm_callable(prompt), .utils.info
+
+Used by: category-based search (e.g. preprint_search.py)
+
+
+pdf_downloader.py
+
+Purpose: orchestrates “try many ways to get a PDF” and returns (meta_dict, pdf_path_or_None).
+
+Key imports it relies on:
+
+.doi_negotiation: resolve_doi, normalize_doi
+
+.publisher_handlers: find_publisher_pdf
+
+.playwright_fallback: playwright_fetch_pdf
+
+.utils: info, warn, REQUESTS_TIMEOUT, USER_AGENT, JsonCache, clean_filename
+
+requests, Path
+
+Defines helpers:
+
+http_stream_download(url, dest, referer=None, max_retries=3) -> bool
+
+Streams download with requests.Session().get(...), checks %PDF (or content-type), retries + backoff.
+
+Calls: requests.Session, .utils.info/.warn, time.sleep.
+
+doi_content_negotiation_download(doi, dest) -> Optional[str]
+
+GET https://doi.org/<doi> with Accept: application/pdf, saves if it’s a PDF.
+
+Calls: normalize_doi, requests.get, .utils.info/.warn.
+
+Main function:
+
+download_pdf_for_paper(title, authors, year, journal, doi, pdf_dir, rag_dir, cache, unpaywall_pdf_url=None, use_playwright=False) -> (Dict, Optional[str])
+
+Builds meta + a safe filename, then tries in order:
+
+http_stream_download(unpaywall_pdf_url)
+
+doi_content_negotiation_download(doi)
+
+resolve_doi(doi) then http_stream_download(resolved pdf_url)
+
+find_publisher_pdf(landing_url) then http_stream_download(publisher pdf)
+
+optional playwright_fetch_pdf(...)
+
+Records attempts in meta["tried"].
+
+Calls: clean_filename, http_stream_download, doi_content_negotiation_download, resolve_doi, find_publisher_pdf, playwright_fetch_pdf, .utils.info.
+
+playwright_fallback.py
+
+Purpose: last-resort PDF download using a headless browser when static HTTP methods fail.
+
+Defines availability flag:
+
+PLAYWRIGHT_AVAILABLE (set at import time)
+
+Defines function:
+
+playwright_fetch_pdf(landing_url: str, dest_path: Path, timeout=30) -> bool
+
+Does: opens landing page in Playwright, tries to click common PDF links/buttons or detect .pdf links in rendered HTML, saves downloaded file to dest_path.
+
+Calls: Playwright (sync_playwright, browser/page APIs), re.search, .utils.info, .utils.warn
+
+Returns: True if PDF saved, else False.
+
+preprint_search.py
+
+Purpose: best-effort search of preprint repositories to return candidate PDF/landing URLs.
+
+Defines search functions:
+
+search_arxiv_by_title(title, max_results=5) -> List[Dict]
+
+Does: queries arXiv API by title, regex-extracts IDs/titles, builds PDF + abstract URLs.
+
+Calls: requests.get, re.finditer, .utils.warn.
+
+search_zenodo(title, max_results=5) -> List[Dict]
+
+Does: queries Zenodo API, extracts record metadata and PDF file links if present.
+
+Calls: requests.get, .utils.warn.
+
+search_osf(title, max_results=5) -> List[Dict]
+
+Does: queries OSF search API, returns basic metadata + landing URL.
+
+Calls: requests.get, .utils.warn.
+
+Aggregator:
+
+find_preprint_candidates(title, authors=None) -> List[Dict]
+
+Does: merges results from arXiv, Zenodo, and OSF into a unified list with source tags.
+
+Calls: search_arxiv_by_title, search_zenodo, search_osf.
+
+publisher_handlers.py
+
+Purpose: publisher-specific heuristics to derive a PDF URL from a landing page URL.
+
+Helper:
+
+_check_pdf(url) -> bool
+
+Does: requests.get and checks Content-Type for PDF.
+
+Publisher handlers (all url -> Optional[pdf_url]):
+
+handle_science_mag – rewrites /doi/ → /doi/pdf/ (Science family)
+
+handle_aps – rewrites /abstract → /pdf (APS journals)
+
+handle_nature – tries url + ".pdf" or /pdf
+
+handle_springer – extracts DOI from Springer article URL, builds /content/pdf/{doi}.pdf
+
+handle_elsevier – extracts PII, builds /pdfft, checks via HEAD
+
+Dispatcher:
+
+find_publisher_pdf(url) -> Optional[str]
+
+Does: tries each handler in order, returns first valid PDF.
+
+Calls: all handle_*, .utils.info/.warn, requests.get/head.
+
+publisher_patterns.py:
+
+Purpose: generate candidate PDF URLs from simple DOI / URL patterns (no validation).
+
+Defines function:
+
+guess_publisher_pdf(doi: str, landing_url: Optional[str]) -> list
+
+Does: builds a list of likely PDF URLs using generic rules and DOI prefixes (Nature, Science, APS).
+
+Calls: .utils.info
+
+Returns: list of guessed PDF URLs (caller tries them).
+
+rag_builder.py
+
+Purpose: main orchestrator to build a RAG dataset: pull Wikipedia text chunks + discover/download PDFs for papers listed in a CSV.
+
+Defines helpers:
+
+crossref_search_aggressive(title, authors, rows=30) -> list
+
+Does: queries Crossref /works for best matches.
+
+Calls: requests.get, .utils.warn.
+
+unpaywall_pdf_url(doi, email) -> Optional[str]
+
+Does: queries Unpaywall for an open PDF URL.
+
+Calls: requests.get, .utils.info/.warn.
+
+find_doi_for_paper(title, authors, cache, ...) -> (doi|None, landing_candidates, debug)
+
+Does: tries Crossref first (title similarity), else falls back to find_preprint_candidates and returns their URLs as “landing candidates”.
+
+Calls: crossref_search_aggressive, clean_string_similarity, find_preprint_candidates.
+
+clean_string_similarity(a, b) -> float
+
+Does: basic difflib.SequenceMatcher ratio.
+
+Main function:
+
+build_rag_dataset(...)
+
+Does (high level):
+
+creates folders + JsonCache
+
+loads notions list + CSV into papers_by_notion
+
+(optional) fetches Wikipedia via get_wikipedia_context and writes chunked .txt files
+
+(optional) parallel PDF downloads using ThreadPoolExecutor calling download_pdf_for_paper
+
+writes per-paper metadata json files into rag_dir
+
+Calls: .utils.makedirs/clean_filename/info/warn, get_wikipedia_context, find_doi_for_paper, unpaywall_pdf_url, download_pdf_for_paper, ThreadPoolExecutor/as_completed.
+
+Notable issues visible from the snippet (structure-impacting):
+
+Uses re and json but they aren’t imported in the shown file.
+
+Imports generate_preprint_search_queries / verify_preprint_candidate from llm_preprint_verification, but the earlier file you shared doesn’t define them.
+
+The bottom part looks truncated / corrupted (there’s an unterminated string / mixed escaped code), so as-is it likely won’t run without fixing that section.
+
+
+unpaywall.py
+
+Purpose: query Unpaywall for an open-access PDF given a DOI.
+
+Defines function:
+
+unpaywall_pdf(doi: str, email: str) -> Optional[str]
+
+Does: calls Unpaywall API /v2/{doi} and returns best_oa_location.url_for_pdf if present.
+
+Calls: requests.get, .utils.info, .utils.warn.
+
+utils.py
+
+Purpose: shared helpers (config, strings, caching, logging).
+
+Defines constants:
+
+USER_AGENT, REQUESTS_TIMEOUT
+
+Utility functions:
+
+clean_filename(s, max_len=120) – filesystem-safe names
+
+stable_similarity(a, b) – string similarity (difflib)
+
+ensure_str(x) – normalize value to string
+
+makedirs(path) – mkdir parents
+
+Class:
+
+JsonCache – tiny JSON-on-disk cache (get, set)
+
+Logging helpers:
+
+info(msg), warn(msg), err(msg) – timestamped prints
+
+wikipedia_fetcher.py
+
+Purpose: fetch basic Wikipedia context (summary + full text) for a query.
+
+Internal helper:
+
+_wiki_call(params) -> Optional[dict] – wraps requests.get to Wikipedia API.
+
+Functions:
+
+search_wikipedia(query) -> Optional[str]
+
+Does: uses Wikipedia search API to get best matching page title.
+
+Calls: _wiki_call, .utils.info/.warn.
+
+fetch_wikipedia_page(title) -> Optional[Dict]
+
+Does: fetches plaintext page extract via Wikipedia API and returns {title, url, summary, content}.
+
+Calls: _wiki_call, .utils.info/.warn.
+
+get_wikipedia_context(query) -> Optional[Dict]
+
+Does: tries direct fetch; if missing, searches then fetches best match.
+
+Calls: fetch_wikipedia_page, search_wikipedia.

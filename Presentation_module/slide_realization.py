@@ -139,6 +139,20 @@ def _extract_first_json_object(raw: str) -> dict:
 
     raise ValueError("Could not parse JSON object from model output (even after trimming).")
 
+def _get_slide_group(pr):
+    """
+    Return the SlideGroupPlan from a PlanningResult, regardless of field name.
+    This makes slide_realization compatible with older/newer caches.
+    """
+    if hasattr(pr, "slide_group"):
+        return pr.slide_group
+    if hasattr(pr, "group_plan"):
+        return pr.group_plan
+    if hasattr(pr, "slide_group_plan"):
+        return pr.slide_group_plan
+    raise AttributeError(
+        f"PlanningResult has no slide group attribute. Available fields: {dir(pr)}"
+    )
 
 def _build_bullet_text_lookup(presentation: PresentationPlan) -> Dict[str, str]:
     """
@@ -929,7 +943,10 @@ def realize_presentation_slides(
     # FIRST PASS: narrative-driven slides
     # =====================================================
 
-    for slide_uid, bundle in all_items:
+    # FIRST PASS: narrative-driven slides
+    total_slides = len(all_items)
+    for idx, (slide_uid, bundle) in enumerate(all_items, start=1):
+        print(f"[4/5] Realizing slide {idx}/{total_slides}: {slide_uid}")
         group_name = bundle.slide_plan.group_name
         used_figures.setdefault(group_name, set())
 
@@ -956,8 +973,8 @@ def realize_presentation_slides(
 
         # ✅ DIRECT lookup: groups ARE SlideGroupPlan
         slide_group = next(
-            (pr.slide_group for pr in presentation.groups
-            if pr.slide_group.group_name == group_name),
+            (_get_slide_group(pr) for pr in presentation.groups
+            if _get_slide_group(pr).group_name == group_name),
             None,
         )
 
@@ -1015,8 +1032,7 @@ def realize_presentation_slides(
     # =====================================================
 
     for pr in presentation.groups:
-
-        slide_group = pr.slide_group
+        slide_group = _get_slide_group(pr)
         group_name = slide_group.group_name
         used_figures.setdefault(group_name, set())
 
@@ -1040,7 +1056,7 @@ def realize_presentation_slides(
 
         for i, fig in enumerate(unused_figures):
             new_uid = _make_figure_only_slide_uid(base_uid, i)
-
+            print(f"[4/5] Realizing forced-figure slide: {new_uid}  (figure: {fig})")
             plan_text = (
                 "Explain the scientific insight conveyed by this figure and "
                 "why it matters in the context of the overall story."

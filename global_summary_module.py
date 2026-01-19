@@ -920,7 +920,7 @@ def _process_and_split_groups(
             previous_summary["last_slide"] = int(m.group(2))
         else:
             previous_summary["last_slide"] = previous_summary.get("last_slide", 0) + len(
-                per_slide_lines
+                per_simportlide_lines
             )
 
         # ---- Write per-group blueprint ----
