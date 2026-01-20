@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
+import math
+
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE, MSO_CONNECTOR
@@ -10,8 +12,10 @@ from pptx.dml.color import RGBColor
 
 EMU_PER_INCH = 914400
 
+
 def emu_to_inches(x_emu: int) -> float:
     return x_emu / EMU_PER_INCH
+
 
 def get_slide_size_in(prs) -> tuple[float, float]:
     return emu_to_inches(prs.slide_width), emu_to_inches(prs.slide_height)
@@ -25,7 +29,15 @@ class Box:
     h: float
 
 
-def _add_title(slide, title: str, x: float, y: float, w: float, h: float, font_size: int = 32) -> None:
+def _add_title(
+    slide,
+    title: str,
+    x: float,
+    y: float,
+    w: float,
+    h: float,
+    font_size: int = 32,
+) -> None:
     tx = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
     tf = tx.text_frame
     tf.word_wrap = True
@@ -38,7 +50,6 @@ def _add_title(slide, title: str, x: float, y: float, w: float, h: float, font_s
 
 
 def _add_speaker_notes(slide, speaker_notes: str) -> None:
-    # Keep notes in the slide notes pane (not visible on slide)
     try:
         notes = slide.notes_slide.notes_text_frame
         notes.clear()
@@ -65,7 +76,7 @@ def _add_figure_placeholder(slide, caption: str, x: float, y: float, w: float, h
     p.font.color.rgb = RGBColor(0, 0, 0)
 
 
-def _add_bullet_box(slide, text: str, box: Box):
+def _add_bullet_box(slide, text: str, box: Box, font_pt: int = 18):
     shp = slide.shapes.add_shape(
         MSO_AUTO_SHAPE_TYPE.ROUNDED_RECTANGLE,
         Inches(box.x), Inches(box.y), Inches(box.w), Inches(box.h),
@@ -75,34 +86,130 @@ def _add_bullet_box(slide, text: str, box: Box):
     shp.line.color.rgb = RGBColor(120, 120, 120)
 
     tf = shp.text_frame
+    tf.word_wrap = True
     tf.clear()
     p = tf.paragraphs[0]
     p.text = text
-    p.font.size = Pt(18)
+    p.font.size = Pt(font_pt)
     p.font.color.rgb = RGBColor(0, 0, 0)
     return shp
 
 
-def _center(box: Box) -> Tuple[float, float]:
+def _port(box: Box, side: str) -> Tuple[float, float]:
+    """Return a connection point (in inches) on a box."""
+    if side == "left":
+        return (box.x, box.y + box.h / 2.0)
+    if side == "right":
+        return (box.x + box.w, box.y + box.h / 2.0)
+    if side == "top":
+        return (box.x + box.w / 2.0, box.y)
+    if side == "bottom":
+        return (box.x + box.w / 2.0, box.y + box.h)
     return (box.x + box.w / 2.0, box.y + box.h / 2.0)
 
 
-def _add_arrow(slide, a: Box, b: Box) -> None:
-    ax, ay = _center(a)
-    bx, by = _center(b)
+def _clamp(v: float, lo: float, hi: float) -> float:
+    return max(lo, min(hi, v))
 
+
+def _add_line(slide, x1: float, y1: float, x2: float, y2: float) -> None:
     conn = slide.shapes.add_connector(
         MSO_CONNECTOR.STRAIGHT,
-        Inches(ax), Inches(ay), Inches(bx), Inches(by),
+        Inches(x1), Inches(y1),
+        Inches(x2), Inches(y2),
     )
     conn.line.color.rgb = RGBColor(60, 60, 60)
     conn.line.width = Pt(2)
 
-    # Arrowheads in python-pptx can be version-dependent; try and ignore if unsupported.
+
+def _add_arrow(
+    slide,
+    a: Box,
+    b: Box,
+    bullets_x: float,
+    bullets_w: float,
+) -> None:
+    """
+    YOUR REQUIRED STYLE:
+
+    - Always connect from LEFT-MIDDLE of source box to LEFT-MIDDLE of target box.
+    - Keep arrow on the LEFT side of the bullet column (an "arrow lane").
+    - Do NOT route bottom->top. Do NOT connect centers. Do NOT cross the slide.
+
+    Implementation:
+    - Compute source left-mid (sx0, sy) and target left-mid (tx0, ty).
+    - Define a lane x = bullets_x + lane_offset (slightly inside bullets column).
+      Also ensure lane is left of the boxes by taking min(lane_x, sx0 - small_gap).
+    - Draw two straight segments:
+        (sx0, sy) -> (lane_x, sy)
+        (lane_x, sy) -> (lane_x, ty)
+      then a final short segment into the target:
+        (lane_x, ty) -> (tx0, ty)
+    - Place triangle arrowhead at (tx0, ty) pointing toward the target.
+    """
+    # Source/target ports: LEFT-MIDDLE only
+    sx0, sy = _port(a, "left")
+    tx0, ty = _port(b, "left")
+
+    # Bullets column bounds
+    col_left = bullets_x
+    col_right = bullets_x + bullets_w
+
+    # Arrow lane: a thin vertical "gutter" near the left edge of bullets column
+    lane_offset = 0.03 * bullets_w  # 3% of bullets width
+    lane_x = col_left + lane_offset
+
+    # Ensure lane is not to the right of the source/target left edges (keep it on the side)
+    # Put lane slightly left of boxes if possible, but don't leave bullets column.
+    # (Usually sx0 == box.x, so lane_x < sx0, good.)
+    lane_x = min(lane_x, sx0 - 0.10)  # 0.10 in gap
+    lane_x = min(lane_x, tx0 - 0.10)
+
+    # Clamp lane within bullets column (but keep it near the left)
+    lane_x = _clamp(lane_x, col_left + 0.05, col_right - 0.05)
+
+    # Also clamp endpoints within column
+    sx0 = _clamp(sx0, col_left, col_right)
+    tx0 = _clamp(tx0, col_left, col_right)
+
+    # If lane ended up >= sx0 (rare), force it to be a bit left of sx0 but still inside column
+    if lane_x >= sx0:
+        lane_x = _clamp(sx0 - 0.12, col_left + 0.05, col_right - 0.05)
+    if lane_x >= tx0:
+        lane_x = _clamp(tx0 - 0.12, col_left + 0.05, col_right - 0.05)
+
+    # Draw elbow path: source -> lane (horizontal), lane vertical, lane -> target (horizontal)
+    # Segment 1: from source left edge to lane at same y
+    _add_line(slide, sx0, sy, lane_x, sy)
+    # Segment 2: vertical in lane
+    _add_line(slide, lane_x, sy, lane_x, ty)
+    # Segment 3: into target left edge
+    _add_line(slide, lane_x, ty, tx0, ty)
+
+    # Arrowhead triangle at target, pointing RIGHT (into the box) from lane -> target
+    # Direction is from lane_x to tx0 at same y (should be to the right).
+    dx = tx0 - lane_x
+    dy = 0.0
+    angle_deg = math.degrees(math.atan2(dy, dx))  # will be 0 if dx>0
+
+    head_size = 0.18
+    tri_left = tx0 - head_size / 2.0
+    tri_top = ty - head_size / 2.0
+
+    tri = slide.shapes.add_shape(
+        MSO_AUTO_SHAPE_TYPE.ISOSCELES_TRIANGLE,
+        Inches(tri_left), Inches(tri_top),
+        Inches(head_size), Inches(head_size),
+    )
+    tri.fill.solid()
+    tri.fill.fore_color.rgb = RGBColor(60, 60, 60)
     try:
-        conn.line.end_arrowhead = True  # may not exist depending on python-pptx version
+        tri.line.fill.background()
     except Exception:
-        pass
+        tri.line.color.rgb = RGBColor(60, 60, 60)
+
+    # Default triangle points up; rotate so it points along +x direction (right)
+    tri.rotation = angle_deg + 90.0
 
 
 def add_slide_from_plan(
@@ -116,7 +223,6 @@ def add_slide_from_plan(
 ):
     slide = prs.slides.add_slide(prs.slide_layouts[6])  # blank
 
-    # Get real slide size in inches and derive percent-based layout
     slide_w, slide_h = get_slide_size_in(prs)
 
     # Title sizing heuristic based on length
@@ -137,7 +243,6 @@ def add_slide_from_plan(
     margin_bottom = 0.05 * slide_h
     gap_x = 0.03 * slide_w
 
-    # Title region (adjusted above)
     title_y = margin_top
     content_y = title_y + title_h
     content_h = slide_h - content_y - margin_bottom
@@ -166,7 +271,7 @@ def add_slide_from_plan(
     if n == 0:
         return slide
 
-    # Simple rule: if many bullets and enough width, use 2 columns
+    # 1 or 2 columns
     cols = 2 if (n >= 6 and bullets_w >= 6.0) else 1
     col_gap = 0.02 * usable_w
     col_w = (bullets_w - col_gap * (cols - 1)) / cols
@@ -185,7 +290,7 @@ def add_slide_from_plan(
             y = content_y + r * (box_h + row_gap)
             b = Box(x=x, y=y, w=col_w, h=box_h)
             boxes.append(b)
-            _add_bullet_box(slide, bullets[idx], b)
+            _add_bullet_box(slide, bullets[idx], b, font_pt=18)
             idx += 1
 
     for e in edges or []:
@@ -195,6 +300,6 @@ def add_slide_from_plan(
         except Exception:
             continue
         if 0 <= i < len(boxes) and 0 <= j < len(boxes) and i != j:
-            _add_arrow(slide, boxes[i], boxes[j])
+            _add_arrow(slide, boxes[i], boxes[j], bullets_x, bullets_w)
 
     return slide
