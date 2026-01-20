@@ -981,10 +981,18 @@ def realize_presentation_slides(
         if slide_group is None:
             continue  # meta / warnings group
 
-        available_figures = [
-            f for f in (slide_group.available_figures or [])
-            if f not in used_figures[group_name]
-        ]
+        # --- Planned figure enforcement (CRITICAL) ---
+        planned_fig = getattr(bundle.slide_plan, "figure_used", None)
+        planned_fig = planned_fig.strip() if isinstance(planned_fig, str) else planned_fig
+
+        # If planning already dedicated this slide to a figure, FORCE that figure.
+        if planned_fig:
+            available_figures = [planned_fig]
+        else:
+            available_figures = [
+                f for f in (slide_group.available_figures or [])
+                if f not in used_figures[group_name]
+            ]
 
         evidence = retrieve_evidence_for_slide(
             slide_uid=slide_uid,
@@ -1023,6 +1031,10 @@ def realize_presentation_slides(
         )
 
         slide_specs[slide_uid] = spec
+
+        # If the slide was planned as figure-centered, do not allow null output.
+        if planned_fig and not spec.figure_used:
+            spec.figure_used = planned_fig
 
         if spec.figure_used:
             used_figures[group_name].add(spec.figure_used)
