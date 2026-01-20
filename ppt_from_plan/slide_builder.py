@@ -25,13 +25,14 @@ class Box:
     h: float
 
 
-def _add_title(slide, title: str, x: float, y: float, w: float, h: float) -> None:
+def _add_title(slide, title: str, x: float, y: float, w: float, h: float, font_size: int = 32) -> None:
     tx = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
     tf = tx.text_frame
+    tf.word_wrap = True
     tf.clear()
     p = tf.paragraphs[0]
     p.text = title
-    p.font.size = Pt(32)
+    p.font.size = Pt(font_size)
     p.font.bold = True
     p.font.color.rgb = RGBColor(0, 0, 0)
 
@@ -61,6 +62,7 @@ def _add_figure_placeholder(slide, caption: str, x: float, y: float, w: float, h
     p.text = caption or "Figure"
     p.font.size = Pt(14)
     p.font.italic = True
+    p.font.color.rgb = RGBColor(0, 0, 0)
 
 
 def _add_bullet_box(slide, text: str, box: Box):
@@ -117,14 +119,25 @@ def add_slide_from_plan(
     # Get real slide size in inches and derive percent-based layout
     slide_w, slide_h = get_slide_size_in(prs)
 
+    # Title sizing heuristic based on length
+    title_len = len(title.strip()) if title else 0
+    if title_len > 60:
+        title_h = 0.22 * slide_h
+        title_font = 26
+    elif title_len > 40:
+        title_h = 0.18 * slide_h
+        title_font = 28
+    else:
+        title_h = 0.14 * slide_h
+        title_font = 32
+
     # Percent-based margins and regions
     margin_x = 0.05 * slide_w
     margin_top = 0.05 * slide_h
     margin_bottom = 0.05 * slide_h
     gap_x = 0.03 * slide_w
 
-    # Title region (~14% of height)
-    title_h = 0.14 * slide_h
+    # Title region (adjusted above)
     title_y = margin_top
     content_y = title_y + title_h
     content_h = slide_h - content_y - margin_bottom
@@ -132,7 +145,7 @@ def add_slide_from_plan(
     left_x = margin_x
     usable_w = slide_w - 2 * margin_x
 
-    _add_title(slide, title, left_x, title_y, usable_w, title_h)
+    _add_title(slide, title, left_x, title_y, usable_w, title_h, font_size=title_font)
     _add_speaker_notes(slide, speaker_notes)
 
     has_fig = bool(figure_used)
@@ -154,7 +167,7 @@ def add_slide_from_plan(
         return slide
 
     # Simple rule: if many bullets and enough width, use 2 columns
-    cols = 2 if (n >= 6 and bullets_w >= 7.0) else 1
+    cols = 2 if (n >= 6 and bullets_w >= 6.0) else 1
     col_gap = 0.02 * usable_w
     col_w = (bullets_w - col_gap * (cols - 1)) / cols
 
