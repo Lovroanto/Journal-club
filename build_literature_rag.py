@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Union                     # ← only this import needed for old Python
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-from grobid_preprocessor import preprocess_pdf
+from PDF_reader.grobid_preprocessor import preprocess_pdf
 
 
 logging.basicConfig(

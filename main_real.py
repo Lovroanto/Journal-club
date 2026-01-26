@@ -8,7 +8,7 @@ Minimal wrapper to test grobid_preprocessor in both modes:
 """
 
 from pathlib import Path
-from PDF_reader.grobid_processor import preprocess_pdf
+from PDF_reader.grobid_preprocessor import preprocess_pdf
 from chunksummary_module import run_chunk_summary
 from global_summary_module import generate_global_and_plan
 from langchain_ollama import OllamaLLM   # ← import LLM class

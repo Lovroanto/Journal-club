@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 grobid_preprocessor.py
@@ -36,9 +35,10 @@ from typing import Dict, List, Tuple, Any
 from difflib import SequenceMatcher, HtmlDiff
 from bs4 import BeautifulSoup
 from langchain_ollama import OllamaLLM
-from sentence_alignment import align_clean_to_grobid, save_alignment_report
-from tei_supplementary_detector import detect_supplementary_boundary, split_main_and_supp_by_boundary
-from apply_tei_changes import apply_instructions_to_tei
+from .sentence_alignment import align_clean_to_grobid, save_alignment_report
+from .tei_supplementary_detector import detect_supplementary_boundary, split_main_and_supp_by_boundary
+from .tei_formula_inserter import insert_formulas_and_write_context
+from .apply_tei_changes import apply_instructions_to_tei
 import html
 
 MODEL = "llama3.1"  # same as your chunk summary
@@ -1804,6 +1804,7 @@ def preprocess_pdf(
         report_file = output_dir / "checktxt" / "SENTENCE_ALIGNMENT_FULL.txt"
         whattodo_file = output_dir / "checktxt" / "WhatToChange.txt"
 
+        print(">>> DEBUG: about to align_clean_to_grobid")
         align_clean_to_grobid(
             clean_txt_path=clean_file,
             grobid_txt_path=grobid_file,
@@ -1811,7 +1812,9 @@ def preprocess_pdf(
             output_report=report_file,
             output_reorder=whattodo_file,
         )
+        print(">>> DEBUG: finished align_clean_to_grobid")
 
+        print(">>> DEBUG: about to apply_instructions_to_tei")
         apply_instructions_to_tei(
             raw_tei_path=raw_tei_path,
             tei_sents_path=grobid_file,
@@ -1819,9 +1822,41 @@ def preprocess_pdf(
             instructions_path=whattodo_file,
             output_path=output_dir / "NEWraw_tei.xml",
         )
+        print(">>> DEBUG: finished apply_instructions_to_tei")
+
+        print(">>> DEBUG: about to read NEWraw_tei.xml")
         final_tei_path = output_dir / "NEWraw_tei.xml"
         final_tei_xml = final_tei_path.read_text(encoding="utf-8")
+        print(">>> DEBUG: finished reading NEWraw_tei.xml")
         print("TEI correction completed → using NEWraw_tei.xml")
+
+        # --------------------------
+        # (NEW) FORMULA PASS — AFTER ALIGNMENT/CORRECTION
+        # --------------------------
+        if not rag_mode:
+            checktxt = output_dir / "checktxt"
+            tei_final_sents = checktxt / "tei_corrected_FINAL.txt"
+            tei_final_with_formulas = checktxt / "tei_corrected_FINAL_with_formulas.txt"
+            formula_context_file = checktxt / "FORMULA_OF_ARTICLE.txt"
+
+            # re-extract structured sentences from the FINAL corrected TEI
+            extract_structured_sentences_from_tei(
+                final_tei_path,
+                tei_final_sents,
+            )
+
+            # insert formulas + write context file
+            insert_formulas_and_write_context(
+                sentence_file=tei_final_sents,
+                tei_path=final_tei_path,
+                output_sentence_file=tei_final_with_formulas,
+                output_formula_context_file=formula_context_file,
+                anchor_tail_words=12,
+                context_window=2,
+            )
+
+            print(f"[OK] Wrote formulas-inserted stream → {tei_final_with_formulas}")
+            print(f"[OK] Wrote formula context file       → {formula_context_file}")
     else:
         print("correct_grobid=False → skipping correction")
 
@@ -1970,4 +2005,8 @@ def preprocess_pdf(
         "main_chunks": len(main_chunks),      # kept for backward compat
         "supp_chunks": len(supp_chunks),
         "has_references": has_real_references,
+
+        # Optional formula outputs (only present if correction ran and not rag_mode)
+        "formula_context": str(output_dir / "checktxt" / "FORMULA_OF_ARTICLE.txt") if (correct_grobid and not rag_mode) else None,
+        "tei_sentences_with_formulas": str(output_dir / "checktxt" / "tei_corrected_FINAL_with_formulas.txt") if (correct_grobid and not rag_mode) else None,
     }
