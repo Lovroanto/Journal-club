@@ -30,6 +30,7 @@ import requests
 import fitz
 from lxml import etree as ET
 from typing import Union, Tuple, Optional
+from PIL import Image, ImageStat
 from pathlib import Path
 from typing import Dict, List, Tuple, Any
 from difflib import SequenceMatcher, HtmlDiff
@@ -37,8 +38,14 @@ from bs4 import BeautifulSoup
 from langchain_ollama import OllamaLLM
 from .sentence_alignment import align_clean_to_grobid, save_alignment_report
 from .tei_supplementary_detector import detect_supplementary_boundary, split_main_and_supp_by_boundary
+from .figure_cropper import crop_figures_from_rendered_pages
+from .embedded_image_extractor import extract_embedded_images_from_pdf
+from .ai_figure_mapper import run_ai_figure_mapping, export_matched_images
+from .pdfimages_extractor import extract_images_pdfimages
+from .page_renderer import render_pdf_to_png_pages
 from .tei_formula_inserter import insert_formulas_and_write_context
 from .apply_tei_changes import apply_instructions_to_tei
+
 import html
 
 MODEL = "llama3.1"  # same as your chunk summary
@@ -179,6 +186,64 @@ def extract_pdf_text(pdf_path: Union[str, Path]) -> str:
     pages = [page.get_text("text").strip() for page in doc]
     doc.close()
     return "\n\n".join(pages)
+
+def filter_cropped_images(
+    src_dir: Path,
+    dst_dir: Path,
+    *,
+    min_w: int = 350,
+    min_h: int = 250,
+    min_area: int = 120_000,     # ~350*350
+    min_std: float = 18.0,       # low std => mostly white/text blocks
+    max_white_frac: float = 0.92 # too-white => usually captions
+) -> int:
+    """
+    Copy only 'figure-like' crops into dst_dir.
+    Heuristics:
+      - remove tiny crops
+      - remove crops with very low intensity variation (std)
+      - remove crops that are mostly white
+    """
+    from PIL import Image, ImageStat
+    dst_dir.mkdir(parents=True, exist_ok=True)
+
+    kept = 0
+    for img_path in sorted(src_dir.glob("*.png")):
+        try:
+            with Image.open(img_path) as im:
+                w, h = im.size
+                if w < min_w or h < min_h:
+                    continue
+                if (w * h) < min_area:
+                    continue
+
+                gray = im.convert("L")
+                stat = ImageStat.Stat(gray)
+
+                # stddev: captions tend to be low variation (white + black text)
+                std = stat.stddev[0]
+                if std < min_std:
+                    continue
+
+                # fraction of near-white pixels
+                # (count pixels > 245, approximate)
+                # NOTE: this is fast enough for dozens/hundreds of crops
+                px = list(gray.getdata())
+                white = sum(1 for v in px if v > 245)
+                white_frac = white / float(len(px))
+                if white_frac > max_white_frac:
+                    continue
+
+            # keep it
+            (dst_dir / img_path.name).write_bytes(img_path.read_bytes())
+            kept += 1
+
+        except Exception:
+            # ignore corrupt/unreadable images
+            continue
+
+    return kept
+
 
 def extract_and_remove_figure_captions(
     text: str,
@@ -1465,6 +1530,35 @@ def detect_supplementary_by_keyword(div_text: str) -> bool:
 # New extract_sections() integrating tei_supplementary_detector (Option 1)
 
 
+def _norm_ws(s: str) -> str:
+    return re.sub(r"\s+", " ", (s or "")).strip()
+
+def formula_to_text(formula_tag) -> str:
+    """
+    Convert a TEI <formula> into a plain-text line to be inserted in chunks.
+    Keeps the formula label if present.
+    Output example: "Formula (1): g^(2)(τ)= ..."
+    """
+    label_tag = formula_tag.find("label")
+    label = _norm_ws(label_tag.get_text(" ", strip=True)) if label_tag else ""
+
+    # full text includes label sometimes; we remove it once to avoid duplication
+    raw = _norm_ws(formula_tag.get_text(" ", strip=True))
+    if label and label in raw:
+        raw = _norm_ws(raw.replace(label, ""))
+
+    prefix = f"Formula {label}: " if label else "Formula: "
+    return _norm_ws(prefix + raw)
+
+def iter_div_blocks_in_order(div):
+    """
+    Yield direct content blocks in the order they appear:
+    <head>, <p>, <formula>
+    (Only top-level ones, avoids duplicates from nested descendants.)
+    """
+    for child in div.find_all(["head", "p", "formula"], recursive=False):
+        yield child
+
 # assuming your existing utilities remain available:
 # - clean_paragraph_and_extract_figures
 # - DEFAULT_CHUNK_SIZE
@@ -1483,6 +1577,12 @@ def extract_sections(
     """
     Now supports overlap between consecutive chunks while preserving
     logical section boundaries.
+
+    UPDATED: reads both <p> AND <formula> (in-order) so formulas appear in chunks.
+    Assumes you already added:
+      - _norm_ws()
+      - formula_to_text()
+      - iter_div_blocks_in_order()
     """
     soup = BeautifulSoup(tei_xml, "lxml-xml")
     body = soup.find("body")
@@ -1534,15 +1634,12 @@ def extract_sections(
             if not current_chunk_text.strip():
                 return
 
-            # Base text without figures line
             base_text = current_chunk_text.rstrip()
 
-            # Add figure caption if any
             if current_chunk_figs:
                 fig_line = "\nFigures used in this chunk: " + ", ".join(sorted(current_chunk_figs))
                 base_text += fig_line + "\n"
 
-            # PREPEND OVERLAP only if this is not the very first chunk
             if previous_overlap_text and chunks:
                 final_text = previous_overlap_text + base_text
             else:
@@ -1554,7 +1651,7 @@ def extract_sections(
                 "section_title": current_section_title
             })
 
-            # === CRITICAL: compute overlap from the *original* text (before prepending previous overlap) ===
+            # compute overlap from ORIGINAL text (no prepended overlap)
             original_text = current_chunk_text.strip()
             if overlap > 0 and len(original_text) > overlap:
                 previous_overlap_text = original_text[-overlap:]
@@ -1563,24 +1660,37 @@ def extract_sections(
             else:
                 previous_overlap_text = ""
 
-            # Reset
             current_chunk_text = ""
             current_chunk_figs = set()
             current_section_title = None
 
         for div in div_list:
-            head = div.find("head")
-            head_text = head.get_text(" ", strip=True) if head else None
-            if head_text:
-                if current_chunk_text and len(current_chunk_text + "\n" + head_text + "\n") > chunk_size:
-                    flush_chunk()
-                current_chunk_text += ("\n" + head_text + "\n") if current_chunk_text else (head_text + "\n")
-                current_section_title = head_text
+            # IMPORTANT: iterate head/p/formula in document order
+            for node in iter_div_blocks_in_order(div):
 
-            for p in div.find_all("p"):
-                cleaned_para, figs = clean_paragraph_and_extract_figures(p)
+                # ---- HEAD ----
+                if node.name == "head":
+                    head_text = node.get_text(" ", strip=True)
+                    if head_text:
+                        if current_chunk_text and len(current_chunk_text + "\n" + head_text + "\n") > chunk_size:
+                            flush_chunk()
+                        current_chunk_text += ("\n" + head_text + "\n") if current_chunk_text else (head_text + "\n")
+                        current_section_title = head_text
+                    continue
 
-                # === VERY LONG PARAGRAPH: split into multiple chunks ===
+                # ---- PARAGRAPH ----
+                if node.name == "p":
+                    cleaned_para, figs = clean_paragraph_and_extract_figures(node)
+
+                # ---- FORMULA ----
+                elif node.name == "formula":
+                    cleaned_para = formula_to_text(node)
+                    figs = set()
+
+                else:
+                    continue
+
+                # === VERY LONG BLOCK: split into multiple chunks ===
                 if len(cleaned_para) > chunk_size:
                     if current_chunk_text:
                         flush_chunk()
@@ -1590,7 +1700,6 @@ def extract_sections(
                         end = pos + chunk_size
                         part = cleaned_para[pos:end]
 
-                        # Try to break on whitespace (but not too early)
                         if end < len(cleaned_para):
                             break_point = part.rfind(" ")
                             if break_point > 100:
@@ -1599,11 +1708,9 @@ def extract_sections(
 
                         chunk_content = part.strip()
 
-                        # Prepend overlap (only if not the very first chunk ever)
                         if previous_overlap_text and chunks:
                             chunk_content = previous_overlap_text + chunk_content
 
-                        # Add figure line
                         if figs:
                             chunk_content += "\n\nFigures used in this chunk: " + ", ".join(sorted(figs)) + "\n"
 
@@ -1613,7 +1720,6 @@ def extract_sections(
                             "section_title": current_section_title
                         })
 
-                        # === CORRECT overlap update: use only the *new* part, not the prepended one ===
                         new_part_clean = part.strip()
                         if overlap > 0 and len(new_part_clean) > overlap:
                             previous_overlap_text = new_part_clean[-overlap:]
@@ -1625,7 +1731,7 @@ def extract_sections(
                         pos = end
                     continue
 
-                # === NORMAL PARAGRAPH ===
+                # === NORMAL BLOCK (<p> or <formula>) ===
                 if current_chunk_text and len(current_chunk_text + cleaned_para + "\n") > chunk_size:
                     flush_chunk()
 
@@ -1633,6 +1739,7 @@ def extract_sections(
                     current_chunk_text = cleaned_para + "\n"
                 else:
                     current_chunk_text += cleaned_para + "\n"
+
                 current_chunk_figs.update(figs)
 
         flush_chunk()
@@ -1642,6 +1749,7 @@ def extract_sections(
     supp_chunks = produce_chunks_from_divs(supp_divs) if include_supplementary and supp_divs else []
 
     return main_chunks, supp_chunks
+
 
 
 #This part is just to check if the file has real references or not if not he w ont try to invent them at all cost
@@ -1720,7 +1828,7 @@ def preprocess_pdf(
     pdf_path: str,
     output_dir: str,
     chunk_size: int = DEFAULT_CHUNK_SIZE,
-    overlap: int = 0,                     # ← NEW
+    overlap: int = 0,
     rag_mode: bool = False,
     article_name: str = None,
     keep_references: bool = False,
@@ -1730,43 +1838,100 @@ def preprocess_pdf(
     process_supplementary: bool = True,
     ask_user_for_supplementary: bool = False,
     llm: Any = None,
+    map_figures_with_ai: bool = False,
+    ai_figure_mapper_model: str = "llava:13b",
+
+    # Option A: render PDF pages to PNG (best for later figure mapping)
+    render_pages: bool = False,
+    page_render_dpi: int = 300,
 ) -> Dict:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    # --------------------------
     # 1. Choose PDF
+    # --------------------------
     pdf_to_send = str(pdf_path)
     tmp_pdf_path = None
     if preclean_pdf:
         tmp_pdf_path = produce_temp_cleaned_pdf(str(pdf_path), output_dir)
         pdf_to_send = tmp_pdf_path
 
+    # --------------------------
+    # Option A: render PDF pages to PNG (non-RAG only)
+    # --------------------------
+    rendered_pages_info = None
+    if (not rag_mode) and render_pages:
+        try:
+            rendered_pages_info = render_pdf_to_png_pages(
+                pdf_path=str(pdf_to_send),
+                out_dir=output_dir / "rendered_pages",
+                dpi=page_render_dpi,
+                prefix="page",
+            )
+            if isinstance(rendered_pages_info, dict):
+                print(
+                    f"[OK] Rendered pages: {rendered_pages_info.get('num_pages', '?')} "
+                    f"→ {rendered_pages_info.get('pages_dir', output_dir / 'rendered_pages')}"
+                )
+        except Exception as e:
+            print(f"[WARN] Page rendering failed: {e}")
+            rendered_pages_info = None
+
+    # --------------------------
+    # Embedded image streams (non-RAG only)
+    # NOTE: these are *not* necessarily the figures; keep for debug/backup.
+    # --------------------------
+    embedded_images_info = None
+    if not rag_mode:
+        try:
+            embedded_images_info = extract_embedded_images_from_pdf(
+                pdf_path=str(pdf_to_send),
+                out_dir=output_dir / "embedded_images",
+            )
+            if isinstance(embedded_images_info, dict):
+                print(
+                    f"[OK] Embedded images extracted: {embedded_images_info.get('count', '?')} "
+                    f"→ {embedded_images_info.get('images_dir', output_dir / 'embedded_images')}"
+                )
+        except Exception as e:
+            print(f"[WARN] Embedded image extraction failed: {e}")
+            embedded_images_info = None
+
+    # --------------------------
     # 2. Call GROBID
+    # --------------------------
     base_url = "http://localhost:8070/api/processFulltextDocument"
     params = {}
     if use_grobid_consolidation:
         params["consolidateHeader"] = "1"
         params["consolidateCitations"] = "1"
+
     with open(pdf_to_send, "rb") as f:
         r = requests.post(base_url, params=params, files={"input": f}, timeout=120)
     tei_xml = r.text
     raw_tei_path = output_dir / "raw_tei.xml"
     save_text(raw_tei_path, tei_xml)
 
+    # --------------------------
     # 3. GROBID correction
+    # --------------------------
     final_tei_path = raw_tei_path
     final_tei_xml = tei_xml
+
+    # capture mapping outputs only if mapping actually runs
+    mapping_out = None
+    mapping_tei_out = None
 
     if correct_grobid:
         print("Running GROBID correction pipeline...")
 
-        # ONLY ONE CALL — respects rag_mode
         cleaned_text = prepare_pdf_for_grobid_check(
             pdf_path=pdf_path,
             output_dir=output_dir,
             preview_lines=30,
             save_cleaned=True,
-            extract_figures=not rag_mode,  # ← Critical: no images in RAG
+            extract_figures=not rag_mode,  # no images in RAG
         )
 
         extract_all_sentences_to_single_file(
@@ -1827,40 +1992,140 @@ def preprocess_pdf(
         print(">>> DEBUG: about to read NEWraw_tei.xml")
         final_tei_path = output_dir / "NEWraw_tei.xml"
         final_tei_xml = final_tei_path.read_text(encoding="utf-8")
+
+        # --------------------------
+        # Optional AI figure mapping (non-RAG only)
+        # Prefer rendered pages if available; otherwise fall back to embedded images.
+        # --------------------------
+        if (not rag_mode) and map_figures_with_ai:
+            images_dir: Optional[Path] = None
+            chosen_source: Optional[str] = None
+
+            # 1) Prefer rendered pages
+            if isinstance(rendered_pages_info, dict):
+                pages_dir = rendered_pages_info.get("pages_dir")
+                if pages_dir:
+                    p = Path(pages_dir)
+                    if p.exists():
+                        images_dir = p
+                        chosen_source = "rendered_pages"
+
+            # 2) Fallback: embedded images (PDF streams)
+            if images_dir is None and isinstance(embedded_images_info, dict):
+                emb_dir = embedded_images_info.get("images_dir")
+                if emb_dir:
+                    p = Path(emb_dir)
+                    if p.exists():
+                        images_dir = p
+                        chosen_source = "embedded_images"
+
+            print(
+                f"[DEBUG] map_figures_with_ai={map_figures_with_ai} rag_mode={rag_mode} "
+                f"render_pages={render_pages} chosen_source={chosen_source} images_dir={images_dir}"
+            )
+
+            # If using rendered pages: crop -> filter -> map
+            if images_dir is not None and chosen_source == "rendered_pages":
+                cropped_dir = output_dir / "cropped_figures"
+                filtered_dir = output_dir / "cropped_figures_filtered"
+
+                try:
+                    cropped_dir.mkdir(parents=True, exist_ok=True)
+                    filtered_dir.mkdir(parents=True, exist_ok=True)
+
+                    crop_figures_from_rendered_pages(
+                        rendered_pages_dir=images_dir,
+                        out_dir=cropped_dir,
+                    )
+
+                    cropped_files = sorted([p for p in cropped_dir.glob("*.png") if p.is_file()])
+                    print(f"[OK] Cropped figure candidates: {len(cropped_files)} → {cropped_dir}")
+
+                    kept = filter_cropped_images(
+                        src_dir=cropped_dir,
+                        dst_dir=filtered_dir,
+                        min_w=350,
+                        min_h=250,
+                        min_area=120_000,
+                        min_std=18.0,
+                        max_white_frac=0.92,
+                    )
+                    print(f"[OK] Filtered figure candidates: {kept} → {filtered_dir}")
+
+                    if kept > 0:
+                        images_dir = filtered_dir
+                        chosen_source = "cropped_figures_filtered"
+                    else:
+                        print("[WARN] Filter removed everything → falling back to unfiltered crops")
+                        images_dir = cropped_dir
+                        chosen_source = "cropped_figures"
+
+                except Exception as e:
+                    print(f"[WARN] Cropping/filtering failed → falling back to full pages: {e}")
+
+            # Run mapping
+            if images_dir is not None:
+                mapping_out = output_dir / "figure_image_map.json"
+                mapping_tei_out = output_dir / "figure_image_map.xml"
+                try:
+                    run_ai_figure_mapping(
+                        tei_xml=final_tei_xml,
+                        images_dir=images_dir,
+                        out_json=mapping_out,
+                        out_tei=mapping_tei_out,
+                        llm=llm,
+                        vision_model=ai_figure_mapper_model,
+                    )
+                    print(f"[OK] AI figure mapping wrote → {mapping_out} and {mapping_tei_out}")
+
+                    export_matched_images(
+                        mapping_json=mapping_out,
+                        images_dir=images_dir,
+                        out_dir=output_dir / "matched_figures",
+                    )
+                    print(f"[OK] Exported matched images → {output_dir / 'matched_figures'}")
+
+                except Exception as e:
+                    print(f"[WARN] AI figure mapping failed: {e}")
+                    mapping_out = None
+                    mapping_tei_out = None
+            else:
+                print("[WARN] AI figure mapping skipped: no usable images_dir")
+
+
         print(">>> DEBUG: finished reading NEWraw_tei.xml")
         print("TEI correction completed → using NEWraw_tei.xml")
 
+
         # --------------------------
-        # (NEW) FORMULA PASS — AFTER ALIGNMENT/CORRECTION
+        # Formula pass (non-RAG only)
         # --------------------------
         if not rag_mode:
             checktxt = output_dir / "checktxt"
             tei_final_sents = checktxt / "tei_corrected_FINAL.txt"
-            tei_final_with_formulas = checktxt / "tei_corrected_FINAL_with_formulas.txt"
-            formula_context_file = checktxt / "FORMULA_OF_ARTICLE.txt"
+            formula_tei = checktxt / "FORMULA_OF_ARTICLE.xml"
 
-            # re-extract structured sentences from the FINAL corrected TEI
             extract_structured_sentences_from_tei(
                 final_tei_path,
                 tei_final_sents,
             )
 
-            # insert formulas + write context file
             insert_formulas_and_write_context(
                 sentence_file=tei_final_sents,
                 tei_path=final_tei_path,
-                output_sentence_file=tei_final_with_formulas,
-                output_formula_context_file=formula_context_file,
+                output_sentence_file=None,
+                output_formula_context_tei=formula_tei,
                 anchor_tail_words=12,
                 context_window=2,
             )
 
-            print(f"[OK] Wrote formulas-inserted stream → {tei_final_with_formulas}")
-            print(f"[OK] Wrote formula context file       → {formula_context_file}")
+            print(f"[OK] Wrote formula-context TEI → {formula_tei}")
     else:
         print("correct_grobid=False → skipping correction")
 
+    # --------------------------
     # 4. Metadata + Figures — ONLY in debug mode
+    # --------------------------
     title_txt_path = None
     if not rag_mode:
         meta = extract_metadata_from_tei(final_tei_xml)
@@ -1872,10 +2137,11 @@ def preprocess_pdf(
                 fh.write(f" - {a.get('first', '')} {a.get('last', '')}\n")
             fh.write(f"\nAbstract:\n{meta.get('abstract', '')}\n")
 
-        # Only extract figures in debug mode
         extract_figures(final_tei_xml, output_dir, rag_mode=rag_mode, article_name=article_name)
 
+    # --------------------------
     # 5. References
+    # --------------------------
     has_real_references = False
     refs_path = output_dir / "references.txt"
     if not rag_mode:
@@ -1884,12 +2150,13 @@ def preprocess_pdf(
         if not has_real_references and refs_path.exists():
             refs_path.unlink(missing_ok=True)
 
+    # --------------------------
     # 6. Chunking
-# 6. Chunking — now with overlap
+    # --------------------------
     main_chunks, supp_chunks = extract_sections(
         final_tei_xml,
         chunk_size=chunk_size,
-        overlap=overlap,                                 # ← PASS IT
+        overlap=overlap,
         include_supplementary=process_supplementary,
         ask_user_for_supplementary=ask_user_for_supplementary,
         llm=llm,
@@ -1897,7 +2164,9 @@ def preprocess_pdf(
     if not process_supplementary:
         supp_chunks = []
 
+    # --------------------------
     # 7. Save chunks
+    # --------------------------
     if rag_mode:
         prefix_main = f"{clean_filename(article_name)}_main_chunk" if article_name else "main_chunk"
         prefix_sup = f"{clean_filename(article_name)}_sup_chunk" if article_name else "sup_chunk"
@@ -1916,9 +2185,10 @@ def preprocess_pdf(
             for i, c in enumerate(supp_chunks, 1):
                 save_text(supp_dir / f"sup_chunk{str(i).zfill(3)}.txt", c["text"])
 
+    # --------------------------
     # 8. Figure maps (debug only)
+    # --------------------------
     if not rag_mode:
-        # main figures
         main_figs = set()
         main_map = {}
         for idx, c in enumerate(main_chunks, 1):
@@ -1942,7 +2212,9 @@ def preprocess_pdf(
                 for k in sorted(supp_map):
                     fm.write(f"{k} -> {', '.join(supp_map[k])}\n")
 
+    # --------------------------
     # 9. With references folder
+    # --------------------------
     if keep_references and not rag_mode and has_real_references and refs_path.exists():
         refs_text = refs_path.read_text(encoding="utf-8")
         wr_dir = output_dir / "with_references"
@@ -1956,7 +2228,9 @@ def preprocess_pdf(
             for i, c in enumerate(supp_chunks, 1):
                 save_text(wr_supp / f"sup_chunk{str(i).zfill(3)}.txt", c["text"] + "\n\nReferences:\n" + refs_text)
 
+    # --------------------------
     # 10. Cleanup temp PDF
+    # --------------------------
     if preclean_pdf and tmp_pdf_path:
         try:
             tmp = Path(tmp_pdf_path)
@@ -1965,7 +2239,9 @@ def preprocess_pdf(
         except Exception:
             pass
 
-    # FINAL RAG CLEANUP — AFTER EVERYTHING
+    # --------------------------
+    # FINAL RAG CLEANUP
+    # --------------------------
     if rag_mode:
         for pattern in [
             "cleaned_article.txt", "raw_tei.xml", "NEWraw_tei.xml",
@@ -1975,7 +2251,7 @@ def preprocess_pdf(
             for f in output_dir.glob(pattern):
                 f.unlink(missing_ok=True)
 
-        for folder in ["figure_from_pdf", "checktxt"]:
+        for folder in ["figure_from_pdf", "checktxt", "embedded_images", "rendered_pages"]:
             dir_path = output_dir / folder
             if dir_path.exists():
                 import shutil
@@ -1985,7 +2261,9 @@ def preprocess_pdf(
             if d.is_dir() and not any(d.iterdir()):
                 d.rmdir()
 
-    # === Determine where the final chunks are stored (critical for RAG) ===
+    # --------------------------
+    # chunk dirs
+    # --------------------------
     if rag_mode:
         main_chunks_dir = output_dir
         supp_chunks_dir = output_dir if supp_chunks else None
@@ -1993,7 +2271,9 @@ def preprocess_pdf(
         main_chunks_dir = output_dir / "main"
         supp_chunks_dir = output_dir / "supplementary" if supp_chunks else None
 
-    # FINAL RETURN — now perfect for RAG pipelines
+    # --------------------------
+    # Return
+    # --------------------------
     return {
         "raw_tei": str(raw_tei_path),
         "final_tei": str(final_tei_path),
@@ -2002,11 +2282,38 @@ def preprocess_pdf(
         "main_chunks_dir": str(main_chunks_dir),
         "supp_chunks_dir": str(supp_chunks_dir) if supp_chunks_dir else None,
 
-        "main_chunks": len(main_chunks),      # kept for backward compat
+        "main_chunks": len(main_chunks),
         "supp_chunks": len(supp_chunks),
         "has_references": has_real_references,
 
-        # Optional formula outputs (only present if correction ran and not rag_mode)
-        "formula_context": str(output_dir / "checktxt" / "FORMULA_OF_ARTICLE.txt") if (correct_grobid and not rag_mode) else None,
-        "tei_sentences_with_formulas": str(output_dir / "checktxt" / "tei_corrected_FINAL_with_formulas.txt") if (correct_grobid and not rag_mode) else None,
+        "formula_context_tei": (
+            str(output_dir / "checktxt" / "FORMULA_OF_ARTICLE.xml")
+            if (correct_grobid and not rag_mode)
+            else None
+        ),
+
+        "figure_image_map_json": str(mapping_out) if mapping_out else None,
+        "figure_image_map_tei": str(mapping_tei_out) if mapping_tei_out else None,
+
+        "embedded_images_dir": (
+            str(embedded_images_info.get("images_dir"))
+            if (not rag_mode and isinstance(embedded_images_info, dict) and embedded_images_info.get("images_dir"))
+            else None
+        ),
+
+        "rendered_pages_dir": (
+            str(rendered_pages_info.get("pages_dir"))
+            if (not rag_mode and isinstance(rendered_pages_info, dict) and rendered_pages_info.get("pages_dir"))
+            else None
+        ),
+        "rendered_pages_count": (
+            int(rendered_pages_info.get("num_pages", 0))
+            if (not rag_mode and isinstance(rendered_pages_info, dict))
+            else 0
+        ),
+        "rendered_pages_dpi": (
+            int(rendered_pages_info.get("dpi", page_render_dpi))
+            if (not rag_mode and isinstance(rendered_pages_info, dict))
+            else None
+        ),
     }

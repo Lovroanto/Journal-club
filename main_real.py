@@ -44,16 +44,25 @@ if (True):
         pdf_path=pdf_file,
         output_dir=output_dir_article,
         chunk_size=4000,
-        overlap = 200,   
+        overlap=200,
+
         rag_mode=False,
         keep_references=True,
         preclean_pdf=True,
         use_grobid_consolidation=True,
         correct_grobid=True,
+
         process_supplementary=True,
-        ask_user_for_supplementary=False,  # ← enables interactive prompt
-        llm=llm,                          # ← LLM is passed
+        ask_user_for_supplementary=False,
+        llm=llm,
+
+        # NEW: make mapping run
+        render_pages=True,          # Option A pages
+        page_render_dpi=300,
+        map_figures_with_ai=True,   # <-- THIS is why you currently get None
+        ai_figure_mapper_model="llava:13b",
     )
+
     print("STANDARD MODE RESULTS:")
     print(result_standard)
     print("PREPROCESSING DONE!")
