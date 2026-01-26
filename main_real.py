@@ -8,7 +8,7 @@ Minimal wrapper to test grobid_preprocessor in both modes:
 """
 
 from pathlib import Path
-from grobid_preprocessor import preprocess_pdf
+from PDF_reader.grobid_processor import preprocess_pdf
 from chunksummary_module import run_chunk_summary
 from global_summary_module import generate_global_and_plan
 from langchain_ollama import OllamaLLM   # ← import LLM class
@@ -36,7 +36,7 @@ llm = OllamaLLM(model="llama3.1")  # ← create LLM object once
 
 main_folder = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Decomposition/main/"
 supp_folder = "/home/lbarisic/ai_data/Journal_Club/First/Newversion/Decomposition/supplementary/"
-if (False):
+if (True):
     # --------------------------
     # 1) Standard mode
     # --------------------------
@@ -174,7 +174,7 @@ if (False):
         embedding_model_name="BAAI/bge-small-en-v1.5",
         include_pdfs=True,
     )
-if(True):
+if(False):
     
     slide_group_file = str(Path(output_dir_summary) /"slides/003_Introduction_to_Continuous_Lasing.txt")    # contains Slide X + context
     global_context_file = str(Path(output_dir_summary) /"04_presentation_plan.txt"  )      # summary of whole paper (you already generated this earlier) 

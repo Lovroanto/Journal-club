@@ -126,74 +126,58 @@ def _add_arrow(
     slide,
     a: Box,
     b: Box,
+    *,
+    slide_w: float,
     bullets_x: float,
-    bullets_w: float,
 ) -> None:
     """
-    YOUR REQUIRED STYLE:
+    Required arrow style:
 
-    - Always connect from LEFT-MIDDLE of source box to LEFT-MIDDLE of target box.
-    - Keep arrow on the LEFT side of the bullet column (an "arrow lane").
-    - Do NOT route bottom->top. Do NOT connect centers. Do NOT cross the slide.
-
-    Implementation:
-    - Compute source left-mid (sx0, sy) and target left-mid (tx0, ty).
-    - Define a lane x = bullets_x + lane_offset (slightly inside bullets column).
-      Also ensure lane is left of the boxes by taking min(lane_x, sx0 - small_gap).
-    - Draw two straight segments:
-        (sx0, sy) -> (lane_x, sy)
-        (lane_x, sy) -> (lane_x, ty)
-      then a final short segment into the target:
-        (lane_x, ty) -> (tx0, ty)
-    - Place triangle arrowhead at (tx0, ty) pointing toward the target.
+    - Connect LEFT-MIDDLE of source box -> LEFT-MIDDLE of target box.
+    - Route "around" using the LEFT margin (space between slide edge and bullets_x).
+    - Use an elbow path (3 segments) so it clearly does not pass through content.
+    - Put a pointy arrowhead at the target, pointing into the target box.
     """
-    # Source/target ports: LEFT-MIDDLE only
-    sx0, sy = _port(a, "left")
-    tx0, ty = _port(b, "left")
+    # Ports: left-middle only
+    sx, sy = _port(a, "left")
+    tx, ty = _port(b, "left")
 
-    # Bullets column bounds
-    col_left = bullets_x
-    col_right = bullets_x + bullets_w
+    # Define a left-margin lane (outside the bullets column).
+    # bullets_x is the left edge of the bullet boxes column.
+    # We place the lane somewhere between the slide left margin and bullets_x.
+    # If there is little space, we still keep it as left as possible.
+    slide_left = 0.0
+    safe_pad = max(0.15, 0.015 * slide_w)  # keep away from absolute edge
 
-    # Arrow lane: a thin vertical "gutter" near the left edge of bullets column
-    lane_offset = 0.03 * bullets_w  # 3% of bullets width
-    lane_x = col_left + lane_offset
+    # Desired gutter width (~0.6 in or 6% of slide width, whichever smaller)
+    desired_gutter = min(0.60, 0.06 * slide_w)
 
-    # Ensure lane is not to the right of the source/target left edges (keep it on the side)
-    # Put lane slightly left of boxes if possible, but don't leave bullets column.
-    # (Usually sx0 == box.x, so lane_x < sx0, good.)
-    lane_x = min(lane_x, sx0 - 0.10)  # 0.10 in gap
-    lane_x = min(lane_x, tx0 - 0.10)
+    # Lane should be to the LEFT of bullet boxes:
+    lane_x = bullets_x - desired_gutter
 
-    # Clamp lane within bullets column (but keep it near the left)
-    lane_x = _clamp(lane_x, col_left + 0.05, col_right - 0.05)
+    # Clamp lane_x inside slide, but still left of bullets_x
+    lane_x = _clamp(lane_x, slide_left + safe_pad, bullets_x - safe_pad)
 
-    # Also clamp endpoints within column
-    sx0 = _clamp(sx0, col_left, col_right)
-    tx0 = _clamp(tx0, col_left, col_right)
+    # If bullets_x is too close to the edge and lane_x collapses,
+    # force a minimal lane slightly left of the boxes (still within slide).
+    if lane_x >= bullets_x - safe_pad:
+        lane_x = max(slide_left + safe_pad, bullets_x - 0.20)
 
-    # If lane ended up >= sx0 (rare), force it to be a bit left of sx0 but still inside column
-    if lane_x >= sx0:
-        lane_x = _clamp(sx0 - 0.12, col_left + 0.05, col_right - 0.05)
-    if lane_x >= tx0:
-        lane_x = _clamp(tx0 - 0.12, col_left + 0.05, col_right - 0.05)
-
-    # Draw elbow path: source -> lane (horizontal), lane vertical, lane -> target (horizontal)
-    # Segment 1: from source left edge to lane at same y
-    _add_line(slide, sx0, sy, lane_x, sy)
-    # Segment 2: vertical in lane
+    # Elbow path:
+    # 1) Horizontal out from source left edge to lane
+    # 2) Vertical along lane to target y
+    # 3) Horizontal into target left edge
+    _add_line(slide, sx, sy, lane_x, sy)
     _add_line(slide, lane_x, sy, lane_x, ty)
-    # Segment 3: into target left edge
-    _add_line(slide, lane_x, ty, tx0, ty)
+    _add_line(slide, lane_x, ty, tx, ty)
 
-    # Arrowhead triangle at target, pointing RIGHT (into the box) from lane -> target
-    # Direction is from lane_x to tx0 at same y (should be to the right).
-    dx = tx0 - lane_x
+    # Arrowhead: at (tx, ty), direction is from lane_x -> tx (should be rightwards)
+    dx = tx - lane_x
     dy = 0.0
-    angle_deg = math.degrees(math.atan2(dy, dx))  # will be 0 if dx>0
+    angle_deg = math.degrees(math.atan2(dy, dx))  # ~0 if pointing right
 
-    head_size = 0.18
-    tri_left = tx0 - head_size / 2.0
+    head_size = 0.18  # inches
+    tri_left = tx - head_size / 2.0
     tri_top = ty - head_size / 2.0
 
     tri = slide.shapes.add_shape(
@@ -208,7 +192,7 @@ def _add_arrow(
     except Exception:
         tri.line.color.rgb = RGBColor(60, 60, 60)
 
-    # Default triangle points up; rotate so it points along +x direction (right)
+    # Default triangle points up; rotate to point along +x (into the box)
     tri.rotation = angle_deg + 90.0
 
 
@@ -293,6 +277,7 @@ def add_slide_from_plan(
             _add_bullet_box(slide, bullets[idx], b, font_pt=18)
             idx += 1
 
+    # Draw arrows
     for e in edges or []:
         try:
             i = int(e.get("from", -1))
@@ -300,6 +285,12 @@ def add_slide_from_plan(
         except Exception:
             continue
         if 0 <= i < len(boxes) and 0 <= j < len(boxes) and i != j:
-            _add_arrow(slide, boxes[i], boxes[j], bullets_x, bullets_w)
+            _add_arrow(
+                slide,
+                boxes[i],
+                boxes[j],
+                slide_w=slide_w,
+                bullets_x=bullets_x,
+            )
 
     return slide
